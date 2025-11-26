@@ -20,6 +20,7 @@ public:
     bool operator==(const Card c) const;
 
     void flip();
+    void flip_down();
     [[nodiscard]] bool is_flipped() const;
 
     // Gets the card score
@@ -28,7 +29,6 @@ public:
 
 inline const Transform defaultCardTransform = {
     {scene::width / 2.0f, 0, 0},
-    {0,0,0},
     48,
     32,
     1,

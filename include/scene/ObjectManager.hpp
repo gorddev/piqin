@@ -2,6 +2,7 @@
 #include "../generics/Object.hpp"
 #include "textures/SheetManager.hpp"
 #include "utilities/IDStack.hpp"
+#include <concepts>
 #include <unordered_map>
 
 class ObjectManager {
@@ -22,6 +23,7 @@ public:
 	// Adds an object to the objectManager
 	Object* add_object(Object);
 	Object* add_object(Object*);
+	void add_objects(std::vector<Object*>& vec);
 
 	void remove_object(const Object *o);
 

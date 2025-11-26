@@ -9,6 +9,9 @@ ObjectManager::ObjectManager() : numObjects(0) {}
 // Adding an object
 Object* ObjectManager::add_object(Object obj) {
 	// If our IDStack is empty we just get the next avaliable ID
+	if (objList.find(obj.id) != objList.end())
+		return nullptr;
+	obj.id = 0;
 	auto* o = new Object(obj);
 	if (stack.is_empty())
 		o->id = nextID++;
@@ -21,6 +24,8 @@ Object* ObjectManager::add_object(Object obj) {
 }
 
 Object * ObjectManager::add_object(Object *o) {
+	if (objList.find(o->id) != objList.end())
+		return nullptr;
 	if (stack.is_empty())
 		o->id = nextID++;
 	// Otherwise we reuse an ID from the stack
@@ -31,10 +36,18 @@ Object * ObjectManager::add_object(Object *o) {
 	return o;
 }
 
+;
+void ObjectManager::add_objects(std::vector<Object *>& vec) {
+	for (auto& o: vec) {
+		add_object(o);
+	}
+}
+
 // Removing an object
 void ObjectManager::remove_object(const Object* o) {
 	remove_object(o->id);
 }
+
 void ObjectManager::remove_object(int id) {
 	// Exit if the object doesn't exist
 	if (objList.find(id) == objList.end()) return;

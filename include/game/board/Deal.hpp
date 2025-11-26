@@ -2,7 +2,7 @@
 #include <vector>
 #include "game/cards/Card.hpp"
 
-
+#define DEAL_Z_BASE 8.0f
 class Deal {
 private:
     // Holds all the cards in our hand

@@ -23,6 +23,7 @@ Path Deal::get_deal_path(Card*& c) {
 void Deal::add_card(Card *card, bool flipped) {
     if (flipped & !card->is_flipped())
         card->flip();
+    card->set_z_index(DEAL_Z_BASE + (deal.size()/100.f));
     deal.push_back(card);
     card->set_path(get_deal_path(card));
 }

@@ -58,7 +58,7 @@ target_link_options(norton PRIVATE
     "--preload-file=assets"
     "--emrun"
     "-sASSERTIONS=2"
-    "-sMAXIMUM_MEMORY=64MB"
+    "-sMAXIMUM_MEMORY=128MB"
     "-sALLOW_MEMORY_GROWTH"
 )
 

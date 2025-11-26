@@ -17,6 +17,8 @@ public:
     bool fixed = true;
     // If an object is hidden
     bool hidden = false;
+    // If we want to hide the shadow
+    bool shadow = true;
     // Let's us flag output for specific objects going thru object manager
     string flag;
     // Contains info for rendering
@@ -43,7 +45,6 @@ public:
 
     // Getters
     [[nodiscard]] Vertex pos() const;
-    [[nodiscard]] Vertex velocity() const;
     [[nodiscard]] double x() const;
     [[nodiscard]] double y() const;
     [[nodiscard]] double z() const;
@@ -61,7 +62,6 @@ public:
     // Setters
     void set_pos(const Vertex &v);
     void add_pos(const Vertex &v);
-    void set_velocity(const Vertex &v);
     void set_x(int new_x);
     void set_y(int new_y);
     void set_z(int new_z);

@@ -20,14 +20,11 @@ void Object::update_pos(double dt) {
 			path = nullptr;
 		}
 	}
-	else
-	t.pos += t.vel * VEL_SCALE * dt;
 
 }
 
 // Getters
 Vertex Object::pos() const { return t.pos; }
-Vertex Object::velocity() const { return t.vel; }
 double Object::x() const { return t.pos.x; }
 double Object::y() const { return t.pos.y; }
 double Object::z() const { return t.pos.z; }
@@ -67,10 +64,6 @@ void Object::add_pos(const Vertex &v) {
 	t.pos += v;
 }
 
-void Object::set_velocity(const Vertex &v) {
-	fixed = false;
-	t.vel = v;
-}
 void Object::set_x(const int new_x) {
 	fixed = false;
 	t.pos.x = new_x;
@@ -138,7 +131,6 @@ void Object::set_path(Vertex target, uint8_t pathType,
 
 string Object::to_string() {
 	return	"pos: "	+ t.pos.to_string() +
-			"\nvel: "	+ t.vel.to_string() +
 			"\nscale: " + std::to_string(t.scale);
 }
 

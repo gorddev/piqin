@@ -144,6 +144,11 @@ void RenderManager::render_objects() {
 		// If not flat, then we render vertically
 		if (engine::sm->get_sheet_renderType(o) == RENDER_VERTICAL) {
 			//// SHADOW
+			if (o->shadow == false) {
+				TextureRenderInfo shadow({-1,-1,0,0}, nullptr, -1);
+				verticals.emplace_back(shadow);
+			}
+
 			// If the shadow texture doesn't exist, we make it.
 			if (engine::sm->get_sheet_shadow(o) == nullptr)
 				engine::sm->set_sheet_shadow(o->sheet_id(), create_shadow_texture(engine::sm->get_sheet_texture(o)));

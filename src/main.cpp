@@ -16,6 +16,7 @@ GameMaster* gm = nullptr;
 
 // gameloop defined below
 EM_BOOL gameloop(double time, void* userdata) {
+
 	// Time from previous events
 	static double prevtime = 0;
 	scene::frame++;
@@ -82,8 +83,9 @@ int main() {
 	gm->add_card_to_hand({9,'c'});
 	gm->set_hand_as_target();
 
-	/******** END OF FUCK AROUND ZONE *******/
 
+
+	/******** END OF FUCK AROUND ZONE *******/
 	emscripten_request_animation_frame_loop(gameloop, nullptr);
 	emscripten_exit_with_live_runtime();
 

@@ -23,11 +23,13 @@ void RenderManager::render_flats(std::unordered_map<int, std::vector<TextureRend
 
 void RenderManager::render_verticals(std::vector<TextureRenderInfo> texvec) {
     for (int i = 0; i < texvec.size(); i+=2) {
-        // First we render the shadow
-        SDL_RenderCopyF(renderer,
-            engine::sm->get_sheet_shadow(texvec[i].sheet_id),
-            texvec[i+1].sheet_rect,
-            &texvec[i+1].canvas_rect);
+        // First we render the shadow if it's valid
+        if (texvec[i+1].sheet_id >= 0) {
+            SDL_RenderCopyF(renderer,
+                engine::sm->get_sheet_shadow(texvec[i].sheet_id),
+                texvec[i+1].sheet_rect,
+                &texvec[i+1].canvas_rect);
+        }
         // Then we render the vertical
         SDL_RenderCopyF(renderer,
             engine::sm->get_sheet_texture(texvec[i].sheet_id),

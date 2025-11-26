@@ -34,7 +34,7 @@ public:
     // Default constructor, creates 52 cards
     Board();
     // Gets the deck
-    std::vector<Card*>& get_deck();
+    [[nodiscard]] std::vector<Card*>& get_deck();
     // Adds a card to the deck
     void add_card(Card* c);
     // Adds a card to the player deal
@@ -43,6 +43,7 @@ public:
     bool hit_opponent();
 
     // Input Target overrides
+    // Gets the press so we can decide what to do
     bool getPress(short keybind) override;
 
 };
