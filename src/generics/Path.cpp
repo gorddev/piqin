@@ -1,0 +1,119 @@
+#include "generics/Path.hpp"
+
+#include <iostream>
+#include <ostream>
+
+#include "Constants.hpp"
+#include "utilities/Utilities.hpp"
+
+Path::Path(const Vertex &tar, const Vertex &startPos, uint8_t pathType, float speed = 1.0f)
+        : target(tar), pathType(pathType), speed(speed),
+        complete(false) {
+
+    initDist = (target - startPos).mag();
+
+    if (initDist == 0 )
+        complete = PATH_COMPLETE;
+}
+
+// Puts an object on a path
+void Path::to_path(Vertex &pos) {
+    if (complete == PATH_COMPLETE)
+        return;
+    if (pathType == PATH_BALLOON)
+        balloon(pos);
+    else if (pathType == PATH_TORPEDO)
+        torpedo(pos);
+    else
+        linear(pos);
+}
+
+// Defines the equation of motion for linear movement.
+#define PATH_LINEAR_EQ(U) (speed * scene::dt* U)
+void Path::linear(Vertex &pos) {
+    // Get what direction we have to move via the unit vector
+    Vertex unit = (target - pos).unit();
+    // If one of the coordinates reaches the finish, all of them do. (Linear)
+    if (overshoot(pos.x, target.x, PATH_LINEAR_EQ(unit[0])))
+        complete |= PATH_COMPLETE_X;
+     if (overshoot(pos.y, target.y, PATH_LINEAR_EQ(unit[1])))
+         complete |= PATH_COMPLETE_Y;
+    if (overshoot(pos.z, target.z, PATH_LINEAR_EQ(unit[2])))
+        complete |= PATH_COMPLETE_Z;
+}
+
+// Defines the equation of motion for balloonish movement
+#define PATH_BALLOON_EQ(U, DIST) (U * (scene::dt * speed * (1.0f / initDist) * (DIST) / PATH_BALLOON_DAMP))
+void Path::balloon(Vertex &pos)
+{
+    //calculate our unit vector
+    Vertex unit = (target - pos).unit();
+    Vertex dist = PATH_BALLOON_EQ(unit, target.dist(pos));
+    //minimum step of movement
+    const float minStep = 0.0025f * target.dist(pos);
+    // This way we can preserve minimum stepping
+    for (int i = 0; i < 3; ++i) {
+        if (fabs(dist[i]) < minStep) {
+            dist[i] = (unit.x >= 0.0f ? minStep : -minStep);
+        }
+    }
+    // Then we check if we overshoot or whether we're done or not!
+    if (~(complete & PATH_COMPLETE_X) && overshoot(pos.x, target.x, dist[0]))
+        complete |= PATH_COMPLETE_X;
+    if (~(complete & PATH_COMPLETE_Y) && overshoot(pos.y, target.y, dist[1]))
+        complete |= PATH_COMPLETE_Y;
+    if (~(complete & PATH_COMPLETE_Z) && overshoot(pos.z, target.z, dist[2]))
+        complete |= PATH_COMPLETE_Z;
+}
+
+// Defines the equation of motion for a torpedo-ish movement
+#define PATH_TORPEDO_EQ(U, DIST) (U * (scene::dt * speed * (1.0f/DIST) * PATH_TORPEDO_AMPLIFY))
+void Path::torpedo(Vertex &pos) {
+    // Very similar to the balloon code
+    // Gets the direction we have to move via. the unit vector
+    const Vertex unit = (target - pos).unit();
+    // Now we get the distance between our target and position
+    Vertex dist = PATH_TORPEDO_EQ(unit, target.dist(pos));
+    // If one of them reaches the finish, all of them should hopefully
+    // However, we must check that each of our travel distances are greater than 1
+    if (abs(dist[0]) < 1) dist[0] = utils::sgn(dist[0]);
+    if (abs(dist[1]) < 1) dist[1] = utils::sgn(dist[1]);
+    if (abs(dist[2]) < 1) dist[2] = utils::sgn(dist[2]);
+    // Then we check if we overshoot or whether we're done or not!
+    if (~(complete & PATH_COMPLETE_X) && overshoot(pos.x, target.x, dist[0]))
+        complete |= PATH_COMPLETE_X;
+    if (~(complete & PATH_COMPLETE_Y) && overshoot(pos.y, target.y, dist[1]))
+        complete |= PATH_COMPLETE_Y;
+    if (~(complete & PATH_COMPLETE_Z) && overshoot(pos.z, target.z, dist[2]))
+        complete |= PATH_COMPLETE_Z;
+    // If we're reached all paths, (complete == PATH_COMPLETE)
+}
+
+// Lets us tell if given our movement, if we're
+bool Path::overshoot(double &o, double& t, double dist) const {
+    const double newpos = o + dist;
+    if ((dist > 0 && newpos > t) || (dist < 0 && newpos < t)) {
+        o = t;
+        return true;
+    }
+    o = newpos;
+    return false;
+}
+
+// Tells us if a path is complete
+bool Path::path_complete() const {
+    return (complete == PATH_COMPLETE);
+}
+
+
+Vertex Path::get_target() {
+    return target;
+}
+
+std::string Path::to_string() {
+    std::string ret = "Target: "  + target.to_string();
+    ret += "\nSpeed: " + std::to_string(speed);
+    ret += "\nComplete: " + std::to_string(int(complete));
+    ret += "\nPath Type: " + std::to_string(pathType);
+    return ret;
+}

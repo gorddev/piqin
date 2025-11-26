@@ -1,0 +1,11 @@
+# Info pertaining to all cards
+# Ace of hearts
+# 1 spite: starts at x:0, y:0, w:6 (*4), h:8 (*4), linger:1, frameStates : {{0, repeat = true}, ... }, terminate: 255
+01 00 00 06 08 01 00 01 255
+
+# example of full output
+# 02   00 00 06 08 01   06 00 06 08 01   00 01   255
+# 02 -> two frames
+# s1 -> x: 0, y: 0, w: 6*4, h: 8*4, l: 1
+# s2 -> x: 6*4, y: 0, w: 6*4, h: 8*4, l: 1
+# 00 01 -> frameState @ 0, repeat = true

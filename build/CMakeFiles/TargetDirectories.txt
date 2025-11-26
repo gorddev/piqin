@@ -1,0 +1,3 @@
+/Users/gordie/game/build/CMakeFiles/norton.dir
+/Users/gordie/game/build/CMakeFiles/edit_cache.dir
+/Users/gordie/game/build/CMakeFiles/rebuild_cache.dir
