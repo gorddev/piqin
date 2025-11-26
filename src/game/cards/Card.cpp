@@ -41,6 +41,11 @@ void Card::flip() {
     fs.state = (flipped) ? CARD_FLIPPED : to_state();
 }
 
+void Card::flip_up() {
+    flipped = false;
+    fs.state = to_state();
+}
+
 void Card::flip_down() {
     flipped = true;
     fs.state = CARD_FLIPPED;

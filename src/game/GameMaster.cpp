@@ -43,9 +43,25 @@ void GameMaster::set_hand_as_target() {
 }
 
 void GameMaster::blackjack() {
-    if (board->switch_to_hand)
+    // Handes the switching of inputs
+    // If our board tells us to switch to the hand, we switch
+    if (hand->get_num_cards() == 0)
+        hand -> flayed = false;
+    if (board->switch_to_hand) {
         engine::input->setInputTarget(hand);
-    else {
+        hand->heldKeys[INPUT_MODIFY] = true;
+        board->switch_to_hand = false;
+    }
+    // If our hand tells us to switch to the board, we switch.
+    else if (!hand->flayed) {
         engine::input->setInputTarget(board);
     }
+
+    if (hand->popcard) {
+        board->hit_player(hand->pop_card());
+        hand->popcard = false;
+    }
+
+    board->comp_scores();
+    // If our hand tells us to pop a card
 }

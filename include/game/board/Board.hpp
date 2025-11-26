@@ -13,9 +13,9 @@ private:
     // Position of the deck
     Vertex deckPos;
     // Player character's deal
-    Deal player = Deal(Vertex(scene::width/2, scene::height/2, 0));
-    // Opponent's deal
-    Deal opponent = Deal(Vertex(scene::width/2, scene::height/4, 0));
+    Deal player = Deal(Vertex(3*scene::width/8, 7*scene::height/16, 0));
+    // Opponent's dea8
+    Deal opponent = Deal(Vertex(3*scene::width/8, scene::height/8, 0));
     // Number it takes to get blackjack
     int targetScore = 21;
 
@@ -39,8 +39,20 @@ public:
     void add_card(Card* c);
     // Adds a card to the player deal
     bool hit_player();
+    // Adds a specific card to the player deal
+    bool hit_player(Card* c);
     // Adds a card to the opponent deal
     bool hit_opponent();
+    // Adds a specific card to the opponent deal
+    bool hit_opponent(Card* c);
+
+    // Pops a card from the deck
+
+    // Gets the cards back from both deals
+    void retrieve_cards();
+
+    // See scores and who wins
+    void comp_scores();
 
     // Input Target overrides
     // Gets the press so we can decide what to do

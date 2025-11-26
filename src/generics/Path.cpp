@@ -12,14 +12,17 @@ Path::Path(const Vertex &tar, const Vertex &startPos, uint8_t pathType, float sp
 
     initDist = (target - startPos).mag();
 
-    if (initDist == 0 )
+    if (initDist <= 0.1)
         complete = PATH_COMPLETE;
+    Vertex test = (target - startPos);
 }
 
 // Puts an object on a path
 void Path::to_path(Vertex &pos) {
-    if (complete == PATH_COMPLETE)
+    if (complete == PATH_COMPLETE) {
+        pos = target;
         return;
+    }
     if (pathType == PATH_BALLOON)
         balloon(pos);
     else if (pathType == PATH_TORPEDO)
@@ -64,7 +67,7 @@ void Path::balloon(Vertex &pos)
         complete |= PATH_COMPLETE_Y;
     if (~(complete & PATH_COMPLETE_Z) && overshoot(pos.z, target.z, dist[2]))
         complete |= PATH_COMPLETE_Z;
-    // If we're reached all paths, (complete == PATH_COMPLETE)
+
 }
 
 // Defines the equation of motion for a torpedo-ish movement
@@ -73,6 +76,10 @@ void Path::torpedo(Vertex &pos) {
     //calculate our unit vector
     Vertex unit = (target - pos).unit();
     Vertex dist = PATH_TORPEDO_EQ(unit, target.dist(pos));
+    if (dist.mag() < 0.00001f) {
+        complete = PATH_COMPLETE;
+        return;
+    }
     //minimum step of movement
     const float minStep = 0.0025f * target.dist(pos);
     // This way we can preserve minimum stepping

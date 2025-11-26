@@ -26,6 +26,7 @@ EM_BOOL gameloop(double time, void* userdata) {
 	(void)userdata;
 	SDL_Event e;
 
+	gm->blackjack();
 	// This is our main loop.
 	while (SDL_PollEvent(&e)) {
 		if (e.type == SDL_QUIT)
@@ -35,7 +36,6 @@ EM_BOOL gameloop(double time, void* userdata) {
 	}
 
 	// Game master updates states of game logic and object paths
-	gm->blackjack();
 	gm->update();
 	// OM updates objects according to states and paths
 	std::vector<FrameState*> fss = engine::om->update_objects();

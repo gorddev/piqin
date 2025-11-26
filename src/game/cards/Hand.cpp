@@ -7,7 +7,6 @@
 #include "input/InputConstants.hpp"
 
 Hand::Hand() {
-    cards.resize(MAX_HAND_SIZE);
     targetCard = 0;
 
     // Setting up the little selector
@@ -20,9 +19,9 @@ Hand::Hand() {
 }
 
 bool Hand::add_card(Card* c) {
-    if (numCards <= MAX_HAND_SIZE) {
-        c->set_z_index(HAND_Z_BASE+numCards/(MAX_HAND_SIZE*2.0f));
-        cards[numCards++] = c;
+    if (cards.size() <= MAX_HAND_SIZE) {
+        c->set_z_index(HAND_Z_BASE+cards.size()/(MAX_HAND_SIZE*2.0f)); // NOLINT(*-narrowing-conversions)
+        cards.push_back(c);
         update_cards(true);
     }
     else
@@ -30,28 +29,11 @@ bool Hand::add_card(Card* c) {
     return true;
 }
 
-Card* Hand::pop_card(uint8_t value, char suite) {
-    Card c = {value, suite};
-    for (int i = 0; i < numCards; i++) {
-        if (*(cards[i])== c) {
-            Card* ret = cards[i];
-            cards.erase(cards.begin() + i);
-            numCards--;
-            if (targetCard >= numCards)
-                targetCard--;
-            update_cards(true);
-            return ret;
-        }
-    }
-    return nullptr;
-}
-
 Card* Hand::pop_card(uint8_t cardNum) {
-    if (cardNum < numCards) {
+    if (cardNum < cards.size()) {
         Card* ret = cards[cardNum];
         cards.erase(cards.begin()+cardNum);
-        numCards--;
-        if (targetCard >= numCards)
+        if (cards.size() != 0 && targetCard != 0)
             targetCard--;
         update_cards(true);
         return ret;
@@ -59,12 +41,18 @@ Card* Hand::pop_card(uint8_t cardNum) {
     return nullptr;
 }
 
+Card * Hand::pop_card() {
+    if (!popcard) return nullptr;
+    std::cerr<<"pop_card()"<<std::endl;
+    return pop_card(targetCard);
+}
+
 Path Hand::get_card_path(int index, bool selected, int& center, int& height, float speed, Vertex mod) {
     int flay = (is_held(INPUT_MODIFY)) ? (20) : 0;
     Path p = {
         {
             // Space each card more x-wise if hand is flayed
-            center + (14+flay) * (index - ((numCards-1)/2.0f)) + mod[0], // NOLINT(*-narrowing-conversions)
+            center + (14+flay) * (index - ((cards.size()-1)/2.0f)) + mod[0], // NOLINT(*-narrowing-conversions)
             // Set default height. If not flayed, stagger each card vertically from the last picked.
             (height - (flay*1.25)) - (flay/4.0f) + ((!flay) * abs(targetCard-index)*2) - (selected*5) + mod[1], // NOLINT(*-narrowing-conversions)
             Z_HAND_BASE + index/(MAX_HAND_SIZE*2.0f) + mod[2] // NOLINT(*-narrowing-conversions)
@@ -79,12 +67,13 @@ Path Hand::get_card_path(int index, bool selected, int& center, int& height, flo
 void Hand::update_cards(bool force) {
     int center = scene::width/2;
     int height = 3*scene::height/4;
-    if (numCards == 0)
+    if (cards.empty())
         card_selector->hidden = true;
     else if (flayed != is_held(INPUT_MODIFY) || force) {
-        for (int i = 0; i < numCards; i++)
+        for (int i = 0; i < cards.size(); i++)
             cards[i]->set_path(get_card_path(i, i == targetCard, center, height));
         flayed = is_held(INPUT_MODIFY);
+        // Dark or light
         card_selector->set_state(!flayed);
         if (!flayed)
             card_selector->set_path(get_card_path(targetCard,true, center, height, HAND_DEFAULT_SPEED, Vertex(0,15,0)));
@@ -96,25 +85,36 @@ void Hand::update_cards(bool force) {
         cards[targetCard]->set_path(get_card_path(targetCard, true, center, height, 0.125));
         cards[oldTarget]->set_path(get_card_path(oldTarget, false, center, height, 0.125));
         // Update our pointer accordingly
-        card_selector->set_path(get_card_path(targetCard,true, center, height,0.125, Vertex(0,10,0)));
+        card_selector->set_path(get_card_path(targetCard,true, center, height,0.2, Vertex(0,10,0)));
     }
     oldTarget = targetCard;
 }
 
 bool Hand::getPress(short keybind) {
-    if (!is_held(INPUT_MODIFY) || (keybind != INPUT_LEFT && keybind != INPUT_RIGHT))
-        return false;
-    if (keybind == INPUT_RIGHT)
-        targetCard = (targetCard + 1) % numCards;
-    else {
+    if (keybind == INPUT_RIGHT) {
+        targetCard = (targetCard + 1) % cards.size();
+        return true;
+    }
+    if (keybind == INPUT_LEFT) {
         if ((targetCard - 1) < 0)
-            targetCard = numCards - 1;
+            targetCard = cards.size() - 1;
         else
             targetCard--;
+        return true;
     }
-    return true;
+    if (keybind == INPUT_SELECT_ALT) {
+
+        popcard = true;
+        return true;
+    }
+
+    return false;
 }
 
 Object* Hand::get_selector() const {
     return card_selector;
+}
+
+int Hand::get_num_cards() const {
+    return cards.size();
 }

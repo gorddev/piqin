@@ -18,7 +18,7 @@ void InputManager::load_keybinds(std::unordered_map<SDL_Keycode, short> mappy) {
     mapToBindings[SDL_SCANCODE_A] = INPUT_LEFT;
     mapToBindings[SDL_SCANCODE_J] = INPUT_SELECT;
     mapToBindings[SDL_SCANCODE_K] = INPUT_BACK;
-    mapToBindings[SDL_SCANCODE_F] = INPUT_SELECT_ALT;
+    mapToBindings[SDL_SCANCODE_SPACE] = INPUT_SELECT_ALT;
     mapToBindings[SDL_SCANCODE_P] = INPUT_PAUSE;
 }
 
@@ -51,7 +51,7 @@ void InputManager::update(SDL_Event& e) {
                 targetStack.pop();
             }
         }
-        iqueue.push(keybind(e.keyb));
+        iqueue.push(keybind(e.keyb)); // NOLINT(*-narrowing-conversions)
         while (!iqueue.empty() && !it->getPress(iqueue.pop()));
     }
     // if we're pressing down modify we let it know

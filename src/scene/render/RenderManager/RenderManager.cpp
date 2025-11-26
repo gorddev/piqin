@@ -147,6 +147,7 @@ void RenderManager::render_objects() {
 			if (o->shadow == false) {
 				TextureRenderInfo shadow({-1,-1,0,0}, nullptr, -1);
 				verticals.emplace_back(shadow);
+				continue;
 			}
 
 			// If the shadow texture doesn't exist, we make it.

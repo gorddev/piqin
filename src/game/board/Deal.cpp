@@ -7,25 +7,34 @@ int Deal::get_num_cards() {
     return deal.size();
 }
 
-Path Deal::get_deal_path(Card*& c) {
-    const Vertex target(pos.x - scene::width/8 + deal.size()*12,
-        pos.y, pos.z);
+Path Deal::get_deal_path(Card *&c, float speed) {
+    const Vertex target(pos.x - scene::width/8 + deal.size()*24,
+        pos.y - random()%8, pos.z);
     Path p = {
         target,
         c->pos(),
-        PATH_TORPEDO,
-        1.0
+        PATH_BALLOON,
+        speed
     };
     return p;
 }
 
 // Adds a card and assigns it a path.
 void Deal::add_card(Card *card, bool flipped) {
-    if (flipped & !card->is_flipped())
-        card->flip();
+    if (flipped)
+        card->flip_down();
+    else
+        card->flip_up();
     card->set_z_index(DEAL_Z_BASE + (deal.size()/100.f));
     deal.push_back(card);
     card->set_path(get_deal_path(card));
+}
+
+void Deal::add_card(Card *card, double speed) {
+    card->set_z_index(DEAL_Z_BASE + (deal.size()/100.f));
+    deal.push_back(card);
+    card->set_path(get_deal_path(card, speed));
+
 }
 
 // Gives all the cards back to the Dealer

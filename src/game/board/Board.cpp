@@ -5,7 +5,7 @@
 #include "input/InputConstants.hpp"
 
 Board::Board() {
-    deckPos = Vertex(7*scene::width/8, scene::height/2, 0);
+    deckPos = Vertex(7*scene::width/8, 3*scene::height/8, 0);
     for (int i = 1; i <= 13; i++) {
         add_card(new Card(i, 'h'));
         add_card(new Card(i, 'c'));
@@ -29,7 +29,6 @@ Path Board::get_card_path(Card*& c) const {
         PATH_BALLOON,
         1.0
     };
-    std::cerr << p.get_target().to_string() << std::endl;
     return p;
 }
 
@@ -65,7 +64,12 @@ bool Board::hit_player() {
     std::cerr << "hit?\n";
     if (deck.size() <= 0) return false;
     int cardnum = random() % deck.size();
-    player.add_card(pop_card(cardnum));
+    player.add_card(pop_card(cardnum), false);
+    return true;
+}
+
+bool Board::hit_player(Card *c) {
+    player.add_card(c, 0.6);
     return true;
 }
 
@@ -75,6 +79,35 @@ bool Board::hit_opponent() {
     int cardnum = random() % deck.size();
     opponent.add_card(pop_card(cardnum), opponent.get_num_cards() == 0);
     return true;
+}
+
+bool Board::hit_opponent(Card* c) {
+    opponent.add_card(c);
+    return true;
+}
+
+void Board::retrieve_cards() {
+    for (auto& i : player.pop_cards()) {
+        deck.push_back(i);
+        i->set_path(get_card_path(i));
+        i->shadow = false;
+        i->flip_down();
+    }
+    for (auto& i : opponent.pop_cards()) {
+        deck.push_back(i);
+        i->set_path(get_card_path(i));
+        i->shadow = false;
+        i->flip_down();
+    }
+}
+
+void Board::comp_scores() {
+    int pscore = player.get_score();
+    int oscore = opponent.get_score();
+    if (pscore > targetScore)
+        retrieve_cards();
+    else if (oscore > targetScore)
+        retrieve_cards();
 }
 
 bool Board::getPress(short keybind) {

@@ -20,6 +20,9 @@ public:
     bool operator==(const Card c) const;
 
     void flip();
+
+    void flip_up();
+
     void flip_down();
     [[nodiscard]] bool is_flipped() const;
 
