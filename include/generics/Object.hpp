@@ -5,6 +5,8 @@
 #include "generics/Path.hpp"
 #include <string>
 
+#include "Shake.hpp"
+
 using std::string;
 
 #define DECK_Z_BASE 7.0f
@@ -12,8 +14,8 @@ class Object {
 public:
     // This object's id
     int id = -1;
-    // Flag for removal
-    bool remove = false;
+    // If we make a path before we make a shake, the path gets priority.
+    bool pathPriority = false;
     // If an object is fixed, we don't need to update it
     bool fixed = true;
     // If an object is hidden
@@ -31,18 +33,20 @@ protected:
     FrameState fs;
     // Allows us to access Path information
     Path* path = nullptr;
+    // Allows us to access a Shake variable
+    Shake* shake = nullptr;
 
 public:
     // Constructors
     Object() = default;
     // ReSharper disable once CppPassValueParameterByConstReference
     Object(Vertex v) : t(v) {}
-    Object(Object& o) : t(o.t), fs(o.fs), id(o.id), remove {o.remove}, fixed{o.fixed}, tex_render_info(o.tex_render_info) {}
+    Object(Object& o) : t(o.t), fs(o.fs), id(o.id), fixed{o.fixed}, tex_render_info(o.tex_render_info) {}
     // Destructor
     ~Object();
 
     // Member functions
-    void update_pos(double dt);
+    void update_pos();
 
     // Getters
     [[nodiscard]] Vertex pos() const;
@@ -59,6 +63,7 @@ public:
     [[nodiscard]] auto duration() -> int &;
     [[nodiscard]] float get_z_index();
     [[nodiscard]] Path *get_path() const;
+    [[nodiscard]] Shake* get_shake() const;
 
     // Setters
     void set_pos(const Vertex &v);
@@ -76,6 +81,8 @@ public:
     void set_z_index(float new_z_index);
     void set_path(const Path &p);
     void set_path(Vertex target, uint8_t pathType, float speed);
+    void set_shake(uint8_t shakeType, float strength, int duration, float speed = 1.0, bool decay = true);
+    void set_shake(const Shake& s);
 
     // To String
     string to_string();

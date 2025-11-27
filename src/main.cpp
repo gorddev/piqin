@@ -21,6 +21,7 @@ EM_BOOL gameloop(double time, void* userdata) {
 	// Time from previous events
 	static double prevtime = 0;
 	scene::frame++;
+	scene::time = time;
 	scene::dt = (time - prevtime);
 	prevtime = time;
 

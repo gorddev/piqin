@@ -14,6 +14,7 @@ add_executable(norton
         src/generics/Vertex.cpp
         src/generics/Path.cpp
         src/generics/Object.cpp
+        src/generics/Shake.cpp
 
         src/input/InputManager.cpp
 

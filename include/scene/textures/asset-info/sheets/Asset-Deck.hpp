@@ -13,7 +13,7 @@ static const SpriteSheet asset_deck = {
     32,
     48,
     13,
-    54,
+    60,
     ASSET_DECK_PATH,
     ASSET_DECK_RENDER_TYPE,
     FRAME_STOP,

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "game/cards/PlayerHand.hpp"
-#include "game/board/Board.hpp"
+#include "game/blackjack/PlayerHand.hpp"
+#include "game/blackjack/Board.hpp"
 
 class GameMaster {
 private:

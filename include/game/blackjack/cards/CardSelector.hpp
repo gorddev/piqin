@@ -1,14 +1,17 @@
 #pragma once
 
-#include "game/cards/Card.hpp"
+#include "game/blackjack/cards/Card.hpp"
 #include "scene/textures/asset-info/RegistryConstants.hpp"
 
 #define SELECTOR_Z_BASE 20.0f
 #define SELECTOR_DEFAULT_POS Vertex(scene::width/2.0, 13*scene::height/16, SELECTOR_Z_BASE)
+// Different definitions for our selector colors!
+#define SELECTOR_COLOR_NUMS 5
 #define SELECTOR_COLOR_YELLOW 0
 #define SELECTOR_COLOR_GREY 1
 #define SELECTOR_COLOR_PURPLE 2
 #define SELECTOR_COLOR_GREEN 3
+#define SELECTOR_COLOR_RED 4
 class CardSelector : public Object {
 
 public:

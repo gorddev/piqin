@@ -1,9 +1,16 @@
-#include "game/cards/Card.hpp"
+#include "game/blackjack/cards/Card.hpp"
 
 #include <iostream>
 
+// Gets the state of a card.
 uint8_t Card::to_state() {
     // Modifier for calculating the state
+
+    // Special cards
+    if (suit == 'x')
+        return 52 + value;
+
+    // Otherwise default set of cards
     char mod = 0;
     // Spades are the default suit
     if (suit == 'h') mod = 1;
@@ -17,15 +24,16 @@ uint8_t Card::to_state() {
     return ret;
 }
 
+// Create a card with a value and suite
 Card::Card(int val, char suite)
-    : value(abs(val)), suit(suite)
-{
+    : value(abs(val)), suit(suite) {
     if (value > 13) value = 13;
     t = defaultCardTransform;
     fs = defaultCardFrameState;
     fs.state = to_state();
 }
 
+// Create a card from another card.
 Card::Card(Card& c) {
     value = c.value;
     suit = c.suit;
@@ -58,6 +66,20 @@ bool Card::is_flipped() const {
 }
 
 int Card::get_score() const {
+    // Special cards
+    if (suit == 'x') return 0;
     if (value > 13) return 10;
     return value;
+}
+
+void Card::increase_value(int num) {
+    value = (value + num) % 14;
+    if (value == 0) value++;
+    fs.state = to_state();
+}
+
+void Card::change_into_card(Card* c) {
+    value = c->value;
+    suit = c->suit;
+    fs.state = c->state();
 }

@@ -1,4 +1,4 @@
-#include "game/board/Deal.hpp"
+#include "../../../include/game/blackjack/cards/Deal.hpp"
 
 #include <iostream>
 

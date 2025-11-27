@@ -1,7 +1,7 @@
 #pragma once
 
 #include "generics/Object.hpp"
-#include "game/cards/Card.hpp"
+#include "game/blackjack/cards/Card.hpp"
 #include <vector>
 
 #define MAX_DECK_SIZE 100.0f

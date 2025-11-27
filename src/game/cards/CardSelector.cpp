@@ -1,4 +1,7 @@
-#include "game/cards/CardSelector.hpp"
+#include "game/blackjack/cards/CardSelector.hpp"
+
+#include <iostream>
+#include <ostream>
 
 CardSelector::CardSelector() {
     t = card_selector_transform;
@@ -21,7 +24,8 @@ void CardSelector::move(Card* c, Vertex offset) {
 }
 
 void CardSelector::set_color(uint8_t color) {
-    if (color > 3) color = SELECTOR_COLOR_GREY;
+    std::cerr << "setting color: " << color + 0 << std::endl;
+    if (color > SELECTOR_COLOR_NUMS) color = SELECTOR_COLOR_GREY;
     fs.state = color;
 }
 

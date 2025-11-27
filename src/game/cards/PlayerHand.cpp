@@ -1,4 +1,4 @@
-#include "game/cards/PlayerHand.hpp"
+#include "game/blackjack/PlayerHand.hpp"
 
 #include <iostream>
 
@@ -69,6 +69,20 @@ Path PlayerHand::get_card_path(int index, int& center, int& height, float speed,
     return p;
 }
 
+bool PlayerHand::selected_card_will_bust() {
+    return deal->get_score() + selected_card()->get_score() > targetScore;
+}
+
+void PlayerHand::update_selector_color() {
+    if (!flayed)
+        selector->set_color(SELECTOR_COLOR_GREY);
+    else if (selected_card_will_bust())
+        selector->set_color(SELECTOR_COLOR_RED);
+    else
+        selector->set_color(SELECTOR_COLOR_YELLOW);
+
+}
+
 void PlayerHand::update_cards(bool force) {
     int center = scene::width/2;
     int height = 3*scene::height/4;
@@ -80,8 +94,12 @@ void PlayerHand::update_cards(bool force) {
         for (int i = 0; i < cards.size(); i++)
             cards[i]->set_path(get_card_path(i, center, height));
         // Dark or light
-        selector->set_color((flayed) ? SELECTOR_COLOR_PURPLE : SELECTOR_COLOR_GREY);
+        if (!flayed) {
+            selector->set_color(SELECTOR_COLOR_GREY);
+        }
+
         Vertex offset = (flayed) ? Vertex(0,0,0) : Vertex(0,10,0);
+        update_selector_color();
         selector->move(cards[targetCard], offset);
     }
     else if (targetCard != oldTarget) {
@@ -90,6 +108,7 @@ void PlayerHand::update_cards(bool force) {
         if (oldTarget < cards.size())
             cards[oldTarget]->set_path(get_card_path(oldTarget, center, height));
         oldTarget = targetCard;
+        update_selector_color();
     }
 }
 
@@ -144,10 +163,18 @@ Deal * PlayerHand::get_deal() {
 }
 
 void PlayerHand::play_card() {
-    deal->add_card(pop_hand());
+    if (selected_card_will_bust()) {
+        selected_card()->set_shake(SHAKE_SIDE, 3, 300);
+    }
+    else
+        deal->add_card(pop_hand());
 }
 
 void PlayerHand::take_card() {
     if (cards.size() != MAX_HAND_SIZE)
         add_card_to_hand(deal->pop_card());
+}
+
+Card* PlayerHand::selected_card() {
+    return cards[targetCard];
 }

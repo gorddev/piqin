@@ -4,6 +4,7 @@ namespace scene {
     inline int width = 480;
     inline int height = 270;
     inline int frame = 0;
+    inline double time = 0;
     inline double dt = 0;
     inline bool mainManu = false;
 }

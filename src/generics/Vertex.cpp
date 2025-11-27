@@ -51,6 +51,8 @@ Vertex Vertex::operator/(float scalar) const {
 }
 
 void Vertex::operator+=(Vertex other){
+	std::cerr << "other: " + other.to_string() + "\n";
+	std::cerr<< "this: " + to_string() + "\n";
 	x += other.x;
 	y += other.y;
 	z += other.z;

@@ -1,7 +1,7 @@
 #pragma once
-#include "Deal.hpp"
-#include "game/cards/Card.hpp"
-#include "game/cards/Deck.hpp"
+#include "cards/Deal.hpp"
+#include "game/blackjack/cards/Card.hpp"
+#include "game/blackjack/cards/Deck.hpp"
 #include <vector>
 
 #define BOARD_Z_BASE 9.0f

@@ -11,16 +11,32 @@ Object::~Object() {
 }
 #include <iostream>
 // Updates position if the velocity vertex is nonzero.
-void Object::update_pos(double dt) {
+void Object::update_pos() {
 	fixed = false;
-	if (path != nullptr) {
-		path->to_path(t.pos);
-		if (path->path_complete()) {
-			delete path;
-			path = nullptr;
+
+	// Update if we're currently shaking. If we don't have path priority.
+	if (!pathPriority && shake != nullptr) {
+		// If we end the shake, remove the shake.
+		if (shake->shake_it(t.pos)) {
+			delete shake;
+			shake = nullptr;
 		}
 	}
-
+	// If our path is still here
+	else if (path != nullptr) {
+		// We move the path along
+		path->to_path(t.pos);
+		// If we complete the path
+		if (path->path_complete()) {
+			// Delete it and reset pathPriority
+			delete path;
+			path = nullptr;
+			pathPriority = false;
+			// If our shake is not null, then we update it with a target pos.
+			if (shake != nullptr)
+				shake->set_pos_pop(t.pos);
+		}
+	}
 }
 
 // Getters
@@ -52,6 +68,10 @@ float Object::get_z_index() {
 
 Path* Object::get_path() const {
 	return path;
+}
+
+Shake * Object::get_shake() const {
+	return shake;
 }
 
 // Setters
@@ -118,6 +138,10 @@ void Object::set_z_index(float new_z_index) {
 void Object::set_path(const Path &p) {
 	fixed = false;
 	delete path;
+	if (pathPriority)
+		pathPriority = !pathPriority;
+	else if (shake == nullptr)
+		pathPriority = true;
 	path = new Path(p);
 }
 
@@ -125,7 +149,29 @@ void Object::set_path(Vertex target, uint8_t pathType,
 	float speed) {
 	fixed = false;
 	delete path;
+	// If we don't have a shake, the path gets priority
+	if (pathPriority)
+		pathPriority = !pathPriority;
+	else if (shake == nullptr)
+		pathPriority = true;
+	// Now we update our position return for the shake.
 	path = new Path({target, pos(), pathType, speed});
+}
+
+void Object::set_shake(uint8_t shakeType, float strength,
+	int duration, float speed, bool decay) {
+	Vertex v = (shake != nullptr) ? shake->pop_pos() : t.pos;
+	delete shake;
+	shake = new Shake(shakeType, strength, duration, speed, decay);
+	std::cerr << v.to_string() + "\n";
+	shake->set_pos_pop(v);
+}
+
+void Object::set_shake(const Shake &s) {
+	Vertex v = (shake != nullptr) ? shake->pop_pos() : t.pos;
+	delete shake;
+	shake = new Shake(s);
+	shake->set_pos_pop(v);
 }
 
 

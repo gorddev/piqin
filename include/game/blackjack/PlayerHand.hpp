@@ -1,9 +1,9 @@
 #pragma once
-#include "CardSelector.hpp"
+#include "cards/CardSelector.hpp"
 #include "ObjectManager.hpp"
 #include "input/InputTarget.hpp"
-#include "game/cards/Card.hpp"
-#include "game/board/Deal.hpp"
+#include "game/blackjack/cards/Card.hpp"
+#include "game/blackjack/cards/Deal.hpp"
 
 #define MAX_HAND_SIZE 12
 #define HAND_Z_BASE 10.0f
@@ -27,6 +27,11 @@ private:
         float speed = HAND_DEFAULT_SPEED,
         Vertex mod = Vertex(0,0,0));
 
+    // Tells us if our current card will bust
+    bool selected_card_will_bust();
+    // Lets us update our selector color in accordance with the card we are selecting.
+    void update_selector_color();
+
     // Removes a card with the given cardnum
     Card* pop_hand(uint8_t cardNum);
 public:
@@ -48,6 +53,8 @@ public:
     bool hit = false;
     // Request to stay
     bool stay = false;
+    // Score to win
+    int targetScore = 21;
 
     // Gets a pointer to the selector
     [[nodiscard]] Object* get_hand_selector() const;
@@ -59,6 +66,8 @@ public:
     Deal* get_deal();
     // Grabs a card from the deal to the hand
     void take_card();
+
+    Card *selected_card();
 
     // INPUT TARGET OVERRIDE
     bool getPress(short keybind) override;

@@ -3,7 +3,7 @@
 #include "textures/asset-info/SpriteRegistry.hpp"
 #include "textures/asset-info/RegistryConstants.hpp"
 
-#define ASSET_DRAW_DECK_PATH "assets/card-deck.ktx2"
+#define ASSET_DRAW_DECK_PATH "assets/card-stack.ktx2"
 #define ASSET_DRAW_DECK_DRAW_TYPE RENDER_FLAT
 
 static const SpriteSheet asset_draw_deck = {
@@ -17,4 +17,4 @@ static const SpriteSheet asset_draw_deck = {
     -1
 };
 
-static SpriteRegister asset_draw_deck_obj(asset_draw_deck, ASSET_DRAW_DECK_ID);
+static SpriteRegister asset_draw_deck_obj(asset_draw_deck, ASSET_CARD_STACK_ID);

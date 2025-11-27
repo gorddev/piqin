@@ -61,15 +61,11 @@ void ObjectManager::remove_object(int id) {
 std::vector<FrameState*> ObjectManager::update_objects(){
 	std::vector<FrameState*> ret(numObjects);
 	for (auto& [id, o]: objList){
-		// If object is flagged for removal, remove it.
-		if (o->remove) {
-			remove_object(o->id);
-			continue;
-		}
+		// Print out a flag for testing purposes.
 		if (!o->flag.empty())
 			std::cerr << "Flag {id: " << id << ", " << o->flag << "}" << std::endl;
 		// Update our object's position
-		o->update_pos(scene::dt);
+		o->update_pos();
 		// Ticks our object's animation frame
 		// SheetManager -> Object's Sheet -> tick_object
 		ret.push_back(o->frame_state());

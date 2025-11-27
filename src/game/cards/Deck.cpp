@@ -1,7 +1,6 @@
-#include "game/cards/Deck.hpp"
+#include "game/blackjack/cards/Deck.hpp"
 
 #include <iostream>
-
 
 static const Transform default_draw_deck = {
     Vertex(7*scene::width/8, 3*scene::height/8, 0),
@@ -16,7 +15,7 @@ Deck::Deck() {
     t = default_draw_deck;
     cardsOnDeck = 0;
     // Gets the sprite we render with.
-    fs.sheet_id = ASSET_DRAW_DECK_ID;
+    fs.sheet_id = ASSET_CARD_STACK_ID;
     fs.state=2;
 
     for (int i = 1; i <= 13; i++) {
@@ -98,7 +97,6 @@ Card* Deck::pop_card() {
 void Deck::update_travel_cards(){
     for (int i = 0; i < traveling.size(); i++) {
         if (traveling[i]->get_path() == nullptr) {
-            std::cerr<<"no path\n";
             traveling[i]->hidden = true;
             traveling[i]->shadow = false;
             card_arrival();
