@@ -106,7 +106,6 @@ SDL_Texture* BasisDecoder::load_ktx2_image_as_texture(
         std::cerr << "Basis: transcoding failed (turn into texture) \n";
         return nullptr;
     }
-
     // finally the part that we could've just done if we included the SDL2.png library
     // First, we make a basic RGBA32 texture
     SDL_Texture *tex = SDL_CreateTexture(
@@ -114,7 +113,7 @@ SDL_Texture* BasisDecoder::load_ktx2_image_as_texture(
         SDL_PIXELFORMAT_RGBA32,
         SDL_TEXTUREACCESS_STATIC,
         // This just means that it's an unchanging texture
-        scene::width, scene::height
+        w, h
     );
 
     // Finally, we upload our rgba data to the texture

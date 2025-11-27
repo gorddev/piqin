@@ -7,6 +7,7 @@
 #include "game/GameMaster.hpp"
 #include "Constants.hpp"
 #include "Engine.hpp"
+#include "utilities/BasisDecoder.hpp"
 
 // Here's our renderer!
 RenderManager* rend = nullptr;
@@ -45,9 +46,7 @@ EM_BOOL gameloop(double time, void* userdata) {
 	rend->render();
 	rend->present();
 
-
 	return EM_TRUE;
-
 }
 
 
@@ -65,6 +64,9 @@ int main() {
 	engine::input = new InputManager(nullptr);
 	// GameMaster -> Handles game logic
 	gm = new GameMaster();
+
+
+
 
 	// Now we initialize each of our objects.
 	rend->initialize();									// Renderer

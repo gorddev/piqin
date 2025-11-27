@@ -11,7 +11,7 @@
 #define PATH_COMPLETE_Z 4
 #define PATH_COMPLETE 7
 // Determines various constants for the paths
-#define PATH_BALLOON_DAMP 1.0f
+#define PATH_BALLOON_DAMP 50.0f
 #define PATH_TORPEDO_AMPLIFY 100.0f
 class Path {
 private:

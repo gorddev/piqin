@@ -11,7 +11,6 @@ Path::Path(const Vertex &tar, const Vertex &startPos, uint8_t pathType, float sp
         complete(false) {
 
     initDist = (target - startPos).mag();
-
     if (initDist <= 0.1)
         complete = PATH_COMPLETE;
     Vertex test = (target - startPos);
@@ -29,6 +28,9 @@ void Path::to_path(Vertex &pos) {
         torpedo(pos);
     else
         linear(pos);
+
+    if ((target-pos).mag() < 0.00001)
+        complete = PATH_COMPLETE;
 }
 
 // Defines the equation of motion for linear movement.
@@ -46,26 +48,28 @@ void Path::linear(Vertex &pos) {
 }
 
 // Defines the equation of motion for balloonish movement
-#define PATH_BALLOON_EQ(U, DIST) (U * (scene::dt * speed * (1.0f / initDist) * (DIST) / PATH_BALLOON_DAMP))
+#define PATH_BALLOON_EQ(U, DIST) (U * (scene::dt * speed * (DIST) / PATH_BALLOON_DAMP))
 void Path::balloon(Vertex &pos)
 {
     //calculate our unit vector
     Vertex unit = (target - pos).unit();
-    Vertex dist = PATH_BALLOON_EQ(unit, target.dist(pos));
+    float DIST = target.dist(pos);
+    Vertex dist = PATH_BALLOON_EQ(unit, (DIST < 1.0f) ? 1.0f : DIST);
     //minimum step of movement
-    const float minStep = 0.0025f * target.dist(pos);
+    float minny = (target.dist(pos) * 0.025f);
+    const float minStep = std::max(minny, 0.01f);
     // This way we can preserve minimum stepping
     for (int i = 0; i < 3; ++i) {
-        if (fabs(dist[i]) < minStep) {
-            dist[i] = (unit.x >= 0.0f ? minStep : -minStep);
+        if (abs(dist[i]) < minStep) {
+            dist[i] = (unit[i] >= 0.0f ? minStep : -minStep);
         }
     }
     // Then we check if we overshoot or whether we're done or not!
-    if (~(complete & PATH_COMPLETE_X) && overshoot(pos.x, target.x, dist[0]))
+    if (!(complete & PATH_COMPLETE_X) && overshoot(pos.x, target.x, dist[0]))
         complete |= PATH_COMPLETE_X;
-    if (~(complete & PATH_COMPLETE_Y) && overshoot(pos.y, target.y, dist[1]))
+    if (!(complete & PATH_COMPLETE_Y) && overshoot(pos.y, target.y, dist[1]))
         complete |= PATH_COMPLETE_Y;
-    if (~(complete & PATH_COMPLETE_Z) && overshoot(pos.z, target.z, dist[2]))
+    if (!(complete & PATH_COMPLETE_Z) && overshoot(pos.z, target.z, dist[2]))
         complete |= PATH_COMPLETE_Z;
 
 }
@@ -89,11 +93,11 @@ void Path::torpedo(Vertex &pos) {
         }
     }
     // Then we check if we overshoot or whether we're done or not!
-    if (~(complete & PATH_COMPLETE_X) && overshoot(pos.x, target.x, dist[0]))
+    if (!(complete & PATH_COMPLETE_X) && overshoot(pos.x, target.x, dist[0]))
         complete |= PATH_COMPLETE_X;
-    if (~(complete & PATH_COMPLETE_Y) && overshoot(pos.y, target.y, dist[1]))
+    if (!(complete & PATH_COMPLETE_Y) && overshoot(pos.y, target.y, dist[1]))
         complete |= PATH_COMPLETE_Y;
-    if (~(complete & PATH_COMPLETE_Z) && overshoot(pos.z, target.z, dist[2]))
+    if (!(complete & PATH_COMPLETE_Z) && overshoot(pos.z, target.z, dist[2]))
         complete |= PATH_COMPLETE_Z;
     // If we're reached all paths, (complete == PATH_COMPLETE)
 }

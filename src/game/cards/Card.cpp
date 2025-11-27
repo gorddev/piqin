@@ -1,5 +1,7 @@
 #include "game/cards/Card.hpp"
 
+#include <iostream>
+
 uint8_t Card::to_state() {
     // Modifier for calculating the state
     char mod = 0;

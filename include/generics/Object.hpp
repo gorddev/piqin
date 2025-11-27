@@ -7,6 +7,7 @@
 
 using std::string;
 
+#define DECK_Z_BASE 7.0f
 class Object {
 public:
     // This object's id

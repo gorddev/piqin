@@ -11,8 +11,8 @@
 static const SpriteSheet asset_card_selector = {
     8,
     8,
-    2,
-    2,
+    4,
+    4,
     ASSET_CARD_SELECTOR_PATH,
     ASSET_CARD_SELECTOR_RENDER_TYPE,
     FRAME_STOP,

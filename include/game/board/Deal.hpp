@@ -10,7 +10,7 @@ private:
     // Position of the deal
     Vertex pos;
     // Gets the path a card takes to the deal.
-    Path get_deal_path(Card *&c, float speed = 1.0);
+    Path get_deal_path(Card *&c, float speed = 0.5);
 public:
     Deal();
     Deal(Vertex pos);
@@ -20,10 +20,12 @@ public:
     // Adds a card to the deal & gives it a target path.
     void add_card(Card* card, bool flipped);
     // Adds a card with a given path speed
-    void add_card(Card* card, double speed = 1.0);
+    void add_card(Card* card, double speed = 0.5);
     // Pops all the cards off the vector
     std::vector<Card*> pop_cards();
+    // Pops a single card off the vector
+    Card* pop_card(int cardNum = -1);
     // Gets the score of the curent deal
-    int get_score(int target = 21);
+    [[nodiscard]] int get_score(int target = 21) const;
 
 };

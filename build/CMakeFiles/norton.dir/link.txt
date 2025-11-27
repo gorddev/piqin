@@ -1,1 +1,0 @@
-/Users/gordie/emsdk/upstream/emscripten/em++ -sUSE_SDL=2 --shell-file=/Users/gordie/game/assets/game_shell.html --emrun @CMakeFiles/norton.dir/objects1.rsp -o norton.html

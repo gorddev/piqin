@@ -10,7 +10,6 @@ void RenderManager::render_flats(std::unordered_map<int, std::vector<TextureRend
 
         // Get our texture from the spritesheet
         SDL_Texture* texture = engine::sm->get_sheet_texture(sheet_id);
-        // Then go through and render it
 
         for (const auto& tex: texvec) {
             SDL_RenderCopyF(renderer,
@@ -18,12 +17,12 @@ void RenderManager::render_flats(std::unordered_map<int, std::vector<TextureRend
                 tex->sheet_rect,
                 &tex->canvas_rect);
         }
+        std::cerr << SDL_GetError();
     }
 }
 
 void RenderManager::render_verticals(std::vector<TextureRenderInfo> texvec) {
     for (int i = 0; i < texvec.size(); i+=2) {
-        // First we render the shadow if it's valid
         if (texvec[i+1].sheet_id >= 0) {
             SDL_RenderCopyF(renderer,
                 engine::sm->get_sheet_shadow(texvec[i].sheet_id),

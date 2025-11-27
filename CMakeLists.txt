@@ -18,8 +18,9 @@ add_executable(norton
         src/input/InputManager.cpp
 
         src/game/GameMaster.cpp
-        src/game/cards/Hand.cpp
+        src/game/cards/PlayerHand.cpp
         src/game/cards/Card.cpp
+        src/game/cards/CardSelector.cpp
         src/game/board/Board.cpp
         src/game/board/Deal.cpp
 
@@ -40,6 +41,7 @@ add_executable(norton
         src/utilities/Utilities.cpp
         src/utilities/basisu_transcoder/basisu_transcoder.cpp
         src/utilities/zstd/zstd.c
+        src/game/cards/Deck.cpp
 )
 
 target_include_directories(norton PRIVATE

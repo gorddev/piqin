@@ -1,5 +1,7 @@
 #include "game/board/Deal.hpp"
 
+#include <iostream>
+
 Deal::Deal() : pos(scene::width/2, scene::height/2, 0) {}
 Deal::Deal(Vertex pos) : pos(pos) {}
 
@@ -34,7 +36,6 @@ void Deal::add_card(Card *card, double speed) {
     card->set_z_index(DEAL_Z_BASE + (deal.size()/100.f));
     deal.push_back(card);
     card->set_path(get_deal_path(card, speed));
-
 }
 
 // Gives all the cards back to the Dealer
@@ -44,7 +45,17 @@ std::vector<Card*> Deal::pop_cards() {
     return cards;
 }
 
-int Deal::get_score(int target) {
+Card * Deal::pop_card(int cardNum) {
+    if (deal.size() == 0)
+        return nullptr;
+    if (cardNum < 0 || cardNum >= deal.size())
+        cardNum = deal.size() - 1;
+    Card* c = deal[cardNum];
+    deal.erase(deal.begin() + cardNum);
+    return c;
+}
+
+int Deal::get_score(const int target) const {
     // Calculates the score of our hand.
     int sum = 0;
     int numAces = 0;

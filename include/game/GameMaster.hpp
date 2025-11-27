@@ -1,11 +1,11 @@
 #pragma once
 
-#include "game/cards/Hand.hpp"
+#include "game/cards/PlayerHand.hpp"
 #include "game/board/Board.hpp"
 
 class GameMaster {
 private:
-    Hand* hand = nullptr;
+    PlayerHand* hand = nullptr;
     Board* board = nullptr;
 public:
     GameMaster() = default;
