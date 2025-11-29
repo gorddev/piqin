@@ -7,7 +7,7 @@
 #include "utilities/Utilities.hpp"
 
 Path::Path(const Vertex &tar, const Vertex &startPos, uint8_t pathType, float speed = 1.0f)
-        : target(tar), pathType(pathType), speed(speed),
+        : target(tar), startPos(startPos), pathType(pathType), speed(speed),
         complete(false) {
 
     initDist = (target - startPos).mag();
@@ -26,6 +26,8 @@ void Path::to_path(Vertex &pos) {
         balloon(pos);
     else if (pathType == PATH_TORPEDO)
         torpedo(pos);
+    else if (pathType == PATH_SINE)
+        sine(pos);
     else
         linear(pos);
 
@@ -102,9 +104,34 @@ void Path::torpedo(Vertex &pos) {
     // If we're reached all paths, (complete == PATH_COMPLETE)
 }
 
+void Path::sine(Vertex &pos) {
+    Vertex unit = (target - startPos).unit();
+
+    // real distance-based time instead of x-based time
+    float distTraveled = (pos - startPos).mag();
+    float totalDist = (target - startPos).mag();
+
+    float time = distTraveled / speed;
+    float totalTime = totalDist / speed;
+
+    // Linear base motion
+    pos += unit * speed * scene::dt;
+
+    // Apply sine only to y
+    float sineOffset = 10*sinf(2.0f * utils::pi * time / totalTime);
+    pos.y = startPos.y + unit[1] * distTraveled + sineOffset;
+    // Overshoot on x/z only
+    if (overshoot(pos.x, target.x, PATH_LINEAR_EQ(unit[0])))
+        complete |= PATH_COMPLETE_X;
+    // We dont need to check for y because otherwise itll bmess with movement.
+    complete |= PATH_COMPLETE_Y;
+    if (overshoot(pos.z, target.z, PATH_LINEAR_EQ(unit[2])))
+        complete |= PATH_COMPLETE_Z;
+}
+
 // Lets us tell if given our movement, if we've overshot
-bool Path::overshoot(double &o, double& t, double dist) const {
-    const double newpos = o + dist;
+bool Path::overshoot(float &o, float& t, float dist) const {
+    const float newpos = o + dist;
     if ((dist > 0 && newpos > t) || (dist < 0 && newpos < t)) {
         o = t;
         return true;

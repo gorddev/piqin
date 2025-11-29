@@ -3,6 +3,7 @@
 #include <emscripten/html5.h>
 #include <emscripten.h>
 
+#include "utilities/BasisDecoder.hpp"
 #include "render/RenderManager/RenderManager.hpp"
 #include "game/GameMaster.hpp"
 #include "Constants.hpp"
@@ -45,6 +46,7 @@ EM_BOOL gameloop(double time, void* userdata) {
 	engine::sm->tick_frames(fss);
 	// Then we can finally render and present everything
 	rend->render();
+
 	rend->present();
 
 	return EM_TRUE;
@@ -54,7 +56,7 @@ EM_BOOL gameloop(double time, void* userdata) {
 int main() {
 	/* ENGINE SETUP */
 	// Camera
-	game::camera = new Camera(0,0,ZTOP, scene::width, scene::height);
+	game::camera = new Camera(0,0,Z_MAX, scene::width, scene::height);
 	// RenderManager -> renders the scene.
 	rend = new RenderManager();
 	// SheetManager -> manages our SpriteSheets
@@ -77,13 +79,13 @@ int main() {
 	// Now we just pray that the sheetManager piped the input properly. :o
 
 	/************ FUCK AROUND ZONE**********/
-	gm->add_card_to_hand({1,'h'});
-	gm->add_card_to_hand({4,'c'});
-	gm->add_card_to_hand({5,'d'});
-	gm->add_card_to_hand({6,'s'});
-	gm->add_card_to_hand({7,'c'});
-	gm->add_card_to_hand({8,'c'});
-	gm->add_card_to_hand({9,'c'});
+	gm->add_card_to_hand({1,'s'});
+	gm->add_card_to_hand({54,SPECIAL_CARD_SUIT});
+	gm->add_card_to_hand({55,SPECIAL_CARD_SUIT});
+	gm->add_card_to_hand({56,SPECIAL_CARD_SUIT});
+	gm->add_card_to_hand({57,SPECIAL_CARD_SUIT});
+	gm->add_card_to_hand({58,SPECIAL_CARD_SUIT});
+	gm->add_card_to_hand({59,SPECIAL_CARD_SUIT});
 	gm->set_hand_as_target();
 
 

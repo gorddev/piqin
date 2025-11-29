@@ -23,9 +23,10 @@ public:
 	// Adds an object to the objectManager
 	Object* add_object(Object);
 	Object* add_object(Object*);
-	void add_objects(std::vector<Object*>& vec);
+	void add_objects(std::vector<Object*> vec);
 
 	void remove_object(const Object *o);
+	void remove_objects(std::vector<Object*> vec);
 
 	// Removes an object from the objectManager
 	void remove_object(int id);

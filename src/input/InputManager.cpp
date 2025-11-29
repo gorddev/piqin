@@ -6,10 +6,10 @@
 #define keyb key.keysym.scancode
 
 InputManager::InputManager(InputTarget* menu) : menu(menu) {
-    load_keybinds({{0, 0}});
+    load_keybinds({{SDL_SCANCODE_0, 0}});
 }
 
-void InputManager::load_keybinds(std::unordered_map<SDL_Keycode, short> mappy) {
+void InputManager::load_keybinds(std::unordered_map<SDL_Scancode, short> mappy) {
     mapToBindings = mappy;
     mapToBindings[SDL_SCANCODE_LSHIFT] = INPUT_MODIFY;
     mapToBindings[SDL_SCANCODE_W] = INPUT_UP;
@@ -23,10 +23,13 @@ void InputManager::load_keybinds(std::unordered_map<SDL_Keycode, short> mappy) {
 }
 
 void InputManager::setInputTarget(InputTarget *target) {
+    if (it != nullptr)
+        it->heldKeys = &nullMap;
     it = target;
+    it->heldKeys = &pressedKeys;
 }
 
-int InputManager::keybind(SDL_Keycode key) {
+short InputManager::keybind(SDL_Scancode key) {
     if (mapToBindings.find(key) != mapToBindings.end())
         return mapToBindings[key];
     return INPUT_NULL;
@@ -52,25 +55,16 @@ void InputManager::update(SDL_Event& e) {
             }
         }
         iqueue.push(keybind(e.keyb)); // NOLINT(*-narrowing-conversions)
-        while (!iqueue.empty() && !it->getPress(iqueue.pop()));
+        it->getPress(keybind(e.keyb));
     }
-    // if we're pressing down modify we let it know
-    if (e.type == SDL_KEYDOWN && keybind(e.keyb) == INPUT_MODIFY) {
-        pressedKeys[INPUT_MODIFY] = true;
-    }
-    // otherwise
-    else if (e.type == SDL_KEYUP && keybind(e.keyb) == INPUT_MODIFY) {
-        pressedKeys[INPUT_MODIFY] = false;
-    }
-    // Now we deliver all the pressed down keys to our input target
-    for (auto iter = pressedKeys.begin(); iter != pressedKeys.end(); ) {
-        if (iter->second) {
-            it->getHeld(iter->first);
-            ++iter;
-        }
-        else {
-            it->getRelease(iter->first);
-            iter = pressedKeys.erase(iter);
+    // Holding a key down, update shit
+    if (e.type == SDL_KEYDOWN)
+        pressedKeys[keybind(e.keyb)] = true;
+    // Letting a key up, update shit
+    else if (e.type == SDL_KEYUP) {
+        pressedKeys[keybind(e.keyb)] = false;
+        if (it != nullptr) {
+            it->getRelease(keybind(e.keyb));
         }
     }
 }

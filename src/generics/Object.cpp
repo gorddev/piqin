@@ -1,7 +1,5 @@
 #include "../../include/generics/Object.hpp"
 
-#include <print>
-
 #include "Constants.hpp"
 #include "textures/Frame.hpp"
 
@@ -17,6 +15,10 @@ void Object::update_pos() {
 	// Update if we're currently shaking. If we don't have path priority.
 	if (!pathPriority && shake != nullptr) {
 		// If we end the shake, remove the shake.
+		if (shake->infinite() && path != nullptr) {
+			delete path;
+			path = nullptr;
+		}
 		if (shake->shake_it(t.pos)) {
 			delete shake;
 			shake = nullptr;
@@ -58,7 +60,7 @@ int Object::width() const {
 	return t.width;
 }
 
-int & Object::duration() {
+float& Object::duration() {
 	return fs.duration;
 }
 
@@ -135,35 +137,33 @@ void Object::set_z_index(float new_z_index) {
 	t.z_index = new_z_index;
 }
 
-void Object::set_path(const Path &p) {
+void Object::set_path(const Path &p, bool priority) {
+	tag = TAG_NONE;
 	fixed = false;
 	delete path;
-	if (pathPriority)
-		pathPriority = !pathPriority;
-	else if (shake == nullptr)
+	if (shake == nullptr || priority)
 		pathPriority = true;
 	path = new Path(p);
 }
 
 void Object::set_path(Vertex target, uint8_t pathType,
-	float speed) {
+	float speed, bool priority) {
+	tag = TAG_NONE;
 	fixed = false;
 	delete path;
 	// If we don't have a shake, the path gets priority
-	if (pathPriority)
-		pathPriority = !pathPriority;
-	else if (shake == nullptr)
+	if (shake == nullptr || priority)
 		pathPriority = true;
 	// Now we update our position return for the shake.
 	path = new Path({target, pos(), pathType, speed});
 }
 
+
 void Object::set_shake(uint8_t shakeType, float strength,
-	int duration, float speed, bool decay) {
+                       int duration, float speed, bool decay) {
 	Vertex v = (shake != nullptr) ? shake->pop_pos() : t.pos;
 	delete shake;
 	shake = new Shake(shakeType, strength, duration, speed, decay);
-	std::cerr << v.to_string() + "\n";
 	shake->set_pos_pop(v);
 }
 
@@ -172,6 +172,12 @@ void Object::set_shake(const Shake &s) {
 	delete shake;
 	shake = new Shake(s);
 	shake->set_pos_pop(v);
+}
+
+void Object::remove_shake() {
+	t.pos = shake->pop_pos();
+	delete shake;
+	shake = nullptr;
 }
 
 

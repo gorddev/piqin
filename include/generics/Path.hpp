@@ -5,6 +5,7 @@
 #define PATH_LINEAR 0
 #define PATH_BALLOON 1
 #define PATH_TORPEDO 2
+#define PATH_SINE 3
 // For path completion with the completion variable
 #define PATH_COMPLETE_X 1
 #define PATH_COMPLETE_Y 2
@@ -16,6 +17,7 @@
 class Path {
 private:
     Vertex target;
+    Vertex startPos;
     float initDist;
     float speed;
     uint8_t pathType;
@@ -28,12 +30,14 @@ private:
     void balloon(Vertex& pos);
     // Moves slow, and speeds up on approach.
     void torpedo(Vertex& pos);
+    // Keeps x linear, does cos w/y
+    void sine(Vertex& pos);
     // Helper functions
     // Gets the sign difference between pos and target
     // e.g. pos.x > target.x, xm = -1;
 
     // Tells us if we overshoot given our distance
-    bool overshoot(double& o, double& t, double dist) const;
+    bool overshoot(float& o, float& t, float dist) const;
 
 public:
     // Constructor for a path.

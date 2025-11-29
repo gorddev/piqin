@@ -26,6 +26,8 @@ private:
     bool decay;
     // Tells us when the shake has reached it's end.
     bool complete;
+    // Tells us if we do not stop
+    bool stop;
     // Duration of the shake. -1 specifies no end
     float duration;
     // Initial duration of the shake
@@ -37,7 +39,7 @@ private:
     void shake_side();
 public:
     // Constructor for the shaking!
-    Shake(uint8_t shakeType, float strength, int duration, float speed = 1.0, bool decay = false);
+    Shake(uint8_t shakeType, float strength, float duration, float speed = 1.0, bool decay = false);
 
     // Lets us shake the object. Returns true if we're done shaking
     bool shake_it(Vertex& pos);
@@ -45,6 +47,8 @@ public:
     bool done();
     // Ends the shake
     void end();
+    // Tells us whether a shake is permanent or not
+    bool infinite();
 
     // Sets position pop if we care about shaking about a point.
     void set_pos_pop(Vertex& v);

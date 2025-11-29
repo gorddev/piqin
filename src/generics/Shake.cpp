@@ -3,12 +3,15 @@
 #include <iostream>
 
 #include "Constants.hpp"
+#include "utilities/Utilities.hpp"
 
-Shake::Shake(uint8_t shakeType, float strength, int duration, float speed, bool decay)
+Shake::Shake(uint8_t shakeType, float strength, float duration, float speed, bool decay)
     : shakeType(shakeType), strength(strength), speed(speed), duration(duration), decay(decay) {
     displacement = Vertex(0,0,0);
     complete = false;
     popPos.set(-1,-1,-1);
+    if (duration == -1)
+        this->duration = 1000000000000.0f;
     initDuration = duration;
 }
 
@@ -36,7 +39,10 @@ bool Shake::shake_it(Vertex &pos) {
     if (duration <= 0)
         return true;
     return false;
+}
 
+bool Shake::infinite() {
+    return (duration == -1);
 }
 
 void Shake::set_pos_pop(Vertex&v) {
@@ -53,9 +59,9 @@ void Shake::shake_random() {
 }
 
 void Shake::shake_circular() {
-    float input = scene::time * speed * SHAKE_CIRCULAR_SPEED;
-    displacement.x = cosf(input);
-    displacement.y = sinf(input);
+    float div = speed*2*utils::pi*duration/initDuration;
+    displacement.x = cosf(div);
+    displacement.y = sinf(div);
 }
 
 void Shake::shake_floaty() {

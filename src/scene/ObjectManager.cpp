@@ -37,17 +37,13 @@ Object * ObjectManager::add_object(Object *o) {
 }
 
 ;
-void ObjectManager::add_objects(std::vector<Object *>& vec) {
+void ObjectManager::add_objects(std::vector<Object *> vec) {
 	for (auto& o: vec) {
 		add_object(o);
 	}
 }
 
-// Removing an object
-void ObjectManager::remove_object(const Object* o) {
-	remove_object(o->id);
-}
-
+// We have to remove an object by its id
 void ObjectManager::remove_object(int id) {
 	// Exit if the object doesn't exist
 	if (objList.find(id) == objList.end()) return;
@@ -56,6 +52,18 @@ void ObjectManager::remove_object(int id) {
 	// Then, we can remove the object from our map
 	delete objList[id];
 	objList.erase(id);
+}
+
+// We take in an object and convert it to an id.
+void ObjectManager::remove_object(const Object* o) {
+	remove_object(o->id);
+}
+
+// This grabs ids from all objects and removes them.
+void ObjectManager::remove_objects(
+	std::vector<Object *> vec) {
+	for (auto& o: vec)
+		remove_object(o->id);
 }
 
 std::vector<FrameState*> ObjectManager::update_objects(){

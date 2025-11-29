@@ -1,0 +1,104 @@
+#include "../../../include/game/blackjack/cards/CardDraw.hpp"
+
+#include <iostream>
+
+#include "game/blackjack/BjConstants.hpp"
+
+CardDraw::CardDraw(Vertex pos) : pos(pos) {}
+
+int CardDraw::get_num_cards() {
+    return draw.size();
+}
+
+Path CardDraw::get_draw_path(Card *&c, float speed) {
+    short posi = draw.size();
+    if (!removals.empty()) {
+        posi = removals[removals.size() -1];
+        removals.pop_back();
+    }
+    Vertex target(pos.x - scene::width/8 + posi*24,
+        pos.y - random()%8, DEAL_Z_BASE + (posi/100.f));
+    c->set_z_index(DEAL_Z_BASE + (posi/100.f));
+    Path p = {
+        target,
+        c->pos(),
+        PATH_BALLOON,
+        speed
+    };
+    return p;
+}
+
+// Adds a card and assigns it a path.
+void CardDraw::add_card(Card *card, bool flipped) {
+    card->flip_up();
+    if (flipped)
+        card->flip_down();
+    short posi = draw.size();
+    if (!removals.empty()) {
+        std::sort(removals.begin(), removals.end(), [](short a, short b) {return a > b;});
+        posi = removals.back();
+        draw.insert(draw.begin() + (posi - 1), card);
+    }
+    else
+        draw.push_back(card);
+    card->set_z_index(DEAL_Z_BASE + (posi/100.f));
+    card->set_path(get_draw_path(card));
+}
+
+// Gives all the cards back to the Dealer
+std::vector<Card*> CardDraw::pop_cards() {
+    std::vector<Card*> cards = draw;
+    draw.clear();
+    removals.clear();
+    return cards;
+}
+
+Card * CardDraw::pop_card(int cardNum) {
+    if (draw.size() == 0)
+        return nullptr;
+    removals.push_back(cardNum+1);
+    if (cardNum < 0 || cardNum >= draw.size())
+        cardNum = draw.size() - 1;
+    Card* c = draw[cardNum];
+    draw.erase(draw.begin() + cardNum);
+    if (draw.size() == 0)
+        removals.clear();
+    return c;
+}
+
+int CardDraw::get_score() const {
+    // Calculates the score of our hand.
+    int sum = 0;
+    int numAces = 0;
+    for (auto& card : draw) {
+        int score = card->get_score();
+        sum+=score;
+        if (score==1)
+            numAces++;
+    }
+    for (int i = numAces; (sum <= blackjack::roundScore - 10) && i > 0; i--)
+        sum+=10;
+    return sum;
+}
+
+bool CardDraw::will_bust(Card *c) {
+    return (c->get_score() + get_score() > blackjack::roundScore);
+}
+
+std::vector<Card*>& CardDraw::gather_objects() {
+    return draw;
+}
+
+int CardDraw::size() const {
+    return draw.size();
+}
+
+bool CardDraw::empty() const {
+    return draw.empty();
+}
+
+Card * CardDraw::operator[](int index) {
+    if (index < 0 || index >= draw.size())
+        return nullptr;
+    return draw[index];
+}

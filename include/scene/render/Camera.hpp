@@ -10,7 +10,7 @@ public:
 	int h = scene::height;
 
 	// Camera constructor
-	Camera() {pos.z = ZTOP;}
+	Camera() {pos.z = Z_MAX;}
 	Camera(int x, int y, int z, int w, int h) : w(w), h(h) {
 		pos.set(x,y,z);
 	}
@@ -18,7 +18,7 @@ public:
 	[[nodiscard]] int width() const { return w; }       // Returns width
 	[[nodiscard]] int height() const { return h; }      // Returns height
 	// Center
-	[[nodiscard]] Vertex center() const { return {pos.x + (w / 2.0), pos.y - (h / 2.0), pos.z}; }
+	[[nodiscard]] Vertex center() const { return Vertex(pos.x + (w / 2.0), pos.y - (h / 2.0), pos.z); }
 
 	// Setters
 	void set_width(const int& width) { w = width; }

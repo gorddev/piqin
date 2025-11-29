@@ -1,15 +1,14 @@
 #include "game/blackjack/cards/Card.hpp"
 
-#include <iostream>
+#include "game/blackjack/BjConstants.hpp"
+
+/* This file contains all the proper set up for making a card */
+/* Game logic for card behavior is found in CardLogic.hpp */
 
 // Gets the state of a card.
 uint8_t Card::to_state() {
-    // Modifier for calculating the state
-
-    // Special cards
-    if (suit == 'x')
-        return 52 + value;
-
+    if (suit == SPECIAL_CARD_SUIT)
+        return value;
     // Otherwise default set of cards
     char mod = 0;
     // Spades are the default suit
@@ -27,10 +26,14 @@ uint8_t Card::to_state() {
 // Create a card with a value and suite
 Card::Card(int val, char suite)
     : value(abs(val)), suit(suite) {
-    if (value > 13) value = 13;
+
+
+    if (value > 13 && suit != SPECIAL_CARD_SUIT) value = 13;
     t = defaultCardTransform;
     fs = defaultCardFrameState;
     fs.state = to_state();
+    fs.baseState = to_state();
+    hidden = true;
 }
 
 // Create a card from another card.
@@ -65,21 +68,31 @@ bool Card::is_flipped() const {
     return flipped;
 }
 
-int Card::get_score() const {
-    // Special cards
-    if (suit == 'x') return 0;
-    if (value > 13) return 10;
+int Card::get_value() const {
     return value;
 }
 
-void Card::increase_value(int num) {
-    value = (value + num) % 14;
-    if (value == 0) value++;
-    fs.state = to_state();
+bool Card::special() const {
+    return suit == SPECIAL_CARD_SUIT;
 }
 
-void Card::change_into_card(Card* c) {
-    value = c->value;
-    suit = c->suit;
-    fs.state = c->state();
+bool Card::use(Card *c) {
+
+    if (value == BJ_INCREMENT_CARD) {
+        if (c->special()) {
+            c->set_shake(BJ_SHAKE_DENY);
+            return false;
+        }
+        c->adjust_value(3);
+        c->set_shake(SHAKE_CIRCULAR, 3, 400, -2);
+    }
+    else if (value == BJ_DECREMENT_CARD) {
+        if (c->special()) {
+            c->set_shake(BJ_SHAKE_DENY);
+            return false;
+        }
+        c->adjust_value(-3);
+        c->set_shake(SHAKE_CIRCULAR, 3, 400, 2);
+    }
+    return true;
 }

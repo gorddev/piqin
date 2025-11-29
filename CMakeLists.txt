@@ -16,14 +16,18 @@ add_executable(norton
         src/generics/Object.cpp
         src/generics/Shake.cpp
 
-        src/input/InputManager.cpp
-
         src/game/GameMaster.cpp
-        src/game/cards/PlayerHand.cpp
-        src/game/cards/Card.cpp
-        src/game/cards/CardSelector.cpp
-        src/game/board/Board.cpp
-        src/game/board/Deal.cpp
+        src/game/blackjack/BlackjackPlayer.cpp
+        src/game/blackjack/bj-logic/BJ-SelectionLogic.cpp
+        src/game/blackjack/bj-logic/BJ-InputRouting.cpp
+        src/game/blackjack/bj-logic/BJ-CardLogic.cpp
+        src/game/blackjack/Hand.cpp
+        src/game/blackjack/cards/Card.cpp
+        src/game/blackjack/cards/CardLogic.cpp
+        src/game/blackjack/cards/CardSelector.cpp
+        src/game/blackjack/CardDraw.cpp
+
+        src/input/InputManager.cpp
 
         src/scene/ObjectManager.cpp
 
@@ -42,11 +46,12 @@ add_executable(norton
         src/utilities/Utilities.cpp
         src/utilities/basisu_transcoder/basisu_transcoder.cpp
         src/utilities/zstd/zstd.c
-        src/game/cards/Deck.cpp
+        src/game/blackjack/cards/Deck.cpp
 )
 
 target_include_directories(norton PRIVATE
     ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}/include/scene
     ${CMAKE_SOURCE_DIR}/src/scene
 )

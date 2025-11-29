@@ -9,7 +9,6 @@
 
 using std::string;
 
-#define DECK_Z_BASE 7.0f
 class Object {
 public:
     // This object's id
@@ -22,6 +21,8 @@ public:
     bool hidden = false;
     // If we want to hide the shadow
     bool shadow = true;
+    // Lets us tag objects for pathing
+    uint8_t tag = NULL;
     // Let's us flag output for specific objects going thru object manager
     string flag;
     // Contains info for rendering
@@ -43,7 +44,7 @@ public:
     Object(Vertex v) : t(v) {}
     Object(Object& o) : t(o.t), fs(o.fs), id(o.id), fixed{o.fixed}, tex_render_info(o.tex_render_info) {}
     // Destructor
-    ~Object();
+    virtual ~Object();
 
     // Member functions
     void update_pos();
@@ -60,7 +61,7 @@ public:
     [[nodiscard]] FrameState* frame_state();
     [[nodiscard]] int height() const;
     [[nodiscard]] int width() const;
-    [[nodiscard]] auto duration() -> int &;
+    [[nodiscard]] float& duration();
     [[nodiscard]] float get_z_index();
     [[nodiscard]] Path *get_path() const;
     [[nodiscard]] Shake* get_shake() const;
@@ -79,10 +80,11 @@ public:
     void set_height(int new_height);
     void set_width(int new_width);
     void set_z_index(float new_z_index);
-    void set_path(const Path &p);
-    void set_path(Vertex target, uint8_t pathType, float speed);
+    void set_path(const Path &p, bool priority = false);
+    void set_path(Vertex target, uint8_t pathType, float speed, bool priority = false);
     void set_shake(uint8_t shakeType, float strength, int duration, float speed = 1.0, bool decay = true);
     void set_shake(const Shake& s);
+    void remove_shake();
 
     // To String
     string to_string();

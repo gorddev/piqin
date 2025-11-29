@@ -4,13 +4,13 @@
 #include "textures/asset-info/RegistryConstants.hpp"
 
 #define ASSET_DRAW_DECK_PATH "assets/card-stack.ktx2"
-#define ASSET_DRAW_DECK_DRAW_TYPE RENDER_FLAT
+#define ASSET_DRAW_DECK_DRAW_TYPE RENDER_VERTICAL
 
 static const SpriteSheet asset_draw_deck = {
     37,
     53,
-    6,
-    6,
+    7,
+    7,
     ASSET_DRAW_DECK_PATH,
     ASSET_DRAW_DECK_DRAW_TYPE,
     FRAME_STOP,

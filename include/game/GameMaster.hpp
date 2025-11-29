@@ -1,12 +1,11 @@
 #pragma once
 
-#include "game/blackjack/PlayerHand.hpp"
-#include "game/blackjack/Board.hpp"
+#include "blackjack/BlackjackPlayer.hpp"
+#include "game/blackjack/Hand.hpp"
 
 class GameMaster {
 private:
-    PlayerHand* hand = nullptr;
-    Board* board = nullptr;
+    BlackjackPlayer* player;
 public:
     GameMaster() = default;
     ~GameMaster();

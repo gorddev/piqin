@@ -115,16 +115,16 @@ void SpriteSheet::tick_frame(FrameState*& fs) {
 	if (fs->duration == -1) return;
 	// If we have a null state, we just return to beginning
 	if (frames.find(fs->state) == frames.end()) {
-		fs->state = IDLE;
+		fs->state = fs->baseState;
 		return;
 	}
 	// Otherwise, if it's equal to the duration we update the frameNum
 	if (++fs->duration == frames[fs->state][fs->frameNum].duration) {
 		// If we've reached the end of the frame we need to go back to start or go back to idle anim
 		if (fs->frameNum++ >= frames[fs->state].size()) {
-			// If stop, change our state to idle
+			// If stop, change our state to base state
 			if (frames[fs->state][fs->frameNum - 1].nextFrame == FRAME_STOP)
-				fs->state = IDLE;
+				fs->state = fs->baseState;
 			// We always return to the start of the animation regardless
 			fs->frameNum = 0;
 			// And set our duration back to 0
