@@ -11,14 +11,13 @@ int CardDraw::get_num_cards() {
 }
 
 Path CardDraw::get_draw_path(Card *&c, float speed) {
-    short posi = draw.size();
+    short posi = static_cast<short>(draw.size());
     if (!removals.empty()) {
         posi = removals[removals.size() -1];
         removals.pop_back();
     }
-    Vertex target(pos.x - scene::width/8 + posi*24,
-        pos.y - random()%8, DEAL_Z_BASE + (posi/100.f));
-    c->set_z_index(DEAL_Z_BASE + (posi/100.f));
+    Vertex target(pos.x - scene::width/8.0f + posi*24.0f, // NOLINT(*-narrowing-conversions)
+        pos.y - random()%8, DEAL_Z_BASE + (posi/100.f)); // NOLINT(*-narrowing-conversions)
     Path p = {
         target,
         c->pos(),
@@ -41,7 +40,6 @@ void CardDraw::add_card(Card *card, bool flipped) {
     }
     else
         draw.push_back(card);
-    card->set_z_index(DEAL_Z_BASE + (posi/100.f));
     card->set_path(get_draw_path(card));
 }
 

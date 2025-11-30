@@ -43,8 +43,6 @@ bool Hand::add_card(Card* c) {
                 return c1->get_suit() < c2->get_suit();
             return c1->get_value() < c2->get_value();
         });
-        for (int i = 0; i < cards.size(); i++)
-            cards[i]->set_z_index(HAND_Z_BASE+i/(blackjack::maxHandSize*2.0f)); // NOLINT(*-narrowing-conversions)
 
         update_cards();
     }
@@ -57,9 +55,6 @@ Card* Hand::pop_card(int cardNum) {
     if (cardNum < cards.size()) {
         Card* ret = cards[cardNum];
         cards.erase(cards.begin()+cardNum);
-        for (int i = cardNum; i < cards.size(); i++) {
-            cards[i]->set_z_index(HAND_Z_BASE+i/(blackjack::maxHandSize*2.0f));
-        }
         update_cards();
         return ret;
     }
@@ -68,17 +63,16 @@ Card* Hand::pop_card(int cardNum) {
 
 
 Path Hand::get_card_path(int index, int& center, int& height, float speed, Vertex mod) const {
-    int flay = (flayed) ? (20) : 0;
-    char target = (index == lastTarget);
+    const float flay = (flayed) ? (20.0f) : 0.0f;
     Path p = {
         {
             // Space each card more x-wise if hand is flayed
             center + (14+flay) * (index - ((cards.size()-1)/2.0f)) + mod[0], // NOLINT(*-narrowing-conversions)
             // Set default height. If not flayed, stagger each card vertically from the last picked.
             (height - (flay*1.25f))
-                + ((!flayed) * abs(lastTarget-index)*2)
+                + ((!flayed) * abs(lastTarget-index)*2) // NOLINT(*-narrowing-conversions)
                 - (flayed) + mod[1], // NOLINT(*-narrowing-conversions)
-            HAND_Z_BASE + index/(blackjack::maxHandSize*2.0f) + mod[2] // NOLINT(*-narrowing-conversions)
+            HAND_Z_BASE + index/(blackjack::maxHandSize*2.0f) // NOLINT(*-narrowing-conversions)
         },
         cards[index]->pos(),
         PATH_BALLOON,
@@ -98,11 +92,9 @@ void Hand::update_cards() {
 }
 
 bool Hand::has_normal_cards() {
-    for (auto& c: cards) {
-        if (c->get_suit() != SPECIAL_CARD_SUIT)
-            return true;
-    }
-    return false;
+    return std::any_of(cards.begin(), cards.end(), [this](Card* c)
+        { return c->get_suit() == SPECIAL_CARD_SUIT; }
+    );
 }
 
 Card* Hand::operator[](int index) const {

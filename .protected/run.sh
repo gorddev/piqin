@@ -22,8 +22,12 @@ else
         basisu -ktx2 -uastc -file "$rel"  -output_file "$out" > /dev/null
       fi
     elif [[ $fname == *.png ]]; then
-      echo "Converting PNG: $rel › $out"
-      basisu -ktx2 -uastc -file "$rel"  -output_file "$out" > /dev/null
+        echo "Converting PNG: $rel › $out"
+        basisu -ktx2 -uastc -file "$rel"  -output_file "$out" > /dev/null
+    fi
+    if [[ $fname == *.ttf ]]; then
+        echo "Copying .ttf file"
+        cp -r "$rel" "$out"
     fi
   done
 

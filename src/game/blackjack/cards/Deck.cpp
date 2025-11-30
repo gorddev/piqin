@@ -33,7 +33,7 @@ Deck::~Deck() {
 
 // get_path_deck
 Path Deck::get_path_deck(Vertex pos) const {
-    Vertex target = t.pos + Vertex(deck_height(), deck_height()+4, 0);
+    Vertex target = t.pos + Vertex(deck_height(), deck_height()+4, DECK_Z_BASE + drawPile.size()/MAX_DECK_SIZE);
 
     Path p = {
         target,
@@ -75,7 +75,7 @@ short Deck::deck_height() const {
 void Deck::initialize_card(Card *c) {
 
     drawPile.push_back(c);
-    c->set_z_index(DECK_Z_BASE + drawPile.size()/MAX_DECK_SIZE);
+    c->set_z(DECK_Z_BASE + drawPile.size()/MAX_DECK_SIZE);
 
     // We say this card is immediately arrived on the deck
     card_arrival(c);
@@ -87,7 +87,6 @@ void Deck::add_card(Card* c) {
     // This card is not immediately on the deck, so it's traveling.
     traveling.push_back(c);
     c->shadow = false;
-    c->set_z_index(DECK_Z_BASE + drawPile.size()/MAX_DECK_SIZE);
     c->flip_down();
     c->set_path(get_path_deck(c->pos()));
 
@@ -126,7 +125,7 @@ void Deck::discard_card(Card *c, int cardNum) {
     Vertex unit;
     unit.randomize(20);
     c->shadow = false;
-    c->set_z_index(DECK_Z_BASE + ((discardPile.size())/MAX_DECK_SIZE));
+    c->set_z(DECK_Z_BASE + ((discardPile.size())/MAX_DECK_SIZE));
     c->set_shake(SHAKE_CIRCULAR, 1.0, (20*cardNum) + 100 + random()%300, 3, false);
     std::cerr << discard.pos().to_string() << std::endl;
     c->set_path(discard.pos()+unit, PATH_BALLOON, 0.5);
@@ -142,7 +141,7 @@ void Deck::refresh_discard_pile() {
         Vertex unit;
         unit.randomize(20);
         c->shadow = false;
-        c->set_z_index(DECK_Z_BASE + ((discardPile.size())/MAX_DECK_SIZE));
+        c->set_z(DECK_Z_BASE + ((discardPile.size())/MAX_DECK_SIZE));
         c->set_path(discard.pos() + unit, PATH_BALLOON, 0.5);
     }
 }

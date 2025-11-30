@@ -3,11 +3,9 @@
 #include <emscripten/html5.h>
 #include <emscripten.h>
 
-#include "utilities/BasisDecoder.hpp"
-#include "render/RenderManager/RenderManager.hpp"
-#include "game/GameMaster.hpp"
 #include "Constants.hpp"
-#include "Engine.hpp"
+#include "EngineSource.hpp"
+#include "game/GameMaster.hpp"
 #include "utilities/BasisDecoder.hpp"
 
 // Here's our renderer!
@@ -40,40 +38,20 @@ EM_BOOL gameloop(double time, void* userdata) {
 
 	// Game master updates states of game logic and object paths
 	gm->update();
-	// OM updates objects according to states and paths
-	std::vector<FrameState*> fss = engine::om->update_objects();
-	// Send frame states to SpriteSheets to update
-	engine::sm->tick_frames(fss);
-	// Then we can finally render and present everything
-	rend->render();
 
-	rend->present();
+	// Then we can finally render and present everything
+
 
 	return EM_TRUE;
 }
 
 
 int main() {
-	/* ENGINE SETUP */
-	// Camera
-	game::camera = new Camera(0,0,Z_MAX, scene::width, scene::height);
-	// RenderManager -> renders the scene.
-	rend = new RenderManager();
-	// SheetManager -> manages our SpriteSheets
-	engine::sm = new SheetManager();
-	// ObjectManager -> manages our Objects
-	engine::om = new ObjectManager();
-	// Manages input
-	engine::input = new InputManager(nullptr);
+
+	SDL_Init(SDL_INIT_VIDEO);
+
 	// GameMaster -> Handles game logic
 	gm = new GameMaster();
-
-
-
-
-	// Now we initialize each of our objects.
-	rend->initialize();									// Renderer
-	engine::sm->initialize(rend->get_renderer());		// SheetManager
 	gm->initialize();									// GameMaster
 
 	// Now we just pray that the sheetManager piped the input properly. :o

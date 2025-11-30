@@ -2,7 +2,7 @@
 #include "game/GameMaster.hpp"
 
 #include <iostream>
-#include "Engine.hpp"
+#include "../../include/engine/Engine.hpp"
 
 // Initializes all the objects needed for the game.
 void GameMaster::initialize() {
