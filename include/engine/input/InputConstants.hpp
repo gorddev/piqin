@@ -1,4 +1,5 @@
 #pragma once
+#include <cstdint>
 
 namespace gengine {
     inline short GENG_buffer = 400;

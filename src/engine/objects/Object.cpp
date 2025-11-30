@@ -1,5 +1,7 @@
 #include "engine/objects/Object.hpp"
 
+#include <iostream>
+
 using namespace gengine;
 
 Object::~Object() {
@@ -12,13 +14,11 @@ void Object::update_pos() {
 	fixed = false;
 
 	// Update if we're currently shaking. If we don't have path priority.
-	if (!pathPriority && shake != nullptr) {
-		// If we end the shake, remove the shake.
-		if (shake->infinite() && path != nullptr) {
-			delete path;
-			path = nullptr;
-		}
-		if (shake->shake_it(t.pos)) {
+	if (shake != nullptr) {
+		// If we end the shake, remove the shake
+		t.offset = shake->shake_it();
+		if (shake->done()) {
+			t.offset.set(0,0,0);
 			delete shake;
 			shake = nullptr;
 		}
@@ -33,18 +33,21 @@ void Object::update_pos() {
 			delete path;
 			path = nullptr;
 			pathPriority = false;
-			// If our shake is not null, then we update it with a target pos.
-			if (shake != nullptr)
-				shake->set_pos_pop(t.pos);
 		}
 	}
 }
 
 // Getters
 Vertex Object::pos() const { return t.pos; }
+
+Vertex Object::offset() const {
+	return t.offset;
+}
+
 float Object::x() const { return t.pos.x; }
 float Object::y() const { return t.pos.y; }
 float Object::z() const { return t.pos.z; }
+float* Object::zptr()  { return &t.pos.z; }
 float Object::scale() const { return t.scale; }
 int Object::sheet_id() const { return fs.sheet_id; }
 int Object::frameNum() const { return fs.frameNum; }
@@ -150,7 +153,7 @@ void Object::set_path(const Path &p, bool priority) {
 	path = new Path(p);
 }
 
-void Object::set_path(Vertex target, PathType pathType,
+void Object::set_path(Vertex target, GENG_Path pathType,
 	float speed, bool priority) {
 	tag = GENG_Tag::NONE;
 	fixed = false;
@@ -163,23 +166,18 @@ void Object::set_path(Vertex target, PathType pathType,
 }
 
 
-void Object::set_shake(ShakeType shakeType, float strength,
+void Object::set_shake(GENG_Shake GENG_Shake, float strength,
                        int duration, float speed, bool decay) {
-	Vertex v = (shake != nullptr) ? shake->pop_pos() : t.pos;
 	delete shake;
-	shake = new Shake(shakeType, strength, duration, speed, decay);
-	shake->set_pos_pop(v);
+	shake = new Shake(GENG_Shake, strength, duration, speed, decay);
 }
 
 void Object::set_shake(const Shake &s) {
-	Vertex v = (shake != nullptr) ? shake->pop_pos() : t.pos;
 	delete shake;
 	shake = new Shake(s);
-	shake->set_pos_pop(v);
 }
 
 void Object::remove_shake() {
-	t.pos = shake->pop_pos();
 	delete shake;
 	shake = nullptr;
 }
@@ -187,7 +185,12 @@ void Object::remove_shake() {
 
 std::string Object::to_string() const {
 	return	"pos: "	+ t.pos.to_string() +
-			"\nscale: " + std::to_string(t.scale);
+			"\nscale: " + std::to_string(t.scale) +
+			"\npath: " + (path ==nullptr ? "nullptr" : path->to_string()) +
+			"\nshake: " + ((shake==nullptr) ? "nullptr" : "tostring:\n" + shake->get_displacement().to_string()) +
+			"\nid: " + std::to_string(id) +
+			"\nsheet_id: " + std::to_string(fs.sheet_id) +
+				"\nflag: " + flag + "\n";
 }
 
 int Object::increment_frameNum() {

@@ -1,15 +1,14 @@
 #include "../../include/engine/Engine.hpp"
 
-#include "particles/ParticleManager.hpp"
-
 using namespace gengine;
 
+// ReSharper disable once CppMemberInitializersOrder
 Engine::Engine () :
-        cam(0,0,Z_MAX, scene::width, scene::height),
+        cam(0,0,Z_MAX, glb::scene.width, glb::scene.height),
         rm(&cam), sm(), om(), pm(), input(nullptr) {
     // Now we initialize each of our objects.
-    rm.initialize();									// Renderer
     sm.initialize(rm.get_renderer());		// SheetManager
+    rm.set_sheet_manager(&sm);
 }
 Engine::~Engine () {}
 
@@ -19,15 +18,39 @@ int Engine::pop_id() {
     return top_id++;
 }
 
-void Engine::tick() {
+bool Engine::tick(double time) {
+    // First we update our global scene
+    glb::scene.update(time);
+
+    // Now we check for user input
+    SDL_Event e;
+    while (SDL_PollEvent(&e)) {
+        if (e.type == SDL_QUIT)
+            return false;
+        if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP)
+            input.update(e);
+    }
+
+    return true;
+}
+
+void Engine::render() {
     // Update all of our objects and their attatchments
     std::vector<FrameState *> frameStates = om.update_objects();
     // Tick all the frames of all objects/other shit
     sm.tick_frames(frameStates);
     // Render
-    rm.render();
+
+    std::sort(elements.begin(), elements.end(), [](const EngineElement& e1, const EngineElement& e2) {
+        return *e1.z_index < *e2.z_index;
+    });
+    rm.render(elements);
     // Present our hard work
     rm.present();
+}
+
+void Engine::set_input_target(InputTarget *t) {
+    input.setInputTarget(t);
 }
 
 void Engine::add(Object *o) {
@@ -36,68 +59,78 @@ void Engine::add(Object *o) {
     // Add object to manager
     om.add_object(o);
     // Then we create an engineElement
-    EngineElement e(Type::OBJECT, o->z(), o->id, o);
+    EngineElement e(GENG_Type::OBJECT, o->z(), o->id, o);
 
     // Then we add the element according to it's z-pos.
-    auto pos = std::lower_bound(
-        renderTargets.begin(), renderTargets.end(),e, [](const EngineElement& e1, const EngineElement& e2) {
-            return e1.z_index < e2.z_index;
+    const auto pos = std::lower_bound(
+        elements.begin(), elements.end(),e, [](const EngineElement& e1, const EngineElement& e2) {
+            return *e1.z_index < *e2.z_index;
         });
+
     // Now it's z-sorted!
-    renderTargets.insert(pos, e);
+    elements.insert(pos, e);
 
 }
 
-void Engine::add(std::vector<Object*>& objs, Sort sort) {
+void Engine::add(std::vector<Object*> objs, GENG_Sort sort) {
+
+    for (auto&i : objs) {
+        i->id = pop_id();
+        elements.emplace_back(GENG_Type::OBJECT, i->z(), i->id, i);
+    }
+    om.add_objects(objs);
+    return;
+
+    // below is unused code
     // Now if we provided a descending order, we just switch
-    if (sort == Sort::DESCENDING || sort == Sort::DESCENDING_BATCH)
+    if (sort == GENG_Sort::DESCENDING || sort == GENG_Sort::DESCENDING_BATCH)
         std::reverse(objs.begin(), objs.end());
 
     /* . ............    */
     // BATCH SORT
     // If we know our z-indexes are self-contained
-    if (sort == Sort::ASCENDING_BATCH || sort == Sort::DESCENDING_BATCH) {
+    if (sort == GENG_Sort::ASCENDING_BATCH || sort == GENG_Sort::DESCENDING_BATCH) {
         // Convert to engine elmeents
         std::vector<EngineElement> batch;
         for (int i = 0; i < objs.size(); i++) {
             objs[i]->id = pop_id();
-            batch.push_back(EngineElement(Type::OBJECT, objs[i]->z(), objs[i]->id, objs[i]));
+            batch.push_back(EngineElement(GENG_Type::OBJECT, objs[i]->z(), objs[i]->id, objs[i]));
         }
         // Find where we can insert.
         auto pos = std::lower_bound(
-            renderTargets.begin(), //d
-            renderTargets.end(),
+            elements.begin(), //d
+            elements.end(),
             batch.front(),
             [](const EngineElement& a, const EngineElement& b) {
                 return a.z_index < b.z_index;
             }
         );
         // Now we can insert our objects
-        renderTargets.insert(pos, batch.begin(), batch.end());
+        elements.insert(pos, batch.begin(), batch.end());
     }
     /* . ............    */
     // Otherwise we try and do it a little easier, but we don't have the luxury of pre-sort
     // JUST VECTOR SORT IN
-    else if (sort == Sort::ASCENDING || sort == Sort::DESCENDING) {
-        auto rit = renderTargets.begin();
+    else if (sort == GENG_Sort::ASCENDING || sort == GENG_Sort::DESCENDING) {
+        auto rit = elements.begin();
         auto oit = objs.begin();
         // Now we sort sort sort
         std::vector<EngineElement> newVec;
-        newVec.reserve(objs.size() + renderTargets.size());
-        while (oit != objs.end() && rit != renderTargets.end()) {
-            if ((*oit)->z() < rit->z_index) {
+        newVec.reserve(objs.size() + elements.size());
+        while (oit != objs.end() && rit != elements.end()) {
+            if ((*oit)->z() < *rit->z_index) {
                 Object *o = *oit;
                 o->id = pop_id();
-                newVec.emplace_back(Type::OBJECT, o->z(), o->id, reinterpret_cast<void*>(o));
+                newVec.emplace_back(GENG_Type::OBJECT, o->z(), o->id, reinterpret_cast<void*>(o));
                 ++oit;
             }
             else
                 newVec.push_back(*rit++);
         }
-        newVec.insert(newVec.end(), rit, renderTargets.end());
+        newVec.insert(newVec.end(), rit, elements.end());
 
         // now update the z-sorter
-        renderTargets = newVec;
+        elements = newVec;
     }
     // Adds the objects to our object manager.
     om.add_objects(objs);
@@ -107,20 +140,20 @@ void Engine::add(ParticleGroup *pg) {
     // First, we assign an ID
     pg->id = pop_id();
     // Then we create an engineElement
-    EngineElement e(Type::PARTICLE, pg->z(), pg->id, pg);
+    EngineElement e(GENG_Type::PARTICLE, pg->pos.z, pg->id, pg);
 
     // Then we add the element according to it's z-pos.
     auto pos = std::lower_bound(
-        renderTargets.begin(), renderTargets.end(),e, [](const EngineElement& e1, const EngineElement& e2) {
+        elements.begin(), elements.end(),e, [](const EngineElement& e1, const EngineElement& e2) {
             return e1.z_index < e2.z_index;
         });
     // Now it's z-sorted!
     pm.add(pg);
-    renderTargets.insert(pos, e);
+    elements.insert(pos, e);
 }
 
-void Engine::add(std::vector<ParticleGroup*>& pgs, Sort sort) {
-    if (sort != Sort::ASCENDING_BATCH && sort != Sort::DESCENDING_BATCH) {
+void Engine::add(std::vector<ParticleGroup*>& pgs, GENG_Sort sort) {
+    if (sort != GENG_Sort::ASCENDING_BATCH && sort != GENG_Sort::DESCENDING_BATCH) {
         for (auto& i: pgs)
             add(i);
         return;
@@ -130,19 +163,19 @@ void Engine::add(std::vector<ParticleGroup*>& pgs, Sort sort) {
     pm.add(pgs);
 
     // Reverse if needed.
-    if (sort == Sort::DESCENDING_BATCH)
+    if (sort == GENG_Sort::DESCENDING_BATCH)
         std::reverse(pgs.begin(), pgs.end());
 
     // Convert to engine elmeents
     std::vector<EngineElement> batch;
     for (int i = 0; i < pgs.size(); i++) {
         pgs[i]->id = pop_id();
-        batch.push_back(EngineElement(Type::PARTICLE, pgs[i]->pos.z, pgs[i]->id, pgs[i]));
+        batch.push_back(EngineElement(GENG_Type::PARTICLE, pgs[i]->pos.z, pgs[i]->id, pgs[i]));
     }
     // compare to find insertion point
     auto pos = std::lower_bound(
-        renderTargets.begin(), //d
-        renderTargets.end(),
+        elements.begin(), //d
+        elements.end(),
         batch.front(),
         [](const EngineElement& a, const EngineElement& b) {
             return a.z_index < b.z_index;
@@ -150,65 +183,65 @@ void Engine::add(std::vector<ParticleGroup*>& pgs, Sort sort) {
     );
 
     // Now we insert our e
-    renderTargets.insert(pos, batch.begin(), batch.end());
+    elements.insert(pos, batch.begin(), batch.end());
 }
 
-void Engine::remove(Object* o) {
+void Engine::remove(const Object* o) {
     om.dissolve(o);
-    renderTargets.erase(
+    elements.erase(
     std::remove_if(
-            renderTargets.begin(),
-            renderTargets.end(),
+            elements.begin(),
+            elements.end(),
             [&](const EngineElement& e){
                 if (e.target == o) {
-                    id_stack.push(&e - &renderTargets[0]); // optional
+                    id_stack.push(&e - &elements[0]); // optional
                     return true;
                 }
                 return false;
             }
         ),
-        renderTargets.end()
+        elements.end()
     );
 }
 
-void Engine::remove(std::vector<Object*>& objs) {
-    for (auto& i: objs) {
+void Engine::remove(const std::vector<Object*>& objs) {
+    for (const auto& i: objs) {
         remove(i);
     }
 }
 
 void Engine::remove(ParticleGroup* pg) {
     pm.dissolve(pg);
-    renderTargets.erase(
+    elements.erase(
     std::remove_if(
-            renderTargets.begin(),
-            renderTargets.end(),
+            elements.begin(),
+            elements.end(),
             [&](const EngineElement& e){
                 if (e.target == pg) {
-                    id_stack.push(&e - &renderTargets[0]); // optional
+                    id_stack.push(&e - &elements[0]); // optional
                     return true;
                 }
                 return false;
             }
         ),
-        renderTargets.end()
+        elements.end()
     );
 }
 
-void Engine::remove(std::vector<ParticleGroup*>& pg) {
-    for (auto& i: pg)
+void Engine::remove(const std::vector<ParticleGroup*>& pg) {
+    for (const auto& i: pg)
         remove(i);
 }
 
 void Engine::update_z(Object* o) {
-    for (int i = 0; i < renderTargets.size(); i++) {
-        if (renderTargets[i].target == o) {
-            renderTargets.erase(renderTargets.begin() + i);
+    for (int i = 0; i < elements.size(); i++) {
+        if (elements[i].target == o) {
+            elements.erase(elements.begin() + i);
         }
     }
     add(o);
 }
-void Engine::update_z(std::vector<Object*>& objs) {
+void Engine::update_z(const std::vector<Object*>& objs) {
     for (auto& i: objs) {
         add(i);
     }

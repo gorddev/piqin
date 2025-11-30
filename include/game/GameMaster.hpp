@@ -3,9 +3,10 @@
 #include "blackjack/BlackjackPlayer.hpp"
 #include "game/blackjack/Hand.hpp"
 
+
 class GameMaster {
 private:
-    BlackjackPlayer* player;
+    blackjack::BlackjackPlayer player;
 public:
     GameMaster() = default;
     ~GameMaster();
@@ -14,7 +15,7 @@ public:
     // Updating the objects
     void update();
     // Dealing with the Hand
-    void add_card_to_hand(Card c);
+    void add_card_to_hand(blackjack::Card c);
     // Set input target
     void set_hand_as_target();
 

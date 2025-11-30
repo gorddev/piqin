@@ -5,52 +5,51 @@
 
 using namespace gengine;
 
-Shake::Shake(ShakeType shakeType, float strength, float duration, float speed, bool decay)
+Shake::Shake(GENG_Shake shakeType, float strength, float duration, float speed, bool decay)
     : shakeType(shakeType), strength(strength), speed(speed), duration(duration), decay(decay) {
     displacement = Vertex(0,0,0);
     complete = false;
-    popPos.set(-1,-1,-1);
     if (duration == -1)
         this->duration = 1000000000000.0f;
     initDuration = duration;
 }
 
-bool Shake::shake_it(Vertex &pos) {
+Vertex Shake::shake_it() {
     if (complete)
-        return true;
-    if (shakeType == ShakeType::CIRCULAR)
+        return {0.0f,0.0f,0.0f};
+    if (shakeType == GENG_Shake::CIRCULAR)
         shake_circular();
-    else if (shakeType == ShakeType::FLOATY)
+    else if (shakeType == GENG_Shake::FLOATY)
         shake_floaty();
-    else if (shakeType == ShakeType::RANDOM)
+    else if (shakeType == GENG_Shake::RANDOM)
         shake_random();
-    else if (shakeType == ShakeType::SIDE)
+    else if (shakeType == GENG_Shake::SIDE)
         shake_side();
     else
         complete = true;
 
-    // Adds our displacement and applies decay if necessary
-
-    if (popPos.x >=0)
-        pos = popPos + displacement * strength * ((decay) ? duration/initDuration: 1);
-    else
-        pos += displacement * strength*((decay) ? duration/initDuration: 1);
     duration -= glb::scene.dt;
     if (duration <= 0)
-        return true;
-    return false;
+        complete = true;
+    Vertex trueDisplacement = displacement * (strength * (duration/initDuration));
+    return displacement * (strength * (duration/initDuration));
+}
+
+bool Shake::done() const {
+    return complete;
+}
+
+void Shake::end() {
+    complete = true;
+    duration = 0;
 }
 
 bool Shake::infinite() {
     return (duration == -1);
 }
 
-void Shake::set_pos_pop(Vertex&v) {
-    popPos = v;
-}
-
-Vertex Shake::pop_pos() {
-    return popPos;
+Vertex& Shake::get_displacement() {
+    return displacement;
 }
 
 void Shake::shake_random() {
@@ -72,7 +71,7 @@ void Shake::shake_floaty() {
 
 void Shake::shake_side() {
     if (displacement.zero())
-        displacement.set(1,0,0);
+        displacement.set((random()%2) ? 1 : -1,0,0);
     displacement.x = -1*displacement.x;
     displacement.y = -1*displacement.y;
 }

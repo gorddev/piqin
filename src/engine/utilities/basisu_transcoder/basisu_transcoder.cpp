@@ -13,13 +13,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "../../include/utilities/basisu_transcoder/basisu_transcoder.h"
-#include "../../include/utilities/basisu_transcoder/basisu_containers_impl.h"
+#include "../../../../include/engine/utilities/basisu_transcoder/basisu_transcoder.h"
+#include "../../../../include/engine/utilities/basisu_transcoder/basisu_containers_impl.h"
 
-#include "../../include/utilities/basisu_transcoder/basisu_astc_hdr_core.h"
+#include "../../../../include/engine/utilities/basisu_transcoder/basisu_astc_hdr_core.h"
 
 #define BASISU_ASTC_HELPERS_IMPLEMENTATION
-#include "../../include/utilities/basisu_transcoder/basisu_astc_helpers.h"
+#include "../../../../include/engine/utilities/basisu_transcoder/basisu_astc_helpers.h"
 
 #include <limits.h>
 
@@ -1129,12 +1129,12 @@ namespace basist
 	static uint8_t g_etc1_to_dxt1_selector_mappings_raw_dxt1_inv_256[NUM_ETC1_TO_DXT1_SELECTOR_MAPPINGS][256];
 
 	static const etc1_to_dxt1_56_solution g_etc1_to_dxt_6[32 * 8 * NUM_ETC1_TO_DXT1_SELECTOR_MAPPINGS * NUM_ETC1_TO_DXT1_SELECTOR_RANGES] = {
-#include "../../include/utilities/basisu_transcoder/basisu_transcoder_tables_dxt1_6.inc"
+#include "../../../../include/engine/utilities/basisu_transcoder/basisu_transcoder_tables_dxt1_6.inc"
 
 	};
 
 	static const etc1_to_dxt1_56_solution g_etc1_to_dxt_5[32 * 8 * NUM_ETC1_TO_DXT1_SELECTOR_MAPPINGS * NUM_ETC1_TO_DXT1_SELECTOR_RANGES] = {
-#include "../../include/utilities/basisu_transcoder/basisu_transcoder_tables_dxt1_5.inc"
+#include "../../../../include/engine/utilities/basisu_transcoder/basisu_transcoder_tables_dxt1_5.inc"
 
 	};
 #endif // BASISD_SUPPORT_DXT1
@@ -3923,7 +3923,7 @@ namespace basist
 	};
 
 	static const etc1_to_bc7_m5_solution g_etc1_to_bc7_m5_color[32 * 8 * NUM_ETC1_TO_BC7_M5_SELECTOR_MAPPINGS * NUM_ETC1_TO_BC7_M5_SELECTOR_RANGES] = {
-#include "../../include/utilities/basisu_transcoder/basisu_transcoder_tables_bc7_m5_color.inc"
+#include "../../../../include/engine/utilities/basisu_transcoder/basisu_transcoder_tables_bc7_m5_color.inc"
 
 	};
 
@@ -3949,7 +3949,7 @@ namespace basist
 
 	static etc1_g_to_bc7_m5a_conversion g_etc1_g_to_bc7_m5a[8 * 32 * NUM_ETC1_TO_BC7_M5A_SELECTOR_RANGES] =
 	{
-		#include "../../include/utilities/basisu_transcoder/basisu_transcoder_tables_bc7_m5_alpha.inc"
+		#include "../../../../include/engine/utilities/basisu_transcoder/basisu_transcoder_tables_bc7_m5_alpha.inc"
 
 	};
 
@@ -5182,7 +5182,7 @@ namespace basist
 	};
 
 	static const etc1_to_astc_solution g_etc1_to_astc[32 * 8 * NUM_ETC1_TO_ASTC_SELECTOR_MAPPINGS * NUM_ETC1_TO_ASTC_SELECTOR_RANGES] = {
-#include "../../include/utilities/basisu_transcoder/basisu_transcoder_tables_astc.inc"
+#include "../../../../include/engine/utilities/basisu_transcoder/basisu_transcoder_tables_astc.inc"
 
 	};
 
@@ -6327,7 +6327,7 @@ namespace basist
 
 #if BASISD_SUPPORT_PVRTC2
 	static const etc1s_to_atc_solution g_etc1s_to_pvrtc2_45[32 * 8 * NUM_ETC1S_TO_ATC_SELECTOR_MAPPINGS * NUM_ETC1S_TO_ATC_SELECTOR_RANGES] = {
-#include "../../include/utilities/basisu_transcoder/basisu_transcoder_tables_pvrtc2_45.inc"
+#include "../../../../include/engine/utilities/basisu_transcoder/basisu_transcoder_tables_pvrtc2_45.inc"
 
 	};
 
@@ -6340,12 +6340,12 @@ namespace basist
 #endif
 
 	static const etc1s_to_atc_solution g_etc1s_to_atc_55[32 * 8 * NUM_ETC1S_TO_ATC_SELECTOR_MAPPINGS * NUM_ETC1S_TO_ATC_SELECTOR_RANGES] = {
-#include "../../include/utilities/basisu_transcoder/basisu_transcoder_tables_atc_55.inc"
+#include "../../../../include/engine/utilities/basisu_transcoder/basisu_transcoder_tables_atc_55.inc"
 
 	};
 
 	static const etc1s_to_atc_solution g_etc1s_to_atc_56[32 * 8 * NUM_ETC1S_TO_ATC_SELECTOR_MAPPINGS * NUM_ETC1S_TO_ATC_SELECTOR_RANGES] = {
-#include "../../include/utilities/basisu_transcoder/basisu_transcoder_tables_atc_56.inc"
+#include "../../../../include/engine/utilities/basisu_transcoder/basisu_transcoder_tables_atc_56.inc"
 
 	};
 

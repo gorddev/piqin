@@ -25,7 +25,7 @@ namespace gengine {
         // Let's us flag output for specific objects going thru object manager
         std::string flag;
     protected:
-        // Contains pos, velocity, scale, ect.
+        // Contains pos, scale, shake_offset, ect.
         Transform t;
         // Contains framenum, duration, ect.
         FrameState fs;
@@ -49,9 +49,13 @@ namespace gengine {
         // Getters
         // Transform
         [[nodiscard]] Vertex pos() const;
+        [[nodiscard]] Vertex offset() const;
         [[nodiscard]] float x() const;
         [[nodiscard]] float y() const;
         [[nodiscard]] float z() const;
+
+        float *zptr();
+
         [[nodiscard]] float scale() const;
         [[nodiscard]] int height() const;
         [[nodiscard]] int width() const;
@@ -87,8 +91,8 @@ namespace gengine {
         int increment_frameNum();
         // Path, shaking, ect.
         void set_path(const Path &p, bool priority = false);
-        void set_path(Vertex target, PathType pathType, float speed, bool priority = false);
-        void set_shake(ShakeType shakeType, float strength, int duration, float speed = 1.0, bool decay = true);
+        void set_path(Vertex target, GENG_Path pathType, float speed, bool priority = false);
+        void set_shake(GENG_Shake shakeType, float strength, int duration, float speed = 1.0, bool decay = true);
         void set_shake(const Shake& s);
         void remove_shake();
 

@@ -25,11 +25,17 @@ RenderManager::~RenderManager() {
 	delete cam;
 }
 
+void RenderManager::set_render_texture() {
+	SDL_SetRenderTarget(renderer, canvasTex);
+	SDL_SetRenderDrawColor(renderer, 242, 32, 21, 255);
+	SDL_RenderClear(renderer);
+}
+
 void RenderManager::render(std::vector<EngineElement>& elmts) {
 
 	/* RENDER SETUP */
 	// First we set our draw color in case nothing renders
-	SDL_SetRenderDrawColor(renderer, 20, 25, 0, 0);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	// We set up the camera center.
 	camCenter = cam->center();
 	// Then we update our canvas in case the user changed the window size
@@ -72,16 +78,14 @@ void RenderManager::present() {
 		canvasTex,
 		nullptr,
 		&fr);
-	// Now we need to free the texture
-	SDL_DestroyTexture(canvasTex);
+
 	// Finally we present our hard work
 	SDL_RenderPresent(renderer);
 }
 
-void RenderManager::set_render_texture() {
-	SDL_SetRenderTarget(renderer, canvasTex);
-	SDL_SetRenderDrawColor(renderer, 20, 80, 20, 255);
-	SDL_RenderClear(renderer);
+void RenderManager::set_sheet_manager(
+	 SheetManager* sm) {
+	this->sm = sm;
 }
 
 void RenderManager::draw_background() {
@@ -120,15 +124,24 @@ void RenderManager::render_elements(std::vector<EngineElement>& elmts) {
 	}
 }
 
+std::string recttostring(SDL_Rect rect) {
+	std::string ret = "rect: {" + std::to_string(rect.x) + ", " + std::to_string(rect.y) + ", " + std::to_string(rect.w) + ", " + std::to_string(rect.h) + "}";
+	return ret;
+}
+
+std::string recttostring(SDL_FRect rect) {
+	std::string ret = "rect: {" + std::to_string(rect.x) + ", " + std::to_string(rect.y) + ", " + std::to_string(rect.w) + ", " + std::to_string(rect.h) + "}";
+	return ret;
+}
+
 void RenderManager::render_object(Object& o) {
 	if (!o.hidden) {
 		SDL_Rect* src = sm->get_sheet_frame(o);
-		SDL_FRect dst = rect_flat(o);
-		SDL_Texture* tex = sm->get_sheet_texture(o.sheet_id());
-		// Render!!!
-		SDL_RenderCopyExF(renderer, tex, src, &dst, o.rotation(), nullptr, o.flip());
-		// If it has a shadow
-		if (!o.shadow) {
+		SDL_FRect dst;
+		SDL_Texture* tex;
+		// If we have a shadow, render that first
+		if (o.shadow) {
+			// If we dont have a shadow, make the shadow texture
 			if (sm->get_sheet_shadow(o) == nullptr)
 				sm->set_sheet_shadow(o.sheet_id(), create_shadow_texture(tex));
 			dst = rect_shadow(o);
@@ -136,6 +149,13 @@ void RenderManager::render_object(Object& o) {
 			// Render again!!!
 			SDL_RenderCopyExF(renderer, tex, src, &dst, o.rotation(), nullptr, o.flip());
 		}
+		// Now we render the regular texture
+		dst = rect_flat(o);
+		tex = sm->get_sheet_texture(o.sheet_id());
+
+		// Render!!!
+		SDL_RenderCopyExF(renderer, tex, src, &dst, o.rotation(), nullptr, o.flip());
+
 	}
 }
 

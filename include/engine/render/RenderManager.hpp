@@ -53,6 +53,8 @@ namespace gengine {
 		// Gets our renderer for testing purposes
 		SDL_Renderer* get_renderer() { return renderer; }
 
+		void set_sheet_manager( SheetManager* sm);
+
 	private:
 		// Specifies what we need to access SDL window resources
 		SDL_Window* window = nullptr;

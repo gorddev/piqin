@@ -1,7 +1,7 @@
 #pragma once
 
-#include "sprites/asset-info/RegistryConstants.hpp"
-#include "sprites/asset-info/SpriteRegistry.hpp"
+#include "../RegistryConstants.hpp"
+#include "../SpriteRegistry.hpp"
 
 // Path to item
 #define ASSET_DECK_PATH "assets/kumpu-cards.ktx2"
@@ -9,15 +9,14 @@
 #define ASSET_DECK_RENDER_TYPE RENDER_VERTICAL
 
 // Sprite info
-static const SpriteSheet asset_deck = {
+static const gengine::SpriteSheet asset_deck = {
     32,
     48,
     13,
     60,
     ASSET_DECK_PATH,
-    ASSET_DECK_RENDER_TYPE,
-    FRAME_STOP,
+    gengine::GENG_Anim::STOP,
     -1
 };
 
-static SpriteRegister asset_deck_obj(asset_deck, ASSET_DECK_ID);
+static gengine::SpriteRegister asset_deck_obj(asset_deck, ASSET_DECK_ID);

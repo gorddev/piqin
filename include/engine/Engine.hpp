@@ -1,9 +1,10 @@
 #pragma once
+#include "render/RenderManager.hpp"
 #include "particles/ParticleManager.hpp"
 #include "objects/ObjectManager.hpp"
 #include "input/InputManager.hpp"
 #include "utilities/types/EngineElement.hpp"
-#include "render/RenderManager.hpp"
+
 
 // The Engine makes sure everything gets to the right place
 // It has the following tasks:
@@ -15,7 +16,7 @@ namespace gengine {
     class Engine {
     private:
         // Keeps track of all of our render targets
-        std::vector<EngineElement> renderTargets;
+        std::vector<EngineElement> elements;
         // Lets us keep track of unused IDs
         utils::IDStack id_stack;
         int top_id = 0;
@@ -35,27 +36,29 @@ namespace gengine {
         ~Engine();
 
         // Runs the engine
-        void tick();
+        bool tick(double time);
+
+        // Sets an input target
+        void set_input_target(InputTarget* t);
 
         // Adding of things to other things
         void add(Object* o);
-        void add(std::vector<Object*>& objs, GENG_Sort sort = GENG_Sort::NONE);
+        void add(std::vector<Object*> objs, GENG_Sort sort = GENG_Sort::NONE);
         void add(ParticleGroup* pg);
         void add(std::vector<ParticleGroup*>& pgs, GENG_Sort sort = GENG_Sort::NONE);
 
         // Allows us to remove objects
-        void remove(Object *o);
-        void remove(std::vector<Object*>& objs);
+        void remove(const Object *o);
+        void remove(const std::vector<Object*>& objs);
         void remove(ParticleGroup* pg);
-        void remove(std::vector<ParticleGroup*>& pgs);
+        void remove(const std::vector<ParticleGroup*>& pgs);
 
         // Allows us to update z_indexes of objects
         void update_z(Object* o);
         // UIElement*& add(UIElement* ui);
-        void update_z(std::vector<Object*>& objs);
+        void update_z(const std::vector<Object*>& objs);
 
         // Sends things to the renderer
         void render();
-        void present();
     };
 }

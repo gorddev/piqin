@@ -3,7 +3,7 @@
 
 namespace gengine {
     // Shake type macros
-    enum class ShakeType : uint8_t {
+    enum class GENG_Shake : uint8_t {
         RANDOM = 0,
         CIRCULAR = 1,
         FLOATY = 2,
@@ -15,14 +15,12 @@ namespace gengine {
     private:
         // The current displacement of the object from center
         Vertex displacement;
-        // Gives us a position to pop back to if so desired.
-        Vertex popPos;
         // Strength of the shake (total pixel displacement)
         float strength;
         // Speed of the shake
         float speed;
         // Type of shake (random pos, circular, "floaty")
-        ShakeType shakeType;
+        GENG_Shake shakeType;
         // Whether you want the amplitude of displacement to decay
         bool decay;
         // Tells us when the shake has reached it's end.
@@ -40,20 +38,19 @@ namespace gengine {
         void shake_side();
     public:
         // Constructor for the shaking!
-        Shake(ShakeType shakeType, float strength, float duration, float speed = 1.0, bool decay = false);
+        Shake(GENG_Shake shakeType, float strength, float duration, float speed = 1.0, bool decay = false);
 
         // Lets us shake the object. Returns true if we're done shaking
-        bool shake_it(Vertex& pos);
+        Vertex shake_it();
         // Tells us if we're done shaking
-        bool done();
+        bool done() const;
         // Ends the shake
         void end();
         // Tells us whether a shake is permanent or not
         bool infinite();
+        // Gets the displacement
+        Vertex& get_displacement();
 
-        // Sets position pop if we care about shaking about a point.
-        void set_pos_pop(Vertex& v);
-        Vertex pop_pos();
     };
 }
 

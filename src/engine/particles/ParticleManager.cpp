@@ -22,6 +22,11 @@ ParticleGroup*& ParticleManager::add(ParticleGroup *g) {
     return groups[groups.add(g)];
 }
 
+void ParticleManager::add(std::vector<ParticleGroup*>& groups) {
+    for (auto&i: groups)
+        add(i);
+}
+
 void ParticleManager::dissolve(ParticleGroup *g) {
     groups.erase(g);
 }

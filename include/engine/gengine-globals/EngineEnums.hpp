@@ -8,6 +8,7 @@
 /* SHADOW CONSTANTS           */
 #define SHADOW_ALPHA 50
 #define SHADOW_OFFSET 5
+
 /* Z-Indexing */
 #define Z_MAX 100.0f
 

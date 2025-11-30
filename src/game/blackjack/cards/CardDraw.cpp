@@ -1,46 +1,47 @@
-#include "../../../include/game/blackjack/cards/CardDraw.hpp"
+#include "../../../../include/game/blackjack/cards/CardDraw.hpp"
 
 #include <iostream>
 
-#include "game/blackjack/BjConstants.hpp"
+#include "game/blackjack/BJEnums.hpp"
 
-CardDraw::CardDraw(Vertex pos) : pos(pos) {}
+using namespace blackjack;
+
+CardDraw::CardDraw(gengine::Vertex pos) : pos(pos) {}
 
 int CardDraw::get_num_cards() {
     return draw.size();
 }
 
-Path CardDraw::get_draw_path(Card *&c, float speed) {
-    short posi = static_cast<short>(draw.size());
-    if (!removals.empty()) {
-        posi = removals[removals.size() -1];
-        removals.pop_back();
-    }
-    Vertex target(pos.x - scene::width/8.0f + posi*24.0f, // NOLINT(*-narrowing-conversions)
-        pos.y - random()%8, DEAL_Z_BASE + (posi/100.f)); // NOLINT(*-narrowing-conversions)
-    Path p = {
+gengine::Path CardDraw::get_draw_path(Card *&c, short index) {
+
+    gengine::Vertex target(pos.x - gengine::glb::scene.width/8.0f + index*24.0f, // NOLINT(*-narrowing-conversions)
+        pos.y - random()%8, DRAW_Z_BASE + (index/10.f)); // NOLINT(*-narrowing-conversions)
+    gengine::Path p = {
         target,
         c->pos(),
-        PATH_BALLOON,
-        speed
+        gengine::GENG_Path::BALLOON,
+        0.5
     };
+    std::cerr << "target.z: " << target.z << std::endl;
     return p;
 }
 
-// Adds a card and assigns it a path.
+// Adds a card and assigns it a gengine::Path.
 void CardDraw::add_card(Card *card, bool flipped) {
     card->flip_up();
+    // Lets us flip it down if we want.
     if (flipped)
         card->flip_down();
     short posi = draw.size();
     if (!removals.empty()) {
         std::sort(removals.begin(), removals.end(), [](short a, short b) {return a > b;});
         posi = removals.back();
+        removals.pop_back();
         draw.insert(draw.begin() + (posi - 1), card);
     }
     else
         draw.push_back(card);
-    card->set_path(get_draw_path(card));
+    card->set_path(get_draw_path(card, posi));
 }
 
 // Gives all the cards back to the Dealer
@@ -83,7 +84,7 @@ bool CardDraw::will_bust(Card *c) {
     return (c->get_score() + get_score() > blackjack::roundScore);
 }
 
-std::vector<Card*>& CardDraw::gather_objects() {
+std::vector<Card*>& CardDraw::card_list() {
     return draw;
 }
 
@@ -93,6 +94,10 @@ int CardDraw::size() const {
 
 bool CardDraw::empty() const {
     return draw.empty();
+}
+
+void CardDraw::set_pos(gengine::Vertex v) {
+    pos = v;
 }
 
 Card * CardDraw::operator[](int index) {

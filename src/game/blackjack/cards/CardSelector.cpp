@@ -3,7 +3,9 @@
 #include <iostream>
 #include <ostream>
 
-#include "game/blackjack/BjConstants.hpp"
+#include "game/blackjack/BJEnums.hpp"
+
+using namespace blackjack;
 
 CardSelector::CardSelector() {
     target = nullptr;
@@ -15,12 +17,16 @@ CardSelector::CardSelector() {
 // Changes cards. Default pathing = path true
 void CardSelector::switchTarget(Card *newTarget, bool moveTarget) {
 
-    if (target != nullptr && target->get_path()!= nullptr && target->tag == TAG_SELECTOR) {
-        target->set_path(target->get_path()->get_target() + BJ_SELECT_OFFSET, BJ_SELECT_PATH, 0.7);
-        target->tag = TAG_SELECTOR;
+    if (target != nullptr && target->get_path()!= nullptr && target->tag == gengine::GENG_Tag::SELECTOR) {
+        gengine::Vertex trueTarget = target->get_path()->get_target();
+        trueTarget.z = SELECTOR_Z_BASE;
+        target->set_path(trueTarget + BJ_SELECT_OFFSET, BJ_SELECT_PATH, 0.7);
+        target->tag = gengine::GENG_Tag::SELECTOR;
     }
     else if (target != nullptr && target->get_path() == nullptr) {
-        target->set_path(target->pos() + BJ_SELECT_OFFSET, BJ_SELECT_PATH, 0.7);
+        gengine::Vertex trueTarget = target->pos();
+        trueTarget.z = SELECTOR_Z_BASE;
+        target->set_path(trueTarget + BJ_SELECT_OFFSET, BJ_SELECT_PATH, 0.7);
     }
     target = newTarget;
 
@@ -31,36 +37,42 @@ void CardSelector::switchTarget(Card *newTarget, bool moveTarget) {
         else {
             target->set_path(target->pos() - BJ_SELECT_OFFSET, BJ_SELECT_PATH, 0.7);
         }
-        target->tag = TAG_SELECTOR;
+        target->tag = gengine::GENG_Tag::SELECTOR;
     }
     move(moveTarget);
 }
 
 // DOES NOT UPDATE A CARD'S PATH, JUST SELECTOR
 void CardSelector::move(bool recess) {
-    Vertex os = (recess) ? BJ_SELECTOR_OFFSET : BJ_SELECTOR_OFFSET * -1;
+    gengine::Vertex os = (recess) ? BJ_SELECTOR_OFFSET : BJ_SELECTOR_OFFSET * -1;
     if (target == nullptr)
         deactivate();
     else if (target->get_path() != nullptr) {
-        move(target->get_path()->get_target() + os, 1.0);
+        gengine::Vertex trueTarget = target->get_path()->get_target();
+        trueTarget.z = SELECTOR_Z_BASE;
+        move(trueTarget + os, 1.0);
     }
-    else
+    else {
+        gengine::Vertex trueTarget = target->get_path()->get_target();
+        trueTarget.z = SELECTOR_Z_BASE;
         move(target->pos(), 1.0);
+    }
 }
 
 // DOES NOT UPDATE A CARD'S PATH, JUST SELECTOR
-void CardSelector::move(Vertex pos, float speed) {
-    set_path(Path(pos, t.pos, BJ_SELECT_PATH, speed));
+void CardSelector::move(gengine::Vertex pos, float speed) {
+    gengine::Vertex trueTarget = pos;
+    trueTarget.z = SELECTOR_Z_BASE;
+    set_path(gengine::Path(trueTarget, t.pos, BJ_SELECT_PATH, speed));
 }
 
-void CardSelector::set_color(uint8_t color) {
-    if (color > SELECTOR_COLOR_NUMS) color = SELECTOR_COLOR_GREY;
-    fs.state = color;
+void CardSelector::set_color(Selector_Color color) {
+    fs.state = static_cast<uint8_t>(color);
 }
 
 void CardSelector::deactivate() {
-    move(SELECTOR_DEFAULT_POS, 1.0);
-    set_color(SELECTOR_COLOR_GREY);
+    move(BJ_DEFAULT_SELECTOR_POS, 1.0);
+    set_color(Selector_Color::GREY);
 }
 
 // nothing for now

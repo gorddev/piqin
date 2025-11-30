@@ -1,6 +1,6 @@
 #pragma once
 #include "../utilities/types/Vertex.hpp"
-#include "../gengine-globals/EngineEnums.hpp"
+#include "../gengine-globals/scene.hpp"
 
 namespace gengine {
 	class Camera{

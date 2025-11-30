@@ -3,44 +3,39 @@
 #include <emscripten/html5.h>
 #include <emscripten.h>
 
-#include "Constants.hpp"
 #include "EngineSource.hpp"
 #include "game/GameMaster.hpp"
-#include "utilities/BasisDecoder.hpp"
 
-// Here's our renderer!
-RenderManager* rend = nullptr;
 // Here's our game manager!
 GameMaster* gm = nullptr;
-// They both have access to the entire game engine.
+
+blackjack::Card* c = new blackjack::Card(3, blackjack::BJ_Suit::SPADE);
 
 // gameloop defined below
 EM_BOOL gameloop(double time, void* userdata) {
-
-	// Time from previous events
-	static double prevtime = 0;
-	scene::frame++;
-	scene::time = time;
-	scene::dt = (time - prevtime);
-	prevtime = time;
-
 	(void)userdata;
-	SDL_Event e;
+	// <><><><><><><><>
+	// Updates our time and grabs user input
+	// <><><><><><><><>
+	if (!bob.tick(time))
+		return EM_FALSE;
 
+	// All game logic goes here!
 	gm->blackjack();
-	// This is our main loop.
-	while (SDL_PollEvent(&e)) {
-		if (e.type == SDL_QUIT)
-			return EM_FALSE;
-		if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP)
-			engine::input->update(e);
-	}
 
 	// Game master updates states of game logic and object paths
 	gm->update();
 
-	// Then we can finally render and present everything
+	/*
+	std::ccerr << c->to_string() << std::endl;
+	std::cerr << c->id << std::endl;
+	std::cerr << "pointer: " << c << std::endl;
+	*/
 
+	// <><><><><><><><>
+	// Finally we render
+	// <><><><><><><><>
+	bob.render();
 
 	return EM_TRUE;
 }
@@ -57,16 +52,13 @@ int main() {
 	// Now we just pray that the sheetManager piped the input properly. :o
 
 	/************ FUCK AROUND ZONE**********/
-	gm->add_card_to_hand({1,'s'});
-	gm->add_card_to_hand({54,SPECIAL_CARD_SUIT});
-	gm->add_card_to_hand({55,SPECIAL_CARD_SUIT});
-	gm->add_card_to_hand({56,SPECIAL_CARD_SUIT});
-	gm->add_card_to_hand({57,SPECIAL_CARD_SUIT});
-	gm->add_card_to_hand({58,SPECIAL_CARD_SUIT});
-	gm->add_card_to_hand({59,SPECIAL_CARD_SUIT});
+
+	bob.add(c);
+	gm->add_card_to_hand({2, blackjack::BJ_Suit::HEART});
+	gm->add_card_to_hand({3, blackjack::BJ_Suit::SPADE});
+	gm->add_card_to_hand({55, blackjack::BJ_Suit::SPECIAL});
 	gm->set_hand_as_target();
-
-
+	c->set_path(gengine::Vertex(300,300,0), gengine::GENG_Path::BALLOON, 0.1, true);
 
 	/******** END OF FUCK AROUND ZONE *******/
 	emscripten_request_animation_frame_loop(gameloop, nullptr);

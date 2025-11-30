@@ -21,7 +21,7 @@ namespace gengine {
         // Update with a given key event
         void update(SDL_Event & e);
         // Initializes the keybinds
-        void load_keybinds(std::unordered_map<SDL_Scancode, short> mappy);
+        void load_keybinds(std::unordered_map<SDL_Scancode, GENG_Input> mappy);
         // If we're in a menu or not
         bool in_menu() const { return it == menu; }
         // Sets the input target

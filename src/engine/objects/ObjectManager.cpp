@@ -10,12 +10,11 @@ ObjectManager::ObjectManager() noexcept : numObjects(0) {}
 // Add object, pointer (preferred method)
 Object * ObjectManager::add_object(Object *o) noexcept {
 	// We need to assign it the correct id
-	if (objMap.find(o->id) != objMap.end())
+	if (o->id != -1 && objMap.find(o->id) != objMap.end())
 		return nullptr;
-	if (stack.is_empty())
-		o->id = nextID++;
-	else
-		o->id = stack.pop();
+	if (!o->flag.empty())
+		std:: cerr << o->flag << std::endl;
+	objMap[o->id] = o;
 	return o;
 }
 

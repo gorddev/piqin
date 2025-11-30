@@ -1,18 +1,12 @@
 // ReSharper disable CppTooWideScopeInitStatement
 #include "game/GameMaster.hpp"
-
-#include <iostream>
-#include "../../include/engine/Engine.hpp"
+#include "include/EngineSource.hpp"
 
 // Initializes all the objects needed for the game.
 void GameMaster::initialize() {
-
-    player = new BlackjackPlayer();
-
-    // Next, we send all the cards & objects to the object manager
-    engine::om->add_objects(player->gather_objects());
-
-    // We must do this to render anything, because the render manager uses the object manager's processing in order to render objects correctly.
+    // Send everything to the engine
+    std::vector<gengine::Object*> allObjects = player.gather_objects();
+    bob.add(allObjects);
 }
 
 void GameMaster::update() {
@@ -21,23 +15,21 @@ void GameMaster::update() {
 
 // Deletes the objects it's responsible for.
 GameMaster::~GameMaster() {
-    engine::om->remove_objects(player->gather_objects());
-    delete player;
+    bob.remove(player.gather_objects());
 }
 
 // Adds cards to a hand:
-void GameMaster::add_card_to_hand(Card c) {
-    auto card = new Card(c);
-    if (player->add_card_to_hand(card))
-        engine::om->add_object(card);
+void GameMaster::add_card_to_hand(blackjack::Card c) {
+    auto card = new blackjack::Card(c);
+    if (player.add_card_to_hand(card))
+        bob.add(static_cast<gengine::Object*>(card));
     else
         delete card;
-    std::cerr << card->state() + 0 << std::endl;
 }
 
 // Set hand has target
 void GameMaster::set_hand_as_target() {
-    engine::input->setInputTarget(player);
+    bob.set_input_target(&player);
 }
 
 void GameMaster::blackjack() {

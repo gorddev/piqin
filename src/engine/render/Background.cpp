@@ -98,8 +98,6 @@ void Background::update_pixels() {
                 else if (rgb[i+2] > t3 + range || rgb[i+2]==255)
                     rgb[i+3] ^= 1;
 
-                if (i < 100)
-                    std::cerr << rgb[i] + 0 << ", " << rgb[i+1] + 0 << ", " << rgb[i+2] + 0 << ", " << rgb[i+3] +0<< std::endl;
             }
         }
     }

@@ -2,8 +2,9 @@
 
 #include <iostream>
 
-#include "ObjectManager.hpp"
-#include "game/blackjack/BjConstants.hpp"
+#include "game/blackjack/BJEnums.hpp"
+
+using namespace blackjack;
 
 Hand::Hand() : lastTarget(0) {
     flayed = false;
@@ -62,9 +63,9 @@ Card* Hand::pop_card(int cardNum) {
 }
 
 
-Path Hand::get_card_path(int index, int& center, int& height, float speed, Vertex mod) const {
+gengine::Path Hand::get_card_path(int index, int& center, int& height, float speed, gengine::Vertex mod) const {
     const float flay = (flayed) ? (20.0f) : 0.0f;
-    Path p = {
+    gengine::Path p = {
         {
             // Space each card more x-wise if hand is flayed
             center + (14+flay) * (index - ((cards.size()-1)/2.0f)) + mod[0], // NOLINT(*-narrowing-conversions)
@@ -72,28 +73,28 @@ Path Hand::get_card_path(int index, int& center, int& height, float speed, Verte
             (height - (flay*1.25f))
                 + ((!flayed) * abs(lastTarget-index)*2) // NOLINT(*-narrowing-conversions)
                 - (flayed) + mod[1], // NOLINT(*-narrowing-conversions)
-            HAND_Z_BASE + index/(blackjack::maxHandSize*2.0f) // NOLINT(*-narrowing-conversions)
+            HAND_Z_BASE + abs(lastTarget-index)/(maxHandSize*2.0f) // NOLINT(*-narrowing-conversions)
         },
         cards[index]->pos(),
-        PATH_BALLOON,
+        gengine::GENG_Path::BALLOON,
         speed
     };
     return p;
 }
 
 void Hand::update_cards() {
-    int center = scene::width/2;
-    int height = 3*scene::height/4;
+    int center = gengine::glb::scene.width/2;
+    int height = 3*gengine::glb::scene.height/4;
 
     for (int i = 0; i < cards.size(); i++)
         cards[i]->set_path(get_card_path(i, center, height));
 
-    Vertex offset = (flayed) ? Vertex(0,0,0) : Vertex(0,10,0);
+    gengine::Vertex offset = (flayed) ? gengine::Vertex(0,0,0) : gengine::Vertex(0,10,0);
 }
 
 bool Hand::has_normal_cards() {
     return std::any_of(cards.begin(), cards.end(), [this](Card* c)
-        { return c->get_suit() == SPECIAL_CARD_SUIT; }
+        { return c->get_suit() != BJ_Suit::SPECIAL; }
     );
 }
 

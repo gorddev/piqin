@@ -13,6 +13,8 @@ namespace gengine {
         float rotation = 0;
         // Establish Vertexes for pixel-perfect rendering & z-indexing
         Vertex pos = Vertex(0,0,0);
+        // Establish offset for rendering purposes
+        Vertex offset = Vertex(0,0,0);
 
         Transform() = default;
         explicit Transform(Vertex pos) : pos(pos) {}

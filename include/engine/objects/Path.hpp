@@ -4,7 +4,7 @@
 namespace gengine {
 
     // Types of paths
-    enum class PathType : uint8_t {
+    enum class GENG_Path : uint8_t {
         LINEAR = 0,
         BALLOON = 1,
         TORPEDO = 2,
@@ -23,7 +23,7 @@ namespace gengine {
         Vertex startPos;
         float initDist;
         float speed;
-        PathType pathType;
+        GENG_Path pathType;
         uint8_t complete = 0;
 
         // Types of path functions
@@ -44,7 +44,7 @@ namespace gengine {
 
     public:
         // Constructor for a path.
-        Path(const Vertex &target, const Vertex &startPos, PathType pathType, float speed);
+        Path(const Vertex &target, const Vertex &startPos, GENG_Path pathType, float speed);
         // Updates the vertex according to the pathType.
         void to_path(Vertex& pos);
         // Returns true if a path is complete

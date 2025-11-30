@@ -7,10 +7,10 @@
 using namespace gengine;
 
 InputManager::InputManager(InputTarget* menu) : menu(menu) {
-    load_keybinds({{SDL_SCANCODE_0, 0}});
+    load_keybinds({{SDL_SCANCODE_0, GENG_Input::NONE}});
 }
 
-void InputManager::load_keybinds(std::unordered_map<SDL_Scancode, short> mappy) {
+void InputManager::load_keybinds(std::unordered_map<SDL_Scancode, GENG_Input> mappy) {
     mapToBindings = mappy;
     mapToBindings[SDL_SCANCODE_LSHIFT] = GENG_Input::MODIFY;
     mapToBindings[SDL_SCANCODE_W] = GENG_Input::UP;

@@ -20,6 +20,8 @@ namespace gengine {
         // Adds a particle to the group
         ParticleGroup*& add(ParticleGroup* g);
 
+        void add(std::vector<ParticleGroup *> &groups);
+
         // Removes a particle from the group
         void dissolve(ParticleGroup* g);
     };

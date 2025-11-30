@@ -1,9 +1,11 @@
 #include "game/blackjack/cards/Deck.hpp"
-#include "game/blackjack/BjConstants.hpp"
+#include "game/blackjack/BJEnums.hpp"
 #include <iostream>
 
+using namespace blackjack;
+
 // constructor
-Deck::Deck() : discard(1, 's') {
+Deck::Deck() : discard(1, BJ_Suit::SPECIAL) {
     // Sets up the parameters of our default deck
     t = default_deck;
     cardsOnDeck = 0;
@@ -12,17 +14,14 @@ Deck::Deck() : discard(1, 's') {
     fs.state = 2;
 
     for (int i = 1; i <= 13; i++) {
-        initialize_card(new Card(i, 'h'));
-        initialize_card(new Card(i, 'c'));
-        initialize_card(new Card(i, 'd'));
-        initialize_card(new Card(i, 's'));
+        initialize_card(new Card(i, BJ_Suit::HEART));
+        initialize_card(new Card(i, BJ_Suit::CLUB));
+        initialize_card(new Card(i, BJ_Suit::DIAMOND));
+        initialize_card(new Card(i, BJ_Suit::SPADE));
     }
 
     discard.hidden = true;
-    std::cerr << discard.pos().to_string() << std::endl;
     discard.set_pos(BJ_DEFAULT_DISCARD_POS);
-    std::cerr << BJ_DEFAULT_DISCARD_POS.to_string() << std::endl;
-    std::cerr << discard.pos().to_string() << std::endl;
 }
 
 // destructor
@@ -32,13 +31,13 @@ Deck::~Deck() {
 }
 
 // get_path_deck
-Path Deck::get_path_deck(Vertex pos) const {
-    Vertex target = t.pos + Vertex(deck_height(), deck_height()+4, DECK_Z_BASE + drawPile.size()/MAX_DECK_SIZE);
+gengine::Path Deck::get_path_deck(gengine::Vertex pos) const {
+    gengine::Vertex target = t.pos + gengine::Vertex(deck_height(), deck_height()+4, DECK_Z_BASE + drawPile.size()/MAX_DECK_SIZE);
 
-    Path p = {
+    gengine::Path p = {
         target,
         pos,
-        PATH_SINE,
+        gengine::GENG_Path::SINE,
         0.25
     };
     return p;
@@ -122,13 +121,12 @@ void Deck::update_travel_cards(){
 
 void Deck::discard_card(Card *c, int cardNum) {
     discardPile.push_back(c);
-    Vertex unit;
+    gengine::Vertex unit;
     unit.randomize(20);
     c->shadow = false;
     c->set_z(DECK_Z_BASE + ((discardPile.size())/MAX_DECK_SIZE));
-    c->set_shake(SHAKE_CIRCULAR, 1.0, (20*cardNum) + 100 + random()%300, 3, false);
-    std::cerr << discard.pos().to_string() << std::endl;
-    c->set_path(discard.pos()+unit, PATH_BALLOON, 0.5);
+    c->set_shake(gengine::GENG_Shake::CIRCULAR, 1.0, (20*cardNum) + 100 + random()%300, 3, false);
+    c->set_path(discard.pos()+unit, gengine::GENG_Path::BALLOON, 0.5);
 }
 
 void Deck::discard_cards(std::vector<Card *> cards) {
@@ -138,11 +136,11 @@ void Deck::discard_cards(std::vector<Card *> cards) {
 
 void Deck::refresh_discard_pile() {
     for (auto& c : discardPile) {
-        Vertex unit;
+        gengine::Vertex unit;
         unit.randomize(20);
         c->shadow = false;
         c->set_z(DECK_Z_BASE + ((discardPile.size())/MAX_DECK_SIZE));
-        c->set_path(discard.pos() + unit, PATH_BALLOON, 0.5);
+        c->set_path(discard.pos() + unit, gengine::GENG_Path::BALLOON, 0.5);
     }
 }
 
