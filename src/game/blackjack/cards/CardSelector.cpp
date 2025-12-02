@@ -19,14 +19,19 @@ void CardSelector::switchTarget(Card *newTarget, bool moveTarget) {
 
     if (target != nullptr && target->get_path()!= nullptr && target->tag == gengine::GENG_Tag::SELECTOR) {
         gengine::Vertex trueTarget = target->get_path()->get_target();
-        trueTarget.z = SELECTOR_Z_BASE;
+        trueTarget.z = target->get_path()->get_target().z;
         target->set_path(trueTarget + BJ_SELECT_OFFSET, BJ_SELECT_PATH, 0.7);
         target->tag = gengine::GENG_Tag::SELECTOR;
     }
     else if (target != nullptr && target->get_path() == nullptr) {
         gengine::Vertex trueTarget = target->pos();
-        trueTarget.z = SELECTOR_Z_BASE;
+        trueTarget.z = target->pos().z;
         target->set_path(trueTarget + BJ_SELECT_OFFSET, BJ_SELECT_PATH, 0.7);
+    }
+    else if (newTarget == nullptr) {
+        target = nullptr;
+        deactivate();
+        return;
     }
     target = newTarget;
 
@@ -71,6 +76,7 @@ void CardSelector::set_color(Selector_Color color) {
 }
 
 void CardSelector::deactivate() {
+    target = nullptr;
     move(BJ_DEFAULT_SELECTOR_POS, 1.0);
     set_color(Selector_Color::GREY);
 }
@@ -82,4 +88,8 @@ void CardSelector::shake_target() {
 
 Card * CardSelector::get_target() {
     return target;
+}
+
+void CardSelector::remove_target() {
+    target = nullptr;
 }

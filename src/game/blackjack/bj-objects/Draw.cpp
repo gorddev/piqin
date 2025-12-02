@@ -1,4 +1,4 @@
-#include "../../../../include/game/blackjack/cards/CardDraw.hpp"
+#include "../../../../include/game/blackjack/cards/Draw.hpp"
 
 #include <iostream>
 
@@ -6,33 +6,20 @@
 
 using namespace blackjack;
 
-CardDraw::CardDraw(gengine::Vertex pos) : pos(pos) {}
+Draw::Draw(gengine::Vertex pos) : pos(pos) {}
 
-int CardDraw::get_num_cards() {
+int Draw::get_num_cards() {
     return draw.size();
 }
 
-gengine::Path CardDraw::get_draw_path(Card *&c, short index) {
-
-    gengine::Vertex target(pos.x - gengine::glb::scene.width/8.0f + index*24.0f, // NOLINT(*-narrowing-conversions)
-        pos.y - random()%8, DRAW_Z_BASE + (index/10.f)); // NOLINT(*-narrowing-conversions)
-    gengine::Path p = {
-        target,
-        c->pos(),
-        gengine::GENG_Path::BALLOON,
-        0.5
-    };
-    std::cerr << "target.z: " << target.z << std::endl;
-    return p;
-}
-
 // Adds a card and assigns it a gengine::Path.
-void CardDraw::add_card(Card *card, bool flipped) {
+void Draw::add_card(Card *card, bool flipped) {
     card->flip_up();
     // Lets us flip it down if we want.
     if (flipped)
         card->flip_down();
     short posi = draw.size();
+    // This makes sure we put cards in spots previous cards didnt exist
     if (!removals.empty()) {
         std::sort(removals.begin(), removals.end(), [](short a, short b) {return a > b;});
         posi = removals.back();
@@ -41,31 +28,30 @@ void CardDraw::add_card(Card *card, bool flipped) {
     }
     else
         draw.push_back(card);
-    card->set_path(get_draw_path(card, posi));
 }
 
 // Gives all the cards back to the Dealer
-std::vector<Card*> CardDraw::pop_cards() {
+std::vector<Card*> Draw::pop_cards() {
     std::vector<Card*> cards = draw;
     draw.clear();
     removals.clear();
     return cards;
 }
 
-Card * CardDraw::pop_card(int cardNum) {
-    if (draw.size() == 0)
+Card * Draw::pop_card(int cardNum) {
+    if (draw.empty())
         return nullptr;
     removals.push_back(cardNum+1);
     if (cardNum < 0 || cardNum >= draw.size())
         cardNum = draw.size() - 1;
     Card* c = draw[cardNum];
     draw.erase(draw.begin() + cardNum);
-    if (draw.size() == 0)
+    if (draw.empty())
         removals.clear();
     return c;
 }
 
-int CardDraw::get_score() const {
+int Draw::get_score() const {
     // Calculates the score of our hand.
     int sum = 0;
     int numAces = 0;
@@ -80,28 +66,40 @@ int CardDraw::get_score() const {
     return sum;
 }
 
-bool CardDraw::will_bust(Card *c) {
+bool Draw::will_bust(Card *c) {
     return (c->get_score() + get_score() > blackjack::roundScore);
 }
 
-std::vector<Card*>& CardDraw::card_list() {
-    return draw;
-}
-
-int CardDraw::size() const {
+int Draw::size() const {
     return draw.size();
 }
 
-bool CardDraw::empty() const {
+bool Draw::empty() const {
     return draw.empty();
 }
 
-void CardDraw::set_pos(gengine::Vertex v) {
+void Draw::set_pos(gengine::Vertex v) {
     pos = v;
 }
 
-Card * CardDraw::operator[](int index) {
+Card * Draw::operator[](int index) {
     if (index < 0 || index >= draw.size())
         return nullptr;
     return draw[index];
+}
+
+std::vector<Card*>& Draw::gather_objects() {
+    return draw;
+}
+
+gengine::Vertex Draw::get_pos() {
+    return pos;
+}
+
+int Draw::get_index(Card* c) {
+    for (int i = 0; i < draw.size(); i++) {
+        if (c == draw[i])
+            return i;
+    }
+    return -1;
 }

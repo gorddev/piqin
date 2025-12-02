@@ -9,13 +9,13 @@ Shake::Shake(GENG_Shake shakeType, float strength, float duration, float speed, 
     : shakeType(shakeType), strength(strength), speed(speed), duration(duration), decay(decay) {
     displacement = Vertex(0,0,0);
     complete = false;
-    if (duration == -1)
-        this->duration = 1000000000000.0f;
     initDuration = duration;
+    if (duration == -1)
+        stop = false;
 }
 
 Vertex Shake::shake_it() {
-    if (complete)
+    if (complete && stop)
         return {0.0f,0.0f,0.0f};
     if (shakeType == GENG_Shake::CIRCULAR)
         shake_circular();
@@ -28,11 +28,12 @@ Vertex Shake::shake_it() {
     else
         complete = true;
 
+    if (!stop)
+        return displacement * strength;
     duration -= glb::scene.dt;
     if (duration <= 0)
         complete = true;
-    Vertex trueDisplacement = displacement * (strength * (duration/initDuration));
-    return displacement * (strength * (duration/initDuration));
+    return displacement * (strength * ((decay) ? duration/initDuration : 1));
 }
 
 bool Shake::done() const {
@@ -58,15 +59,15 @@ void Shake::shake_random() {
 }
 
 void Shake::shake_circular() {
-    float div = speed*2*utils::pi*duration/initDuration;
+    float div = glb::scene.time * speed* 0.005f* 2*utils::pi*((!stop) ? 1 : 1);
     displacement.x = cosf(div);
     displacement.y = sinf(div);
 }
 
 void Shake::shake_floaty() {
     float input = glb::scene.time * speed * 0.005;
-    displacement.x = 0.5*cosf(input/2.0f) +0.25*cosf(input/4.0f) + 0.25*sinf(input/4.0f);
-    displacement.y = 0.5*sinf(input/2.0f) +0.25*sinf(input/4.0f) + 0.25*cosf(input/4.0f);
+    displacement.x = 0.333*cosf(input/1.4f) +0.1666*cosf(input/4.125f) + 0.5*sinf(input/4.414f);
+    displacement.y = 0.5*sinf(input/2.2f) +0.25*sinf(input/4.3f) + 0.25*cosf(input/4.87f);
 }
 
 void Shake::shake_side() {

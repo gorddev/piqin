@@ -1,6 +1,5 @@
 #pragma once
 
-#include <vector>
 #include <queue>
 
 // Vector but when we erase we replace with nullptr
@@ -10,15 +9,15 @@ namespace gengine::utils {
     struct SparseVector {
     private:
         std::vector<T*> entries;
-        std::queue<short> positions;
+        std::queue<int> positions;
     public:
-        SparseVector() {}
-        SparseVector(short size) {
+        SparseVector() = default;
+        explicit SparseVector(int size) {
             entries.resize(size);
         }
         // Returns index where it added the element
         int add(T* t) {
-            short i = entries.size();
+            int i = entries.size();
             if (!positions.empty()) {
                 i = positions.front();
                 entries[i] = t;
@@ -45,7 +44,6 @@ namespace gengine::utils {
         void erase(T* t) {
             for (int i = 0; i < entries.size(); ++i) {
                 if (entries[i]== t) {
-                    delete t;
                     entries[i] = nullptr;
                     positions.push(i);
                     return;

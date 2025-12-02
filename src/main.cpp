@@ -26,12 +26,6 @@ EM_BOOL gameloop(double time, void* userdata) {
 	// Game master updates states of game logic and object paths
 	gm->update();
 
-	/*
-	std::ccerr << c->to_string() << std::endl;
-	std::cerr << c->id << std::endl;
-	std::cerr << "pointer: " << c << std::endl;
-	*/
-
 	// <><><><><><><><>
 	// Finally we render
 	// <><><><><><><><>

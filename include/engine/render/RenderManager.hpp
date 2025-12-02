@@ -29,7 +29,16 @@ namespace gengine {
 		// HELPER: Draw rectangles
 		// Calculates where to draw rectangles on the canvas
 		[[nodiscard]] SDL_FRect rect_flat(Object &o) const;
-		[[nodiscard]] SDL_FRect rect_shadow(Object& o) const;
+
+		SDL_FRect rect_flat(SDL_FRect f) const;
+
+		[[nodiscard]] SDL_FRect rect_shadow(Object& o);
+		[[nodiscard]] SDL_FRect rect_shadow(SDL_FRect f);
+
+		SDL_FRect rect_shadow_offset(SDL_FRect f);
+
+		SDL_FRect rect_particle_shadow(SDL_FRect &shadow);
+
 		// Creates a shadow if one is not preloaded
 		SDL_Texture* create_shadow_texture(SDL_Texture* texture);
 

@@ -13,7 +13,7 @@ Object::~Object() {
 void Object::update_pos() {
 	fixed = false;
 
-	// Update if we're currently shaking. If we don't have path priority.
+	// Update if we're currently shaking.
 	if (shake != nullptr) {
 		// If we end the shake, remove the shake
 		t.offset = shake->shake_it();
@@ -24,7 +24,7 @@ void Object::update_pos() {
 		}
 	}
 	// If our path is still here
-	else if (path != nullptr) {
+	if (path != nullptr) {
 		// We move the path along
 		path->to_path(t.pos);
 		// If we complete the path
@@ -178,6 +178,7 @@ void Object::set_shake(const Shake &s) {
 }
 
 void Object::remove_shake() {
+	t.offset.set(0,0,0);
 	delete shake;
 	shake = nullptr;
 }

@@ -138,32 +138,48 @@ void RenderManager::render_object(Object& o) {
 	if (!o.hidden) {
 		SDL_Rect* src = sm->get_sheet_frame(o);
 		SDL_FRect dst;
-		SDL_Texture* tex;
+		SDL_Texture* tex = sm->get_sheet_texture(o.sheet_id());;
 		// If we have a shadow, render that first
 		if (o.shadow) {
 			// If we dont have a shadow, make the shadow texture
 			if (sm->get_sheet_shadow(o) == nullptr)
 				sm->set_sheet_shadow(o.sheet_id(), create_shadow_texture(tex));
 			dst = rect_shadow(o);
-			tex = sm->get_sheet_shadow(o.sheet_id());
+			SDL_Texture* stex = sm->get_sheet_shadow(o.sheet_id());
 			// Render again!!!
-			SDL_RenderCopyExF(renderer, tex, src, &dst, o.rotation(), nullptr, o.flip());
+			SDL_RenderCopyExF(renderer, stex, src, &dst, o.rotation(), nullptr, o.flip());
 		}
 		// Now we render the regular texture
 		dst = rect_flat(o);
-		tex = sm->get_sheet_texture(o.sheet_id());
-
 		// Render!!!
 		SDL_RenderCopyExF(renderer, tex, src, &dst, o.rotation(), nullptr, o.flip());
 
 	}
 }
 
+static SDL_FRect add_rect(SDL_FRect r1, SDL_FRect r2) {
+	return {r1.x + r2.x, r1.y + r2.y, r1.w + r2.w, r1.h + r2.h};
+}
+
 void RenderManager::render_particles(ParticleGroup& pg) {
 	auto&[r, g, b, a] = pg.get_color();
+	auto rects = pg.to_rect();
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+	SDL_Color sc = pg.get_shadow_color();
+	SDL_SetRenderDrawColor(renderer, sc.r, sc.g, sc.b, sc.a);
+	for (auto&i: rects) {
+		SDL_FRect offset =  rect_shadow_offset(i[0]);
+		for (auto& e: i) {
+			SDL_FRect shadow = rect_flat(add_rect(e, offset));
+			SDL_RenderDrawRectF(renderer, &shadow);
+		}
+	}
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
 	SDL_SetRenderDrawColor(renderer, r, g, b, a);
-	for (auto&i : pg.get_particles())
+
+	for (auto&i : rects) {
 		SDL_RenderDrawRectsF(renderer, i.data(), static_cast<int>(i.size()));
+	}
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 }
 

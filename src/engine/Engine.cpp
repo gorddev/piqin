@@ -40,6 +40,10 @@ void Engine::render() {
     // Tick all the frames of all objects/other shit
     sm.tick_frames(frameStates);
     // Render
+    pm.update();
+    if (pm.particles_to_remove())
+        remove(pm.pop_removed_particles());
+
 
     std::sort(elements.begin(), elements.end(), [](const EngineElement& e1, const EngineElement& e2) {
         return *e1.z_index < *e2.z_index;
@@ -51,6 +55,16 @@ void Engine::render() {
 
 void Engine::set_input_target(InputTarget *t) {
     input.setInputTarget(t);
+}
+
+void Engine::attach_new_particle(Object *o, ParticleGroup *pg) {
+    pg->horse = o;
+    pm.add(pg);
+    add(pg);
+}
+
+void Engine::remove_attached_particle(Object *o) {
+    pm.dissolve(o);
 }
 
 void Engine::add(Object *o) {
@@ -136,7 +150,7 @@ void Engine::add(std::vector<Object*> objs, GENG_Sort sort) {
     om.add_objects(objs);
 }
 
-void Engine::add(ParticleGroup *pg) {
+ParticleGroup *Engine::add(ParticleGroup *pg) {
     // First, we assign an ID
     pg->id = pop_id();
     // Then we create an engineElement
@@ -150,6 +164,7 @@ void Engine::add(ParticleGroup *pg) {
     // Now it's z-sorted!
     pm.add(pg);
     elements.insert(pos, e);
+    return pg;
 }
 
 void Engine::add(std::vector<ParticleGroup*>& pgs, GENG_Sort sort) {
@@ -187,6 +202,7 @@ void Engine::add(std::vector<ParticleGroup*>& pgs, GENG_Sort sort) {
 }
 
 void Engine::remove(const Object* o) {
+    if (o == nullptr) return;
     om.dissolve(o);
     elements.erase(
     std::remove_if(
@@ -211,7 +227,8 @@ void Engine::remove(const std::vector<Object*>& objs) {
 }
 
 void Engine::remove(ParticleGroup* pg) {
-    pm.dissolve(pg);
+    if (pg == nullptr) return;
+    pm.remove(pg);
     elements.erase(
     std::remove_if(
             elements.begin(),
@@ -233,16 +250,21 @@ void Engine::remove(const std::vector<ParticleGroup*>& pg) {
         remove(i);
 }
 
-void Engine::update_z(Object* o) {
-    for (int i = 0; i < elements.size(); i++) {
-        if (elements[i].target == o) {
-            elements.erase(elements.begin() + i);
-        }
-    }
-    add(o);
-}
-void Engine::update_z(const std::vector<Object*>& objs) {
-    for (auto& i: objs) {
-        add(i);
+void Engine::remove(const std::vector<int> ids) {
+    for (auto& id: ids) {
+        elements.erase(
+        std::remove_if(
+                elements.begin(),
+                elements.end(),
+                [&](const EngineElement& e){
+                    if (e.id == id) {
+                        id_stack.push(e.id); // optional
+                        return true;
+                    }
+                    return false;
+                }
+            ),
+            elements.end()
+        );
     }
 }

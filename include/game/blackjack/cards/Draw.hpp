@@ -3,7 +3,7 @@
 #include "game/blackjack/cards/Card.hpp"
 
 namespace blackjack {
-    class CardDraw {
+    class Draw {
     private:
         // Holds all the cards in our hand
         std::vector<Card*> draw;
@@ -11,11 +11,9 @@ namespace blackjack {
         std::vector<short> removals;
         // Position of the draw
         gengine::Vertex pos;
-        // Gets the path a card takes to the draw.
-        gengine::Path get_draw_path(Card *&c, short index);
     public:
         // Only one constructor. We specify a position.
-        explicit CardDraw(gengine::Vertex pos);
+        explicit Draw(gengine::Vertex pos);
 
         // Gets the number of cards in the current draw
         [[nodiscard]] int get_num_cards();
@@ -33,11 +31,15 @@ namespace blackjack {
         std::vector<Card*> pop_cards();
 
         // Gathers all the objects in the draw
-        std::vector<Card*>& card_list();
+        std::vector<Card*>& gather_objects();
+
+        gengine::Vertex get_pos();
+
+        int get_index(Card *c);
 
         // Utility functions
-        int size() const;
-        bool empty() const;
+        [[nodiscard]] int size() const;
+        [[nodiscard]] bool empty() const;
         void set_pos(gengine::Vertex v) ;
         Card* operator[](int index);
     };

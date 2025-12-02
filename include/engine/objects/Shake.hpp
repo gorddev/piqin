@@ -26,7 +26,7 @@ namespace gengine {
         // Tells us when the shake has reached it's end.
         bool complete;
         // Tells us if we do not stop
-        bool stop;
+        bool stop = true;
         // Duration of the shake. -1 specifies no end
         float duration;
         // Initial duration of the shake

@@ -50,7 +50,7 @@ namespace gengine {
         // Lets us grab the row our selector is on
         int get_row();
         // Lets us grab the column our selector is on
-        int get_column();
+        int col();
         // Lets us select the selector
         void set_selector(Selector<Item>* sel);
         // Lets us remove the selector
@@ -208,7 +208,7 @@ namespace gengine {
     }
 
     template<typename Item>
-    int MenuRegion<Item>::get_column() {
+    int MenuRegion<Item>::col() {
         return s.column;
     }
 
@@ -277,22 +277,38 @@ namespace gengine {
     }
 
     template<typename Item>
-    void MenuRegion<Item>::set_selectables(std::vector<short> selects) {
+ void MenuRegion<Item>::set_selectables(std::vector<short> selects) {
         // Update our rows
         rows = std::move(selects);
+
         if (selector != nullptr) {
+            // If we have no selectable rows, deactivate and return
             if (rows.empty()) {
                 selector->deactivate();
                 return;
             }
+            // Try to find the first row that actually has selectable items
+            bool foundValid = false;
             for (int i = 0; i < rows.size(); ++i) {
-                if (!menus[rows[i]]->empty()) {
-                    s.row = i;
-                    break;;
-                }
+                int actualRow = rows[i];
+                // Check bounds and row content
+                if (actualRow >= 0 &&
+                    actualRow < (int)menus.size() &&
+                    menus[actualRow] &&
+                    !menus[actualRow]->empty()) {
+                    s.row = i;   // found a valid row for the selector
+                    foundValid = true;
+                    break;
+                    }
             }
+            // If none of the selectable regions have any valid options,
+            // deactivate the selector.
+            if (!foundValid) {
+                selector->deactivate();
+                return;
+            }
+            // Otherwise update the selector normally
             update_selector();
-
         }
     }
 

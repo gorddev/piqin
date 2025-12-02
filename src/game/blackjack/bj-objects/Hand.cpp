@@ -37,15 +37,13 @@ int Hand::size() const {
 
 // Adds one card to the deck and sends it on its merry way
 bool Hand::add_card(Card* c) {
-    if (cards.size() <= blackjack::maxHandSize && c != nullptr) {
+    if (cards.size() <= maxHandSize && c != nullptr) {
         cards.push_back(c);
         std::sort(cards.begin(), cards.end(), [](Card* c1, Card* c2) {
             if (c1->get_value() == c2->get_value())
                 return c1->get_suit() < c2->get_suit();
             return c1->get_value() < c2->get_value();
         });
-
-        update_cards();
     }
     else
         return false;
@@ -56,41 +54,11 @@ Card* Hand::pop_card(int cardNum) {
     if (cardNum < cards.size()) {
         Card* ret = cards[cardNum];
         cards.erase(cards.begin()+cardNum);
-        update_cards();
         return ret;
     }
     return nullptr;
 }
 
-
-gengine::Path Hand::get_card_path(int index, int& center, int& height, float speed, gengine::Vertex mod) const {
-    const float flay = (flayed) ? (20.0f) : 0.0f;
-    gengine::Path p = {
-        {
-            // Space each card more x-wise if hand is flayed
-            center + (14+flay) * (index - ((cards.size()-1)/2.0f)) + mod[0], // NOLINT(*-narrowing-conversions)
-            // Set default height. If not flayed, stagger each card vertically from the last picked.
-            (height - (flay*1.25f))
-                + ((!flayed) * abs(lastTarget-index)*2) // NOLINT(*-narrowing-conversions)
-                - (flayed) + mod[1], // NOLINT(*-narrowing-conversions)
-            HAND_Z_BASE + abs(lastTarget-index)/(maxHandSize*2.0f) // NOLINT(*-narrowing-conversions)
-        },
-        cards[index]->pos(),
-        gengine::GENG_Path::BALLOON,
-        speed
-    };
-    return p;
-}
-
-void Hand::update_cards() {
-    int center = gengine::glb::scene.width/2;
-    int height = 3*gengine::glb::scene.height/4;
-
-    for (int i = 0; i < cards.size(); i++)
-        cards[i]->set_path(get_card_path(i, center, height));
-
-    gengine::Vertex offset = (flayed) ? gengine::Vertex(0,0,0) : gengine::Vertex(0,10,0);
-}
 
 bool Hand::has_normal_cards() {
     return std::any_of(cards.begin(), cards.end(), [this](Card* c)
@@ -102,4 +70,16 @@ Card* Hand::operator[](int index) const {
     if (index < cards.size() && index >= 0)
         return cards[index];
     return nullptr;
+}
+
+int Hand::get_index(Card* c) {
+    for (int i = 0; i < cards.size(); i++) {
+        if (c == cards[i])
+            return i;
+    }
+    return -1;
+}
+
+std::vector<Card*>& Hand::gather_objects() {
+    return cards;
 }

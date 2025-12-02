@@ -57,10 +57,10 @@ void Path::balloon(Vertex &pos)
     //calculate our unit vector
     Vertex unit = (target - pos).unit();
     float DIST = target.dist(pos);
-    Vertex dist = unit * glb::scene.dt * speed * ((DIST < 1.0f) ? 1.0f : DIST) / 100.0f;
+    Vertex dist = unit * glb::scene.dt * speed * ((DIST < 1.0f) ? 1.0f : DIST) / 70.0f;
     //minimum step of movement
-    float minny = (target.dist(pos) * 0.04f);
-    const float minStep = std::max(minny, 0.02f);
+    float minny = (target.dist(pos) * 0.005f);
+    const float minStep = std::max(minny, 0.01f);
     // This way we can preserve minimum stepping
     for (int i = 0; i < 3; ++i) {
         if (abs(dist[i]) < minStep) {

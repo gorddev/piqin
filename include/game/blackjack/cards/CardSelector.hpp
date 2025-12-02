@@ -37,6 +37,8 @@ namespace blackjack {
         void shake_target() override;
         // Returns the target
         Card* get_target();
+
+        void remove_target();
     };
 
     /*                              */

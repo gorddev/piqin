@@ -38,13 +38,21 @@ namespace gengine {
         // Runs the engine
         bool tick(double time);
 
+        // Sends things to the renderer & presents in one step
+        void render();
+
         // Sets an input target
         void set_input_target(InputTarget* t);
+
+        // Application of particles to objects.
+        void attach_new_particle(Object *o, ParticleGroup *pg);
+        void remove_attached_particle(Object *o);
 
         // Adding of things to other things
         void add(Object* o);
         void add(std::vector<Object*> objs, GENG_Sort sort = GENG_Sort::NONE);
-        void add(ParticleGroup* pg);
+
+        ParticleGroup *add(ParticleGroup *pg);
         void add(std::vector<ParticleGroup*>& pgs, GENG_Sort sort = GENG_Sort::NONE);
 
         // Allows us to remove objects
@@ -53,12 +61,6 @@ namespace gengine {
         void remove(ParticleGroup* pg);
         void remove(const std::vector<ParticleGroup*>& pgs);
 
-        // Allows us to update z_indexes of objects
-        void update_z(Object* o);
-        // UIElement*& add(UIElement* ui);
-        void update_z(const std::vector<Object*>& objs);
-
-        // Sends things to the renderer
-        void render();
+        void remove(std::vector<int> ids);
     };
 }

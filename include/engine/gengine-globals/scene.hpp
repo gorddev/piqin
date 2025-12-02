@@ -12,8 +12,8 @@ namespace gengine {
         float time = 0.0f;
         uint64_t frame = 0;
         // Scene width, and height
-        int width = 450;
-        int height = 270;
+        int width = 340;
+        int height = 200;
         // Main menu?
         bool mainMenu = false;
 

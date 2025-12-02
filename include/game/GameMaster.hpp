@@ -1,12 +1,12 @@
 #pragma once
 
-#include "blackjack/BlackjackPlayer.hpp"
+#include "blackjack/Player.hpp"
 #include "game/blackjack/Hand.hpp"
 
 
 class GameMaster {
 private:
-    blackjack::BlackjackPlayer player;
+    blackjack::Player player;
 public:
     GameMaster() = default;
     ~GameMaster();

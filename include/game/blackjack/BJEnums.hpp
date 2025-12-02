@@ -16,7 +16,7 @@ namespace blackjack {
 // Current Target
 namespace blackjack {
     // Lets us target different parts of the board
-    enum class BJ_Target : uint8_t {
+    enum class BJ_Target : int {
         HAND = 0,
         PLAYER = 1,
         DISCARD = 2,

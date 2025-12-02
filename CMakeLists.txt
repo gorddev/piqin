@@ -14,17 +14,19 @@ add_executable(norton
         src/game/GameMaster.cpp
         # Blackjack
         # Player and hand
-        src/game/blackjack/BlackjackPlayer.cpp
-        src/game/blackjack/Hand.cpp
+        src/game/blackjack/Player.cpp
+        src/game/blackjack/bj-objects/Hand.cpp
         # Cards
         src/game/blackjack/cards/Card.cpp
-        src/game/blackjack/cards/CardLogic.cpp
         src/game/blackjack/cards/CardSelector.cpp
-        src/game/blackjack/cards/CardDraw.cpp
-        src/game/blackjack/cards/Deck.cpp
+        src/game/blackjack/bj-objects/Draw.cpp
+        src/game/blackjack/bj-objects/Deck.cpp
+        src/game/blackjack/bj-objects/Discard.cpp
         # Logic
-        src/game/blackjack/bj-logic/BJ-SelectionLogic.cpp
-        src/game/blackjack/bj-logic/BJ-InputRouting.cpp
+        src/game/blackjack/bj-objects/Pather.cpp
+        src/game/blackjack/cards/CardLogic.cpp
+        src/game/blackjack/bj-logic/BJ-Actions.cpp
+        src/game/blackjack/bj-logic/BJ-Input.cpp
         src/game/blackjack/bj-logic/BJ-CardLogic.cpp
 
         # Game Engine Below
@@ -40,6 +42,7 @@ add_executable(norton
 
         # Particles
         src/engine/particles/ParticleManager.cpp
+        src/engine/particles/ParticleRhombus.cpp
 
         # Rendering
         src/engine/render/RenderManager.cpp
@@ -75,8 +78,8 @@ target_link_options(norton PRIVATE
     "--shell-file=${CMAKE_SOURCE_DIR}/assets/game_shell.html"
     "--preload-file=assets"
     "--emrun"
-    "-sASSERTIONS=3"
-    "-sMAXIMUM_MEMORY=128MB"
+    "-sASSERTIONS=2"
+    "-sMAXIMUM_MEMORY=32MB"
     "-sALLOW_MEMORY_GROWTH"
     "-sUSE_SDL_TTF=2"
 )

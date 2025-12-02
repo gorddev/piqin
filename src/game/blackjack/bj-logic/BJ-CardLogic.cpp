@@ -1,9 +1,10 @@
-#include "game/blackjack/BlackjackPlayer.hpp"
+#include "engine/particles/ParticleRhombus.hpp"
+#include "game/blackjack/Player.hpp"
 
 using namespace blackjack;
 
 // Lets us know if a card is usable or not
-bool BlackjackPlayer::usable(Card *c) {
+bool Player::usable(Card *c) {
     if (c->get_suit() != BJ_Suit::SPECIAL) {
         return !playerDraw.will_bust(c);
     }
@@ -14,76 +15,48 @@ bool BlackjackPlayer::usable(Card *c) {
     if (c->get_value() == BJ_CARD_PULL)
         return (!opponentDraw.empty());
     if (c->get_value() == BJ_CARD_TAKER)
-        return (!opponentDraw.empty() || !playerDraw.empty() || !deck.discardPile.empty());
+        return (!opponentDraw.empty() || !playerDraw.empty() || !discard.empty());
     return false;
 }
 
-void BlackjackPlayer::use_card() {
-    if (floater != nullptr) {
-        if (floater->use(slct.get_target())) {
-            floater->set_shake(gengine::GENG_Shake::FLOATY, 5.0, 450, 2.0, true);
-            deck.discard_card(floater);
-            floater = nullptr;
-            set_target_range(BJ_Target::HAND);
-            set_target_action(BJ_Action::PLAY);
+void Player::play_card() {
+    // If we aren't selecting return nothing
+    if (slct.get_target() == nullptr || hand.empty())
+        return;
+    // If the card is a special card, we try and do special shit
+    if (slct.get_target()->get_suit() == BJ_Suit::SPECIAL)
+        apply_special_card(hand[menu.s.column]);
+    // Otherwise we try and play the card as usual
+    else if (slct.get_target()->get_suit() != BJ_Suit::SPECIAL) {
+        // First we make sure we dont bust
+        if (playerDraw.will_bust(slct.get_target())) {
+            // If we do we shake
+            slct.get_target()->set_shake(BJ_SHAKE_DENY);
+            return;
         }
+        // Otherwise We add the card as normal to the hand
+        pather.move(hand.pop_card(menu.s.column), playerDraw);
+        pather.update_hand(hand);
     }
+    // Always update our selector and color for some reason
+    menu.update_selector();
+    update_selector_color();
 }
 
-void BlackjackPlayer::pull_card() {
-    if (mnu.get_row() == BJ_Target::DISCARD_MENU)
-        playerDraw.add_card(deck.pop_discard_card(mnu.get_column()));
-    else if (mnu.get_row() == BJ_Target::OPPONENT)
-        playerDraw.add_card(opponentDraw.pop_card(mnu.get_column()));
-
-    floater->set_shake(gengine::GENG_Shake::FLOATY, 5.0, 450, 2.0, true);
-    deck.discard_card(floater);
-    floater = nullptr;
-    set_target_range(BJ_Target::HAND);
-    set_target_action(BJ_Action::PLAY);
-}
-
-void BlackjackPlayer::grab_card() {
-    if (mnu.get_row() == BJ_Target::DISCARD_MENU)
-        hand.add_card(deck.pop_discard_card(mnu.get_column()));
-    else if (mnu.get_row() == BJ_Target::OPPONENT)
-        hand.add_card(opponentDraw.pop_card(mnu.get_column()));
-    else if (mnu.get_row() == BJ_Target::PLAYER)
-        hand.add_card(playerDraw.pop_card(mnu.get_column()));
-
-    floater->set_shake(gengine::GENG_Shake::FLOATY, 5.0, 450, 2.0, true);
-    deck.discard_card(floater);
-    floater = nullptr;
-    set_target_range(BJ_Target::HAND);
-    set_target_action(BJ_Action::PLAY);
-}
-
-void BlackjackPlayer::push_card() {
-    if (mnu.get_row() == BJ_Target::HAND)
-        opponentDraw.add_card(hand.pop_card(mnu.get_column()));
-    else if (mnu.get_row() == BJ_Target::PLAYER)
-        opponentDraw.add_card(playerDraw.pop_card(mnu.get_column()));
-    floater->set_shake(gengine::GENG_Shake::FLOATY, 5.0, 450, 2.0, true);
-    deck.discard_card(floater);
-    floater = nullptr;
-    set_target_range(BJ_Target::HAND);
-    set_target_action(BJ_Action::PLAY);
-}
 
 // Applying our special cards so we can use them.
-void BlackjackPlayer::apply_special_card(Card *c) {
+void Player::apply_special_card(Card *c) {
     // If we're not usable, we immediately return.
     if (!usable(c)) {
         c->set_shake(BJ_SHAKE_DENY);
         return;
     }
     // we first establish it as a floater card
-    floater = hand.pop_card(mnu.get_column());
+    floater = hand.pop_card(menu.col());
     // send the floater to where it needs to go.
-    floater->set_path(BJ_DEFAULT_FLOATER_POS, gengine::GENG_Path::BALLOON, 1.0, true);
-    floater->set_shake(BJ_SHAKE_FLOATER);
+    pather.to_floater(floater);
     // update cards in the hand
-    hand.update_cards();
+    pather.update_hand(hand);
 
     // We need to first make sure we can use our card.
     bool pass = false;
@@ -102,7 +75,7 @@ void BlackjackPlayer::apply_special_card(Card *c) {
     else if (floater->get_value() == BJ_CARD_DECREMENT || floater->get_value() == BJ_CARD_INCREMENT) {
         set_target_range(BJ_Target::HAND_AND_DRAWS);
         action = BJ_Action::USE_CARD;
-        mnu.move_up();
+        menu.move_up();
     }
     else {
         set_target_range(BJ_Target::HAND);
