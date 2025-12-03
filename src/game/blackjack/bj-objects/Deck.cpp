@@ -1,6 +1,7 @@
-#include "../../../../include/game/blackjack/bj-objects/Deck.hpp"
+#include "game/blackjack/bj-objects/Deck.hpp"
 #include "game/blackjack/BJEnums.hpp"
-#include <iostream>
+#include "EngineSource.hpp"
+#include <random>
 
 using namespace blackjack;
 
@@ -12,7 +13,7 @@ Deck::Deck() {
     fs.sheet_id = ASSET_CARD_STACK_ID;
     fs.state = 2;
 
-    for (int i = 1; i <= 13; i++) {
+    for (int i = 1; i <= 12; i++) {
         add_card(new Card(i, BJ_Suit::HEART));
         add_card(new Card(i, BJ_Suit::CLUB));
         add_card(new Card(i, BJ_Suit::DIAMOND));
@@ -26,13 +27,12 @@ Deck::~Deck() {
 }
 
 void Deck::update_state() {
-    fs.state = static_cast<uint8_t>(5.0f*(STANDARD_DECK_SIZE - ((drawPile.size())-2.0f))/52.0f);
+    fs.state = static_cast<uint8_t>(5.0f*(STANDARD_DECK_SIZE - ((drawPile.size())-1.0f))/52.0f);
 }
 
 void Deck::prep_card_for_pop(Card*c) {
-    hidden = false;
     if (drawPile.size() > 1)
-        fs.state = 5.0f*(STANDARD_DECK_SIZE - (drawPile.size() - 1))/52.0f;
+        fs.state = 5.0f*(STANDARD_DECK_SIZE - (drawPile.size()))/52.0f;
     else
         hidden = true;
     c->set_pos(t.pos);
@@ -41,7 +41,7 @@ void Deck::prep_card_for_pop(Card*c) {
 }
 
 short Deck::stack_height() const {
-    return ((STANDARD_DECK_SIZE-1)/drawPile.size()); // NOLINT(*-narrowing-conversions)
+    return 6-((STANDARD_DECK_SIZE-1)/drawPile.size()); // NOLINT(*-narrowing-conversions)
 }
 
 void Deck::add_card(Card* c) {
@@ -55,7 +55,7 @@ void Deck::add_card(Card* c) {
 Card* Deck::pop_card() {
     if (drawPile.empty()) return nullptr;
     // Random card!
-    int i = random()% drawPile.size();
+    int i = gengine::GENG_Rand.rint() % drawPile.size(); // NOLINT(*-narrowing-conversions)
     Card* c = drawPile[i];
     drawPile.erase(drawPile.begin() + i);
     prep_card_for_pop(c);
@@ -74,4 +74,10 @@ std::vector<Card *> & Deck::gather_objects() {
     return drawPile;
 }
 
+bool Deck::empty() {
+    return drawPile.empty();
+}
 
+int Deck::size() {
+    return drawPile.size();
+}

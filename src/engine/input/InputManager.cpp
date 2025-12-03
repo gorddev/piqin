@@ -45,7 +45,7 @@ void InputManager::update(SDL_Event& e) {
         // Swapping to and from the menu.
 
         iqueue.push(keybind(e.keyb)); // NOLINT(*-narrowing-conversions)
-        it->getPress(keybind(e.keyb));
+        it->get_press(keybind(e.keyb));
     }
     // Holding a key down, update shit
     if (e.type == SDL_KEYDOWN)
@@ -54,7 +54,7 @@ void InputManager::update(SDL_Event& e) {
     else if (e.type == SDL_KEYUP) {
         pressedKeys[keybind(e.keyb)] = false;
         if (it != nullptr) {
-            it->getRelease(keybind(e.keyb));
+            it->get_release(keybind(e.keyb));
         }
     }
 }

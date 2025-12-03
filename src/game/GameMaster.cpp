@@ -5,31 +5,39 @@
 // Initializes all the objects needed for the game.
 void GameMaster::initialize() {
     // Send everything to the engine
-    std::vector<gengine::Object*> allObjects = player.gather_objects();
+    std::vector<gengine::Object*> allObjects = board.gather_objects();
     bob.add(allObjects);
+    round = new blackjack::Round(&board);
+    round->begin();
 }
 
 void GameMaster::update() {
-
+    if (round->done) {
+        delete round;
+        round = new blackjack::Round(&board);
+        bob.set_input_target(round);
+        round->begin();
+    }
+    blackjack::pather.update(board.deck);
 }
 
 // Deletes the objects it's responsible for.
 GameMaster::~GameMaster() {
-    bob.remove(player.gather_objects());
+    bob.remove(board.gather_objects());
 }
 
 // Adds cards to a hand:
 void GameMaster::add_card_to_hand(blackjack::Card c) {
     auto card = new blackjack::Card(c);
-    if (player.add_card_to_hand(card))
-        bob.add(static_cast<gengine::Object*>(card));
+    if (board.add_card_to_hand(card))
+        bob.add(card);
     else
         delete card;
 }
 
 // Set hand has target
 void GameMaster::set_hand_as_target() {
-    bob.set_input_target(&player);
+    bob.set_input_target(round);
 }
 
 void GameMaster::blackjack() {

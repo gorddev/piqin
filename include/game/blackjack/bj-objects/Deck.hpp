@@ -36,5 +36,8 @@ namespace blackjack {
         // Gets the pointers for loading into objectManager
         std::vector<Card*>& gather_objects();
 
+        bool empty();
+
+        int size();
     };
 }

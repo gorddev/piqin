@@ -9,13 +9,11 @@
 // Here's our game manager!
 GameMaster* gm = nullptr;
 
-blackjack::Card* c = new blackjack::Card(3, blackjack::BJ_Suit::SPADE);
-
 // gameloop defined below
 EM_BOOL gameloop(double time, void* userdata) {
 	(void)userdata;
 	// <><><><><><><><>
-	// Updates our time and grabs user input
+	// Updates our time and grabs user input & runs events
 	// <><><><><><><><>
 	if (!bob.tick(time))
 		return EM_FALSE;
@@ -36,23 +34,30 @@ EM_BOOL gameloop(double time, void* userdata) {
 
 
 int main() {
+	std::cerr << "spot 0\n";
+	bob.initialize();
 
-	SDL_Init(SDL_INIT_VIDEO);
-
+	std::cerr << "spot 1\n";
 	// GameMaster -> Handles game logic
 	gm = new GameMaster();
 	gm->initialize();									// GameMaster
 
+	std::cerr << "spot 2\n";
 	// Now we just pray that the sheetManager piped the input properly. :o
 
 	/************ FUCK AROUND ZONE**********/
 
-	bob.add(c);
-	gm->add_card_to_hand({2, blackjack::BJ_Suit::HEART});
-	gm->add_card_to_hand({3, blackjack::BJ_Suit::SPADE});
+	gm->add_card_to_hand({7, blackjack::BJ_Suit::HEART});
+	gm->add_card_to_hand({54, blackjack::BJ_Suit::SPECIAL});
 	gm->add_card_to_hand({55, blackjack::BJ_Suit::SPECIAL});
+	gm->add_card_to_hand({56, blackjack::BJ_Suit::SPECIAL});
+	gm->add_card_to_hand({57, blackjack::BJ_Suit::SPECIAL});
+	gm->add_card_to_hand({58, blackjack::BJ_Suit::SPECIAL});
+	gm->add_card_to_hand({59, blackjack::BJ_Suit::SPECIAL});
+	std::cerr << "spot 3\n";
 	gm->set_hand_as_target();
-	c->set_path(gengine::Vertex(300,300,0), gengine::GENG_Path::BALLOON, 0.1, true);
+
+	std::cerr << "spot 4\n";
 
 	/******** END OF FUCK AROUND ZONE *******/
 	emscripten_request_animation_frame_loop(gameloop, nullptr);

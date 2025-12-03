@@ -37,6 +37,8 @@ namespace blackjack {
 
         int get_index(Card *c);
 
+        void print_ptrs() const;
+
         // Utility functions
         [[nodiscard]] int size() const;
         [[nodiscard]] bool empty() const;

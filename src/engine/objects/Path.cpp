@@ -16,7 +16,15 @@ Path::Path(const Vertex &tar, const Vertex &startPos, GENG_Path pathType, float 
     initDist = (target - startPos).mag();
     if (initDist <= 0.1)
         complete = 7;
-    Vertex test = (target - startPos);
+    if (pathType == GENG_Path::REBOUND) {
+        std::cerr << "rebound!\n";
+        std::cerr << "start: " << startPos.to_string() << std::endl;
+        std::cerr << "target: " << target.to_string() << std::endl;
+        std::cerr << (startPos-target).to_string() << std::endl;
+        this->startPos = (startPos - target).unit();
+        std::cerr << "initializing: " << this->startPos.to_string() << std::endl;
+        this->speed = speed * -1.0f;
+    }
 }
 
 // Puts an object on a path
@@ -31,6 +39,8 @@ void Path::to_path(Vertex &pos) {
         torpedo(pos);
     else if (pathType == GENG_Path::SINE)
         sine(pos);
+    else if (pathType == GENG_Path::REBOUND)
+        rebound(pos);
     else
         linear(pos);
 
@@ -116,18 +126,40 @@ void Path::sine(Vertex &pos) {
     float totalTime = totalDist / speed;
 
     // Linear base motion
-    pos += unit * speed * glb::scene.dt;
+    pos += unit * speed * glb::scene.dt * 0.5;
 
     // Apply sine only to y
-    float sineOffset = 10*sinf(2.0f * utils::pi * time / totalTime);
-    pos.y = startPos.y + unit[1] * distTraveled + sineOffset;
+    float sineOffset = 10 * sinf(2.0f * utils::pi * time / totalTime);
+    if (distTraveled < 0.001f)
+        pos.y += unit[1] * distTraveled + sineOffset;
+    else
+        pos.y = startPos.y + unit[1] * distTraveled + sineOffset;
+
     // Overshoot on x/z only
     if (overshoot(pos.x, target.x, unit[0] * glb::scene.dt * speed))
         complete |= 1;
+    if ((complete & 1) && abs(pos.y - startPos.y) < 0.01f)
+        complete |= 2;
     // We dont need to check for y because otherwise itll bmess with movement.
     complete |= 2;
     if (overshoot(pos.z, target.z, unit[2] * glb::scene.dt * speed))
         complete |= 4;
+}
+
+void Path::rebound(Vertex &pos) {
+    speed += 0.025f * ((fabsf(speed) > 1.0f) ? sqrtf(fabsf(speed)) : 1.0f);
+    Vertex dist = startPos * (speed * -20.f);
+
+    if (speed > 0.0f) {
+        if (!(complete & 1) && overshoot(pos.x, target.x, dist[0]))
+            complete |= 1;
+        if (!(complete & 2) && overshoot(pos.y, target.y, dist[1]))
+            complete |= 2;
+        if (!(complete & 4) && overshoot(pos.z, target.z, dist[2]))
+            complete |= 4;
+    }
+    else
+        pos += dist;
 }
 
 // Lets us tell if given our movement, if we've overshot

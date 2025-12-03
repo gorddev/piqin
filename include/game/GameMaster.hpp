@@ -1,12 +1,14 @@
 #pragma once
 
-#include "blackjack/Player.hpp"
+#include "blackjack/Board.hpp"
+#include "blackjack/Round.hpp"
 #include "blackjack/bj-objects/Hand.hpp"
 
 
 class GameMaster {
 private:
-    blackjack::Player player;
+    blackjack::Board board;
+    blackjack::Round* round;
 public:
     GameMaster() = default;
     ~GameMaster();

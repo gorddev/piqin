@@ -37,8 +37,8 @@ SDL_FRect RenderManager::rect_shadow(SDL_FRect f) {
 }
 
 SDL_FRect RenderManager::rect_shadow_offset(SDL_FRect s) {
-    float dx = 0.05f*(s.x - (glb::scene.width*0.5f));
-    float dy = 0.05f*(s.y - (glb::scene.height*0.5f));
+    float dx = 0.02f*(s.x - (glb::scene.width*0.5f));
+    float dy = 0.02f*(s.y - glb::scene.height*0.25f);
     // Then we scale the shadows
     float scl = sqrt((dx*dx) + (dy*dy)) * 0.005f;
     float dw = (s.w * scl);

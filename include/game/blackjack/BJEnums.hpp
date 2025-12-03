@@ -53,10 +53,16 @@ namespace blackjack {
     enum BJ_CardValue : uint8_t {
         BJ_CARD_NONE = 0,
         BJ_CARD_TAKER = 54,
-        BJ_CARD_INCREMENT = 54,
-        BJ_CARD_DECREMENT = 55,
+        BJ_CARD_INCREMENT = 55,
+        BJ_CARD_DECREMENT = 56,
         BJ_CARD_PUSH = 57,
         BJ_CARD_PULL = 58
+    };
+    enum class BJ_Result : uint8_t {
+        NONE = 0,
+        LOSE = 1,
+        TIE = 2,
+        WIN = 3
     };
 
     // Maps target selections to menuRegion selection regions

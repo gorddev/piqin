@@ -1,8 +1,8 @@
-#include "game/blackjack/Player.hpp"
+#include "game/blackjack/Board.hpp"
 
 using namespace blackjack;
 
-Player::Player() :
+Board::Board() :
         playerDraw(BJ_DEFAULT_PLAYER_POS),
         opponentDraw(BJ_DEFAULT_OPPONENT_POS),
         slct(), hand(), discardTemp(1),
@@ -21,19 +21,18 @@ Player::Player() :
     // We give it a base selection of just the hand
     menu.set_selectables(selection_range[BJ_Target::HAND]);
     menu.set_selector(&slct);
-
     // set our floater to nullptr
     floater = nullptr;
 }
 
 // Destructor. Gathers all objects and deletes them
-Player::~Player() {
+Board::~Board() {
     for (auto& o : gather_objects())
         delete o;
 }
 
 // Gathers all objects in the BlackjackPlayer for storage in the ObjectManager.
-std::vector<gengine::Object*> Player::gather_objects() {
+std::vector<gengine::Object*> Board::gather_objects() {
     std::vector<gengine::Object*> allObjects;
     allObjects.reserve(100);
     // First we grab all of the easy objects
@@ -50,10 +49,10 @@ std::vector<gengine::Object*> Player::gather_objects() {
     return allObjects;
 }
 
-bool Player::add_card_to_hand(Card *c) {
+bool Board::add_card_to_hand(Card *c) {
     return hand.add_card(c);
 }
 
-void Player::update() {
+void Board::update() {
     pather.update(deck);
 }

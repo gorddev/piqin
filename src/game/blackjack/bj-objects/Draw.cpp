@@ -26,8 +26,9 @@ void Draw::add_card(Card *card, bool flipped) {
         removals.pop_back();
         draw.insert(draw.begin() + (posi - 1), card);
     }
-    else
+    else {
         draw.push_back(card);
+    }
 }
 
 // Gives all the cards back to the Dealer
@@ -102,4 +103,11 @@ int Draw::get_index(Card* c) {
             return i;
     }
     return -1;
+}
+
+void Draw::print_ptrs() const {
+    std::cerr << "Printing ptrs (" << gengine::glb::scene.time << ")\n";
+    for (int i = 0; i < draw.size(); i++) {
+        std::cerr << "c[" << i  << "] = " << draw[i] << std::endl;
+    }
 }

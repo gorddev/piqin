@@ -37,15 +37,6 @@ Card::Card(int val, BJ_Suit suite)
     hidden = true;
 }
 
-// Create a card from another card.
-Card::Card(Card& c) {
-    value = c.value;
-    suit = c.suit;
-    flipped = c.flipped;
-    t = c.t;
-    fs = c.fs;
-}
-
 bool Card::operator==(const Card c) const {
     return value == c.value && suit == c.suit;
 }

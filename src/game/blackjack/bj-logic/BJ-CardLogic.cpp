@@ -1,15 +1,17 @@
 #include "engine/particles/ParticleRhombus.hpp"
-#include "game/blackjack/Player.hpp"
+#include "game/blackjack/Board.hpp"
 
 using namespace blackjack;
 
 // Lets us know if a card is usable or not
-bool Player::usable(Card *c) {
+bool Board::usable(Card *c) {
+    std::cerr << "increment: " << (c->get_value() == BJ_CARD_INCREMENT) + 0<< std::endl;
+    std::cerr << "decrement: " << (c->get_value() == BJ_CARD_DECREMENT) + 0<< std::endl;
     if (c->get_suit() != BJ_Suit::SPECIAL) {
         return !playerDraw.will_bust(c);
     }
     if (c->get_value() == BJ_CARD_INCREMENT || c->get_value() == BJ_CARD_DECREMENT)
-        return (hand.has_normal_cards() || !playerDraw.empty());
+        return (!playerDraw.empty() || !opponentDraw.empty());
     if (c->get_value() == BJ_CARD_PUSH)
         return (!playerDraw.empty());
     if (c->get_value() == BJ_CARD_PULL)
@@ -19,7 +21,7 @@ bool Player::usable(Card *c) {
     return false;
 }
 
-void Player::play_card() {
+void Board::play_card() {
     // If we aren't selecting return nothing
     if (slct.get_target() == nullptr || hand.empty())
         return;
@@ -40,12 +42,12 @@ void Player::play_card() {
     }
     // Always update our selector and color for some reason
     menu.update_selector();
-    update_selector_color();
+    update_selector();
 }
 
 
 // Applying our special cards so we can use them.
-void Player::apply_special_card(Card *c) {
+void Board::apply_special_card(Card *c) {
     // If we're not usable, we immediately return.
     if (!usable(c)) {
         c->set_shake(BJ_SHAKE_DENY);
@@ -59,7 +61,6 @@ void Player::apply_special_card(Card *c) {
     pather.update_hand(hand);
 
     // We need to first make sure we can use our card.
-    bool pass = false;
     if (floater->get_value() == BJ_CARD_TAKER) {
         set_target_range(BJ_Target::DRAWS);
         action = BJ_Action::GRAB;

@@ -1,4 +1,4 @@
-#include "engine/particles/ParticleRhombus.hpp"
+#include "engine/particles/ParticleSparkle.hpp"
 
 #include <iostream>
 
@@ -8,7 +8,7 @@
 
 using namespace gengine;
 
-Rhombus::Rhombus(const Vertex &offset, float speed, float size) {
+Sparkle::Sparkle(const Vertex &offset, float speed, float size) {
     pos = offset;
     velocity.randomize();
     velocity = velocity.unit();
@@ -16,7 +16,7 @@ Rhombus::Rhombus(const Vertex &offset, float speed, float size) {
     radius = size;
 }
 
-bool Rhombus::update() {
+bool Sparkle::update() {
     duration -= glb::scene.dt;
     if (duration <= 0)
         return true;
@@ -25,54 +25,50 @@ bool Rhombus::update() {
     return false;
 }
 
-std::vector<SDL_FRect> Rhombus::to_rect() const {
+std::vector<SDL_FRect> Sparkle::to_rect() const {
     std::vector<SDL_FRect> rects;
-    int rad = static_cast<int>(radius * duration / 1500);
+    float rad = radius * duration / 1500;
     rects.reserve(rad*rad*2);
     // first get the width at each y point
-    for (int y = -1*rad; y <= rad; y++) {
-        const int width = rad - abs(y);
-        const int pixely =  static_cast<int>(pos.y) + y;
-        // fill out the width here
-        for (int x = -width; x <= width; x++) {
-            rects.push_back({ pos.x + x, static_cast<float>(pixely), 1, 1});
-        }
+    for (short x = -rad; x <= rad; x++) {
+        rects.push_back({pos.x + x, pos.y, 1, 1});
+    }
+    for (short y = -rad; y <= rad; y++) {
+        if (y != 0)
+            rects.push_back({pos.x, pos.y + y, 1, 1});
     }
     // return our hard work
     return rects;
 }
 
-// ParticleRhombus constructors
-ParticleRhombus::ParticleRhombus(Vertex pos, float size, float speed, float duration, float frequency, SDL_Color Tint)
+// ParticleSparkle constructors
+ParticleSparkle::ParticleSparkle(Vertex pos, float size, float speed, float duration, float frequency, SDL_Color Tint)
     : ParticleGroup(pos, size, speed, duration, {255, 255, 255, 255}), period(frequency) {
     shadow_color = Tint;
     if (duration == -1)
         permanent = true;
-    pos.z = pos.z - 1.f;
 }
 
-ParticleRhombus::ParticleRhombus(Object* o, float size, float speed, float duration, float period, SDL_Color Tint)
+ParticleSparkle::ParticleSparkle(Object* o, float size, float speed, float duration, float period, SDL_Color Tint)
     : ParticleGroup(o, size, speed, duration, {255, 255, 255, 255}), period(period) {
     shadow_color = Tint;
     if (duration == -1)
         permanent = true;
-    pos.z = pos.z - 1.f;
 }
 
-bool ParticleRhombus::update() {
+bool ParticleSparkle::update() {
     // Check if we're done
-
     duration -= glb::scene.dt;
     deltat += glb::scene.dt;
     bool done = (duration <= 0) && !permanent;
     if (deltat > period && !done) {
         deltat -= period;
         if (horse != nullptr) {
-            pos.z = horse->pos().z - 1.f;
-            particles.emplace_back(horse->offset() + horse->pos() - Vertex(0,0,1), speed, strength);
+            pos.z = horse->pos().z - 0.01f;
+            particles.push_back(Sparkle(horse->offset() + horse->pos() - Vertex(0,0,0.4), speed, strength));
         }
         else
-            particles.emplace_back(Vertex(0,0,0), speed, strength);
+            particles.push_back(Sparkle(Vertex(0,0,0), speed, strength));
     }
     for (auto it = particles.begin(); it != particles.end();) {
         if (it->duration <= 0) {
@@ -87,7 +83,7 @@ bool ParticleRhombus::update() {
     return done;
 }
 
-std::vector<std::vector<SDL_FRect>> ParticleRhombus::to_rect() {
+std::vector<std::vector<SDL_FRect>> ParticleSparkle::to_rect() {
     std::vector<std::vector<SDL_FRect>> rects;
     if (horse != nullptr)
         pos = horse->pos();

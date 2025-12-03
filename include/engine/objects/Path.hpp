@@ -8,7 +8,8 @@ namespace gengine {
         LINEAR = 0,
         BALLOON = 1,
         TORPEDO = 2,
-        SINE = 3
+        SINE = 3,
+        REBOUND = 4,
     };
 
     // Scaling of paths
@@ -33,8 +34,10 @@ namespace gengine {
         void balloon(Vertex& pos);
         // Moves slow, and speeds up on approach.
         void torpedo(Vertex& pos);
-        // Keeps x linear, does cos w/y
+        // Keeps x linear, does sin w/y
         void sine(Vertex& pos);
+        // Goes away from the target, and then towards the target
+        void rebound(Vertex& pos);
         // Helper functions
         // Gets the sign difference between pos and target
         // e.g. pos.x > target.x, xm = -1;

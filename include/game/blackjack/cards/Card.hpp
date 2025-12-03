@@ -15,8 +15,6 @@ namespace blackjack {
     public:
         // Base constructor
         Card(int val, BJ_Suit suite);
-        // Copy constructor
-        Card(Card& c);
 
         // Checks if two cards are equal.
         bool operator==(const Card c) const;

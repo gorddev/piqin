@@ -1,9 +1,10 @@
 #pragma once
 #include <cstdint>
+#include <iostream>
 
 namespace gengine {
     // Scene information
-    struct Scene {
+    struct Scene final {
     private:
         float prevTime = 0.0f;
     public:
@@ -12,8 +13,8 @@ namespace gengine {
         float time = 0.0f;
         uint64_t frame = 0;
         // Scene width, and height
-        int width = 340;
-        int height = 200;
+        int width = 380;
+        int height = 220;
         // Main menu?
         bool mainMenu = false;
 

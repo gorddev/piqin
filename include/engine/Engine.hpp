@@ -4,6 +4,8 @@
 #include "objects/ObjectManager.hpp"
 #include "input/InputManager.hpp"
 #include "utilities/types/EngineElement.hpp"
+#include "gengine-globals/Random.hpp"
+#include "gengine-globals/Timer.hpp"
 
 
 // The Engine makes sure everything gets to the right place
@@ -34,6 +36,9 @@ namespace gengine {
         // Constructor/destructor
         Engine();
         ~Engine();
+
+        // Initialize the engine (must be done in main)
+        void initialize();
 
         // Runs the engine
         bool tick(double time);

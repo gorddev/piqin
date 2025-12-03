@@ -1,15 +1,14 @@
-#include "game/blackjack/Player.hpp"
+#include "engine/particles/ParticleCircle.hpp"
+#include "engine/particles/ParticleSparkle.hpp"
+#include "game/blackjack/Board.hpp"
 
 using namespace blackjack;
 
-void Player::play() {
+#define ADDEV(t, f) gengine::GENG_Events.add_event(t, [=]{f;})
 
-}
-
-
-
-void Player::select() {
+void Board::select() {
     // If we're currently playing a card
+    std::cerr << slct.get_target()->get_value() << std::endl;
     if (action == BJ_Action::PLAY) {
         if (target == BJ_Target::HAND)
             play_card();
@@ -24,14 +23,13 @@ void Player::select() {
         grab_card();
 }
 
-void Player::back() {
+void Board::back() {
     // First check if our floater is a nullptr
     if (floater != nullptr) {
         // If not, we add it back to hand
         add_card_to_hand(floater);
-        // Remove it's shaking animation
+        // Remove it's shaking & particle animation
         floater->remove_shake();
-        // Remove it's particle effect
         bob.remove_attached_particle(floater);
         // Turn it into nullpointer
         floater = nullptr;
@@ -44,57 +42,81 @@ void Player::back() {
         //  Move our selector back
         slct.move(true);
         // Update the selector's color
-        update_selector_color();
+        update_selector();
         // Reset our action to play from the hand
         action = BJ_Action::PLAY;
-        // Force our target range back into the hand.
         set_target_range(BJ_Target::HAND);
     }
 }
 
-void Player::use_card() {
+void Board::use_card() {
     if (floater != nullptr && floater->use(slct.get_target()))
         uninitialize_floater();
 }
 
-void Player::pull_card() {
-    if (menu.get_row() == BJ_Target::DISCARD_MENU)
-        pather.move(deck.pop_card(), playerDraw);
-    else if (menu.get_row() == BJ_Target::OPPONENT)
-        pather.move(opponentDraw.pop_card(), playerDraw);
+void Board::pull_card() {
+    Card* c = nullptr;
+    if (menu.row() == BJ_Target::DISCARD_MENU)
+        c = deck.pop_card();
+    else if (menu.row() == BJ_Target::OPPONENT)
+        c = opponentDraw.pop_card(menu.col());
+    if (c != nullptr) {
+        auto* pc = new gengine::ParticleCircle(c, 20.0, 0.125, 200, 20, {180, 220, 180, 255});
+        bob.attach_new_particle(c, pc);
+        pather.move(c, playerDraw);
+    }
     uninitialize_floater();
 }
 
-void Player::push_card() {
-    if (menu.get_row() == BJ_Target::HAND)
-        pather.move(hand.pop_card(menu.col()), opponentDraw);
-    else if (menu.get_row() == BJ_Target::PLAYER)
-        pather.move(playerDraw.pop_card(menu.col()), opponentDraw);
+void Board::push_card() {
+    Card* c = nullptr;
+    if (menu.row() == BJ_Target::HAND)
+        c = hand.pop_card(menu.col());
+    else if (menu.row() == BJ_Target::PLAYER)
+        c = playerDraw.pop_card(menu.col());
+    if (c != nullptr) {
+        auto* pc = new gengine::ParticleCircle(c, 20.0, 0.125, 200, 20, {180, 220, 180, 255});
+        bob.attach_new_particle(c, pc);
+        pather.move(c, opponentDraw);
+    }
     uninitialize_floater();
 }
 
-void Player::grab_card() {
-    if (menu.get_row() == BJ_Target::DISCARD_MENU)
-        pather.move(discard.pop_card(), hand, 0);
-    else if (menu.get_row() == BJ_Target::OPPONENT)
-        pather.move(opponentDraw.pop_card(menu.col()), opponentDraw);
-    else if (menu.get_row() == BJ_Target::PLAYER)
-        pather.move(playerDraw.pop_card(menu.col()), playerDraw);
+void Board::grab_card() {
+    Card* c = nullptr;
+    if (menu.row() == BJ_Target::DISCARD_MENU)
+        c = discard.pop_card();
+    else if (menu.row() == BJ_Target::OPPONENT)
+        c = opponentDraw.pop_card(menu.col());
+    else if (menu.row() == BJ_Target::PLAYER)
+        c = playerDraw.pop_card(menu.col());
+    if (c != nullptr) {
+        auto* ps = new gengine::ParticleSparkle(floater, 8.0f, 1.0, 350, 30);
+        bob.attach_new_particle(c, ps);
+        pather.move(c, hand);
+        pather.update_hand(hand);
+    }
+
     uninitialize_floater();
 }
 
-void Player::set_target_range(BJ_Target targetRange) {
+void Board::set_target_range(BJ_Target targetRange) {
     range = targetRange;
     menu.set_selectables(selection_range[range]);
-    update_selector_color();
+    update_selector();
 }
 
-void Player::set_target_action(BJ_Action new_action) {
+void Board::set_target_action(BJ_Action new_action) {
     this->action = new_action;
 }
 
-void Player::uninitialize_floater() {
-    pather.to_discard(floater, discard);
+void Board::uninitialize_floater() {
+    bob.remove_attached_particle(floater);
+    floater->set_shake(gengine::GENG_Shake::RANDOM,3.0,550,1,true);
+    ADDEV(600, auto* ps = new gengine::ParticleSparkle(floater, 8.0f, 1.0, 350, 30);
+        bob.attach_new_particle(floater, ps);
+        pather.to_discard(floater, &discard, gengine::GENG_Path::SINE);
+        floater = nullptr);
     set_target_action(BJ_Action::PLAY);
     set_target_range(BJ_Target::HAND);
 }

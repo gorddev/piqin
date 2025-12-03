@@ -5,7 +5,7 @@
 #include <unordered_map>
 
 namespace gengine {
-    class InputManager {
+    class InputManager final {
         InputQueue iqueue;
         InputTarget* it;
         InputTarget* menu;

@@ -1,16 +1,21 @@
 #include "../../include/engine/Engine.hpp"
 
+#include "engine/gengine-globals/Timer.hpp"
+
 using namespace gengine;
 
 // ReSharper disable once CppMemberInitializersOrder
 Engine::Engine () :
         cam(0,0,Z_MAX, glb::scene.width, glb::scene.height),
         rm(&cam), sm(), om(), pm(), input(nullptr) {
-    // Now we initialize each of our objects.
-    sm.initialize(rm.get_renderer());		// SheetManager
-    rm.set_sheet_manager(&sm);
 }
 Engine::~Engine () {}
+
+void Engine::initialize() {
+    rm.initialize();
+    sm.initialize(rm.get_renderer());
+    rm.set_sheet_manager(&sm);
+}
 
 int Engine::pop_id() {
     if (!id_stack.is_empty())
@@ -30,6 +35,8 @@ bool Engine::tick(double time) {
         if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP)
             input.update(e);
     }
+
+    GENG_Events.update();
 
     return true;
 }
@@ -59,7 +66,6 @@ void Engine::set_input_target(InputTarget *t) {
 
 void Engine::attach_new_particle(Object *o, ParticleGroup *pg) {
     pg->horse = o;
-    pm.add(pg);
     add(pg);
 }
 

@@ -6,14 +6,18 @@
 using namespace gengine;
 
 RenderManager::RenderManager(Camera* cam) :
-		setup(SDL_Init(SDL_INIT_VIDEO)),
-		cam(cam),
-		window(SDL_CreateWindow("Norton",
-			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-			glb::scene.width, glb::scene.height, SDL_WINDOW_RESIZABLE)),
-		renderer(SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE)),
-		bg(renderer) {
+		cam(cam), bg(nullptr), window(), renderer() {
 	// Create the texture we will end up rendering to.
+	canvasTex = nullptr;
+}
+
+void RenderManager::initialize() {
+	SDL_Init(SDL_INIT_VIDEO);
+	window = SDL_CreateWindow("Norton",
+			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+			glb::scene.width, glb::scene.height, SDL_WINDOW_RESIZABLE);
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+	bg = new Background(renderer);
 	canvasTex = SDL_CreateTexture(
 		renderer,
 		SDL_PIXELFORMAT_RGBA8888,
@@ -89,10 +93,10 @@ void RenderManager::set_sheet_manager(
 }
 
 void RenderManager::draw_background() {
-	bg.update(glb::scene.dt);
+	bg->update(glb::scene.dt);
 	SDL_RenderCopy(
 		renderer,
-		bg.get_texture(),
+		bg->get_texture(),
 		nullptr,
 		nullptr);
 }
@@ -163,11 +167,12 @@ static SDL_FRect add_rect(SDL_FRect r1, SDL_FRect r2) {
 
 void RenderManager::render_particles(ParticleGroup& pg) {
 	auto&[r, g, b, a] = pg.get_color();
-	auto rects = pg.to_rect();
+	std::vector<std::vector<SDL_FRect>> rects = pg.to_rect();
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 	SDL_Color sc = pg.get_shadow_color();
 	SDL_SetRenderDrawColor(renderer, sc.r, sc.g, sc.b, sc.a);
 	for (auto&i: rects) {
+		if (i.size() == 0) continue;
 		SDL_FRect offset =  rect_shadow_offset(i[0]);
 		for (auto& e: i) {
 			SDL_FRect shadow = rect_flat(add_rect(e, offset));
@@ -178,7 +183,7 @@ void RenderManager::render_particles(ParticleGroup& pg) {
 	SDL_SetRenderDrawColor(renderer, r, g, b, a);
 
 	for (auto&i : rects) {
-		SDL_RenderDrawRectsF(renderer, i.data(), static_cast<int>(i.size()));
+		SDL_RenderDrawRectsF(renderer, i.data(),i.size());
 	}
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 }

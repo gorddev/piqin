@@ -52,7 +52,6 @@ namespace gengine::utils {
         }
         void erase(int i) {
             if (i < entries.size()) {
-                delete entries[i];
                 entries[i] = nullptr;
                 positions.push(i);
             }

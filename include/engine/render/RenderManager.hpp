@@ -14,6 +14,25 @@
 
 namespace gengine {
 	class RenderManager {
+		// PUBLIC FUNCTIONS
+	public:
+		explicit RenderManager(Camera* cam);
+		~RenderManager();
+
+		// Must call during main
+		void initialize();
+
+		// Initialize the RenderManager
+		// The render pipeline is specified above. That is what this function uses.
+		void render(std::vector<EngineElement>& elmts);
+		// Present the render
+		void present();
+
+		// Gets our renderer for testing purposes
+		SDL_Renderer* get_renderer() { return renderer; }
+
+		void set_sheet_manager( SheetManager* sm);
+
 	private:
 		// RENDER PIPELINE
 		// 1. Draws the background for our scene
@@ -47,33 +66,15 @@ namespace gengine {
 
 		// Updates the canvas in case the user decides to resize the window
 		void update_canvas_size();
-
-		// PUBLIC FUNCTIONS
-	public:
-		RenderManager(Camera* cam);
-		~RenderManager();
-
-		// Initialize the RenderManager
-		// The render pipeline is specified above. That is what this function uses.
-		void render(std::vector<EngineElement>& elmts);
-		// Present the render
-		void present();
-
-		// Gets our renderer for testing purposes
-		SDL_Renderer* get_renderer() { return renderer; }
-
-		void set_sheet_manager( SheetManager* sm);
-
 	private:
 		// Specifies what we need to access SDL window resources
 		SDL_Window* window = nullptr;
 		SDL_Renderer* renderer = nullptr;
 		SheetManager* sm = nullptr;
+		Background* bg = nullptr;
 		Camera* cam;
 		Vertex camCenter;
 
-		// Owns the background
-		Background bg;
 
 		// Scene width and height! */
 		int canvasWidth = glb::scene.width;

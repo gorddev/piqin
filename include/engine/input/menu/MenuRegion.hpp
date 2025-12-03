@@ -48,7 +48,7 @@ namespace gengine {
         // Tells us to update our selector if something changed
         void update_selector(bool backByOne = false);
         // Lets us grab the row our selector is on
-        int get_row();
+        int row();
         // Lets us grab the column our selector is on
         int col();
         // Lets us select the selector
@@ -197,7 +197,7 @@ namespace gengine {
     }
 
     template<typename Item>
-    int MenuRegion<Item>::get_row() {
+    int MenuRegion<Item>::row() {
         if (rows.empty())
             return -1;
         if (s.row < 0)

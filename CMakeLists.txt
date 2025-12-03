@@ -14,7 +14,8 @@ add_executable(norton
         src/game/GameMaster.cpp
         # Blackjack
         # Player and hand
-        src/game/blackjack/Player.cpp
+        src/game/blackjack/Board.cpp
+        src/game/blackjack/Round.cpp
         src/game/blackjack/bj-objects/Hand.cpp
         # Cards
         src/game/blackjack/cards/Card.cpp
@@ -43,6 +44,9 @@ add_executable(norton
         # Particles
         src/engine/particles/ParticleManager.cpp
         src/engine/particles/ParticleRhombus.cpp
+        src/engine/particles/ParticleRect.cpp
+        src/engine/particles/ParticleSparkle.cpp
+        src/engine/particles/ParticleCircle.cpp
 
         # Rendering
         src/engine/render/RenderManager.cpp
@@ -78,10 +82,18 @@ target_link_options(norton PRIVATE
     "--shell-file=${CMAKE_SOURCE_DIR}/assets/game_shell.html"
     "--preload-file=assets"
     "--emrun"
-    "-sASSERTIONS=2"
-    "-sMAXIMUM_MEMORY=32MB"
+    "-sMAXIMUM_MEMORY=128MB"
     "-sALLOW_MEMORY_GROWTH"
-    "-sUSE_SDL_TTF=2"
+    "-03"
+
+    #"-sASSERTIONS=2"
+        #[[
+    "-sSTACK_OVERFLOW_CHECK=2"
+    "-sSAFE_HEAP=1"
+    "-g4"
+    "-gsource-map"
+    "-s MALLOC=emmalloc"
+    ]]
 )
 
 set(CMAKE_TOOLCHAIN_FILE "/Users/gordie/emsdk/upstream/emscripten/.../Emscripten.cmake")

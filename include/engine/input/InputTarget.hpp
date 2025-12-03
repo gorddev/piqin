@@ -19,9 +19,9 @@ namespace gengine {
         }
         // Gets a pressed key. Must be virtual cause every interface will have valid/invalid inputs
         // Also must return a boolean.
-        virtual bool getPress(GENG_Input keybind) = 0;
+        virtual bool get_press(GENG_Input keybind) = 0;
         // Gets the release of a held key
-        virtual void getRelease(GENG_Input keybind) = 0;
+        virtual void get_release(GENG_Input keybind) = 0;
 
         virtual ~InputTarget() = default;
     };

@@ -1,16 +1,14 @@
 #pragma once
 #include "bj-objects/CardSelector.hpp"
-#include "bj-objects/Hand.hpp"
-#include "bj-objects/Draw.hpp"
-#include "cards/Deck.hpp"
-#include "Pather.hpp"
+#include "bj-objects/Pather.hpp"
 #include "BJEnums.hpp"
 #include "EngineSource.hpp"
 #include "engine/input/menu/MenuRegion.hpp"
 
 namespace blackjack {
     // We must be able to input to our InputTarget
-    class Player : public gengine::InputTarget {
+    class Board : public gengine::InputTarget {
+    public:
         /* Member Objects */
         // We need to be able to select cards
         CardSelector slct;
@@ -25,7 +23,7 @@ namespace blackjack {
         Draw opponentDraw;
         // Finally, we have a floater card if we're using a special card
         Card* floater;
-
+    private:
         // This lets us keep track of the menu
         gengine::MenuRegion<Card> menu;
         // Creates a menu region wrapper (dont worry about it)
@@ -38,23 +36,24 @@ namespace blackjack {
         bool selectEnabled = true;
 
     public:
+
         // Public constructor
-        Player();
-        ~Player() override;
+        Board();
+        ~Board() override;
         // Gathers all the objects in the BlackjackPlayer class.
         [[nodiscard]] std::vector<gengine::Object*> gather_objects();
 
         /* CARD_SELECTOR */
         /* Functions that concern the selector */
-        void update_selector_color();
+        void update_selector();
 
         /* HAND */
         /* Functions that concern management of the hand */
         bool add_card_to_hand(Card* c);
 
         /* INPUT HANDLING */
-        bool getPress(gengine::GENG_Input keybind) override;
-        void getRelease(gengine::GENG_Input keybind) override;
+        bool get_press(gengine::GENG_Input keybind) override;
+        void get_release(gengine::GENG_Input keybind) override;
 
         // Updates
         void update();

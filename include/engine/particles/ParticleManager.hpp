@@ -8,7 +8,7 @@ namespace gengine {
     class ParticleManager {
     private:
         utils::SparseVector<gengine::ParticleGroup> groups;
-        std::vector<gengine::ParticleGroup *> groups_removed;
+        std::vector<int> groups_removed;
 
     public:
         // Construct/destruct
