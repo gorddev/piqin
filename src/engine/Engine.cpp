@@ -55,6 +55,7 @@ void Engine::render() {
     std::sort(elements.begin(), elements.end(), [](const EngineElement& e1, const EngineElement& e2) {
         return *e1.z_index < *e2.z_index;
     });
+
     rm.render(elements);
     // Present our hard work
     rm.present();

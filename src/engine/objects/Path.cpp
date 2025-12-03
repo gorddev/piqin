@@ -17,12 +17,8 @@ Path::Path(const Vertex &tar, const Vertex &startPos, GENG_Path pathType, float 
     if (initDist <= 0.1)
         complete = 7;
     if (pathType == GENG_Path::REBOUND) {
-        std::cerr << "rebound!\n";
-        std::cerr << "start: " << startPos.to_string() << std::endl;
-        std::cerr << "target: " << target.to_string() << std::endl;
         std::cerr << (startPos-target).to_string() << std::endl;
         this->startPos = (startPos - target).unit();
-        std::cerr << "initializing: " << this->startPos.to_string() << std::endl;
         this->speed = speed * -1.0f;
     }
 }

@@ -53,22 +53,6 @@ void Round::opponent_turn() {
         ADDEV(600, round_end());
 }
 
-bool Round::get_press(gengine::GENG_Input keybind) {
-    if (acceptingInput) {
-        pather.update_hand(board->hand);
-        if (keybind == gengine::GENG_Input::BACK && board->floater == nullptr) {
-            board->hand.flayed = false;
-            pather.update_hand(board->hand);
-            board->update_selector();
-            acceptingInput = false;
-            opponent_turn();
-            return true;
-        }
-        return board->get_press(keybind);
-    }
-    return false;
-}
-
 void Round::get_release(gengine::GENG_Input keybind) {
     if (acceptingInput)
         board->get_release(keybind);
@@ -97,4 +81,21 @@ void Round::round_end() {
 void Round::refresh_deck() {
     pather.move(board->discard.pop_all(), &board->deck);
     ADDEV(200, );
+}
+
+
+bool Round::get_press(gengine::GENG_Input keybind) {
+    if (acceptingInput) {
+        pather.update_hand(board->hand);
+        if (keybind == gengine::GENG_Input::BACK && board->floater == nullptr) {
+            board->hand.flayed = false;
+            pather.update_hand(board->hand);
+            board->update_selector();
+            acceptingInput = false;
+            opponent_turn();
+            return true;
+        }
+        return board->get_press(keybind);
+    }
+    return false;
 }

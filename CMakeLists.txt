@@ -77,23 +77,45 @@ target_include_directories(norton PRIVATE
 target_compile_options(norton PRIVATE 
     "-sUSE_SDL=2"
     )
+# regular run
+# #[[
 target_link_options(norton PRIVATE 
     "-sUSE_SDL=2"
     "--shell-file=${CMAKE_SOURCE_DIR}/assets/game_shell.html"
     "--preload-file=assets"
     "--emrun"
-    "-sMAXIMUM_MEMORY=128MB"
+    "-sMAXIMUM_MEMORY=32MB"
     "-sALLOW_MEMORY_GROWTH"
     "-03"
-
-    #"-sASSERTIONS=2"
-        #[[
-    "-sSTACK_OVERFLOW_CHECK=2"
-    "-sSAFE_HEAP=1"
-    "-g4"
-    "-gsource-map"
-    "-s MALLOC=emmalloc"
-    ]]
+    "--closure 1"
+    "-sSAFE_HEAP=0"
+    "-flto"
+    "-sENVIRONMENT=web"
+    "-sEXPORT_ES6=1"
+    "-sWASM_BIGINT=1"
 )
+#]]
+
+# release build
+
+#debug
+#[[
+target_link_options(norton PRIVATE
+        "-sUSE_SDL=2"
+        "--shell-file=${CMAKE_SOURCE_DIR}/assets/game_shell.html"
+        "--preload-file=assets"
+        "--emrun"
+        "-sMAXIMUM_MEMORY=128MB"
+        "-sALLOW_MEMORY_GROWTH"
+
+        "-sASSERTIONS=2"
+        "-sSTACK_OVERFLOW_CHECK=2"
+        "-sSAFE_HEAP=1"
+        "-g4"
+        "-gsource-map"
+        "-s MALLOC=emmalloc"
+        "-sSAFE_HEAP=0"
+)
+]]
 
 set(CMAKE_TOOLCHAIN_FILE "/Users/gordie/emsdk/upstream/emscripten/.../Emscripten.cmake")

@@ -17,11 +17,12 @@ bool Card::adjust_value(int num) {
 
 // Gets the score of a card.
 int Card::get_score() const {
-    uintptr_t addr = reinterpret_cast<uintptr_t>(this);
+    auto addr = reinterpret_cast<uintptr_t>(this);
     size_t align = alignof(Card);
     if (addr % align != 0) {
+        // THis is what happens if we feed card that's not a card :o
         std::cerr << "card::get_score() alignment is not 0" << std::endl;
-        abort(); // reproduces the trap but with helpful console log
+        abort(); // goodbye
     }
 
     if (suit == BJ_Suit::SPECIAL) return 0;

@@ -29,6 +29,8 @@
   <body>
     <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
     <textarea class="emscripten" id="output" rows="8"></textarea>
+    <div id="status">Loading...</div>
+    <progress id="progress" value="0" max="100" hidden></progress>
 
     <script>
       const canvasElement = document.getElementById('canvas');
@@ -54,7 +56,24 @@
             outputElement.scrollTop = outputElement.scrollHeight;
           }
         },
-
+        setStatus: function(text) {
+          document.getElementById('status').textContent = text;
+        },
+        onRuntimeInitialized: function() {
+          document.getElementById('status').textContent = "Ready!";
+          document.getElementById('progress').hidden = true;
+        },
+        monitorRunDependencies: function(left) {
+          var status = document.getElementById('status');
+          var progress = document.getElementById('progress');
+          if (left) {
+            progress.hidden = false;
+            progress.value = 100 - left * 20; // approx
+          } else {
+            progress.hidden = true;
+            status.textContent = "Running!";
+          }
+        },
         canvas: canvasElement,
       };
     </script>

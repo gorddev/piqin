@@ -61,14 +61,16 @@ bool ParticleSparkle::update() {
     duration -= glb::scene.dt;
     deltat += glb::scene.dt;
     bool done = (duration <= 0) && !permanent;
-    if (deltat > period && !done) {
-        deltat -= period;
-        if (horse != nullptr) {
-            pos.z = horse->pos().z - 0.01f;
-            particles.push_back(Sparkle(horse->offset() + horse->pos() - Vertex(0,0,0.4), speed, strength));
+    if (!done) {
+        while (deltat > period) {
+            deltat -= period;
+            if (horse != nullptr) {
+                pos.z = horse->pos().z - 0.01f;
+                particles.push_back(Sparkle(horse->offset() + horse->pos() - Vertex(0,0,0.4), speed, strength));
+            }
+            else
+                particles.push_back(Sparkle(Vertex(0,0,0), speed, strength));
         }
-        else
-            particles.push_back(Sparkle(Vertex(0,0,0), speed, strength));
     }
     for (auto it = particles.begin(); it != particles.end();) {
         if (it->duration <= 0) {

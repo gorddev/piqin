@@ -5,8 +5,6 @@ using namespace blackjack;
 
 // Lets us know if a card is usable or not
 bool Board::usable(Card *c) {
-    std::cerr << "increment: " << (c->get_value() == BJ_CARD_INCREMENT) + 0<< std::endl;
-    std::cerr << "decrement: " << (c->get_value() == BJ_CARD_DECREMENT) + 0<< std::endl;
     if (c->get_suit() != BJ_Suit::SPECIAL) {
         return !playerDraw.will_bust(c);
     }

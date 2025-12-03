@@ -31,5 +31,5 @@ else
     fi
   done
 
-  emrun norton.html
+  emrun --browser=chrome norton.html
 fi
