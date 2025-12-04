@@ -6,6 +6,7 @@
 #include "utilities/types/EngineElement.hpp"
 #include "gengine-globals/Random.hpp"
 #include "gengine-globals/Timer.hpp"
+#include "textures/SheetManager.hpp"
 
 
 // The Engine makes sure everything gets to the right place

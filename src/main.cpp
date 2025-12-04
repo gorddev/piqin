@@ -5,6 +5,7 @@
 
 #include "EngineSource.hpp"
 #include "game/GameMaster.hpp"
+#include "engine/textures/asset-info/HeaderRegistry.hpp"
 
 // Here's our game manager!
 GameMaster* gm = nullptr;
@@ -15,9 +16,9 @@ EM_BOOL gameloop(double time, void* userdata) {
 	// <><><><><><><><>
 	// Updates our time and grabs user input & runs events
 	// <><><><><><><><>
-
 	if (!bob.tick(time))
 		return EM_FALSE;
+
 
 	// All game logic goes here!
 	gm->blackjack();
@@ -37,6 +38,7 @@ EM_BOOL gameloop(double time, void* userdata) {
 
 int main() {
 	bob.initialize();
+
 
 	// GameMaster -> Handles game logic
 	gm = new GameMaster();

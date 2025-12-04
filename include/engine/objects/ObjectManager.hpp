@@ -23,11 +23,6 @@ namespace gengine {
 		Object* add_object(Object*) noexcept;
 		void add_objects(const std::vector<Object*>& vec) noexcept;
 
-		// Lets us update z-indexes
-		void update_z(Object* o);
-		// Lets us update with a vector
-		void update_z(std::vector<Object*>& batch, uint8_t sortStyle);
-
 		// Removes an object from the objectManager
 		void dissolve(int id);
 		void dissolve(const Object *o);
@@ -38,7 +33,6 @@ namespace gengine {
 
 		// Allows us to return our object list
 		std::unordered_map<int, Object*>& get_objList();
-		std::vector<Object*> z_sorted_objList();
 
 		std::string to_string();
 	};

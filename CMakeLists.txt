@@ -54,8 +54,11 @@ add_executable(norton
         src/engine/render/Background.cpp
 
         # Sprites
-        src/engine/sprites/SpriteSheet.cpp
-        src/engine/sprites/SheetManager.cpp
+        src/engine/textures/SheetManager.cpp
+        src/engine/textures/FrameSheet.cpp
+        src/engine/textures/FrameState.cpp
+        src/engine/textures/Frames.cpp
+        src/engine/textures/TextureRegister.cpp
 
         # Utilities
         src/engine/utilities/BasisDecoder.cpp
@@ -86,13 +89,10 @@ target_link_options(norton PRIVATE
     "--emrun"
     "-sMAXIMUM_MEMORY=32MB"
     "-sALLOW_MEMORY_GROWTH"
-    "-03"
+    "-01"
     "--closure 1"
-    "-sSAFE_HEAP=0"
     "-flto"
     "-sENVIRONMENT=web"
-    "-sEXPORT_ES6=1"
-    "-sWASM_BIGINT=1"
 )
 #]]
 

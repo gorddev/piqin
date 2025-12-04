@@ -1,6 +1,7 @@
 #pragma once
 #include "EngineSource.hpp"
 #include "../BJEnums.hpp"
+#include "engine/textures/asset-info/RegistryConstants.hpp"
 
 namespace blackjack {
 
@@ -10,7 +11,7 @@ namespace blackjack {
         bool flipped = false;
 
         // Returns
-        [[nodiscard]] uint8_t to_state();
+        [[nodiscard]] uint8_t to_anim_num();
 
     public:
         // Base constructor

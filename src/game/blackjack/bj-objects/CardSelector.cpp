@@ -10,7 +10,7 @@ using namespace blackjack;
 CardSelector::CardSelector() {
     target = nullptr;
     t = card_selector_transform;
-    fs.sheet_id = ASSET_CARD_SELECTOR_ID;
+    fs.frame_sheet_id = ASSET_CARD_SELECTOR_ID;
 }
 
 
@@ -72,7 +72,7 @@ void CardSelector::move(gengine::Vertex pos, float speed) {
 }
 
 void CardSelector::set_color(Selector_Color color) {
-    fs.state = static_cast<uint8_t>(color);
+    fs.animation_index = static_cast<uint8_t>(color);
 }
 
 void CardSelector::deactivate() {

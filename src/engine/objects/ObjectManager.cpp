@@ -52,16 +52,18 @@ void ObjectManager::dissolve(std::vector<Object *> vec) {
 }
 
 std::vector<FrameState*> ObjectManager::update_objects(){
-	std::vector<FrameState*> ret(numObjects);
+	std::vector<FrameState*> ret;
 	for (auto& [id, o]: objMap){
+		Object& obj = *o;
 		// Print out a flag for testing purposes.
-		if (!o->flag.empty())
+		if (!obj.flag.empty())
 			std::cerr << "Flag {id: " << id << ", " << o->flag << "}" << std::endl;
 		// Update our object's position
-		o->update_pos();
+		obj.update_pos();
 		// Ticks our object's animation frame
 		// SheetManager -> Object's Sheet -> tick_object
-		ret.push_back(o->frame_state());
+		if (obj.update_anim())
+			ret.push_back(&obj.fs);
 	}
 	return ret;
 }

@@ -1,24 +1,24 @@
 #pragma once
 #include <iostream>
 
-#include "../SpriteSheet.hpp"
+#include "engine/textures/FrameSheet.hpp"
 
-namespace gengine {
+namespace gengine::textures {
     // We create a registry of all the sprites that we need like this
     // (Make global vector)
-    using SpriteRegistry = std::unordered_map<int, SpriteSheet>;
+    using SheetRegistry = std::unordered_map<int, FrameSheet>;
 
     // grabs the same registry each time
-    inline SpriteRegistry& getRegistry() {
-        static SpriteRegistry registry;
+    inline SheetRegistry& getRegistry() {
+        static SheetRegistry registry;
         return registry;
     }
 
     // This allows us to call function constructions even though we haven't entered main yet
     // super cool
-    struct SpriteRegister {
+    struct SheetRegister {
         // marked as explicit just cause
-        explicit SpriteRegister(const SpriteSheet& sheet, int sheet_id) {
+        explicit SheetRegister(int sheet_id, const FrameSheet& sheet) {
             getRegistry()[sheet_id] = sheet;
         }
     };

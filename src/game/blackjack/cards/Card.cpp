@@ -8,7 +8,7 @@
 using namespace blackjack;
 
 // Gets the state of a card.
-uint8_t Card::to_state() {
+uint8_t Card::to_anim_num() {
     if (suit == BJ_Suit::SPECIAL)
         return value;
     // Otherwise default set of cards
@@ -32,8 +32,8 @@ Card::Card(int val, BJ_Suit suite)
     if (value > 13 && suit != BJ_Suit::SPECIAL) value = 13;
     t = defaultCardTransform;
     fs = defaultCardFrameState;
-    fs.state = to_state();
-    fs.baseState = to_state();
+    fs.animation_index = to_anim_num();
+    fs.default_animation = to_anim_num();
     hidden = true;
 }
 
@@ -43,17 +43,17 @@ bool Card::operator==(const Card c) const {
 
 void Card::flip() {
     flipped = !flipped;
-    fs.state = (flipped) ? CARD_FLIPPED : to_state();
+    fs.animation_index = (flipped) ? CARD_FLIPPED : to_anim_num();
 }
 
 void Card::flip_up() {
     flipped = false;
-    fs.state = to_state();
+    fs.animation_index = fs.default_animation;
 }
 
 void Card::flip_down() {
     flipped = true;
-    fs.state = CARD_FLIPPED;
+    fs.animation_index = CARD_FLIPPED;
 }
 
 bool Card::is_flipped() const {

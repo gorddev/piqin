@@ -9,7 +9,7 @@ namespace gengine {
         T* target;
 
         // Constructor
-        Selector(): target(nullptr) {}
+        Selector() : target(nullptr) {}
 
         // Then we implement our selector movements
         virtual void move() {move(false); };

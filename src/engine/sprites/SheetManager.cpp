@@ -1,4 +1,4 @@
-#include "engine/sprites/SheetManager.hpp"
+#include "engine/textures/SheetManager.hpp"
 #include "engine/utilities/BasisDecoder.hpp"
 
 using namespace gengine;
@@ -9,7 +9,7 @@ SheetManager::SheetManager() {}
 void SheetManager::create_sheet(int sheet_id, SDL_Texture* texture, SDL_Rect r) {
 	if (spriteSheets.find(sheet_id) == spriteSheets.end()) {
 		spriteSheets[sheet_id] = SpriteSheet(texture);
-		spriteSheets[sheet_id].add_frame(0, {r, -1, GENG_Anim::STOP});
+		spriteSheets[sheet_id].add_frame(0, {r, -1, GENG_Anim::RESET});
 	}
 	else
 		printf("Err: Attempted to create sheet with pre-existing ID.\n");
@@ -127,6 +127,7 @@ void SheetManager::initialize(SDL_Renderer* renderer) {
 			printf("SheetManager: ERR Key %d already exists.\n", i);
 	}
 }
+
 
 
 

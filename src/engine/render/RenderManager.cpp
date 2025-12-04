@@ -9,6 +9,9 @@ RenderManager::RenderManager(Camera* cam) :
 		cam(cam), bg(nullptr), window(), renderer() {
 	// Create the texture we will end up rendering to.
 	canvasTex = nullptr;
+	// Initializes good stuff
+	vertices.resize(10000);
+	vertices.clear();
 }
 
 void RenderManager::initialize() {
@@ -23,6 +26,7 @@ void RenderManager::initialize() {
 		SDL_PIXELFORMAT_RGBA8888,
 		SDL_TEXTUREACCESS_TARGET,
 		glb::scene.width, glb::scene.height);
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
 }
 
 RenderManager::~RenderManager() {
@@ -48,11 +52,13 @@ void RenderManager::render(std::vector<EngineElement>& elmts) {
 	SDL_RenderClear(renderer);
 	/* RENDERING SHIT */
 
+	vertices.clear();
 	// Now we set our renderTexutre (glb::scene.width x glb::scene.height)
 	// This will be scaled up after we draw the background & objects
 	set_render_texture();
 	// Draw the background
 	draw_background();
+
 	// ><><><><><>< BIG PHASE ><><><><><><
 	render_elements(elmts);
 	// ><><><><><>< BIG PHASE ><><><><><><
@@ -87,9 +93,8 @@ void RenderManager::present() {
 	SDL_RenderPresent(renderer);
 }
 
-void RenderManager::set_sheet_manager(
-	 SheetManager* sm) {
-	this->sm = sm;
+void RenderManager::set_texture_atlas(SDL_Texture *t) {
+	atlas = t;
 }
 
 void RenderManager::draw_background() {
@@ -115,9 +120,12 @@ void RenderManager::render_elements(std::vector<EngineElement>& elmts) {
 		// If our mystery item is an object
 		if (e.type == GENG_Type::OBJECT) {
 			// Turn our void pointer into an object!
-			auto* o = reinterpret_cast<Object*>(e.target);
-			render_object(*o);
+			auto& o = *reinterpret_cast<Object*>(e.target);
+			if (!o.hidden) {
+				o.fs.frame->append_vertices(vertices, o.t);
+			}
 		}
+		/*
 		else if (e.type == GENG_Type::PARTICLE) {
 			auto* pg = reinterpret_cast<ParticleGroup*>(e.target);
 			render_particles(*pg);
@@ -125,7 +133,15 @@ void RenderManager::render_elements(std::vector<EngineElement>& elmts) {
 		else if (e.type == GENG_Type::UI) {
 			// Unimplemented
 		}
+		*/
 	}
+	SDL_RenderGeometry(
+		renderer,
+		atlas,
+		vertices.data(),
+		vertices.size(),
+		nullptr,
+		0);
 }
 
 std::string recttostring(SDL_Rect rect) {
@@ -140,24 +156,7 @@ std::string recttostring(SDL_FRect rect) {
 
 void RenderManager::render_object(Object& o) {
 	if (!o.hidden) {
-		SDL_Rect* src = sm->get_sheet_frame(o);
-		SDL_FRect dst;
-		SDL_Texture* tex = sm->get_sheet_texture(o.sheet_id());;
-		// If we have a shadow, render that first
-		if (o.shadow) {
-			// If we dont have a shadow, make the shadow texture
-			if (sm->get_sheet_shadow(o) == nullptr)
-				sm->set_sheet_shadow(o.sheet_id(), create_shadow_texture(tex));
-			dst = rect_shadow(o);
-			SDL_Texture* stex = sm->get_sheet_shadow(o.sheet_id());
-			// Render again!!!
-			SDL_RenderCopyExF(renderer, stex, src, &dst, o.rotation(), nullptr, o.flip());
-		}
-		// Now we render the regular texture
-		dst = rect_flat(o);
-		// Render!!!
-		SDL_RenderCopyExF(renderer, tex, src, &dst, o.rotation(), nullptr, o.flip());
-
+		o.fs.frame->append_vertices(vertices, o.t);
 	}
 }
 
@@ -248,7 +247,8 @@ void RenderManager::update_canvas_size(){
 		// Updates the window size
 		SDL_SetWindowSize(window, canvasWidth, canvasHeight);
 		// Tells our renderer to update its logic size.
-		SDL_RenderSetLogicalSize(renderer, canvasWidth, canvasHeight);
+		SDL_RenderSetScale(renderer, 1.0f, 1.0f);
+		SDL_RenderSetLogicalSize(renderer, 0, 0);
 
 		// Set our new camera width and height
 		cam->set_width(canvasWidth);

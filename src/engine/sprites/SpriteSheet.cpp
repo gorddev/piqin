@@ -108,7 +108,7 @@ void SpriteSheet::tick_frame(FrameState*& fs) {
 		// If we've reached the end of the frame we need to go back to start or go back to idle anim
 		if (fs->frameNum++ >= frames[fs->state].size()) {
 			// If stop, change our state to base state
-			if (frames[fs->state][fs->frameNum - 1].nextFrame == GENG_Anim::STOP)
+			if (frames[fs->state][fs->frameNum - 1].nextFrame == GENG_Anim::RESET)
 				fs->state = fs->baseState;
 			// We always return to the start of the animation regardless
 			fs->frameNum = 0;

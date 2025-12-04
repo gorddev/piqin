@@ -34,10 +34,10 @@ namespace gengine {
     };
     /* Render Frames */
     enum class GENG_Anim : uint8_t {
-        IDLE = 1,
-        STOP = 0,
-        CONTINUE = 1,
-        REPEAT = 2
+        IDLE = 0,
+        RESET = 1,
+        CONTINUE = 2,
+        REPEAT = 3
     };
     enum class GENG_Type : uint8_t {
         OBJECT = 0,

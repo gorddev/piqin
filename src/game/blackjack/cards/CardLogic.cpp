@@ -11,7 +11,7 @@ bool Card::adjust_value(int num) {
     if (value <= 0) value = 13 + value;
     if (value == 0) value++;
     // Make sure to update the state
-    fs.state = to_state();
+    fs.animation_index = to_anim_num();
     return true;
 }
 

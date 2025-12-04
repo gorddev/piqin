@@ -1,6 +1,7 @@
 #include "../../include/engine/Engine.hpp"
-
 #include "engine/gengine-globals/Timer.hpp"
+#include "engine/textures/asset-info/SheetRegistry.hpp"
+#include "engine/textures/asset-info/TextureRegister.hpp"
 
 using namespace gengine;
 
@@ -14,7 +15,7 @@ Engine::~Engine () {}
 void Engine::initialize() {
     rm.initialize();
     sm.initialize(rm.get_renderer());
-    rm.set_sheet_manager(&sm);
+    rm.set_texture_atlas(textures::tex_register[0]);
 }
 
 int Engine::pop_id() {
@@ -43,14 +44,11 @@ bool Engine::tick(double time) {
 
 void Engine::render() {
     // Update all of our objects and their attatchments
-    std::vector<FrameState *> frameStates = om.update_objects();
-    // Tick all the frames of all objects/other shit
-    sm.tick_frames(frameStates);
+    std::vector<FrameState*> frameStates = om.update_objects();
     // Render
     pm.update();
     if (pm.particles_to_remove())
         remove(pm.pop_removed_particles());
-
 
     std::sort(elements.begin(), elements.end(), [](const EngineElement& e1, const EngineElement& e2) {
         return *e1.z_index < *e2.z_index;
@@ -76,11 +74,13 @@ void Engine::remove_attached_particle(Object *o) {
 
 void Engine::add(Object *o) {
     // First, we assign an ID
-    o->id = pop_id();
+    Object& obj = *o;
+    obj.id = pop_id();
     // Add object to manager
     om.add_object(o);
+    sm.apply_framestate(obj);
     // Then we create an engineElement
-    EngineElement e(GENG_Type::OBJECT, o->z(), o->id, o);
+    EngineElement e(GENG_Type::OBJECT, obj.z(), obj.id, o);
 
     // Then we add the element according to it's z-pos.
     const auto pos = std::lower_bound(
@@ -90,7 +90,6 @@ void Engine::add(Object *o) {
 
     // Now it's z-sorted!
     elements.insert(pos, e);
-
 }
 
 void Engine::add(std::vector<Object*> objs, GENG_Sort sort) {
@@ -99,6 +98,7 @@ void Engine::add(std::vector<Object*> objs, GENG_Sort sort) {
         i->id = pop_id();
         elements.emplace_back(GENG_Type::OBJECT, i->z(), i->id, i);
     }
+    sm.apply_framestates(objs);
     om.add_objects(objs);
     return;
 

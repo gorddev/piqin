@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "engine/gengine-globals/scene.hpp"
+
 using namespace gengine;
 
 Object::~Object() {
@@ -37,6 +39,10 @@ void Object::update_pos() {
 	}
 }
 
+bool Object::update_anim() {
+	return fs.update();
+}
+
 // Getters
 Vertex Object::pos() const { return t.pos; }
 
@@ -49,25 +55,21 @@ float Object::y() const { return t.pos.y; }
 float Object::z() const { return t.pos.z; }
 float* Object::zptr()  { return &t.pos.z; }
 float Object::scale() const { return t.scale; }
-int Object::sheet_id() const { return fs.sheet_id; }
-int Object::frameNum() const { return fs.frameNum; }
-uint8_t Object::state() const { return fs.state; }
-FrameState* Object::frame_state() { return &fs; }
 
 int Object::height() const {
-	return t.height;
+	return t.h;
 }
 
 int Object::width() const {
-	return t.width;
+	return t.w;
 }
 
 float Object::rotation() const {
-	return t.rotation;
+	return t.angle;
 }
 
-SDL_RendererFlip Object::flip() const {
-	return t.flip;
+bool Object::flip() const {
+	return t.flipX;
 }
 
 float& Object::duration() {
@@ -108,39 +110,25 @@ void Object::set_scale(const float scale) {
 	fixed = false;
 	t.scale = scale;
 }
-void Object::set_sheet_id(const int new_sheet_id) {
-	fixed = false;
-	fs.sheet_id = new_sheet_id;
-}
 
-void Object::set_frame_number(int new_frame_number) {
-	fixed = false;
-	fs.frameNum = new_frame_number;
-}
-
-void Object::set_state(uint8_t new_state) {
-	fixed = false;
-	fs.state = new_state;
-}
-
-void Object::set_status(uint8_t new_status) {
-	fixed = false;
-	fs.state = new_status;
+void Object::set_animation(uint8_t new_animation) {
+	fs.dirty = true;
+	fs.animation_index = new_animation;
 }
 
 void Object::set_height(int new_height) {
 	fixed = false;
-	t.height = new_height;
+	t.h = new_height;
 }
 
 void Object::set_width(int new_width) {
 	fixed = false;
-	t.width = new_width;
+	t.w = new_width;
 }
 
-void Object::set_flip(SDL_RendererFlip flippy) {
+void Object::set_flip(bool flippy) {
 	fixed = false;
-	t.flip = flippy;
+	t.flipX = flippy;
 }
 
 
@@ -177,6 +165,7 @@ void Object::set_shake(const Shake &s) {
 	shake = new Shake(s);
 }
 
+
 void Object::remove_shake() {
 	t.offset.set(0,0,0);
 	delete shake;
@@ -190,11 +179,6 @@ std::string Object::to_string() const {
 			"\npath: " + (path ==nullptr ? "nullptr" : path->to_string()) +
 			"\nshake: " + ((shake==nullptr) ? "nullptr" : "tostring:\n" + shake->get_displacement().to_string()) +
 			"\nid: " + std::to_string(id) +
-			"\nsheet_id: " + std::to_string(fs.sheet_id) +
+			"\nsheet_id: " + std::to_string(fs.frame_sheet_id) +
 				"\nflag: " + flag + "\n";
-}
-
-int Object::increment_frameNum() {
-	fixed = false;
-	return ++fs.frameNum;
 }

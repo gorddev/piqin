@@ -10,8 +10,8 @@ Deck::Deck() {
     // Sets up the parameters of our default deck
     t = default_deck;
     // Gets the sprite we render with.
-    fs.sheet_id = ASSET_CARD_STACK_ID;
-    fs.state = 2;
+    fs.frame_sheet_id = ASSET_CARD_STACK_ID;
+    fs.animation_index = 2;
 
     for (int i = 1; i <= 12; i++) {
         add_card(new Card(i, BJ_Suit::HEART));
@@ -27,12 +27,12 @@ Deck::~Deck() {
 }
 
 void Deck::update_state() {
-    fs.state = static_cast<uint8_t>(5.0f*(STANDARD_DECK_SIZE - ((drawPile.size())-1.0f))/52.0f);
+    fs.animation_index = static_cast<uint8_t>(5.0f*(STANDARD_DECK_SIZE - ((drawPile.size())-1.0f))/52.0f);
 }
 
 void Deck::prep_card_for_pop(Card*c) {
     if (drawPile.size() > 1)
-        fs.state = 5.0f*(STANDARD_DECK_SIZE - (drawPile.size()))/52.0f;
+        fs.animation_index = 5.0f*(STANDARD_DECK_SIZE - (drawPile.size()))/52.0f;
     else
         hidden = true;
     c->set_pos(t.pos);

@@ -1,11 +1,13 @@
 #pragma once
 
 #include <SDL_render.h>
+
+#include <utility>
 #include "engine/objects/Path.hpp"
 #include "engine/objects/Shake.hpp"
 #include "engine/objects/Transform.hpp"
-#include "engine/sprites/FrameState.hpp"
 #include "../gengine-globals/EngineEnums.hpp"
+#include "engine/textures/FrameState.hpp"
 
 namespace gengine {
     class Object {
@@ -24,27 +26,29 @@ namespace gengine {
         GENG_Tag tag = GENG_Tag::NONE;
         // Let's us flag output for specific objects going thru object manager
         std::string flag;
-    protected:
-        // Contains pos, scale, shake_offset, ect.
-        Transform t;
         // Contains framenum, duration, ect.
         FrameState fs;
+        // Contains pos, scale, shake_offset, ect.
+        Transform t;
+    protected:
         // Allows us to access Path information
         Path* path = nullptr;
         // Allows us to access a Shake variable
         Shake* shake = nullptr;
-
     public:
         // Constructors
         Object() = default;
         // ReSharper disable once CppPassValueParameterByConstReference
-        Object(Vertex v) : t(v) {}
-        Object(Object& o) : t(o.t), fs(o.fs), id(o.id), fixed{o.fixed} {}
+        explicit Object(Vertex v) : t(v) {}
+        Object(Vertex v, FrameState* spr) : t(v) {}
+        Object(Object& o) : id(o.id), fixed{o.fixed}, fs(o.fs), t(o.t) {}
         // Destructor
         virtual ~Object();
 
         // Member functions
         void update_pos();
+
+        bool update_anim();
 
         // Getters
         // Transform
@@ -60,17 +64,11 @@ namespace gengine {
         [[nodiscard]] int height() const;
         [[nodiscard]] int width() const;
         [[nodiscard]] float rotation() const;
-        [[nodiscard]] SDL_RendererFlip flip() const;
-        // FrameState
-        [[nodiscard]] int sheet_id() const;
-        [[nodiscard]] int frameNum() const;
-        [[nodiscard]] uint8_t state() const;
-        [[nodiscard]] FrameState* frame_state();
+        [[nodiscard]] bool flip() const;
         // Pathing/shaking
         [[nodiscard]] float& duration();
         [[nodiscard]] Path *get_path() const;
         [[nodiscard]] Shake* get_shake() const;
-
 
         // Setters
         // Transform
@@ -82,13 +80,9 @@ namespace gengine {
         void set_scale(float scale);
         void set_height(int new_height);
         void set_width(int new_width);
-        void set_flip(SDL_RendererFlip flippy);
+        void set_flip(bool flippy);
         // Frame State
-        void set_sheet_id(int new_sheet_id);
-        void set_frame_number(int new_frame_number);
-        void set_state(uint8_t new_state);
-        void set_status(uint8_t new_status);
-        int increment_frameNum();
+        void set_animation(uint8_t new_animation);
         // Path, shaking, ect.
         void set_path(const Path &p, bool priority = false);
         void set_path(Vertex target, GENG_Path pathType, float speed, bool priority = false);
@@ -97,6 +91,6 @@ namespace gengine {
         void remove_shake();
 
         // To String
-        [[nodiscard]] virtual std::string to_string() const;
+        [[nodiscard]] std::string to_string() const;
     };
 }
