@@ -9,6 +9,7 @@ set(CMAKE_EXECUTABLE_SUFFIX ".html")
 add_executable(norton
         # Main and engine
         src/engine/Engine.cpp
+        src/engine/engine-logic/EngineAdding.cpp
         src/main.cpp
         # Game Logic Below
         src/game/GameMaster.cpp

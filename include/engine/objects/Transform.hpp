@@ -1,5 +1,6 @@
 #pragma once
 #include "../utilities/types/Vertex.hpp"
+#include <SDL.h>
 
 namespace gengine {
     struct Transform {
@@ -8,12 +9,14 @@ namespace gengine {
         // Rotation of the object
         float angle = 0;
         // Size of each side of the object
-        short h = 10;
-        short w = 10;
+        short baseHeight = 10;
+        short baseWidth = 10;
+        float h = 10;
+        float w = 10;
         // If we're flipped or not
         bool flipX = false;
         bool flipY = false;
-        bool unlock = false;
+        bool locked = true;
         // Color of the object
         SDL_Color color = {255, 255, 255, 255};
 

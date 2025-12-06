@@ -74,8 +74,8 @@ bool ParticleSparkle::update() {
         while (deltat > period) {
             deltat -= period;
             if (horse != nullptr) {
-                pos.z = horse->pos().z - 0.01f;
-                particles.push_back(Sparkle(horse->offset() + horse->pos() - Vertex(0,0,0.4), speed, strength));
+                pos.z = horse->pos.z - 0.01f;
+                particles.push_back(Sparkle(horse->offset + horse->pos - Vertex(0,0,0.4), speed, strength));
             }
             else
                 particles.push_back(Sparkle(Vertex(0,0,0), speed, strength));
@@ -97,7 +97,7 @@ bool ParticleSparkle::update() {
 int ParticleSparkle::to_vertex(std::vector<SDL_Vertex>& buffer) {
     int count = 0;
     if (horse != nullptr)
-        pos = horse->pos();
+        pos = horse->pos;
     for (auto& i : particles) {
         i.to_vertex(buffer, color);
         count += 18;

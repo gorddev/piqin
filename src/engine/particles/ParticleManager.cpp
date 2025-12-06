@@ -49,7 +49,7 @@ void ParticleManager::update() {
 
 ParticleGroup* ParticleManager::find_by_object(const Object* o) {
     for (auto& i: groups) {
-        if (i->horse == o) {
+        if (i->horse == &o->t) {
             return i;
         }
     }
@@ -72,7 +72,7 @@ void ParticleManager::dissolve(ParticleGroup *g) {
 void ParticleManager::dissolve(const Object *o) {
     if (o == nullptr) return;
     for (auto&i: groups) {
-        if (i->horse == o) {
+        if (i->horse == &o->t) {
             i->end();
         }
     }

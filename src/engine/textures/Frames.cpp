@@ -13,17 +13,17 @@ Frame::Frame(std::vector<SDL_FPoint> points, float duration, gengine::GENG_Anim 
 
 void Frame::append_vertices(std::vector<SDL_Vertex>& buffer, Transform& t) {
     SDL_Vertex tl, tr, bl, br;
-    float ttw = roundf(t.pos.x +t.offset.x - t.w/2);
-    float ttwt = roundf(t.pos.x+t.offset.x + t.w/2);
-    float tth = roundf(t.pos.y+t.offset.y - t.h/2);
-    float ttht = roundf(t.pos.y+t.offset.y + t.h/2);
-    // If our Transform isn't unlocked, we don't do anything fancy with it.
-    tl = {{ttw, tth}, t.color, vertexPoints[0]};
-    tr = {{ttwt, tth}, t.color, vertexPoints[1]};
-    bl = {{ttw, ttht}, t.color, vertexPoints[2]};
-    br = {{ttwt, ttht}, t.color, vertexPoints[3]};
-    // Commented out for speed purposes
-    /*
+    if (t.locked) {
+        float ttw = roundf(t.pos.x +t.offset.x - t.w/2);
+        float ttwt = roundf(t.pos.x+t.offset.x + t.w/2);
+        float tth = roundf(t.pos.y+t.offset.y - t.h/2);
+        float ttht = roundf(t.pos.y+t.offset.y + t.h/2);
+        // If our Transform isn't unlocked, we don't do anything fancy with it.
+        tl = {{ttw, tth}, t.color, vertexPoints[0]};
+        tr = {{ttwt, tth}, t.color, vertexPoints[1]};
+        bl = {{ttw, ttht}, t.color, vertexPoints[2]};
+        br = {{ttwt, ttht}, t.color, vertexPoints[3]};
+    }
     else {
         // Flipping if we choose to do so
         signed char flipX = (t.flipX) ? -1 : 1;
@@ -85,7 +85,6 @@ void Frame::append_vertices(std::vector<SDL_Vertex>& buffer, Transform& t) {
             br = {fbr, t.color, vpBR};
         }
     }
-    */
     // Finally we push everything back on the buffer.
     buffer.push_back(tl);
     buffer.push_back(bl);

@@ -68,8 +68,8 @@ bool ParticleRhombus::update() {
     if (deltat > period && !done) {
         deltat -= period;
         if (horse != nullptr) {
-            pos.z = horse->pos().z - 1.f;
-            particles.emplace_back(horse->offset() + horse->pos() - Vertex(0,0,1), speed, strength);
+            pos.z = horse->pos.z - 1.f;
+            particles.emplace_back(horse->offset + horse->pos - Vertex(0,0,1), speed, strength);
         }
         else
             particles.emplace_back(Vertex(0,0,0), speed, strength);
@@ -90,7 +90,7 @@ bool ParticleRhombus::update() {
 int ParticleRhombus::to_vertex(std::vector<SDL_Vertex>& buffer) {
     int count = 0;
     if (horse != nullptr)
-        pos = horse->pos();
+        pos = horse->pos;
     for (auto& i : particles) {
         i.to_vertex(buffer, color);
         count+=6;
