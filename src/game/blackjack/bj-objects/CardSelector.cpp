@@ -72,7 +72,7 @@ void CardSelector::move(gengine::Vertex pos, float speed) {
 }
 
 void CardSelector::set_color(Selector_Color color) {
-    fs.animation_index = static_cast<uint8_t>(color);
+    set_animation(static_cast<uint8_t>(color));
 }
 
 void CardSelector::deactivate() {

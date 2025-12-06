@@ -45,6 +45,7 @@ bool Engine::tick(double time) {
 void Engine::render() {
     // Update all of our objects and their attatchments
     std::vector<FrameState*> frameStates = om.update_objects();
+    sm.update(frameStates);
     // Render
     pm.update();
     if (pm.particles_to_remove())

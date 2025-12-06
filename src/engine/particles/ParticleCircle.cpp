@@ -80,7 +80,7 @@ bool ParticleCircle::update() {
     return done;
 }
 
-std::vector<std::vector<SDL_FRect> > ParticleCircle::to_rect() {
+std::vector<std::vector<SDL_FRect> > ParticleCircle::to_vertex() {
     std::vector<std::vector<SDL_FRect>> rects;
     for (auto& i: particles) {
         rects.push_back(i.to_rect(speed));

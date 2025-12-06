@@ -25,20 +25,29 @@ bool Sparkle::update() {
     return false;
 }
 
-std::vector<SDL_FRect> Sparkle::to_rect() const {
-    std::vector<SDL_FRect> rects;
-    float rad = radius * duration / 1500;
-    rects.reserve(rad*rad*2);
-    // first get the width at each y point
-    for (short x = -rad; x <= rad; x++) {
-        rects.push_back({pos.x + x, pos.y, 1, 1});
-    }
-    for (short y = -rad; y <= rad; y++) {
-        if (y != 0)
-            rects.push_back({pos.x, pos.y + y, 1, 1});
-    }
-    // return our hard work
-    return rects;
+#define bpb(u, v) buffer.push_back({{u, v}, color, white})
+void Sparkle::to_vertex(std::vector<SDL_Vertex>& buffer, SDL_Color& color) {
+    int rad = static_cast<int>(radius * duration / 1500.f);
+    float x = roundf(pos.x);
+    float y = roundf(pos.y);
+    // Used vertices
+    SDL_Vertex topleft = {{x, y-rad-1.0f},color, white };
+    SDL_Vertex bottomright = {{x+1.0f, y+rad}, color, white};
+    // Assign our vertices
+    // This is for the big top strip
+    buffer.push_back(topleft);
+    buffer.push_back({{x, y+rad},color , white});
+    buffer.push_back(bottomright);
+    buffer.push_back(topleft);
+    buffer.push_back({{x+1.0f, y-rad-1.0f}, color, white});
+    buffer.push_back(bottomright);
+    // This is for the two side strips
+    // First side strip
+    bpb(x-rad, y); bpb(x-rad, y-1.f); bpb(x,y-1.f);// bottom vertex
+    bpb(x-rad, y); bpb(x,y); bpb(x,y-1.f); //top vertex
+    // Second side strip
+    bpb(x+1, y); bpb(x+1, y-1.f); bpb(x+1+rad, y-1.f); //bottom vertex
+    bpb(x+1, y); bpb(x+1+rad, y); bpb(x+1+rad, y-1.f); // top vertex
 }
 
 // ParticleSparkle constructors
@@ -85,11 +94,13 @@ bool ParticleSparkle::update() {
     return done;
 }
 
-std::vector<std::vector<SDL_FRect>> ParticleSparkle::to_rect() {
-    std::vector<std::vector<SDL_FRect>> rects;
+int ParticleSparkle::to_vertex(std::vector<SDL_Vertex>& buffer) {
+    int count = 0;
     if (horse != nullptr)
         pos = horse->pos();
-    for (auto& i : particles)
-        rects.push_back(i.to_rect());
-    return rects;
+    for (auto& i : particles) {
+        i.to_vertex(buffer, color);
+        count += 18;
+    }
+    return count;
 }

@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "../../../include/engine/textures/asset-info/TextureRegister.hpp"
+#include "engine/gengine-globals/scene.hpp"
 #include "engine/textures/asset-info/SheetRegistry.hpp"
 
 using namespace gengine;
@@ -39,6 +40,8 @@ textures::FrameSheet& SheetManager::get_sheet(Object &o) {
 
 void SheetManager::update(std::vector<FrameState*> states) {
     for (auto& spr : states) {
+        std::cerr << "\ncustomer: " << spr->to_string() << std::endl;
         sheets[spr->frame_sheet_id].update_frame(*spr);
+        std::cerr << "exiting: " << spr->to_string() << std::endl;
     }
 }

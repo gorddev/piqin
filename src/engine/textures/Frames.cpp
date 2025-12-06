@@ -13,11 +13,15 @@ Frame::Frame(std::vector<SDL_FPoint> points, float duration, gengine::GENG_Anim 
 
 void Frame::append_vertices(std::vector<SDL_Vertex>& buffer, Transform& t) {
     SDL_Vertex tl, tr, bl, br;
+    float ttw = roundf(t.pos.x +t.offset.x - t.w/2);
+    float ttwt = roundf(t.pos.x+t.offset.x + t.w/2);
+    float tth = roundf(t.pos.y+t.offset.y - t.h/2);
+    float ttht = roundf(t.pos.y+t.offset.y + t.h/2);
     // If our Transform isn't unlocked, we don't do anything fancy with it.
-    tl = {{roundf(t.pos.x+t.w/2), roundf(t.pos.y)}, t.color, vertexPoints[0]};
-    tr = {{roundf(t.pos.x + 3*t.w/2), roundf(t.pos.y)}, t.color, vertexPoints[1]};
-    bl = {{roundf(t.pos.x), roundf(t.pos.y + t.h)}, t.color, vertexPoints[2]};
-    br = {{roundf(t.pos.x + t.w), roundf(t.pos.y + t.h)}, t.color, vertexPoints[3]};
+    tl = {{ttw, tth}, t.color, vertexPoints[0]};
+    tr = {{ttwt, tth}, t.color, vertexPoints[1]};
+    bl = {{ttw, ttht}, t.color, vertexPoints[2]};
+    br = {{ttwt, ttht}, t.color, vertexPoints[3]};
     // Commented out for speed purposes
     /*
     else {
@@ -105,9 +109,9 @@ Frame Quad::to_frame(int& texWidth, int& texHeight) const {
     // 0.5 prevents bleeding and weird rendering
     std::vector<SDL_FPoint> vertexPoints(4);
     vertexPoints[0] = {(x + 0.5f) / texW, (y + 0.5f) / texH}; // top-left
-    vertexPoints[1] = {(x + w - 0.0f) / texW, (y + 0.5f) / texH}; // top-right
-    vertexPoints[2] = {(x + 0.5f) / texW, (y + h - 0.0f) / texH}; // bottom-left
-    vertexPoints[3] = {(x + w - 0.0f) / texW, (y + h - 0.0f) / texH}; // bottom-right
+    vertexPoints[1] = {(x + w + 0.01f) / texW, (y + 0.5f) / texH}; // top-right
+    vertexPoints[2] = {(x + 0.5f) / texW, (y + h - 0.f) / texH}; // bottom-left
+    vertexPoints[3] = {(x + w + 0.01f) / texW, (y + h - 0.0f) / texH}; // bottom-right
     return Frame(vertexPoints, duration, anim);
 }
 

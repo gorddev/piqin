@@ -62,6 +62,7 @@ void RenderManager::render(std::vector<EngineElement>& elmts) {
 	// ><><><><><>< BIG PHASE ><><><><><><
 	render_elements(elmts);
 	// ><><><><><>< BIG PHASE ><><><><><><
+
 	/* Now we scale up our texture in accordance with the gamera */
 }
 
@@ -88,7 +89,6 @@ void RenderManager::present() {
 		canvasTex,
 		nullptr,
 		&fr);
-
 	// Finally we present our hard work
 	SDL_RenderPresent(renderer);
 }
@@ -123,17 +123,18 @@ void RenderManager::render_elements(std::vector<EngineElement>& elmts) {
 			auto& o = *reinterpret_cast<Object*>(e.target);
 			if (!o.hidden) {
 				o.fs.frame->append_vertices(vertices, o.t);
+				add_shadow(6);
 			}
 		}
-		/*
+
 		else if (e.type == GENG_Type::PARTICLE) {
 			auto* pg = reinterpret_cast<ParticleGroup*>(e.target);
-			render_particles(*pg);
+			add_shadow(pg->to_vertex(vertices));
 		}
 		else if (e.type == GENG_Type::UI) {
 			// Unimplemented
 		}
-		*/
+
 	}
 	SDL_RenderGeometry(
 		renderer,
@@ -165,68 +166,8 @@ static SDL_FRect add_rect(SDL_FRect r1, SDL_FRect r2) {
 }
 
 void RenderManager::render_particles(ParticleGroup& pg) {
-	auto&[r, g, b, a] = pg.get_color();
-	std::vector<std::vector<SDL_FRect>> rects = pg.to_rect();
-	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-	SDL_Color sc = pg.get_shadow_color();
-	SDL_SetRenderDrawColor(renderer, sc.r, sc.g, sc.b, sc.a);
-	for (auto&i: rects) {
-		if (i.size() == 0) continue;
-		SDL_FRect offset =  rect_shadow_offset(i[0]);
-		for (auto& e: i) {
-			SDL_FRect shadow = rect_flat(add_rect(e, offset));
-			SDL_RenderDrawRectF(renderer, &shadow);
-		}
-	}
-	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
-	SDL_SetRenderDrawColor(renderer, r, g, b, a);
 
-	for (auto&i : rects) {
-		SDL_RenderDrawRectsF(renderer, i.data(),i.size());
-	}
-	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 }
-
-/* ................... */
-/* CREATION OF SHADOWS */
-/* ................... */
-// Creates a shadow texture (hopefully if one doesn't exist already).
-SDL_Texture* RenderManager::create_shadow_texture(SDL_Texture* texture) {
-	// Width and height of the original texture
-	int w, h;
-	Uint32 format;
-	// Gets info from our original texture
-	SDL_QueryTexture(texture, &format, nullptr, &w, &h);
-
-	// Create a target to render to.
-	SDL_Texture* shadow = SDL_CreateTexture(
-		renderer,
-		format,
-		SDL_TEXTUREACCESS_TARGET,
-		w, h
-	);
-
-	// Set our blendmode for shadows
-	SDL_SetTextureBlendMode(shadow, SDL_BLENDMODE_BLEND);
-	SDL_Texture* oldTarget = SDL_GetRenderTarget(renderer);
-
-	// Render into our shadow
-	SDL_SetRenderTarget(renderer, shadow);
-	SDL_RenderCopy(renderer, texture, nullptr, nullptr);
-
-	// restore the previous target (probably nullptr)
-	SDL_SetRenderTarget(renderer, oldTarget);
-
-	// Make the texture all black
-	SDL_SetTextureColorMod(shadow, 0, 0, 0);
-	// Set the opacity
-	SDL_SetTextureAlphaMod(shadow, SHADOW_ALPHA);
-	// Add the shadow to our spritesheet for the future
-	SDL_SetTextureBlendMode(shadow, SDL_BLENDMODE_BLEND);
-
-	return shadow;
-}
-
 
 /* ............... */
 /* UPDATE CANVAS   */
@@ -257,5 +198,30 @@ void RenderManager::update_canvas_size(){
 		// Updates our scale accordingly
 		scale = ((1.0 * canvasHeight) / canvasWidth < 0.75) ? 1.0*canvasHeight/glb::scene.height : 1.0*canvasWidth/glb::scene.width;
 		if (scale < 1.0) scale = 1.0;
+	}
+}
+
+void RenderManager::add_shadow(int numVertices) {
+	// First gets our size before we update with new vertices
+	int oldsize = static_cast<int>(vertices.size());
+	// Resize our vector accordingly.
+	vertices.resize(oldsize + numVertices);
+	// Now we copy the old memory to the new positions
+	// First we get the location of the new data
+	SDL_Vertex* loc = vertices.data() + oldsize;
+	// And the size of each SDL_Vertex is 24, so we have 24*numVertices bytes to copy
+	// Then we memcpy them cause it's fast
+	std::memcpy(loc, loc - numVertices, numVertices*sizeof(SDL_Vertex));
+	// Finally we update each vertex location
+	for (int i = oldsize - numVertices; i < oldsize; i++) {
+		// Store vertex in reference for easy access
+		SDL_Vertex& vert = vertices[i];
+		// Update its position
+		vert.position = {
+			vert.position.x + 0.02f*(vert.position.x - (glb::scene.width*0.5f)),
+			vert.position.y + (0.02f*(vert.position.y - glb::scene.height*0.25f))
+		};
+		// Update it's color
+		vert.color = {0, 0, 0, 50};
 	}
 }

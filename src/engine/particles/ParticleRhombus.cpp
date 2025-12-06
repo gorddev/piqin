@@ -25,21 +25,21 @@ bool Rhombus::update() {
     return false;
 }
 
-std::vector<SDL_FRect> Rhombus::to_rect() const {
-    std::vector<SDL_FRect> rects;
-    int rad = static_cast<int>(radius * duration / 1500);
-    rects.reserve(rad*rad*2);
-    // first get the width at each y point
-    for (int y = -1*rad; y <= rad; y++) {
-        const int width = rad - abs(y);
-        const int pixely =  static_cast<int>(pos.y) + y;
-        // fill out the width here
-        for (int x = -width; x <= width; x++) {
-            rects.push_back({ pos.x + x, static_cast<float>(pixely), 1, 1});
-        }
-    }
-    // return our hard work
-    return rects;
+void Rhombus::to_vertex(std::vector<SDL_Vertex>& buffer, SDL_Color& color) const {
+    // Radius
+    int rad = static_cast<int>(radius * duration / 1500.f);
+    // Vertex locations
+    SDL_Vertex top = {{pos.x, pos.y - rad}, color, white};
+    SDL_Vertex bottom = {{pos.x, pos.y + rad},  color, white};
+    SDL_Vertex left = {{pos.x - rad, pos.y}, color, white, };
+    SDL_Vertex right = {{pos.x + rad, pos.y}, color, white};
+    // Send to buffer
+    buffer.push_back(top);
+    buffer.push_back(left);
+    buffer.push_back(bottom);
+    buffer.push_back(top);
+    buffer.push_back(right);
+    buffer.push_back(bottom);
 }
 
 // ParticleRhombus constructors
@@ -87,11 +87,13 @@ bool ParticleRhombus::update() {
     return done;
 }
 
-std::vector<std::vector<SDL_FRect>> ParticleRhombus::to_rect() {
-    std::vector<std::vector<SDL_FRect>> rects;
+int ParticleRhombus::to_vertex(std::vector<SDL_Vertex>& buffer) {
+    int count = 0;
     if (horse != nullptr)
         pos = horse->pos();
-    for (auto& i : particles)
-        rects.push_back(i.to_rect());
-    return rects;
+    for (auto& i : particles) {
+        i.to_vertex(buffer, color);
+        count+=6;
+    }
+    return count;
 }

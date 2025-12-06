@@ -87,7 +87,7 @@ Frame& FrameSheet::get_frame(int animationNum, int frameNum) {
 
 void FrameSheet::update_frame(FrameState& s) {
     if (s.frameType== GENG_Anim::IDLE)
-        return;
+        s.set_frame(frames[s.animation_index][0]);
     if (s.frameType == GENG_Anim::CONTINUE)
         s.set_frame(frames[s.animation_index][++s.frame_index]);
     else if (s.frameType == GENG_Anim::RESET)

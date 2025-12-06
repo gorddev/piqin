@@ -75,7 +75,7 @@ namespace blackjack {
         void set_target_action(BJ_Action new_action);
 
         // De-initializes the floater and puts it back into the hand
-        void uninitialize_floater();
+        void deactivate_floater();
 
         // When we select something, we call this function
         void select();

@@ -52,10 +52,6 @@ namespace blackjack {
         1
     };
 
-    inline const gengine::FrameState defaultCardFrameState = {
-        ASSET_DECK_ID
-    };
-
     // Constants for all the different types of cards
 #define CARD_FLIPPED 53
 }

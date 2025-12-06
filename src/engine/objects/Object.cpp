@@ -113,6 +113,7 @@ void Object::set_scale(const float scale) {
 
 void Object::set_animation(uint8_t new_animation) {
 	fs.dirty = true;
+	fs.duration = 0;
 	fs.animation_index = new_animation;
 }
 

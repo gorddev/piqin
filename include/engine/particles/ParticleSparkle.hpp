@@ -3,7 +3,6 @@
 #include <deque>
 
 namespace gengine {
-    class Object;
 
     struct Sparkle {
         Vertex pos;
@@ -13,7 +12,7 @@ namespace gengine {
         Sparkle(const Vertex &offset, float speed, float size);
         // Updates rhombus position
         bool update();
-        [[nodiscard]] std::vector<SDL_FRect> to_rect() const;
+        void to_vertex(std::vector<SDL_Vertex>& buffer, SDL_Color& color);
     };
 
     class ParticleSparkle : public ParticleGroup {
@@ -26,6 +25,6 @@ namespace gengine {
         ParticleSparkle(Object* o, float size, float speed, float duration, float period, SDL_Color Tint = {0,0,0,30});
 
         bool update() override;
-        std::vector<std::vector<SDL_FRect>> to_rect() override;
+        int to_vertex(std::vector<SDL_Vertex>& buffer) override;
     };
 }

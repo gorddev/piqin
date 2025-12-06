@@ -31,8 +31,8 @@ Card::Card(int val, BJ_Suit suite)
 
     if (value > 13 && suit != BJ_Suit::SPECIAL) value = 13;
     t = defaultCardTransform;
-    fs = defaultCardFrameState;
-    fs.animation_index = to_anim_num();
+    fs.frame_sheet_id = ASSET_DECK_ID;
+    set_animation(to_anim_num());
     fs.default_animation = to_anim_num();
     hidden = true;
 }
@@ -43,17 +43,17 @@ bool Card::operator==(const Card c) const {
 
 void Card::flip() {
     flipped = !flipped;
-    fs.animation_index = (flipped) ? CARD_FLIPPED : to_anim_num();
+    set_animation((flipped) ? CARD_FLIPPED : to_anim_num());
 }
 
 void Card::flip_up() {
     flipped = false;
-    fs.animation_index = fs.default_animation;
+    set_animation(fs.default_animation);
 }
 
 void Card::flip_down() {
     flipped = true;
-    fs.animation_index = CARD_FLIPPED;
+    set_animation(CARD_FLIPPED);
 }
 
 bool Card::is_flipped() const {

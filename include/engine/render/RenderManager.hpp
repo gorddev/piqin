@@ -22,50 +22,33 @@ namespace gengine {
 		// Must call during main
 		void initialize();
 
-		// Initialize the RenderManager
-		// The render pipeline is specified above. That is what this function uses.
+		// Renders each engine element according to its type.
 		void render(std::vector<EngineElement>& elmts);
 		// Present the render
 		void present();
 
-		// Gets our renderer for testing purposes
+		// Gets our renderer for setup purposes. Should not be called once game loop starts.
 		SDL_Renderer* get_renderer() { return renderer; }
 
+		// Sets our texture_atlas to the texture specified.
 		void set_texture_atlas(SDL_Texture* t);
 
 	private:
 		// RENDER PIPELINE
 		// 1. Draws the background for our scene
 		void draw_background();
-		// 2. Then we render objects (flats, shadows, verticals)
-		// BIG STEP ><><><><><><><
-		// Divides elements between particles, objects, and UI
+		// 2. Divides elements between particles, objects, and UI
 		void render_elements(std::vector<EngineElement>& elmts);
-		// BIG STEP ><><><><><><><
-		// <<<>>> Render Shadows & Verticals
+		// 3. Render the objects and particles in order of z-xais.
 		void render_object(Object& o);
 		void render_particles(ParticleGroup &pg);
-		// HELPER: Draw rectangles
-		// Calculates where to draw rectangles on the canvas
 
-		// To be deleted
-		[[nodiscard]] SDL_FRect rect_flat(Object &o) const;
-
-		[[nodiscard]] SDL_FRect rect_flat(SDL_FRect f) const;
-
-		[[nodiscard]] SDL_FRect rect_shadow(Object& o);
-		[[nodiscard]] SDL_FRect rect_shadow(SDL_FRect f);
-
-		SDL_FRect rect_shadow_offset(SDL_FRect f);
-
-		// Creates a shadow if one is not preloaded
-		SDL_Texture* create_shadow_texture(SDL_Texture* texture);
-
-		// Creates textures to render to
+		// This sets our render texture to the small 300 x 200 window so we get pixel-perfect scaling.
 		void set_render_texture();
-
 		// Updates the canvas in case the user decides to resize the window
 		void update_canvas_size();
+		// Adds shadows to the buffer based on the number of vertices specified.
+		void add_shadow(int numVertices);
 	private:
 		// Holds all the vertices we will ever need
 		std::vector<SDL_Vertex> vertices;
@@ -76,12 +59,10 @@ namespace gengine {
 		Camera* cam;
 		Vertex camCenter;
 
-
 		// Scene width and height! */
 		int canvasWidth = glb::scene.width;
 		int canvasHeight = glb::scene.height;
 		float scale = 1.0; 		// How much the user has scaled things
-		bool setup = false; // If we're setup properly
 
 		// This is the texture we draw to before scaling up.
 		SDL_Texture* canvasTex;

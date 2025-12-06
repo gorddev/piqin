@@ -28,7 +28,7 @@ namespace gengine {
         ParticleCircle(Object* o, float size, float speed, float duration, float period, SDL_Color Tint = {0,0,0,30});
 
         bool update() override;
-        std::vector<std::vector<SDL_FRect>> to_rect() override;
+        std::vector<std::vector<SDL_FRect>> to_vertex() override;
     };
 
 }

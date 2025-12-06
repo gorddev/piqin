@@ -1,4 +1,4 @@
-#include "engine/particles/ParticleCircle.hpp"
+//#include "engine/particles/ParticleCircle.hpp"
 #include "engine/particles/ParticleSparkle.hpp"
 #include "game/blackjack/Board.hpp"
 
@@ -8,7 +8,6 @@ using namespace blackjack;
 
 void Board::select() {
     // If we're currently playing a card
-    std::cerr << slct.get_target()->get_value() << std::endl;
     if (action == BJ_Action::PLAY) {
         if (target == BJ_Target::HAND)
             play_card();
@@ -51,7 +50,7 @@ void Board::back() {
 
 void Board::use_card() {
     if (floater != nullptr && floater->use(slct.get_target()))
-        uninitialize_floater();
+        deactivate_floater();
 }
 
 void Board::pull_card() {
@@ -61,11 +60,11 @@ void Board::pull_card() {
     else if (menu.row() == BJ_Target::OPPONENT)
         c = opponentDraw.pop_card(menu.col());
     if (c != nullptr) {
-        auto* pc = new gengine::ParticleCircle(c, 20.0, 0.125, 200, 20, {180, 220, 180, 255});
-        bob.attach_new_particle(c, pc);
+        //auto* pc = new gengine::ParticleCircle(c, 20.0, 0.125, 200, 20, {180, 220, 180, 255});
+        //bob.attach_new_particle(c, pc);
         pather.move(c, playerDraw);
     }
-    uninitialize_floater();
+    deactivate_floater();
 }
 
 void Board::push_card() {
@@ -75,11 +74,11 @@ void Board::push_card() {
     else if (menu.row() == BJ_Target::PLAYER)
         c = playerDraw.pop_card(menu.col());
     if (c != nullptr) {
-        auto* pc = new gengine::ParticleCircle(c, 20.0, 0.125, 200, 20, {180, 220, 180, 255});
-        bob.attach_new_particle(c, pc);
+        //auto* pc = new gengine::ParticleCircle(c, 20.0, 0.125, 200, 20, {180, 220, 180, 255});
+        //bob.attach_new_particle(c, pc);
         pather.move(c, opponentDraw);
     }
-    uninitialize_floater();
+    deactivate_floater();
 }
 
 void Board::grab_card() {
@@ -97,7 +96,7 @@ void Board::grab_card() {
         pather.update_hand(hand);
     }
 
-    uninitialize_floater();
+    deactivate_floater();
 }
 
 void Board::set_target_range(BJ_Target targetRange) {
@@ -110,7 +109,7 @@ void Board::set_target_action(BJ_Action new_action) {
     this->action = new_action;
 }
 
-void Board::uninitialize_floater() {
+void Board::deactivate_floater() {
     bob.remove_attached_particle(floater);
     floater->set_shake(gengine::GENG_Shake::RANDOM,3.0,550,1,true);
     ADDEV(600, auto* ps = new gengine::ParticleSparkle(floater, 8.0f, 1.0, 350, 30);

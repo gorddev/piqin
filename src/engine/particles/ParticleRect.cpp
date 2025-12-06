@@ -78,7 +78,7 @@ bool ParticleRect::update() {
     return done;
 }
 
-std::vector<std::vector<SDL_FRect>> ParticleRect::to_rect() {
+std::vector<std::vector<SDL_FRect>> ParticleRect::to_vertex() {
     std::vector<std::vector<SDL_FRect>> rects;
     if (horse != nullptr)
         pos = horse->pos();

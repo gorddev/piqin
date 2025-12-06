@@ -16,21 +16,22 @@ EM_BOOL gameloop(double time, void* userdata) {
 	// <><><><><><><><>
 	// Updates our time and grabs user input & runs events
 	// <><><><><><><><>
+	static int x = 200;
+
 	if (!bob.tick(time))
 		return EM_FALSE;
-
+	double newtime = emscripten_get_now();
 
 	// All game logic goes here!
 	gm->blackjack();
-
 	// Game master updates states of game logic and object paths
 	gm->update();
+	newtime = emscripten_get_now();
 
 	// <><><><><><><><>
 	// Finally we render
 	// <><><><><><><><>
 	bob.render();
-
 
 	return EM_TRUE;
 }
@@ -39,11 +40,9 @@ EM_BOOL gameloop(double time, void* userdata) {
 int main() {
 	bob.initialize();
 
-
 	// GameMaster -> Handles game logic
 	gm = new GameMaster();
 	gm->initialize();									// GameMaster
-
 	// Now we just pray that the sheetManager piped the input properly. :o
 
 	/************ FUCK AROUND ZONE**********/

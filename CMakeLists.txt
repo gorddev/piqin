@@ -44,9 +44,7 @@ add_executable(norton
         # Particles
         src/engine/particles/ParticleManager.cpp
         src/engine/particles/ParticleRhombus.cpp
-        src/engine/particles/ParticleRect.cpp
         src/engine/particles/ParticleSparkle.cpp
-        src/engine/particles/ParticleCircle.cpp
 
         # Rendering
         src/engine/render/RenderManager.cpp

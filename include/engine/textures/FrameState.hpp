@@ -29,5 +29,6 @@ namespace gengine {
         // Applies all the parameters of a frame
         void set_frame(textures::Frame& s);
         // Sets the animation index.
+        std::string to_string();
     };
 }

@@ -73,6 +73,6 @@ void Shake::shake_floaty() {
 void Shake::shake_side() {
     if (displacement.zero())
         displacement.set((random()%2) ? 1 : -1,0,0);
-    displacement.x = -1*displacement.x;
-    displacement.y = -1*displacement.y;
+    displacement.x = sinf(glb::scene.time * speed * 2.0f * M_PI);
+    displacement.y = cosf(glb::scene.time * speed * 2.0f * M_PI);
 }

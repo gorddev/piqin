@@ -2,8 +2,8 @@
 
 #include "engine/particles/ParticleRhombus.hpp"
 #include "../../../../include/game/blackjack/bj-objects/Deck.hpp"
-#include "engine/particles/ParticleCircle.hpp"
-#include "engine/particles/ParticleRect.hpp"
+//#include "engine/particles/ParticleCircle.hpp"
+//#include "engine/particles/ParticleRect.hpp"
 #include "engine/particles/ParticleSparkle.hpp"
 #include "game/blackjack/Board.hpp"
 
@@ -128,6 +128,7 @@ void Pather::move(Card *c, Draw& draw, int index, bool down) {
     draw.add_card(c);
     if (down)
         c->flip_down();
+    c->flip_up();
     if (index == -1)
         index = draw.get_index(c);
     // Gets target location for the draw

@@ -62,8 +62,9 @@ std::vector<FrameState*> ObjectManager::update_objects(){
 		obj.update_pos();
 		// Ticks our object's animation frame
 		// SheetManager -> Object's Sheet -> tick_object
-		if (obj.update_anim())
+		if (obj.update_anim()) {
 			ret.push_back(&obj.fs);
+		}
 	}
 	return ret;
 }
