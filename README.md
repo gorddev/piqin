@@ -1,18 +1,8 @@
-### This directory has the following structure:
-build
- - CMAKE files
- - Makefile
- - Cache
-include
- - generics
- | - vertex.hpp (way we handle positions)
- | - Object.hpp (generic objects all entities on-screen inherit from)
- - render
- | - Camera.hpp (contains logic for Camera)
- | - Scene.hpp (contains logic for the Scene rendering)
-src
- - generics
- | [Implementations]
- - render
- | [Implementations]
- - main.cpp
+### Readme incomplete
+Each of the directory names are pretty self-explanatory, but this is a game engine + a game I'm building on top of it.
+
+Current updates on progress
+
+- Working on engine <<< currently here
+- Working on game
+- Done with game
