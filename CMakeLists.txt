@@ -36,46 +36,56 @@ add_executable(norton
         ]]
 
         # Game Engine Below
+        #initialization
+        src/engine/scene/initializer/Initializer.cpp
+
+        #events
+        src/engine/scene/events/EventManager.cpp
+
         # Input
-        src/engine/input/InputManager.cpp
-        src/engine/input/InputConstants.cpp
+        src/engine/input/InputSource.cpp
+        src/engine/input/InputHandler.cpp
+
+        # Layering
+        src/engine/scene/Layer.cpp
 
         # Actors
-        src/engine/actors/ActorManager.cpp
+        src/engine/scene/actors/ActorManager.cpp
+
+        # Fonts
+        src/engine/scene/font/Font.cpp
 
         # Effects
-        src/engine/effects/EffectManager.cpp
-        src/engine/effects/effect-types/Shake.cpp
-        src/engine/effects/effect-types/Stretch.cpp
+        src/engine/scene/morphs/MorphManager.cpp
+        src/engine/scene/morphs/morph-types/Shake.cpp
+        src/engine/scene/morphs/morph-types/Stretch.cpp
 
         # Particles
-        src/engine/particles/ParticleGroup.cpp
-        src/engine/particles/ParticleManager.cpp
-        src/engine/particles/ParticleRhombus.cpp
-        src/engine/particles/ParticleSparkle.cpp
+        src/engine/scene/particles/ParticleManager.cpp
+        src/engine/scene/particles/particle-types/Rhombus.cpp
+        src/engine/scene/particles/particle-types/Sparkle.cpp
 
         # Pathing
-        src/engine/pathing/PathManager.cpp
-        src/engine/pathing/path-types/BalloonPath.cpp
-        src/engine/pathing/path-types/TorpedoPath.cpp
-        src/engine/pathing/path-types/ReboundPath.cpp
-        src/engine/pathing/path-types/LinearPath.cpp
-        src/engine/pathing/path-types/SinePath.cpp
+        src/engine/scene/routing/RouteManager.cpp
+        src/engine/scene/routing/route-types/Balloon.cpp
+        src/engine/scene/routing/route-types/Torpedo.cpp
+        src/engine/scene/routing/route-types/Rebound.cpp
+        src/engine/scene/routing/route-types/Linear.cpp
+        src/engine/scene/routing/route-types/Sine.cpp
 
         # Rendering
         src/engine/render/Renderer.cpp
         src/engine/render/Background.cpp
 
         # Frame Management
-        src/engine/animation/FrameManager.cpp
-        src/engine/animation/FrameTable.cpp
-        src/engine/animation/Frames.cpp
-        src/engine/animation/AnimInfo.cpp
-        src/engine/animation/TextureRegister.cpp
-        src/engine/animation/asset-info/FrameTableRegistry.cpp
+        src/engine/scene/animation/FrameManager.cpp
+        src/engine/scene/animation/FrameTable.cpp
+        src/engine/scene/animation/Frames.cpp
+        src/engine/scene/animation/AnimInfo.cpp
+        src/engine/scene/initializer/TextureRegister.cpp
 
         # Utilities
-        src/engine/utilities/PNGDecoder.cpp
+        src/engine/utilities/IMGDecoder.cpp
         src/engine/utilities/Utilities.cpp
 
         # Types
@@ -83,10 +93,6 @@ add_executable(norton
         src/engine/types/Quad.cpp
 
         # Globals
-        src/engine/gengine-globals/scene.cpp
-        src/engine/gengine-globals/Timer.cpp
-        src/engine/gengine-globals/Shadow.cpp
-        src/engine/gengine-globals/Random.cpp
 )
 
 target_include_directories(norton PRIVATE

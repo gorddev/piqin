@@ -1,5 +1,4 @@
 #pragma once
-#include "../gengine-globals/scene.hpp"
 #include "engine/types/Vertex.hpp"
 
 namespace geng {
@@ -7,8 +6,8 @@ namespace geng {
 	class Camera{
 	public:
 		Vertex pos;
-		int w = global::scene().width;
-		int h = global::scene().height;
+		int w = 0;
+		int h = 0;
 
 		// Camera constructor
 		Camera() { }

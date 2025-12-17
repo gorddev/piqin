@@ -2,9 +2,8 @@
 
 #include <vector>
 #include <unordered_map>
-#include "engine/actors/Transform.hpp"
+#include "engine/types/Transform.hpp"
 #include "BJConstants.hpp"
-#include "engine/gengine-globals/scene.hpp"
 
 namespace blackjack {
     inline int roundScore = 21;
@@ -77,7 +76,7 @@ namespace blackjack {
 
     // Default Object Setups
     static const geng::Transform default_deck = {
-        BJ_DEFAULT_DECK_POS,
+        {0,0,0},
         53,
         37,
         1,

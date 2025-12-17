@@ -1,11 +1,10 @@
 #pragma once
+
 #include <game/blackjack/BJEnums.hpp>
-
-#include "EngineSource.hpp"
-#include "engine/gengine-globals/scene.hpp"
+#include "engine/scene/actors/Actor.hpp"
 
 
-    class Card : public geng::Actor {
+class Card : public geng::Actor {
         int value;
         blackjack::BJ_Suit suit;
         bool flipped = false;
@@ -44,7 +43,7 @@
         // Function for cards with special purposes.
         bool use(Card* c);
 
-        void click_release() override;
+        void on_click_release() override;
 
         void move(geng::Vertex dist) override;
     };

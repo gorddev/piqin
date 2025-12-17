@@ -1,6 +1,8 @@
 #pragma once
-#include "engine/animation/Frame.hpp"
-#include "engine/gengine-globals/EngineEnums.hpp"
+
+#include <SDL_rect.h>
+#include <vector>
+#include "EngineEnums.hpp"
 
 namespace geng {
     /**
@@ -10,9 +12,12 @@ namespace geng {
     struct Quad {
         int x, y, w, h;
         float duration;
-        GENG_Anim anim;
+        GAnimType anim;
+        /// Constructor for a quad. Can hold useful info for
         Quad(int x, int y, int w, int h,
-            float duration = 0.f, GENG_Anim anim = GENG_Anim::IDLE);
-        Frame to_frame(int &texWidth, int &texHeight) const;
+            float duration = 0.f, GAnimType anim = GAnimType::IDLE);
+
+        /// Converts a quad into it's vertex points
+        std::vector<SDL_FPoint> to_vert_points(int texW, int texH) const;
     };
 }

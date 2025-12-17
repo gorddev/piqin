@@ -1,4 +1,4 @@
-#include "engine/gengine-globals/Random.hpp"
+#include "../../../include/engine/types/Random.hpp"
 
 geng::Random& geng::global::rand() {
     static Random r;

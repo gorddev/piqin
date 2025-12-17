@@ -3,30 +3,24 @@
 #include <emscripten/html5.h>
 #include <emscripten.h>
 
-#include "engine/Engine.hpp"
-#include "engine/animation/asset-info/FrameTableRegistry.hpp"
-#include "engine/animation/asset-info/sheets/Asset-Card-Selector.hpp"
-#include "engine/animation/asset-info/sheets/Asset-Card-Stack.hpp"
-#include "engine/animation/asset-info/sheets/Asset-Deck.hpp"
 #include "Card.hpp"
-#include "engine/effects/effect-types/Shake.hpp"
-#include "engine/effects/effect-types/Stretch.hpp"
-#include "engine/particles/particle-types/ParticleRhombus.hpp"
-#include "engine/particles/particle-types/ParticleSparkle.hpp"
+#include "engine/Engine.hpp"
+#include "engine/scene/morphs/morph-types/Stretch.hpp"
+#include "engine/scene/particles/particle-types/Rhombus.hpp"
+#include "game/asset-info/sheets/Asset-Card-Selector.hpp"
+#include "game/asset-info/sheets/Asset-Card-Stack.hpp"
+#include "game/asset-info/sheets/Asset-Deck.hpp"
+#include "game/asset-info/sheets/sys-font.hpp"
 
-Card* c = new Card(55, blackjack::BJ_Suit::SPECIAL);
 
 // gameloop defined below
 EM_BOOL gameloop(double time, void* userdata) {
+	geng::Engine& bob = *static_cast<geng::Engine*>(userdata);
 	(void)userdata;
 	// <><><><><><><><>
 	// Updates our time and grabs user input & runs events
 	// <><><><><><><><>
-
-	if (!bob.tick(time))
-		return EM_FALSE;
-
-
+	bob.tick(time);
 	// <><><><><><><><>
 	// Finally we render
 	// <><><><><><><><>
@@ -37,33 +31,38 @@ EM_BOOL gameloop(double time, void* userdata) {
 
 
 int main() {
-	std::cerr << "into main?\n";
-	{
-		std::cerr << "tyring to register first frame\n";
-		geng::get_TableRegistry().emplace(1, asset_draw_deck);
-		std::cerr << "added frame 1.\n";
-		geng::get_TableRegistry().emplace(2, asset_card_selector);
-		std::cerr << "added frame 2.\n";
-		geng::get_TableRegistry().emplace(0, asset_deck);
-		std::cerr << "added frameSheets.\n";
-	}
-	bob.initialize();
 
-	bob.add_actor(c);
-	c->t.pos.y += geng::global::scene().height/2.f;
-	c->set_hoverable();
-	c->set_clickable();
+	geng::Engine bob;
+	bob.init();
+	bob.set_debug_mode(true);
+	bob.set_debug_immediate_print(true);
+
+	std::cerr << "before adding layer\n";
+	auto* l = new geng::Layer("m");
+	std::cerr << "after adding layer\n";
+	bob.layer.add_layer(l);
+	l->init.texture("assets/full-texture.png");
+	l->init.set_sys_font("assets/full-texture.png", sys_font);
+	l->init.frame_table("assets/full-texture.png", asset_deck);
+	l->init.frame_table("assets/full-texture.png", asset_card_selector);
+	l->init.frame_table("assets/full-texture.png", asset_draw_deck);
+	bob.compose_layer(l);
+
+	Card* c = new Card(10, blackjack::BJ_Suit::DIAMOND);
 	c->set_draggable();
+	l->apply_morph(new gfx::Stretch(c, 3.0, 1.0));
+	l->attach_particle(c, new gfx::Rhombus(c, 400.f, 1.f, -1, 20));
+	l->input.add_mouse_acceptor(c);
+	l->add_actor(c);
+	c->t.pos = {30, 50, 0};
 
-	bob.apply_effect(new gfx::Stretch(c, 10.f, 2.f));
+	//l->cell_bucket.add_cell(0);
 
 
-	std::cerr << "dont initializing\n";
 	/******** END OF FUCK AROUND ZONE *******/
-	emscripten_request_animation_frame_loop(gameloop, nullptr);
+	emscripten_request_animation_frame_loop(gameloop, &bob);
 	emscripten_exit_with_live_runtime();
 
-	// He's just a lil guy
 	return 0;
 }
 

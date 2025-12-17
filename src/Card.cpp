@@ -1,6 +1,6 @@
 #include "Card.hpp"
 
-#include "engine/pathing/path-types/BalloonPath.hpp"
+#include "../include/engine/scene/routes/route-types/Balloon.hpp"
 #include "game/blackjack/BJEnums.hpp"
 
 /* This file contains all the proper set up for making a card */
@@ -32,7 +32,7 @@ Card::Card(int val, BJ_Suit suite)
 
     if (value > 13 && suit != BJ_Suit::SPECIAL) value = 13;
     t = defaultCardTransform;
-    anim.set_frame_table_id(ASSET_DECK_ID);
+    anim.set_frame_table_id(0);
     anim.set_animation(to_anim_num());
     anim.default_animation = to_anim_num();
     unhide();
@@ -74,27 +74,26 @@ bool Card::use(Card *c) {
     /*
     if (value == BJ_CARD_INCREMENT) {
         if (c->special()) {
-            bob.apply_effect(*c, BJ_SHAKE_DENY);
+            bob.apply_morph(*c, BJ_SHAKE_DENY);
             return false;
         }
         c->adjust_value(3);
-        bob.apply_effect(*c, new geng::EffectShake(geng::GENG_Shake::CIRCULAR, 3, 400, -2));
+        bob.apply_morph(*c, new geng::EffectShake(geng::GENG_Shake::CIRCULAR, 3, 400, -2));
     }
     else if (value == BJ_CARD_DECREMENT) {
         if (c->special()) {
-            bob.apply_effect(*c, BJ_SHAKE_DENY);
+            bob.apply_morph(*c, BJ_SHAKE_DENY);
             return false;
         }
         c->adjust_value(-3);
-        bob.apply_effect(*c, new geng::EffectShake(geng::GENG_Shake::CIRCULAR, 3, 400, 2));
+        bob.apply_morph(*c, new geng::EffectShake(geng::GENG_Shake::CIRCULAR, 3, 400, 2));
     }
     return true;
     */
     return true;
 }
 
-void Card::click_release() {
-    bob.set_path(new geng::BalloonPath(this, geng::Vertex(geng::global::scene().width/2, 200, 0),2.0));
+void Card::on_click_release() {
     t.reset();
 }
 

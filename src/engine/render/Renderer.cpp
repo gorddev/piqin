@@ -1,34 +1,41 @@
 #include "engine/rendering/Renderer.hpp"
 #include <string>
 
-#include "engine/actors/Actor.hpp"
-#include "engine/animation/asset-info/TextureRegister.hpp"
-
 using namespace geng;
 
-Renderer::Renderer(Camera* cam) :
-		cam(cam), atlas(nullptr) {
+Renderer::Renderer(EngineContext& world, Camera* cam) : world(world), cam(cam) {
 	// Create the texture we will end up rendering to.
 	canvasTex = nullptr;
 	// Initializes good stuff
-	vertices.resize(10000);
-	vertices.clear();
+	buffer.resize(10000);
+	buffer.clear();
 }
 
-void Renderer::initialize() {
-	SDL_Init(SDL_INIT_VIDEO);
-	window = SDL_CreateWindow("Norton",
-			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-			global::scene().width, global::scene().height, SDL_WINDOW_RESIZABLE);
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
-	bg = new Background(renderer);
+void Renderer::set_canvas_resolution(const uint16_t width, const uint16_t height) {
+	// Destroy our canvas tex if it doesn't already exist. 
+	if (canvasTex != nullptr)
+		SDL_DestroyTexture(canvasTex);
+	world._set_window_size(width, height);
 	canvasTex = SDL_CreateTexture(
 		renderer,
 		SDL_PIXELFORMAT_RGBA8888,
 		SDL_TEXTUREACCESS_TARGET,
-		global::scene().width, global::scene().height);
+		world.get_width(), world.get_height());
+}
+
+void Renderer::_init() {
+	// Initialize SDL Video
+	SDL_Init(SDL_INIT_VIDEO);
+	// Create the window we will use
+	window = SDL_CreateWindow("Norton",
+			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+			world.get_width(), world.get_height(), SDL_WINDOW_RESIZABLE);
+	// Form the renderer to the window we'll use
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+	// Set the canvas size we'll render to. 
+	set_canvas_resolution(world.get_width(), world.get_height());
+	// Tells us to use nearest neighbor scaling. 
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
-	get_tex_register().initialize_textures(renderer);
 }
 
 Renderer::~Renderer() {
@@ -37,74 +44,30 @@ Renderer::~Renderer() {
 
 void Renderer::set_render_texture() {
 	SDL_SetRenderTarget(renderer, canvasTex);
-	SDL_SetRenderDrawColor(renderer, 242, 32, 21, 255);
+	SDL_SetRenderDrawColor(renderer, 30, 90, 30, 255);
 	SDL_RenderClear(renderer);
 }
 
-void Renderer::render(std::vector<Gear*>& gears) {
+void Renderer::render(std::vector<Layer*>& layers) {
 
 	/* RENDER SETUP */
 	// First we set our draw color in case nothing renders
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	// We set up the camera center.
-	camCenter = cam->center();
 	// Then we update our canvas in case the user changed the window size
 	update_canvas_size();
 	// We flush the page
 	SDL_RenderClear(renderer);
 	/* RENDERING SHIT */
 
-	vertices.clear();
+	buffer.clear();
 	// Now we set our renderTexutre (global::scene.width x global::scene.height)
-	// This will be global::scene().scaled up after we draw the background & actors
+	// This will be world.get_scale()d up after we draw the background & actors
 	set_render_texture();
-	// Draw the background
-	draw_background();
 
 	// ><><><><><>< BIG PHASE ><><><><><><
-	render_elements(gears);
-	// ><><><><><>< BIG PHASE ><><><><><><
-
-	/* Now we global::scene().scale up our texture in accordance with the gamera */
-}
-
-
-
-void Renderer::present() {
-	// Sert our render to the backbuffer
-	SDL_SetRenderTarget(renderer, nullptr);
-	// Then we establish the thing we're writing to.
-
-	// Otherwise we global::scene().scale without pixel perfect scaling
-	// This is the rectangle we draw to if we don't use pixel perfect.
-	SDL_Rect fr = {0, 0, 0,0};
-	// These next lines
-	fr.x = global::scene().borderX;
-	fr.y = global::scene().borderY;
-	fr.w = (global::scene().width * global::scene().scale);
-	fr.h = (global::scene().height * global::scene().scale);
-
-	// Now we global::scene().scale up our whole canvas
-	SDL_RenderCopy(
-		renderer,
-		canvasTex,
-		nullptr,
-		&fr);
-	// Finally we present our hard work
-	SDL_RenderPresent(renderer);
-}
-
-void Renderer::set_texture_atlas(SDL_Texture *t) {
-	atlas = t;
-}
-
-void Renderer::draw_background() {
-	bg->update(global::scene().dt);
-	SDL_RenderCopy(
-		renderer,
-		bg->get_texture(),
-		nullptr,
-		nullptr);
+	for (auto& l : layers) {
+		render_layer(l);
+	}
 }
 
 
@@ -116,62 +79,94 @@ void Renderer::draw_background() {
 // Elements come presorted from the Engine
 // <><><><><><><><><><><>><>
 // Then, we separate each element into it's proper type and render it.
-void Renderer::render_elements(const std::vector<Gear*>& gears) {
-	for (auto& e: gears) {
-		// If our item is not hidden
-		if (!e->hidden()) {
-			e->to_vertex(vertices);
-		}
+void Renderer::render_layer(Layer*& lay) {
+	// Grabs the draw batches from the layer
+	std::vector<DrawBatch> batches = lay->_render_self(buffer);
 
-	}
-	// Finally we make the render call.
-	SDL_RenderGeometry(
+	// Now we render each batch.
+	for (auto& batch : batches) {
+		SDL_RenderGeometry(
 		renderer,
-		atlas,
-		vertices.data(),
-		vertices.size(),
+		batch.tex,
+		buffer.data() + batch.start_index,
+		batch.num_vertices,
 		nullptr,
 		0);
+	}
+	buffer.clear();
+
+	for (auto& cell: lay->cell_bucket) {
+		SDL_Texture* tex = lay->_find_texture(cell.texture_id);
+		cell.to_vertex(buffer, world);
+		SDL_RenderGeometry(
+			renderer,
+			tex,
+			buffer.data(),
+			buffer.size(),
+			nullptr,
+			0
+			);
+		buffer.clear();
+	}
+}
+
+void Renderer::present() {
+	// Sert our render to the backbuffer
+	SDL_SetRenderTarget(renderer, nullptr);
+	// Then we establish the thing we're writing to.
+
+	// Otherwise we world.get_scale() without pixel perfect scaling
+	// This is the rectangle we draw to if we don't use pixel perfect.
+	SDL_Rect fr;
+	// These next lines
+	fr.x = world.get_borderX();
+	fr.y = world.get_borderY();
+	fr.w = (world.get_width() * world.get_scale());
+	fr.h = (world.get_height() * world.get_scale());
+
+	// Now we world.get_scale() up our whole canvas
+	SDL_RenderCopy(
+		renderer,
+		canvasTex,
+		nullptr,
+		&fr);
+	// Finally we present our hard work
+	SDL_RenderPresent(renderer);
+}
+
+void Renderer::prime_tex_register(TextureRegister &reg) {
+	world.log(0, "Entering prime_tex_register", "Renderer::prime_tex_register");
+	for (auto& [str, id] : reg.path_to_textureID) {
+		world.log(0, "Attempting to make textures", "Renderer::prime_tex_register");
+		if (reg.ID_to_texture.find(id) == reg.ID_to_texture.end()) {
+			Texture tex = IMGDecoder::load_image_as_texture(renderer, str);
+			world.log(0, "Loading images to texture", "Renderer::prime_tex_register");
+			reg.ID_to_texture.emplace(id, std::move(tex));
+		}
+	}
 }
 
 /* ............... */
 /* UPDATE CANVAS   */
 /* ............... */
 // Updates our canvas size if the user resizes the window
-void Renderer::update_canvas_size(){
-	double wid, hei;
-	// Gets the size of the window
-	emscripten_get_element_css_size("canvas", &wid, &hei);
+void Renderer::update_canvas_size() {
+	double cssWidth, cssHeight;
+	emscripten_get_element_css_size("canvas", &cssWidth, &cssHeight);
 
-	int w = static_cast<int>(round(wid));
-	int h = static_cast<int>(round(hei));
-	// If our window changes we update shit
-	if (w != canvasWidth || h != canvasHeight) {
-		// Convert our w and h to ints to they go into width and height
-		canvasWidth = w;
-		canvasHeight = h;
-		// Updates the window size
-		SDL_SetWindowSize(window, canvasWidth, canvasHeight);
-		// Tells our renderer to update its logic size.
-		SDL_RenderSetScale(renderer, 1.0f, 1.0f);
-		SDL_RenderSetLogicalSize(renderer, 0, 0);
+	if (cssWidth != canvasWidth || cssHeight != canvasHeight) {
+		canvasWidth = static_cast<int>(round(cssWidth));
+		canvasHeight = static_cast<int>(round(cssHeight));
 
-		// Set our new camera width and height
-		cam->set_width(canvasWidth);
-		cam->set_height(canvasHeight);
+		float scaleX = canvasWidth / static_cast<float>(world.get_width());
+		float scaleY = canvasHeight / static_cast<float>(world.get_height());
+		float scale = std::min(scaleX, scaleY);
 
-		// Updates our global::scene().scale accordingly
-		global::scene().scale = ((1.0 * canvasHeight) / canvasWidth < 0.75) ? 1.0*canvasHeight/global::scene().height : 1.0*canvasWidth/global::scene().width;
-		if (global::scene().scale < 1.0) global::scene().scale = 1.0;
+		// Compute borders to center the low-res render target
+		float borderX = (canvasWidth - world.get_width() * scale) / 2.0f;
+		float borderY = (canvasHeight - world.get_height() * scale) / 2.0f;
 
-		if (PIXEL_PERFECT) {
-			global::scene().scale = static_cast<int>(global::scene().scale); // NOLINT(*-narrowing-conversions)
-			global::scene().borderX = static_cast<int>((canvasWidth-(global::scene().width*global::scene().scale))/2.f); // NOLINT(*-narrowing-conversions)
-			global::scene().borderY = static_cast<int>((canvasHeight-(global::scene().height*global::scene().scale))/2.f); // NOLINT(*-narrowing-conversions)
-		}
-		else {
-			global::scene().borderX = 0;
-			global::scene().borderY = 0;
-		}
+		world._set_border_size(borderX, borderY);
+		world.set_scale(scale);
 	}
 }

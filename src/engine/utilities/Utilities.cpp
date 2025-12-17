@@ -1,6 +1,6 @@
 #include "engine/utilities/Utilities.hpp"
 
-#include "engine/gengine-globals/scene.hpp"
+#include "engine/EngineContext.hpp"
 
 signed char gutils::sgn(long double d) {
     const int dd = static_cast<int>(d * 1000.0) / 1000;
@@ -16,9 +16,9 @@ bool gutils::contained_within(SDL_Point point, geng::Transform &t) {
             point.y >= t.pos.y - t.get_base_height()/2.f && point.y <= t.pos.y + t.get_base_height()/2.f);
 }
 
-void gutils::adjust_to_relative_coords(SDL_Point& point) {
-    point.x -= geng::global::scene().borderX;
-    point.y -= geng::global::scene().borderY;
-    point.x /= geng::global::scene().scale;
-    point.y /= geng::global::scene().scale;
+void gutils::adjust_to_relative_coords(SDL_Point& point, geng::EngineContext& world) {
+    point.x -= world.get_borderX();
+    point.y -= world.get_borderY();
+    point.x /= world.get_scale();
+    point.y /= world.get_scale();
 }

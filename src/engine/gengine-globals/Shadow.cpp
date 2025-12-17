@@ -1,4 +1,4 @@
-#include "engine/gengine-globals/Shadow.hpp"
+#include "../../../include/engine/wip/Shadow.hpp"
 
 geng::ShadowCalc& geng::get_shadow_calc() {
     static ShadowCalc shadows;
@@ -24,8 +24,8 @@ void geng::shadow_background(std::vector<SDL_Vertex>& buffer, int& numVertices) 
         SDL_Vertex& vert = buffer[i];
         // Update its position
         vert.position = {
-            vert.position.x + 0.035f*(vert.position.x - (geng::global::scene().width*0.5f)),
-            vert.position.y + (0.035f*(vert.position.y - geng::global::scene().height*0.25f))
+            vert.position.x + 0.035f*(vert.position.x - (200*0.5f)),
+            vert.position.y + (0.035f*(vert.position.y - 200*0.25f))
         };
         // Update it's color
         vert.color = {0, 0, 0, 50};

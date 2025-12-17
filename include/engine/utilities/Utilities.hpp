@@ -1,6 +1,7 @@
 #pragma once
 
-#include "engine/actors/Transform.hpp"
+#include "engine/EngineContext.hpp"
+#include "engine/types/Transform.hpp"
 namespace gutils {
 
     constexpr float pi = 3.14159265358;
@@ -10,6 +11,8 @@ namespace gutils {
     // Returns the sign of a variable to 4 digits (-1, 0, 1)
     signed char sgn(long double);
 
-    bool contained_within(SDL_Point point, geng::Transform& t); /// Returns true if the point is within the transform.
-    void adjust_to_relative_coords(SDL_Point& point);
+    /// Returns true if the point is within the transform.
+    bool contained_within(SDL_Point point, geng::Transform& t);
+    /// Moves the cursor into the frame of the actual scene considering borders.
+    void adjust_to_relative_coords(SDL_Point &point, geng::EngineContext &world);
 }

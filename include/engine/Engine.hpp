@@ -2,62 +2,40 @@
 
 #include <iostream>
 
-#include "effects/EffectManager.hpp"
-#include "particles/ParticleManager.hpp"
-#include "actors/ActorManager.hpp"
-#include "input/InputManager.hpp"
-#include "gengine-globals/Random.hpp"
-#include "pathing/PathManager.hpp"
+#include "EngineContext.hpp"
+#include "input/InputSource.hpp"
+#include "types/Random.hpp"
 #include "rendering/Renderer.hpp"
-#include "animation/FrameManager.hpp"
-
+#include "scene/layers/LayerStack.hpp"
+#include "utilities/IDStack.hpp"
 
 
 namespace geng {
     /**
-     * @brief The engine handles input, effect, particles, ECS, rendering, sound, and text. You do not have direct control over how the engine does its job. You only feed it inputs, and it gives you an output, and sends you keyboard input.
-     * @details In order to use the engine, you have to speak in its language: @code gengine::Actor@endcode, @code gengine::Effect@endcode, @code gengine::ParticleGroup@endcode, @code gengine::inputTarget@endcode, @code gengine::Font@endcode, and @code gengine::Sound@endcode. It is recommended to review these files before continuing with the engine.
+     * @brief The engine handles input, morph, particles, ECS, rendering, sound, and text. You do not have direct control over how the engine does its job. You only feed it inputs, and it gives you an output, and sends you keyboard input.
+     * @details In order to use the engine, you have to speak in its language: @code gengine::Actor@endcode, @code gengine::Morph@endcode, @code gengine::ParticleGroup@endcode, @code gengine::inputTarget@endcode, @code gengine::Font@endcode, and @code gengine::Sound@endcode. It is recommended to review these files before continuing with the engine.
      * Using the engine's features can be a bit of a hurdle to get used to, but it is designed to be somewhat intuitive.
-     * - For @code Actors@endcode: @code engine.add_actor(...)@endcode and @code engine.remove_actor(...)@endcode
-     * - For @code Particles@endcode: @code engine.attach_particle(...)@endcode and @code engine.detach_particle(...)@endcode
-     * - For @code Effects@endcode: @code engine.apply_effect(...)@endcode and @code engine.strip_effect(...)@endcode
+     * - For @code Actors@endcode: @code layer.add_actor(...)@endcode and @code engine.remove_actor(...)@endcode
+     * - For @code Particles@endcode: @code layer.attach_particle(...)@endcode and @code engine.detach_particle(...)@endcode
+     * - For @code Morph@endcode: @code layer.apply_morph(...)@endcode and @code engine.strip_morph(...)@endcode
      */
     class Engine {
     private:
-        /// Holds all the gears to be rendered in the engine.
-        std::vector<Gear*> gears;
+        /// Keeps track of all the essential data for our engine to run.
+        EngineContext world;
 
-        /// Engine's Renderer. Very very off-limits no touching.
-        Renderer _rend;
-        Camera _cam;
-
-        /// Engine's InputManager. Try not to touch.
-        geng::InputManager _input;
-
-        /// Engine's ParticleManager
-        ParticleManager partm;
-        /// Engine's ActorManager
-        ActorManager am;
-        /// Engine's FrameManager
-        FrameManager fm;
-        /// Engine's EffectManager
-        geng::EffectManager em;
-        /// Engine's PathManager
-        PathManager pathm;
-
-        // ID Management
-        /// Keeps track of IDs of removed actors
-        gutils::IDStack id_stack;
-        /// Keeps track of the top-most ID
-        int top_id = 0;
-        /// If we've removed an object, we use that dissolved object's ID before making a new one.
-        int pop_id();
-        /// This is how we add any gear to the system
-        void add_gear(Gear* g);
-
-        void remove_gear(Gear *g);
+        /// Engine's Renderer. Very very off-limits no touching. Like seriously do not touch it.
+        Renderer rend;
+        /// You can touch the camera tho it's fine.
+        Camera cam;
 
     public:
+        /// Keeps track of all our layers so we can send them to the Renderer.
+        LayerStack layer;
+
+        /// Engine's InputSource.
+        InputSource input;
+
         // Constructor/destructor
         Engine();
         ~Engine() = default;
@@ -66,7 +44,7 @@ namespace geng {
         /* Engine vitals  */
         // .......................... //
         /// Initializes the engine. Must be called in @code int main(...)@endcode
-        void initialize();
+        void init();
 
         /// Runs the entire engine. Must call every frame, and put in the current time.
         bool tick(double time);
@@ -74,63 +52,13 @@ namespace geng {
         /// Sends things to the renderer and presents it. Should call every frame.
         void render();
 
-        /// Sets an input target.
-        void set_input_target(InputTarget* t);
+        /// Adds a layer to the engine and composes uninitialized elements. Can be called multiple times on the same layer in case you add additional textures or frame tables.
+        void compose_layer(Layer *l);
 
-        // .......................... //
-        /* Additions to the engine!!! */
-        // .......................... //
-        // <><><> Actors <><><>
-        /// Adds an actor to the engine
-        void add_actor(Actor* a);
-        /// Adds several actors to the engine.
-        void add_actors(const std::vector<Actor*>& actors);
-        // <><><> Particle groups <><><>
-        /// Adds a detatched particle to the rendering pipeline
-        void instantiate_particle(ParticleGroup *pg);
-        /// Attatches a particle to an actor and then adds it to the rendering pipline.
-        void attach_particle(Actor* o, ParticleGroup* pg);
-        /// Adds multiple particles to the rendering pipeline.
-        void attach_particles(std::vector<ParticleGroup*>& pgs);
-        // <><><> Effects <><><>
-        /// Adds an effect to an actor
-        void apply_effect(geng::Effect *e);
-        /// Adds an effect to a transform object.
-        void apply_effect(Gear *g, geng::Effect *e);
-        // <><><> Paths <><><>
-        void set_path(Path* p);
-        void set_path(Path *p, Gear *g, const Vertex &offset = {0.f, 0.f, 0.f});
+        /// Directly logs from engine root. Usually not recommended to do.
+        void direct_log(int severity, std::string msg, std::string src = "");
+        void set_debug_mode(bool enabled);
 
-        // .......................... //
-        /* Removals from the engine!!! */
-        // .......................... //
-        // <><><> Actors <><><>
-        /// Removes an actor from the engine (does not delete).
-        void remove_actor(const Actor *a);
-        /// Removes a vector of actors from the engine (does not delete).
-        void remove_actor(const std::vector<Actor*>& objs);
-        // <><><> Particle groups <><><>
-        /// Removes a particle
-        void detach_particle(ParticleGroup* pg);
-        /// Removes all particles attaches to an actor.
-        void detach_particle(Actor *a);
-        /// Removes a bunch of particles.
-        void detach_particle(const std::vector<ParticleGroup*>& pgs);
-        // <><><> Effects <><><>
-        /// Removes all effects from an actor
-        void strip_effect(Gear *g);
-        /// Removes all effects from a transform
-        void strip_effect(Transform& t);
-        /// Removes a specific effect
-        void strip_effect(geng::Effect* e);
-        /// Removes an effect from a transform
-
-        // .......................... //
-        /* Weird utility functions */
-        // .......................... //
-        /// Removes all engineElements matching the IDs specified.
-        void remove(const std::vector<int>& ids);
-        /// Returns true if an object has an effect applied to it
-        bool has_effect(Gear *g);
+        void set_debug_immediate_print(bool enabled);
     };
 }

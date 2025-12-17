@@ -2,13 +2,15 @@
 // My files
 #include "Camera.hpp"
 #include "background-utilities/Background.hpp"
-#include "engine/particles/ParticleGroup.hpp"
-#include "engine/gengine-globals/scene.hpp"
 
 // Libraries
 #include  <emscripten/html5.h>
 #include <SDL.h>
 
+#include "RenderBuffer.hpp"
+#include "engine/EngineContext.hpp"
+#include "engine/scene/Layer.hpp"
+#include "engine/scene/initializer/TextureRegister.hpp"
 #include "engine/types/Gear.hpp"
 
 
@@ -20,55 +22,49 @@ namespace geng {
 	*/
 	class Renderer {
 	public:
-		explicit Renderer(Camera* cam);
+		explicit Renderer(EngineContext& world, Camera* cam);
 		~Renderer();
 
-		// Must call during main
-		void initialize();
+		/// Sets our render resolution to this size.
+		void set_canvas_resolution(uint16_t width, uint16_t height);
 
-		// Renders each engine element according to its type.
-		void render(std::vector<Gear*>& gears);
-		// Present the render
+		/// Must call during engine setup
+		void _init();
+		/// Renders each engine element according to its type.
+		void render(std::vector<Layer *> &layers);
+		/// Present the render to the canvas
 		void present();
-
-		// Gets our renderer for setup purposes. Should not be called once game loop starts.
-		SDL_Renderer* get_renderer() { return renderer; }
-
-		// Sets our texture_atlas to the texture specified.
-		void set_texture_atlas(SDL_Texture* t);
+		/// Initializes a texture register
+		void prime_tex_register(TextureRegister& reg);
 
 	private:
 		// RENDER PIPELINE
-		// 1. Draws the background for our scene
-		void draw_background();
-		// 2. Divides gears between particles, actors, and UI
-		void render_elements(const std::vector<Gear*>& gears);
-		// 3. Render the actors and particles in order of z-xais.
-		void render_object(Actor& o);
+		// 3. Lets the gears draw themselves
+		void render_layer(Layer *&lay);
 
 		// This sets our render texture to the small 300 x 200 window so we get pixel-perfect scaling.
 		void set_render_texture();
 		// Updates the canvas in case the user decides to resize the window
 		void update_canvas_size();
-		// Adds shadows to the buffer based on the number of vertices specified.
-		void add_shadow(int numVertices);
+
 	private:
-		// Holds all the vertices we will ever need
-		std::vector<SDL_Vertex> vertices;
-		// Specifies what we need to access SDL window resources
+		/// Holds all the buffer we will ever need
+		RenderBuffer buffer;
+		/// Window is the SDL created window we draw to
 		SDL_Window* window = nullptr;
+		/// Renderer is the SDL created renderer we use to draw textures with. Tied to the window
 		SDL_Renderer* renderer = nullptr;
-		Background* bg = nullptr;
+		/// Camera of the scene. Doesn't do much yet.
 		Camera* cam;
-		Vertex camCenter;
 
-		// Scene width and height! */
-		int canvasWidth = global::scene().width;
-		int canvasHeight = global::scene().height;
+		/// Scene width and height!
+		int canvasWidth = 0.0f;
+		int canvasHeight = 0.0f;
 
-		// This is the texture we draw to before scaling up.
-		SDL_Texture* canvasTex;
-		// The mass-game texture that holds everything
-		SDL_Texture* atlas;
+		/// This is the texture we draw to before scaling up. It is the effective "resolution" of our window.
+		SDL_Texture* canvasTex = nullptr;
+
+		/// Holds engine context information necessary for rendering
+		EngineContext& world;
 	};
 }

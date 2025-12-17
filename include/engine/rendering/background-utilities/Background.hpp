@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "BackgroundPalette.hpp"
+#include "engine/EngineContext.hpp"
 
 namespace geng {
     /** To be heavily altered/changed. Currently the Background edits every pixel in the background, which is very very inefficient. */
@@ -20,13 +21,14 @@ namespace geng {
         int paletteNum = 0;
         // The texture that the background writes to.
         SDL_Texture* background_texture;
-        // Keeps track of all the Palettes it can use.
+        // Keeps track of the world
+        EngineContext& world;
 
         void update_pixels();
 
     public:
         // Constructor
-        explicit Background(SDL_Renderer* renderer);
+        explicit Background(SDL_Renderer* renderer, EngineContext& world);
         // Destructor
         ~Background ();
         // Texture getter
