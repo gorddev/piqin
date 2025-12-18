@@ -5,15 +5,17 @@
 #include <iostream>
 #include <vector>
 
+#include "engine/rendering/RenderBuffer.hpp"
+
 
 namespace geng {
 
     /// Renders shadows directly onto the background
-    void shadow_background(std::vector<SDL_Vertex>& buffer, int& numVertices);
+    void shadow_background(RenderBuffer& buffer, int& numVertices);
     /// Renders shadows onto a given floor.
-    void shadow_floor(std::vector<SDL_Vertex>& buffer, int& numVertices);
+    void shadow_floor(RenderBuffer& buffer, int& numVertices);
 
-    using shadowFunc = std::function<void(std::vector<SDL_Vertex>& buffer, int& numVertices)>;
+    using shadowFunc = std::function<void(RenderBuffer& buffer, int& numVertices)>;
 
     /** @brief The shadow calculator takes in a buffer of vertices, and renders a shadow behind the number of provided vertices.
      * @details The shadow calculator can dynamically change it's shadow render method on the fly with the set_function(...) method. Two shadow casting methods are pre-provided
@@ -28,13 +30,13 @@ namespace geng {
      * - @code apply_shadow(...)@endcode › Used exclusively by Actors, ParticleGroups, and Panels to render themselves
      * - @code set_floor(...)@endcode › Sets the floor for the floor rendering method
      */
-    class ShadowCalc final  {
+    class ShadowBank final  {
     private:
         shadowFunc currentFunc = nullptr;
         int floor = 50;
     public:
 
-        ShadowCalc() {
+        ShadowBank() {
             currentFunc = shadowfuncs["background"];
         }
         std::unordered_map<std::string, shadowFunc> shadowfuncs {
@@ -59,7 +61,7 @@ namespace geng {
                 shadowfuncs[shadow] = std::move(func);
             }
         }
-        void apply_shadow(std::vector<SDL_Vertex>& buffer, int numVertices) {
+        void apply_shadow(RenderBuffer& buffer, int numVertices = 1) {
             if (buffer.size() < numVertices) {
                 std::cerr << "ERR: Requesting more shadows than Vertices rendered.\n";
                 numVertices = buffer.size();
@@ -72,5 +74,5 @@ namespace geng {
     };
 
     /// Returns our shadow
-    ShadowCalc& get_shadow_calc();
+    ShadowBank& get_shadow_calc();
 }

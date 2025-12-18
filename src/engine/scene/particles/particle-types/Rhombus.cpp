@@ -29,12 +29,11 @@ void RhombusInst::to_vertex(RenderBuffer& buffer, SDL_Color& color) const {
     int rad = static_cast<int>(radius * duration / 1500.f);
     // Vertex locations
 
-    SDL_Vertex top = {, color, {0.9,0.8}};
-    SDL_Vertex bottom = {{pos.x, pos.y + rad},  color, {0.8,1}};
-    SDL_Vertex left = {{pos.x - rad, pos.y}, color, {1,0.8}, };
-    SDL_Vertex right = {{pos.x + rad, pos.y}, color, {1,1}};
-    // Send to buffer
     SDL_FPoint top = {pos.x, pos.y - rad};
+    SDL_FPoint bottom = {pos.x, pos.y + rad};
+    SDL_FPoint left = {pos.x - rad, pos.y};
+    SDL_FPoint right = {pos.x + rad, pos.y};
+
     buffer.push_back(top);
     buffer.push_back(left);
     buffer.push_back(bottom);

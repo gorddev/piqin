@@ -21,12 +21,12 @@ namespace geng {
             return activeLayer;
         }
 
-        void switch_layer(const std::string& name) {
+        bool switch_layer(const std::string& name) {
             if (!layer_exists(name)) {
-                std::cerr << "Err: Layer " << name << " does not exist." << std::endl;
-                return;
+                return false;
             }
             activeLayer = string_to_index[name];
+            return true;
         }
 
         /// Adds one layer to the layer map
@@ -42,22 +42,10 @@ namespace geng {
             return string_to_index.find(name) != string_to_index.end();
         }
 
-        int pop_layer(std::string name) {
+        int get_layer_id(std::string name) {
             if (layer_exists(name)) {
-                int id = string_to_index[name];
-                string_to_index.erase(name);
-
-                if (id == activeLayer) {
-                    activeLayer = -1;
-                    for (auto& [name, index] : string_to_index) {
-                        activeLayer = index;
-                        break;
-                    }
-                }
-
-                return id;
+                return string_to_index[name];
             }
-            std::cerr << "Err: Layer " << name << " does not exist." << std::endl;
             return -1;
         }
 
@@ -70,6 +58,10 @@ namespace geng {
                     break;
                 }
             }
+        }
+
+        void clear() {
+
         }
 
     };

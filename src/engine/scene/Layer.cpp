@@ -44,6 +44,7 @@ std::vector<DrawBatch> Layer::_render_self(RenderBuffer& buffer) {
         scene.log(2, "No textures detected to render layer "+ scene.get_name(), "Layer::_render_self()");
     }
     DrawBatch current = {texreg[0].texture, 0}; // Start with texreg[0] for particle fallback
+    buffer.set_img_info(texreg[0].info);
     current.texture_id = 0;
 
     for (auto & gear : gears) {
@@ -56,6 +57,7 @@ std::vector<DrawBatch> Layer::_render_self(RenderBuffer& buffer) {
             current.start_index = buffer.size();
             current.texture_id = g.texture_id;
             current.tex = texreg[g.texture_id].texture;
+            buffer.set_img_info(texreg[g.texture_id].info);
         }
         g.to_vertex(buffer);
     }

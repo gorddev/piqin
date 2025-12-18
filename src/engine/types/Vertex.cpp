@@ -2,7 +2,7 @@
 #include <cmath>
 #include <iostream>
 
-#include "../../../include/engine/types/Random.hpp"
+#include "../../../include/engine/wip/Random.hpp"
 
 using namespace geng;
 
@@ -47,9 +47,9 @@ void Vertex::randomize(std::pair<float, float> range)  {
 		range.first = -1.f;
 		range.second = 1.f;
 	}
-	x = (random()%static_cast<int>(-range.first + range.second) + range.first);
-	y = (random()%static_cast<int>(-range.first + range.second) + range.first);
-	z = (random()%static_cast<int>(-range.first + range.second) + range.first);
+	x = (random() * (random()%2 ? -1 : 1));
+	y = (random() * (random()%2 ? -1 : 1));
+	z = (random() * (random()%2 ? -1 : 1));
 }
 
 Vertex Vertex::abs() {

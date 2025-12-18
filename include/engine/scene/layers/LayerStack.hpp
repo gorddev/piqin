@@ -1,5 +1,4 @@
 #pragma once
-#include <unordered_map>
 #include <utility>
 
 #include "LayerMap.hpp"
@@ -29,6 +28,11 @@ namespace geng {
             }
         }
 
+        /// Gets a layer based on layer name
+        Layer* get_layer(std::string name) {
+            return layers[layerMap.get_layer_id(std::move(name))];
+        }
+
         /// Returns the active layer
         Layer* get_active_layer() {
             if (layerMap.get_active_layer_index() == -1)
@@ -36,9 +40,11 @@ namespace geng {
             return layers[layerMap.get_active_layer_index()];
         }
 
+        /// Sets the active layer based on layer pointer
         void set_active_layer(Layer* l) {
             layerMap.switch_layer(l->scene.get_name());
         }
+        /// Sets the active layer based on layer name
         void set_active_layer(const std::string& name) {
             layerMap.switch_layer(name);
         }
@@ -57,6 +63,7 @@ namespace geng {
             l->scene.id = top_id++;
             layerMap._add_layer(l->scene.get_name(), l->scene.id);
         }
+
         /// Removes a layer from the LayerStack
         void remove_layer(const std::string& name) {
             if (!layerMap.layer_exists(name)) {
@@ -64,7 +71,7 @@ namespace geng {
                 return;
             }
             // Remove it from the layer map
-            layerMap.pop_layer(name);
+            layerMap.get_layer_id(name);
             // Remove it from the vector
             for (auto it = layers.begin(); it != layers.end(); ++it) {
                 if ((*it)->scene.get_name() == name) {
@@ -73,26 +80,28 @@ namespace geng {
                     break;
                 }
             }
+            // Now we need to reassign layer map ids because indexes have changed.
+            Layer* active_layer = nullptr;
+            // We get the current active layer so we can reassign it after clearing our
+            if (layerMap.get_active_layer_index() != -1)
+                active_layer = layers[layerMap.get_active_layer_index()];
+            layerMap.clear();
+            // Reassign layer ids
+            for (int i = 0; i < (int)layers.size(); i++) {
+                layerMap._add_layer(layers[i]->scene.get_name(), i);
+                if (layers[i]==active_layer) {
+                    layerMap.switch_layer(layers[i]->scene.get_name());
+                }
+            }
         }
 
         /// Removes a layer from the LayerStack via pointer
         void remove_layer(const Layer* l) {
-            int id = -1;
-            // Search through layers
-            for (auto it = layers.begin(); it != layers.end(); ++it) {
-                // If we find it
-                if (l == (*it)) {
-                    // Pop it from the layer map
-                    layerMap.pop_layer((*it)->scene.get_name());
-                    // Delete it
-                    delete (*it);
-                    // Erase it from the vector of layers
-                    layers.erase(it);
-                    // Return
-                    return;
-                }
+            if (!layerMap.layer_exists(l->scene.get_name())) {
+                world.log(1, "Layer " + l->scene.get_name() + " does not exist in Engine.\n", "LayerStack::remove_layer");
+                return;
             }
-            std::cerr << "Layer " << l << " not found in layer stack.\n";
+            remove_layer(l->scene.get_name());
         }
 
         /// Move a layer to the front (top of rendering order)

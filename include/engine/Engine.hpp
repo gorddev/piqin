@@ -4,7 +4,7 @@
 
 #include "EngineContext.hpp"
 #include "input/InputSource.hpp"
-#include "types/Random.hpp"
+#include "wip/Random.hpp"
 #include "rendering/Renderer.hpp"
 #include "scene/layers/LayerStack.hpp"
 #include "utilities/IDStack.hpp"
@@ -28,10 +28,9 @@ namespace geng {
         Renderer rend;
         /// You can touch the camera tho it's fine.
         Camera cam;
-
-    public:
         /// Keeps track of all our layers so we can send them to the Renderer.
         LayerStack layer;
+    public:
 
         /// Engine's InputSource.
         InputSource input;
@@ -52,8 +51,24 @@ namespace geng {
         /// Sends things to the renderer and presents it. Should call every frame.
         void render();
 
+        // *******************
+        // <><> Layers <><>
+        // *******************
         /// Adds a layer to the engine and composes uninitialized elements. Can be called multiple times on the same layer in case you add additional textures or frame tables.
         void compose_layer(Layer *l);
+        // <><> Active Layer <><><>
+        /// Sets the active layer that recieves input to the specified layer.
+        void set_active_layer(Layer *l);
+        /// Gets the active layer
+        Layer* get_active_layer();
+        // <><> Destroying Layers <><><>
+        /// Removes a layer from the engine and destroys it based on layer pointer
+        void destroy_layer(Layer *l);
+        /// Removes a layer from the engine and destroys it based on layer name
+        void destroy_layer(std::string layer_name);
+        // <><> Getting Layer <><><>
+        /// Gets a layer based on the layer name
+        void get_layer(std::string layer_name);
 
         /// Directly logs from engine root. Usually not recommended to do.
         void direct_log(int severity, std::string msg, std::string src = "");

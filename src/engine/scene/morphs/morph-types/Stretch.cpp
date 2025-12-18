@@ -28,9 +28,17 @@ bool Stretch::update(geng::LayerTime& time) {
     float targetW = g.t.get_base_width()*tsx;
     float targetH = g.t.get_base_height()*tsy;
     if (std::abs(g.t.w - targetW) < 0.5f) g.t.w = targetW;
-    else g.t.w += (targetW - g.t.w) * amplitude * 0.01f * time.get_dt();
+    else {
+        float mod = amplitude * 0.01f * time.get_dt();
+        if (mod > 1.0f) mod = 1.0f;
+        g.t.w += (targetW - g.t.w) * mod;
+    }
     if (std::abs(g.t.h - targetH) < 0.5f) g.t.h = targetH;
-    else g.t.h += (targetH - g.t.h) * amplitude * 0.01f * time.get_dt();
+    else {
+        float mod = amplitude * 0.01f * time.get_dt();
+        if (mod > 1.0f) mod = 1.0f;
+        g.t.h += (targetH - g.t.h) * amplitude * 0.01f * mod;
+    }
     oldPos = g.t.pos;
     return false;
 }

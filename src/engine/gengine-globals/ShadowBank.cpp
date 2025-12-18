@@ -1,7 +1,7 @@
-#include "../../../include/engine/wip/Shadow.hpp"
+#include "../../../include/engine/rendering/ShadowBank.hpp"
 
-geng::ShadowCalc& geng::get_shadow_calc() {
-    static ShadowCalc shadows;
+geng::ShadowBank& geng::get_shadow_calc() {
+    static ShadowBank shadows;
     return shadows;
 }
 

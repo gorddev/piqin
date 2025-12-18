@@ -37,10 +37,7 @@ int main() {
 	bob.set_debug_mode(true);
 	bob.set_debug_immediate_print(true);
 
-	std::cerr << "before adding layer\n";
 	auto* l = new geng::Layer("m");
-	std::cerr << "after adding layer\n";
-	bob.layer.add_layer(l);
 	l->init.texture("assets/full-texture.png");
 	l->init.set_sys_font("assets/full-texture.png", sys_font);
 	l->init.frame_table("assets/full-texture.png", asset_deck);
@@ -48,10 +45,10 @@ int main() {
 	l->init.frame_table("assets/full-texture.png", asset_draw_deck);
 	bob.compose_layer(l);
 
-	Card* c = new Card(10, blackjack::BJ_Suit::DIAMOND);
+	Card* c = new Card(59, blackjack::BJ_Suit::SPECIAL);
 	c->set_draggable();
-	l->apply_morph(new gfx::Stretch(c, 3.0, 1.0));
-	l->attach_particle(c, new gfx::Rhombus(c, 400.f, 1.f, -1, 20));
+	l->apply_morph(new gfx::Stretch(c, 9.0, 3.0));
+	l->attach_particle(c, new gfx::Rhombus(c, 10.f, 1.f, -1, 1));
 	l->input.add_mouse_acceptor(c);
 	l->add_actor(c);
 	c->t.pos = {30, 50, 0};

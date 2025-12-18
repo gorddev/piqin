@@ -1,8 +1,6 @@
 #pragma once
 // My files
 #include "Camera.hpp"
-#include "background-utilities/Background.hpp"
-
 // Libraries
 #include  <emscripten/html5.h>
 #include <SDL.h>
@@ -11,8 +9,7 @@
 #include "engine/EngineContext.hpp"
 #include "engine/scene/Layer.hpp"
 #include "engine/scene/initializer/TextureRegister.hpp"
-#include "engine/types/Gear.hpp"
-
+#include "ShadowBank.hpp"
 
 namespace geng {
 	/** @brief The RenderManager takes in EngineElements from the Engine, and renders them.
@@ -39,16 +36,17 @@ namespace geng {
 
 	private:
 		// RENDER PIPELINE
-		// 3. Lets the gears draw themselves
+		// Renders one layer and all it's components according to how it wants to be layered.
 		void render_layer(Layer *&lay);
-
 		// This sets our render texture to the small 300 x 200 window so we get pixel-perfect scaling.
 		void set_render_texture();
 		// Updates the canvas in case the user decides to resize the window
 		void update_canvas_size();
 
 	private:
-		/// Holds all the buffer we will ever need
+		/// Lets us quickswap between shadows
+		ShadowBank shadows;
+		/// Holds all the buffer for vertices we will ever need
 		RenderBuffer buffer;
 		/// Window is the SDL created window we draw to
 		SDL_Window* window = nullptr;

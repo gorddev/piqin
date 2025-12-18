@@ -36,6 +36,28 @@ void Engine::compose_layer(Layer *l) {
     direct_log(0, "Composing layer: " +l->scene.get_name(), "compose_layer");
     rend.prime_tex_register(l->_init());
     direct_log(0, "Success: Composed layer: " +l->scene.get_name(), "compose_layer");
+    layer.add_layer(l);
+}
+
+void Engine::set_active_layer(Layer* l) {
+    layer.set_active_layer(l);
+}
+
+Layer * Engine::get_active_layer() {
+    return layer.get_active_layer();
+}
+
+void Engine::destroy_layer(Layer *l) {
+    layer.remove_layer(l);
+    delete l;
+}
+
+void Engine::destroy_layer(std::string layer_name) {
+    layer.remove_layer(layer_name);
+}
+
+void Engine::get_layer(std::string layer_name) {
+    layer.get_layer(layer_name);
 }
 
 void Engine::direct_log(int severity, std::string msg, std::string src) {
