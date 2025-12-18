@@ -9,7 +9,7 @@
 #include "engine/EngineContext.hpp"
 #include "engine/scene/Layer.hpp"
 #include "engine/scene/initializer/TextureRegister.hpp"
-#include "ShadowBank.hpp"
+#include "shadows/ShadowBank.hpp"
 
 namespace geng {
 	/** @brief The RenderManager takes in EngineElements from the Engine, and renders them.

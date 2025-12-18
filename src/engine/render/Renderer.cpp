@@ -3,7 +3,7 @@
 
 using namespace geng;
 
-Renderer::Renderer(EngineContext& world, Camera* cam) : world(world), cam(cam) {
+Renderer::Renderer(EngineContext& world, Camera* cam) : world(world), cam(cam), buffer(shadows) {
 	// Create the texture we will end up rendering to.
 	canvasTex = nullptr;
 	// Initializes good stuff
@@ -31,7 +31,9 @@ void Renderer::_init() {
 			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 			world.get_width(), world.get_height(), SDL_WINDOW_RESIZABLE);
 	// Form the renderer to the window we'll use
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
 	// Set the canvas size we'll render to. 
 	set_canvas_resolution(world.get_width(), world.get_height());
 	// Tells us to use nearest neighbor scaling. 

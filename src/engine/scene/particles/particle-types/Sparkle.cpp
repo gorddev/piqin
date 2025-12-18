@@ -25,21 +25,23 @@ bool SparkleInst::update(double& dt) {
     return false;
 }
 
-#define bpb(u, v) buffer.push_back({{u, v}, color, {1,1}})
+#define bpb(u, v) p2 = {u, v}; buffer.push_back(p2)
 void SparkleInst::to_vertex(RenderBuffer& buffer, SDL_Color& color) {
     int rad = static_cast<int>(radius * duration / 1500.f);
     float x = roundf(pos.x);
     float y = roundf(pos.y);
     // Used vertices
-    SDL_Vertex topleft = {{x, y-rad-1.0f},color, {1,1} };
-    SDL_Vertex bottomright = {{x+1.0f, y+rad}, color, {1,1}};
+    SDL_FPoint topleft = {x, y-rad-1.0f};
+    SDL_FPoint bottomright = {x+1.0f, y+rad};
     // Assign our vertices
     // This is for the big top strip
     buffer.push_back(topleft);
-    buffer.push_back({{x, y+rad},color , {1,1}});
+    SDL_FPoint bleft = {x, y+rad+1.0f};
+    buffer.push_back(bleft);
     buffer.push_back(bottomright);
     buffer.push_back(topleft);
-    buffer.push_back({{x+1.0f, y-rad-1.0f}, color, {1,1}});
+    SDL_FPoint p2 = {x+1.0f, y-rad-1.0f};
+    buffer.push_back(p2);
     buffer.push_back(bottomright);
     // This is for the two side strips
     // First side strip
@@ -102,10 +104,7 @@ void Sparkle::to_vertex(RenderBuffer& buffer) {
     for (auto& i : particles) {
         i.to_vertex(buffer, t.color);
         count += 18;
+        buffer.push_shadow(18);
     }
-    /*
-    if (t.shadow()) {
-        get_shadow_calc().apply_shadow(buffer, count);
-    }
-    */
+
 }

@@ -3,7 +3,7 @@
 #include <vector>
 #include <iostream>
 
-#include "engine/types/Vertex.hpp"
+#include "../../types/positioning/Vertex.hpp"
 #include "engine/scene/actors/Actor.hpp"
 
 namespace geng {

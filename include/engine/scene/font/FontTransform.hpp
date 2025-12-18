@@ -1,6 +1,6 @@
 #pragma once
 
-#include "engine/types/Vertex.hpp"
+#include "../../types/positioning/Vertex.hpp"
 #include <SDL_pixels.h>
 
 namespace geng {

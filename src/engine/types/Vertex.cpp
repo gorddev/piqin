@@ -1,4 +1,6 @@
-#include "engine/types/Vertex.hpp"
+#include "../../../include/engine/types/positioning/Vertex.hpp"
+
+#include <cassert>
 #include <cmath>
 #include <iostream>
 
@@ -13,10 +15,10 @@ void Vertex::set(int xpos, int ypos, int zpos) {
 }
 
 Vertex Vertex::unit() const {
-	float maggy = mag();
-	if (maggy == 0)
-		return {0,0,0};
-	return {x / maggy, y / maggy, z / maggy};
+	float m = mag();
+	if (m < 1e-6f)
+		return {0.f, 0.f, 0.f};
+	return {x / m, y / m, z / m};
 }
 
 float Vertex::mag() const {
@@ -69,7 +71,9 @@ Vertex Vertex::operator*(float scalar) const {
 }
 
 Vertex Vertex::operator/(float scalar) const {
-	return Vertex(x/ scalar, y/scalar, z/scalar);
+	if (std::fabs(scalar) < 1e-6f)
+		return {0.f, 0.f, 0.f};
+	return {x / scalar, y / scalar, z / scalar};
 }
 
 Vertex Vertex::operator%(int scalar) const {
@@ -113,11 +117,8 @@ void Vertex::operator/=(float scalar){
 }
 
 float& Vertex::operator[](int index) {
-	if (!index) return x;
-	if (index == 1) return y;
-	if (index == 2) return z;
-	std::cerr << "Vertex::ERR: Index doesn't exist. Returning x.\n";
-	return x;
+	assert(index >= 0 && index < 3);
+	return (&x)[index];
 }
 
 void Vertex::operator=(Vertex other) {
@@ -142,8 +143,18 @@ std::string Vertex::to_string() const {
 }
 
 bool Vertex::operator==(Vertex other) const {
-	int tempx = static_cast<int>(x - other.x)*1000;
-	int tempy = static_cast<int>(y - other.y)*1000;
-	int tempz = static_cast<int>(z - other.z)*1000;
-	return (!tempx && !tempy && !tempz);
+	constexpr float eps = 0.001f;
+	return std::fabs(x - other.x) < eps &&
+		   std::fabs(y - other.y) < eps &&
+		   std::fabs(z - other.z) < eps;
+}
+
+bool Vertex::is_finite() const {
+	return std::isfinite(x) && std::isfinite(y) && std::isfinite(z);
+}
+
+void Vertex::sanitize() {
+	if (!std::isfinite(x)) x = 0.f;
+	if (!std::isfinite(y)) y = 0.f;
+	if (!std::isfinite(z)) z = 0.f;
 }

@@ -4,7 +4,7 @@
 #include <vector>
 #include "../../types/EngineEnums.hpp"
 #include "engine/types/Gear.hpp"
-#include "engine/types/Quad.hpp"
+#include "../../types/positioning/Quad.hpp"
 #include "engine/utilities/image-info/IMGDecoder.hpp"
 
 namespace geng {

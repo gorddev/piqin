@@ -27,7 +27,7 @@ namespace geng {
         /// The width of the scene.
         uint16_t width = 400;
         /// The height of the scene.
-        uint16_t height = 280;
+        uint16_t height = 320;
         /// The size of one horizontal border on the screen
         uint16_t borderX = 0;
         /// The size of one vertical border on the screen

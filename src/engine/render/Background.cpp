@@ -1,9 +1,9 @@
-#include "engine/rendering/background-utilities/Background.hpp"
+#include "engine/rendering/background/Background.hpp"
 #include <iostream>
 #include <vector>
 
 #include "engine/EngineContext.hpp"
-#include "engine/types/Vertex.hpp"
+#include "../../../include/engine/types/positioning/Vertex.hpp"
 
 using namespace geng;
 

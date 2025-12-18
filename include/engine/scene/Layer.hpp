@@ -9,7 +9,7 @@
 #include "engine/scene/initializer/Initializer.hpp"
 #include "engine/scene/particles/ParticleManager.hpp"
 #include "engine/scene/routes/RouteManager.hpp"
-#include "engine/rendering/background-utilities/Background.hpp"
+#include "engine/rendering/background/Background.hpp"
 #include "engine/utilities/IDStack.hpp"
 #include "events/EventManager.hpp"
 #include "engine/scene/cells/CellBucket.hpp"

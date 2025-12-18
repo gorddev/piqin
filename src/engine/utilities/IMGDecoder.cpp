@@ -19,40 +19,41 @@ static bool is_PNG(const std::string& path) {
     return (extension == ".png");
 }
 
+static long to_pow_2(const int x) {
+    long i = 1;
+    for (; i <= x; i*=2){}
+    return i;
+}
+
 IMG_Info IMGDecoder::PNG_Info(const std::string &path) {
     if (!is_PNG(path)) {
         std::cerr << "File " + path + "is not a png\n";
         abort();
     }
-
     // Creates a file we read with binary from
     std::ifstream file(path, std::ios::binary);
     if (!file) {
         std::cerr << "FATAL: Image" + path + " does not exist." << std::endl;;
         abort();
     }
-
     uint8_t header[24];
     // Read from the file
     file.read(reinterpret_cast<char*>(header), 24);
     // check against the signature:
     static const uint8_t sig[8] =
         {137, 80, 78, 71, 13, 10, 26, 10};
-
     // actually we'll just use memcmp instead
     if (std::memcmp(header, sig, 8) != 0) {
         std::cerr << "FATAL: "+ path+" File signature does not match .png format" << std::endl;
         abort();
     }
-
     // create a small function lambda that grabs the bits
     auto read_int = [](const uint8_t* p) {
-        return ((static_cast<uint32_t>(p[0]) << 24) |
+        return static_cast<uint32_t>(to_pow_2((static_cast<uint32_t>(p[0]) << 24) |
                 (static_cast<uint32_t>(p[1]) << 16) |
                 (static_cast<uint32_t>(p[2]) << 8) |
-                (static_cast<uint32_t>(p[3]) << 0)) + 2;
+                (static_cast<uint32_t>(p[3]) << 0)));
     };
-
     // create our image object with an initializer list.
     return {path, read_int(header + 16), read_int(header + 20)};
 }
@@ -66,24 +67,23 @@ Texture IMGDecoder::load_image_as_texture(
     // padded:   (w+1) × (h+1)
 
     SDL_Surface* src = IMG_Load(path.c_str());
-    src = SDL_ConvertSurfaceFormat(src, SDL_PIXELFORMAT_RGBA32, 0);
+    src = SDL_ConvertSurfaceFormat(src, SDL_PIXELFORMAT_RGBA8888, 0);
 
+    int new_w = to_pow_2(src->w);
+    int new_h = to_pow_2(src->h);
     SDL_Surface* padded = SDL_CreateRGBSurfaceWithFormat(
         0,
-        src->w + 2,
-        src->h + 2,
+        new_w,
+        new_h,
         32,
-        SDL_PIXELFORMAT_RGBA32
+        SDL_PIXELFORMAT_RGBA8888
     );
 
     SDL_Rect dst = {0, 0, src->w, src->h};
     SDL_BlitSurface(src, nullptr, padded, &dst);
 
     Uint32 white = SDL_MapRGBA(padded->format, 255,255,255,255);
-    ((Uint32*)padded->pixels)[(padded->h - 2) * padded->w + (padded->w - 2)] = white;
-    ((Uint32*)padded->pixels)[(padded->h - 2) * padded->w + (padded->w - 1)] = white;
-    ((Uint32*)padded->pixels)[(padded->h - 1) * padded->w + (padded->w - 2)] = white;
-    ((Uint32*)padded->pixels)[(padded->h - 1) * padded->w + (padded->w - 1)] = white;
+    ((Uint32*)padded->pixels)[(new_h - 1) * new_w + (new_w - 1)] = white;
 
     SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer, padded);
     SDL_FreeSurface(src);

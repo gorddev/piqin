@@ -65,14 +65,17 @@ bool Rhombus::update(LayerTime &time) {
     duration -= time.get_dt();
     deltat += time.get_dt();
     bool done = (duration <= 0) && !permanent;
-    if (deltat > period && !done) {
-        deltat -= period;
-        if (horse != nullptr) {
-            t.pos.z = horse->t.pos.z - 1.f;
-            particles.emplace_back(horse->t.offset + horse->t.pos - Vertex(0,0,1), speed, strength);
+    if (!done) {
+        while (deltat > period) {
+
+            if (horse != nullptr) {
+                t.pos = horse->t.pos - Vertex(0,0,1);
+                particles.emplace_back(horse->t.offset + horse->t.pos - Vertex(0,0,1), speed, strength);
+            }
+            else
+                particles.emplace_back(Vertex(0,0,0), speed, strength);
+            deltat -= period;
         }
-        else
-            particles.emplace_back(Vertex(0,0,0), speed, strength);
     }
     double dt = time.get_dt();
     for (auto it = particles.begin(); it != particles.end();) {
@@ -95,6 +98,7 @@ void Rhombus::to_vertex(RenderBuffer& buffer) {
     for (auto& i : particles) {
         i.to_vertex(buffer, t.color);
         count+=6;
+        buffer.push_shadow(6);
     }
     /*
     if (shadow())

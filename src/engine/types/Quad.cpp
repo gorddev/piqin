@@ -1,4 +1,4 @@
-#include "engine/types/Quad.hpp"
+#include "../../../include/engine/types/positioning/Quad.hpp"
 #include "engine/scene/animation/Frame.hpp"
 
 using namespace geng;

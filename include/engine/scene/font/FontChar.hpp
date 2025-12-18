@@ -4,7 +4,7 @@
 #include <SDL_rect.h>
 
 #include "FontTransform.hpp"
-#include "engine/types/Quad.hpp"
+#include "../../types/positioning/Quad.hpp"
 #include <SDL_render.h>
 
 namespace geng {

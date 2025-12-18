@@ -7,6 +7,7 @@
 #include "engine/Engine.hpp"
 #include "engine/scene/morphs/morph-types/Stretch.hpp"
 #include "engine/scene/particles/particle-types/Rhombus.hpp"
+#include "engine/scene/particles/particle-types/Sparkle.hpp"
 #include "game/asset-info/sheets/Asset-Card-Selector.hpp"
 #include "game/asset-info/sheets/Asset-Card-Stack.hpp"
 #include "game/asset-info/sheets/Asset-Deck.hpp"
@@ -47,8 +48,8 @@ int main() {
 
 	Card* c = new Card(59, blackjack::BJ_Suit::SPECIAL);
 	c->set_draggable();
-	l->apply_morph(new gfx::Stretch(c, 9.0, 3.0));
-	l->attach_particle(c, new gfx::Rhombus(c, 10.f, 1.f, -1, 1));
+	l->apply_morph(new gfx::Stretch(c, 9.0, 1.0));
+	l->attach_particle(c, new gfx::Rhombus(c, 10.f, 1.f, -1, 0.02));
 	l->input.add_mouse_acceptor(c);
 	l->add_actor(c);
 	c->t.pos = {30, 50, 0};

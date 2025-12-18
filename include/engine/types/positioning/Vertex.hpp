@@ -78,5 +78,9 @@ namespace geng {
         [[nodiscard]] std::string to_string() const;
         /// Checks to the fourth decimal if two Vertexes are equal.
         bool operator==(Vertex other) const;
+
+        bool is_finite() const;
+
+        void sanitize();
     };
 }

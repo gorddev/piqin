@@ -4,7 +4,7 @@
 
 #include "Frame.hpp"
 #include "AnimInfo.hpp"
-#include "engine/types/Quad.hpp"
+#include "../../types/positioning/Quad.hpp"
 #include "engine/utilities/image-info/IMGDecoder.hpp"
 
 

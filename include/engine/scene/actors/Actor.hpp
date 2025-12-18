@@ -50,10 +50,8 @@ namespace geng {
         /// Converts an actor to buffer
         void to_vertex(RenderBuffer &buffer) override {
             anim.calc_vertices(buffer, this);
-            /**
             if (has_shadow())
-                get_shadow_calc().apply_shadow(buffer, 6);
-                **/
+                buffer.push_shadow(6);
         }
         /// Returns the z-index of
         [[nodiscard]] float z_index() const override {

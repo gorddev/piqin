@@ -53,8 +53,8 @@ void Frame::append_vertices(RenderBuffer& buffer, Gear* gear) {
         float sn = sinf(a);
 
         return SDL_FPoint{
-            cx + (p.x * cs - p.y * sn),
-            cy + (p.x * sn + p.y * cs)
+            static_cast<float>(static_cast<int>(cx + (p.x * cs - p.y * sn))),
+            static_cast<float>(static_cast<int>(cy + (p.x * sn + p.y * cs)))
         };
     };
 

@@ -1,21 +1,15 @@
 #pragma once
 #include <SDL_render.h>
-#include <utility>
 #include <functional>
-#include <iostream>
 #include <vector>
 
-#include "engine/rendering/RenderBuffer.hpp"
+#include "shadow-types/ShadowBackground.hpp"
+#include "shadow-types/ShadowFloor.hpp"
 
 
 namespace geng {
-
-    /// Renders shadows directly onto the background
-    void shadow_background(RenderBuffer& buffer, int& numVertices);
-    /// Renders shadows onto a given floor.
-    void shadow_floor(RenderBuffer& buffer, int& numVertices);
-
-    using shadowFunc = std::function<void(RenderBuffer& buffer, int& numVertices)>;
+    /// Alias so we don't have to write that out each time.
+    using shadowFunc = std::function<void(std::vector<SDL_Vertex>& buffer, int& numVertices, void* userdata)>;
 
     /** @brief The shadow calculator takes in a buffer of vertices, and renders a shadow behind the number of provided vertices.
      * @details The shadow calculator can dynamically change it's shadow render method on the fly with the set_function(...) method. Two shadow casting methods are pre-provided
@@ -35,44 +29,25 @@ namespace geng {
         shadowFunc currentFunc = nullptr;
         int floor = 50;
     public:
-
-        ShadowBank() {
-            currentFunc = shadowfuncs["background"];
-        }
+        /// Unordered map containing all banked shaow functions.
         std::unordered_map<std::string, shadowFunc> shadowfuncs {
-            {"background", shadow_background},
-            {"floor", shadow_floor}
+                {"background", gfx::shadow_background},
+                {"floor", gfx::shadow_floor}
         };
 
-        void set_function(const std::string &shadow) {
-            if (shadowfuncs.find(shadow) != shadowfuncs.end()) {
-                currentFunc = shadowfuncs[shadow];
-            }
-            else {
-                std::cerr << "FATAL: Shadow function does not exist.\n";
-                abort();
-            }
-        }
-        void add_function(const std::string& shadow, shadowFunc func) {
-            if (shadowfuncs.find(shadow) != shadowfuncs.end()) {
-                std::cerr << "Err adding shadow: function already exists.\n";
-            }
-            else {
-                shadowfuncs[shadow] = std::move(func);
-            }
-        }
-        void apply_shadow(RenderBuffer& buffer, int numVertices = 1) {
-            if (buffer.size() < numVertices) {
-                std::cerr << "ERR: Requesting more shadows than Vertices rendered.\n";
-                numVertices = buffer.size();
-            }
-            currentFunc(buffer, numVertices);
-        }
-        void set_floor(int shadowFloor) {
-            floor = shadowFloor;
-        }
+        /// Constructor for the shadowbank.
+        ShadowBank();
+
+        /// Sets the current function via the provided string
+        void set_function(const std::string &shadow);
+        /// Adds a shadow function to the current shadowBank
+        void add_function(const std::string& shadow, shadowFunc func);
+        /// Applies a shadow to a buffer
+        void apply_shadow(std::vector<SDL_Vertex>& buffer, int numVertices, std::string shadow_type);
+        /// Applies a shadow to a buffer
+        void apply_shadow(std::vector<SDL_Vertex>& buffer, int numVertices = 3);
+        /// Sets the floor for floor-based shadows
+        void set_floor(int shadowFloor);
     };
 
-    /// Returns our shadow
-    ShadowBank& get_shadow_calc();
 }

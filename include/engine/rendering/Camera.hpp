@@ -1,5 +1,5 @@
 #pragma once
-#include "engine/types/Vertex.hpp"
+#include "../types/positioning/Vertex.hpp"
 
 namespace geng {
 	/** The Camera that controls the scene. Currently, it does not affect rendering in any capacity */

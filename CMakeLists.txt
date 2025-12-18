@@ -76,6 +76,7 @@ add_executable(norton
         # Rendering
         src/engine/render/Renderer.cpp
         src/engine/render/Background.cpp
+        src/engine/render/shadows/ShadowBank.cpp
 
         # Frame Management
         src/engine/scene/animation/FrameManager.cpp
@@ -113,10 +114,11 @@ target_link_options(norton PRIVATE
     "--shell-file=${CMAKE_SOURCE_DIR}/assets/game_shell.html"
     "--preload-file=assets"
     "--emrun"
-    "-sMAXIMUM_MEMORY=32MB"
+    "-sMAXIMUM_MEMORY=256MB"
     "-sALLOW_MEMORY_GROWTH"
     "-sUSE_SDL_IMAGE=2"
     "-sSDL2_IMAGE_FORMATS=[\"png\"]"
+    "-sUSE_WEBGL2=1"
 )
 
 

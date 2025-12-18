@@ -1,6 +1,6 @@
 #pragma once
 #include "Frame.hpp"
-#include "engine/types/Vertex.hpp"
+#include "../../types/positioning/Vertex.hpp"
 
 namespace geng {
     /// incomplete type do not use.

@@ -1,5 +1,5 @@
 #pragma once
-#include "../types/Vertex.hpp"
+#include "positioning/Vertex.hpp"
 #include "engine/EngineContext.hpp"
 #include <SDL.h>
 
