@@ -34,12 +34,12 @@ void RhombusInst::to_vertex(RenderBuffer& buffer, SDL_Color& color) const {
     SDL_FPoint left = {pos.x - rad, pos.y};
     SDL_FPoint right = {pos.x + rad, pos.y};
 
-    buffer.push_back(top);
-    buffer.push_back(left);
-    buffer.push_back(bottom);
-    buffer.push_back(top);
-    buffer.push_back(right);
-    buffer.push_back(bottom);
+    buffer.push_back(top, color);
+    buffer.push_back(left, color);
+    buffer.push_back(bottom, color);
+    buffer.push_back(top, color);
+    buffer.push_back(right, color);
+    buffer.push_back(bottom, color);
 }
 
 // Rhombus constructors
@@ -69,8 +69,8 @@ bool Rhombus::update(LayerTime &time) {
         while (deltat > period) {
 
             if (horse != nullptr) {
-                t.pos = horse->t.pos - Vertex(0,0,1);
-                particles.emplace_back(horse->t.offset + horse->t.pos - Vertex(0,0,1), speed, strength);
+                Vertex diff = (t.pos - horse->t.pos) * period/deltat;
+                particles.emplace_back(horse->t.offset + horse->t.pos + diff, speed, strength);
             }
             else
                 particles.emplace_back(Vertex(0,0,0), speed, strength);

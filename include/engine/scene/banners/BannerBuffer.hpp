@@ -3,7 +3,8 @@
 #include <vector>
 
 #include "engine/rendering/shadows/ShadowBank.hpp"
-#include "engine/types/positioning/Vertex.hpp"
+#include "engine/types/positioning/Point2D.hpp"
+#include "engine/types/Transform.hpp"
 
 namespace geng {
 
@@ -12,32 +13,33 @@ namespace geng {
         /// Contains the buffer of vertices
         std::vector<SDL_Vertex> buffer;
         /// Contains the position of the banner
-        Vertex& bannerPos;
+        Transform& bannerT;
         /// Contains a pointer to the ShadowBank
         ShadowBank* shadows = nullptr;
         /// Contains the white point of each texture
+        SDL_FPoint white_point = {1.f, 1.f};
+        /// Contains the amount we move each banner element by
+        Point2D move;
+
     public:
         /// Constructor: requires a banner to exist first
-        explicit BannerBuffer(Vertex& bannerPos)
-            : bannerPos(bannerPos), buffer(60) {}
+        explicit BannerBuffer(Transform& bannerT);
 
         /// Allows widgets to append themselves to the buffer
-        void push_back(SDL_Vertex vertex) {
-            buffer.push_back(vertex);
-        }
+        void push_back(SDL_Vertex vertex);
         /// Adds the properties of a vertex to the banner buffer to be added to the vertex buffer
-        void push_back(SDL_FPoint& pos, SDL_Color& color, SDL_FPoint& tex_coord) {
-            push_back({pos, color, tex_coord});
-        }
+        void push_back(SDL_FPoint& pos, SDL_Color& color, SDL_FPoint& tex_coord);
         /// Adds a point to the buffer -- thus ensuring that it is a single color. Default color is white.
-        void push_back(SDL_FPoint pos, SDL_Color color = {255, 255, 255, 255}) {
-            push_back({ pos, color, white_point});
-        }
-
+        void push_back(SDL_FPoint pos, SDL_Color color = {255, 255, 255, 255});
 
         /// Sets the shadow bank of the BannerBuffer
-        void _set_shadow_bank(ShadowBank* new_bank) {
-            shadows = new_bank;
-        }
+        void _set_shadow_bank(ShadowBank* new_bank);
+        /// Sets the wqhite point of the BannerBUffer
+        void _set_white_point(SDL_FPoint new_white_point);
+        /// Gets the buffer of vertices
+        [[nodiscard]] std::vector<SDL_Vertex>& _get_vertex_buffer();
+        /// Clears the buffer
+        void _clear_buffer();
     };
 }
+

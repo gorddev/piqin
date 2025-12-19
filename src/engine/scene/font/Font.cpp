@@ -11,8 +11,8 @@ Font::Font(std::unordered_map<char, geng::Quad> quads, const short spacing, cons
         q.x += offset_x;
         q.y += offset_y;
         this->quads.emplace(c,q);
+        std::cerr << "char: " << c << " quad: "<< q.to_string() << std::endl;
     }
-    this->spacing = spacing;
 }
 
 Font::Font(const Font& f) : texture_id(f.texture_id), spacing(f.spacing), chars(f.chars), quads(f.quads) {}
@@ -31,21 +31,23 @@ int Font::get_texture_id() const {
     return texture_id;
 }
 
+float Font::get_spacing() const {
+    return spacing;
+}
+
 void Font::set_texture_id(int id) {
     std::cerr << "Font::Setting texture id??\n";
     texture_id = id;
 }
 
 
-void Font::add_FontChar(char c, std::vector<FontChar> &buffer, Vertex pos) {
+bool Font::add_char_to_buffer(char c, std::vector<FontChar> &buffer) {
     if (chars.find(c) != chars.end()) {
         FontChar f = chars.at(c);
-        for (auto& i: f.points) {
-            i.x += pos.x;
-            i.y += pos.y;
-        }
         buffer.push_back(chars.at(c));
+        return true;
     }
+    return false;
 }
 
 void Font::_init(IMG_Info info) {

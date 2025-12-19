@@ -1,35 +1,32 @@
+#!/bin/bash
+
 if [ "../.protected/run.sh" -nt "./run.sh" ]; then
   echo "Updating ./run.sh file"
   cp -r "../.protected/run.sh" "./run.sh"
   sh ./run.sh
-
 else
+  # Set up Emscripten environment
   source /Users/gordie/emsdk/emsdk_env.sh EMSDK_QUIET=1
-  find "../assets/" -type f -print0 | while IFS= read -r -d '' file; do
-    rel="${file#assets/}"
 
-    dir="$(dirname "$rel")"
-    fname="$(basename "$rel")"
-    base="${fname%.*}"
-    outdir="assets/$dir"
-    out="$outdir/${base}.ktx2"
-
-    mkdir -p "$outdir"
-
-    if [[ $fname == *.png ]]; then
-      if [[ $file -nt $out ]]; then
-        echo "Updating basis: $rel › $out"
-        basisu -ktx2 -uastc -file "$rel"  -output_file "$out" > /dev/null
-      fi
-    elif [[ $fname == *.png ]]; then
-        echo "Converting PNG: $rel › $out"
-        basisu -ktx2 -uastc -file "$rel"  -output_file "$out" > /dev/null
-    fi
-    if [[ $fname == *.ttf ]]; then
-        echo "Copying .ttf file"
-        cp -r "$rel" "$out"
-    fi
+  # Recreate directory structure of ../assets/ in ./assets/
+  find "../assets/" -type d -print0 | while IFS= read -r -d '' dir; do
+      target_dir="./assets/${dir#../assets/}"
+      mkdir -p "$target_dir"
   done
 
+  # Copy all .png files into ./assets/ mirror
+  find "../assets/" -type f -name "*.png" -print0 | while IFS= read -r -d '' file; do
+      target_file="./assets/${file#../assets/}"
+      cp "$file" "$target_file"
+  done
+
+  # Convert all .world files and place .lvl in the ./assets/ mirror
+  find "../assets/" -type f -name "*.world" -print0 | while IFS= read -r -d '' file; do
+      target_dir="./assets/$(dirname "${file#../assets/}")"
+      mkdir -p "$target_dir"  # ensure target directory exists
+      ../.protected/json-importer/level-converter "$file" "$target_dir/$(basename "${file%.*}.lvl")"
+  done
+
+  # Finally, run emrun
   emrun --browser=chrome norton.html
 fi

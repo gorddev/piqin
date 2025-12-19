@@ -7,14 +7,48 @@
 #include "engine/rendering/RenderBuffer.hpp"
 
 namespace geng {
-    /** @brief A gear is the fundamental abstract base class the engine handles. Actors, ParticleGroups, and Panels are all subclasses of the Gear class.
-     * @details Member variables and classes are listed below:
-     * - @code int id@endcode The id of the Gear
-     * - @code GFlag flag@endcode Contains rendering information, like hidden, shadow, ect.
-     * - @code virtual float z_index() = 0@endcode Returns the z-index of the object
-     * - @code virtual void to_vertex() = 0@endcode Gets the rendering vertices of the object
-     * - @code virtual ~Gear() = default@endcode Virtual destructor.
-     */
+    /**
+         * @brief The fundamental base class in the engine for all renderable objects.
+         *
+         * @details
+         * The @code Gear@endcode class is the core building block of the engine. Almost every object that can be rendered
+         * or manipulated inherits from this class, including @code Actor@endcode, @code ParticleGroup@endcode, and @code Banner@endcode.
+         * - @code Transform t@endcode : The transform of the gear, including position, scale, rotation, and offset.
+         * - @code int id@endcode : A unique identifier for the gear. Defaults to @code -1@endcode and should be reassigned.
+         * - @code int texture_id@endcode : The ID of the texture applied to the gear. @code -1@endcode renders the object as white.
+         * - @code GFlag flag@endcode : Bitmask holding various rendering and interaction flags (private).
+         * - -----------
+         * - @code Gear()@endcode : Default constructor.
+         * - @code explicit Gear(const Vertex &pos)@endcode : Constructs a gear at the specified position.
+         * - @code explicit Gear(Transform t)@endcode : Constructs a gear with a given transform.
+         * - -----------
+         * - @code virtual float z_index() const = 0@endcode : Returns the z-index of the object for rendering order.
+         * - @code virtual void to_vertex(RenderBuffer& buffer) = 0@endcode : Populates the render buffer with the gear's vertices.
+         * - -----------
+         * - @code virtual ~Gear()@endcode : Virtual destructor for proper subclass destruction.
+         * - @code virtual std::string to_string() const@endcode : Returns a textual representation including ID and flags.
+         * - @code virtual void on_key_press(SDL_Scancode key)@endcode : Called when a key is pressed on a keyboard-accepting gear.
+         * - @code virtual void on_key_release(SDL_Scancode key)@endcode : Called when a key is released.
+         * - @code virtual void on_hover()@endcode : Called when the gear is hovered by a cursor.
+         * - @code virtual void on_hover_release()@endcode : Called when hover is removed.
+         * - @code virtual void on_click()@endcode : Called when the gear is clicked.
+         * - @code virtual void on_click_release()@endcode : Called when a click is released.
+         * - @code virtual void move(Vertex dist)@endcode : Called to move the gear by a distance vector.
+         * - -----------
+         * - Locking: @code lock()@endcode, @code unlock()@endcode, @code locked()@endcode
+         * - Visibility: @code hide()@endcode, @code unhide()@endcode, @code hidden()@endcode
+         * - Flipping: @code flipX()@endcode, @code flipY()@endcode, @code unflipX()@endcode, @code unflipY()@endcode, @code flippedX()@endcode, @code flippedY()@endcode
+         * - Shadow: @code set_shadow()@endcode, @code unset_shadow()@endcode, @code has_shadow()@endcode
+         * - Removal: @code flag_removal()@endcode, @code unflag_removal()@endcode, @code remove()@endcode
+         * - Tagging: @code tag()@endcode, @code untag()@endcode, @code is_tagged()@endcode
+         * - Type Checks: @code is_actor()@endcode, @code is_particle()@endcode, @code is_banner()@endcode
+         * - Clicking & Dragging: @code is_clicked()@endcode, @code is_dragged()@endcode, @code is_hovered()@endcode, @code set_draggable()@endcode, @code unset_draggable()@endcode, @code is_draggable()@endcode
+         * - Engine Internal Flags: @code _engine_flagger(GFlag)@endcode, @code _engine_deflagger(GFlag)@endcode
+         * @note
+         * - Flags are stored in a bitmask for efficient checks and toggles.
+         * - Most functions that modify the object are simple bitwise operations on @code flag@endcode.
+         * - Input-related virtual functions are meant to be overridden in subclasses.
+         */
     struct Gear {
     private:
         /// Rendering flag for the gear
@@ -106,8 +140,8 @@ namespace geng {
         bool is_actor() const { return flag << GFlag::actor; }
         /// Returns true if the object is a particle
         bool is_particle() const { return flag << GFlag::particle; }
-        /// Returns true if the object is a panel
-        bool is_panel() const { return flag << GFlag::panel; }
+        /// Returns true if the object is a banner
+        bool is_banner() const { return flag << GFlag::banner; }
 
         /* .... Clicking and dragging .... */
         // Clicking

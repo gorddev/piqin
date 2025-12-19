@@ -30,6 +30,8 @@ namespace geng {
         explicit TextureRegister(LayerContext& scene);
         ~TextureRegister();
 
+        std::pair<int, Texture> front();
+
         // Registers a sprite. Returns sheet_id
         int register_texture(std::string path);
         // Initializes all the textures with the renderer. This is essential

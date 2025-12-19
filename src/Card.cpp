@@ -27,14 +27,14 @@ uint8_t Card::to_anim_num() {
 }
 
 // Create a card with a value and suite
-Card::Card(int val, BJ_Suit suite)
-    : value(abs(val)), suit(suite) {
+Card::Card(geng::FrameTable& frame_table, int val, BJ_Suit suite)
+    : Actor(frame_table), value(abs(val)), suit(suite) {
 
     if (value > 13 && suit != BJ_Suit::SPECIAL) value = 13;
     t = defaultCardTransform;
-    anim.set_frame_table_id(0);
     anim.set_animation(to_anim_num());
-    anim.default_animation = to_anim_num();
+    anim.set_default_animation(to_anim_num());
+    texture_id = 1;
     unhide();
 }
 
@@ -49,7 +49,7 @@ void Card::flip() {
 
 void Card::flip_up() {
     flipped = false;
-    anim.set_animation(anim.default_animation);
+    anim.set_animation(anim.get_default_animation());
 }
 
 void Card::flip_down() {

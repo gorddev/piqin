@@ -24,30 +24,23 @@ namespace geng {
     struct AnimInfo {
     private:
         /// Frame we are currently on.
-        Frame* frame = nullptr;
+        Frame& frame;
         /// The current animation the sprite is on.
         uint16_t animation_index = 0;
         /// The current frame of the animation the sprite is on.
         uint16_t frame_index = 0;
-        /// ID of the sprite's texture
-        uint16_t texture_id = 0;
-        /// ID of the sprite's FrameTable
-        uint16_t frame_table_id = 0;
-    public:
-        /// Duration
-        float duration = 0.f;
         /// The default animation for this sprite
         uint16_t default_animation = 0;
-        /// Current animation type
-        GAnimType frameType = GAnimType::IDLE;
-        /// Flag for engine. Do not touch in a hot loop unless you know what you're doing.
+        /// Running duration of the animation
+        float duration = 0.f;
+    public:
+        /// Flag for engine to update the frame. Do not touch in a hot loop unless you know what you're doing.
         bool dirty = false;
 
-
-        /// Default constructor for AnimInfo. Should not be used willy-nilly.
-        AnimInfo() = default;
+        /// Basic constructor for animInfo without default frame
+        explicit AnimInfo(Frame& first_frame);
         /// Complete constructor for AnimInfo
-        AnimInfo(uint16_t texture_id, uint16_t frame_sheet_id, uint16_t animation_index);
+        AnimInfo(Frame& first_frame, uint16_t default_animation);
 
         /// Reduces the duration by dt, and returns true if the frame needs to be updated.
         bool update(LayerTime &time);
@@ -57,18 +50,18 @@ namespace geng {
         [[nodiscard]] uint16_t get_anim_id() const;
         /// Returns a copy of the frame index
         [[nodiscard]] uint16_t get_frame_index() const;
-        /// Returns a copy of the frame_table_id
-        [[nodiscard]] uint16_t get_frame_table_id() const;
-        /// Returns a copy of the texture_sheet_id
-        [[nodiscard]] uint16_t get_texture_id() const;
+        /// Returns a copy of the frame type.
+        [[nodiscard]] GAnimType get_frame_type() const;
+        /// Gets the default animation of the anim_info object
+        [[nodiscard]] uint16_t get_default_animation() const;
 
         // Setters
         /// Sets the frame of the AnimInfo
         void set_frame(Frame& s);
         /// Sets the animation for the AnimInfo, and flags the engine to change the frame.
         void set_animation(uint16_t new_animation);
-        /// Sets the frame sheet required
-        void set_frame_table_id(uint16_t new_frame_table_id);
+        /// Sets the default animation
+        void set_default_animation(uint16_t new_default_animation);
 
         // Utility
         /// Appends buffer to the buffer

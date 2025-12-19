@@ -20,7 +20,7 @@ namespace geng {
             }
         }
         /// grabs a font
-        Font at(int id) {
+        Font& at(int id) {
             if (id >= fonts.size() || id < 0) {
                 std::cerr << "ERR: Font " << id << "doesn't exist. Using sysfont.\n";
                 id = 0;
@@ -28,7 +28,7 @@ namespace geng {
             return fonts.at(id);
         }
         /// grabs a font with the [] operator
-        Font operator[](int id) {
+        Font& operator[](int id) {
             return at(id);
         }
     };

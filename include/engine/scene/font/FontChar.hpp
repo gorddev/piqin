@@ -3,9 +3,11 @@
 #include <vector>
 #include <SDL_rect.h>
 
-#include "FontTransform.hpp"
-#include "../../types/positioning/Quad.hpp"
 #include <SDL_render.h>
+#include <sstream>
+
+#include "engine/types/positioning/Point2D.hpp"
+#include "engine/types/positioning/Quad.hpp"
 
 namespace geng {
     /** Stores the information for one character of a font. Has member varibles:
@@ -18,11 +20,11 @@ namespace geng {
         /// Contains width, and spacing for each character.
         short w, h, s;
         /// Appends buffer to a buffer for editing.
-        void to_vertex(const FontTransform& t, std::vector<SDL_Vertex>& buffer) {
-            SDL_Vertex topleft = { {t.pos.x, t.pos.y}, t.color, points[0]};
-            SDL_Vertex topright = {{t.pos.x + w * t.scale, t.pos.y}, t.color, points[1]};
-            SDL_Vertex bottomleft = { {t.pos.x, t.pos.y + h * t.scale}, t.color, points[2]};
-            SDL_Vertex bottomright = {{t.pos.x + w * t.scale, t.pos.y + h * t.scale}, t.color, points[3]};
+        void to_vertex(std::vector<SDL_Vertex>& buffer, Point2D& pos, SDL_Color& color, float& scale) {
+            SDL_Vertex topleft = { {pos.x + 0.f, pos.y + 0.f}, color, points[0]};
+            SDL_Vertex topright = {{pos.x + w * scale, pos.y + 0.f}, color, points[1]};
+            SDL_Vertex bottomleft = { {pos.x + 0.f, pos.y + h * scale}, color, points[2]};
+            SDL_Vertex bottomright = {{pos.x + w * scale, pos.y + h * scale}, color, points[3]};
 
             buffer.push_back(topleft);
             buffer.push_back(bottomleft);
@@ -38,6 +40,17 @@ namespace geng {
             s = spacing;
             w = quad.w;
             h = quad.h;
+        }
+
+        /// to_string
+        std::string to_string() const {
+            std::ostringstream oss;
+            for (size_t i = 0; i < points.size(); ++i) {
+                oss << "(" << points[i].x << ", " << points[i].y << ")";
+                if (i + 1 < points.size()) oss << ", ";
+            }
+            oss << "] }";
+            return oss.str();
         }
     };
 }

@@ -1,10 +1,10 @@
-#include "../../../include/engine/types/positioning/Vertex.hpp"
+#include "../../../../include/engine/types/positioning/Vertex.hpp"
 
 #include <cassert>
 #include <cmath>
 #include <iostream>
 
-#include "../../../include/engine/wip/Random.hpp"
+#include "../../../../include/engine/wip/Random.hpp"
 
 using namespace geng;
 

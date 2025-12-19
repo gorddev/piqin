@@ -11,16 +11,19 @@ Renderer::Renderer(EngineContext& world, Camera* cam) : world(world), cam(cam), 
 	buffer.clear();
 }
 
-void Renderer::set_canvas_resolution(const uint16_t width, const uint16_t height) {
+void Renderer::set_render_resolution(const uint16_t width, const uint16_t height) {
 	// Destroy our canvas tex if it doesn't already exist. 
 	if (canvasTex != nullptr)
 		SDL_DestroyTexture(canvasTex);
 	world._set_window_size(width, height);
-	canvasTex = SDL_CreateTexture(
-		renderer,
-		SDL_PIXELFORMAT_RGBA8888,
-		SDL_TEXTUREACCESS_TARGET,
-		world.get_width(), world.get_height());
+	if (renderer != nullptr) {
+		canvasTex = SDL_CreateTexture(
+			renderer,
+			SDL_PIXELFORMAT_RGBA8888,
+			SDL_TEXTUREACCESS_TARGET,
+			world.get_width(), world.get_height());
+	}
+	update_canvas_size(true);
 }
 
 void Renderer::_init() {
@@ -35,7 +38,7 @@ void Renderer::_init() {
 
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
 	// Set the canvas size we'll render to. 
-	set_canvas_resolution(world.get_width(), world.get_height());
+	set_render_resolution(world.get_width(), world.get_height());
 	// Tells us to use nearest neighbor scaling. 
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
 }
@@ -137,12 +140,10 @@ void Renderer::present() {
 }
 
 void Renderer::prime_tex_register(TextureRegister &reg) {
-	world.log(0, "Entering prime_tex_register", "Renderer::prime_tex_register");
 	for (auto& [str, id] : reg.path_to_textureID) {
-		world.log(0, "Attempting to make textures", "Renderer::prime_tex_register");
 		if (reg.ID_to_texture.find(id) == reg.ID_to_texture.end()) {
 			Texture tex = IMGDecoder::load_image_as_texture(renderer, str);
-			world.log(0, "Loading images to texture", "Renderer::prime_tex_register");
+			world.log(0, "Loading image to texture: " + tex.info.filename, "Renderer::prime_tex_register");
 			reg.ID_to_texture.emplace(id, std::move(tex));
 		}
 	}
@@ -152,11 +153,11 @@ void Renderer::prime_tex_register(TextureRegister &reg) {
 /* UPDATE CANVAS   */
 /* ............... */
 // Updates our canvas size if the user resizes the window
-void Renderer::update_canvas_size() {
+void Renderer::update_canvas_size(bool force) {
 	double cssWidth, cssHeight;
 	emscripten_get_element_css_size("canvas", &cssWidth, &cssHeight);
 
-	if (cssWidth != canvasWidth || cssHeight != canvasHeight) {
+	if (force || cssWidth != canvasWidth || cssHeight != canvasHeight) {
 		canvasWidth = static_cast<int>(round(cssWidth));
 		canvasHeight = static_cast<int>(round(cssHeight));
 

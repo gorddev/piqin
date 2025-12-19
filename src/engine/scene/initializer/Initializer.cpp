@@ -5,14 +5,14 @@
 
 namespace geng {
     class FontList;
-    class FrameManager;
+    class FrameList;
 }
 
 using namespace geng;
 
 Initializer::Initializer(TextureRegister& tex_reg, LayerContext& scene) : tex_reg(tex_reg), scene(scene) {
     std::cerr << "making initiazlier\n";
-    font("./sys-font.png", sys_font);
+    font("./assets/sys-font.png", sys_font);
 
 }
 
@@ -23,12 +23,15 @@ int Initializer::texture(const std::string &path, bool _internal) {
         return tex_reg.get_id(path);
     }
     scene.log(0, "Calling texture register\n", "geng::Initializer::texture");
-    return tex_reg.register_texture(path);
+    int registerid= tex_reg.register_texture(path);
+    return registerid;
 }
 
 int Initializer::frame_table(const std::string &path, FrameTable ft) {
     // Sets texture id of the frametable
-    ft.set_texture_id(texture(path, true));
+    int id = texture(path, true);
+    std::cerr << "making frametable with id " << id << "\n";
+    ft.set_texture_id(id);
     frameTables.emplace_back(ft);
     return frameTables.size() + (table_num++);
 }
@@ -71,36 +74,28 @@ void Initializer::set_sys_font(const std::string &path, const Font &fnt) {
         }
     }
     // Finally, update the TextureRegister mapping for the new font path
-    tex_reg.path_to_textureID[path] = fnt.get_texture_id();
+    tex_reg.path_to_textureID[path] = fonts[0].get_texture_id();
 }
 
-void Initializer::_compose(FrameManager &fm, FontList &fl) {
+void Initializer::_compose(FrameList &fm, FontList &fl) {
     // stores the dimensions of each of our texutures
-    std::vector<IMG_Info> dimensions;
-    dimensions.reserve(tex_reg.size());
-    for (int i = 0; i < tex_reg.path_to_textureID.size(); i++)
-        dimensions.emplace_back("", 0, 0);
+    std::unordered_map<int, IMG_Info> dimensions;
 
     // grabs the dimensions of each of the textures
-    std::cerr << "number of textures: " << tex_reg.path_to_textureID.size() << "\n";
     for (auto& [str, i]: tex_reg.path_to_textureID) {
-        if (i > dimensions.size() || i < 0) {
-            scene.log(debug::Severity::ERROR, "Dimension mismatch. Check sys_font initialization.\n", "Initializer::_compose()");
-            abort();
-        }
         // Grabs our image information.
-        dimensions[i] = IMGDecoder::PNG_Info(str);
+        dimensions.emplace(i, IMGDecoder::PNG_Info(str));
     }
 
     // Initializes all frameTables
     for (auto& f: frameTables) {
         int id = f.get_texture_id();
-        f._init(dimensions[id]);
+        f._init(dimensions.at(id));
     }
     // Initializes all fonts
     for (auto& f: fonts) {
         int id = f.get_texture_id();
-        f._init(dimensions[id]);
+        f._init(dimensions.at(id));
     }
     // Sets up the frame_manager with all the required goodies
     fm.add_tables(frameTables);

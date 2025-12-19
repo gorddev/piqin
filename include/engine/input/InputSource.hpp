@@ -4,7 +4,7 @@
 
 #include "InputRouter.hpp"
 #include "engine/EngineContext.hpp"
-#include "engine/scene/Layer.hpp"
+#include "../scene/layers/Layer.hpp"
 
 namespace geng {
     /** The InputSource handles sending input to the specified layer and ensuring that inputs are interpreted correctly.

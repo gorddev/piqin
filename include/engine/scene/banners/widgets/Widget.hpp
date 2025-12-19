@@ -2,7 +2,7 @@
 #include "../BannerEnums.hpp"
 #include "engine/scene/banners/BannerBuffer.hpp"
 #include "engine/scene/layers/LayerTime.hpp"
-#include "engine/types/positioning/Point.hpp"
+#include "engine/types/positioning/Point2D.hpp"
 #include "engine/types/positioning/Vertex.hpp"
 
 namespace geng {
@@ -13,23 +13,26 @@ namespace geng {
     class Widget {
     protected:
         /// Dimensions of Widget: contains the width, height, relative x, and relative y of the Widget. Should not change.
-        Box dim;
+        Box2D dim;
         /// Contains the padding of the widget relative to the border of the banner
-        Directional padding;
+        Directional2D padding;
         /// Contains the texture id of the Widget
         int texture_id = -1;
         /// Alignment of the widget
         Align align;
     public:
+        virtual ~Widget() = default;
+
         /// Full constructor for the widget
         Widget(int x, int y, int w, int h, int tex_id)
             : dim(x, y, w, h), padding(0, 0, 0, 0), align(Align::NONE), texture_id(tex_id) {}
         /// Constructor that just concerns size and alignment
-        Widget(int w, int h, int tex_id, Align align, Directional padding = {0,0,0,0})
+        Widget(int w, int h, int tex_id, Align align, Directional2D padding = {0,0,0,0})
             : dim(0, 0, w, h), texture_id(tex_id), padding(padding), align(align){}
-
         /// To_vertex function. Must override & return number of vertices appended.
-        virtual int to_vertex(BannerBuffer& buffer, Vertex& banner_pos) = 0;
+        virtual int to_vertex(BannerBuffer& buffer) = 0;
+        /// You also must override the change dimension function so you know what the consequences are if you change dimensions. You can put nothing here if you really want to.
+        virtual void change_dim(Dim2D dimensions) = 0;
         /// Optional update function if your widget has animated elements or something else exciting.
         virtual void update(LayerTime& time) {}
 
@@ -40,6 +43,11 @@ namespace geng {
         /// Returns the height of this widget
         [[nodiscard]] int get_height() const { return dim.h; }
         /// Returns the position of this widget
-        [[nodiscard]] Point get_pos() const { return {dim.x, dim.y}; }
+        [[nodiscard]] Point2D get_pos() const { return {dim.x, dim.y}; }
+        /// Returns the texture id of this widget
+        [[nodiscard]] int get_texture_id() const { return texture_id; }
+        /// Sets the position of the widget
+        void set_pos(const Point2D pos) { dim.x = pos.x; dim.y = pos.y; }
+
     };
 }

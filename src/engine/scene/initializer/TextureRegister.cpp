@@ -6,6 +6,7 @@
 using namespace geng;
 
 TextureRegister::TextureRegister(LayerContext& scene) : scene(scene) {
+    std::cerr << "before TextureRegister::TextureRegister()\n";
     scene.log(0, "Making a texture register", "TexutreRegister::TextureRegister");
     id_num = 0;
 }
@@ -13,6 +14,7 @@ TextureRegister::TextureRegister(LayerContext& scene) : scene(scene) {
 int TextureRegister::register_texture(std::string path) {
     if (path_to_textureID.find(path) == path_to_textureID.end()) {
         int i = id_num++;
+        std::cerr << "registering path " << path << " under id " << i << "\n";
         path_to_textureID[path] = i;
         return i;
     }
@@ -55,6 +57,7 @@ void TextureRegister::destroy_texture(int index) {
         SDL_DestroyTexture(ID_to_texture.at(index).texture);
         ID_to_texture.erase(index);
     }
+
 }
 
 bool TextureRegister::has_texture(const std::string &path) {
@@ -69,6 +72,7 @@ int TextureRegister::get_id(const std::string &path) {
         std::cerr << "ERR: Texture not loaded yet.\n";
         return -1;
     }
+    std::cerr << "returning from get_id with path " << path << " id: " << path_to_textureID.at(path) << "\n";
     return path_to_textureID[path];
 }
 
@@ -84,7 +88,6 @@ void TextureRegister::clear() {
     path_to_textureID.clear();
     ID_to_texture.clear();
 }
-
 
 Texture TextureRegister::get_texture(int index) {
     if (ID_to_texture.find(index) == ID_to_texture.end())
@@ -109,4 +112,9 @@ TextureRegister::~TextureRegister() {
     for (auto& [i, tex] : ID_to_texture) {
         SDL_DestroyTexture(tex.texture);
     }
+}
+
+std::pair<int, Texture> TextureRegister::front() {
+    return {ID_to_texture.begin()->first, ID_to_texture.begin()->second
+};
 }

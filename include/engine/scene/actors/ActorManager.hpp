@@ -10,15 +10,10 @@ namespace geng {
 	 */
 	class ActorManager {
 	private:
-		// Links id -> object
-		std::unordered_map<int, Actor*> actorMap;
-		// Allows us to keep track of object IDs
-		gutils::IDStack stack;
-		// Gives the number of actors
-		int numObjects;
-		// Gives the next available ID.
-		int nextID = 0;
-
+		/// Vector of all of the actors in the scene
+		std::vector<Actor*> actors;
+		/// Links each of the actor's IDs to their position in the vector.
+		std::unordered_map<int, int> id_to_pos;
 		/// Holds the LayerContex object for dt stuff
 		LayerContext& scene;
 	public:
@@ -26,8 +21,7 @@ namespace geng {
 		explicit ActorManager(LayerContext& layer_context) noexcept;
 
 		// Adds an object to the objectManager
-		Actor* add_actor(Actor) noexcept;
-		Actor* add_actor(Actor*) noexcept;
+		void add_actor(Actor*) noexcept;
 		void add_actors(const std::vector<Actor*>& vec) noexcept;
 
 		// Removes an object from the objectManager
@@ -36,10 +30,11 @@ namespace geng {
 		void dissolve(std::vector<Actor*> vec);
 
 		// Updates properties of all actors.
-		std::vector<AnimInfo*> update_objects();
+		void update();
 
 		// Allows us to return our object list
-		std::unordered_map<int, Actor*>& get_actor_list();
+		auto begin();
+		auto end();
 
 		std::string to_string();
 	};

@@ -4,27 +4,19 @@
 using namespace geng;
 
 // Constructor
-ActorManager::ActorManager(LayerContext& layer_context) noexcept : numObjects(0), scene(layer_context) {}
+ActorManager::ActorManager(LayerContext& layer_context) noexcept : scene(layer_context) {}
 
 // Add object, pointer (preferred method)
-Actor * ActorManager::add_actor(Actor *a) noexcept {
-	// If the ID already exists, we don't add, it's redundant.
-	if (a->id != -1 && actorMap.find(a->id) != actorMap.end())
-		return nullptr;
+void ActorManager::add_actor(Actor *a) noexcept {
+	// First we add the actor to our link between ids and index
+	id_to_pos[a->id] = actors.size();
 	// If our flag is notempty
 	if (a->is_tagged())
 		std:: cerr << "Actor Tagged."
 					<< "\nObject Info:\n"
 					<< a->to_string() << std::endl;
-
-	actorMap[a->id] = a;
-	return a;
-}
-
-// Adding an object (non-pointer)
-Actor* ActorManager::add_actor(Actor a) noexcept {
-	auto* o = new Actor(a);
-	return add_actor(o);
+	// Then we just push it to the back of the vector
+	actors.push_back(a);
 }
 
 void ActorManager::add_actors(const std::vector<Actor *>& vec) noexcept {
@@ -34,13 +26,24 @@ void ActorManager::add_actors(const std::vector<Actor *>& vec) noexcept {
 
 // We have to remove an object by its id
 void ActorManager::dissolve(int id) {
-	// Exit if the object doesn't exist
-	if (actorMap.find(id) == actorMap.end()) return;
-	// Otherwise, we grab the id and push it onto the id stack
-	stack.push(id);
-	// Then, we can remove the object from our map
-	delete actorMap[id];
-	actorMap.erase(id);
+	// First we grab actor's index
+	if (id_to_pos.find(id) == id_to_pos.end()) {
+		scene.log(2, "Id " + std::to_string(id) + " not found",
+				  "ActorManager::dissolve(int id)");
+	}
+	int index = id_to_pos[id];
+	int last = static_cast<int>(actors.size()) - 1;
+	// Swap only if not already last
+	if (index != last) {
+		std::swap(actors[index], actors.back());
+		id_to_pos[actors[index]->id] = index;
+	}
+	// Then we erase the id from the map.
+	id_to_pos.erase(id);
+	// And delete our actor
+	delete actors.back();
+	// And remove it from the back
+	actors.pop_back();
 }
 
 // We take in an object and convert it to an id.
@@ -54,41 +57,34 @@ void ActorManager::dissolve(std::vector<Actor *> vec) {
 		dissolve(a->id);
 }
 
-std::vector<AnimInfo*> ActorManager::update_objects(){
-	// How we return our animInfo objects
-	std::vector<AnimInfo*> ret;
-
+void ActorManager::update(){
 	// Get our dt
 	double dt = scene.time.get_dt();
-	for (auto& [id, o]: actorMap){
-		Actor& actor = *o;
+	for (auto& a: actors){
+		Actor& actor = *a;
 		// Print out a flag for testing purposes.
 		if (actor.is_tagged())
 			std::cerr << "Actor Tagged:"
 						<< actor.to_string() << std::endl;
 		// Update our object's update functions
 		actor.update(scene.time);
-		// Ticks our object's animation frame
-		// SheetManager -> Object's Sheet -> tick_object
-		if (actor.anim.update(scene.time)) {
-			ret.push_back(&actor.anim);
-		}
+		// Then we update our object's frame information
+		actor.update_frame(scene.time);
 	}
-	return ret;
 }
 
-std::unordered_map<int, Actor*>& ActorManager::get_actor_list() {
-	return actorMap;
+auto ActorManager::begin() {
+	return actors.begin();
+}
+
+auto ActorManager::end() {
+	return actors.end();
 }
 
 std::string ActorManager::to_string() {
 	std::string ret;
-	ret += "Printing ObjectManager: ";
-	ret += "\n::Num actors: " + std::to_string(actorMap.size());
-	ret += "\n::Stack size: " + std::to_string(stack.num_elements());
-	ret += "\n::Stack memory: " + std::to_string(stack.size());
-	ret += "\n::Stack top: " + std::to_string(stack.top());
-	ret += "\n::Next ID: " + std::to_string(nextID);
+	ret += "Printing ActorManager: ";
+	ret += "\n::Num actors: " + std::to_string(actors.size());
 	ret += "\n";
 	return ret;
 }

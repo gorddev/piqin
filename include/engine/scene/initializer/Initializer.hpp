@@ -3,7 +3,7 @@
 #include <string>
 
 #include "TextureRegister.hpp"
-#include "engine/scene/animation//FrameManager.hpp"
+#include "engine/scene/animation//FrameList.hpp"
 #include "engine/scene/animation/FrameTable.hpp"
 #include "engine/scene/font/Font.hpp"
 #include "engine/scene/font/FontList.hpp"
@@ -41,6 +41,6 @@ namespace geng {
         void set_sys_font(const std::string &path, const Font &fnt);
 
         /// Actually initializes the frameTables, fonts, & the textures
-        void _compose(FrameManager& fm, FontList& fl);
+        void _compose(FrameList& fm, FontList& fl);
     };
 }

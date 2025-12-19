@@ -1,5 +1,5 @@
 #pragma once
-#include "layers/LayerContext.hpp"
+#include "LayerContext.hpp"
 #include "engine/rendering/DrawBatch.hpp"
 #include "engine/input/InputHandler.hpp"
 #include "engine/rendering/RenderBuffer.hpp"
@@ -11,7 +11,8 @@
 #include "engine/scene/routes/RouteManager.hpp"
 #include "engine/rendering/background/Background.hpp"
 #include "engine/utilities/IDStack.hpp"
-#include "events/EventManager.hpp"
+#include "../events/EventManager.hpp"
+#include "engine/scene/banners/BannerManager.hpp"
 #include "engine/scene/cells/CellBucket.hpp"
 
 namespace geng {
@@ -20,13 +21,14 @@ namespace geng {
      * @details Each layer by defualt is not z-indexed and is visible. To change this, access the relevant member
      * functions such as @code set_strict()@endcode or @code set_z_indexed()@endcode. Every layer has the following member funcctions
      */
-    class Layer final {
+    class Layer {
+    public:
+        /// Allows the user to access the scene of the layer.
+        LayerContext scene;
     private:
         /// The TextureRegister of the Layer
         TextureRegister texreg;
     public:
-        /// Allows the user to access the scene of the layer.
-        LayerContext scene;
         /// Allows the user to initialize components of the Layer.
         Initializer init;
         /// Allows the user to access the input of the layer.
@@ -42,10 +44,12 @@ namespace geng {
         Background* background = nullptr;
         /// The ActorManager of the Layer
         ActorManager actor;
+        /// The BannerManager of the layer
+        BannerManager banner;
         /// The FontList of the layer
         FontList fl;
-        /// The FrameManager of the layer
-        FrameManager frame;
+        /// The FrameList of the layer
+        FrameList frame;
         /// The MorphManager of the Layer
         MorphManager morph;
         /// The RouteManager of the layer
@@ -85,13 +89,29 @@ namespace geng {
         /// Adds several actors to the scene.
         void add_actors(const std::vector<Actor*>& actors);
         /// Removes an actor from the engine.
-        void remove_actor(const Actor *a);
+        void remove_actor(Actor *a);
         /// Removes a vector of actors from the engine.
         void remove_actors(const std::vector<Actor*>& objs);
 
+        // <><><> Banners <><><>
+        /// Adds a banner to the layer
+        void add_banner(Banner* b);
+        /// Adds several banners to the layer
+        void add_banners(const std::vector<Banner*>& banners);
+        /// Removes a banner from the scene
+        void remove_banner(Banner* b);
+        /// Removes several banners from the scene
+        void remove_banners(const std::vector<Banner*>& banners);
+
+        // <><><> Fonts & Frames <><><>
+        /// Gets a font
+        Font& get_font(int index);
+        /// Gets a frametable
+        FrameTable& get_frame_table(int index);
+
         // <><><> Particle groups <><><>
         /// Attatches a particle to an actor and then adds it to the rendering pipline.
-        void attach_particle(Actor* o, ParticleGroup* pg);
+        void attach_particle(Gear *g, ParticleGroup *pg);
         /// Adds multiple particles to the rendering pipeline.
         void attach_particles(std::vector<ParticleGroup*>& pgs);
         /// Removes a particle
@@ -125,6 +145,9 @@ namespace geng {
         void set_render_z_index();
         /// Renders everything based on texture-id
         void set_render_batch();
+
+        // <><><> Returns the center of the scene <><><>
+        Vertex get_scene_center() const;
 
         // <><><> Engine-Specific Functions <><><>
         /// Called by the engine to initialize the scene

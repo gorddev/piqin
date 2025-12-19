@@ -14,7 +14,7 @@ class Card : public geng::Actor {
 
     public:
         // Base constructor
-        Card(int val, blackjack::BJ_Suit suite);
+        Card(geng::FrameTable& frame_table, int val, blackjack::BJ_Suit suite);
 
         // Checks if two cards are equal.
         bool operator==(const Card c) const;
@@ -50,8 +50,8 @@ class Card : public geng::Actor {
 
     inline const geng::Transform defaultCardTransform = {
         {300 / 2.0f, 0, 0},
-        48,
         32,
+        48,
         1
     };
 

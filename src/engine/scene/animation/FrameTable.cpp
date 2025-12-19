@@ -78,13 +78,13 @@ Frame& FrameTable::get_frame(int animationNum, int frameNum) {
 
 
 void FrameTable::update_frame(AnimInfo& s) {
-    if (s.frameType== GAnimType::IDLE)
+    if (s.get_frame_type()== GAnimType::IDLE)
         s.set_frame(frames[s.get_anim_id()][0]);
-    if (s.frameType == GAnimType::CONTINUE)
+    if (s.get_frame_type() == GAnimType::CONTINUE)
         s.set_frame(frames[s.get_anim_id()][s.pre_increment_frame()]);
-    else if (s.frameType == GAnimType::RESET)
-        s.set_frame(frames[s.default_animation][0]);
-    else if (s.frameType == GAnimType::REPEAT)
+    else if (s.get_frame_type() == GAnimType::RESET)
+        s.set_frame(frames[s.get_default_animation()][0]);
+    else if (s.get_frame_type() == GAnimType::REPEAT)
         s.set_frame(frames[s.get_anim_id()][s.pre_increment_frame()]);
     s.dirty = false;
 }

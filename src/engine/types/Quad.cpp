@@ -1,4 +1,6 @@
 #include "../../../include/engine/types/positioning/Quad.hpp"
+
+#include <sstream>
 #include "engine/scene/animation/Frame.hpp"
 
 using namespace geng;
@@ -17,4 +19,10 @@ std::vector<SDL_FPoint> Quad::to_vert_points(int texW, int texH) const{
     vertexPoints[2] = {(x + 0.5f) / texW, (y + h - 0.f) / texH}; // bottom-left
     vertexPoints[3] = {(x + w + 0.01f) / texW, (y + h - 0.0f) / texH}; // bottom-right
     return vertexPoints;
+}
+
+std::string Quad::to_string() const {
+    std::stringstream ss;
+    ss << "Width: " << w << " Height: " << h << " X:" << x << " Y:" << y;
+    return ss.str();
 }

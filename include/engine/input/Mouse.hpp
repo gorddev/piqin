@@ -56,6 +56,10 @@ namespace geng {
 
         /// Called when the mouse is moved by some distance.
         void on_movement(SDL_Point pos, float dx, float dy, EngineContext& world) {
+            // First we need to sort by z-index first.
+            std::sort(mouse_recievers.begin(), mouse_recievers.end(), [](const Gear* a, const Gear* b) {
+                return a->z_index() > b->z_index();
+            });
             // First update our cursor position
             x = pos.x;
             y = pos.y;
@@ -70,15 +74,8 @@ namespace geng {
                     target->t.snap_to_scene(world);
                     return;
                 }
-                // If we're no longer contained within the target we need to update
-                if (!gutils::contained_within({x,y}, target->t)) {
-                    target->on_hover_release();
-                    flush_target();
-                }
-                // If everything's chill, we just exit.
-                else
-                    return;
             }
+            target = nullptr;
             // Search for a new target.
             for (int i = static_cast<int>(mouse_recievers.size()) - 1; i >= 0; i--) {
                 if (gutils::contained_within({x,y}, mouse_recievers[i]->t)) {

@@ -2,7 +2,7 @@
 #include <utility>
 
 #include "LayerMap.hpp"
-#include "engine/scene/Layer.hpp"
+#include "Layer.hpp"
 
 namespace geng {
 

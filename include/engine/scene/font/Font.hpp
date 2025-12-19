@@ -17,6 +17,8 @@ namespace geng {
         int texture_id = 0;
         /// Spacing between each font item
         float spacing = 0.f;
+        /// Name of the font
+
     public:
         /// Map between char and the Fontchar
         std::unordered_map<char, FontChar> chars;
@@ -33,8 +35,8 @@ namespace geng {
         Font(std::unordered_map<char, Quad> quads, short spacing = 0.f, short offset_x = 0, short offset_y = 0);
         Font(const Font& f);
 
-        /// Adds the correct character to a buffer of characters
-        void add_FontChar(char c, std::vector<FontChar> &buffer, Vertex pos);
+        /// Adds the correct FontChar to a buffer of FontChars given a character c.
+        bool add_char_to_buffer(char c, std::vector<FontChar> &buffer);
 
         /// Initializes the font
         void _init(IMG_Info info);
@@ -43,6 +45,8 @@ namespace geng {
         [[nodiscard]] short get_height() const;
         /// Gets the texture id of the font
         [[nodiscard]] int get_texture_id() const;
+        /// Gets the spacing of the font
+        [[nodiscard]] float get_spacing() const;
         /// stets the texture id of the font
         void set_texture_id(int id);
 

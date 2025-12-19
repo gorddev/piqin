@@ -36,6 +36,6 @@ namespace geng {
         /// Returns the duration of the frame
         [[nodiscard]] float get_duration() const;
         /// Returns the animation type of the frame.
-        [[nodiscard]] GAnimType get_anim() const;
+        [[nodiscard]] GAnimType get_anim_type() const;
     };
 }

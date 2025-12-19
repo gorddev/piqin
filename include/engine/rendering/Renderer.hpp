@@ -7,7 +7,7 @@
 
 #include "RenderBuffer.hpp"
 #include "engine/EngineContext.hpp"
-#include "engine/scene/Layer.hpp"
+#include "../scene/layers/Layer.hpp"
 #include "engine/scene/initializer/TextureRegister.hpp"
 #include "shadows/ShadowBank.hpp"
 
@@ -23,7 +23,7 @@ namespace geng {
 		~Renderer();
 
 		/// Sets our render resolution to this size.
-		void set_canvas_resolution(uint16_t width, uint16_t height);
+		void set_render_resolution(uint16_t width, uint16_t height);
 
 		/// Must call during engine setup
 		void _init();
@@ -41,7 +41,7 @@ namespace geng {
 		// This sets our render texture to the small 300 x 200 window so we get pixel-perfect scaling.
 		void set_render_texture();
 		// Updates the canvas in case the user decides to resize the window
-		void update_canvas_size();
+		void update_canvas_size(bool force = false);
 
 	private:
 		/// Lets us quickswap between shadows

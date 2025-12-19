@@ -25,9 +25,9 @@ namespace geng {
         // Window information //
         /* ***************** */
         /// The width of the scene.
-        uint16_t width = 400;
+        uint16_t width = 200;
         /// The height of the scene.
-        uint16_t height = 320;
+        uint16_t height = 140;
         /// The size of one horizontal border on the screen
         uint16_t borderX = 0;
         /// The size of one vertical border on the screen
@@ -109,6 +109,7 @@ namespace geng {
         }
         void enable_debug() { debug = true; }
         void disable_debug() { debug = false;}
+        bool is_debug() { return debug; }
 
 
     };

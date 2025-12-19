@@ -5,7 +5,7 @@
 
 namespace geng {
 
-    /** Cell bucket is a testing class to test imaging of textures.*/
+    /** Cell bucket is a testing class to test imaging of textures. They should only be used for debug. */
     class CellBucket {
         std::vector<Cell> cells;
     public:

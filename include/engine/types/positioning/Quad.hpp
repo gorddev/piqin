@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SDL_rect.h>
+#include <SDL_render.h>
 #include <vector>
 #include "../EngineEnums.hpp"
 
@@ -19,5 +20,8 @@ namespace geng {
 
         /// Converts a quad into it's corresponding vertex points
         std::vector<SDL_FPoint> to_vert_points(int texW, int texH) const;
+
+        /// Converts a quad into a string!
+        std::string to_string() const;
     };
 }

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SDL.h>
-#include "engine/scene/Layer.hpp"
+#include "../scene/layers/Layer.hpp"
 
 namespace geng {
     /**

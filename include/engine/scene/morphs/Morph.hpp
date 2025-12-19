@@ -6,7 +6,7 @@
 namespace geng {
     /**
   * @brief Morphs attach themselves to Gear objects, so any Gear can have an morph applied to it, although it may not have any visible change.
-  * Primary candidates for morphs are @code geng::Panels@endcode and @code geng::Actors@endcode.
+  * Primary candidates for morphs are @code geng::Banners@endcode and @code geng::Actors@endcode.
   * @details To create a new morph, make a subclass of the morph object and add it via the Engine.
   * Morphs have six member variables:
   * 1. Transform* t -> pointer to the object's Transform [protected]

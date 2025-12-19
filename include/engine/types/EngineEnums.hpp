@@ -23,7 +23,7 @@ namespace geng {
      * - @code clicked@endcode › Object is currently clicked by the cursor
      * - @code actor@endcode › Means the object is an actor
      * - @code particle@endcode › Means the object is a particle
-     * - @code panel@endcode › Means the object is a panel
+     * - @code banner@endcode › Means the object is a banner
      */
     enum class GFlag : uint16_t {
         none = 0,
@@ -40,7 +40,7 @@ namespace geng {
         clicked = 1 << 12,  /// This object is currently is_clicked by the cursor. You do not manage this
         actor = 1 << 13,    /// Means that this object is an actor (DO NOT CHANGE)
         particle = 1 << 14, /// Means that this object is a particle (DO NOT CHANGE)
-        panel = 1 << 15,    /// Means that this object is a panel (DO NOT CHANGE)
+        banner = 1 << 15,    /// Means that this object is a banner (DO NOT CHANGE)
     };
 
     /// Returns true if the inner flag contains the outer flag.
@@ -76,7 +76,7 @@ namespace geng {
         static_cast<uint16_t>(GFlag::draggable) |
         static_cast<uint16_t>(GFlag::actor) |
         static_cast<uint16_t>(GFlag::particle) |
-        static_cast<uint16_t>(GFlag::panel) |
+        static_cast<uint16_t>(GFlag::banner) |
         static_cast<uint16_t>(GFlag::clicked);
 
     inline GFlag operator~(GFlag a) {

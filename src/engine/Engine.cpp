@@ -32,6 +32,14 @@ void Engine::render() {
     rend.present();
 }
 
+void Engine::set_resolution(Dim2D d) {
+    rend.set_render_resolution(d.w, d.h);
+}
+
+Dim2D Engine::get_resolution() const {
+    return {world.get_width(), world.get_height()};
+}
+
 void Engine::compose_layer(Layer *l) {
     direct_log(0, "Composing layer: " +l->scene.get_name(), "compose_layer");
     rend.prime_tex_register(l->_init());

@@ -47,10 +47,18 @@ add_executable(norton
         src/engine/input/InputHandler.cpp
 
         # Layering
-        src/engine/scene/Layer.cpp
+        src/engine/scene/layers/Layer.cpp
+        src/engine/scene/layers/LayerContext.cpp
 
         # Actors
         src/engine/scene/actors/ActorManager.cpp
+        src/engine/scene/actors/Actor.cpp
+
+        # Banners
+        src/engine/scene/banners/Banner.cpp
+        src/engine/scene/banners/BannerBuffer.cpp
+        src/engine/scene/banners/text/Text.cpp
+        src/engine/scene/banners/text/TextParser.cpp
 
         # Fonts
         src/engine/scene/font/Font.cpp
@@ -79,7 +87,7 @@ add_executable(norton
         src/engine/render/shadows/ShadowBank.cpp
 
         # Frame Management
-        src/engine/scene/animation/FrameManager.cpp
+        src/engine/scene/animation/FrameList.cpp
         src/engine/scene/animation/FrameTable.cpp
         src/engine/scene/animation/Frames.cpp
         src/engine/scene/animation/AnimInfo.cpp
@@ -90,8 +98,10 @@ add_executable(norton
         src/engine/utilities/Utilities.cpp
 
         # Types
-        src/engine/types/Vertex.cpp
+        src/engine/types/positioning/Vertex.cpp
+        src/engine/types/Transform.cpp
         src/engine/types/Quad.cpp
+
 
         # Globals
 )

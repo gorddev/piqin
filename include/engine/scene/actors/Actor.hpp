@@ -2,6 +2,7 @@
 
 #include "engine/types/Gear.hpp"
 #include "engine/scene/animation/AnimInfo.hpp"
+#include "engine/scene/animation/FrameTable.hpp"
 
 namespace geng {
     /**
@@ -25,41 +26,40 @@ namespace geng {
     public:
         /// An actor's animation information.
         AnimInfo anim;
+        /// An actor's frameTable
+        FrameTable& frameTable;
 
     public:
-        /// Default Constructor
-        Actor() { set_shadow(); };
-        /// Default copy constructor
-        Actor(Actor& o) = default;
+        /// Defines an actor with a given frametable, sets default animation to 0.
+        explicit Actor(FrameTable& frames);
+        /// Defines an actor with a given frametable and a default animation
+        explicit Actor(FrameTable& frames, uint16_t default_animation);
         /// Defines an Actor with a starting position
-        explicit Actor(Vertex pos) : Gear(pos) { set_shadow(); }
-        /// Defines an actor with a starting position and animation info.
-        Actor(Vertex pos, AnimInfo anim) : Gear(pos), anim(anim) { set_shadow(); }
+        explicit Actor(FrameTable& frames, uint16_t default_animation, Transform t);
+        /// Default copy constructor. Here for readability
+        Actor(Actor& o) = default;
 
         /// Virtual update function
         virtual void update(LayerTime& time) {}
+
+        /// Non-virtual update_frame function.
+        void update_frame(LayerTime& time);
+
         /// Virtual Destructor
         ~Actor() override = default;
 
         /// To String
-        [[nodiscard]] std::string to_string() const override {
-            return	"Actor:" + Gear::to_string() + " " + t.to_string() + "\n" +  anim.to_string();
-        }
+        [[nodiscard]] std::string to_string() const override;
 
-        // Manual overrides for Gears
-        /// Converts an actor to buffer
-        void to_vertex(RenderBuffer &buffer) override {
-            anim.calc_vertices(buffer, this);
-            if (has_shadow())
-                buffer.push_shadow(6);
-        }
-        /// Returns the z-index of
-        [[nodiscard]] float z_index() const override {
-            return t.pos.z;
-        }
+        // <><>< Manual overrides for Gears <><><>
+        /// Converts an actor to vertex for the buffer. overridable, but not recommended to do so.
+        void to_vertex(RenderBuffer &buffer) override;
+        /// Returns the z-index of the actor (the z-coordinate in their transform.pos object). overridable, but not recommended to do so unless one of your element has a specialized z-index.
+        [[nodiscard]] float z_index() const override;
 
+        // Input handling
         /// This function is called when hovering over the actor with a cursor
-        void on_hover() override { std::cerr << "Actor::on_hover()" << std::endl; }
+        void on_hover() override {}
         /// This function is caleld when the is_hoverable is pulled away from the actor
         void on_hover_release() override {}
         /// This function is called when the object is is_clicked on

@@ -6,7 +6,8 @@
 #include "input/InputSource.hpp"
 #include "wip/Random.hpp"
 #include "rendering/Renderer.hpp"
-#include "scene/layers/LayerStack.hpp"
+#include "engine/layers/LayerStack.hpp"
+#include "types/positioning/Point2D.hpp"
 #include "utilities/IDStack.hpp"
 
 
@@ -39,9 +40,9 @@ namespace geng {
         Engine();
         ~Engine() = default;
 
-        // .......................... //
-        /* Engine vitals  */
-        // .......................... //
+        // *******************
+        // <><> Engine Vitals <><>
+        // *******************
         /// Initializes the engine. Must be called in @code int main(...)@endcode
         void init();
 
@@ -50,6 +51,14 @@ namespace geng {
 
         /// Sends things to the renderer and presents it. Should call every frame.
         void render();
+
+        // *******************
+        // <><> Rendering <><>
+        // *******************
+        /// Sets the resolution of the window
+        void set_resolution(Dim2D d);
+        /// Gets the resolution of the window
+        [[nodiscard]] Dim2D get_resolution() const;
 
         // *******************
         // <><> Layers <><>
@@ -70,10 +79,14 @@ namespace geng {
         /// Gets a layer based on the layer name
         void get_layer(std::string layer_name);
 
+        // *********************
+        // <><> Debugging <><><>
+        // *********************
         /// Directly logs from engine root. Usually not recommended to do.
         void direct_log(int severity, std::string msg, std::string src = "");
+        /// Enables debugging modes in the engine
         void set_debug_mode(bool enabled);
-
+        /// Immediately prints all debug notifications
         void set_debug_immediate_print(bool enabled);
     };
 }

@@ -22,6 +22,7 @@ namespace geng {
             tex_info("no image", 0, 0),
             shadows(shadows) {}
 
+        // <><><> Standard push back functions <><><>
         /// Adds vertex to the render buffer
         void push_back(SDL_Vertex vertex) {
             buffer.push_back(vertex);
@@ -30,16 +31,25 @@ namespace geng {
         void push_back(SDL_FPoint& pos, SDL_Color& color, SDL_FPoint& tex_coord) {
             buffer.push_back({pos, color, tex_coord});
         }
+        /// Adds a buffer to the current buffer
+        void push_back(std::vector<SDL_Vertex>& vertices) {
+            buffer.insert(buffer.end(), vertices.begin(), vertices.end());
+        }
+
+        // <><><> Point-based push back functions
         /// Adds a point to the buffer -- thus ensuring that it is a single color. Default color is white.
         void push_back(SDL_FPoint pos, SDL_Color color = {255, 255, 255, 255}) {
             buffer.push_back(
             { pos, color, white_point}
             );
         }
-        /// Adds a buffer to the current buffer
-        void push_back(std::vector<SDL_Vertex>& vertices) {
-            buffer.insert(buffer.end(), vertices.begin(), vertices.end());
+        /// Adds many points to the buffer with the specified color
+        void push_back(std::vector<SDL_FPoint>& pos, SDL_Color color = {255, 255, 255, 255}) {
+            for (auto& i : pos) {
+                push_back(i, color);
+            }
         }
+
 
         //<><><> Shadow Handling <><><>
         /// Renders a certain number of shadows from the top of the vertex buffer with a shadow_type
@@ -84,6 +94,14 @@ namespace geng {
         /// Resize the render buffer
         void resize(int num) {
             buffer.resize(num);
+        }
+        /// Gets the white point of the current texture
+        SDL_FPoint get_white_point() {
+            return white_point;
+        }
+        /// Gets the reference to the shadow bank
+        ShadowBank& get_shadow_bank() {
+            return shadows;
         }
 
     };

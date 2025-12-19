@@ -80,7 +80,7 @@ bool Sparkle::update(LayerTime& time) {
                 particles.emplace_back(horse->t.offset + horse->t.pos - Vertex(0,0,0.4), speed, strength);
             }
             else
-                particles.emplace_back(Vertex(0,0,0), speed, strength);
+                particles.emplace_back(t.pos, speed, strength);
         }
     }
     double dt = time.get_dt();

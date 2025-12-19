@@ -1,4 +1,4 @@
-#include "engine/scene/Layer.hpp"
+#include "../../../../include/engine/scene/layers/Layer.hpp"
 
 #include <utility>
 
@@ -8,7 +8,9 @@ Layer::Layer(std::string name)
         : world(nullptr), scene(std::move(name)), texreg(scene), actor(scene),
         event(scene), morph(scene),
         particle(scene), route(scene),
-        init(texreg, scene) {
+        init(texreg, scene), banner(scene), frame(scene) {
+    std::cerr << "whats going on\n";
+    scene.log(1, "Layer created: " + scene.get_name(), "Layer::Layer");
 }
 
 Layer::~Layer() {
@@ -16,19 +18,18 @@ Layer::~Layer() {
 }
 
 void Layer::update(double dt) {
-    // First, we update with a new scene dt.
+    // We first update the scene with dt.
     scene._update(dt);
     // Then we update all our objects
-    std::vector<AnimInfo*> anim_infos = actor.update_objects();
-    // Next we update all the frames of our objects
-    frame.update(anim_infos);
+    actor.update();
     // Now we update the partices.
     particle.update();
+    // Next we update any dynamic banner elements
+    banner.update();
     // Next we update all the routing info for our objects
     route.update();
     // Finally we update all of the morphs
     morph.update();
-    // And we're done.
 }
 
 // *********************** //
@@ -36,34 +37,70 @@ void Layer::update(double dt) {
 // *********************** //
 
 std::vector<DrawBatch> Layer::_render_self(RenderBuffer& buffer) {
+    // If we have no gears, we return
     if (gears.empty()) return {};
+
+    // If we're z-ordered, we sort based on that
+    std::sort(gears.begin(), gears.end(), [](const Gear* e1, const Gear* e2) {
+        return e1->z_index() < e2->z_index();
+    });
+
     // veector of batches for the renderer to handle
     std::vector<DrawBatch> batches;
+    // in an ideal scenario, we reserve the number of textures we have
     batches.reserve(texreg.size());
-    if (texreg.size() == 0) {
+    // If we have no textures, we crash.
+    if (texreg.size() == 0)
         scene.log(2, "No textures detected to render layer "+ scene.get_name(), "Layer::_render_self()");
-    }
-    DrawBatch current = {texreg[0].texture, 0}; // Start with texreg[0] for particle fallback
-    buffer.set_img_info(texreg[0].info);
-    current.texture_id = 0;
+    // Create the current draw batch from the initial texture. (This will likely be overwritten)
+    std::pair<int, Texture> initial = texreg.front();
+    DrawBatch current_batch = {initial.second.texture, 0}; // Start with texreg[0] for particle fallback
+    // Set the img_info for the RenderBuffer for various objects to use.
+    buffer.set_img_info(initial.second.info);
+    // Setrs the current texture id to 0.
+    current_batch.texture_id = initial.first;
 
     for (auto & gear : gears) {
+        // Reference our gear for faster access.
         auto& g = *gear;
-
-        if (g.texture_id != -1 && g.texture_id != current.texture_id) {
-            current.num_vertices = buffer.size() - current.start_index;
-            batches.push_back(current);
-
-            current.start_index = buffer.size();
-            current.texture_id = g.texture_id;
-            current.tex = texreg[g.texture_id].texture;
+        // If our texture ID doesn't match, we end the batch and create a new one (if -1, it doesn't have a texture, so it's chill)
+        if (g.texture_id != -1 && g.texture_id != current_batch.texture_id) {
+            // First we get the number of vertices we'll render
+            current_batch.num_vertices = buffer.size() - current_batch.start_index;
+            // Then we push back the current batch cause we won't be needing it anymore.
+            batches.push_back(current_batch);
+            // next, we get the start index for the next batch
+            current_batch.start_index = buffer.size();
+            // along with the requisite texture_id
+            current_batch.texture_id = g.texture_id;
+            // Then we set the texture
+            current_batch.tex = texreg[g.texture_id].texture;
+            // and update our image info.
             buffer.set_img_info(texreg[g.texture_id].info);
         }
         g.to_vertex(buffer);
     }
 
-    current.num_vertices = buffer.size() - current.start_index;
-    batches.push_back(current);
+    // Holy we're done!
+    // Wait what about debug mode
+    if (scene.is_debug()) {
+        // we need to go through and render all the hitboxes
+        for (auto & gear : gears) {
+            auto& g = *gear;
+            std::vector<SDL_FPoint> hitbox = g.t.to_vertex_hitbox(1);
+            if (g.is_banner())
+                buffer.push_back(hitbox, {0, 255, 0, 255});
+            else if (g.is_actor())
+                buffer.push_back(hitbox, {255, 0, 0, 255});
+            else
+                buffer.push_back(hitbox, {0, 0, 255, 255});
+        }
+    }
+
+    // We push back the final batch before exiting the render self function
+    current_batch.num_vertices = buffer.size() - current_batch.start_index;
+    batches.push_back(current_batch);
+
     return batches;
 }
 
@@ -131,8 +168,6 @@ void Layer::add_actor(Actor *a) {
     add_gear(a);
     // Add object to manager
     actor.add_actor(a);
-    // Applies the framestate
-    frame.apply_framestate(*a);
 }
 
 void Layer::add_actors(const std::vector<Actor*>& actors) {
@@ -140,25 +175,15 @@ void Layer::add_actors(const std::vector<Actor*>& actors) {
         a->_engine_flagger(GFlag::actor);
         add_gear(a);
     }
-    frame.apply_framestates(actors);
     actor.add_actors(actors);
 }
 
-void Layer::remove_actor(const Actor* a) {
+void Layer::remove_actor(Actor* a) {
     if (a == nullptr) return;
     particle.dissolve(a);
     morph.strip_morph(a);
     actor.dissolve(a);
-    gears.erase(
-    std::remove_if(
-            gears.begin(),
-            gears.end(),
-            [&](const Gear* e){
-                return e == a;
-            }
-        ),
-        gears.end()
-    );
+    remove_gear(a);
 }
 
 void Layer::remove_actors(const std::vector<Actor*>& objs) {
@@ -166,6 +191,45 @@ void Layer::remove_actors(const std::vector<Actor*>& objs) {
         remove_actor(i);
     }
 }
+
+
+// ********************** //
+// Banners //
+// ********************** //
+void Layer::add_banner(Banner *b) {
+    banner.add_banner(b);
+    b->_engine_flagger(GFlag::banner);
+    add_gear(b);
+}
+
+void Layer::add_banners(
+    const std::vector<Banner *> &banners) {
+    for (const auto& i: banners) {
+        add_banner(i);
+        add_gear(i);
+    }
+}
+
+void Layer::remove_banner(Banner *b) {
+    banner.remove_banner(b);
+    remove_gear(b);
+}
+
+void Layer::remove_banners(const std::vector<Banner*>& banners) {
+    for (const auto& i: banners) {
+        remove_banner(i);
+        remove_gear(i);
+    }
+}
+
+Font & Layer::get_font(int index) {
+    return fl[index];
+}
+
+FrameTable & Layer::get_frame_table(int index) {
+    return frame.get_table(index);
+}
+
 
 // ********************** //
 // Particles //
@@ -179,9 +243,9 @@ void Layer::instantiate_particle(ParticleGroup *pg) {
     add_gear(pg);
 }
 
-void Layer::attach_particle(Actor *o, ParticleGroup *pg) {
+void Layer::attach_particle(Gear *g, ParticleGroup *pg) {
     instantiate_particle(pg);
-    pg->horse = o;
+    pg->horse = g;
 }
 
 void Layer::attach_particles(std::vector<ParticleGroup*>& pgs) {
@@ -263,6 +327,10 @@ void Layer::set_render_batch() {
     std::sort(gears.begin(), gears.end(), [](const Gear* a, const Gear* b) {
         return a->texture_id < b->texture_id;
     });
+}
+
+Vertex Layer::get_scene_center() const {
+    return {world->get_width()/2.f, world->get_height()/2.f, 0};
 }
 
 

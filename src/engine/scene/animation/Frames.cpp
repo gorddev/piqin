@@ -17,8 +17,8 @@ Frame::Frame(Quad q, IMG_Info& info)
 void Frame::append_vertices(RenderBuffer& buffer, Gear* gear) {
     Gear& g = *gear;
 
-    const float hw = (g.t.w * g.t.scale) * 0.5f;
-    const float hh = (g.t.h * g.t.scale) * 0.5f;
+    const float hw = static_cast<int>(g.t.w * g.t.scale* 0.5f);
+    const float hh = static_cast<int>(g.t.h * g.t.scale* 0.5f);
 
     const float cx = g.t.pos.x + g.t.offset.x;
     const float cy = g.t.pos.y + g.t.offset.y;
@@ -38,7 +38,7 @@ void Frame::append_vertices(RenderBuffer& buffer, Gear* gear) {
         std::swap(uvTR, uvBR);
     }
 
-    // --- Local corners relative to center
+    // corners relative to center
     SDL_FPoint ltl{-hw, -hh};
     SDL_FPoint ltr{ hw, -hh};
     SDL_FPoint lbl{-hw,  hh};
@@ -46,17 +46,18 @@ void Frame::append_vertices(RenderBuffer& buffer, Gear* gear) {
 
     auto rotate = [&](SDL_FPoint p) {
         if (g.t.angle < 0.001f)
-            return SDL_FPoint{cx + p.x, cy + p.y};
+            return SDL_FPoint{static_cast<float>(static_cast<int>(cx + p.x)), static_cast<float>(static_cast<int>(cy + p.y))};
 
         float a = g.t.angle * gutils::degreesToRadians;
         float cs = cosf(a);
         float sn = sinf(a);
 
         return SDL_FPoint{
-            static_cast<float>(static_cast<int>(cx + (p.x * cs - p.y * sn))),
-            static_cast<float>(static_cast<int>(cy + (p.x * sn + p.y * cs)))
+            cx + (p.x * cs - p.y * sn),
+            cy + (p.x * sn + p.y * cs)
         };
     };
+
 
     SDL_Vertex tl{rotate(ltl), g.t.color, uvTL};
     SDL_Vertex tr{rotate(ltr), g.t.color, uvTR};
@@ -77,7 +78,7 @@ float Frame::get_duration() const {
     return duration;
 }
 
-geng::GAnimType Frame::get_anim() const {
+geng::GAnimType Frame::get_anim_type() const {
     return anim;
 }
 

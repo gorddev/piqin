@@ -1,0 +1,70 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "level1.json",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "level1.json": {
+            "scale": 2.198,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 138.98999090081895,
+                "y": 55.05004549590538
+            }
+        },
+        "level1.tmj": {
+            "scale": 2.243,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 191.0387873383861,
+                "y": 49.04146232724031
+            }
+        },
+        "level1.tsx": {
+            "scaleInDock": 1
+        },
+        "level2.json": {
+            "scale": 1.7374,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -91.22827213077011,
+                "y": 16.691608150109374
+            }
+        },
+        "level2.tmx": {
+            "scale": 1.5824,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 89.42113245702728,
+                "y": -15.166835187057643
+            }
+        }
+    },
+    "last.imagePath": "/Users/gordie/game/assets",
+    "last.worldFilePath": "/Users/gordie/game/levels",
+    "loadedWorlds": [
+    ],
+    "map.lastUsedFormat": "json",
+    "map.tileHeight": 8,
+    "map.tileWidth": 8,
+    "openFiles": [
+        "level1.json",
+        "level2.json"
+    ],
+    "project": "level1.tiled-project",
+    "recentFiles": [
+        "level2.json",
+        "level1.json",
+        "level1.tmj",
+        "level2.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 8,
+        "width": 8
+    }
+}
