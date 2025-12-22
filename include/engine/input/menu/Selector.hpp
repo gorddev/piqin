@@ -1,10 +1,10 @@
 #pragma once
-#include "engine/actors/Actor.hpp"
+#include "engine/scene/sprites/Sprite.hpp"
 
 namespace geng {
     // Generic selector object
     template <typename T>
-    struct Selector : Actor {
+    struct Selector : Sprite {
         // Target of the selector
         T* target;
 
@@ -14,7 +14,7 @@ namespace geng {
         // Then we implement our selector movements
         virtual void move() {move(false); };
         virtual void move(bool recess) = 0;
-        virtual void move(Vertex pos, float speed) = 0;
+        virtual void move(FPos2D pos, float speed) = 0;
 
         // Make sure that we can define switching of targetgs
         virtual void switchTarget(T* newTarget, bool moveTarget) = 0;

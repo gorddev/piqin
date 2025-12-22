@@ -1,4 +1,4 @@
-#include "../../../include/engine/types/positioning/Quad.hpp"
+#include "../../../include/engine/types/Quad.hpp"
 
 #include <sstream>
 #include "engine/scene/animation/Frame.hpp"

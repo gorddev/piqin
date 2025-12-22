@@ -5,8 +5,8 @@
 
 #include "FrameTable.hpp"
 #include "Mesh.hpp"
-#include "../layers/LayerContext.hpp"
-#include "engine/scene/actors/Actor.hpp"
+#include "engine/layers/LayerContext.hpp"
+#include "engine/scene/sprites/Sprite.hpp"
 
 
 namespace geng {
@@ -17,7 +17,7 @@ namespace geng {
      */
     class FrameList {
     private:
-        /// Links frame_table_ids in AnimInfo actors to FrameTables.
+        /// Links frame_table_ids in AnimInfo sprites to FrameTables.
         std::vector<FrameTable> tables;
         /// Allows for debugging
         LayerContext& scene;
@@ -27,7 +27,7 @@ namespace geng {
         explicit FrameList(LayerContext& scene);
         /// Loads the FrameSheets found in the FrameRegister
         void add_tables(const std::vector<FrameTable>& frameTables);
-        /// Gets the FrameTable associated with a specific actor.
+        /// Gets the FrameTable associated with a specific sprite.
         FrameTable& get_table(int id);
 
         /// Gets the beginning interator of the vector

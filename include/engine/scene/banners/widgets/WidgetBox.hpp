@@ -19,7 +19,7 @@ namespace geng {
         /// Default destructor
         ~WidgetBox() override = default;
 
-        /// Creates our WidgetBox vertex map
+        /// Creates our WidgetBox FPos2D map
         int to_vertex(geng::BannerBuffer& buffer) override {
             buffer.push_back(points[0], color);
             buffer.push_back(points[2], color);
@@ -38,7 +38,7 @@ namespace geng {
         }
 
         /// Update function does nothing, but allows us to continue overriding.
-        void update(geng::LayerTime& time) override {};
+        void update(geng::LayerState& time) override {};
 
     };
 }

@@ -2,7 +2,8 @@
 #include <cstdint>
 #include <utility>
 
-#include "debug/LogHistory.hpp"
+#include "debug/Debugger.hpp"
+#include "debug/debug-utilities/LogHistory.hpp"
 
 namespace geng {
 
@@ -37,10 +38,12 @@ namespace geng {
 
         /// Whether we are pixel perfect or not
         bool pixel_perfect = false;
-
-        /// Lets us set the debug mode to true
-        bool debug = true;
+        /// Whether they request a layer change
+        std::string layer_change;
     public:
+        /// Lets us have debug utilities
+        debug::Debugger debugger;
+
         EngineContext() = default;
 
         /// Updates the engineContext to get new timings and everything!!!
@@ -86,31 +89,27 @@ namespace geng {
         /* ***************** */
         // Logging & Debug //
         /* ***************** */
-        debug::LogHistory logs;
+
 
         void log(debug::Log& l) {
-            if (debug) {
-                l.timestamp = time;
-                logs.add_log(l);
-                // If we get an error, we just abort.
-                if (l.level == 2) {
-                    logs.dump_logs();
-                    abort();
-                }
-            }
+            l.source = "ø/" + l.source;
+            debugger.log(l);
         }
         void log(int severity, const std::string msg, std::string src = "..") {
             debug::Log l(static_cast<debug::Severity>(severity), msg, std::move(src));
-            l.source = "ø/" + l.source;
             log(l);
         }
-        void set_log_severity_filter(int severity) {
-            logs.set_severity(severity);
-        }
-        void enable_debug() { debug = true; }
-        void disable_debug() { debug = false;}
-        bool is_debug() { return debug; }
 
+        void enable_debug() { debugger.debug_mode = true; }
+        void disable_debug() { debugger.debug_mode = false;}
+        bool is_debug() { return debugger.is_debug(); }
+
+        void set_layer_change(std::string new_layer) {
+            layer_change = new_layer;
+        }
+        [[nodiscard]] std::string get_layer_change() {
+            return layer_change;
+        }
 
     };
 }

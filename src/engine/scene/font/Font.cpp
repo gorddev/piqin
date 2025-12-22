@@ -11,7 +11,6 @@ Font::Font(std::unordered_map<char, geng::Quad> quads, const short spacing, cons
         q.x += offset_x;
         q.y += offset_y;
         this->quads.emplace(c,q);
-        std::cerr << "char: " << c << " quad: "<< q.to_string() << std::endl;
     }
 }
 

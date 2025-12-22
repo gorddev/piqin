@@ -13,7 +13,7 @@ static bool is_PNG(const std::string& path) {
         return false;
     // Grabs the extension
     std::string extension = path.substr(path.length() - 4);
-    // Transforms the extension to lowercase
+    // Transform2Ds the extension to lowercase
     std::transform(extension.begin(), extension.end(), extension.begin(), ::tolower);
     // Returns whether our extension is PNG or not
     return (extension == ".png");
@@ -21,7 +21,7 @@ static bool is_PNG(const std::string& path) {
 
 static long to_pow_2(const int x) {
     long i = 1;
-    for (; i <= x; i*=2){}
+    for (; i < x; i*=2){}
     return i;
 }
 
@@ -63,8 +63,6 @@ IMG_Info IMGDecoder::PNG_Info(const std::string &path) {
 Texture IMGDecoder::load_image_as_texture(
     SDL_Renderer *renderer, std::string path) {
 
-    // original: w × h
-    // padded:   (w+1) × (h+1)
 
     SDL_Surface* src = IMG_Load(path.c_str());
     src = SDL_ConvertSurfaceFormat(src, SDL_PIXELFORMAT_RGBA8888, 0);

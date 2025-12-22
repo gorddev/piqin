@@ -7,6 +7,8 @@
 #include "engine/scene/animation/FrameTable.hpp"
 #include "engine/scene/font/Font.hpp"
 #include "engine/scene/font/FontList.hpp"
+#include "engine/scene/tilesets/TileList.hpp"
+#include "engine/scene/tilesets/Tileset.hpp"
 
 namespace geng {
     /**
@@ -21,6 +23,9 @@ namespace geng {
         /// Contains all the fonts the user specifies
         std::vector<Font> fonts;
         int font_num = 0;
+        /// Contains all the tilesets the user specifies
+        std::vector<Tileset> tilesets;
+        int tileset_num = 0;
 
         /// Clears out the system font
         void _clear();
@@ -36,11 +41,13 @@ namespace geng {
         int frame_table(const std::string &path, FrameTable ft);
         /// Sets up a Font and its corresponding texture to be initialized
         int font(const std::string &path, Font f, int id = -1);
+        /// Sets up a Tileset and it's corresponding texture
+        int tileset(const std::string &path, Tileset t);
 
         /// Sets the system font. Do not call after first initialization.
         void set_sys_font(const std::string &path, const Font &fnt);
 
         /// Actually initializes the frameTables, fonts, & the textures
-        void _compose(FrameList& fm, FontList& fl);
+        void _compose(FrameList &fm, FontList &fl, TileList &tl);
     };
 }

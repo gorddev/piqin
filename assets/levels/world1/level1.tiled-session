@@ -3,17 +3,21 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level1.json",
+    "activeFile": "",
     "expandedProjectPaths": [
         "."
     ],
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "level1.json": {
-            "scale": 2.198,
-            "selectedLayer": 0,
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 2.8452,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 138.98999090081895,
-                "y": 55.05004549590538
+                "x": 78.72908758610993,
+                "y": 131.27372416701814
             }
         },
         "level1.tmj": {
@@ -24,43 +28,58 @@
                 "y": 49.04146232724031
             }
         },
-        "level1.tsx": {
-            "scaleInDock": 1
-        },
-        "level2.json": {
-            "scale": 1.7374,
+        "level1.tmx": {
+            "scale": 2.83,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": -91.22827213077011,
-                "y": 16.691608150109374
+                "x": 120.14134275618375,
+                "y": 77.91519434628975
+            }
+        },
+        "level1.tsx": {
+            "scaleInDock": 5.8526,
+            "scaleInEditor": 1
+        },
+        "level2.json": {
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 2.8428,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -46.08132826790488,
+                "y": 108.87153510623331
             }
         },
         "level2.tmx": {
-            "scale": 1.5824,
+            "scale": 1.8529,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 89.42113245702728,
-                "y": -15.166835187057643
+                "x": 10.254196124993229,
+                "y": 128.71714609531003
             }
         }
     },
-    "last.imagePath": "/Users/gordie/game/assets",
-    "last.worldFilePath": "/Users/gordie/game/levels",
+    "last.imagePath": "/Users/gordie/game/assets/levels/world1",
+    "last.objectTemplatePath": "/Users/gordie/game/assets/levels/world1",
+    "last.worldFilePath": "/Users/gordie/game/assets/levels/world1",
     "loadedWorlds": [
+        "/Users/gordie/game/assets/levels/world1/world1.world"
     ],
     "map.lastUsedFormat": "json",
     "map.tileHeight": 8,
     "map.tileWidth": 8,
     "openFiles": [
-        "level1.json",
-        "level2.json"
     ],
     "project": "level1.tiled-project",
+    "property.type": "int",
     "recentFiles": [
         "level2.json",
         "level1.json",
-        "level1.tmj",
-        "level2.tmx"
+        "level1.tmx",
+        "level1.tsx",
+        "level2.tmx",
+        "level1.tmj"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

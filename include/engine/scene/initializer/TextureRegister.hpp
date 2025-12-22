@@ -5,7 +5,7 @@
 #include <unordered_map>
 
 #include "Texture.hpp"
-#include "engine/scene/layers/LayerContext.hpp"
+#include "engine/layers/LayerContext.hpp"
 #include "engine/utilities/image-info/IMGDecoder.hpp"
 
 namespace geng {

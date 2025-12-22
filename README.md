@@ -44,8 +44,8 @@ Now here's where the real meat and potatoes are. Layers basically do everything 
 Before explicitly discussing layers, it's important to note that just like the engine has an `EngineContext`, Layers have a `LayerContext` object that sandboxes time, speed, and other resources for objects in the layer. Note that there are no protections for adding objects to multiple layers, and that is undefined behavior. 
 
 Here's what layers primarily do:
-- Manage all the `Sprites` (internall called `Actors`) and update both their frames and their motion.
-- Manage all the `animations`, by storing the normalized render vertices in memory containers for quick access and reference to by `Actors`.
+- Manage all the `Sprites` (internall called `Sprites`) and update both their frames and their motion.
+- Manage all the `animations`, by storing the normalized render vertices in memory containers for quick access and reference to by `Sprites`.
 - `Banners` › Handles the display of text and UI elements both on the `canvas resolution` and on the scale of the `scene_resolution` via wrangling the `LayerContext` for everything it has. `Banners` take in `Widget` objects to form the cohesive menu. This makes it much easier to form things like dialouge boxes or complex UI elements with images that is fully left up to user control.
 - `Cells` › Cells are a debug class that can be used to display normalized coordinates of a texture directly to the canvas, on top of everything else in the layer. Very primitive.
 - `Events` › Every Layer also has it's own event queue that is made up of three separate queues that behave differently. Events activate once their internal timer hit zero:
@@ -54,7 +54,7 @@ Here's what layers primarily do:
   - `Epoch Queue` › An event queue that blocks all other events from ticking down in time or activating until the entire `Epoch Queue` is empty. Good for cutscenes.
 - `Font` › Layers must also internall manage all their own fonts. The engine always has access to a low-resolution `sys-font`, but any other fonts to be used in a layer must be explicitly declared and prepped by the user.
 - `Initializer` › Very chunky and very annoying class. The initializer preps the Layer to properly be set up for use. When the user calls the initializer, the initializer essentially queues up all the assets to be converted to textures and preps`Font`, `Animation` and `Tileset` caches to be converted into their final form. Then, when `engine.compose_layer(Layer)` is called, the `Renderer` swoops in and renders all the textures in one fell swoop and stores the results in the Layer's `TextureRegistry`. 
-- `Morphs` › morphs are effects that you can apply to `Actors` `Particles` and `Banners` that modify their display upon rendering. For example, the `Morph` `gfx::Stretch` when applied to `Actors` stretches the texture in the direction they are moving. Although not explicitlt enforced, `Morphs` should not update `position`.
+- `Morphs` › morphs are effects that you can apply to `Sprites` `Particles` and `Banners` that modify their display upon rendering. For example, the `Morph` `gfx::Stretch` when applied to `Sprites` stretches the texture in the direction they are moving. Although not explicitlt enforced, `Morphs` should not update `position`.
 - `Particles` › Particle effects are incredibly versitile but also very low level, such that if a user wants to create a particle effect, they must specify the exact vertices on the screen where that particle must be rendered. They create a `ParticleGroup` object and then define how each particle in that `ParticleGroup` will be rendered. However, a wonderful consequence of this is that particles are incredibly efficient, even on a web environment. Generating `30000` particles per second is possible while retaining 60fps on a web browser. 
 - `Physics` › Unimplemented, but it'll be a pain
 - `Routes` › Routes are a counterpart to `Morphs` that do not affect rendering, but change the `position` of an object by sending it towards a target. Routes self-destruct once they reach their destination, and cannot exist without something to move. However you can make things look real pretty with a route + particle combination.
@@ -69,7 +69,7 @@ b->add_widget(text, Align::CENTER); // Adds a widget with center alignment.
 layer->add_banner(b);
 ```
 
-If this seems like a lot to you just to render a piece of text, DO NOT FRET. The `Layer Library` comes to the rescue. If you find yourself making banners, actors, or particles with similar structures often, you can do the following:
+If this seems like a lot to you just to render a piece of text, DO NOT FRET. The `Layer Library` comes to the rescue. If you find yourself making banners, sprites, or particles with similar structures often, you can do the following:
 
 ```
 MyCustomSubclass jerry;
@@ -79,7 +79,7 @@ Now, whenever you want your subclass back (or want it immediately rendered), you
 ```
 // gets a copied object
 auto astroBoy = layer->lib.get<MyCustomSubclass>("my boy");
-layer->add_actor(astroBoy,);
+layer->add_sprite(astroBoy,);
 // immediately adds to layer
 layer->add_from_lib<MyCustomSubclass>("my boy");
 ```
@@ -93,11 +93,11 @@ The whole engine is namespaced with `namespace geng`, although there are two exc
 #### Custom Object Types
 
 There's a couple other important object types not discussed above:
-1. `Vertex` is the object the engine uses for all positioning. x and y represent the object's **center** on the canvas, and the `z` determines rendering order and mouse-selection.
-2. `Gear` is the fundamental unit the renderer renders apart from `Tilesets.` `Actors`, `Particles`, and `Banners` are all `Gears` so you see generic functions like `attach_particle` contian a `Gear*` instead of one of them specifically.
-3. `Transform` is the fundamental object that Gears have that keep track of width, height, scale, rotation, ect. 
+1. `FPos2D` is the object the engine uses for all positioning. x and y represent the object's **center** on the canvas, and the `z` determines rendering order and mouse-selection.
+2. `Gear` is the fundamental unit the renderer renders apart from `Tilesets.` `Sprites`, `Particles`, and `Banners` are all `Gears` so you see generic functions like `attach_particle` contian a `Gear*` instead of one of them specifically.
+3. `Transform2D` is the fundamental object that Gears have that keep track of width, height, scale, rotation, ect. 
 4. `SparseVector` is a custom object that is a vector but with pointers that go null when you erase elements. This means that you can retain ordering with `O(1)` removal anywhere as long as you know the index. It's very situational. 
-5. `Point2D` `Dim2D` `Box2D` `Directional2D` are all simple structs that help pass around information while retaining readability. For example, a `Point2D` is just two integers, x & y. `Dim2D` is the same thing with shorts w & h. a `Box2D` is basically just a `Point2D` and `Box2D` that has real handy `to_vertex` functions that automatically calculate the vertex points if you were to split it up into two quads. `Directional2D` is just a box but the variable names are `top, bottom, left,` and `right` and they're all shorts too. 
+5. `Pos2D` `Dim2D` `Box2D` `Directional2D` are all simple structs that help pass around information while retaining readability. For example, a `Pos2D` is just two integers, x & y. `Dim2D` is the same thing with shorts w & h. a `Box2D` is basically just a `Pos2D` and `Box2D` that has real handy `to_vertex` functions that automatically calculate the FPos2D points if you were to split it up into two quads. `Directional2D` is just a box but the variable names are `top, bottom, left,` and `right` and they're all shorts too. 
 6. `Quad` a quad is an enhanced `Box2D` that has even better functions to help convert simple coordinates into `Fonts`, `Frames`, ect. 
 7. `Texture` is a texture contains a pointer to the texture object in memory (a `SDL_Texture*`), and an `IMG_Info` object, which contains the width, height, and filename of the texture. 
 ### Engine Quirks

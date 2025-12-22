@@ -1,13 +1,12 @@
 #pragma once
-// My files
-#include "Camera.hpp"
+
 // Libraries
 #include  <emscripten/html5.h>
 #include <SDL.h>
 
 #include "RenderBuffer.hpp"
 #include "engine/EngineContext.hpp"
-#include "../scene/layers/Layer.hpp"
+#include "engine/layers/Layer.hpp"
 #include "engine/scene/initializer/TextureRegister.hpp"
 #include "shadows/ShadowBank.hpp"
 
@@ -19,7 +18,7 @@ namespace geng {
 	*/
 	class Renderer {
 	public:
-		explicit Renderer(EngineContext& world, Camera* cam);
+		explicit Renderer(EngineContext& world);
 		~Renderer();
 
 		/// Sets our render resolution to this size.
@@ -52,8 +51,6 @@ namespace geng {
 		SDL_Window* window = nullptr;
 		/// Renderer is the SDL created renderer we use to draw textures with. Tied to the window
 		SDL_Renderer* renderer = nullptr;
-		/// Camera of the scene. Doesn't do much yet.
-		Camera* cam;
 
 		/// Scene width and height!
 		int canvasWidth = 0.0f;

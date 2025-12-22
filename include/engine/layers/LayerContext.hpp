@@ -3,10 +3,10 @@
 #include <vector>
 
 #include "LayerMap.hpp"
-#include "LayerTime.hpp"
+#include "LayerState.hpp"
 #include "engine/EngineContext.hpp"
-#include "engine/debug/Log.hpp"
-#include "engine/types/positioning/Vertex.hpp"
+#include "../debug/debug-utilities/Log.hpp"
+#include "engine/rendering/Camera.hpp"
 
 namespace geng {
     /** @brief LayerFlags allows the engine and layer to behave differently based on flags set.
@@ -54,8 +54,10 @@ namespace geng {
         /// Allows us to keep track of logs before the engine context is formed
         std::vector<debug::Log> logs;
     public:
-        /// Time of the layer
-        LayerTime time;
+        /// State of the layer (time, keys held, ect)
+        LayerState state;
+        /// Camera of the layer
+        Camera camera;
         /// Id of the layer
         int id = -1;
 
@@ -117,8 +119,7 @@ namespace geng {
         void log(debug::Log l);
         void log(int severity, std::string msg, std::string src = "");
 
-        void log(int severity, std::stringstream msg,
-                 std::stringstream src);
+        void log(int severity, std::stringstream msg,std::stringstream src);
 
         bool is_debug();
 

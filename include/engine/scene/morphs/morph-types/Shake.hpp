@@ -1,5 +1,5 @@
 #pragma once
-#include "engine/scene/layers/LayerTime.hpp"
+#include "engine/layers/LayerState.hpp"
 #include "engine/scene/morphs/Morph.hpp"
 
 namespace gfx {
@@ -21,7 +21,7 @@ namespace gfx {
         Shake(geng::Gear* g, ShakeType shakeType, float amplitude, float speed = 1.0, float duration = -1.f, bool decay = false);
 
         /// The Morph override
-        bool update(geng::LayerTime &time) override;
+        bool update(geng::LayerState &time) override;
 
     protected:
         /// Speed of the shake
@@ -34,10 +34,10 @@ namespace gfx {
         uint8_t complete = false;
 
         // Various functions for each shake type.
-        void shake_random(geng::Transform& tref);
-        void shake_circular(geng::Transform &tref, geng::LayerTime &time) const;
-        void shake_floaty(geng::Transform &tref, geng::LayerTime &time) const;
-        void shake_side(geng::Transform &tref, geng::LayerTime &time) const;
+        void shake_random(geng::Transform2D& tref);
+        void shake_circular(geng::Transform2D &tref, geng::LayerState &time) const;
+        void shake_floaty(geng::Transform2D &tref, geng::LayerState &time) const;
+        void shake_side(geng::Transform2D &tref, geng::LayerState &time) const;
 
     };
 }

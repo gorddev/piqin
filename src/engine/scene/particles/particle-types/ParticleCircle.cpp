@@ -2,7 +2,7 @@
 
 using namespace geng;
 
-PCircle::PCircle(Vertex pos, int radius, float duration) : pos(pos), radius(radius), duration(duration) {
+PCircle::PCircle(FPos2D pos, int radius, float duration) : pos(pos), radius(radius), duration(duration) {
     direction.randomize();
     direction = direction.unit();
     initDuration = duration;
@@ -17,7 +17,7 @@ bool PCircle::update() {
 
 // fancy circle calculating formula.
 std::vector<SDL_FRect> PCircle::to_rect(float &speed) {
-    Vertex tpos = direction * (speed * (initDuration - duration));
+    FPos2D tpos = direction * (speed * (initDuration - duration));
     int trad = static_cast<int>(radius * fabsf((duration)/initDuration));
     int d = 3 - (2*trad);
     int y = trad, x = 0;
@@ -43,7 +43,7 @@ std::vector<SDL_FRect> PCircle::to_rect(float &speed) {
     return rects;
 }
 
-ParticleCircle::ParticleCircle(Vertex pos, float size,
+ParticleCircle::ParticleCircle(FPos2D pos, float size,
     float speed, float duration, float frequency,
     SDL_Color Tint)  : ParticleGroup(pos, size, speed, duration, Tint), period(frequency){
 }
@@ -61,10 +61,10 @@ bool ParticleCircle::update() {
         deltat -= period;
         if (horse != nullptr) {
             pos.z = horse->pos().z - 1.f;
-            particles.push_back(PCircle(horse->offset() + horse->pos() - Vertex(0,0,1), strength, 300));
+            particles.push_back(PCircle(horse->offset() + horse->pos() - FPos2D(0,0,1), strength, 300));
         }
         else
-            particles.push_back(PCircle(Vertex(pos), strength, 300));
+            particles.push_back(PCircle(FPos2D(pos), strength, 300));
     }
     for (auto it = particles.begin(); it != particles.end();) {
         if (it->duration <= 0) {

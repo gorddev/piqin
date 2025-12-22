@@ -2,12 +2,12 @@
 
 #include <iostream>
 
-#include "engine/scene/layers/LayerTime.hpp"
+#include "engine/layers/LayerState.hpp"
 
 using namespace geng;
 using namespace gfx;
 
-RhombusInst::RhombusInst(const Vertex &offset, float speed, float size) {
+RhombusInst::RhombusInst(const FPos2D &offset, float speed, float size) {
     pos = offset;
     velocity.randomize();
     velocity = velocity.unit();
@@ -27,7 +27,7 @@ bool RhombusInst::update(double& dt) {
 void RhombusInst::to_vertex(RenderBuffer& buffer, SDL_Color& color) const {
     // Radius
     int rad = static_cast<int>(radius * duration / 1500.f);
-    // Vertex locations
+    // FPos2D locations
 
     SDL_FPoint top = {pos.x, pos.y - rad};
     SDL_FPoint bottom = {pos.x, pos.y + rad};
@@ -43,12 +43,11 @@ void RhombusInst::to_vertex(RenderBuffer& buffer, SDL_Color& color) const {
 }
 
 // Rhombus constructors
-Rhombus::Rhombus(Vertex pos, float size, float speed, float duration, float frequency, SDL_Color Tint)
+Rhombus::Rhombus(FPos2D pos, float size, float speed, float duration, float frequency, SDL_Color Tint)
     : ParticleGroup(pos, size, speed, duration, Tint), period(frequency) {
     shadow_color = Tint;
     if (duration == -1)
         permanent = true;
-    pos.z = pos.z - 1.f;
 }
 
 Rhombus::Rhombus(Gear* o, float size, float speed, float duration, float period, SDL_Color Tint)
@@ -56,10 +55,9 @@ Rhombus::Rhombus(Gear* o, float size, float speed, float duration, float period,
     shadow_color = Tint;
     if (duration == -1)
         permanent = true;
-    t.pos.z = t.pos.z - 1.f;
 }
 
-bool Rhombus::update(LayerTime &time) {
+bool Rhombus::update(LayerState &time) {
     // Check if we're done
 
     duration -= time.get_dt();
@@ -69,11 +67,11 @@ bool Rhombus::update(LayerTime &time) {
         while (deltat > period) {
 
             if (horse != nullptr) {
-                Vertex diff = (t.pos - horse->t.pos) * period/deltat;
+                FPos2D diff = (t.pos - horse->t.pos) * period/deltat;
                 particles.emplace_back(horse->t.offset + horse->t.pos + diff, speed, strength);
             }
             else
-                particles.emplace_back(Vertex(0,0,0), speed, strength);
+                particles.emplace_back(FPos2D(0,0), speed, strength);
             deltat -= period;
         }
     }

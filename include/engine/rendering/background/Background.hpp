@@ -21,7 +21,7 @@ namespace geng {
         int paletteNum = 0;
         // The texture that the background writes to.
         SDL_Texture* background_texture;
-        // Keeps track of the world
+        // Keeps track of the engine_context
         EngineContext& world;
 
         void update_pixels();

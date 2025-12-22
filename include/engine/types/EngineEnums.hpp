@@ -21,7 +21,7 @@ namespace geng {
      * - @code draggable@endcode › Can be dragged around by the cursor
      * - @code dragged@endcode › This object is currently being dragged
      * - @code clicked@endcode › Object is currently clicked by the cursor
-     * - @code actor@endcode › Means the object is an actor
+     * - @code sprite@endcode › Means the object is an sprite
      * - @code particle@endcode › Means the object is a particle
      * - @code banner@endcode › Means the object is a banner
      */
@@ -38,7 +38,7 @@ namespace geng {
         draggable = 1 << 10,    /// Clicking on the object will call it's on_click() function
         dragged = 1 << 11,     /// This object can be dragged around by the cursor on click
         clicked = 1 << 12,  /// This object is currently is_clicked by the cursor. You do not manage this
-        actor = 1 << 13,    /// Means that this object is an actor (DO NOT CHANGE)
+        sprite = 1 << 13,    /// Means that this object is an sprite (DO NOT CHANGE)
         particle = 1 << 14, /// Means that this object is a particle (DO NOT CHANGE)
         banner = 1 << 15,    /// Means that this object is a banner (DO NOT CHANGE)
     };
@@ -74,7 +74,7 @@ namespace geng {
         static_cast<uint16_t>(GFlag::hovered) |
         static_cast<uint16_t>(GFlag::dragged) |
         static_cast<uint16_t>(GFlag::draggable) |
-        static_cast<uint16_t>(GFlag::actor) |
+        static_cast<uint16_t>(GFlag::sprite) |
         static_cast<uint16_t>(GFlag::particle) |
         static_cast<uint16_t>(GFlag::banner) |
         static_cast<uint16_t>(GFlag::clicked);

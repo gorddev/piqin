@@ -4,7 +4,7 @@
 #include <vector>
 #include "../../types/EngineEnums.hpp"
 #include "engine/types/Gear.hpp"
-#include "../../types/positioning/Quad.hpp"
+#include "../../types/Quad.hpp"
 #include "engine/utilities/image-info/IMGDecoder.hpp"
 
 namespace geng {
@@ -20,7 +20,7 @@ namespace geng {
      * */
     struct Frame {
     private:
-        /// Holds the points on a vertex necessary for rendering.
+        /// Holds the points on a FPos2D necessary for rendering.
         std::vector<SDL_FPoint> vertexPoints;
         /// Base duration of the frame.
         float duration;

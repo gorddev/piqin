@@ -30,7 +30,7 @@ Card::Card(int val, BJ_Suit suite)
     : value(abs(val)), suit(suite) {
 
     if (value > 13 && suit != BJ_Suit::SPECIAL) value = 13;
-    t = defaultCardTransform;
+    t = defaultCardTransform2D;
     anim.set_frame_table_id(ASSET_DECK_ID);
     anim.set_animation(to_anim_num());
     anim.default_animation = to_anim_num();

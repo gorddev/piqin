@@ -2,11 +2,11 @@
 #include "game/GameMaster.hpp"
 #include "include/EngineSource.hpp"
 
-// Initializes all the actors needed for the game.
+// Initializes all the sprites needed for the game.
 void GameMaster::initialize() {
     // Send everything to the engine
-    std::vector<geng::Actor*> allObjects = board.gather_objects();
-    bob.add_actors(allObjects);
+    std::vector<geng::Sprite*> allObjects = board.gather_objects();
+    bob.add_sprites(allObjects);
     round = new blackjack::Round(&board);
     round->begin();
 }
@@ -21,16 +21,16 @@ void GameMaster::update() {
     blackjack::pather.update(board.deck);
 }
 
-// Deletes the actors it's responsible for.
+// Deletes the sprites it's responsible for.
 GameMaster::~GameMaster() {
-    bob.remove_actor(board.gather_objects());
+    bob.remove_sprite(board.gather_objects());
 }
 
 // Adds cards to a hand:
 void GameMaster::add_card_to_hand(blackjack::Card c) {
     auto card = new blackjack::Card(c);
     if (board.add_card_to_hand(card))
-        bob.add_actor(card);
+        bob.add_sprite(card);
     else
         delete card;
 }

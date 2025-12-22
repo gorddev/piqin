@@ -1,12 +1,13 @@
 #include "engine/scene/banners/Banner.hpp"
 
+#include "engine/types/positioning/Box2D.hpp"
 #include <algorithm>
 #include <iostream>
 
 using namespace geng;
 
 /// Default constructor
-Banner::Banner(Vertex pos, uint16_t width, uint16_t height)
+Banner::Banner(FPos2D pos, uint16_t width, uint16_t height)
     : Gear({pos, width, height}),
       banner_buffer(t) {}
 
@@ -27,13 +28,8 @@ void Banner::to_vertex(RenderBuffer &buffer) {
     banner_buffer._clear_buffer();
 }
 
-/// This is a must-have function if we don't wnat Banner to be an abstract base class
-float Banner::z_index() const {
-    return t.pos.z;
-}
-
 /// Calling update on our Banner
-void Banner::update(LayerTime& time) {
+void Banner::update(LayerState& time) {
     for (auto& i : background_widgets)
         i->update(time);
     for (auto& w : widgets)

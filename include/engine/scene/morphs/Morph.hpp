@@ -1,15 +1,15 @@
 #pragma once
 
 #include "engine/types/Gear.hpp"
-#include "engine/scene/layers/LayerTime.hpp"
+#include "engine/layers/LayerState.hpp"
 
 namespace geng {
     /**
   * @brief Morphs attach themselves to Gear objects, so any Gear can have an morph applied to it, although it may not have any visible change.
-  * Primary candidates for morphs are @code geng::Banners@endcode and @code geng::Actors@endcode.
+  * Primary candidates for morphs are @code geng::Banners@endcode and @code geng::Sprites@endcode.
   * @details To create a new morph, make a subclass of the morph object and add it via the Engine.
   * Morphs have six member variables:
-  * 1. Transform* t -> pointer to the object's Transform [protected]
+  * 1. Transform2D* t -> pointer to the object's Transform2D [protected]
   * 2. float initDuration -> initial duration of the morph (-1 implies permanent) [protected]
   * 3. float duration -> current duration of the morph [protected]
   * 4. bool permanent -> if duration is set to -1, permanent is set to true in the morph class. [protected]
@@ -27,7 +27,7 @@ namespace geng {
   */
     class Morph {
     protected:
-        /// Transform object the morph is applied to
+        /// Transform2D object the morph is applied to
         Gear* gear = nullptr;
         /// Initial duration of the morph.
         float initDuration;
@@ -64,7 +64,7 @@ namespace geng {
         /// Virtual destructor cause i'm considerate like that
         virtual ~Morph() = default;
         /// Pure virtual update function. Return true if morph is done. False otherwise.
-        virtual bool update(LayerTime& time) = 0;
+        virtual bool update(LayerState& time) = 0;
         /// Immmediately ends an morph
         virtual void end() { duration = 0; permanent = false;};
 

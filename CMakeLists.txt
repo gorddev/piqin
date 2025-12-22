@@ -8,7 +8,7 @@ set(CMAKE_EXECUTABLE_SUFFIX ".html")
 
 add_executable(norton
         src/main.cpp
-        src/Card.cpp
+        src/testing/Card.cpp
         src/engine/Engine.cpp
         #[[
         # Main and engine
@@ -36,23 +36,25 @@ add_executable(norton
         ]]
 
         # Game Engine Below
-        #initialization
-        src/engine/scene/initializer/Initializer.cpp
 
-        #events
+        # Initialization
+        src/engine/scene/initializer/Initializer.cpp
+        src/engine/scene/initializer/TextureRegister.cpp
+
+        # Events
         src/engine/scene/events/EventManager.cpp
 
         # Input
-        src/engine/input/InputSource.cpp
+        src/engine/input/InputDistributor.cpp
         src/engine/input/InputHandler.cpp
 
         # Layering
-        src/engine/scene/layers/Layer.cpp
-        src/engine/scene/layers/LayerContext.cpp
+        src/engine/layers/Layer.cpp
+        src/engine/layers/LayerContext.cpp
 
-        # Actors
-        src/engine/scene/actors/ActorManager.cpp
-        src/engine/scene/actors/Actor.cpp
+        # Sprites
+        src/engine/scene/sprites/SpriteManager.cpp
+        src/engine/scene/sprites/Sprite.cpp
 
         # Banners
         src/engine/scene/banners/Banner.cpp
@@ -73,7 +75,15 @@ add_executable(norton
         src/engine/scene/particles/particle-types/Rhombus.cpp
         src/engine/scene/particles/particle-types/Sparkle.cpp
 
-        # Pathing
+        # Physics
+        src/engine/scene/physics/PhysicsMaestro.cpp
+
+        # Rendering
+        src/engine/render/Renderer.cpp
+        src/engine/render/Background.cpp
+        src/engine/render/shadows/ShadowBank.cpp
+
+        # Routing
         src/engine/scene/routing/RouteManager.cpp
         src/engine/scene/routing/route-types/Balloon.cpp
         src/engine/scene/routing/route-types/Torpedo.cpp
@@ -81,27 +91,27 @@ add_executable(norton
         src/engine/scene/routing/route-types/Linear.cpp
         src/engine/scene/routing/route-types/Sine.cpp
 
-        # Rendering
-        src/engine/render/Renderer.cpp
-        src/engine/render/Background.cpp
-        src/engine/render/shadows/ShadowBank.cpp
-
         # Frame Management
         src/engine/scene/animation/FrameList.cpp
         src/engine/scene/animation/FrameTable.cpp
         src/engine/scene/animation/Frames.cpp
         src/engine/scene/animation/AnimInfo.cpp
-        src/engine/scene/initializer/TextureRegister.cpp
 
         # Utilities
         src/engine/utilities/IMGDecoder.cpp
         src/engine/utilities/Utilities.cpp
 
+        #Tilesets
+        src/engine/scene/tilesets/Tileset.cpp
+
         # Types
-        src/engine/types/positioning/Vertex.cpp
-        src/engine/types/Transform.cpp
+        src/engine/types/positioning/FPos2D.cpp
+        src/engine/types/Transform2D.cpp
         src/engine/types/Quad.cpp
 
+        # Worlds
+        src/engine/scene/world/GameWorld.cpp
+        src/engine/scene/world/deserialization/WorldLoader.cpp
 
         # Globals
 )

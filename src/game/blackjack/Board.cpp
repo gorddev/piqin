@@ -25,20 +25,20 @@ Board::Board() :
     floater = nullptr;
 }
 
-// Destructor. Gathers all actors and deletes them
+// Destructor. Gathers all sprites and deletes them
 Board::~Board() {
     for (auto& o : gather_objects())
         delete o;
 }
 
-// Gathers all actors in the BlackjackPlayer for storage in the ObjectManager.
-std::vector<geng::Actor*> Board::gather_objects() {
-    std::vector<geng::Actor*> allObjects;
+// Gathers all sprites in the BlackjackPlayer for storage in the ObjectManager.
+std::vector<geng::Sprite*> Board::gather_objects() {
+    std::vector<geng::Sprite*> allObjects;
     allObjects.reserve(100);
-    // First we grab all of the easy actors
+    // First we grab all of the easy sprites
     allObjects.push_back(&slct);
     allObjects.push_back(&deck);
-    // Then we need to make sure to grab all the sub actors.
+    // Then we need to make sure to grab all the sub sprites.
     // First the deck
     allObjects.insert(allObjects.end(), deck.gather_objects().begin(), deck.gather_objects().end());
     // Then the player draw

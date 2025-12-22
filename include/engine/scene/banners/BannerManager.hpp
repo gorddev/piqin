@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "Banner.hpp"
-#include "engine/scene/layers/LayerContext.hpp"
+#include "engine/layers/LayerContext.hpp"
 
 namespace geng {
 
@@ -18,7 +18,7 @@ namespace geng {
         /// Updates all banners
         void update() {
             for (auto &i : banners)
-                i->update(scene.time);
+                i->update(scene.state);
         }
 
         /// Adds a banner to the banner manager for updating

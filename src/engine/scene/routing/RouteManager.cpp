@@ -2,7 +2,7 @@
 
 using namespace geng;
 
-void RouteManager::add_path(Route *p) {
+void RouteManager::add_route(Route *p) {
     int id = p->get_payload()->id;
     // If it exists already we replace it with the new path.
     if (paths.find(id) == paths.end())
@@ -11,12 +11,12 @@ void RouteManager::add_path(Route *p) {
 
 }
 
-void RouteManager::add_path(Route* p, Gear* g, const Vertex &offset) {
+void RouteManager::add_route(Route* p, Gear* g, const FPos2D &offset) {
     p->set_target(g->t.pos + offset);
     if (paths.find(g->id) != paths.end()) {
         p->set_target(paths[g->id]->get_target() + offset);
     }
-    add_path(p);
+    add_route(p);
 }
 
 void RouteManager::remove_path(const Gear* g) {
@@ -39,7 +39,7 @@ void RouteManager::remove_path(const Route* path) {
 void RouteManager::update() {
     for (auto& [id, p] : paths) {
         // If it's not null and the update says it's done.
-        if (p->update(scene.time)) {
+        if (p->update(scene.state)) {
             // Guarentees we hit the target at the end
             p->get_payload()->t.pos = p->get_target();
             // Then we destroy the path.

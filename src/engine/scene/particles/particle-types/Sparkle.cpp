@@ -2,13 +2,13 @@
 
 #include <iostream>
 
-#include "engine/scene/actors/Actor.hpp"
-#include "engine/scene/layers/LayerTime.hpp"
+#include "engine/scene/sprites/Sprite.hpp"
+#include "engine/layers/LayerState.hpp"
 
 using namespace geng;
 using namespace gfx;
 
-SparkleInst::SparkleInst(const Vertex &offset, float speed, float size) {
+SparkleInst::SparkleInst(const FPos2D &offset, float speed, float size) {
     pos = offset;
     velocity.randomize();
     velocity = velocity.unit();
@@ -45,15 +45,15 @@ void SparkleInst::to_vertex(RenderBuffer& buffer, SDL_Color& color) {
     buffer.push_back(bottomright);
     // This is for the two side strips
     // First side strip
-    bpb(x-rad, y); bpb(x-rad, y-1.f); bpb(x,y-1.f);// bottom vertex
-    bpb(x-rad, y); bpb(x,y); bpb(x,y-1.f); //top vertex
+    bpb(x-rad, y); bpb(x-rad, y-1.f); bpb(x,y-1.f);// bottom FPos2D
+    bpb(x-rad, y); bpb(x,y); bpb(x,y-1.f); //top FPos2D
     // Second side strip
-    bpb(x+1, y); bpb(x+1, y-1.f); bpb(x+1+rad, y-1.f); //bottom vertex
-    bpb(x+1, y); bpb(x+1+rad, y); bpb(x+1+rad, y-1.f); // top vertex
+    bpb(x+1, y); bpb(x+1, y-1.f); bpb(x+1+rad, y-1.f); //bottom FPos2D
+    bpb(x+1, y); bpb(x+1+rad, y); bpb(x+1+rad, y-1.f); // top FPos2D
 }
 
 // Sparkle constructors
-Sparkle::Sparkle(Vertex pos, float size, float speed, float duration, float frequency, SDL_Color Tint)
+Sparkle::Sparkle(FPos2D pos, float size, float speed, float duration, float frequency, SDL_Color Tint)
     : ParticleGroup(pos, size, speed, duration, {255, 255, 255, 255}), period(frequency) {
     shadow_color = Tint;
     if (duration == -1)
@@ -67,7 +67,7 @@ Sparkle::Sparkle(Gear* o, float size, float speed, float duration, float period,
         permanent = true;
 }
 
-bool Sparkle::update(LayerTime& time) {
+bool Sparkle::update(LayerState& time) {
     // Check if we're done
     duration -= time.get_dt();
     deltat += time.get_dt();
@@ -76,8 +76,8 @@ bool Sparkle::update(LayerTime& time) {
         while (deltat > period) {
             deltat -= period;
             if (horse != nullptr) {
-                t.pos.z = horse->t.pos.z - 0.01f;
-                particles.emplace_back(horse->t.offset + horse->t.pos - Vertex(0,0,0.4), speed, strength);
+                z_index = horse->z_index - 1;
+                particles.emplace_back(horse->t.offset + horse->t.pos - FPos2D(0,0), speed, strength);
             }
             else
                 particles.emplace_back(t.pos, speed, strength);

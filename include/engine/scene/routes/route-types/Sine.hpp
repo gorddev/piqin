@@ -1,6 +1,6 @@
 #pragma once
 
-#include "engine/scene/layers/LayerTime.hpp"
+#include "engine/layers/LayerState.hpp"
 #include "engine/scene/routes/Route.hpp"
 
 namespace groute {
@@ -10,11 +10,11 @@ namespace groute {
     class Sine final : public geng::Route {
     private:
         /// Direction of travel for the path.
-        geng::Vertex direction;
+        geng::FPos2D direction;
     public:
         /// Regular constructor
-        Sine(geng::Gear* gear, const geng::Vertex &target, float speed);
+        Sine(geng::Gear& gear, const geng::FPos2D &target, float speed);
         /// Update override (true if done)
-        bool update(geng::LayerTime& time) override;
+        bool update(geng::LayerState& time) override;
     };
 }

@@ -28,7 +28,7 @@ namespace geng {
         /** Mandatory constructor for a piece of text
          * - @code std::string textliteral@endcode › actual text you want to be printed
          * - @code geng::Font font@endcode › the font you want to use
-         * - @code geng::Vertex pos@endcode › position of the text */
+         * - @code geng::FPos2D pos@endcode › position of the text */
         Text(const std::string& string_text, Font& font);
 
         /** Changes nothing about the text (for now) **/

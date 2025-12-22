@@ -1,6 +1,7 @@
 #pragma once
 #include "engine/types/Gear.hpp"
 #include "engine/utilities/Utilities.hpp"
+#include "engine/rendering/Camera.hpp"
 
 namespace geng {
 
@@ -11,19 +12,23 @@ namespace geng {
 
     public:
         /// Coordinates of the mouse
-        int x = 0, y = 0;
+        Pos2D pos;
         /// Change in position of mouse frame to frame
-        float dx = 0.f, dy = 0.f;
+        FPos2D dpos;
+        /// Attatchment point of object relative to center of mouse
+        FPos2D relpos = {0, 0};
         /// Target of mouse action
         Gear* target = nullptr;
         /// Whether the mouse is down or not.
         bool down = false;
         /// Reference to the vector of mouse recievers.
         std::vector<Gear*>& mouse_recievers;
+        /// Gets access to the camera
+        Camera& cam;
 
         /// This constructor links the mouse to the vector it oversees.
-        explicit Mouse(std::vector<Gear*>& mouse_recievers)
-            : mouse_recievers(mouse_recievers) {}
+        explicit Mouse(std::vector<Gear*>& mouse_recievers, Camera& cam)
+            : mouse_recievers(mouse_recievers), cam(cam) {}
 
         /// Does things to a target if the mouse is hovering over something right now.
         void on_click() {
@@ -32,6 +37,8 @@ namespace geng {
                 target->_engine_flagger(GFlag::clicked);
                 target->on_click();
                 if (target->is_draggable()) {
+                    relpos.x = pos.x - target->t.pos.x;
+                    relpos.y = pos.y - target->t.pos.y;
                     target->_engine_flagger(GFlag::dragged);
                 }
             }
@@ -55,30 +62,29 @@ namespace geng {
         }
 
         /// Called when the mouse is moved by some distance.
-        void on_movement(SDL_Point pos, float dx, float dy, EngineContext& world) {
+        void on_movement(SDL_Point new_pos, float dx, float dy, LayerContext& scene) {
             // First we need to sort by z-index first.
             std::sort(mouse_recievers.begin(), mouse_recievers.end(), [](const Gear* a, const Gear* b) {
-                return a->z_index() > b->z_index();
+                return a->z_index > b->z_index;
             });
             // First update our cursor position
-            x = pos.x;
-            y = pos.y;
-            this->dx = dx;
-            this->dy = dy;
+            pos = {new_pos.x, new_pos.y};
+            dpos = {dx, dy};
 
             // If we currently have a target
             if (target != nullptr) {
                 // If we're dragging, we update position.
                 if (target->is_dragged()) {
-                    target->t.pos += {dx, dy, 0.f};
-                    target->t.snap_to_scene(world);
+                    target->t.pos.x = pos.x - relpos.x;
+                    target->t.pos.y = pos.y - relpos.y;
+                    target->t.snap_to_scene(scene);
                     return;
                 }
             }
             target = nullptr;
             // Search for a new target.
             for (int i = static_cast<int>(mouse_recievers.size()) - 1; i >= 0; i--) {
-                if (gutils::contained_within({x,y}, mouse_recievers[i]->t)) {
+                if (gutils::contained_within({pos.x + cam.pos.x,pos.y + cam.pos.y}, mouse_recievers[i]->t)) {
                     target = mouse_recievers[i];
                     target->on_hover();
                 }

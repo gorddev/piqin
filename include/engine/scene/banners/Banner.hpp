@@ -18,16 +18,13 @@ namespace geng {
 
     public:
         /// Default constructor
-        Banner(Vertex pos, uint16_t width, uint16_t height);
+        Banner(FPos2D pos, uint16_t width, uint16_t height);
 
         /// To_vertex that lets the banner be renderable.
         void to_vertex(RenderBuffer &buffer) override;
 
-        /// This is a must-have function if we don't wnat Banner to be an abstract base class
-        float z_index() const override;
-
         /// Calling update on our Banner
-        void update(LayerTime& time);
+        void update(LayerState& time);
 
         /// Add a background widget
         bool add_background(Widget* w);

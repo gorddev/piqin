@@ -3,8 +3,8 @@
 #include <vector>
 #include <iostream>
 
-#include "../../types/positioning/Vertex.hpp"
-#include "engine/scene/actors/Actor.hpp"
+#include "../../types/positioning/FPos2D.hpp"
+#include "engine/scene/sprites/Sprite.hpp"
 
 namespace geng {
     /**
@@ -18,12 +18,12 @@ namespace geng {
      * 4. bool permanent -> if the ParticleGroup is permanent (auto-assigned by constructor)
      * 5. SDL_Color color -> color of the particle effect
      * 6. SDL_COlor shadow_color -> color of the shadow of the particle effect
-     * 7. gengine::Vertex pos -> location of the ParticleGroup
+     * 7. gengine::FPos2D pos -> location of the ParticleGroup
      * 8. int id -> used for indexing purposes by the engine
-     * 9. Transform* horse -> if the ParticleGroup is attatched to a transform object, horse is not nullptr.
+     * 9. Transform2D* horse -> if the ParticleGroup is attatched to a transform object, horse is not nullptr.
      * @warning There exists two essential functions to override for ParticleGroups:
      * @code update()@endcode and @code to_vertex()@endcode. @code update()@endcode returns true when the particle effect is over. @code to_vertex(std::vector<SDL_Vertex>&buffer)@endcode
-     * takes in the vertex buffer DIRECTLY FROM THE RENDERER. Thus, you must manually specify the proper vertices for your particle effect manually. There is no nice tool to do this for you.
+     * takes in the FPos2D buffer DIRECTLY FROM THE RENDERER. Thus, you must manually specify the proper vertices for your particle effect manually. There is no nice tool to do this for you.
      * If you do not properly add your @code SDL_Vertices@endcode in sets of three to the render buffer, visuals likely will bug and not work, and there is a high probability of memory corruption.
      * @note There exists an "inline SDL_FPoint white" in this definition. Just make sure you set the "4.f and 4.f" to a point on your atlas texture that is RGB(255,255,255,255)
     */
@@ -40,21 +40,17 @@ namespace geng {
         // If they're attatched to an object, they ride it like a horse
         Gear* horse = nullptr;
 
-        ParticleGroup(const Vertex pos, const float strength, const float speed, const float duration, const SDL_Color color) :
+        ParticleGroup(const FPos2D pos, const float strength, const float speed, const float duration, const SDL_Color color) :
                 Gear(pos), duration(duration), strength(strength), speed(speed) { if (duration == -1) permanent = true; t.color = color; }
         ParticleGroup(Gear* g, const float strength, const float speed, const float duration, const SDL_Color color)
-            : strength(strength), speed(speed), Gear(g->t.pos), horse(g), duration(duration) { t.pos.z = g->t.pos.z - 1.0f; t.color = color; if (duration == -1) permanent = true;}
+            : strength(strength), speed(speed), Gear(g->t.pos), horse(g), duration(duration) { z_index = g->z_index - 1; t.color = color; if (duration == -1) permanent = true;}
 
         // Lets us update our particles. Should return true if done rendering.
-        virtual bool update(LayerTime& t) = 0;  // pure virtual
+        virtual bool update(LayerState& t) = 0;  // pure virtual
         // Returns the rendering buffer for our particle. MUST RETURN THE NUMBER OF VERTICES
         void to_vertex(RenderBuffer& buffer) override = 0;
-        // Returns the z-index
-        [[nodiscard]] float z_index() const override { return t.pos.z; }
         // Destructor
         ~ParticleGroup() override = default;
-        // Gets the z index
-        [[nodiscard]] float get_z() const { return t.pos.z;}
         // Gets the color
         SDL_Color& get_color() { return t.color; }
         SDL_Color& get_shadow_color() { return shadow_color; }

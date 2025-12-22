@@ -13,7 +13,7 @@ namespace blackjack {
     class Board;
 }
 
-using geng::Vertex;
+using geng::FPos2D;
 using namespace blackjack;
 
 /* ........... */
@@ -37,8 +37,8 @@ void Pather::move_card_to_deck(int id) {
 /* ........... */
 void Pather::move(Card* c, Deck* deck) {
     if (c == nullptr) return;
-    Vertex target = BJ_DEFAULT_DECK_POS
-        + geng::Vertex(deck->stack_height() + 1, deck->stack_height()-2, DECK_Z_BASE);
+    FPos2D target = BJ_DEFAULT_DECK_POS
+        + geng::FPos2D(deck->stack_height() + 1, deck->stack_height()-2, DECK_Z_BASE);
     c->set_path(target, geng::GENG_Path::REBOUND, 0.25, true);
     c->shadow = false;
     c->flip_down();
@@ -132,7 +132,7 @@ void Pather::move(Card *c, Draw& draw, int index, bool down) {
     if (index == -1)
         index = draw.get_index(c);
     // Gets target location for the draw
-    geng::Vertex target(draw.get_pos().x - geng::global::scene.width/8.0f + index*24.0f, // NOLINT(*-narrowing-conversions)
+    geng::FPos2D target(draw.get_pos().x - geng::global::scene.width/8.0f + index*24.0f, // NOLINT(*-narrowing-conversions)
         draw.get_pos().y - random()%8, DRAW_Z_BASE + (index/10.f));
     // EFIEOF
     c->set_z(DRAW_Z_BASE + (index/10.f));

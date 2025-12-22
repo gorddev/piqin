@@ -1,6 +1,7 @@
 #include "engine/scene/initializer/Initializer.hpp"
 
 #include "engine/scene/initializer/system-assets/sys-font.hpp"
+#include "engine/scene/tilesets/TileList.hpp"
 #include "engine/utilities/image-info/IMGDecoder.hpp"
 
 namespace geng {
@@ -13,7 +14,6 @@ using namespace geng;
 Initializer::Initializer(TextureRegister& tex_reg, LayerContext& scene) : tex_reg(tex_reg), scene(scene) {
     std::cerr << "making initiazlier\n";
     font("./assets/sys-font.png", sys_font);
-
 }
 
 int Initializer::texture(const std::string &path, bool _internal) {
@@ -30,19 +30,23 @@ int Initializer::texture(const std::string &path, bool _internal) {
 int Initializer::frame_table(const std::string &path, FrameTable ft) {
     // Sets texture id of the frametable
     int id = texture(path, true);
-    std::cerr << "making frametable with id " << id << "\n";
+    scene.log(0, "Making frametable with id" + std::to_string(id), "Initializer::frame_table");
     ft.set_texture_id(id);
     frameTables.emplace_back(ft);
     return frameTables.size() + (table_num++);
 }
 
 int Initializer::font(const std::string &path, Font f, int id) {
-    tex_reg.size();
     f.set_texture_id(texture(path, true));
     fonts.emplace_back(f);
     return fonts.size() + (font_num++);
 }
 
+int Initializer::tileset(const std::string &path, Tileset t) {
+    t.set_texture_id(texture(path, true));
+    tilesets.emplace_back(t);
+    return tilesets.size() + (tileset_num++);
+}
 
 void Initializer::set_sys_font(const std::string &path, const Font &fnt) {
     // First we destroy the original system font texture.
@@ -77,7 +81,7 @@ void Initializer::set_sys_font(const std::string &path, const Font &fnt) {
     tex_reg.path_to_textureID[path] = fonts[0].get_texture_id();
 }
 
-void Initializer::_compose(FrameList &fm, FontList &fl) {
+void Initializer::_compose(FrameList &fm, FontList &fl, TileList& tl) {
     // stores the dimensions of each of our texutures
     std::unordered_map<int, IMG_Info> dimensions;
 
@@ -101,12 +105,16 @@ void Initializer::_compose(FrameList &fm, FontList &fl) {
     fm.add_tables(frameTables);
     // sets up the font_list with all the required goodies
     fl.add_fonts(fonts);
+    // adds our tileset to the tilset list
+    tl.add_tilesets(tilesets);
 
+    // finally we clear out the initializer
     _clear();
 }
 
 void Initializer::_clear() {
     frameTables = {};
     fonts = {};
+    tilesets = {};
 }
 

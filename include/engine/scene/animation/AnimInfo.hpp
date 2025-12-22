@@ -1,10 +1,10 @@
 #pragma once
 #include "Frame.hpp"
-#include "engine/scene/layers/LayerTime.hpp"
+#include "engine/layers/LayerState.hpp"
 
 namespace geng {
     /**
-     * @brief Contains all the information necessary to animate a @code gengine::Actor@endcode 's sprite.
+     * @brief Contains all the information necessary to animate a @code gengine::Sprite@endcode 's sprite.
      * @details If you want a thorough understanding of AnimInfo, it is best to review how Frames and FrameTables function. However, we cover the fundamentals here:
      * 1. @code animation_index@endcode is the current animation the object is on. For example, "running" may be represented by the number 1, and "idle" may have a representation of 2.
      * 2. @code frame_index@endcode is the current frame of animation. For example, a "running" animation may have three frames, so frame_index will iterate from 0 to 2.
@@ -19,12 +19,12 @@ namespace geng {
      * You do not need to touch this after initializing a FrameTable.
      * 9. @code dirty@endcode AnimInfo flips this flag when the animation_index changes or duration expires. This signals the engine to grab a new frame for the AnimInfo.
      * You do not need to touch this.
-     * @warning When making @code gengine::Actor@endcode objects with AnimInfos, you must initialize AnimInfo values before calling engine.add_actor(...). Otherwise, this will result in undefined behavior.
+     * @warning When making @code gengine::Sprite@endcode objects with AnimInfos, you must initialize AnimInfo values before calling engine.add_sprite(...). Otherwise, this will result in undefined behavior.
      */
     struct AnimInfo {
     private:
         /// Frame we are currently on.
-        Frame& frame;
+        Frame* frame;
         /// The current animation the sprite is on.
         uint16_t animation_index = 0;
         /// The current frame of the animation the sprite is on.
@@ -43,7 +43,7 @@ namespace geng {
         AnimInfo(Frame& first_frame, uint16_t default_animation);
 
         /// Reduces the duration by dt, and returns true if the frame needs to be updated.
-        bool update(LayerTime &time);
+        bool update(LayerState &time);
 
         // Getters
         /// Returns a copy of the animation_index of the AnimInfo
@@ -54,6 +54,8 @@ namespace geng {
         [[nodiscard]] GAnimType get_frame_type() const;
         /// Gets the default animation of the anim_info object
         [[nodiscard]] uint16_t get_default_animation() const;
+
+        void set_frame_id(uint16_t new_frame_id);
 
         // Setters
         /// Sets the frame of the AnimInfo

@@ -12,7 +12,8 @@ using namespace geng;
 // ................
 
 Frame::Frame(Quad q, IMG_Info& info)
-    : vertexPoints(q.to_vert_points(info.w, info.h)),duration(q.duration), anim(q.anim) { }
+    : vertexPoints(q.to_vert_points(info.w, info.h)),duration(q.duration), anim(q.anim) {
+}
 
 void Frame::append_vertices(RenderBuffer& buffer, Gear* gear) {
     Gear& g = *gear;

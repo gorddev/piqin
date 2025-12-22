@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "../../../../include/engine/scene/layers/LayerContext.hpp"
+#include "engine/layers/LayerContext.hpp"
 
 using namespace geng;
 
@@ -39,7 +39,7 @@ void ParticleManager::update() {
         ParticleGroup* g = groups[index];
         if (g != nullptr) {
             // update returns true if should remove
-            if (g->update(scene.time)) {
+            if (g->update(scene.state)) {
                 groups_removed.push_back(g->id);
                 groups_to_remove.push_back(g);
             }

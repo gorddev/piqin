@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Morph.hpp"
-#include "engine/scene/layers/LayerContext.hpp"
+#include "engine/layers/LayerContext.hpp"
 #include "engine/utilities/SparseVector.hpp"
 
 namespace geng {

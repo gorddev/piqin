@@ -6,7 +6,8 @@ if [ "../.protected/run.sh" -nt "./run.sh" ]; then
   sh ./run.sh
 else
   # Set up Emscripten environment
-  source /Users/gordie/emsdk/emsdk_env.sh EMSDK_QUIET=1
+  export EMSDK_QUIET=1
+  source /Users/gordie/emsdk/emsdk_env.sh
 
   # Recreate directory structure of ../assets/ in ./assets/
   find "../assets/" -type d -print0 | while IFS= read -r -d '' dir; do
@@ -22,11 +23,20 @@ else
 
   # Convert all .world files and place .lvl in the ./assets/ mirror
   find "../assets/" -type f -name "*.world" -print0 | while IFS= read -r -d '' file; do
-      target_dir="./assets/$(dirname "${file#../assets/}")"
-      mkdir -p "$target_dir"  # ensure target directory exists
-      ../.protected/json-importer/level-converter "$file" "$target_dir/$(basename "${file%.*}.lvl")"
+      world_dir="$(dirname "$file")"
+      world_base="$(basename "$file")"
+      target_dir="./assets/${world_dir#../assets/}"
+      mkdir -p "$target_dir"
+      echo "Worldbase: $world_base"
+      echo "target_dir: $target_dir/${world_base%.*}"
+      (
+        cd "$world_dir" || exit 1
+        ../../../.protected/json-importer/level-converter \
+          "$world_base" \
+          "$OLDPWD/$target_dir/${world_base%.*}.lvl"
+      )
   done
 
+  cmake --build . && emrun --browser=chrome norton.html
   # Finally, run emrun
-  emrun --browser=chrome norton.html
 fi

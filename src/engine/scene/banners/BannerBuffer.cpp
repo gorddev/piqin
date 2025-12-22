@@ -3,18 +3,18 @@
 using namespace geng;
 
 /// Constructor: requires a banner to exist first
-BannerBuffer::BannerBuffer(Transform& bannerT)
+BannerBuffer::BannerBuffer(Transform2D& bannerT)
     : bannerT(bannerT), buffer(60) {
 }
 
 /// Allows widgets to append themselves to the buffer
-void BannerBuffer::push_back(SDL_Vertex vertex) {
-    vertex.position.x += move.x;
-    vertex.position.y += move.y;
-    buffer.push_back(vertex);
+void BannerBuffer::push_back(SDL_Vertex FPos2D) {
+    FPos2D.position.x += move.x;
+    FPos2D.position.y += move.y;
+    buffer.push_back(FPos2D);
 }
 
-/// Adds the properties of a vertex to the banner buffer to be added to the vertex buffer
+/// Adds the properties of a FPos2D to the banner buffer to be added to the FPos2D buffer
 void BannerBuffer::push_back(SDL_FPoint& pos, SDL_Color& color, SDL_FPoint& tex_coord) {
     push_back({pos, color, tex_coord});
 }

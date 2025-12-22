@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <unordered_map>
-#include "engine/types/Transform.hpp"
+#include "engine/types/Transform2D.hpp"
 #include "BJConstants.hpp"
 
 namespace blackjack {
@@ -75,8 +75,8 @@ namespace blackjack {
     };
 
     // Default Object Setups
-    static const geng::Transform default_deck = {
-        {0,0,0},
+    static const geng::Transform2D default_deck = {
+        {0,0},
         53,
         37,
         1,

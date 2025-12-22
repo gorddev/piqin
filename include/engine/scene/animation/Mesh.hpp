@@ -1,12 +1,12 @@
 #pragma once
 #include "Frame.hpp"
-#include "../../types/positioning/Vertex.hpp"
+#include "../../types/positioning/FPos2D.hpp"
 
 namespace geng {
     /// incomplete type do not use.
     struct Mesh {
         Frame frame;
-        Vertex pos;
+        FPos2D pos;
         short texture_id;
     };
 }

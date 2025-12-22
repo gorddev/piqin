@@ -1,20 +1,20 @@
 #pragma once
 
-#include "engine/scene/layers/LayerTime.hpp"
+#include "engine/layers/LayerState.hpp"
 #include "engine/scene/routes/Route.hpp"
 
 namespace groute {
     /**
-     * @brief LinearPath moves a Transform towards a destination
+     * @brief LinearPath moves a Transform2D towards a destination
      * in a straight line at constant speed.
      */
     class Linear final : public geng::Route {
     private:
-        geng::Vertex direction;
+        geng::FPos2D direction;
     public:
         /// Regular constructor
-        Linear(geng::Gear* gear, const geng::Vertex &target, float speed);
+        Linear(geng::Gear& gear, const geng::FPos2D &target, float speed);
         /// Update override (true if done)
-        bool update(geng::LayerTime& time) override;
+        bool update(geng::LayerState& time) override;
     };
 }

@@ -15,9 +15,9 @@ namespace gfx {
         // And the size of each SDL_Vertex is 24, so we have 24*numVertices bytes to copy
         // Then we memcpy them cause it's fast
         std::memcpy(loc, loc - numVertices, numVertices*sizeof(SDL_Vertex));
-        // Finally we update each vertex location
+        // Finally we update each FPos2D location
         for (int i = oldsize - numVertices; i < oldsize; i++) {
-            // Store vertex in reference for easy access
+            // Store FPos2D in reference for easy access
             SDL_Vertex& vert = buffer[i];
             // Update its position
             vert.position = {

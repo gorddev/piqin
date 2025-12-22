@@ -14,7 +14,7 @@ TextureRegister::TextureRegister(LayerContext& scene) : scene(scene) {
 int TextureRegister::register_texture(std::string path) {
     if (path_to_textureID.find(path) == path_to_textureID.end()) {
         int i = id_num++;
-        std::cerr << "registering path " << path << " under id " << i << "\n";
+        std::cerr << "Registering Path " << path << " Under ID " << i << "\n";
         path_to_textureID[path] = i;
         return i;
     }

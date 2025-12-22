@@ -21,7 +21,7 @@ namespace geng {
      * - @code unordered_map<string, shadowFunc>@endcode › Links shadow names to their respective functions
      * - @code set_function(std::string)@endcode › Sets the current shadow in accordance with the string
      * - @code add_function(std::string, shadowFunc)@endcode › Adds a shadow rendering method to the map of shadow functions
-     * - @code apply_shadow(...)@endcode › Used exclusively by Actors, ParticleGroups, and Banners to render themselves
+     * - @code apply_shadow(...)@endcode › Used exclusively by Sprites, ParticleGroups, and Banners to render themselves
      * - @code set_floor(...)@endcode › Sets the floor for the floor rendering method
      */
     class ShadowBank final  {

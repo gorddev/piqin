@@ -4,12 +4,12 @@
 using namespace geng;
 using namespace groute;
 
-Sine::Sine(Gear *g, const Vertex &target, float speed)
-    : Route(g, target, speed), direction((target-g->t.pos).unit()) {}
+Sine::Sine(Gear& g, const FPos2D &target, float speed)
+    : Route(g, target, speed), direction((target-g.t.pos).unit()) {}
 
-bool Sine::update(LayerTime& time) {
+bool Sine::update(LayerState& time) {
     //deref
-    Transform& t = gear->t;
+    Transform2D& t = gear.t;
 
     // real distance-based time instead of x-based time
     float distTraveled = (t.pos - start).mag();
@@ -24,17 +24,15 @@ bool Sine::update(LayerTime& time) {
     // Apply sine only to y
     float sineOffset = 10 * sinf(2.0f * gutils::pi * ttime / totalTime);
     if (distTraveled < 0.001f)
-        t.pos.y += direction[1] * distTraveled + sineOffset;
+        t.pos.y += direction.y * distTraveled + sineOffset;
     else
-        t.pos.y = start.y + direction[1] * distTraveled + sineOffset;
+        t.pos.y = start.y + direction.y * distTraveled + sineOffset;
 
     // Overshoot on x/z only
-    if (overshoot(t.pos.x, target.x, direction[0] * time.get_dt() * speed))
+    if (overshoot(t.pos.x, target.x, direction.x * time.get_dt() * speed))
         completeX = true;;
     // We dont need to check for y because otherwise itll bmess with movement.
     completeY = true;
-    if (overshoot(t.pos.z, target.z, direction[2] * time.get_dt() * speed))
-        completeZ = true;
 
-    return (completeX && completeZ);
+    return (completeX);
 }

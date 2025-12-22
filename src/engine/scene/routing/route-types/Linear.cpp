@@ -3,19 +3,17 @@
 using namespace geng;
 using namespace groute;
 
-Linear::Linear(Gear *g, const Vertex &target, float speed)
-    : Route(g, target, speed), direction((target-g->t.pos).unit()) {}
+Linear::Linear(Gear& g, const FPos2D &target, float speed)
+    : Route(g, target, speed), direction((target-g.t.pos).unit()) {}
 
-bool Linear::update(LayerTime& time) {
+bool Linear::update(LayerState& time) {
     // dereference for speed
-    Transform& t = gear->t;
+    Transform2D& t = gear.t;
 
-    if (overshoot(t.pos.x, target.x, speed*time.get_dt()*direction[0]))
+    if (overshoot(t.pos.x, target.x, speed*time.get_dt()*direction.x))
         completeX = true;
-    if (overshoot(t.pos.y, target.y, speed*time.get_dt()*direction[1]))
+    if (overshoot(t.pos.y, target.y, speed*time.get_dt()*direction.y))
         completeY = true;
-    if (overshoot(t.pos.z, target.z, speed*time.get_dt()*direction[2]))
-        completeZ = true;
 
     return (completeX && completeY && completeZ);
 }

@@ -21,9 +21,10 @@ void MorphManager::strip_morph(Morph *e) {
 }
 
 void MorphManager::update() {
-    for (auto & m : morphs)
-        if (m->update(scene.time))
+    for (auto & m : morphs) {
+        if (m->update(scene.state))
             strip_morph(m);
+    }
 }
 
 bool MorphManager::has_morph(const Gear *g) {

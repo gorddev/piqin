@@ -3,7 +3,7 @@
 
 using namespace geng;
 
-Renderer::Renderer(EngineContext& world, Camera* cam) : world(world), cam(cam), buffer(shadows) {
+Renderer::Renderer(EngineContext& world) : world(world), buffer(shadows) {
 	// Create the texture we will end up rendering to.
 	canvasTex = nullptr;
 	// Initializes good stuff
@@ -27,8 +27,6 @@ void Renderer::set_render_resolution(const uint16_t width, const uint16_t height
 }
 
 void Renderer::_init() {
-	// Initialize SDL Video
-	SDL_Init(SDL_INIT_VIDEO);
 	// Create the window we will use
 	window = SDL_CreateWindow("Norton",
 			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
@@ -44,7 +42,6 @@ void Renderer::_init() {
 }
 
 Renderer::~Renderer() {
-	delete cam;
 }
 
 void Renderer::set_render_texture() {
@@ -66,13 +63,13 @@ void Renderer::render(std::vector<Layer*>& layers) {
 
 	buffer.clear();
 	// Now we set our renderTexutre (global::scene.width x global::scene.height)
-	// This will be world.get_scale()d up after we draw the background & actors
+	// This will be engine_context.get_scale()d up after we draw the background & sprites
 	set_render_texture();
 
 	// ><><><><><>< BIG PHASE ><><><><><><
-	for (auto& l : layers) {
+	for (auto& l : layers)
 		render_layer(l);
-	}
+
 }
 
 
@@ -100,6 +97,7 @@ void Renderer::render_layer(Layer*& lay) {
 	}
 	buffer.clear();
 
+	// <><><> Here's where we render the cell bucket.
 	for (auto& cell: lay->cell_bucket) {
 		SDL_Texture* tex = lay->_find_texture(cell.texture_id);
 		cell.to_vertex(buffer, world);
@@ -120,7 +118,7 @@ void Renderer::present() {
 	SDL_SetRenderTarget(renderer, nullptr);
 	// Then we establish the thing we're writing to.
 
-	// Otherwise we world.get_scale() without pixel perfect scaling
+	// Otherwise we engine_context.get_scale() without pixel perfect scaling
 	// This is the rectangle we draw to if we don't use pixel perfect.
 	SDL_Rect fr;
 	// These next lines
@@ -129,7 +127,7 @@ void Renderer::present() {
 	fr.w = (world.get_width() * world.get_scale());
 	fr.h = (world.get_height() * world.get_scale());
 
-	// Now we world.get_scale() up our whole canvas
+	// Now we engine_context.get_scale() up our whole canvas
 	SDL_RenderCopy(
 		renderer,
 		canvasTex,

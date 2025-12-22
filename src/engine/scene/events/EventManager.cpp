@@ -5,7 +5,7 @@ using namespace geng;
 EventManager::EventManager(LayerContext &layer_context) : scene(layer_context) {}
 
 void EventManager::update() {
-    double dt = scene.time.get_dt();
+    double dt = scene.state.get_dt();
 
     // 1. epoch queue: consumes time
     while (dt > 0 && !epoch_queue.empty()) {
@@ -24,7 +24,7 @@ void EventManager::update() {
 
     // 2) absolute queue: tick once
     for (auto it = absolute_queue.begin(); it != absolute_queue.end(); ) {
-        it->first -= scene.time.get_dt();
+        it->first -= scene.state.get_dt();
         if (it->first <= 0) {
             it->second();
             it = absolute_queue.erase(it);

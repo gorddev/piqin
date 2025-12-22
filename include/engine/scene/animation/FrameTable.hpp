@@ -4,7 +4,7 @@
 
 #include "Frame.hpp"
 #include "AnimInfo.hpp"
-#include "../../types/positioning/Quad.hpp"
+#include "../../types/Quad.hpp"
 #include "engine/utilities/image-info/IMGDecoder.hpp"
 
 
@@ -29,7 +29,7 @@ namespace geng {
 
     public:
         /// For this constructor, you manually specify the x, y, width, and height of each Frame with a Quad {x, y, w, h}. Use an initializer list.
-        explicit FrameTable(std::vector<std::vector<Quad>> quads);
+        FrameTable(std::vector<std::vector<Quad>> quads);
         /// For this constructor, you specify a start x, y, width, height, numColumns, and numAnimations. Then, this constructor will go horizontaly, move onto the next row, go horizontally, ect. to create frames with the specified width and height.
         FrameTable(int startx, int starty, int w, int h, short numColumns, short numAnimations);
         /// For this constructor, you specify a start x, y, width, height, numColumns, and numAnimations. Then, this constructor will go horizontaly, move onto the next row, go horizontally, ect. to create frames with the specified width and height. You can

@@ -1,17 +1,17 @@
 #pragma once
 
-#include "engine/scene/layers/LayerTime.hpp"
+#include "engine/layers/LayerState.hpp"
 #include "engine/scene/routes/Route.hpp"
 
 namespace groute {
     /**
-     * @brief ReboundPath moves a Transform away from the target, then slingshots to the target.
+     * @brief ReboundPath moves a Transform2D away from the target, then slingshots to the target.
      */
     class Rebound final : public geng::Route {
     public:
         /// Regular constructor
-        Rebound(geng::Gear* gear, const geng::Vertex &target, float speed);
+        Rebound(geng::Gear& gear, const geng::FPos2D &target, float speed);
         /// Update override (true if done)
-        bool update(geng::LayerTime& time) override;
+        bool update(geng::LayerState& time) override;
     };
 }

@@ -35,15 +35,15 @@ void CardSelector::switchTarget(Card *newTarget, bool moveTarget) {
 
 // DOES NOT UPDATE A CARD'S PATH, JUST SELECTOR
 void CardSelector::move(bool recess) {
-    geng::Vertex os = (recess) ? BJ_SELECTOR_OFFSET : BJ_SELECTOR_OFFSET * -1;
+    geng::FPos2D os = (recess) ? BJ_SELECTOR_OFFSET : BJ_SELECTOR_OFFSET * -1;
     PATH_IT(target->t, os);
 }
 
 // DOES NOT UPDATE A CARD'S PATH, JUST SELECTOR
-void CardSelector::move(geng::Vertex pos, float speed) {
+void CardSelector::move(geng::FPos2D pos, float speed) {
     t.pos.z = SELECTOR_Z_BASE;
     bob.set_path(new geng::BalloonPath(&t, pos, speed));
-    geng::Vertex trueTarget = pos;
+    geng::FPos2D trueTarget = pos;
 }
 
 void CardSelector::set_color(Selector_Color color) {

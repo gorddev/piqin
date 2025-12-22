@@ -5,6 +5,8 @@
 #include "engine/types/Gear.hpp"
 #include <unordered_map>
 
+#include "engine/rendering/Camera.hpp"
+
 namespace geng {
 
     /** @brief InputHandler is intended to be used exclusively by Layers to help manage the organization of Gears that accept inputs.
@@ -13,25 +15,27 @@ namespace geng {
      */
     class InputHandler {
     private:
-        /// Gears that can accept keyboard input.
-        std::vector<Gear*> key_acceptors;
+        /// Gears that can accept keyboard presses.
+        std::vector<Gear*> key_press_acceptors;
+        /// Gears that accept all held keys per frame.
+        std::vector<Gear*> key_hold_acceptors;
         /// Gears that can accept mouse input.
         std::vector<Gear*> mouse_acceptors;
 
         /// Currently held keys
         std::unordered_map<SDL_Scancode, bool> heldKeys;
-
         /// Allows/Prevents input from going through
         bool active = true;
-
-        /// Keeps track of the world
-        EngineContext* world = nullptr;
+        /// Keeps track of the engine_context
+        LayerContext& scene;
+        /// Keeps track of the layer's camera
+        Camera& cam;
     public:
         /// Keeps track of the mouse and it's target objects
-        Mouse mouse = Mouse(mouse_acceptors);
+        Mouse mouse;
 
         /// Default constructor
-        InputHandler() = default;
+        explicit InputHandler(LayerContext& scene);
 
         // ************************************
         //<><><> Accepting Input <><><>
@@ -46,14 +50,16 @@ namespace geng {
         void _mouse_release();
         /// Gets when the mouse moves positions
         void _mouse_move(SDL_Point pos, float dx, float dy);
+        /// Gets each frame and updates the state if we don't get input
+        void _keys_down(uint8_t* keys) const;
 
         // ************************************
         //<><><> Adding/Removing Objects <><><>
         // ************************************
-        /// Designates one object as a keyboard input acceptor
-        void add_key_acceptor(Gear* g);
-        /// Designates multiple objects as keyboard acceptors
-        void add_key_acceptors(std::vector<Gear*>& gears);
+        /// Designates one object as a keyboard press input acceptor, such that it's function is called upon key press.
+        void add_key_press_acceptor(Gear* g);
+        /// Designates multiple objects as keyboard press acceptors
+        void add_key_press_acceptors(std::vector<Gear*>& gears);
         /// Designates one object as a mouse_acceptor
         void add_mouse_acceptor(Gear* g);
         /// Designates multiple objects as mouse_acceptors
@@ -81,9 +87,6 @@ namespace geng {
         void pause();
         /// Resumes input if paused
         void resume();
-
-        /// Adds the engine context to the input
-        void _add_engine_context(EngineContext* ctx);
 
     };
 }

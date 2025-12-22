@@ -2,11 +2,12 @@
 
 #include <iostream>
 
+#include "engine/types/positioning/FPos2D.hpp"
 #include "game/blackjack/BJEnums.hpp"
 
 using namespace blackjack;
 
-Draw::Draw(geng::Vertex pos) : pos(pos) {}
+Draw::Draw(geng::FPos2D pos) : pos(pos) {}
 
 int Draw::get_num_cards() {
     return draw.size();
@@ -79,7 +80,7 @@ bool Draw::empty() const {
     return draw.empty();
 }
 
-void Draw::set_pos(geng::Vertex v) {
+void Draw::set_pos(geng::FPos2D v) {
     pos = v;
 }
 
@@ -93,7 +94,7 @@ std::vector<Card*>& Draw::gather_objects() {
     return draw;
 }
 
-geng::Vertex Draw::get_pos() {
+geng::FPos2D Draw::get_pos() {
     return pos;
 }
 

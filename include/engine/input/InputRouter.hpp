@@ -1,32 +1,71 @@
 #pragma once
 
 #include <SDL.h>
-#include "../scene/layers/Layer.hpp"
+#include "engine/layers/Layer.hpp"
 
 namespace geng {
     /**
      * @brief High-level input interception interface.
-     * Routers receive semantic input callbacks (press, release, click).
-     * Returning true consumes the input and prevents propagation.
+     *
+     * @details
+     * @code InputRouter@endcode provides overridable hooks for intercepting normalized input events
+     * before they propagate to the active @code Layer@endcode. All callbacks return @code true@endcode
+     * to consume input or @code false@endcode to allow propagation.
+     * - -----------
+     * - @code InputRouter()@endcode : Default constructor.
+     * - @code virtual ~InputRouter()@endcode : Virtual destructor.
+     * - ----- MUST OVERRIDE: --------
+     * - @code virtual bool update() = 0@endcode : You decide what this does. It can just return false, but you must override it.
+     * - Helpful: If you want keys down, use the @code is_held(SLD_Scancode key)@endcode function in @code InputRouter@endcode
+     * - ------------ Input Callbacks (all @b virtual / overridable)
+     * - @code virtual bool get_press(SDL_Scancode, Layer*)@endcode : Key press.
+     * - @code virtual bool get_release(SDL_Scancode, Layer*)@endcode : Key release.
+     * - @code virtual bool get_click(Uint8 button, int x, int y, Layer*)@endcode : Mouse button press.
+     * - @code virtual bool get_click_release(Uint8 button, int x, int y, Layer*)@endcode : Mouse button release.
+     * - @code virtual bool get_scroll(int dx, int dy, Layer*)@endcode : Scroll input.
+     * - @code virtual bool get_mouse_move(int x, int y, Layer*)@endcode : Mouse movement.
+     * @note
+     * - All callbacks default to non-consuming behavior (@code false@endcode).
      */
-    struct InputRouter {
-        InputRouter() = default;
+    class InputRouter {
+    private:
+        /// Contains whether each key is held down or not
+        uint8_t* key_states = nullptr;
+    public:
+        /// Accepts input if active
+        bool active = true;
 
+        InputRouter() = default;
+        explicit InputRouter(bool active) : active(active) {}
         virtual ~InputRouter() = default;
 
-        /** @return true if input is consumed */
-        virtual bool get_press(SDL_Scancode key, Layer* active_layer) { return false; }
+        /// @return True if you want to block all future input. Can just be a statement that returns false if you don't want to use it.
+        virtual bool update(Layer*& active_layer) = 0;
+
+        /// @return @code true@endcode if the specified key is held down
+        bool is_held(SDL_Scancode key) {
+            if (key < 512 && key_states != nullptr)
+                return key_states[key];
+            return false;
+        }
 
         /** @return true if input is consumed */
-        virtual bool get_release(SDL_Scancode key, Layer* active_layer) { return false; }
+        virtual bool get_press(SDL_Scancode key, Layer*& active_layer) { return false; }
 
         /** @return true if input is consumed */
-        virtual bool get_click(Uint8 button, int x, int y, Layer* active_layer) { return false; }
+        virtual bool get_release(SDL_Scancode key, Layer*& active_layer) { return false; }
 
         /** @return true if input is consumed */
-        virtual bool get_click_release(Uint8 button, int x, int y, Layer* active_layer) { return false; }
+        virtual bool get_click(Uint8 button, int x, int y, Layer*& active_layer) { return false; }
 
-        virtual bool get_scroll(int dx, int dy, Layer* active_layer) { return false; }
-        virtual bool get_mouse_move(int x, int y, Layer* active_layer) { return false; }
+        /** @return true if input is consumed */
+        virtual bool get_click_release(Uint8 button, int x, int y, Layer*& active_layer) { return false; }
+
+        virtual bool get_scroll(int dx, int dy, Layer*& active_layer) { return false; }
+        virtual bool get_mouse_move(int x, int y, Layer*& active_layer) { return false; }
+
+        // <><><> For use by the engine only. <><><>
+        /// Updates the pointer that contains key states
+        void _update_key_pointer(uint8_t* ptr) { key_states = ptr; }
     };
 }

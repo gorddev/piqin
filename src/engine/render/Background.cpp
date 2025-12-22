@@ -3,7 +3,8 @@
 #include <vector>
 
 #include "engine/EngineContext.hpp"
-#include "../../../include/engine/types/positioning/Vertex.hpp"
+#include "../../../include/engine/types/positioning/FPos2D.hpp"
+#include "engine/types/positioning/FPos3D.hpp"
 
 using namespace geng;
 
@@ -142,7 +143,7 @@ void Background::create_heightMap() {
 
     float max = 0;
     float min = 0;
-    Vertex source(1,1,1);
+    FPos3D source(1,1,1);
 
     // Now we take cross product with respect to the gradient of f
     for (int y = 0; y < world.get_height(); y++) {
@@ -155,7 +156,7 @@ void Background::create_heightMap() {
             float gradient_x = -0.25*cosf(sy/4.0f - 0.5*sx) + 0.25*(0.5*sinf(sy-sx)-0.1*cosf(sy-sx)) + 0.1*cosf(sx/5.0f);
             float gradient_y = 0.125*cosf(sy/4.0f - 0.5*sx)+0.25*(0.5*cosf(sy-sx)-0.02*cosf(sy-sx))-0.05*cosf(sy/10.0f);
             float gradient_z = 1;
-            Vertex gradient(gradient_x, gradient_y, gradient_z);
+            FPos3D gradient(gradient_x, gradient_y, gradient_z);
 
 
             // Here we just use this equation to get a map of the sand region.

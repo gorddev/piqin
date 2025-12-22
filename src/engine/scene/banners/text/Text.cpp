@@ -42,7 +42,7 @@ void Text::change_dim(Dim2D dimensions) {
 int Text::to_vertex(BannerBuffer& buffer) {
     if (vertices.empty()) {
         /// Current running position of the transformer
-        Point2D pos = {0 ,0};
+        Pos2D pos = {0 ,0};
         /// Current running color of the transformer
         SDL_Color color = {255, 255, 255, 255};
         /// Current scale of the text
@@ -79,7 +79,7 @@ int Text::to_vertex(BannerBuffer& buffer) {
             characters[count].to_vertex(vertices, pos, color, scale);
             // Advance x
             pos.x += characters[count].w * scale + font.get_spacing();
-            // Add to the vertex count
+            // Add to the FPos2D count
             vertexCount += 6;
             // Add to count:
             count++;

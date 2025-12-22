@@ -1,6 +1,6 @@
 #include "engine/scene/animation/AnimInfo.hpp"
 
-#include "engine/scene/layers/LayerTime.hpp"
+#include "engine/layers/LayerState.hpp"
 
 using namespace geng;
 
@@ -8,20 +8,18 @@ using namespace geng;
 // Functions for FrameState
 // ..............
 
-AnimInfo::AnimInfo(Frame& first_frame) : frame(first_frame) {
-    this->frame = first_frame;
+AnimInfo::AnimInfo(Frame& first_frame) : frame(&first_frame) {
     default_animation = 0;
-    duration = frame.get_duration();
+    duration = frame->get_duration();
 }
 
 AnimInfo::AnimInfo(Frame& first_frame, uint16_t default_animation)
-        : frame(first_frame), default_animation(default_animation) {
-    this->frame = first_frame;
-    duration = frame.get_duration();
+        : frame(&first_frame), default_animation(default_animation) {
+    duration = frame->get_duration();
 }
 
-bool AnimInfo::update(LayerTime& time) {
-    if (frame.get_anim_type() != GAnimType::IDLE || dirty) {
+bool AnimInfo::update(LayerState& time) {
+    if (frame->get_anim_type() != GAnimType::IDLE || dirty) {
         duration -= time.get_dt();
         if (duration <= 0) {
             dirty = true;
@@ -40,15 +38,19 @@ uint16_t AnimInfo::get_frame_index() const {
 }
 
 GAnimType AnimInfo::get_frame_type() const {
-    return frame.get_anim_type();
+    return frame->get_anim_type();
 }
 
 uint16_t AnimInfo::get_default_animation() const {
     return default_animation;
 }
 
+void AnimInfo::set_frame_id(uint16_t new_frame_id) {
+    frame_index = new_frame_id;
+}
+
 void AnimInfo::set_frame(Frame& s) {
-    frame = s;
+    frame = &s;
     dirty = false;
     duration += s.get_duration();
 }
@@ -56,7 +58,6 @@ void AnimInfo::set_frame(Frame& s) {
 void AnimInfo::set_animation(uint16_t new_animation) {
     dirty = true;
     animation_index = new_animation;
-    frame_index = 0;
     duration = 0.0f;
 }
 
@@ -67,7 +68,7 @@ void AnimInfo::set_default_animation(
 
 
 void AnimInfo::calc_vertices(RenderBuffer &buffer, Gear* gear) {
-    frame.append_vertices(buffer, gear);
+    frame->append_vertices(buffer, gear);
 }
 
 int AnimInfo::pre_increment_frame() {

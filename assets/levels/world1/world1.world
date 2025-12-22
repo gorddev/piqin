@@ -1,0 +1,20 @@
+{
+    "maps": [
+        {
+            "fileName": "level1.json",
+            "height": 0,
+            "width": 240,
+            "x": 0,
+            "y": 0
+        },
+        {
+            "fileName": "level2.json",
+            "height": 160,
+            "width": 240,
+            "x": 240,
+            "y": 0
+        }
+    ],
+    "onlyShowAdjacentMaps": false,
+    "type": "world"
+}

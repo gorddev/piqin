@@ -1,6 +1,6 @@
 #pragma once
 #include "engine/layers/Layer.hpp"
-#include "engine/scene/layers/Layer.hpp"
+#include "engine/layers/Layer.hpp"
 
 namespace geng::debug {
 

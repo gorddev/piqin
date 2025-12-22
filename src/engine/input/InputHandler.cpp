@@ -4,10 +4,12 @@
 
 using namespace geng;
 
+InputHandler::InputHandler(LayerContext& scene) : scene(scene), cam(scene.camera), mouse(mouse_acceptors, cam) {}
+
 void InputHandler::_key_press(SDL_Scancode key) {
     if (active) {
         heldKeys[key] = true;
-        for (auto&g : key_acceptors) {
+        for (auto&g : key_press_acceptors) {
             g->on_key_press(key);
         }
     }
@@ -18,7 +20,7 @@ void InputHandler::_key_release(SDL_Scancode key) {
         if (heldKeys.find(key) != heldKeys.end()) {
             heldKeys.erase(key);
         }
-        for (auto&g : key_acceptors) {
+        for (auto&g : key_press_acceptors) {
             g->on_key_release(key);
         }
     }
@@ -36,22 +38,27 @@ void InputHandler::_mouse_release() {
 
 void InputHandler::_mouse_move(SDL_Point pos, float dx, float dy) {
     if (active)
-        mouse.on_movement(pos, dx, dy, *world);
+        mouse.on_movement(pos, dx, dy, scene);
+}
+
+void InputHandler::_keys_down(uint8_t *keys) const {
+    scene.state._set_held_keys(keys);
 }
 
 
 // ************************************
 //<><><> Adding/Removing Objects <><><>
 // ************************************m
-void InputHandler::add_key_acceptor(Gear *g) {
-    key_acceptors.push_back(g);
+void InputHandler::add_key_press_acceptor(Gear *g) {
+    key_press_acceptors.push_back(g);
 }
 
-void InputHandler::add_key_acceptors(std::vector<Gear *> &gears) {
-    key_acceptors.insert(key_acceptors.end(), gears.begin(), gears.end());
+void InputHandler::add_key_press_acceptors(std::vector<Gear *> &gears) {
+    key_press_acceptors.insert(key_press_acceptors.end(), gears.begin(), gears.end());
 }
 
 void InputHandler::add_mouse_acceptor(Gear *g) {
+    scene.log(0, "Adding mouse acceptor.", "InputHandler::add_mouse_acceptor");
     mouse_acceptors.push_back(g);
 }
 
@@ -60,9 +67,9 @@ void InputHandler::add_mouse_acceptors(std::vector<Gear *> &gears) {
 }
 
 void InputHandler::remove_key_acceptor(Gear *g) {
-    for (auto it = key_acceptors.begin(); it != key_acceptors.end(); it++) {
+    for (auto it = key_press_acceptors.begin(); it != key_press_acceptors.end(); it++) {
         if (*it == g) {
-            key_acceptors.erase(it);
+            key_press_acceptors.erase(it);
             break;
         }
     }
@@ -91,13 +98,13 @@ void InputHandler::remove_mouse_acceptors(std::vector<Gear *> &gears) {
 }
 
 void InputHandler::flush() {
-    key_acceptors.clear();
+    key_press_acceptors.clear();
     mouse_acceptors.clear();
     mouse.pop_target();
 }
 
 void InputHandler::flush_keyboard_acceptors() {
-    key_acceptors.clear();
+    key_press_acceptors.clear();
 }
 
 void InputHandler::flush_mouse_acceptors() {
@@ -116,9 +123,5 @@ void InputHandler::pause() {
 
 void InputHandler::resume() {
     active = true;
-}
-
-void InputHandler::_add_engine_context(EngineContext *ctx) {
-    world = ctx;
 }
 

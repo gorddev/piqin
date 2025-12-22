@@ -3,38 +3,35 @@
 #include <iostream>
 
 #include "EngineContext.hpp"
-#include "input/InputSource.hpp"
+#include "input/InputDistributor.hpp"
 #include "wip/Random.hpp"
 #include "rendering/Renderer.hpp"
-#include "engine/layers/LayerStack.hpp"
-#include "types/positioning/Point2D.hpp"
-#include "utilities/IDStack.hpp"
+#include "engine/layers/LayerList.hpp"
+#include "types/positioning/Pos2D.hpp"
 
 
 namespace geng {
     /**
      * @brief The engine handles input, morph, particles, ECS, rendering, sound, and text. You do not have direct control over how the engine does its job. You only feed it inputs, and it gives you an output, and sends you keyboard input.
-     * @details In order to use the engine, you have to speak in its language: @code gengine::Actor@endcode, @code gengine::Morph@endcode, @code gengine::ParticleGroup@endcode, @code gengine::inputTarget@endcode, @code gengine::Font@endcode, and @code gengine::Sound@endcode. It is recommended to review these files before continuing with the engine.
+     * @details In order to use the engine, you have to speak in its language: @code gengine::Sprite@endcode, @code gengine::Morph@endcode, @code gengine::ParticleGroup@endcode, @code gengine::inputTarget@endcode, @code gengine::Font@endcode, and @code gengine::Sound@endcode. It is recommended to review these files before continuing with the engine.
      * Using the engine's features can be a bit of a hurdle to get used to, but it is designed to be somewhat intuitive.
-     * - For @code Actors@endcode: @code layer.add_actor(...)@endcode and @code engine.remove_actor(...)@endcode
+     * - For @code Sprites@endcode: @code layer.add_sprite(...)@endcode and @code engine.remove_sprite(...)@endcode
      * - For @code Particles@endcode: @code layer.attach_particle(...)@endcode and @code engine.detach_particle(...)@endcode
      * - For @code Morph@endcode: @code layer.apply_morph(...)@endcode and @code engine.strip_morph(...)@endcode
      */
     class Engine {
     private:
         /// Keeps track of all the essential data for our engine to run.
-        EngineContext world;
+        EngineContext context;
 
         /// Engine's Renderer. Very very off-limits no touching. Like seriously do not touch it.
         Renderer rend;
-        /// You can touch the camera tho it's fine.
-        Camera cam;
         /// Keeps track of all our layers so we can send them to the Renderer.
-        LayerStack layer;
+        LayerList layers;
     public:
 
-        /// Engine's InputSource.
-        InputSource input;
+        /// Engine's InputDistributor.
+        InputDistributor input;
 
         // Constructor/destructor
         Engine();
@@ -45,20 +42,19 @@ namespace geng {
         // *******************
         /// Initializes the engine. Must be called in @code int main(...)@endcode
         void init();
-
         /// Runs the entire engine. Must call every frame, and put in the current time.
         bool tick(double time);
-
-        /// Sends things to the renderer and presents it. Should call every frame.
-        void render();
 
         // *******************
         // <><> Rendering <><>
         // *******************
+        /// Sends things to the renderer and presents it. Should call every frame.
+        void render();
         /// Sets the resolution of the window
         void set_resolution(Dim2D d);
         /// Gets the resolution of the window
         [[nodiscard]] Dim2D get_resolution() const;
+
 
         // *******************
         // <><> Layers <><>
@@ -67,7 +63,12 @@ namespace geng {
         void compose_layer(Layer *l);
         // <><> Active Layer <><><>
         /// Sets the active layer that recieves input to the specified layer.
-        void set_active_layer(Layer *l);
+        void set_active_layer(Layer *layer);
+
+        void set_active_layer(std::string name);
+
+        void increment_active_layer();
+
         /// Gets the active layer
         Layer* get_active_layer();
         // <><> Destroying Layers <><><>
@@ -77,7 +78,16 @@ namespace geng {
         void destroy_layer(std::string layer_name);
         // <><> Getting Layer <><><>
         /// Gets a layer based on the layer name
-        void get_layer(std::string layer_name);
+        Layer *get_layer(std::string layer_name);
+
+
+        // ***************************
+        // <><> Input Management <><><>
+        // ***************************
+        /// Adds an InputRouter to the InputDistributor
+        void add_input_router(InputRouter* router);
+        /// Removes an InputRouter from the InputDistributor
+        void remove_input_router(InputRouter* router);
 
         // *********************
         // <><> Debugging <><><>
