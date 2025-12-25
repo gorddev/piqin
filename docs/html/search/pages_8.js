@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['not_20written_20by_20me_0',['External is a folder that contains code not written by me.',['../dir_e0266b0e017de2fde33ed6cf3f24f8eb.html#autotoc_md0',1,'']]]
+  ['quick_20reference_0',['Quick Reference',['../index.html#autotoc_md8',1,'']]]
 ];

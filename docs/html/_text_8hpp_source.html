@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GENG Engine: include/engine/scene/banners/text/Text.hpp Source File</title>
+<title>G-Engine: include/engine/scene/banners/text/Text.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">GENG Engine
+   <div id="projectname">G-Engine
    </div>
    <div id="projectbrief">A lightweight, web-targeted, object-oriented game engine built with Emscripten + SDL2</div>
   </td>
@@ -142,7 +142,7 @@ $(function(){initNavTree('_text_8hpp_source.html','',''); });
 <div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classgeng_1_1_text.html#a19c5334ea6cf96649ae9093e31a9890a">   46</a></span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classgeng_1_1_text.html#a19c5334ea6cf96649ae9093e31a9890a">to_vertex</a>(<a class="code hl_class" href="classgeng_1_1_banner_buffer.html">BannerBuffer</a>&amp; buffer)<span class="keyword"> override </span>{</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            <span class="comment">// Copy to buffer</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; v : vertices) buffer.<a class="code hl_function" href="classgeng_1_1_banner_buffer.html#ace90f8853b2650d25ddd5bb26179c212">push_back</a>(v);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; v : vertices) buffer.<a class="code hl_function" href="classgeng_1_1_banner_buffer.html#ab806ad0126b0eb4ca48ee57fa3263266">push_back</a>(v);</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(vertices.size());</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        }</div>
 </div>
@@ -213,7 +213,7 @@ $(function(){initNavTree('_text_8hpp_source.html','',''); });
 <div class="ttc" id="a_syntax_map_8hpp_html"><div class="ttname"><a href="_syntax_map_8hpp.html">SyntaxMap.hpp</a></div></div>
 <div class="ttc" id="a_widget_8hpp_html"><div class="ttname"><a href="_widget_8hpp.html">Widget.hpp</a></div></div>
 <div class="ttc" id="aclassgeng_1_1_banner_buffer_html"><div class="ttname"><a href="classgeng_1_1_banner_buffer.html">geng::BannerBuffer</a></div><div class="ttdef"><b>Definition</b> BannerBuffer.hpp:10</div></div>
-<div class="ttc" id="aclassgeng_1_1_banner_buffer_html_ace90f8853b2650d25ddd5bb26179c212"><div class="ttname"><a href="classgeng_1_1_banner_buffer.html#ace90f8853b2650d25ddd5bb26179c212">geng::BannerBuffer::push_back</a></div><div class="ttdeci">void push_back(SDL_Vertex FPos2D)</div><div class="ttdoc">Allows widgets to append themselves to the buffer.</div><div class="ttdef"><b>Definition</b> BannerBuffer.cpp:11</div></div>
+<div class="ttc" id="aclassgeng_1_1_banner_buffer_html_ab806ad0126b0eb4ca48ee57fa3263266"><div class="ttname"><a href="classgeng_1_1_banner_buffer.html#ab806ad0126b0eb4ca48ee57fa3263266">geng::BannerBuffer::push_back</a></div><div class="ttdeci">void push_back(SDL_Vertex FPos2D)</div><div class="ttdoc">Allows widgets to append themselves to the buffer.</div></div>
 <div class="ttc" id="aclassgeng_1_1_syntax_map_html"><div class="ttname"><a href="classgeng_1_1_syntax_map.html">geng::SyntaxMap</a></div><div class="ttdef"><b>Definition</b> SyntaxMap.hpp:14</div></div>
 <div class="ttc" id="aclassgeng_1_1_text_html_a13dd91f0594b7b1453363fb27d02d640"><div class="ttname"><a href="classgeng_1_1_text.html#a13dd91f0594b7b1453363fb27d02d640">geng::Text::get_text</a></div><div class="ttdeci">fstring&lt; C &gt; get_text() const</div><div class="ttdef"><b>Definition</b> Text.hpp:52</div></div>
 <div class="ttc" id="aclassgeng_1_1_text_html_a19c5334ea6cf96649ae9093e31a9890a"><div class="ttname"><a href="classgeng_1_1_text.html#a19c5334ea6cf96649ae9093e31a9890a">geng::Text::to_vertex</a></div><div class="ttdeci">int to_vertex(BannerBuffer &amp;buffer) override</div><div class="ttdef"><b>Definition</b> Text.hpp:46</div></div>
@@ -224,7 +224,7 @@ $(function(){initNavTree('_text_8hpp_source.html','',''); });
 <div class="ttc" id="aclassgeng_1_1_text_html_ab3e6daf703087810fb8b8d2844db42cb"><div class="ttname"><a href="classgeng_1_1_text.html#ab3e6daf703087810fb8b8d2844db42cb">geng::Text::Text</a></div><div class="ttdeci">Text(const char text[], Font &amp;font, const SyntaxMap *syntax_map)</div><div class="ttdef"><b>Definition</b> Text.hpp:34</div></div>
 <div class="ttc" id="aclassgeng_1_1_text_html_ade75b9f44937624880391c1361730592"><div class="ttname"><a href="classgeng_1_1_text.html#ade75b9f44937624880391c1361730592">geng::Text::get_fstr_view</a></div><div class="ttdeci">geng::str_view get_fstr_view()</div><div class="ttdef"><b>Definition</b> Text.hpp:56</div></div>
 <div class="ttc" id="aclassgeng_1_1str__view_html"><div class="ttname"><a href="classgeng_1_1str__view.html">geng::str_view</a></div><div class="ttdef"><b>Definition</b> str_view.hpp:17</div></div>
-<div class="ttc" id="anamespacegeng_html"><div class="ttname"><a href="namespacegeng.html">geng</a></div><div class="ttdef"><b>Definition</b> Initializer.cpp:7</div></div>
+<div class="ttc" id="anamespacegeng_html"><div class="ttname"><a href="namespacegeng.html">geng</a></div><div class="ttdef"><b>Definition</b> EngineContext.hpp:7</div></div>
 <div class="ttc" id="anamespacegeng_html_a1bc70f2f823bd4d5625de3da6f2c4dc1"><div class="ttname"><a href="namespacegeng.html#a1bc70f2f823bd4d5625de3da6f2c4dc1">geng::geng_default_syntax_map</a></div><div class="ttdeci">const SyntaxMap geng_default_syntax_map</div><div class="ttdef"><b>Definition</b> DefaultSyntaxMap.hpp:15</div></div>
 <div class="ttc" id="astructgeng_1_1_pos2_d_html"><div class="ttname"><a href="structgeng_1_1_pos2_d.html">geng::Pos2D</a></div><div class="ttdef"><b>Definition</b> Pos2D.hpp:6</div></div>
 <div class="ttc" id="astructgeng_1_1_pos2_d_html_a30fb8eb2dbf136efa9c550eb124610eb"><div class="ttname"><a href="structgeng_1_1_pos2_d.html#a30fb8eb2dbf136efa9c550eb124610eb">geng::Pos2D::x</a></div><div class="ttdeci">int x</div><div class="ttdef"><b>Definition</b> Pos2D.hpp:7</div></div>

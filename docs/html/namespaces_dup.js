@@ -1,6 +1,5 @@
 var namespaces_dup =
 [
-    [ "blackjack", "namespaceblackjack.html", "namespaceblackjack" ],
     [ "geng", "namespacegeng.html", "namespacegeng" ],
     [ "gfx", "namespacegfx.html", "namespacegfx" ],
     [ "glog", "namespaceglog.html", [

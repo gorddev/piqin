@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GENG Engine: include/engine/rendering/background/Background.hpp Source File</title>
+<title>G-Engine: include/engine/rendering/background/Background.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">GENG Engine
+   <div id="projectname">G-Engine
    </div>
    <div id="projectbrief">A lightweight, web-targeted, object-oriented game engine built with Emscripten + SDL2</div>
   </td>
@@ -96,11 +96,11 @@ $(function(){initNavTree('_background_8hpp_source.html','',''); });
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;SDL.h&gt;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_background_palette_8hpp.html">BackgroundPalette.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_engine_context_8hpp.html">engine/EngineContext.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_engine_context_8hpp.html">../../core/EngineContext.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacegeng.html">geng</a> {</div>
 <div class="foldopen" id="foldopen00009" data-start="{" data-end="};">
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="classgeng_1_1_background.html">    9</a></span>    <span class="keyword">class </span><a class="code hl_function" href="classgeng_1_1_background.html#a77c25488e81c479296dd2f393b592ab9">Background</a> {</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="classgeng_1_1_background.html">    9</a></span>    <span class="keyword">class </span><a class="code hl_function" href="classgeng_1_1_background.html#a98a9d0f42a93d05ee0fd33cea9f9fc6d">Background</a> {</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        <span class="comment">// Stores the pixel of each of our rgb values</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        gch::vector&lt;uint8_t&gt; rgb;</div>
@@ -121,33 +121,33 @@ $(function(){initNavTree('_background_8hpp_source.html','',''); });
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <span class="comment">// Constructor</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keyword">explicit</span> <a class="code hl_function" href="classgeng_1_1_background.html#a77c25488e81c479296dd2f393b592ab9">Background</a>(SDL_Renderer* renderer, <a class="code hl_class" href="classgeng_1_1_engine_context.html">EngineContext</a>&amp; world);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classgeng_1_1_background.html#a98a9d0f42a93d05ee0fd33cea9f9fc6d">   30</a></span>        <span class="keyword">explicit</span> <a class="code hl_function" href="classgeng_1_1_background.html#a98a9d0f42a93d05ee0fd33cea9f9fc6d">Background</a>(SDL_Renderer* renderer, <a class="code hl_class" href="classgeng_1_1_engine_context.html">EngineContext</a>&amp; world);</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="comment">// Destructor</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <a class="code hl_function" href="classgeng_1_1_background.html#a36754df1deb720393217ade59da41557">~Background</a> ();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classgeng_1_1_background.html#a83d6bb1e704322d9a6c3442b0640e1c3">   32</a></span>        <a class="code hl_function" href="classgeng_1_1_background.html#a83d6bb1e704322d9a6c3442b0640e1c3">~Background</a> ();</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="comment">// Texture getter</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        SDL_Texture* <a class="code hl_function" href="classgeng_1_1_background.html#abe5f0a7bc96598d331cc6fe2f3708201">get_texture</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classgeng_1_1_background.html#ad70c20be240411f3e0e682c5fdef7a73">   34</a></span>        SDL_Texture* <a class="code hl_function" href="classgeng_1_1_background.html#ad70c20be240411f3e0e682c5fdef7a73">get_texture</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="comment">// Updater</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_background.html#a3d60a7bb3b7b54f2fd410d226da13143">update</a>(<span class="keywordtype">int</span> dt);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classgeng_1_1_background.html#a2eb00c3c32d65daa7a0cf6fef6de727b">   36</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_background.html#a2eb00c3c32d65daa7a0cf6fef6de727b">update</a>(<span class="keywordtype">int</span> dt);</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="comment">// Palette management</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_background.html#a1f3dd4f8c0f10a61376212d77308c848">addPalette</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structgeng_1_1_background_palette.html">BackgroundPalette</a>&amp; bp);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_background.html#a85dd3eb3e5b07c3c8c55a97ac37db13a">setPalette</a>(<span class="keywordtype">int</span> newPalette);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classgeng_1_1_background.html#a5313b387eb300653c8034e1adf29ab56">   39</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_background.html#a5313b387eb300653c8034e1adf29ab56">addPalette</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structgeng_1_1_background_palette.html">BackgroundPalette</a>&amp; bp);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classgeng_1_1_background.html#ac2c737f7e128c7149dc60916296c0406">   40</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_background.html#ac2c737f7e128c7149dc60916296c0406">setPalette</a>(<span class="keywordtype">int</span> newPalette);</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_background.html#a41e588ff0a07335cefabeae2a7166e60">create_heightMap</a>();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classgeng_1_1_background.html#ac8374cc910323cfde8a3b212c05e809c">   42</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_background.html#ac8374cc910323cfde8a3b212c05e809c">create_heightMap</a>();</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    };</div>
 </div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}</div>
 <div class="ttc" id="a_background_palette_8hpp_html"><div class="ttname"><a href="_background_palette_8hpp.html">BackgroundPalette.hpp</a></div></div>
 <div class="ttc" id="a_engine_context_8hpp_html"><div class="ttname"><a href="_engine_context_8hpp.html">EngineContext.hpp</a></div></div>
-<div class="ttc" id="aclassgeng_1_1_background_html_a1f3dd4f8c0f10a61376212d77308c848"><div class="ttname"><a href="classgeng_1_1_background.html#a1f3dd4f8c0f10a61376212d77308c848">geng::Background::addPalette</a></div><div class="ttdeci">void addPalette(const BackgroundPalette &amp;bp)</div><div class="ttdef"><b>Definition</b> Background.cpp:106</div></div>
-<div class="ttc" id="aclassgeng_1_1_background_html_a36754df1deb720393217ade59da41557"><div class="ttname"><a href="classgeng_1_1_background.html#a36754df1deb720393217ade59da41557">geng::Background::~Background</a></div><div class="ttdeci">~Background()</div><div class="ttdef"><b>Definition</b> Background.cpp:34</div></div>
-<div class="ttc" id="aclassgeng_1_1_background_html_a3d60a7bb3b7b54f2fd410d226da13143"><div class="ttname"><a href="classgeng_1_1_background.html#a3d60a7bb3b7b54f2fd410d226da13143">geng::Background::update</a></div><div class="ttdeci">void update(int dt)</div><div class="ttdef"><b>Definition</b> Background.cpp:42</div></div>
-<div class="ttc" id="aclassgeng_1_1_background_html_a41e588ff0a07335cefabeae2a7166e60"><div class="ttname"><a href="classgeng_1_1_background.html#a41e588ff0a07335cefabeae2a7166e60">geng::Background::create_heightMap</a></div><div class="ttdeci">void create_heightMap()</div><div class="ttdef"><b>Definition</b> Background.cpp:136</div></div>
-<div class="ttc" id="aclassgeng_1_1_background_html_a77c25488e81c479296dd2f393b592ab9"><div class="ttname"><a href="classgeng_1_1_background.html#a77c25488e81c479296dd2f393b592ab9">geng::Background::Background</a></div><div class="ttdeci">Background(SDL_Renderer *renderer, EngineContext &amp;world)</div><div class="ttdef"><b>Definition</b> Background.cpp:10</div></div>
-<div class="ttc" id="aclassgeng_1_1_background_html_a85dd3eb3e5b07c3c8c55a97ac37db13a"><div class="ttname"><a href="classgeng_1_1_background.html#a85dd3eb3e5b07c3c8c55a97ac37db13a">geng::Background::setPalette</a></div><div class="ttdeci">void setPalette(int newPalette)</div><div class="ttdef"><b>Definition</b> Background.cpp:111</div></div>
-<div class="ttc" id="aclassgeng_1_1_background_html_abe5f0a7bc96598d331cc6fe2f3708201"><div class="ttname"><a href="classgeng_1_1_background.html#abe5f0a7bc96598d331cc6fe2f3708201">geng::Background::get_texture</a></div><div class="ttdeci">SDL_Texture * get_texture() const</div><div class="ttdef"><b>Definition</b> Background.cpp:38</div></div>
+<div class="ttc" id="aclassgeng_1_1_background_html_a2eb00c3c32d65daa7a0cf6fef6de727b"><div class="ttname"><a href="classgeng_1_1_background.html#a2eb00c3c32d65daa7a0cf6fef6de727b">geng::Background::update</a></div><div class="ttdeci">void update(int dt)</div></div>
+<div class="ttc" id="aclassgeng_1_1_background_html_a5313b387eb300653c8034e1adf29ab56"><div class="ttname"><a href="classgeng_1_1_background.html#a5313b387eb300653c8034e1adf29ab56">geng::Background::addPalette</a></div><div class="ttdeci">void addPalette(const BackgroundPalette &amp;bp)</div></div>
+<div class="ttc" id="aclassgeng_1_1_background_html_a83d6bb1e704322d9a6c3442b0640e1c3"><div class="ttname"><a href="classgeng_1_1_background.html#a83d6bb1e704322d9a6c3442b0640e1c3">geng::Background::~Background</a></div><div class="ttdeci">~Background()</div></div>
+<div class="ttc" id="aclassgeng_1_1_background_html_a98a9d0f42a93d05ee0fd33cea9f9fc6d"><div class="ttname"><a href="classgeng_1_1_background.html#a98a9d0f42a93d05ee0fd33cea9f9fc6d">geng::Background::Background</a></div><div class="ttdeci">Background(SDL_Renderer *renderer, EngineContext &amp;world)</div></div>
+<div class="ttc" id="aclassgeng_1_1_background_html_ac2c737f7e128c7149dc60916296c0406"><div class="ttname"><a href="classgeng_1_1_background.html#ac2c737f7e128c7149dc60916296c0406">geng::Background::setPalette</a></div><div class="ttdeci">void setPalette(int newPalette)</div></div>
+<div class="ttc" id="aclassgeng_1_1_background_html_ac8374cc910323cfde8a3b212c05e809c"><div class="ttname"><a href="classgeng_1_1_background.html#ac8374cc910323cfde8a3b212c05e809c">geng::Background::create_heightMap</a></div><div class="ttdeci">void create_heightMap()</div></div>
+<div class="ttc" id="aclassgeng_1_1_background_html_ad70c20be240411f3e0e682c5fdef7a73"><div class="ttname"><a href="classgeng_1_1_background.html#ad70c20be240411f3e0e682c5fdef7a73">geng::Background::get_texture</a></div><div class="ttdeci">SDL_Texture * get_texture() const</div></div>
 <div class="ttc" id="aclassgeng_1_1_engine_context_html"><div class="ttname"><a href="classgeng_1_1_engine_context.html">geng::EngineContext</a></div><div class="ttdef"><b>Definition</b> EngineContext.hpp:10</div></div>
-<div class="ttc" id="anamespacegeng_html"><div class="ttname"><a href="namespacegeng.html">geng</a></div><div class="ttdef"><b>Definition</b> Initializer.cpp:7</div></div>
+<div class="ttc" id="anamespacegeng_html"><div class="ttname"><a href="namespacegeng.html">geng</a></div><div class="ttdef"><b>Definition</b> EngineContext.hpp:7</div></div>
 <div class="ttc" id="astructgeng_1_1_background_palette_html"><div class="ttname"><a href="structgeng_1_1_background_palette.html">geng::BackgroundPalette</a></div><div class="ttdef"><b>Definition</b> BackgroundPalette.hpp:7</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

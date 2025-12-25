@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GENG Engine: geng::InputHandler Class Reference</title>
+<title>G-Engine: geng::InputHandler Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">GENG Engine
+   <div id="projectname">G-Engine
    </div>
    <div id="projectbrief">A lightweight, web-targeted, object-oriented game engine built with Emscripten + SDL2</div>
   </td>
@@ -100,48 +100,48 @@ $(function(){initNavTree('classgeng_1_1_input_handler.html','','classgeng_1_1_in
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af425881d129f70b624a985d9308b91ee" id="r_af425881d129f70b624a985d9308b91ee"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af425881d129f70b624a985d9308b91ee">InputHandler</a> (LayerContext &amp;scene)</td></tr>
-<tr class="memdesc:af425881d129f70b624a985d9308b91ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
-<tr class="memitem:ac3689c46ea35f09362c91b3e7dc28906" id="r_ac3689c46ea35f09362c91b3e7dc28906"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3689c46ea35f09362c91b3e7dc28906">_key_press</a> (SDL_Scancode key)</td></tr>
-<tr class="memdesc:ac3689c46ea35f09362c91b3e7dc28906"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when key is pressed.  <br /></td></tr>
-<tr class="memitem:a493cad50906b874276edb485603127f6" id="r_a493cad50906b874276edb485603127f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a493cad50906b874276edb485603127f6">_key_release</a> (SDL_Scancode key)</td></tr>
-<tr class="memdesc:a493cad50906b874276edb485603127f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when a key is released.  <br /></td></tr>
-<tr class="memitem:a4c3c95ced8ee380382c1ad9e968768ca" id="r_a4c3c95ced8ee380382c1ad9e968768ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c3c95ced8ee380382c1ad9e968768ca">_mouse_click</a> ()</td></tr>
-<tr class="memdesc:a4c3c95ced8ee380382c1ad9e968768ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets when a mouse is is_clicked.  <br /></td></tr>
-<tr class="memitem:a9bf961fbfd4ccd210d6cc627c11b955c" id="r_a9bf961fbfd4ccd210d6cc627c11b955c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9bf961fbfd4ccd210d6cc627c11b955c">_mouse_release</a> ()</td></tr>
-<tr class="memdesc:a9bf961fbfd4ccd210d6cc627c11b955c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets when a mouse click is released.  <br /></td></tr>
-<tr class="memitem:a5197b2c022bec879c3420c56c91a7667" id="r_a5197b2c022bec879c3420c56c91a7667"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5197b2c022bec879c3420c56c91a7667">_mouse_move</a> (SDL_Point pos, float dx, float dy)</td></tr>
-<tr class="memdesc:a5197b2c022bec879c3420c56c91a7667"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets when the mouse moves positions.  <br /></td></tr>
-<tr class="memitem:a202ccc66adbc04e03eb08564c00668e8" id="r_a202ccc66adbc04e03eb08564c00668e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a202ccc66adbc04e03eb08564c00668e8">_keys_down</a> (uint8_t *keys) const</td></tr>
-<tr class="memdesc:a202ccc66adbc04e03eb08564c00668e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets each frame and updates the state if we don't get input.  <br /></td></tr>
-<tr class="memitem:a6ac6148dc4f461bb48b70e087b1b9a9d" id="r_a6ac6148dc4f461bb48b70e087b1b9a9d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ac6148dc4f461bb48b70e087b1b9a9d">add_key_press_acceptor</a> (Gear *g)</td></tr>
-<tr class="memdesc:a6ac6148dc4f461bb48b70e087b1b9a9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Designates one object as a keyboard press input acceptor, such that it's function is called upon key press.  <br /></td></tr>
-<tr class="memitem:a39b815b10b7b60d3571a8a4d1cde9464" id="r_a39b815b10b7b60d3571a8a4d1cde9464"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39b815b10b7b60d3571a8a4d1cde9464">add_key_press_acceptors</a> (gch::vector&lt; Gear * &gt; &amp;gears)</td></tr>
-<tr class="memdesc:a39b815b10b7b60d3571a8a4d1cde9464"><td class="mdescLeft">&#160;</td><td class="mdescRight">Designates multiple objects as keyboard press acceptors.  <br /></td></tr>
-<tr class="memitem:ab6a140060c6a8c02be901e6f0242de13" id="r_ab6a140060c6a8c02be901e6f0242de13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6a140060c6a8c02be901e6f0242de13">add_mouse_acceptor</a> (Gear *g)</td></tr>
-<tr class="memdesc:ab6a140060c6a8c02be901e6f0242de13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Designates one object as a mouse_acceptor.  <br /></td></tr>
-<tr class="memitem:a601ccad12089890f694f9436108dad34" id="r_a601ccad12089890f694f9436108dad34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a601ccad12089890f694f9436108dad34">add_mouse_acceptors</a> (gch::vector&lt; Gear * &gt; &amp;gears)</td></tr>
-<tr class="memdesc:a601ccad12089890f694f9436108dad34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Designates multiple objects as mouse_acceptors.  <br /></td></tr>
-<tr class="memitem:acd205fd10f51a58ce7a78be02220b4c7" id="r_acd205fd10f51a58ce7a78be02220b4c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd205fd10f51a58ce7a78be02220b4c7">remove_key_acceptor</a> (Gear *g)</td></tr>
-<tr class="memdesc:acd205fd10f51a58ce7a78be02220b4c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the key acceptor from the input handler.  <br /></td></tr>
-<tr class="memitem:aaf4fc8d6d4bf843b4462a86f3cb4d5fa" id="r_aaf4fc8d6d4bf843b4462a86f3cb4d5fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaf4fc8d6d4bf843b4462a86f3cb4d5fa">remove_key_acceptors</a> (gch::vector&lt; Gear * &gt; &amp;gears)</td></tr>
-<tr class="memdesc:aaf4fc8d6d4bf843b4462a86f3cb4d5fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes multiple key acceptors from the input handler.  <br /></td></tr>
-<tr class="memitem:aa1936cd01bd8196b7fe12e8096cb8098" id="r_aa1936cd01bd8196b7fe12e8096cb8098"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1936cd01bd8196b7fe12e8096cb8098">remove_mouse_acceptor</a> (Gear *g)</td></tr>
-<tr class="memdesc:aa1936cd01bd8196b7fe12e8096cb8098"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes one gear from being a mouse acceptor.  <br /></td></tr>
-<tr class="memitem:ad6ddbfdc5da70b1bd7291772dcc384cc" id="r_ad6ddbfdc5da70b1bd7291772dcc384cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6ddbfdc5da70b1bd7291772dcc384cc">remove_mouse_acceptors</a> (gch::vector&lt; Gear * &gt; &amp;g)</td></tr>
-<tr class="memdesc:ad6ddbfdc5da70b1bd7291772dcc384cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes multiple gears from being a mouse acceptor.  <br /></td></tr>
-<tr class="memitem:ac6df68fc12c7a0a5e5bf9380a63b0968" id="r_ac6df68fc12c7a0a5e5bf9380a63b0968"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6df68fc12c7a0a5e5bf9380a63b0968">flush</a> ()</td></tr>
-<tr class="memdesc:ac6df68fc12c7a0a5e5bf9380a63b0968"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all acceptors from the inputHandler.  <br /></td></tr>
-<tr class="memitem:ac8ba5dc8bef8d289e94d420426a93710" id="r_ac8ba5dc8bef8d289e94d420426a93710"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8ba5dc8bef8d289e94d420426a93710">flush_keyboard_acceptors</a> ()</td></tr>
-<tr class="memdesc:ac8ba5dc8bef8d289e94d420426a93710"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all keyboard acceptors from the inputHandler.  <br /></td></tr>
-<tr class="memitem:a0e46ac987dc94f594919d14e2aadb650" id="r_a0e46ac987dc94f594919d14e2aadb650"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e46ac987dc94f594919d14e2aadb650">flush_mouse_acceptors</a> ()</td></tr>
-<tr class="memdesc:a0e46ac987dc94f594919d14e2aadb650"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all mouse acceptors from the <a class="el" href="classgeng_1_1_input_handler.html" title="InputHandler is intended to be used exclusively by Layers to help manage the organization of Gears th...">InputHandler</a>.  <br /></td></tr>
-<tr class="memitem:aba31d2ae9a851c5520c61602b3970146" id="r_aba31d2ae9a851c5520c61602b3970146"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba31d2ae9a851c5520c61602b3970146">refresh</a> ()</td></tr>
-<tr class="memdesc:aba31d2ae9a851c5520c61602b3970146"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes input attachments between the mouse and any target.  <br /></td></tr>
-<tr class="memitem:aefc05dbc0dbba18b0433fc995343a102" id="r_aefc05dbc0dbba18b0433fc995343a102"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aefc05dbc0dbba18b0433fc995343a102">pause</a> ()</td></tr>
-<tr class="memdesc:aefc05dbc0dbba18b0433fc995343a102"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pauses input temporarily.  <br /></td></tr>
-<tr class="memitem:a7b6b6aee5f0aa84451d6d5d355af958b" id="r_a7b6b6aee5f0aa84451d6d5d355af958b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b6b6aee5f0aa84451d6d5d355af958b">resume</a> ()</td></tr>
-<tr class="memdesc:a7b6b6aee5f0aa84451d6d5d355af958b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resumes input if paused.  <br /></td></tr>
+<tr class="memitem:a6e5c7176862d6a49294fdf94adb41821" id="r_a6e5c7176862d6a49294fdf94adb41821"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e5c7176862d6a49294fdf94adb41821">InputHandler</a> (LayerContext &amp;scene)</td></tr>
+<tr class="memdesc:a6e5c7176862d6a49294fdf94adb41821"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
+<tr class="memitem:a3615af84b4b7ab269e2ea6efd4d8bd82" id="r_a3615af84b4b7ab269e2ea6efd4d8bd82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3615af84b4b7ab269e2ea6efd4d8bd82">_key_press</a> (SDL_Scancode key)</td></tr>
+<tr class="memdesc:a3615af84b4b7ab269e2ea6efd4d8bd82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when key is pressed.  <br /></td></tr>
+<tr class="memitem:a27104b5d97dc9d433c2ee0aac89dcf16" id="r_a27104b5d97dc9d433c2ee0aac89dcf16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27104b5d97dc9d433c2ee0aac89dcf16">_key_release</a> (SDL_Scancode key)</td></tr>
+<tr class="memdesc:a27104b5d97dc9d433c2ee0aac89dcf16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when a key is released.  <br /></td></tr>
+<tr class="memitem:affc9368e17364dd43a28061645d4355d" id="r_affc9368e17364dd43a28061645d4355d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#affc9368e17364dd43a28061645d4355d">_mouse_click</a> ()</td></tr>
+<tr class="memdesc:affc9368e17364dd43a28061645d4355d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets when a mouse is is_clicked.  <br /></td></tr>
+<tr class="memitem:a5bea50e2a289953c67efca16789524f4" id="r_a5bea50e2a289953c67efca16789524f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5bea50e2a289953c67efca16789524f4">_mouse_release</a> ()</td></tr>
+<tr class="memdesc:a5bea50e2a289953c67efca16789524f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets when a mouse click is released.  <br /></td></tr>
+<tr class="memitem:a1f78e5d910153ab944b27d8f9d8a46b3" id="r_a1f78e5d910153ab944b27d8f9d8a46b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f78e5d910153ab944b27d8f9d8a46b3">_mouse_move</a> (SDL_Point pos, float dx, float dy)</td></tr>
+<tr class="memdesc:a1f78e5d910153ab944b27d8f9d8a46b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets when the mouse moves positions.  <br /></td></tr>
+<tr class="memitem:ae226e185fe74222ebce4d60d9f7bfd1a" id="r_ae226e185fe74222ebce4d60d9f7bfd1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae226e185fe74222ebce4d60d9f7bfd1a">_keys_down</a> (uint8_t *keys) const</td></tr>
+<tr class="memdesc:ae226e185fe74222ebce4d60d9f7bfd1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets each frame and updates the state if we don't get input.  <br /></td></tr>
+<tr class="memitem:a73f458a7e590af6c491bae9be79aaa9b" id="r_a73f458a7e590af6c491bae9be79aaa9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73f458a7e590af6c491bae9be79aaa9b">add_key_press_acceptor</a> (Gear *g)</td></tr>
+<tr class="memdesc:a73f458a7e590af6c491bae9be79aaa9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Designates one object as a keyboard press input acceptor, such that it's function is called upon key press.  <br /></td></tr>
+<tr class="memitem:a8aa91b1c6d84a67dadb3f57d3a01292a" id="r_a8aa91b1c6d84a67dadb3f57d3a01292a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8aa91b1c6d84a67dadb3f57d3a01292a">add_key_press_acceptors</a> (gch::vector&lt; Gear * &gt; &amp;gears)</td></tr>
+<tr class="memdesc:a8aa91b1c6d84a67dadb3f57d3a01292a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Designates multiple objects as keyboard press acceptors.  <br /></td></tr>
+<tr class="memitem:a1d6e39238ab05f86dc674689204598a5" id="r_a1d6e39238ab05f86dc674689204598a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d6e39238ab05f86dc674689204598a5">add_mouse_acceptor</a> (Gear *g)</td></tr>
+<tr class="memdesc:a1d6e39238ab05f86dc674689204598a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Designates one object as a mouse_acceptor.  <br /></td></tr>
+<tr class="memitem:a8d41dc431ba0ebe3b08f92757451de1e" id="r_a8d41dc431ba0ebe3b08f92757451de1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d41dc431ba0ebe3b08f92757451de1e">add_mouse_acceptors</a> (gch::vector&lt; Gear * &gt; &amp;gears)</td></tr>
+<tr class="memdesc:a8d41dc431ba0ebe3b08f92757451de1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Designates multiple objects as mouse_acceptors.  <br /></td></tr>
+<tr class="memitem:ab35d7f51f8a2236fa0ff95efb3f95d45" id="r_ab35d7f51f8a2236fa0ff95efb3f95d45"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab35d7f51f8a2236fa0ff95efb3f95d45">remove_key_acceptor</a> (Gear *g)</td></tr>
+<tr class="memdesc:ab35d7f51f8a2236fa0ff95efb3f95d45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the key acceptor from the input handler.  <br /></td></tr>
+<tr class="memitem:a94c1ed80c9d0b0b65cf44f94afb34d7b" id="r_a94c1ed80c9d0b0b65cf44f94afb34d7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94c1ed80c9d0b0b65cf44f94afb34d7b">remove_key_acceptors</a> (gch::vector&lt; Gear * &gt; &amp;gears)</td></tr>
+<tr class="memdesc:a94c1ed80c9d0b0b65cf44f94afb34d7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes multiple key acceptors from the input handler.  <br /></td></tr>
+<tr class="memitem:aea255cb9db3e8e25bdd985c80367965a" id="r_aea255cb9db3e8e25bdd985c80367965a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea255cb9db3e8e25bdd985c80367965a">remove_mouse_acceptor</a> (Gear *g)</td></tr>
+<tr class="memdesc:aea255cb9db3e8e25bdd985c80367965a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes one gear from being a mouse acceptor.  <br /></td></tr>
+<tr class="memitem:a6cad60701dcf6fae5768eeb23a2114d4" id="r_a6cad60701dcf6fae5768eeb23a2114d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6cad60701dcf6fae5768eeb23a2114d4">remove_mouse_acceptors</a> (gch::vector&lt; Gear * &gt; &amp;g)</td></tr>
+<tr class="memdesc:a6cad60701dcf6fae5768eeb23a2114d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes multiple gears from being a mouse acceptor.  <br /></td></tr>
+<tr class="memitem:a26392be91e2914d08a5ddb42b36f4ba8" id="r_a26392be91e2914d08a5ddb42b36f4ba8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26392be91e2914d08a5ddb42b36f4ba8">flush</a> ()</td></tr>
+<tr class="memdesc:a26392be91e2914d08a5ddb42b36f4ba8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all acceptors from the inputHandler.  <br /></td></tr>
+<tr class="memitem:a47c0f33749bc4a0826bf33ecc02f64bb" id="r_a47c0f33749bc4a0826bf33ecc02f64bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47c0f33749bc4a0826bf33ecc02f64bb">flush_keyboard_acceptors</a> ()</td></tr>
+<tr class="memdesc:a47c0f33749bc4a0826bf33ecc02f64bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all keyboard acceptors from the inputHandler.  <br /></td></tr>
+<tr class="memitem:a26cf490a03c5703952d736af87e61578" id="r_a26cf490a03c5703952d736af87e61578"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26cf490a03c5703952d736af87e61578">flush_mouse_acceptors</a> ()</td></tr>
+<tr class="memdesc:a26cf490a03c5703952d736af87e61578"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all mouse acceptors from the <a class="el" href="classgeng_1_1_input_handler.html" title="InputHandler is intended to be used exclusively by Layers to help manage the organization of Gears th...">InputHandler</a>.  <br /></td></tr>
+<tr class="memitem:af96945cc079519c48bafefcd77ffe6f2" id="r_af96945cc079519c48bafefcd77ffe6f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af96945cc079519c48bafefcd77ffe6f2">refresh</a> ()</td></tr>
+<tr class="memdesc:af96945cc079519c48bafefcd77ffe6f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes input attachments between the mouse and any target.  <br /></td></tr>
+<tr class="memitem:aaac49948a24a4cc726aab09b1d872678" id="r_aaac49948a24a4cc726aab09b1d872678"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaac49948a24a4cc726aab09b1d872678">pause</a> ()</td></tr>
+<tr class="memdesc:aaac49948a24a4cc726aab09b1d872678"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pauses input temporarily.  <br /></td></tr>
+<tr class="memitem:aba3dcbb65e6291b1f99da56e6a78b9f7" id="r_aba3dcbb65e6291b1f99da56e6a78b9f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba3dcbb65e6291b1f99da56e6a78b9f7">resume</a> ()</td></tr>
+<tr class="memdesc:aba3dcbb65e6291b1f99da56e6a78b9f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resumes input if paused.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -152,8 +152,8 @@ Public Attributes</h2></td></tr>
 <div class="textblock"><p><a class="el" href="classgeng_1_1_input_handler.html" title="InputHandler is intended to be used exclusively by Layers to help manage the organization of Gears th...">InputHandler</a> is intended to be used exclusively by Layers to help manage the organization of Gears that accept inputs. </p>
 <p>Input handler has two vectors, that contain the objects that accept keyboard input and those that accept mouse input. It also has an active status, and a map containing keys that are currently held down. It has the following member functions </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="af425881d129f70b624a985d9308b91ee" name="af425881d129f70b624a985d9308b91ee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af425881d129f70b624a985d9308b91ee">&#9670;&#160;</a></span>InputHandler()</h2>
+<a id="a6e5c7176862d6a49294fdf94adb41821" name="a6e5c7176862d6a49294fdf94adb41821"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e5c7176862d6a49294fdf94adb41821">&#9670;&#160;</a></span>InputHandler()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -162,7 +162,7 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">InputHandler::InputHandler </td>
+          <td class="memname">geng::InputHandler::InputHandler </td>
           <td>(</td>
           <td class="paramtype">LayerContext &amp;</td>          <td class="paramname"><span class="paramname"><em>scene</em></span></td><td>)</td>
           <td></td>
@@ -180,14 +180,14 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="ac3689c46ea35f09362c91b3e7dc28906" name="ac3689c46ea35f09362c91b3e7dc28906"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3689c46ea35f09362c91b3e7dc28906">&#9670;&#160;</a></span>_key_press()</h2>
+<a id="a3615af84b4b7ab269e2ea6efd4d8bd82" name="a3615af84b4b7ab269e2ea6efd4d8bd82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3615af84b4b7ab269e2ea6efd4d8bd82">&#9670;&#160;</a></span>_key_press()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputHandler::_key_press </td>
+          <td class="memname">void geng::InputHandler::_key_press </td>
           <td>(</td>
           <td class="paramtype">SDL_Scancode</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
           <td></td>
@@ -199,14 +199,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a493cad50906b874276edb485603127f6" name="a493cad50906b874276edb485603127f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a493cad50906b874276edb485603127f6">&#9670;&#160;</a></span>_key_release()</h2>
+<a id="a27104b5d97dc9d433c2ee0aac89dcf16" name="a27104b5d97dc9d433c2ee0aac89dcf16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27104b5d97dc9d433c2ee0aac89dcf16">&#9670;&#160;</a></span>_key_release()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputHandler::_key_release </td>
+          <td class="memname">void geng::InputHandler::_key_release </td>
           <td>(</td>
           <td class="paramtype">SDL_Scancode</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
           <td></td>
@@ -218,14 +218,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a202ccc66adbc04e03eb08564c00668e8" name="a202ccc66adbc04e03eb08564c00668e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a202ccc66adbc04e03eb08564c00668e8">&#9670;&#160;</a></span>_keys_down()</h2>
+<a id="ae226e185fe74222ebce4d60d9f7bfd1a" name="ae226e185fe74222ebce4d60d9f7bfd1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae226e185fe74222ebce4d60d9f7bfd1a">&#9670;&#160;</a></span>_keys_down()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputHandler::_keys_down </td>
+          <td class="memname">void geng::InputHandler::_keys_down </td>
           <td>(</td>
           <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>keys</em></span></td><td>)</td>
           <td> const</td>
@@ -237,14 +237,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a4c3c95ced8ee380382c1ad9e968768ca" name="a4c3c95ced8ee380382c1ad9e968768ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c3c95ced8ee380382c1ad9e968768ca">&#9670;&#160;</a></span>_mouse_click()</h2>
+<a id="affc9368e17364dd43a28061645d4355d" name="affc9368e17364dd43a28061645d4355d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affc9368e17364dd43a28061645d4355d">&#9670;&#160;</a></span>_mouse_click()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputHandler::_mouse_click </td>
+          <td class="memname">void geng::InputHandler::_mouse_click </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -256,14 +256,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a5197b2c022bec879c3420c56c91a7667" name="a5197b2c022bec879c3420c56c91a7667"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5197b2c022bec879c3420c56c91a7667">&#9670;&#160;</a></span>_mouse_move()</h2>
+<a id="a1f78e5d910153ab944b27d8f9d8a46b3" name="a1f78e5d910153ab944b27d8f9d8a46b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f78e5d910153ab944b27d8f9d8a46b3">&#9670;&#160;</a></span>_mouse_move()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputHandler::_mouse_move </td>
+          <td class="memname">void geng::InputHandler::_mouse_move </td>
           <td>(</td>
           <td class="paramtype">SDL_Point</td>          <td class="paramname"><span class="paramname"><em>pos</em></span>, </td>
         </tr>
@@ -284,14 +284,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a9bf961fbfd4ccd210d6cc627c11b955c" name="a9bf961fbfd4ccd210d6cc627c11b955c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9bf961fbfd4ccd210d6cc627c11b955c">&#9670;&#160;</a></span>_mouse_release()</h2>
+<a id="a5bea50e2a289953c67efca16789524f4" name="a5bea50e2a289953c67efca16789524f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bea50e2a289953c67efca16789524f4">&#9670;&#160;</a></span>_mouse_release()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputHandler::_mouse_release </td>
+          <td class="memname">void geng::InputHandler::_mouse_release </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -303,14 +303,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a6ac6148dc4f461bb48b70e087b1b9a9d" name="a6ac6148dc4f461bb48b70e087b1b9a9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ac6148dc4f461bb48b70e087b1b9a9d">&#9670;&#160;</a></span>add_key_press_acceptor()</h2>
+<a id="a73f458a7e590af6c491bae9be79aaa9b" name="a73f458a7e590af6c491bae9be79aaa9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73f458a7e590af6c491bae9be79aaa9b">&#9670;&#160;</a></span>add_key_press_acceptor()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputHandler::add_key_press_acceptor </td>
+          <td class="memname">void geng::InputHandler::add_key_press_acceptor </td>
           <td>(</td>
           <td class="paramtype">Gear *</td>          <td class="paramname"><span class="paramname"><em>g</em></span></td><td>)</td>
           <td></td>
@@ -322,14 +322,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a39b815b10b7b60d3571a8a4d1cde9464" name="a39b815b10b7b60d3571a8a4d1cde9464"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a39b815b10b7b60d3571a8a4d1cde9464">&#9670;&#160;</a></span>add_key_press_acceptors()</h2>
+<a id="a8aa91b1c6d84a67dadb3f57d3a01292a" name="a8aa91b1c6d84a67dadb3f57d3a01292a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8aa91b1c6d84a67dadb3f57d3a01292a">&#9670;&#160;</a></span>add_key_press_acceptors()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputHandler::add_key_press_acceptors </td>
+          <td class="memname">void geng::InputHandler::add_key_press_acceptors </td>
           <td>(</td>
           <td class="paramtype">gch::vector&lt; Gear * &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>gears</em></span></td><td>)</td>
           <td></td>
@@ -341,14 +341,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ab6a140060c6a8c02be901e6f0242de13" name="ab6a140060c6a8c02be901e6f0242de13"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab6a140060c6a8c02be901e6f0242de13">&#9670;&#160;</a></span>add_mouse_acceptor()</h2>
+<a id="a1d6e39238ab05f86dc674689204598a5" name="a1d6e39238ab05f86dc674689204598a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d6e39238ab05f86dc674689204598a5">&#9670;&#160;</a></span>add_mouse_acceptor()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputHandler::add_mouse_acceptor </td>
+          <td class="memname">void geng::InputHandler::add_mouse_acceptor </td>
           <td>(</td>
           <td class="paramtype">Gear *</td>          <td class="paramname"><span class="paramname"><em>g</em></span></td><td>)</td>
           <td></td>
@@ -360,14 +360,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a601ccad12089890f694f9436108dad34" name="a601ccad12089890f694f9436108dad34"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a601ccad12089890f694f9436108dad34">&#9670;&#160;</a></span>add_mouse_acceptors()</h2>
+<a id="a8d41dc431ba0ebe3b08f92757451de1e" name="a8d41dc431ba0ebe3b08f92757451de1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d41dc431ba0ebe3b08f92757451de1e">&#9670;&#160;</a></span>add_mouse_acceptors()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputHandler::add_mouse_acceptors </td>
+          <td class="memname">void geng::InputHandler::add_mouse_acceptors </td>
           <td>(</td>
           <td class="paramtype">gch::vector&lt; Gear * &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>gears</em></span></td><td>)</td>
           <td></td>
@@ -379,14 +379,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ac6df68fc12c7a0a5e5bf9380a63b0968" name="ac6df68fc12c7a0a5e5bf9380a63b0968"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6df68fc12c7a0a5e5bf9380a63b0968">&#9670;&#160;</a></span>flush()</h2>
+<a id="a26392be91e2914d08a5ddb42b36f4ba8" name="a26392be91e2914d08a5ddb42b36f4ba8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26392be91e2914d08a5ddb42b36f4ba8">&#9670;&#160;</a></span>flush()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputHandler::flush </td>
+          <td class="memname">void geng::InputHandler::flush </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -398,14 +398,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ac8ba5dc8bef8d289e94d420426a93710" name="ac8ba5dc8bef8d289e94d420426a93710"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8ba5dc8bef8d289e94d420426a93710">&#9670;&#160;</a></span>flush_keyboard_acceptors()</h2>
+<a id="a47c0f33749bc4a0826bf33ecc02f64bb" name="a47c0f33749bc4a0826bf33ecc02f64bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47c0f33749bc4a0826bf33ecc02f64bb">&#9670;&#160;</a></span>flush_keyboard_acceptors()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputHandler::flush_keyboard_acceptors </td>
+          <td class="memname">void geng::InputHandler::flush_keyboard_acceptors </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -417,14 +417,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a0e46ac987dc94f594919d14e2aadb650" name="a0e46ac987dc94f594919d14e2aadb650"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e46ac987dc94f594919d14e2aadb650">&#9670;&#160;</a></span>flush_mouse_acceptors()</h2>
+<a id="a26cf490a03c5703952d736af87e61578" name="a26cf490a03c5703952d736af87e61578"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26cf490a03c5703952d736af87e61578">&#9670;&#160;</a></span>flush_mouse_acceptors()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputHandler::flush_mouse_acceptors </td>
+          <td class="memname">void geng::InputHandler::flush_mouse_acceptors </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -436,14 +436,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aefc05dbc0dbba18b0433fc995343a102" name="aefc05dbc0dbba18b0433fc995343a102"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aefc05dbc0dbba18b0433fc995343a102">&#9670;&#160;</a></span>pause()</h2>
+<a id="aaac49948a24a4cc726aab09b1d872678" name="aaac49948a24a4cc726aab09b1d872678"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaac49948a24a4cc726aab09b1d872678">&#9670;&#160;</a></span>pause()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputHandler::pause </td>
+          <td class="memname">void geng::InputHandler::pause </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -455,14 +455,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aba31d2ae9a851c5520c61602b3970146" name="aba31d2ae9a851c5520c61602b3970146"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba31d2ae9a851c5520c61602b3970146">&#9670;&#160;</a></span>refresh()</h2>
+<a id="af96945cc079519c48bafefcd77ffe6f2" name="af96945cc079519c48bafefcd77ffe6f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af96945cc079519c48bafefcd77ffe6f2">&#9670;&#160;</a></span>refresh()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputHandler::refresh </td>
+          <td class="memname">void geng::InputHandler::refresh </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -474,14 +474,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="acd205fd10f51a58ce7a78be02220b4c7" name="acd205fd10f51a58ce7a78be02220b4c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd205fd10f51a58ce7a78be02220b4c7">&#9670;&#160;</a></span>remove_key_acceptor()</h2>
+<a id="ab35d7f51f8a2236fa0ff95efb3f95d45" name="ab35d7f51f8a2236fa0ff95efb3f95d45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab35d7f51f8a2236fa0ff95efb3f95d45">&#9670;&#160;</a></span>remove_key_acceptor()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputHandler::remove_key_acceptor </td>
+          <td class="memname">void geng::InputHandler::remove_key_acceptor </td>
           <td>(</td>
           <td class="paramtype">Gear *</td>          <td class="paramname"><span class="paramname"><em>g</em></span></td><td>)</td>
           <td></td>
@@ -493,14 +493,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aaf4fc8d6d4bf843b4462a86f3cb4d5fa" name="aaf4fc8d6d4bf843b4462a86f3cb4d5fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf4fc8d6d4bf843b4462a86f3cb4d5fa">&#9670;&#160;</a></span>remove_key_acceptors()</h2>
+<a id="a94c1ed80c9d0b0b65cf44f94afb34d7b" name="a94c1ed80c9d0b0b65cf44f94afb34d7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94c1ed80c9d0b0b65cf44f94afb34d7b">&#9670;&#160;</a></span>remove_key_acceptors()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputHandler::remove_key_acceptors </td>
+          <td class="memname">void geng::InputHandler::remove_key_acceptors </td>
           <td>(</td>
           <td class="paramtype">gch::vector&lt; Gear * &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>gears</em></span></td><td>)</td>
           <td></td>
@@ -512,14 +512,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aa1936cd01bd8196b7fe12e8096cb8098" name="aa1936cd01bd8196b7fe12e8096cb8098"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1936cd01bd8196b7fe12e8096cb8098">&#9670;&#160;</a></span>remove_mouse_acceptor()</h2>
+<a id="aea255cb9db3e8e25bdd985c80367965a" name="aea255cb9db3e8e25bdd985c80367965a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea255cb9db3e8e25bdd985c80367965a">&#9670;&#160;</a></span>remove_mouse_acceptor()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputHandler::remove_mouse_acceptor </td>
+          <td class="memname">void geng::InputHandler::remove_mouse_acceptor </td>
           <td>(</td>
           <td class="paramtype">Gear *</td>          <td class="paramname"><span class="paramname"><em>g</em></span></td><td>)</td>
           <td></td>
@@ -531,14 +531,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ad6ddbfdc5da70b1bd7291772dcc384cc" name="ad6ddbfdc5da70b1bd7291772dcc384cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad6ddbfdc5da70b1bd7291772dcc384cc">&#9670;&#160;</a></span>remove_mouse_acceptors()</h2>
+<a id="a6cad60701dcf6fae5768eeb23a2114d4" name="a6cad60701dcf6fae5768eeb23a2114d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cad60701dcf6fae5768eeb23a2114d4">&#9670;&#160;</a></span>remove_mouse_acceptors()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputHandler::remove_mouse_acceptors </td>
+          <td class="memname">void geng::InputHandler::remove_mouse_acceptors </td>
           <td>(</td>
           <td class="paramtype">gch::vector&lt; Gear * &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>g</em></span></td><td>)</td>
           <td></td>
@@ -550,14 +550,14 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a7b6b6aee5f0aa84451d6d5d355af958b" name="a7b6b6aee5f0aa84451d6d5d355af958b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7b6b6aee5f0aa84451d6d5d355af958b">&#9670;&#160;</a></span>resume()</h2>
+<a id="aba3dcbb65e6291b1f99da56e6a78b9f7" name="aba3dcbb65e6291b1f99da56e6a78b9f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba3dcbb65e6291b1f99da56e6a78b9f7">&#9670;&#160;</a></span>resume()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void InputHandler::resume </td>
+          <td class="memname">void geng::InputHandler::resume </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -586,9 +586,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/engine/input/<a class="el" href="_input_handler_8hpp_source.html">InputHandler.hpp</a></li>
-<li>src/engine/input/<a class="el" href="_input_handler_8cpp.html">InputHandler.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

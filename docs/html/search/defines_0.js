@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['addev_0',['ADDEV',['../_b_j-_actions_8cpp.html#ab17ad735e0f25dccc3ac65c71fa4741e',1,'ADDEV:&#160;BJ-Actions.cpp'],['../_pather_8cpp.html#ab17ad735e0f25dccc3ac65c71fa4741e',1,'ADDEV:&#160;Pather.cpp'],['../blackjack_2_round_8cpp.html#ab17ad735e0f25dccc3ac65c71fa4741e',1,'ADDEV:&#160;Round.cpp'],['../blackjack2_2_round_8cpp.html#ab17ad735e0f25dccc3ac65c71fa4741e',1,'ADDEV:&#160;Round.cpp']]],
-  ['asset_5fdeck_5fpath_1',['ASSET_DECK_PATH',['../_asset-_deck_8hpp.html#ae8261a1afe0b9957357e75817b189f51',1,'Asset-Deck.hpp']]],
-  ['asset_5fdeck_5frender_5ftype_2',['ASSET_DECK_RENDER_TYPE',['../_asset-_deck_8hpp.html#a5644df1e6ce78c17f7bc05f3274cbd6d',1,'Asset-Deck.hpp']]],
-  ['asset_5fdraw_5fdeck_5fdraw_5ftype_3',['ASSET_DRAW_DECK_DRAW_TYPE',['../_asset-_card-_stack_8hpp.html#a7da60b6b2c8ba95037d3ff100d38e3e7',1,'Asset-Card-Stack.hpp']]],
-  ['asset_5fdraw_5fdeck_5fpath_4',['ASSET_DRAW_DECK_PATH',['../_asset-_card-_stack_8hpp.html#ae8db5bf2f6255ec02c530037ccabf00e',1,'Asset-Card-Stack.hpp']]]
+  ['geng_5fpath_5fmax_5flen_0',['GENG_PATH_MAX_LEN',['../_i_m_g___info_8hpp.html#a87fa93146c977ce1bad3c178ea88442e',1,'IMG_Info.hpp']]],
+  ['geng_5fstart_5floop_1',['GENG_START_LOOP',['../geng_8hpp.html#ac559875c7f2bb96a90d34e371c06b210',1,'geng.hpp']]]
 ];

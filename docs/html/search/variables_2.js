@@ -1,21 +1,14 @@
 var searchData=
 [
-  ['cam_0',['cam',['../structgeng_1_1_mouse.html#acf9071a6a8edceecdd5fcb5c01741ab2',1,'geng::Mouse']]],
-  ['camera_1',['camera',['../classgeng_1_1_engine_context.html#a86dc5191b9939fa05d94ad45065e0333',1,'geng::EngineContext']]],
-  ['card_5fselector_5ftransform_2',['card_selector_transform',['../namespaceblackjack.html#ae9f774144d724c1713677b08acc1c3cd',1,'blackjack']]],
-  ['chaos_3',['chaos',['../structgeng_1_1_background_palette.html#a50f066dfd42c421c56afbdc35489cf26',1,'geng::BackgroundPalette']]],
-  ['clicked_4',['clicked',['../class_player_test.html#aac08289b40e379b24e82906bc5dad042',1,'PlayerTest']]],
-  ['collision_5',['collision',['../structgeng_1_1_proposed_collision.html#a4ac190dc159a25f08ebc1ee4a24e20db',1,'geng::ProposedCollision']]],
-  ['color_6',['color',['../structgeng_1_1_syntax_info.html#a489a9b4759d77b8a924abe84bf289a1d',1,'geng::SyntaxInfo::color'],['../structgeng_1_1_parse_event.html#ad87a5e70664488393350043595755847',1,'geng::ParseEvent::color']]],
-  ['color_5fblack_7',['color_black',['../namespacegeng.html#a982e62239ed99be17ab8e560db679511',1,'geng']]],
-  ['color_5fblue_8',['color_blue',['../namespacegeng.html#a0d09962a841b5448417ee2eae8b4893e',1,'geng']]],
-  ['color_5fgreen_9',['color_green',['../namespacegeng.html#a83b0757fea63237d724159c1f1f21ea1',1,'geng']]],
-  ['color_5forange_10',['color_orange',['../namespacegeng.html#ad6d4b3af1c7b529181e7ac59a42d3473',1,'geng']]],
-  ['color_5fpink_11',['color_pink',['../namespacegeng.html#a5c7581c196d4e41b09127fc0ccb5b27b',1,'geng']]],
-  ['color_5fpurple_12',['color_purple',['../namespacegeng.html#a301b5e9025650752f7d54f34678c7b1e',1,'geng']]],
-  ['color_5fred_13',['color_red',['../namespacegeng.html#a02d4f87dd7763d295d8793b07d1bcba6',1,'geng']]],
-  ['color_5fwhite_14',['color_white',['../namespacegeng.html#a532f27c72f8a01ddaeac71770db0cd6b',1,'geng']]],
-  ['color_5fyellow_15',['color_yellow',['../namespacegeng.html#a9a70534dfcdac880bf6782ad0585077c',1,'geng']]],
-  ['colors_16',['colors',['../structgeng_1_1_background_palette.html#a65eb53758d5a2b7cfdb6c706fa6fc219',1,'geng::BackgroundPalette']]],
-  ['column_17',['column',['../structgeng_1_1_selection.html#a3076e277a2a485a5905b56b318784305',1,'geng::Selection']]]
+  ['data_0',['data',['../structgeng_1_1_t_layer.html#a0b236309aeb22007dcffa5f60a53326b',1,'geng::TLayer']]],
+  ['debug_5fmode_1',['debug_mode',['../classgeng_1_1debug_1_1_debugger.html#ab32d2e438a3e343bc0db8e95c86ae46d',1,'geng::debug::Debugger']]],
+  ['debugger_2',['debugger',['../classgeng_1_1_engine_context.html#a5fdf5c2618f69e07c51b4fcd69e3d7cd',1,'geng::EngineContext']]],
+  ['defaultbackgroundpalette_3',['defaultBackgroundPalette',['../namespacegeng.html#a611b5dd5e1e2196ec8c258cabf2d421a',1,'geng']]],
+  ['degreestoradians_4',['degreesToRadians',['../namespacegutils.html#a882a707baf2870ee6e1df62ab0e8fc17',1,'gutils']]],
+  ['delta_5',['delta',['../structgeng_1_1_proposed_collision.html#a5d3f93122f21d7a0a7dfc8b4fe41f8e0',1,'geng::ProposedCollision']]],
+  ['dev_6',['dev',['../namespaceglog.html#a90e5549371e5ca7b0e89077f2181b438',1,'glog']]],
+  ['direction_7',['direction',['../structgeng_1_1_p_circle.html#abe73997de563720083dd4a4c23cb4a21',1,'geng::PCircle']]],
+  ['down_8',['down',['../structgeng_1_1_mouse.html#a508d1f84a08a3f4cac5e08cc4be08c05',1,'geng::Mouse']]],
+  ['dpos_9',['dpos',['../structgeng_1_1_mouse.html#a9405c700f25275c1e123e0c693b3c654',1,'geng::Mouse']]],
+  ['duration_10',['duration',['../classgeng_1_1_morph.html#ab51da39c93da186fc8c4aa01887bf46e',1,'geng::Morph::duration'],['../structgeng_1_1_p_circle.html#ae24445613be539b189f69a8f7fe81b15',1,'geng::PCircle::duration'],['../structgfx_1_1_rhombus_inst.html#a3ee742c8edc419bbb1465c97033f8520',1,'gfx::RhombusInst::duration'],['../structgfx_1_1_sparkle_inst.html#a4a89e26306312a2fb2f191580b12b92b',1,'gfx::SparkleInst::duration']]]
 ];

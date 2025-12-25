@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GENG Engine: include/engine/types/strings Directory Reference</title>
+<title>G-Engine: include/engine/types/strings Directory Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">GENG Engine
+   <div id="projectname">G-Engine
    </div>
    <div id="projectbrief">A lightweight, web-targeted, object-oriented game engine built with Emscripten + SDL2</div>
   </td>
@@ -159,7 +159,7 @@ str_view</h2>
 <div class="line">    buffer &lt;&lt; trunc&lt;4&gt;() &lt;&lt; my_float; </div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>() {</div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
 <div class="line">    <span class="comment">// create our strings</span></div>
 <div class="line">    fstring&lt;300&gt; fixed_string = <span class="stringliteral">&quot;My fixed string: &quot;</span>;</div>
 <div class="line">    hstring heap_string = <span class="stringliteral">&quot;My dynamically allocated string: &quot;</span>;</div>
@@ -170,7 +170,6 @@ str_view</h2>
 <div class="line">    std::cerr &lt;&lt; fixed_string.cstr() &lt;&lt; std::endl;</div>
 <div class="line">    std::cerr &lt;&lt; heap_string.cstr() &lt;&lt; std::endl;</div>
 <div class="line">}</div>
-<div class="ttc" id="amain_8cpp_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition</b> main.cpp:42</div></div>
 </div><!-- fragment --> <div class="fragment"><div class="line">output:</div>
 <div class="line">My fixed string: 30.1234</div>
 <div class="line">My heap string: 90.1234</div>

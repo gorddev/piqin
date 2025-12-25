@@ -1,16 +1,5 @@
 var annotated_dup =
 [
-    [ "blackjack", "namespaceblackjack.html", [
-      [ "CardSelector", "structblackjack_1_1_card_selector.html", "structblackjack_1_1_card_selector" ],
-      [ "Deck", "classblackjack_1_1_deck.html", "classblackjack_1_1_deck" ],
-      [ "Discard", "classblackjack_1_1_discard.html", "classblackjack_1_1_discard" ],
-      [ "Draw", "classblackjack_1_1_draw.html", "classblackjack_1_1_draw" ],
-      [ "Hand", "classblackjack_1_1_hand.html", "classblackjack_1_1_hand" ],
-      [ "Pather", "structblackjack_1_1_pather.html", "structblackjack_1_1_pather" ],
-      [ "Board", "classblackjack_1_1_board.html", "classblackjack_1_1_board" ],
-      [ "Card", "classblackjack_1_1_card.html", "classblackjack_1_1_card" ],
-      [ "Round", "classblackjack_1_1_round.html", "classblackjack_1_1_round" ]
-    ] ],
     [ "geng", "namespacegeng.html", [
       [ "debug", "namespacegeng_1_1debug.html", [
         [ "Console", "classgeng_1_1debug_1_1_console.html", "classgeng_1_1debug_1_1_console" ],
@@ -19,8 +8,9 @@ var annotated_dup =
         [ "LogBucket", "classgeng_1_1debug_1_1_log_bucket.html", "classgeng_1_1debug_1_1_log_bucket" ],
         [ "DebugLayer", "classgeng_1_1debug_1_1_debug_layer.html", null ]
       ] ],
-      [ "src", "structgeng_1_1src.html", "structgeng_1_1src" ],
       [ "EngineContext", "classgeng_1_1_engine_context.html", "classgeng_1_1_engine_context" ],
+      [ "src", "structgeng_1_1src.html", "structgeng_1_1src" ],
+      [ "LoopData", "structgeng_1_1_loop_data.html", "structgeng_1_1_loop_data" ],
       [ "InputDistributor", "classgeng_1_1_input_distributor.html", "classgeng_1_1_input_distributor" ],
       [ "InputHandler", "classgeng_1_1_input_handler.html", "classgeng_1_1_input_handler" ],
       [ "InputRouterInit", "classgeng_1_1_input_router_init.html", "classgeng_1_1_input_router_init" ],
@@ -98,15 +88,5 @@ var annotated_dup =
     ] ],
     [ "std", "namespacestd.html", [
       [ "hash&lt; geng::hstring &gt;", "structstd_1_1hash_3_01geng_1_1hstring_01_4.html", "structstd_1_1hash_3_01geng_1_1hstring_01_4" ]
-    ] ],
-    [ "CameraRouter", "class_camera_router.html", "class_camera_router" ],
-    [ "Card", "class_card.html", "class_card" ],
-    [ "FPos2D", "struct_f_pos2_d.html", "struct_f_pos2_d" ],
-    [ "GameLevel", "struct_game_level.html", "struct_game_level" ],
-    [ "GameMaster", "class_game_master.html", "class_game_master" ],
-    [ "GameWorld", "struct_game_world.html", "struct_game_world" ],
-    [ "PlayerTest", "class_player_test.html", "class_player_test" ],
-    [ "TLayer", "struct_t_layer.html", "struct_t_layer" ],
-    [ "TObject", "struct_t_object.html", "struct_t_object" ],
-    [ "TProperty", "struct_t_property.html", "struct_t_property" ]
+    ] ]
 ];

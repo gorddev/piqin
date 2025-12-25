@@ -1,7 +1,17 @@
 var searchData=
 [
-  ['value_0',['value',['../struct_t_property.html#a6f6fc049665e3a03ff704ca29e8cde28',1,'TProperty::value'],['../structgeng_1_1_t_property.html#a671d0aa6e1caf5d59b63a2bbdc1c22c1',1,'geng::TProperty::value']]],
-  ['velocity_1',['velocity',['../structgfx_1_1_rhombus_inst.html#a9e118f6f5285d0f91f1439ebb7c7cd3d',1,'gfx::RhombusInst::velocity'],['../structgfx_1_1_sparkle_inst.html#a8ed7f43f66625195073a61eb6f28f81f',1,'gfx::SparkleInst::velocity']]],
-  ['vis_2',['VIS',['../struct_t_layer.html#aa027c83c0e477d5cddaa89aef11979dfac69924fd99116dce5f107f49327a1151',1,'TLayer::VIS'],['../structgeng_1_1_t_layer.html#a7c09e7c1bcffcf714afde5e4c661be56ac69924fd99116dce5f107f49327a1151',1,'geng::TLayer::VIS']]],
-  ['visible_3',['visible',['../struct_t_layer.html#a388416e311e2dc95403198daa19c9a33',1,'TLayer::visible'],['../structgeng_1_1_t_layer.html#a465ca208b2fbfc926b10798495359369',1,'geng::TLayer::visible']]]
+  ['w_0',['w',['../structgeng_1_1_i_m_g___info.html#aedc92d71be7d2907f89505ba0d5e9531',1,'geng::IMG_Info']]],
+  ['warn_1',['warn',['../namespaceglog.html#a2422a0f6925418f89d8c0057555e7689',1,'glog']]],
+  ['widget_2ehpp_2',['Widget.hpp',['../_widget_8hpp.html',1,'']]],
+  ['widgetbox_3',['WidgetBox',['../classgeng_1_1_widget_box.html',1,'geng::WidgetBox'],['../classgeng_1_1_widget_box.html#a2601f9364978714dbab3eb437f56e4d5',1,'geng::WidgetBox::WidgetBox()']]],
+  ['widgetbox_2ehpp_4',['WidgetBox.hpp',['../_widget_box_8hpp.html',1,'']]],
+  ['width_5',['width',['../structgeng_1_1_tile_grid.html#aaa7f14d74b9d854884bc153714ffad2a',1,'geng::TileGrid::width'],['../structgeng_1_1_game_level.html#acb60785766617ce7527e14393e39da07',1,'geng::GameLevel::width']]],
+  ['worldheight_6',['worldHeight',['../structgeng_1_1_game_world.html#ac0052ed1a94660aa2a4703e900cd9fde',1,'geng::GameWorld']]],
+  ['worldloader_7',['WorldLoader',['../classgeng_1_1_world_loader.html',1,'geng']]],
+  ['worldloader_2ehpp_8',['WorldLoader.hpp',['../_world_loader_8hpp.html',1,'']]],
+  ['worldmanager_9',['WorldManager',['../classgeng_1_1_world_manager.html',1,'geng::WorldManager'],['../classgeng_1_1_world_manager.html#a61e0a1dca06ad02296b74929751e422b',1,'geng::WorldManager::WorldManager()']]],
+  ['worldmanager_2ehpp_10',['WorldManager.hpp',['../_world_manager_8hpp.html',1,'']]],
+  ['worldproperties_2ehpp_11',['WorldProperties.hpp',['../_world_properties_8hpp.html',1,'']]],
+  ['worldwidth_12',['worldWidth',['../structgeng_1_1_game_world.html#acdc1bc160e38f2032ed8c2fb5774beaf',1,'geng::GameWorld']]],
+  ['wrap_13',['wrap',['../classgeng_1_1hstring.html#acda3e01e689a27349980ddcacf3a1f82',1,'geng::hstring']]]
 ];

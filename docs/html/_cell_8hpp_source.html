@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GENG Engine: include/engine/scene/cells/Cell.hpp Source File</title>
+<title>G-Engine: include/engine/scene/cells/Cell.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">GENG Engine
+   <div id="projectname">G-Engine
    </div>
    <div id="projectbrief">A lightweight, web-targeted, object-oriented game engine built with Emscripten + SDL2</div>
   </td>
@@ -95,7 +95,7 @@ $(function(){initNavTree('_cell_8hpp_source.html','',''); });
 <a href="_cell_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;SDL_render.h&gt;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_engine_context_8hpp.html">engine/EngineContext.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_engine_context_8hpp.html">../../core/EngineContext.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacegeng.html">geng</a> {</div>
 <div class="foldopen" id="foldopen00007" data-start="{" data-end="}">
@@ -152,7 +152,7 @@ $(function(){initNavTree('_cell_8hpp_source.html','',''); });
 <div class="ttc" id="aclassgeng_1_1_engine_context_html"><div class="ttname"><a href="classgeng_1_1_engine_context.html">geng::EngineContext</a></div><div class="ttdef"><b>Definition</b> EngineContext.hpp:10</div></div>
 <div class="ttc" id="aclassgeng_1_1_engine_context_html_a73a142ee51a120ccc12e5e0d68f6161c"><div class="ttname"><a href="classgeng_1_1_engine_context.html#a73a142ee51a120ccc12e5e0d68f6161c">geng::EngineContext::get_height</a></div><div class="ttdeci">uint16_t get_height() const</div><div class="ttdef"><b>Definition</b> EngineContext.hpp:83</div></div>
 <div class="ttc" id="aclassgeng_1_1_engine_context_html_abc057b19e279f017f00d552fee3d7be6"><div class="ttname"><a href="classgeng_1_1_engine_context.html#abc057b19e279f017f00d552fee3d7be6">geng::EngineContext::get_width</a></div><div class="ttdeci">uint16_t get_width() const</div><div class="ttdef"><b>Definition</b> EngineContext.hpp:82</div></div>
-<div class="ttc" id="anamespacegeng_html"><div class="ttname"><a href="namespacegeng.html">geng</a></div><div class="ttdef"><b>Definition</b> Initializer.cpp:7</div></div>
+<div class="ttc" id="anamespacegeng_html"><div class="ttname"><a href="namespacegeng.html">geng</a></div><div class="ttdef"><b>Definition</b> EngineContext.hpp:7</div></div>
 <div class="ttc" id="anamespacegeng_html_ab320c82719c520f6fcc2b2c9520283be"><div class="ttname"><a href="namespacegeng.html#ab320c82719c520f6fcc2b2c9520283be">geng::GENG_cell_flatten_sdl_fpoint</a></div><div class="ttdeci">static void GENG_cell_flatten_sdl_fpoint(SDL_FPoint &amp;p)</div><div class="ttdef"><b>Definition</b> Cell.hpp:7</div></div>
 <div class="ttc" id="astructgeng_1_1_cell_html_a2b947e16f1a3590b6a0b99342fd0c765"><div class="ttname"><a href="structgeng_1_1_cell.html#a2b947e16f1a3590b6a0b99342fd0c765">geng::Cell::to_vertex</a></div><div class="ttdeci">int to_vertex(RenderBuffer &amp;buffer, EngineContext &amp;ctx)</div><div class="ttdoc">Turns a cell into a set of renderable vertices.</div><div class="ttdef"><b>Definition</b> Cell.hpp:27</div></div>
 <div class="ttc" id="astructgeng_1_1_cell_html_a4e9b4635f04afcdb82181488b952c327"><div class="ttname"><a href="structgeng_1_1_cell.html#a4e9b4635f04afcdb82181488b952c327">geng::Cell::Cell</a></div><div class="ttdeci">Cell(int tex_id, SDL_FPoint tex_start={0.f, 0.f}, SDL_FPoint tex_end={1.f, 1.f})</div><div class="ttdoc">Default constructor for a Cell.</div><div class="ttdef"><b>Definition</b> Cell.hpp:21</div></div>

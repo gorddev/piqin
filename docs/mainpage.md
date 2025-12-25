@@ -99,7 +99,7 @@ Let's talk about "**rendering what you want**" first. The Engine is capable of r
 3. [`Banners`](banner.md) › A text-centric object that combines various [`Widgets`](widget.md) together to form a cohesive UI object.
 
 Yet the Engine alone cannot render these types *raw*. It requires them to be wrapped in a `Layer`. Now I've mentioned `Layers` before but let's get in to what they actually are. The engine is structed as such:
-```commandline
+```
 Engine object
  ├─ Console/Debug/Logging
  ├─ Timer

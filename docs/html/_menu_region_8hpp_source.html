@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GENG Engine: include/engine/input/menu/MenuRegion.hpp Source File</title>
+<title>G-Engine: include/engine/input/menu/MenuRegion.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">GENG Engine
+   <div id="projectname">G-Engine
    </div>
    <div id="projectbrief">A lightweight, web-targeted, object-oriented game engine built with Emscripten + SDL2</div>
   </td>
@@ -127,46 +127,35 @@ $(function(){initNavTree('_menu_region_8hpp_source.html','',''); });
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="comment">// Constructor</span></div>
-<div class="foldopen" id="foldopen00033" data-start="{" data-end="}">
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classgeng_1_1_menu_region.html#af9d024aa1e16908a2032753b060c4e2c">   33</a></span>        <a class="code hl_function" href="classgeng_1_1_menu_region.html#af9d024aa1e16908a2032753b060c4e2c">MenuRegion</a>(gch::vector&lt;gch::vector&lt;Item*&gt;*&gt; menus, <span class="keywordtype">bool</span> wrapy, <span class="keywordtype">bool</span> wrapx);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <a class="code hl_function" href="classgeng_1_1_menu_region.html#af9d024aa1e16908a2032753b060c4e2c">MenuRegion</a>(gch::vector&lt;gch::vector&lt;Item*&gt;*&gt; menus, <span class="keywordtype">bool</span> wrapy, <span class="keywordtype">bool</span> wrapx);</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="comment">// Lets us set our selectable regions</span></div>
-<div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classgeng_1_1_menu_region.html#aea5f5afcea553e413a16fa32b3c56c1a">   36</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#aea5f5afcea553e413a16fa32b3c56c1a">set_selectables</a>(gch::vector&lt;short&gt; selects);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#aea5f5afcea553e413a16fa32b3c56c1a">set_selectables</a>(gch::vector&lt;short&gt; selects);</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="comment">// Lets us add a selectable region</span></div>
-<div class="foldopen" id="foldopen00038" data-start="{" data-end="}">
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classgeng_1_1_menu_region.html#a0d160759ffe2ef7ef077ee1b4f27e0ba">   38</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#a0d160759ffe2ef7ef077ee1b4f27e0ba">add_selectable</a>(<span class="keywordtype">short</span> <a class="code hl_variable" href="classgeng_1_1_menu_region.html#ae6188ca1c5c2c73bf8cd92043bd76c73">s</a>);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#a0d160759ffe2ef7ef077ee1b4f27e0ba">add_selectable</a>(<span class="keywordtype">short</span> <a class="code hl_variable" href="classgeng_1_1_menu_region.html#ae6188ca1c5c2c73bf8cd92043bd76c73">s</a>);</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="comment">// Now we can start coding our logic for movement</span></div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="comment">// Directional Movement</span></div>
-<div class="foldopen" id="foldopen00042" data-start="{" data-end="}">
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classgeng_1_1_menu_region.html#ac0aeb424a55ad2f87190ce0ad051b32e">   42</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#ac0aeb424a55ad2f87190ce0ad051b32e">move_up</a>();</div>
-<div class="foldopen" id="foldopen00043" data-start="{" data-end="}">
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classgeng_1_1_menu_region.html#a23645018adaaea174e16089824a62331">   43</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#a23645018adaaea174e16089824a62331">move_down</a>();</div>
-<div class="foldopen" id="foldopen00044" data-start="{" data-end="}">
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classgeng_1_1_menu_region.html#a5425fdf451730e772c839f1a8eb00cb9">   44</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#a5425fdf451730e772c839f1a8eb00cb9">move_left</a>();</div>
-<div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classgeng_1_1_menu_region.html#aac54f5b33264fcc5ac5cb1c6599eb7dc">   45</a></span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#aac54f5b33264fcc5ac5cb1c6599eb7dc">move_right</a>();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#ac0aeb424a55ad2f87190ce0ad051b32e">move_up</a>();</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#a23645018adaaea174e16089824a62331">move_down</a>();</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#a5425fdf451730e772c839f1a8eb00cb9">move_left</a>();</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#aac54f5b33264fcc5ac5cb1c6599eb7dc">move_right</a>();</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="comment">// Tells us to update our selector if something changed</span></div>
-<div class="foldopen" id="foldopen00048" data-start="{" data-end="}">
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classgeng_1_1_menu_region.html#ae26424ff2c1d25b7fd5e6aa716383b61">   48</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#ae26424ff2c1d25b7fd5e6aa716383b61">update_selector</a>(<span class="keywordtype">bool</span> backByOne = <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#ae26424ff2c1d25b7fd5e6aa716383b61">update_selector</a>(<span class="keywordtype">bool</span> backByOne = <span class="keyword">false</span>);</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="comment">// Lets us grab the row our selector is on</span></div>
-<div class="foldopen" id="foldopen00050" data-start="{" data-end="}">
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classgeng_1_1_menu_region.html#a861e7e01d0213ea360df50573ab19604">   50</a></span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#a861e7e01d0213ea360df50573ab19604">row</a>();</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#a861e7e01d0213ea360df50573ab19604">row</a>();</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="comment">// Lets us grab the column our selector is on</span></div>
-<div class="foldopen" id="foldopen00052" data-start="{" data-end="}">
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classgeng_1_1_menu_region.html#a26028692cf505f94a5319b3057b0ee18">   52</a></span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#a26028692cf505f94a5319b3057b0ee18">col</a>();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordtype">int</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#a26028692cf505f94a5319b3057b0ee18">col</a>();</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="comment">// Lets us select the selector</span></div>
-<div class="foldopen" id="foldopen00054" data-start="{" data-end="}">
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classgeng_1_1_menu_region.html#a3716e7a4bd450552af268b0ab391dce5">   54</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#a3716e7a4bd450552af268b0ab391dce5">set_selector</a>(<a class="code hl_struct" href="structgeng_1_1_selector.html">Selector&lt;Item&gt;</a>* sel);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#a3716e7a4bd450552af268b0ab391dce5">set_selector</a>(<a class="code hl_struct" href="structgeng_1_1_selector.html">Selector&lt;Item&gt;</a>* sel);</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="comment">// Lets us remove the selector</span></div>
-<div class="foldopen" id="foldopen00056" data-start="{" data-end="}">
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classgeng_1_1_menu_region.html#ad67afa50b8cb1147a004e3b99f6d61fa">   56</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#ad67afa50b8cb1147a004e3b99f6d61fa">remove_selector</a>();</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_menu_region.html#ad67afa50b8cb1147a004e3b99f6d61fa">remove_selector</a>();</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="comment">// Tostring solution</span></div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="comment">//std::string to_string();</span></div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    };</div>
+</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">/* Implementation is below */</span></div>
@@ -349,7 +338,6 @@ $(function(){initNavTree('_menu_region_8hpp_source.html','',''); });
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        <a class="code hl_variable" href="classgeng_1_1_menu_region.html#ae571f1bfa44cfca66b45358cbf9fa700">selector</a> = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    }</div>
 </div>
-</div>
 <div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="comment">/*</span></div>
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="comment">    template&lt;typename Item&gt;</span></div>
@@ -465,18 +453,6 @@ $(function(){initNavTree('_menu_region_8hpp_source.html','',''); });
 <div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    }</div>
 </div>
 <div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>}</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
 <div class="ttc" id="a_selector_8hpp_html"><div class="ttname"><a href="_selector_8hpp.html">Selector.hpp</a></div></div>
 <div class="ttc" id="aclassgeng_1_1_menu_region_html_a0d160759ffe2ef7ef077ee1b4f27e0ba"><div class="ttname"><a href="classgeng_1_1_menu_region.html#a0d160759ffe2ef7ef077ee1b4f27e0ba">geng::MenuRegion::add_selectable</a></div><div class="ttdeci">void add_selectable(short s)</div><div class="ttdef"><b>Definition</b> MenuRegion.hpp:317</div></div>
 <div class="ttc" id="aclassgeng_1_1_menu_region_html_a23645018adaaea174e16089824a62331"><div class="ttname"><a href="classgeng_1_1_menu_region.html#a23645018adaaea174e16089824a62331">geng::MenuRegion::move_down</a></div><div class="ttdeci">bool move_down()</div><div class="ttdef"><b>Definition</b> MenuRegion.hpp:99</div></div>
@@ -492,7 +468,7 @@ $(function(){initNavTree('_menu_region_8hpp_source.html','',''); });
 <div class="ttc" id="aclassgeng_1_1_menu_region_html_ae6188ca1c5c2c73bf8cd92043bd76c73"><div class="ttname"><a href="classgeng_1_1_menu_region.html#ae6188ca1c5c2c73bf8cd92043bd76c73">geng::MenuRegion::s</a></div><div class="ttdeci">Selection s</div><div class="ttdef"><b>Definition</b> MenuRegion.hpp:27</div></div>
 <div class="ttc" id="aclassgeng_1_1_menu_region_html_aea5f5afcea553e413a16fa32b3c56c1a"><div class="ttname"><a href="classgeng_1_1_menu_region.html#aea5f5afcea553e413a16fa32b3c56c1a">geng::MenuRegion::set_selectables</a></div><div class="ttdeci">void set_selectables(gch::vector&lt; short &gt; selects)</div><div class="ttdef"><b>Definition</b> MenuRegion.hpp:281</div></div>
 <div class="ttc" id="aclassgeng_1_1_menu_region_html_af9d024aa1e16908a2032753b060c4e2c"><div class="ttname"><a href="classgeng_1_1_menu_region.html#af9d024aa1e16908a2032753b060c4e2c">geng::MenuRegion::MenuRegion</a></div><div class="ttdeci">MenuRegion(gch::vector&lt; gch::vector&lt; Item * &gt; * &gt; menus, bool wrapy, bool wrapx)</div><div class="ttdef"><b>Definition</b> MenuRegion.hpp:67</div></div>
-<div class="ttc" id="anamespacegeng_html"><div class="ttname"><a href="namespacegeng.html">geng</a></div><div class="ttdef"><b>Definition</b> Initializer.cpp:7</div></div>
+<div class="ttc" id="anamespacegeng_html"><div class="ttname"><a href="namespacegeng.html">geng</a></div><div class="ttdef"><b>Definition</b> EngineContext.hpp:7</div></div>
 <div class="ttc" id="astructgeng_1_1_selection_html"><div class="ttname"><a href="structgeng_1_1_selection.html">geng::Selection</a></div><div class="ttdef"><b>Definition</b> MenuRegion.hpp:7</div></div>
 <div class="ttc" id="astructgeng_1_1_selection_html_a3076e277a2a485a5905b56b318784305"><div class="ttname"><a href="structgeng_1_1_selection.html#a3076e277a2a485a5905b56b318784305">geng::Selection::column</a></div><div class="ttdeci">short column</div><div class="ttdef"><b>Definition</b> MenuRegion.hpp:9</div></div>
 <div class="ttc" id="astructgeng_1_1_selection_html_adb70eab471fe7952b6c8bb3c121635de"><div class="ttname"><a href="structgeng_1_1_selection.html#adb70eab471fe7952b6c8bb3c121635de">geng::Selection::row</a></div><div class="ttdeci">short row</div><div class="ttdef"><b>Definition</b> MenuRegion.hpp:8</div></div>

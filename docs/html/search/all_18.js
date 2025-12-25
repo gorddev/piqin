@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['y_0',['y',['../struct_t_object.html#a443c6c977f766cade5842bb805150fd1',1,'TObject::y'],['../structgeng_1_1_t_object.html#ac832b586c9a88baeafa102a965a84cf4',1,'geng::TObject::y'],['../structgeng_1_1_f_pos2_d.html#a181be76c32a0489aee802d52afaa2e74',1,'geng::FPos2D::y'],['../structgeng_1_1_pos2_d.html#a3d059c7f8d28ae4bff09396c27655d8e',1,'geng::Pos2D::y'],['../struct_f_pos2_d.html#a181be76c32a0489aee802d52afaa2e74',1,'FPos2D::y']]],
-  ['yellow_1',['YELLOW',['../namespaceblackjack.html#a377b35ba5352bc48a52ba9b06389d862a8a568e5f41b7e4da88fe5c4a00aad34e',1,'blackjack']]],
-  ['yoffset_2',['yOffset',['../struct_game_level.html#ab166b65cdeae640fe8943e7767305a2e',1,'GameLevel::yOffset'],['../structgeng_1_1_game_level.html#aa37b1e50521128b8c776931641f70fed',1,'geng::GameLevel::yOffset']]]
+  ['_7ebackground_0',['~Background',['../classgeng_1_1_background.html#a83d6bb1e704322d9a6c3442b0640e1c3',1,'geng::Background']]],
+  ['_7ehstring_1',['~hstring',['../classgeng_1_1hstring.html#a2fea8784990a9cac485f0472d981d142',1,'geng::hstring']]],
+  ['_7emorph_2',['~Morph',['../classgeng_1_1_morph.html#a8955ddaec537061aa83e2d886710089e',1,'geng::Morph']]],
+  ['_7emorphmanager_3',['~MorphManager',['../classgeng_1_1_morph_manager.html#a29500e04e68fd7fafdee291d1db9ac77',1,'geng::MorphManager']]],
+  ['_7eparticlemanager_4',['~ParticleManager',['../classgeng_1_1_particle_manager.html#a9eabd5d98d2a38a357ace127f2f531dc',1,'geng::ParticleManager']]],
+  ['_7ewidgetbox_5',['~WidgetBox',['../classgeng_1_1_widget_box.html#a85eebc2630f9ee55aab66143e0fa8f7e',1,'geng::WidgetBox']]]
 ];

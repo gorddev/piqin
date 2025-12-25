@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['all_0',['ALL',['../namespaceblackjack.html#acac26e84a8897c3e118e3ad11f94fef3a5fb1f955b45e38e31789286a1790398d',1,'blackjack']]]
+  ['bottom_0',['BOTTOM',['../namespacegeng.html#ad58ae38815a6615de9849d3e5ef1a4c7a1fabf63de5c96c78e2a40805bcdeb73b',1,'geng']]]
 ];

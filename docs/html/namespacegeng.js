@@ -2,10 +2,11 @@ var namespacegeng =
 [
     [ "debug", "namespacegeng_1_1debug.html", "namespacegeng_1_1debug" ],
     [ "global", "namespacegeng_1_1global.html", [
-      [ "rand", "namespacegeng_1_1global.html#a8ed802f68bc7444f3cb851bbb907d4d0", null ]
+      [ "rand", "namespacegeng_1_1global.html#a49635c8668982a74880b50c125e4d79d", null ]
     ] ],
-    [ "src", "structgeng_1_1src.html", "structgeng_1_1src" ],
     [ "EngineContext", "classgeng_1_1_engine_context.html", "classgeng_1_1_engine_context" ],
+    [ "src", "structgeng_1_1src.html", "structgeng_1_1src" ],
+    [ "LoopData", "structgeng_1_1_loop_data.html", "structgeng_1_1_loop_data" ],
     [ "InputDistributor", "classgeng_1_1_input_distributor.html", "classgeng_1_1_input_distributor" ],
     [ "InputHandler", "classgeng_1_1_input_handler.html", "classgeng_1_1_input_handler" ],
     [ "InputRouterInit", "classgeng_1_1_input_router_init.html", "classgeng_1_1_input_router_init" ],
@@ -85,6 +86,7 @@ var namespacegeng =
     [ "default_opacity_syntax_command", "namespacegeng.html#a5264a639982f0b067037f2637b90ea14", null ],
     [ "default_scale_syntax_command", "namespacegeng.html#ac2c90098d00629152779e2a97082afde", null ],
     [ "GENG_cell_flatten_sdl_fpoint", "namespacegeng.html#ab320c82719c520f6fcc2b2c9520283be", null ],
+    [ "geng_internal_game_loop", "namespacegeng.html#a9786f6a5a5d7029e4427847cfb89d8ff", null ],
     [ "highlight_true", "namespacegeng.html#a206048c4f4d52ea8f85c9f1ac99b5b70", null ],
     [ "hstring_throw_err", "namespacegeng.html#ad84fb97e9b62f2adbdca30447d0fed39", null ],
     [ "operator&", "namespacegeng.html#a448a806cb5446aea4960ca9640a5da1a", null ],

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['fstrings_0',['fstrings',['../dir_37d7b697a7e655e52c3252ea687a045e.html#autotoc_md1',1,'']]]
+  ['design_20principles_0',['Design Principles',['../index.html#autotoc_md9',1,'']]]
 ];

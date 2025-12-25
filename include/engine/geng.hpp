@@ -3,7 +3,7 @@
 #include "core/Engine.hpp"
 
 namespace geng {
-    // holds data user can make
+    /** Container used to hold engine and user data so the macro GENG_START_LOOP works as intended**/
     struct LoopData {
         geng::Engine* engine;
         std::function<bool()> userfunc;

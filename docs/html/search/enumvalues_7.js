@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['left_0',['LEFT',['../namespacegeng.html#ad58ae38815a6615de9849d3e5ef1a4c7a684d325a7303f52e64011467ff5c5758',1,'geng']]],
-  ['lose_1',['LOSE',['../namespaceblackjack.html#a95b78fbb14fee4c6996cc3a5c7b378cba709181461ec3398615ecc2ae850589e6',1,'blackjack']]]
+  ['rawtext_0',['RawText',['../namespacegeng.html#a429769b2ff095d000a5c2bb50c79fc3aa4faba7c68029a78d3b66c9327401b49b',1,'geng']]],
+  ['right_1',['RIGHT',['../namespacegeng.html#ad58ae38815a6615de9849d3e5ef1a4c7a21507b40c80068eda19865706fdc2403',1,'geng']]]
 ];

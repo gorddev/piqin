@@ -24,12 +24,54 @@
 */
 var NAVTREE =
 [
-  [ "GENG Engine", "index.html", ]
+  [ "G-Engine", "index.html", [
+    [ "Getting Started", "index.html#autotoc_md11", null ],
+    [ "Namespaces", "namespaces.html", [
+      [ "Design Principles", "index.html#autotoc_md9", null ],
+      [ "Engine Hierarchy", "index.html#autotoc_md10", null ],
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Functions", "namespacemembers_func.html", null ],
+        [ "Variables", "namespacemembers_vars.html", null ],
+        [ "Typedefs", "namespacemembers_type.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ],
+        [ "Enumerator", "namespacemembers_eval.html", null ]
+      ] ]
+    ] ],
+    [ "Concepts", "concepts.html", "concepts" ],
+    [ "Classes", "annotated.html", [
+      [ "Class List", "annotated.html", "annotated_dup" ],
+      [ "Class Index", "classes.html", null ],
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+      [ "Class Members", "functions.html", [
+        [ "All", "functions.html", "functions_dup" ],
+        [ "Functions", "functions_func.html", "functions_func" ],
+        [ "Variables", "functions_vars.html", null ],
+        [ "Enumerations", "functions_enum.html", null ],
+        [ "Related Symbols", "functions_rela.html", null ]
+      ] ]
+    ] ],
+    [ "Files", "files.html", [
+      [ "File List", "files.html", "files_dup" ],
+      [ "File Members", "globals.html", [
+        [ "All", "globals.html", null ],
+        [ "Functions", "globals_func.html", null ],
+        [ "Macros", "globals_defs.html", null ]
+      ] ]
+    ] ]
+  ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"index.html"
+"_anim_box2_d_8hpp.html",
+"classgeng_1_1_banner_buffer.html",
+"classgeng_1_1_menu_region.html#a0d160759ffe2ef7ef077ee1b4f27e0ba",
+"classgeng_1_1debug_1_1_console.html#a40b996ca0260a199dd8073f6dad2bada",
+"classgroute_1_1_torpedo.html#a0bc58501b4caddb3a2dfeb3c565a0057",
+"structgeng_1_1_background_palette.html#a50f066dfd42c421c56afbdc35489cf26",
+"structgeng_1_1_random.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GENG Engine: include/engine/Engine.hpp Source File</title>
+<title>G-Engine: include/engine/core/Engine.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">GENG Engine
+   <div id="projectname">G-Engine
    </div>
    <div id="projectbrief">A lightweight, web-targeted, object-oriented game engine built with Emscripten + SDL2</div>
   </td>
@@ -94,10 +94,10 @@ $(function(){initNavTree('_engine_8hpp_source.html','',''); });
 <div class="contents">
 <a href="_engine_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="_engine_context_8hpp.html">EngineContext.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_console_8hpp.html">debug/Console.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_input_distributor_8hpp.html">input/InputDistributor.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_renderer_8hpp.html">rendering/Renderer.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;../EngineContext.hpp&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_console_8hpp.html">../debug/Console.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_input_distributor_8hpp.html">../input/InputDistributor.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_renderer_8hpp.html">../rendering/Renderer.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="_layer_manager_8hpp.html">engine/layers/LayerManager.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacegeng.html">geng</a> {</div>
@@ -120,64 +120,63 @@ $(function(){initNavTree('_engine_8hpp_source.html','',''); });
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="comment">// &lt;&gt;&lt;&gt; Engine Vitals &lt;&gt;&lt;&gt;</span></div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="comment">// *******************</span></div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordtype">void</span> init();</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordtype">bool</span> tick(<span class="keywordtype">double</span> time);</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="comment">// *******************</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="comment">// &lt;&gt;&lt;&gt; Rendering &lt;&gt;&lt;&gt;</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordtype">void</span> tick(<span class="keywordtype">double</span> time);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordtype">bool</span> update();</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="comment">// *******************</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordtype">void</span> render();</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordtype">void</span> set_resolution(Dim2D d);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        [[nodiscard]] Dim2D get_resolution() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="comment">// *******************</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="comment">// &lt;&gt;&lt;&gt; Layers &lt;&gt;&lt;&gt;</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="comment">// &lt;&gt;&lt;&gt; Rendering &lt;&gt;&lt;&gt;</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="comment">// *******************</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordtype">void</span> render();</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordtype">void</span> set_resolution(Dim2D d);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        [[nodiscard]] Dim2D get_resolution() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="comment">// *******************</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Args&gt;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        T* create_layer(Args&amp;&amp;... args);</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="comment">// &lt;&gt;&lt;&gt; Active Layer &lt;&gt;&lt;&gt;&lt;&gt;</span></div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordtype">void</span> set_active_layer(Layer *layer);</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keywordtype">void</span> set_active_layer(geng::fstring&lt;10&gt; name);</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordtype">void</span> increment_active_layer();</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        Layer* get_active_layer();</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="comment">// &lt;&gt;&lt;&gt; Destroying Layers &lt;&gt;&lt;&gt;&lt;&gt;</span></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keywordtype">void</span> destroy_layer(Layer *l);</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordtype">void</span> destroy_layer(geng::fstring&lt;10&gt; layer_name);</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="comment">// &lt;&gt;&lt;&gt; Getting Layer &lt;&gt;&lt;&gt;&lt;&gt;</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        Layer *get_layer(geng::fstring&lt;10&gt; layer_name);</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="comment">// ***************************</span></div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="comment">// &lt;&gt;&lt;&gt; Input Management &lt;&gt;&lt;&gt;&lt;&gt;</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="comment">// &lt;&gt;&lt;&gt; Layers &lt;&gt;&lt;&gt;</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="comment">// *******************</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Args&gt;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        T* create_layer(Args&amp;&amp;... args);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="comment">// &lt;&gt;&lt;&gt; Active Layer &lt;&gt;&lt;&gt;&lt;&gt;</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keywordtype">void</span> set_active_layer(Layer *layer);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordtype">void</span> set_active_layer(geng::fstring&lt;10&gt; name);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordtype">void</span> increment_active_layer();</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        Layer* get_active_layer();</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="comment">// &lt;&gt;&lt;&gt; Destroying Layers &lt;&gt;&lt;&gt;&lt;&gt;</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordtype">void</span> destroy_layer(Layer *l);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keywordtype">void</span> destroy_layer(geng::fstring&lt;10&gt; layer_name);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="comment">// &lt;&gt;&lt;&gt; Getting Layer &lt;&gt;&lt;&gt;&lt;&gt;</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        Layer *get_layer(geng::fstring&lt;10&gt; layer_name);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="comment">// ***************************</span></div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Args&gt;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        T* create_router(Args&amp;&amp;... args);</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="keywordtype">void</span> remove_router(InputRouter* router);</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="comment">// *********************</span></div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="comment">// &lt;&gt;&lt;&gt; Debugging &lt;&gt;&lt;&gt;&lt;&gt;</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <span class="comment">// &lt;&gt;&lt;&gt; Input Management &lt;&gt;&lt;&gt;&lt;&gt;</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="comment">// ***************************</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Args&gt;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        T* create_router(Args&amp;&amp;... args);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="keywordtype">void</span> remove_router(InputRouter* router);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="comment">// *********************</span></div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="keywordtype">void</span> set_debug_mode(<span class="keywordtype">bool</span> enabled);</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    };</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>}</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="preprocessor">#include &quot;<a class="code" href="_engine_8inl.html">engine/Engine.inl</a>&quot;</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="comment">// &lt;&gt;&lt;&gt; Debugging &lt;&gt;&lt;&gt;&lt;&gt;</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="comment">// *********************</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <span class="keywordtype">void</span> set_debug_mode(<span class="keywordtype">bool</span> enabled);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    };</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>}</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="preprocessor">#include &quot;engine/Engine.inl&quot;</span></div>
 <div class="ttc" id="a_console_8hpp_html"><div class="ttname"><a href="_console_8hpp.html">Console.hpp</a></div></div>
-<div class="ttc" id="a_engine_8inl_html"><div class="ttname"><a href="_engine_8inl.html">Engine.inl</a></div></div>
-<div class="ttc" id="a_engine_context_8hpp_html"><div class="ttname"><a href="_engine_context_8hpp.html">EngineContext.hpp</a></div></div>
 <div class="ttc" id="a_input_distributor_8hpp_html"><div class="ttname"><a href="_input_distributor_8hpp.html">InputDistributor.hpp</a></div></div>
 <div class="ttc" id="a_layer_manager_8hpp_html"><div class="ttname"><a href="_layer_manager_8hpp.html">LayerManager.hpp</a></div></div>
 <div class="ttc" id="a_renderer_8hpp_html"><div class="ttname"><a href="_renderer_8hpp.html">Renderer.hpp</a></div></div>
-<div class="ttc" id="anamespacegeng_html"><div class="ttname"><a href="namespacegeng.html">geng</a></div><div class="ttdef"><b>Definition</b> Initializer.cpp:7</div></div>
+<div class="ttc" id="anamespacegeng_html"><div class="ttname"><a href="namespacegeng.html">geng</a></div><div class="ttdef"><b>Definition</b> EngineContext.hpp:7</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="dir_a7f531b1c37460085cedd304cb8df01d.html">engine</a></li><li class="navelem"><a href="_engine_8hpp.html">Engine.hpp</a></li>
+    <li class="navelem"><a href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a href="dir_a7f531b1c37460085cedd304cb8df01d.html">engine</a></li><li class="navelem"><a href="dir_7f643b58e2241519524527f42d96aecd.html">core</a></li><li class="navelem"><a href="_engine_8hpp.html">Engine.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.15.0 </li>
   </ul>
 </div>

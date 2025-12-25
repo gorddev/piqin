@@ -1,36 +1,20 @@
 var hierarchy =
 [
-    [ "geng::Actor", null, [
-      [ "blackjack::Card", "classblackjack_1_1_card.html", [
-        [ "blackjack::Discard", "classblackjack_1_1_discard.html", null ]
-      ] ],
-      [ "blackjack::Deck", "classblackjack_1_1_deck.html", null ]
-    ] ],
     [ "geng::Background", "classgeng_1_1_background.html", null ],
     [ "geng::BackgroundPalette", "structgeng_1_1_background_palette.html", null ],
     [ "geng::BannerBuffer", "classgeng_1_1_banner_buffer.html", null ],
     [ "geng::BannerManager", "classgeng_1_1_banner_manager.html", null ],
     [ "geng::Cell", "structgeng_1_1_cell.html", null ],
     [ "geng::CellBucket", "classgeng_1_1_cell_bucket.html", null ],
-    [ "geng::Collider", null, [
-      [ "Card", "class_card.html", null ],
-      [ "PlayerTest", "class_player_test.html", null ]
-    ] ],
     [ "geng::debug::Debugger", "classgeng_1_1debug_1_1_debugger.html", null ],
-    [ "blackjack::Draw", "classblackjack_1_1_draw.html", null ],
     [ "geng::EngineContext", "classgeng_1_1_engine_context.html", null ],
     [ "geng::FontList", "classgeng_1_1_font_list.html", null ],
-    [ "FPos2D", "struct_f_pos2_d.html", null ],
     [ "geng::FPos2D", "structgeng_1_1_f_pos2_d.html", null ],
-    [ "GameLevel", "struct_game_level.html", null ],
     [ "geng::GameLevel", "structgeng_1_1_game_level.html", null ],
-    [ "GameMaster", "class_game_master.html", null ],
-    [ "GameWorld", "struct_game_world.html", null ],
     [ "geng::GameWorld", "structgeng_1_1_game_world.html", null ],
     [ "Gear", null, [
       [ "geng::Banner", "classgeng_1_1_banner.html", null ]
     ] ],
-    [ "blackjack::Hand", "classblackjack_1_1_hand.html", null ],
     [ "std::hash&lt; geng::hstring &gt;", "structstd_1_1hash_3_01geng_1_1hstring_01_4.html", null ],
     [ "geng::hstring", "classgeng_1_1hstring.html", null ],
     [ "gutils::IDStack", "classgutils_1_1_i_d_stack.html", null ],
@@ -39,16 +23,11 @@ var hierarchy =
     [ "geng::Initializer", "classgeng_1_1_initializer.html", null ],
     [ "geng::InputDistributor", "classgeng_1_1_input_distributor.html", null ],
     [ "geng::InputHandler", "classgeng_1_1_input_handler.html", null ],
-    [ "geng::InputRouter", null, [
-      [ "CameraRouter", "class_camera_router.html", null ],
+    [ "InputRouter", null, [
       [ "geng::debug::Console", "classgeng_1_1debug_1_1_console.html", null ],
       [ "geng::debug::DebugRouter", "classgeng_1_1debug_1_1_debug_router.html", null ]
     ] ],
     [ "geng::InputRouterInit", "classgeng_1_1_input_router_init.html", null ],
-    [ "geng::InputTarget", null, [
-      [ "blackjack::Board", "classblackjack_1_1_board.html", null ],
-      [ "blackjack::Round", "classblackjack_1_1_round.html", null ]
-    ] ],
     [ "Layer", null, [
       [ "geng::debug::DebugLayer", "classgeng_1_1debug_1_1_debug_layer.html", null ]
     ] ],
@@ -56,6 +35,7 @@ var hierarchy =
     [ "geng::LayerManager", "classgeng_1_1_layer_manager.html", null ],
     [ "geng::LayerState", "classgeng_1_1_layer_state.html", null ],
     [ "geng::debug::LogBucket&lt; L, S &gt;", "classgeng_1_1debug_1_1_log_bucket.html", null ],
+    [ "geng::LoopData", "structgeng_1_1_loop_data.html", null ],
     [ "geng::MenuRegion&lt; Item &gt;", "classgeng_1_1_menu_region.html", null ],
     [ "geng::Mesh", "structgeng_1_1_mesh.html", null ],
     [ "geng::Morph", "classgeng_1_1_morph.html", [
@@ -72,7 +52,6 @@ var hierarchy =
       [ "geng::ParticleCircle", "classgeng_1_1_particle_circle.html", null ]
     ] ],
     [ "geng::ParticleManager", "classgeng_1_1_particle_manager.html", null ],
-    [ "blackjack::Pather", "structblackjack_1_1_pather.html", null ],
     [ "geng::PCircle", "structgeng_1_1_p_circle.html", null ],
     [ "geng::PhysicsMaestro", "classgeng_1_1_physics_maestro.html", null ],
     [ "geng::Pos2D", "structgeng_1_1_pos2_d.html", null ],
@@ -91,10 +70,6 @@ var hierarchy =
     [ "gfx::SparkleInst", "structgfx_1_1_sparkle_inst.html", null ],
     [ "gutils::SparseVector&lt; T &gt;", "structgutils_1_1_sparse_vector.html", null ],
     [ "Sprite", null, [
-      [ "geng::Selector< Card >", "structgeng_1_1_selector.html", [
-        [ "blackjack::CardSelector", "structblackjack_1_1_card_selector.html", null ]
-      ] ],
-      [ "geng::Selector< blackjack::Card >", "structgeng_1_1_selector.html", null ],
       [ "geng::Selector< Item >", "structgeng_1_1_selector.html", null ],
       [ "geng::Selector< T >", "structgeng_1_1_selector.html", null ]
     ] ],
@@ -112,11 +87,8 @@ var hierarchy =
     [ "geng::TileManager", "classgeng_1_1_tile_manager.html", null ],
     [ "geng::Tileset", "classgeng_1_1_tileset.html", null ],
     [ "geng::TLayer", "structgeng_1_1_t_layer.html", null ],
-    [ "TLayer", "struct_t_layer.html", null ],
     [ "geng::TObject", "structgeng_1_1_t_object.html", null ],
-    [ "TObject", "struct_t_object.html", null ],
     [ "geng::TProperty", "structgeng_1_1_t_property.html", null ],
-    [ "TProperty", "struct_t_property.html", null ],
     [ "geng::Widget", null, [
       [ "geng::WidgetBox", "classgeng_1_1_widget_box.html", null ]
     ] ],

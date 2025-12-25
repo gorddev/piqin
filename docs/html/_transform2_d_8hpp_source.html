@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GENG Engine: include/engine/types/Transform2D.hpp Source File</title>
+<title>G-Engine: include/engine/types/Transform2D.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">GENG Engine
+   <div id="projectname">G-Engine
    </div>
    <div id="projectbrief">A lightweight, web-targeted, object-oriented game engine built with Emscripten + SDL2</div>
   </td>
@@ -94,7 +94,7 @@ $(function(){initNavTree('_transform2_d_8hpp_source.html','',''); });
 <div class="contents">
 <a href="_transform2_d_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;<a class="code" href="_f_pos2_d_8hpp.html">positioning/FPos2D.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="_engine_context_8hpp.html">engine/EngineContext.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="_engine_context_8hpp.html">../core/EngineContext.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;SDL.h&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
@@ -142,7 +142,7 @@ $(function(){initNavTree('_transform2_d_8hpp_source.html','',''); });
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        geng::fstring&lt;200&gt; ret;</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        ret &lt;&lt; geng::precision&lt;4&gt;() &lt;&lt; <span class="stringliteral">&quot;scale: &quot;</span> &lt;&lt; scale &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span> &lt;&lt; <span class="stringliteral">&quot;  angle: &quot;</span> &lt;&lt; angle &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span></div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        &lt;&lt; <span class="stringliteral">&quot;\tbase_w: &quot;</span> &lt;&lt; baseWidth &lt;&lt; <span class="stringliteral">&quot;\tbase_h: &quot;</span> &lt;&lt; baseHeight &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        &lt;&lt; <span class="stringliteral">&quot;x: &quot;</span> &lt;&lt; pos.<a class="code hl_variable" href="struct_f_pos2_d.html#a23949a4e0648bb4edbdc627b5fbea8e8">x</a> &lt;&lt; <span class="stringliteral">&quot; \ty: &quot;</span> &lt;&lt; pos.<a class="code hl_variable" href="struct_f_pos2_d.html#a181be76c32a0489aee802d52afaa2e74">y</a> &lt;&lt; <span class="stringliteral">&quot;\twidth: &quot;</span> &lt;&lt; w &lt;&lt; <span class="stringliteral">&quot;\theight: &quot;</span> &lt;&lt; h &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        &lt;&lt; <span class="stringliteral">&quot;x: &quot;</span> &lt;&lt; pos.x &lt;&lt; <span class="stringliteral">&quot; \ty: &quot;</span> &lt;&lt; pos.y &lt;&lt; <span class="stringliteral">&quot;\twidth: &quot;</span> &lt;&lt; w &lt;&lt; <span class="stringliteral">&quot;\theight: &quot;</span> &lt;&lt; h &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keywordflow">return</span> ret.cstr();</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    }</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>};</div>
@@ -152,9 +152,7 @@ $(function(){initNavTree('_transform2_d_8hpp_source.html','',''); });
 <div class="ttc" id="a_f_pos2_d_8hpp_html"><div class="ttname"><a href="_f_pos2_d_8hpp.html">FPos2D.hpp</a></div></div>
 <div class="ttc" id="a_layer_context_8hpp_html"><div class="ttname"><a href="_layer_context_8hpp.html">LayerContext.hpp</a></div></div>
 <div class="ttc" id="afstring_8hpp_html"><div class="ttname"><a href="fstring_8hpp.html">fstring.hpp</a></div></div>
-<div class="ttc" id="anamespacegeng_html"><div class="ttname"><a href="namespacegeng.html">geng</a></div><div class="ttdef"><b>Definition</b> Initializer.cpp:7</div></div>
-<div class="ttc" id="astruct_f_pos2_d_html_a181be76c32a0489aee802d52afaa2e74"><div class="ttname"><a href="struct_f_pos2_d.html#a181be76c32a0489aee802d52afaa2e74">FPos2D::y</a></div><div class="ttdeci">float y</div><div class="ttdef"><b>Definition</b> FPos2D.hpp:10</div></div>
-<div class="ttc" id="astruct_f_pos2_d_html_a23949a4e0648bb4edbdc627b5fbea8e8"><div class="ttname"><a href="struct_f_pos2_d.html#a23949a4e0648bb4edbdc627b5fbea8e8">FPos2D::x</a></div><div class="ttdeci">float x</div><div class="ttdef"><b>Definition</b> FPos2D.hpp:10</div></div>
+<div class="ttc" id="anamespacegeng_html"><div class="ttname"><a href="namespacegeng.html">geng</a></div><div class="ttdef"><b>Definition</b> EngineContext.hpp:7</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

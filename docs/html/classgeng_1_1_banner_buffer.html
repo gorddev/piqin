@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GENG Engine: geng::BannerBuffer Class Reference</title>
+<title>G-Engine: geng::BannerBuffer Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,7 +26,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">GENG Engine
+   <div id="projectname">G-Engine
    </div>
    <div id="projectbrief">A lightweight, web-targeted, object-oriented game engine built with Emscripten + SDL2</div>
   </td>
@@ -97,26 +97,26 @@ $(function(){initNavTree('classgeng_1_1_banner_buffer.html','','classgeng_1_1_ba
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afa5b8641c4c70f8522458b693227081a" id="r_afa5b8641c4c70f8522458b693227081a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa5b8641c4c70f8522458b693227081a">BannerBuffer</a> (Transform2D &amp;bannerT)</td></tr>
-<tr class="memdesc:afa5b8641c4c70f8522458b693227081a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: requires a banner to exist first.  <br /></td></tr>
-<tr class="memitem:ace90f8853b2650d25ddd5bb26179c212" id="r_ace90f8853b2650d25ddd5bb26179c212"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace90f8853b2650d25ddd5bb26179c212">push_back</a> (SDL_Vertex <a class="el" href="struct_f_pos2_d.html">FPos2D</a>)</td></tr>
-<tr class="memdesc:ace90f8853b2650d25ddd5bb26179c212"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows widgets to append themselves to the buffer.  <br /></td></tr>
-<tr class="memitem:a466a6653f046d9353d88396bda317bfe" id="r_a466a6653f046d9353d88396bda317bfe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a466a6653f046d9353d88396bda317bfe">push_back</a> (SDL_FPoint &amp;pos, SDL_Color &amp;color, SDL_FPoint &amp;tex_coord)</td></tr>
-<tr class="memdesc:a466a6653f046d9353d88396bda317bfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the properties of a <a class="el" href="structgeng_1_1_f_pos2_d.html">FPos2D</a> to the banner buffer to be added to the <a class="el" href="structgeng_1_1_f_pos2_d.html">FPos2D</a> buffer.  <br /></td></tr>
-<tr class="memitem:a6d16ea1290c43949a9b36da1d968ea72" id="r_a6d16ea1290c43949a9b36da1d968ea72"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d16ea1290c43949a9b36da1d968ea72">push_back</a> (SDL_FPoint pos, SDL_Color color={255, 255, 255, 255})</td></tr>
-<tr class="memdesc:a6d16ea1290c43949a9b36da1d968ea72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a point to the buffer &ndash; thus ensuring that it is a single color. Default color is white.  <br /></td></tr>
-<tr class="memitem:a482a1794e8efc898b11dd96db786a2c7" id="r_a482a1794e8efc898b11dd96db786a2c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a482a1794e8efc898b11dd96db786a2c7">_set_shadow_bank</a> (ShadowBank *new_bank)</td></tr>
-<tr class="memdesc:a482a1794e8efc898b11dd96db786a2c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the shadow bank of the <a class="el" href="classgeng_1_1_banner_buffer.html">BannerBuffer</a>.  <br /></td></tr>
-<tr class="memitem:a34693d7674896ff1d5c960d1342e61b5" id="r_a34693d7674896ff1d5c960d1342e61b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34693d7674896ff1d5c960d1342e61b5">_set_white_point</a> (SDL_FPoint new_white_point)</td></tr>
-<tr class="memdesc:a34693d7674896ff1d5c960d1342e61b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the wqhite point of the BannerBUffer.  <br /></td></tr>
-<tr class="memitem:a31266625f6d4f2c623f144d485add8ad" id="r_a31266625f6d4f2c623f144d485add8ad"><td class="memItemLeft" align="right" valign="top">gch::vector&lt; SDL_Vertex &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31266625f6d4f2c623f144d485add8ad">_get_vertex_buffer</a> ()</td></tr>
-<tr class="memdesc:a31266625f6d4f2c623f144d485add8ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the buffer of vertices.  <br /></td></tr>
-<tr class="memitem:a28356ea065556c9c1dd3b1fcd664109d" id="r_a28356ea065556c9c1dd3b1fcd664109d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28356ea065556c9c1dd3b1fcd664109d">_clear_buffer</a> ()</td></tr>
-<tr class="memdesc:a28356ea065556c9c1dd3b1fcd664109d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the buffer.  <br /></td></tr>
+<tr class="memitem:ae89ddd2aa22ae362ab632305a3e6d031" id="r_ae89ddd2aa22ae362ab632305a3e6d031"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae89ddd2aa22ae362ab632305a3e6d031">BannerBuffer</a> (Transform2D &amp;bannerT)</td></tr>
+<tr class="memdesc:ae89ddd2aa22ae362ab632305a3e6d031"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: requires a banner to exist first.  <br /></td></tr>
+<tr class="memitem:ab806ad0126b0eb4ca48ee57fa3263266" id="r_ab806ad0126b0eb4ca48ee57fa3263266"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab806ad0126b0eb4ca48ee57fa3263266">push_back</a> (SDL_Vertex <a class="el" href="structgeng_1_1_f_pos2_d.html">FPos2D</a>)</td></tr>
+<tr class="memdesc:ab806ad0126b0eb4ca48ee57fa3263266"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows widgets to append themselves to the buffer.  <br /></td></tr>
+<tr class="memitem:aafdef884ba61f089bbe37aa90cfb912f" id="r_aafdef884ba61f089bbe37aa90cfb912f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aafdef884ba61f089bbe37aa90cfb912f">push_back</a> (SDL_FPoint &amp;pos, SDL_Color &amp;color, SDL_FPoint &amp;tex_coord)</td></tr>
+<tr class="memdesc:aafdef884ba61f089bbe37aa90cfb912f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the properties of a <a class="el" href="structgeng_1_1_f_pos2_d.html">FPos2D</a> to the banner buffer to be added to the <a class="el" href="structgeng_1_1_f_pos2_d.html">FPos2D</a> buffer.  <br /></td></tr>
+<tr class="memitem:a1a8098c67a7c48a3cccba6530ee79481" id="r_a1a8098c67a7c48a3cccba6530ee79481"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a8098c67a7c48a3cccba6530ee79481">push_back</a> (SDL_FPoint pos, SDL_Color color={255, 255, 255, 255})</td></tr>
+<tr class="memdesc:a1a8098c67a7c48a3cccba6530ee79481"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a point to the buffer &ndash; thus ensuring that it is a single color. Default color is white.  <br /></td></tr>
+<tr class="memitem:a757018bbcb9480a5477de74763beb6e0" id="r_a757018bbcb9480a5477de74763beb6e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a757018bbcb9480a5477de74763beb6e0">_set_shadow_bank</a> (ShadowBank *new_bank)</td></tr>
+<tr class="memdesc:a757018bbcb9480a5477de74763beb6e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the shadow bank of the <a class="el" href="classgeng_1_1_banner_buffer.html">BannerBuffer</a>.  <br /></td></tr>
+<tr class="memitem:a76e79a4dd8f4ba423a905003df136cd6" id="r_a76e79a4dd8f4ba423a905003df136cd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76e79a4dd8f4ba423a905003df136cd6">_set_white_point</a> (SDL_FPoint new_white_point)</td></tr>
+<tr class="memdesc:a76e79a4dd8f4ba423a905003df136cd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the wqhite point of the BannerBUffer.  <br /></td></tr>
+<tr class="memitem:adc913bdbe47beb27cdba95f13f6be207" id="r_adc913bdbe47beb27cdba95f13f6be207"><td class="memItemLeft" align="right" valign="top">gch::vector&lt; SDL_Vertex &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc913bdbe47beb27cdba95f13f6be207">_get_vertex_buffer</a> ()</td></tr>
+<tr class="memdesc:adc913bdbe47beb27cdba95f13f6be207"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the buffer of vertices.  <br /></td></tr>
+<tr class="memitem:a23117708d68e1365650443edf14c5a7f" id="r_a23117708d68e1365650443edf14c5a7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23117708d68e1365650443edf14c5a7f">_clear_buffer</a> ()</td></tr>
+<tr class="memdesc:a23117708d68e1365650443edf14c5a7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the buffer.  <br /></td></tr>
 </table>
 <a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="afa5b8641c4c70f8522458b693227081a" name="afa5b8641c4c70f8522458b693227081a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa5b8641c4c70f8522458b693227081a">&#9670;&#160;</a></span>BannerBuffer()</h2>
+<a id="ae89ddd2aa22ae362ab632305a3e6d031" name="ae89ddd2aa22ae362ab632305a3e6d031"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae89ddd2aa22ae362ab632305a3e6d031">&#9670;&#160;</a></span>BannerBuffer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -125,7 +125,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">BannerBuffer::BannerBuffer </td>
+          <td class="memname">geng::BannerBuffer::BannerBuffer </td>
           <td>(</td>
           <td class="paramtype">Transform2D &amp;</td>          <td class="paramname"><span class="paramname"><em>bannerT</em></span></td><td>)</td>
           <td></td>
@@ -143,14 +143,14 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a28356ea065556c9c1dd3b1fcd664109d" name="a28356ea065556c9c1dd3b1fcd664109d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a28356ea065556c9c1dd3b1fcd664109d">&#9670;&#160;</a></span>_clear_buffer()</h2>
+<a id="a23117708d68e1365650443edf14c5a7f" name="a23117708d68e1365650443edf14c5a7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23117708d68e1365650443edf14c5a7f">&#9670;&#160;</a></span>_clear_buffer()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void BannerBuffer::_clear_buffer </td>
+          <td class="memname">void geng::BannerBuffer::_clear_buffer </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -162,8 +162,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a31266625f6d4f2c623f144d485add8ad" name="a31266625f6d4f2c623f144d485add8ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31266625f6d4f2c623f144d485add8ad">&#9670;&#160;</a></span>_get_vertex_buffer()</h2>
+<a id="adc913bdbe47beb27cdba95f13f6be207" name="adc913bdbe47beb27cdba95f13f6be207"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc913bdbe47beb27cdba95f13f6be207">&#9670;&#160;</a></span>_get_vertex_buffer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -172,7 +172,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">gch::vector&lt; SDL_Vertex &gt; &amp; BannerBuffer::_get_vertex_buffer </td>
+          <td class="memname">gch::vector&lt; SDL_Vertex &gt; &amp; geng::BannerBuffer::_get_vertex_buffer </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -189,14 +189,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a482a1794e8efc898b11dd96db786a2c7" name="a482a1794e8efc898b11dd96db786a2c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a482a1794e8efc898b11dd96db786a2c7">&#9670;&#160;</a></span>_set_shadow_bank()</h2>
+<a id="a757018bbcb9480a5477de74763beb6e0" name="a757018bbcb9480a5477de74763beb6e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a757018bbcb9480a5477de74763beb6e0">&#9670;&#160;</a></span>_set_shadow_bank()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void BannerBuffer::_set_shadow_bank </td>
+          <td class="memname">void geng::BannerBuffer::_set_shadow_bank </td>
           <td>(</td>
           <td class="paramtype">ShadowBank *</td>          <td class="paramname"><span class="paramname"><em>new_bank</em></span></td><td>)</td>
           <td></td>
@@ -208,14 +208,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a34693d7674896ff1d5c960d1342e61b5" name="a34693d7674896ff1d5c960d1342e61b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a34693d7674896ff1d5c960d1342e61b5">&#9670;&#160;</a></span>_set_white_point()</h2>
+<a id="a76e79a4dd8f4ba423a905003df136cd6" name="a76e79a4dd8f4ba423a905003df136cd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76e79a4dd8f4ba423a905003df136cd6">&#9670;&#160;</a></span>_set_white_point()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void BannerBuffer::_set_white_point </td>
+          <td class="memname">void geng::BannerBuffer::_set_white_point </td>
           <td>(</td>
           <td class="paramtype">SDL_FPoint</td>          <td class="paramname"><span class="paramname"><em>new_white_point</em></span></td><td>)</td>
           <td></td>
@@ -227,14 +227,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a466a6653f046d9353d88396bda317bfe" name="a466a6653f046d9353d88396bda317bfe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a466a6653f046d9353d88396bda317bfe">&#9670;&#160;</a></span>push_back() <span class="overload">[1/3]</span></h2>
+<a id="aafdef884ba61f089bbe37aa90cfb912f" name="aafdef884ba61f089bbe37aa90cfb912f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafdef884ba61f089bbe37aa90cfb912f">&#9670;&#160;</a></span>push_back() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void BannerBuffer::push_back </td>
+          <td class="memname">void geng::BannerBuffer::push_back </td>
           <td>(</td>
           <td class="paramtype">SDL_FPoint &amp;</td>          <td class="paramname"><span class="paramname"><em>pos</em></span>, </td>
         </tr>
@@ -255,14 +255,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a6d16ea1290c43949a9b36da1d968ea72" name="a6d16ea1290c43949a9b36da1d968ea72"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d16ea1290c43949a9b36da1d968ea72">&#9670;&#160;</a></span>push_back() <span class="overload">[2/3]</span></h2>
+<a id="a1a8098c67a7c48a3cccba6530ee79481" name="a1a8098c67a7c48a3cccba6530ee79481"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a8098c67a7c48a3cccba6530ee79481">&#9670;&#160;</a></span>push_back() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void BannerBuffer::push_back </td>
+          <td class="memname">void geng::BannerBuffer::push_back </td>
           <td>(</td>
           <td class="paramtype">SDL_FPoint</td>          <td class="paramname"><span class="paramname"><em>pos</em></span>, </td>
         </tr>
@@ -278,14 +278,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ace90f8853b2650d25ddd5bb26179c212" name="ace90f8853b2650d25ddd5bb26179c212"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace90f8853b2650d25ddd5bb26179c212">&#9670;&#160;</a></span>push_back() <span class="overload">[3/3]</span></h2>
+<a id="ab806ad0126b0eb4ca48ee57fa3263266" name="ab806ad0126b0eb4ca48ee57fa3263266"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab806ad0126b0eb4ca48ee57fa3263266">&#9670;&#160;</a></span>push_back() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void BannerBuffer::push_back </td>
+          <td class="memname">void geng::BannerBuffer::push_back </td>
           <td>(</td>
           <td class="paramtype">SDL_Vertex</td>          <td class="paramname"><span class="paramname"><em>FPos2D</em></span></td><td>)</td>
           <td></td>
@@ -297,9 +297,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/engine/scene/banners/<a class="el" href="_banner_buffer_8hpp_source.html">BannerBuffer.hpp</a></li>
-<li>src/engine/scene/banners/<a class="el" href="_banner_buffer_8cpp.html">BannerBuffer.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

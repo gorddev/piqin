@@ -1,10 +1,12 @@
 var searchData=
 [
-  ['radius_0',['radius',['../structgeng_1_1_p_circle.html#a915985ff3426ceb24c3da6d6c72b7836',1,'geng::PCircle::radius'],['../structgfx_1_1_rhombus_inst.html#aa88a94115323b4578dd219864e973d3b',1,'gfx::RhombusInst::radius'],['../structgfx_1_1_sparkle_inst.html#afb0b78cd3a3fe58bf7e43e7e5a1b426a',1,'gfx::SparkleInst::radius']]],
-  ['range_1',['range',['../structgeng_1_1_background_palette.html#a5d29882c97583387d392127caf929d01',1,'geng::BackgroundPalette']]],
-  ['relpos_2',['relpos',['../structgeng_1_1_mouse.html#aa6c0ae9086d5e6c91b06a7c6de1ca120',1,'geng::Mouse']]],
-  ['result_3',['result',['../classblackjack_1_1_round.html#a0a39e3b131809d0439a8c645ccebc6e2',1,'blackjack::Round']]],
-  ['roottwo_4',['roottwo',['../namespacegutils.html#aafea8528aaff5af940a96786259f2b36',1,'gutils']]],
-  ['roundscore_5',['roundScore',['../namespaceblackjack.html#a8f1951e63c0165ec3e29f8791b87b5ff',1,'blackjack']]],
-  ['row_6',['row',['../structgeng_1_1_selection.html#adb70eab471fe7952b6c8bb3c121635de',1,'geng::Selection']]]
+  ['s_0',['s',['../classgeng_1_1_menu_region.html#ae6188ca1c5c2c73bf8cd92043bd76c73',1,'geng::MenuRegion']]],
+  ['scale_1',['scale',['../structgeng_1_1_syntax_info.html#a0e97a7a481cc62ae0cd7bf3c21c31a42',1,'geng::SyntaxInfo::scale'],['../structgeng_1_1_parse_event.html#a17574e150f193768a865519aaa80299b',1,'geng::ParseEvent::scale']]],
+  ['selected_2',['selected',['../classgeng_1_1debug_1_1_console.html#aeed1e955bf31b0fc09acd36711615f5f',1,'geng::debug::Console']]],
+  ['selector_3',['selector',['../classgeng_1_1_menu_region.html#ae571f1bfa44cfca66b45358cbf9fa700',1,'geng::MenuRegion']]],
+  ['speed_4',['speed',['../structgeng_1_1_background_palette.html#ac87ac3f857aed10a7352f522d89ca39b',1,'geng::BackgroundPalette']]],
+  ['srcpath_5',['srcpath',['../structgeng_1_1src.html#a0ba3c7b0f28d7e4c4580f196e30ab24d',1,'geng::src']]],
+  ['start_5ftime_6',['start_time',['../namespacegeng_1_1debug.html#a1586f091f36d4a141d033d3de22d1f7c',1,'geng::debug']]],
+  ['sumweights_7',['sumWeights',['../structgeng_1_1_background_palette.html#a009cbe9b225f85e6db7026b11f9c9fe8',1,'geng::BackgroundPalette']]],
+  ['sys_5ffont_8',['sys_font',['../namespacegeng.html#a34aa823bebc59d1ba6a8d7b7b7e5f032',1,'geng']]]
 ];

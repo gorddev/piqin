@@ -1,5 +1,5 @@
 var classgroute_1_1_torpedo =
 [
-    [ "Torpedo", "classgroute_1_1_torpedo.html#a129f4f8fd4a0e74775110e7ef55c9429", null ],
-    [ "update", "classgroute_1_1_torpedo.html#a7de8120446842b2ec09abe15a0e29b78", null ]
+    [ "Torpedo", "classgroute_1_1_torpedo.html#ac219b08036e9e6d20f7973df1fca2dca", null ],
+    [ "update", "classgroute_1_1_torpedo.html#a0bc58501b4caddb3a2dfeb3c565a0057", null ]
 ];
