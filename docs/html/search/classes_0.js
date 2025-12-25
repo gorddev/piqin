@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['allocator_5finliner_0',['allocator_inliner',['../classgch_1_1detail_1_1allocator__inliner.html',1,'gch::detail']]],
-  ['allocator_5finliner_3c_20allocator_2c_20false_20_3e_1',['allocator_inliner&lt; Allocator, false &gt;',['../classgch_1_1detail_1_1allocator__inliner_3_01_allocator_00_01false_01_4.html',1,'gch::detail']]],
-  ['allocator_5finliner_3c_20allocator_2c_20true_20_3e_2',['allocator_inliner&lt; Allocator, true &gt;',['../classgch_1_1detail_1_1allocator__inliner_3_01_allocator_00_01true_01_4.html',1,'gch::detail']]],
-  ['allocator_5finterface_3',['allocator_interface',['../classgch_1_1detail_1_1allocator__interface.html',1,'gch::detail']]],
-  ['allocators_5falways_5fequal_4',['allocators_always_equal',['../structgch_1_1detail_1_1vector__base_1_1allocators__always__equal.html',1,'gch::detail::vector_base']]]
+  ['background_0',['Background',['../classgeng_1_1_background.html',1,'geng']]],
+  ['backgroundpalette_1',['BackgroundPalette',['../structgeng_1_1_background_palette.html',1,'geng']]],
+  ['balloon_2',['Balloon',['../classgroute_1_1_balloon.html',1,'groute']]],
+  ['banner_3',['Banner',['../classgeng_1_1_banner.html',1,'geng']]],
+  ['bannerbuffer_4',['BannerBuffer',['../classgeng_1_1_banner_buffer.html',1,'geng']]],
+  ['bannermanager_5',['BannerManager',['../classgeng_1_1_banner_manager.html',1,'geng']]],
+  ['board_6',['Board',['../classblackjack_1_1_board.html',1,'blackjack']]]
 ];

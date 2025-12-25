@@ -27,11 +27,11 @@
 \DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \{\{\textcolor{stringliteral}{"{}true"{}},\ \mbox{\hyperlink{namespacegeng_a206048c4f4d52ea8f85c9f1ac99b5b70}{highlight\_true}}\}\}\ \textcolor{comment}{//\ highlights}}
 \DoxyCodeLine{00024\ \ \ \ \ \};}
 \DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacegeng_ac2c90098d00629152779e2a97082afde}{default\_scale\_syntax\_command}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector<str\_subview>}}\ args,\ \mbox{\hyperlink{structgeng_1_1_syntax_info}{SyntaxInfo}}\&\ out)\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacegeng_ac2c90098d00629152779e2a97082afde}{default\_scale\_syntax\_command}}(gch::vector<str\_subview>\ args,\ \mbox{\hyperlink{structgeng_1_1_syntax_info}{SyntaxInfo}}\&\ out)\ \{}
 \DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacegutils_ad435add84e43d0b4c1a15cc5ce55ae23}{gutils::cstr\_to\_float}}(args[0].cstr(),\ out.\mbox{\hyperlink{structgeng_1_1_syntax_info_a0e97a7a481cc62ae0cd7bf3c21c31a42}{scale}});}
 \DoxyCodeLine{00028\ \ \ \ \ \}}
 \DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacegeng_a8dcf1afa77d87b869657561fbf27c924}{default\_color\_syntax\_command}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector<str\_subview>}}\ args,\ \mbox{\hyperlink{structgeng_1_1_syntax_info}{SyntaxInfo}}\&\ out)\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacegeng_a8dcf1afa77d87b869657561fbf27c924}{default\_color\_syntax\_command}}(gch::vector<str\_subview>\ args,\ \mbox{\hyperlink{structgeng_1_1_syntax_info}{SyntaxInfo}}\&\ out)\ \{}
 \DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ r,\ g,\ b;}
 \DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacegutils_ad80ae555d10766067cb748edef3f4b0a}{gutils::cstr\_to\_int}}(args[0].cstr(),\ r);}
 \DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacegutils_ad80ae555d10766067cb748edef3f4b0a}{gutils::cstr\_to\_int}}(args[1].cstr(),\ g);}
@@ -41,7 +41,7 @@
 \DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ out.\mbox{\hyperlink{structgeng_1_1_syntax_info_a489a9b4759d77b8a924abe84bf289a1d}{color}}.b\ =\ b;}
 \DoxyCodeLine{00038\ \ \ \ \ \}}
 \DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacegeng_a16ec2663923400c62b76cbc86359ffd6}{default\_color\_name\_syntax\_command}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector<str\_subview>}}\ args,\ \mbox{\hyperlink{structgeng_1_1_syntax_info}{SyntaxInfo}}\ \&out)\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacegeng_a16ec2663923400c62b76cbc86359ffd6}{default\_color\_name\_syntax\_command}}(gch::vector<str\_subview>\ args,\ \mbox{\hyperlink{structgeng_1_1_syntax_info}{SyntaxInfo}}\ \&out)\ \{}
 \DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (args[0]\ ==\ \textcolor{stringliteral}{"{}red"{}})\ out.\mbox{\hyperlink{structgeng_1_1_syntax_info_a489a9b4759d77b8a924abe84bf289a1d}{color}}\ =\ \ \mbox{\hyperlink{namespacegeng_a02d4f87dd7763d295d8793b07d1bcba6}{color\_red}};}
 \DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (args[0]\ ==\ \textcolor{stringliteral}{"{}green"{}})\ \ out.\mbox{\hyperlink{structgeng_1_1_syntax_info_a489a9b4759d77b8a924abe84bf289a1d}{color}}\ =\ \mbox{\hyperlink{namespacegeng_a83b0757fea63237d724159c1f1f21ea1}{color\_green}};}
 \DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (args[0]\ ==\ \textcolor{stringliteral}{"{}blue"{}})\ \ \ out.\mbox{\hyperlink{structgeng_1_1_syntax_info_a489a9b4759d77b8a924abe84bf289a1d}{color}}\ =\ \ \mbox{\hyperlink{namespacegeng_a0d09962a841b5448417ee2eae8b4893e}{color\_blue}};}
@@ -53,7 +53,7 @@
 \DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ out.\mbox{\hyperlink{structgeng_1_1_syntax_info_a489a9b4759d77b8a924abe84bf289a1d}{color}}\ =\ \{255,\ 255,\ 255,\ 255\};}
 \DoxyCodeLine{00050\ \ \ \ \ \}}
 \DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacegeng_a5264a639982f0b067037f2637b90ea14}{default\_opacity\_syntax\_command}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector<str\_subview>}}\ args,\ \mbox{\hyperlink{structgeng_1_1_syntax_info}{SyntaxInfo}}\ \&out)\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacegeng_a5264a639982f0b067037f2637b90ea14}{default\_opacity\_syntax\_command}}(gch::vector<str\_subview>\ args,\ \mbox{\hyperlink{structgeng_1_1_syntax_info}{SyntaxInfo}}\ \&out)\ \{}
 \DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ a;}
 \DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacegutils_ad80ae555d10766067cb748edef3f4b0a}{gutils::cstr\_to\_int}}(args[0].cstr(),\ a);}
 \DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ out.\mbox{\hyperlink{structgeng_1_1_syntax_info_a489a9b4759d77b8a924abe84bf289a1d}{color}}.a\ =\ a;}

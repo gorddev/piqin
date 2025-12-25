@@ -96,7 +96,7 @@ $(function(){initNavTree('_log_bucket_8hpp_source.html','',''); });
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="vector_8hpp.html">engine/types/external/vector.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;engine/types/external/vector.hpp&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_log_8hpp.html">Log.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacegeng.html">geng</a> {</div>
@@ -144,7 +144,7 @@ $(function(){initNavTree('_log_bucket_8hpp_source.html','',''); });
 <div class="foldopen" id="foldopen00049" data-start="{" data-end="};">
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classgeng_1_1debug_1_1_log_bucket.html">   49</a></span>    <span class="keyword">class </span><a class="code hl_function" href="classgeng_1_1debug_1_1_log_bucket.html#a0f5c322733762bcce79c1bf6b6a23002">LogBucket</a> {</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <a class="code hl_class" href="classgch_1_1vector.html">gch::vector&lt;Log&gt;</a> logs;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        gch::vector&lt;Log&gt; logs;</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        uint16_t start = 0;</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        uint16_t count = 0;</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        Log curlog;</div>
@@ -296,7 +296,6 @@ $(function(){initNavTree('_log_bucket_8hpp_source.html','',''); });
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>}</div>
 <div class="ttc" id="a_log_8hpp_html"><div class="ttname"><a href="_log_8hpp.html">Log.hpp</a></div></div>
-<div class="ttc" id="aclassgch_1_1vector_html"><div class="ttname"><a href="classgch_1_1vector.html">gch::vector</a></div><div class="ttdef"><b>Definition</b> vector.hpp:5086</div></div>
 <div class="ttc" id="aclassgeng_1_1debug_1_1_log_bucket_html_a0b08b637ab4e99baba933e14fe7f2f8d"><div class="ttname"><a href="classgeng_1_1debug_1_1_log_bucket.html#a0b08b637ab4e99baba933e14fe7f2f8d">geng::debug::LogBucket::operator&lt;&lt;</a></div><div class="ttdeci">LogBucket &amp; operator&lt;&lt;(const char *msg)</div><div class="ttdef"><b>Definition</b> LogBucket.hpp:74</div></div>
 <div class="ttc" id="aclassgeng_1_1debug_1_1_log_bucket_html_a0f5c322733762bcce79c1bf6b6a23002"><div class="ttname"><a href="classgeng_1_1debug_1_1_log_bucket.html#a0f5c322733762bcce79c1bf6b6a23002">geng::debug::LogBucket::LogBucket</a></div><div class="ttdeci">LogBucket()</div><div class="ttdef"><b>Definition</b> LogBucket.hpp:64</div></div>
 <div class="ttc" id="aclassgeng_1_1debug_1_1_log_bucket_html_a14958a382758fd53a9ee4f62ca001184"><div class="ttname"><a href="classgeng_1_1debug_1_1_log_bucket.html#a14958a382758fd53a9ee4f62ca001184">geng::debug::LogBucket::operator&lt;&lt;</a></div><div class="ttdeci">void operator&lt;&lt;(logcommands command)</div><div class="ttdef"><b>Definition</b> LogBucket.hpp:113</div></div>
@@ -320,7 +319,6 @@ $(function(){initNavTree('_log_bucket_8hpp_source.html','',''); });
 <div class="ttc" id="anamespacegeng_html_ad175d94747d99425d0c8d0d3ccc24e79"><div class="ttname"><a href="namespacegeng.html#ad175d94747d99425d0c8d0d3ccc24e79">geng::geng_default_log_path</a></div><div class="ttdeci">static const char geng_default_log_path[]</div><div class="ttdoc">Allows us to specify sources for our logs.</div><div class="ttdef"><b>Definition</b> LogBucket.hpp:10</div></div>
 <div class="ttc" id="astructgeng_1_1src_html_a0ba3c7b0f28d7e4c4580f196e30ab24d"><div class="ttname"><a href="structgeng_1_1src.html#a0ba3c7b0f28d7e4c4580f196e30ab24d">geng::src::srcpath</a></div><div class="ttdeci">geng::fstring&lt; 64 &gt; srcpath</div><div class="ttdef"><b>Definition</b> LogBucket.hpp:12</div></div>
 <div class="ttc" id="astructgeng_1_1src_html_ae469c2bacb3221081369596aa7bbb589"><div class="ttname"><a href="structgeng_1_1src.html#ae469c2bacb3221081369596aa7bbb589">geng::src::src</a></div><div class="ttdeci">src(const char path[])</div><div class="ttdef"><b>Definition</b> LogBucket.hpp:13</div></div>
-<div class="ttc" id="avector_8hpp_html"><div class="ttname"><a href="vector_8hpp.html">vector.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

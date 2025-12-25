@@ -15,8 +15,8 @@
 \DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_tile_grid}{TileGrid}}*\ grid\ =\ \textcolor{keyword}{nullptr};}
 \DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_world_manager}{WorldManager}}\&\ world;}
 \DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ LayerContext\&\ scene;}
-\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<Collider*>}}\ colliders;}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<FPos2D>}}\ prev\_positions;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ gch::vector<Collider*>\ colliders;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ gch::vector<FPos2D>\ prev\_positions;}
 \DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ internal\_collisions\ =\ \textcolor{keyword}{false};}
 \DoxyCodeLine{00025\ }
 \DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ collide(\mbox{\hyperlink{structgeng_1_1_tile_grid}{TileGrid}}\ \&grid,\ \textcolor{keywordtype}{int}\ \&\textcolor{keywordtype}{id});}
@@ -29,7 +29,7 @@
 \DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_physics_maestro_a397e154775e174ad1100c8cee879d161}{load\_current\_level}}();}
 \DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_physics_maestro_a3c878731ba2104282b9fadcad23f73a6}{update}}();}
 \DoxyCodeLine{00040\ }
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<Collider*>}}\&\ \mbox{\hyperlink{classgeng_1_1_physics_maestro_ae3586e88910671aff8f36a6dd3978ba8}{get\_colliders}}();}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ gch::vector<Collider*>\&\ \mbox{\hyperlink{classgeng_1_1_physics_maestro_ae3586e88910671aff8f36a6dd3978ba8}{get\_colliders}}();}
 \DoxyCodeLine{00043\ }
 \DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_physics_maestro_a0e53490bc9a055221b56e8f8e18b7145}{render\_hitboxes}}(RenderBuffer\ \&buffer,\ SDL\_Color\ color,\ uint16\_t\ thickness);}
 \DoxyCodeLine{00046\ }

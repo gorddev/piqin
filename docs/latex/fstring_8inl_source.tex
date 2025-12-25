@@ -224,7 +224,7 @@
 \DoxyCodeLine{00224\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
 \DoxyCodeLine{00225\ geng::fstring<C>\ \&\ geng::fstring<C>::operator<<(\textcolor{keywordtype}{float}\ num)\ \{}
 \DoxyCodeLine{00226\ \ \ \ \ \textcolor{keyword}{auto}*\ start\ =\ arr\ +\ len;}
-\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keyword}{auto}*\ \mbox{\hyperlink{namespacegch_abb89d2571c8b39c2d39f527f1d8b7005}{end}}\ =\ arr\ +\ C;}
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keyword}{auto}*\ end\ =\ arr\ +\ C;}
 \DoxyCodeLine{00228\ \ \ \ \ \textcolor{keyword}{auto}\ res\ =\ std::to\_chars(start,\ end,\ num,\ std::chars\_format::fixed,\ arr[C+1]);}
 \DoxyCodeLine{00229\ \ \ \ \ len\ +=\ res.ptr\ -\/\ start;}
 \DoxyCodeLine{00230\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
@@ -243,7 +243,7 @@
 \DoxyCodeLine{00243\ \ \ \ \ \textcolor{keyword}{auto}\ addr\ =\ \textcolor{keyword}{reinterpret\_cast<}uintptr\_t\textcolor{keyword}{>}(ptr);}
 \DoxyCodeLine{00244\ \ \ \ \ *\textcolor{keyword}{this}\ <<\ \textcolor{stringliteral}{"{}0x"{}};}
 \DoxyCodeLine{00245\ \ \ \ \ \textcolor{keyword}{auto}*\ start\ =\ arr\ +\ len;}
-\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keyword}{auto}*\ \mbox{\hyperlink{namespacegch_abb89d2571c8b39c2d39f527f1d8b7005}{end}}\ =\ arr\ +\ C;}
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keyword}{auto}*\ end\ =\ arr\ +\ C;}
 \DoxyCodeLine{00247\ \ \ \ \ \textcolor{keyword}{auto}\ res\ =\ std::to\_chars(start,\ end,\ addr,\ 16);}
 \DoxyCodeLine{00248\ \ \ \ \ len\ +=\ res.ptr\ -\/\ start;}
 \DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}

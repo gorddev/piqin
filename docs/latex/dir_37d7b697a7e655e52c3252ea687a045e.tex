@@ -12,7 +12,7 @@ directory \mbox{\hyperlink{dir_5001f10696f7c046eb8dce289c78f884}{str\+\_\+view}}
 
 
 \doxysubsection{Detailed Description}
-\hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md2}{}\doxysubsection{\texorpdfstring{Strings Overview}{Strings Overview}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md2}
+\hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md0}{}\doxysubsection{\texorpdfstring{Strings Overview}{Strings Overview}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md0}
 Ok with all these strings it might get a little confusing, so I\textquotesingle{}ll break each one down below.
 
 Each of my custom string classes have some really nice properties that makes it super easy to pass around data. For example, lets say I have an {\ttfamily hstring} and I want to store all the data from my {\ttfamily Sprite s}. What I can do is this\+: 
@@ -27,7 +27,7 @@ Each of my custom string classes have some really nice properties that makes it 
 \DoxyCodeLine{mystring\ <<\ trunc<4>()\ <<\ my\_float\ <<\ geng::endl;}
 
 \end{DoxyCode}
- Now, my\+\_\+float will be truncated to four digits automatically without me having to do any annoying calculations. Now to get on to each type of string. \hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md3}{}\doxysubsubsection{\texorpdfstring{fstrings}{fstrings}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md3}
+ Now, my\+\_\+float will be truncated to four digits automatically without me having to do any annoying calculations. Now to get on to each type of string. \hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md1}{}\doxysubsubsection{\texorpdfstring{fstrings}{fstrings}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md1}
 First up we have {\ttfamily fstring}, which stands for {\bfseries{fixed string}}. {\ttfamily fstring} is a templatede class, and this means that upon creation, these strings have completely {\bfseries{fixed length}} that cannot be changed. These are great for text buffers that get refreshed repeatedly, and for ensuring compliance with specific string lengths. However, the main benefits are below\+:
 \begin{DoxyItemize}
 \item Significantly faster for writing and conversion than regular {\ttfamily std\+::string} (around 2x -\/ 3x faster)
@@ -52,14 +52,14 @@ Here\textquotesingle{}s an example of how to make an fstring\+:
 \end{DoxyCode}
  Our output from this will be {\ttfamily Hello worl}, because we only allocated 10 characters.
 
-{\bfseries{Warning\+:}} {\ttfamily fstring} always allocates two additional bytes past what you specify to the internal character array. One is for the null terminator (at size + 0), and the next is for floating point conversion information (at size + 1).\hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md4}{}\doxysubsubsection{\texorpdfstring{hstrings}{hstrings}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md4}
-Ok we\textquotesingle{}ll keep this short. {\ttfamily hstrings} are just {\ttfamily fstrings} but their memory is allocated on the heap, and they don\textquotesingle{}t have a fixed size.\hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md5}{}\doxysubsubsubsection{\texorpdfstring{Pros\+:}{Pros\+:}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md5}
+{\bfseries{Warning\+:}} {\ttfamily fstring} always allocates two additional bytes past what you specify to the internal character array. One is for the null terminator (at size + 0), and the next is for floating point conversion information (at size + 1).\hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md2}{}\doxysubsubsection{\texorpdfstring{hstrings}{hstrings}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md2}
+Ok we\textquotesingle{}ll keep this short. {\ttfamily hstrings} are just {\ttfamily fstrings} but their memory is allocated on the heap, and they don\textquotesingle{}t have a fixed size.\hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md3}{}\doxysubsubsubsection{\texorpdfstring{Pros\+:}{Pros\+:}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md3}
 
 \begin{DoxyItemize}
 \item Still faster than regular {\ttfamily std\+::string}, but not by as much as {\ttfamily fstring}
 \item Dynamically resizable \& virtually unlimited size
 \item Access to all the nice operator overloads {\ttfamily fstring} has. 
-\end{DoxyItemize}\hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md6}{}\doxysubsubsubsection{\texorpdfstring{Cons\+:}{Cons\+:}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md6}
+\end{DoxyItemize}\hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md4}{}\doxysubsubsubsection{\texorpdfstring{Cons\+:}{Cons\+:}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md4}
 
 \begin{DoxyItemize}
 \item It\textquotesingle{}s on the heap, so fragmentation can be a problem
@@ -77,7 +77,7 @@ Thus, for most general cases, please please please use an {\ttfamily fstring} as
 \item That\textquotesingle{}s pretty much it.
 \end{DoxyEnumerate}
 
-Moral of the story\+: use fstring. Mostly anything in a game engine is predictable enough that you can predict close to the number of characters you\textquotesingle{}ll need before compilation. \hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md7}{}\doxysubsubsection{\texorpdfstring{str\+\_\+view}{str\+\_\+view}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md7}
+Moral of the story\+: use fstring. Mostly anything in a game engine is predictable enough that you can predict close to the number of characters you\textquotesingle{}ll need before compilation. \hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md5}{}\doxysubsubsection{\texorpdfstring{str\+\_\+view}{str\+\_\+view}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md5}
 Now this is the crown-\/jewel of the string implementation. You might think "{}it\textquotesingle{}s hella uncool to try and manage two different string types when writing code"{}, and you\textquotesingle{}d be right. Hence, we have the {\ttfamily str\+\_\+view} (name generously borrowed from the standard library).
 
 Instead of passing {\ttfamily fstring} and {\ttfamily hstring} through functions, you pass {\ttfamily str\+\_\+view} instead, and you do this by "{}wrapping"{} the strings. 
@@ -107,7 +107,7 @@ Instead of passing {\ttfamily fstring} and {\ttfamily hstring} through functions
 \DoxyCodeLine{My\ heap\ string:\ 90.1234}
 
 \end{DoxyCode}
- Now you may be wondering, "{}how does this work"{}? And i\textquotesingle{}ll say its magic cause i dont wanna bore you with the implementation. (it\textquotesingle{}s just references \& pointers, and a shit ton of operator overloads). \hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md8}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md8}
+ Now you may be wondering, "{}how does this work"{}? And i\textquotesingle{}ll say its magic cause i dont wanna bore you with the implementation. (it\textquotesingle{}s just references \& pointers, and a shit ton of operator overloads). \hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md6}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md6}
 {\ttfamily hstring} and {\ttfamily fstring} have the same member functions, so i\textquotesingle{}ll cover them together.
 \begin{DoxyItemize}
 \item {\ttfamily capacity()}› Returns current capacity of the string

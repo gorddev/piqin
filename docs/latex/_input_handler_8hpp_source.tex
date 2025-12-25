@@ -3,7 +3,7 @@
 \mbox{\hyperlink{_input_handler_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{vector_8hpp}{engine/types/external/vector.hpp}}>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <engine/types/external/vector.hpp>}}
 \DoxyCodeLine{00003\ }
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_mouse_8hpp}{Mouse.hpp}}"{}}}
 \DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_gear_8hpp}{engine/types/Gear.hpp}}"{}}}
@@ -15,9 +15,9 @@
 \DoxyCodeLine{00011\ }
 \DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1_input_handler_af425881d129f70b624a985d9308b91ee}{InputHandler}}\ \{}
 \DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<Gear*>}}\ key\_press\_acceptors;}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<Gear*>}}\ key\_hold\_acceptors;}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<Gear*>}}\ mouse\_acceptors;}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ gch::vector<Gear*>\ key\_press\_acceptors;}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ gch::vector<Gear*>\ key\_hold\_acceptors;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ gch::vector<Gear*>\ mouse\_acceptors;}
 \DoxyCodeLine{00024\ }
 \DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ std::unordered\_map<SDL\_Scancode,\ bool>\ heldKeys;}
 \DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ active\ =\ \textcolor{keyword}{true};}
@@ -42,14 +42,14 @@
 \DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//<><><>\ Adding/Removing\ Objects\ <><><>}}
 \DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ************************************}}
 \DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_input_handler_a6ac6148dc4f461bb48b70e087b1b9a9d}{add\_key\_press\_acceptor}}(Gear*\ g);}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_input_handler_a39b815b10b7b60d3571a8a4d1cde9464}{add\_key\_press\_acceptors}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector<Gear*>}}\&\ gears);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_input_handler_a39b815b10b7b60d3571a8a4d1cde9464}{add\_key\_press\_acceptors}}(gch::vector<Gear*>\&\ gears);}
 \DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_input_handler_ab6a140060c6a8c02be901e6f0242de13}{add\_mouse\_acceptor}}(Gear*\ g);}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_input_handler_a601ccad12089890f694f9436108dad34}{add\_mouse\_acceptors}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector<Gear*>}}\&\ gears);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_input_handler_a601ccad12089890f694f9436108dad34}{add\_mouse\_acceptors}}(gch::vector<Gear*>\&\ gears);}
 \DoxyCodeLine{00067\ }
 \DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_input_handler_acd205fd10f51a58ce7a78be02220b4c7}{remove\_key\_acceptor}}(Gear*\ g);}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_input_handler_aaf4fc8d6d4bf843b4462a86f3cb4d5fa}{remove\_key\_acceptors}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector<Gear*>}}\&\ gears);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_input_handler_aaf4fc8d6d4bf843b4462a86f3cb4d5fa}{remove\_key\_acceptors}}(gch::vector<Gear*>\&\ gears);}
 \DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_input_handler_aa1936cd01bd8196b7fe12e8096cb8098}{remove\_mouse\_acceptor}}(Gear*\ g);}
-\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_input_handler_ad6ddbfdc5da70b1bd7291772dcc384cc}{remove\_mouse\_acceptors}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector<Gear*>}}\&\ g);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_input_handler_ad6ddbfdc5da70b1bd7291772dcc384cc}{remove\_mouse\_acceptors}}(gch::vector<Gear*>\&\ g);}
 \DoxyCodeLine{00076\ }
 \DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_input_handler_ac6df68fc12c7a0a5e5bf9380a63b0968}{flush}}();}
 \DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_input_handler_ac8ba5dc8bef8d289e94d420426a93710}{flush\_keyboard\_acceptors}}();}

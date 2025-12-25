@@ -316,7 +316,7 @@ $(function(){initNavTree('fstring_8inl_source.html','',''); });
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="keyword">template</span>&lt;u<span class="keywordtype">int</span>32_t C&gt;</div>
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>geng::fstring&lt;C&gt; &amp; geng::fstring&lt;C&gt;::operator&lt;&lt;(<span class="keywordtype">float</span> num) {</div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keyword">auto</span>* start = arr + len;</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keyword">auto</span>* <a class="code hl_function" href="namespacegch.html#abb89d2571c8b39c2d39f527f1d8b7005">end</a> = arr + C;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keyword">auto</span>* end = arr + C;</div>
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keyword">auto</span> res = std::to_chars(start, end, num, std::chars_format::fixed, arr[C+1]);</div>
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    len += res.ptr - start;</div>
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
@@ -335,7 +335,7 @@ $(function(){initNavTree('fstring_8inl_source.html','',''); });
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <span class="keyword">auto</span> addr = <span class="keyword">reinterpret_cast&lt;</span>uintptr_t<span class="keyword">&gt;</span>(ptr);</div>
 <div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    *<span class="keyword">this</span> &lt;&lt; <span class="stringliteral">&quot;0x&quot;</span>;</div>
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="keyword">auto</span>* start = arr + len;</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="keyword">auto</span>* <a class="code hl_function" href="namespacegch.html#abb89d2571c8b39c2d39f527f1d8b7005">end</a> = arr + C;</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="keyword">auto</span>* end = arr + C;</div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keyword">auto</span> res = std::to_chars(start, end, addr, 16);</div>
 <div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    len += res.ptr - start;</div>
 <div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
@@ -370,7 +370,6 @@ $(function(){initNavTree('fstring_8inl_source.html','',''); });
 <div class="ttc" id="aclassgeng_1_1str__view_html_ac7e3bdd7667dd169ce2e53e0b6d2881e"><div class="ttname"><a href="classgeng_1_1str__view.html#ac7e3bdd7667dd169ce2e53e0b6d2881e">geng::str_view::cstr</a></div><div class="ttdeci">constexpr const char * cstr() const</div><div class="ttdoc">Returns the data containing the parent fstring.</div><div class="ttdef"><b>Definition</b> str_view.inl:33</div></div>
 <div class="ttc" id="afstring_8inl_html_a24b203a4f197b30613bec180c750140a"><div class="ttname"><a href="fstring_8inl.html#a24b203a4f197b30613bec180c750140a">operator+</a></div><div class="ttdeci">geng::fstring&lt; N+C &gt; operator+(const geng::fstring&lt; N &gt; self, const geng::fstring&lt; C &gt; &amp;other)</div><div class="ttdef"><b>Definition</b> fstring.inl:265</div></div>
 <div class="ttc" id="afstring_8inl_html_a57c19fc162b2164446bfd67991fffa2a"><div class="ttname"><a href="fstring_8inl.html#a57c19fc162b2164446bfd67991fffa2a">fstring_throw_err</a></div><div class="ttdeci">static void fstring_throw_err(const char err[])</div><div class="ttdef"><b>Definition</b> fstring.inl:6</div></div>
-<div class="ttc" id="anamespacegch_html_abb89d2571c8b39c2d39f527f1d8b7005"><div class="ttname"><a href="namespacegch.html#abb89d2571c8b39c2d39f527f1d8b7005">gch::end</a></div><div class="ttdeci">constexpr vector&lt; T, InlineCapacity, Allocator &gt;::iterator end(vector&lt; T, InlineCapacity, Allocator &gt; &amp;v) noexcept</div><div class="ttdef"><b>Definition</b> vector.hpp:6378</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

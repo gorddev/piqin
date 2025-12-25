@@ -101,7 +101,7 @@ $(function(){initNavTree('_layer_manager_8hpp_source.html','',''); });
 <div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classgeng_1_1_layer_manager.html">    8</a></span>    <span class="keyword">class </span><a class="code hl_function" href="classgeng_1_1_layer_manager.html#a464de7c6ead7a7800e7f06d1e1fa3e5a">LayerManager</a> {</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        <a class="code hl_class" href="classgch_1_1vector.html">gch::vector&lt;Layer*&gt;</a> layers;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        gch::vector&lt;Layer*&gt; layers;</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        <span class="keywordtype">int</span> active_id = -1;</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <a class="code hl_class" href="classgeng_1_1_engine_context.html">EngineContext</a>&amp; engine_context;</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
@@ -134,7 +134,7 @@ $(function(){initNavTree('_layer_manager_8hpp_source.html','',''); });
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_layer_manager.html#af5cbf6e8e79b4a4dd3eeecdc08a40830">move_backward</a>(Layer* l);</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="comment">// &lt;&gt;&lt;&gt;&lt;&gt; Layer Verification</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <a class="code hl_class" href="classgch_1_1vector.html">gch::vector&lt;Layer*&gt;</a>&amp; <a class="code hl_function" href="classgeng_1_1_layer_manager.html#a019afbcaef3466135359deeb7fee107b">get_layer_list</a>();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        gch::vector&lt;Layer*&gt;&amp; <a class="code hl_function" href="classgeng_1_1_layer_manager.html#a019afbcaef3466135359deeb7fee107b">get_layer_list</a>();</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classgeng_1_1_layer_manager.html#a4e9620302d4b57d15f588b25b80b46a9">has_layer</a>(Layer* l);</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordtype">bool</span> <a class="code hl_function" href="classgeng_1_1_layer_manager.html#a4e9620302d4b57d15f588b25b80b46a9">has_layer</a>(fstring&lt;10&gt; name);</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    };</div>
@@ -142,7 +142,6 @@ $(function(){initNavTree('_layer_manager_8hpp_source.html','',''); });
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>}</div>
 <div class="ttc" id="a_layer_8hpp_html"><div class="ttname"><a href="_layer_8hpp.html">Layer.hpp</a></div></div>
-<div class="ttc" id="aclassgch_1_1vector_html"><div class="ttname"><a href="classgch_1_1vector.html">gch::vector</a></div><div class="ttdef"><b>Definition</b> vector.hpp:5086</div></div>
 <div class="ttc" id="aclassgeng_1_1_engine_context_html"><div class="ttname"><a href="classgeng_1_1_engine_context.html">geng::EngineContext</a></div><div class="ttdef"><b>Definition</b> EngineContext.hpp:10</div></div>
 <div class="ttc" id="aclassgeng_1_1_layer_manager_html_a019afbcaef3466135359deeb7fee107b"><div class="ttname"><a href="classgeng_1_1_layer_manager.html#a019afbcaef3466135359deeb7fee107b">geng::LayerManager::get_layer_list</a></div><div class="ttdeci">gch::vector&lt; Layer * &gt; &amp; get_layer_list()</div><div class="ttdoc">Gets the list of layers.</div><div class="ttdef"><b>Definition</b> LayerManager.cpp:186</div></div>
 <div class="ttc" id="aclassgeng_1_1_layer_manager_html_a10810dc71b8b6748ac03d092f5eed474"><div class="ttname"><a href="classgeng_1_1_layer_manager.html#a10810dc71b8b6748ac03d092f5eed474">geng::LayerManager::move_to_front</a></div><div class="ttdeci">void move_to_front(Layer *l)</div><div class="ttdoc">Moves layer to front of order.</div><div class="ttdef"><b>Definition</b> LayerManager.cpp:128</div></div>

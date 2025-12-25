@@ -11,13 +11,13 @@
 \DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacegeng_a9f80aaff7c3db1f08156ee7f50140fb2}{operator==}}(\textcolor{keyword}{const}\ Dim2D\&\ d)\textcolor{keyword}{\ const\ }\{}
 \DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (w\ ==\ d.w\ \&\&\ h\ ==\ d.h);}
 \DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacegch_a514c6f05de2c9046b49ab2f2b8ce7ab6}{operator!=}}(\textcolor{keyword}{const}\ Dim2D\&\ d)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ operator!=(\textcolor{keyword}{const}\ Dim2D\&\ d)\textcolor{keyword}{\ const\ }\{}
 \DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (w\ !=\ d.w\ ||\ h\ !=\ d.h);}
 \DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ Dim2D\ \mbox{\hyperlink{fstring_8inl_a24b203a4f197b30613bec180c750140a}{operator+}}(\textcolor{keyword}{const}\ Dim2D\&\ d)\textcolor{keyword}{\ const\ }\{}
 \DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(w\ +\ d.w),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(h\ +\ d.h)\};}
 \DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ Dim2D\ \mbox{\hyperlink{namespacegch_aea1f9ec67c295f21ae95e7afb9189fba}{operator-\/}}(\textcolor{keyword}{const}\ Dim2D\&\ d)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ Dim2D\ operator-\/(\textcolor{keyword}{const}\ Dim2D\&\ d)\textcolor{keyword}{\ const\ }\{}
 \DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(w\ -\/\ d.w),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(h\ -\/\ d.h)\};}
 \DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ operator+=(\textcolor{keyword}{const}\ Dim2D\&\ d)\ \{}
@@ -28,7 +28,7 @@
 \DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ w\ -\/=\ d.w;}
 \DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ h\ -\/=\ d.h;}
 \DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ Dim2D\ \mbox{\hyperlink{namespacegch_aea1f9ec67c295f21ae95e7afb9189fba}{operator-\/}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ Dim2D\ operator-\/()\textcolor{keyword}{\ const\ }\{}
 \DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{-\/w,\ -\/h\};}
 \DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \}}
 \DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ area()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ w*h;\ \}}

@@ -2,7 +2,7 @@ var searchData=
 [
   ['random_2ecpp_0',['Random.cpp',['../_random_8cpp.html',1,'']]],
   ['random_2ehpp_1',['Random.hpp',['../_random_8hpp.html',1,'']]],
-  ['readme_2emd_2',['README.md',['../external_2_r_e_a_d_m_e_8md.html',1,'(Global Namespace)'],['../strings_2_r_e_a_d_m_e_8md.html',1,'(Global Namespace)']]],
+  ['readme_2emd_2',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
   ['rebound_2ecpp_3',['Rebound.cpp',['../_rebound_8cpp.html',1,'']]],
   ['rebound_2ehpp_4',['Rebound.hpp',['../_rebound_8hpp.html',1,'']]],
   ['renderbuffer_2ecpp_5',['RenderBuffer.cpp',['../_render_buffer_8cpp.html',1,'']]],

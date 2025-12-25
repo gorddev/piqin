@@ -99,30 +99,30 @@ $(function(){initNavTree('_syntax_map_8hpp_source.html','',''); });
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_syntax_command_8hpp.html">SyntaxCommand.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="_font_8hpp.html">engine/scene/font/Font.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="_font_char_8hpp.html">engine/scene/font/FontChar.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="vector_8hpp.html">engine/types/external/vector.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;engine/types/external/vector.hpp&quot;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacegeng.html">geng</a> {</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span></div>
 <div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classgeng_1_1_syntax_map.html">   14</a></span>    <span class="keyword">class </span><a class="code hl_function" href="classgeng_1_1_syntax_map.html#a68f79f5535df6660523b1bee949379f7">SyntaxMap</a> {</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <a class="code hl_class" href="classgch_1_1vector.html">gch::vector&lt;SyntaxCommand&gt;</a> commands;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <a class="code hl_class" href="classgch_1_1vector.html">gch::vector&lt;SyntaxPattern&gt;</a> patterns;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <a class="code hl_class" href="classgch_1_1vector.html">gch::vector&lt;SyntaxHighlight&gt;</a> highlights;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        gch::vector&lt;SyntaxCommand&gt; commands;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        gch::vector&lt;SyntaxPattern&gt; patterns;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        gch::vector&lt;SyntaxHighlight&gt; highlights;</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">public</span>:</div>
 <div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classgeng_1_1_syntax_map.html#a68f79f5535df6660523b1bee949379f7">   24</a></span>        <a class="code hl_function" href="classgeng_1_1_syntax_map.html#a68f79f5535df6660523b1bee949379f7">SyntaxMap</a>(<a class="code hl_class" href="classgch_1_1vector.html">gch::vector&lt;SyntaxCommand&gt;</a> commands,</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            <a class="code hl_class" href="classgch_1_1vector.html">gch::vector&lt;SyntaxPattern&gt;</a> patterns,</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>            <a class="code hl_class" href="classgch_1_1vector.html">gch::vector&lt;SyntaxHighlight&gt;</a> highlights)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classgeng_1_1_syntax_map.html#a68f79f5535df6660523b1bee949379f7">   24</a></span>        <a class="code hl_function" href="classgeng_1_1_syntax_map.html#a68f79f5535df6660523b1bee949379f7">SyntaxMap</a>(gch::vector&lt;SyntaxCommand&gt; commands,</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            gch::vector&lt;SyntaxPattern&gt; patterns,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>            gch::vector&lt;SyntaxHighlight&gt; highlights)</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>                : commands(commands), patterns(patterns),</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>                highlights(highlights) {}</div>
 </div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span></div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keyword">template</span>&lt;u<span class="keywordtype">int</span>32_t C&gt;</div>
 <div class="foldopen" id="foldopen00033" data-start="{" data-end="}">
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classgeng_1_1_syntax_map.html#a6b9c1da7f538a36793c1b62b710de670">   33</a></span>        fstring&lt;C&gt; <a class="code hl_function" href="classgeng_1_1_syntax_map.html#a6b9c1da7f538a36793c1b62b710de670">parse</a>(<a class="code hl_class" href="classgeng_1_1str__view.html">str_view</a> text, Font&amp; font, <a class="code hl_class" href="classgch_1_1vector.html">gch::vector&lt;FontChar&gt;</a>&amp; buffer, <a class="code hl_struct" href="structgeng_1_1_syntax_info.html">SyntaxInfo</a>* syntax_info)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classgeng_1_1_syntax_map.html#a6b9c1da7f538a36793c1b62b710de670">   33</a></span>        fstring&lt;C&gt; <a class="code hl_function" href="classgeng_1_1_syntax_map.html#a6b9c1da7f538a36793c1b62b710de670">parse</a>(<a class="code hl_class" href="classgeng_1_1str__view.html">str_view</a> text, Font&amp; font, gch::vector&lt;FontChar&gt;&amp; buffer, <a class="code hl_struct" href="structgeng_1_1_syntax_info.html">SyntaxInfo</a>* syntax_info)<span class="keyword"> const </span>{</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            <span class="comment">// Clear out the fontchar buffer</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            buffer.<a class="code hl_function" href="classgch_1_1vector.html#a22a1d3da2ccad4a4d5a0c761ccc2cad5">clear</a>();</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            buffer.clear();</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            <span class="comment">// Create our return fstring</span></div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            fstring&lt;C&gt; ret;</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            <span class="comment">// Creates a temporary syntax info object</span></div>
@@ -183,8 +183,6 @@ $(function(){initNavTree('_syntax_map_8hpp_source.html','',''); });
 <div class="ttc" id="a_font_8hpp_html"><div class="ttname"><a href="_font_8hpp.html">Font.hpp</a></div></div>
 <div class="ttc" id="a_font_char_8hpp_html"><div class="ttname"><a href="_font_char_8hpp.html">FontChar.hpp</a></div></div>
 <div class="ttc" id="a_syntax_command_8hpp_html"><div class="ttname"><a href="_syntax_command_8hpp.html">SyntaxCommand.hpp</a></div></div>
-<div class="ttc" id="aclassgch_1_1vector_html"><div class="ttname"><a href="classgch_1_1vector.html">gch::vector</a></div><div class="ttdef"><b>Definition</b> vector.hpp:5086</div></div>
-<div class="ttc" id="aclassgch_1_1vector_html_a22a1d3da2ccad4a4d5a0c761ccc2cad5"><div class="ttname"><a href="classgch_1_1vector.html#a22a1d3da2ccad4a4d5a0c761ccc2cad5">gch::vector::clear</a></div><div class="ttdeci">GCH_CPP20_CONSTEXPR void clear(void) noexcept</div><div class="ttdef"><b>Definition</b> vector.hpp:5994</div></div>
 <div class="ttc" id="aclassgeng_1_1_syntax_map_html_a68f79f5535df6660523b1bee949379f7"><div class="ttname"><a href="classgeng_1_1_syntax_map.html#a68f79f5535df6660523b1bee949379f7">geng::SyntaxMap::SyntaxMap</a></div><div class="ttdeci">SyntaxMap(gch::vector&lt; SyntaxCommand &gt; commands, gch::vector&lt; SyntaxPattern &gt; patterns, gch::vector&lt; SyntaxHighlight &gt; highlights)</div><div class="ttdoc">Constructor for a syntax map.</div><div class="ttdef"><b>Definition</b> SyntaxMap.hpp:24</div></div>
 <div class="ttc" id="aclassgeng_1_1_syntax_map_html_a6b9c1da7f538a36793c1b62b710de670"><div class="ttname"><a href="classgeng_1_1_syntax_map.html#a6b9c1da7f538a36793c1b62b710de670">geng::SyntaxMap::parse</a></div><div class="ttdeci">fstring&lt; C &gt; parse(str_view text, Font &amp;font, gch::vector&lt; FontChar &gt; &amp;buffer, SyntaxInfo *syntax_info) const</div><div class="ttdef"><b>Definition</b> SyntaxMap.hpp:33</div></div>
 <div class="ttc" id="aclassgeng_1_1str__subview_html_ad354366a166aa36c5656aba17008f56f"><div class="ttname"><a href="classgeng_1_1str__subview.html#ad354366a166aa36c5656aba17008f56f">geng::str_subview::cstr</a></div><div class="ttdeci">constexpr const char * cstr() const</div><div class="ttdef"><b>Definition</b> str_subview.hpp:18</div></div>
@@ -193,7 +191,6 @@ $(function(){initNavTree('_syntax_map_8hpp_source.html','',''); });
 <div class="ttc" id="aclassgeng_1_1str__view_html_aa938decd52c62df4e070f386d9503d94"><div class="ttname"><a href="classgeng_1_1str__view.html#aa938decd52c62df4e070f386d9503d94">geng::str_view::subview</a></div><div class="ttdeci">str_subview subview(uint32_t start, uint32_t sub_len) const</div><div class="ttdoc">Createas a subview of the current view.</div><div class="ttdef"><b>Definition</b> str_view.inl:39</div></div>
 <div class="ttc" id="anamespacegeng_html"><div class="ttname"><a href="namespacegeng.html">geng</a></div><div class="ttdef"><b>Definition</b> Initializer.cpp:7</div></div>
 <div class="ttc" id="astructgeng_1_1_syntax_info_html"><div class="ttname"><a href="structgeng_1_1_syntax_info.html">geng::SyntaxInfo</a></div><div class="ttdoc">The object used to keep track of parsing information as you go through the parse.</div><div class="ttdef"><b>Definition</b> SyntaxInfo.hpp:7</div></div>
-<div class="ttc" id="avector_8hpp_html"><div class="ttname"><a href="vector_8hpp.html">vector.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

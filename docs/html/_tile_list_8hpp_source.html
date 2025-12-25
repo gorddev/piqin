@@ -102,7 +102,7 @@ $(function(){initNavTree('_tile_list_8hpp_source.html','',''); });
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span></div>
 <div class="foldopen" id="foldopen00010" data-start="{" data-end="};">
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="classgeng_1_1_tile_list.html">   10</a></span>    <span class="keyword">class </span><a class="code hl_function" href="classgeng_1_1_tile_list.html#ad5309b017300f846f50a0d12f776d149">TileList</a> {</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        <a class="code hl_class" href="classgch_1_1vector.html">gch::vector&lt;Tileset&gt;</a> tilesets;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        gch::vector&lt;Tileset&gt; tilesets;</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keyword">public</span>:</div>
 <div class="foldopen" id="foldopen00014" data-start="{" data-end="}">
@@ -118,7 +118,7 @@ $(function(){initNavTree('_tile_list_8hpp_source.html','',''); });
 </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span></div>
 <div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classgeng_1_1_tile_list.html#aadcf967a29ebd895e0951c64d5b112fa">   22</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_tile_list.html#aadcf967a29ebd895e0951c64d5b112fa">add_tilesets</a>(<a class="code hl_class" href="classgch_1_1vector.html">gch::vector&lt;Tileset&gt;</a>&amp; new_tilesets) {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classgeng_1_1_tile_list.html#aadcf967a29ebd895e0951c64d5b112fa">   22</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_tile_list.html#aadcf967a29ebd895e0951c64d5b112fa">add_tilesets</a>(gch::vector&lt;Tileset&gt;&amp; new_tilesets) {</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; t : new_tilesets) {</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>                tilesets.emplace_back(t);</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            }</div>
@@ -152,7 +152,6 @@ $(function(){initNavTree('_tile_list_8hpp_source.html','',''); });
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
 <div class="ttc" id="a_log_source_8hpp_html"><div class="ttname"><a href="_log_source_8hpp.html">LogSource.hpp</a></div></div>
 <div class="ttc" id="a_tileset_8hpp_html"><div class="ttname"><a href="_tileset_8hpp.html">Tileset.hpp</a></div></div>
-<div class="ttc" id="aclassgch_1_1vector_html"><div class="ttname"><a href="classgch_1_1vector.html">gch::vector</a></div><div class="ttdef"><b>Definition</b> vector.hpp:5086</div></div>
 <div class="ttc" id="aclassgeng_1_1_tile_list_html_a7062cbd5de5eb575b53cea8232121f1d"><div class="ttname"><a href="classgeng_1_1_tile_list.html#a7062cbd5de5eb575b53cea8232121f1d">geng::TileList::size</a></div><div class="ttdeci">int size() const</div><div class="ttdoc">returns the size of the tileset</div><div class="ttdef"><b>Definition</b> TileList.hpp:40</div></div>
 <div class="ttc" id="aclassgeng_1_1_tile_list_html_aadcf967a29ebd895e0951c64d5b112fa"><div class="ttname"><a href="classgeng_1_1_tile_list.html#aadcf967a29ebd895e0951c64d5b112fa">geng::TileList::add_tilesets</a></div><div class="ttdeci">void add_tilesets(gch::vector&lt; Tileset &gt; &amp;new_tilesets)</div><div class="ttdoc">Must call add_tilesets.</div><div class="ttdef"><b>Definition</b> TileList.hpp:22</div></div>
 <div class="ttc" id="aclassgeng_1_1_tile_list_html_ab242eb0fdb987f6ef1132358bfa093e4"><div class="ttname"><a href="classgeng_1_1_tile_list.html#ab242eb0fdb987f6ef1132358bfa093e4">geng::TileList::add_tileset</a></div><div class="ttdeci">int add_tileset(const Tileset &amp;new_tileset)</div><div class="ttdef"><b>Definition</b> TileList.hpp:17</div></div>

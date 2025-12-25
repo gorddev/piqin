@@ -18,7 +18,7 @@
 \DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{private}:}
 \DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ fstring<C>\ textliteral;}
 \DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ Font\&\ font;}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<SDL\_Vertex>}}\ vertices;}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ gch::vector<SDL\_Vertex>\ vertices;}
 \DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classgeng_1_1_syntax_map}{SyntaxMap}}*\ syntax\_map\ =\ \&\mbox{\hyperlink{namespacegeng_a1bc70f2f823bd4d5625de3da6f2c4dc1}{geng\_default\_syntax\_map}};}
 \DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ Renderer;}
 \DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{public}:}
@@ -65,7 +65,7 @@
 \DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clears\ out\ all\ the\ cached\ data}}
 \DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_text_aa4466527d716b964d7f821fb7574e4d9}{clear}}();}
 \DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ make\ our\ font\ character\ buffer}}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<FontChar>}}\ buffer;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ gch::vector<FontChar>\ buffer;}
 \DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ create\ a\ wrapper\ text}}
 \DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ fstring<C\ +\ 400>\ new\_text(text);}
 \DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Grab\ any\ syntax\ information}}
@@ -76,7 +76,7 @@
 \DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ current\ position}}
 \DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_pos2_d}{Pos2D}}\ pos\ =\ \{0,\ 0\};}
 \DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Increment\ through\ our\ buffer}}
-\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0,\ k\ =\ 0;\ i\ <\ buffer.\mbox{\hyperlink{classgch_1_1vector_a404803bd4bd0b495fd177fbd44a284de}{size}}();\ i++,\ k++)\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0,\ k\ =\ 0;\ i\ <\ buffer.size();\ i++,\ k++)\ \{}
 \DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ we\ have\ whitespace,\ that's\ characters\ that\ textliteral\ has\ that\ syntax\_info\ does\ not.}}
 \DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (textliteral[k]\ ==\ \textcolor{charliteral}{'\(\backslash\)n'})\ \{}
 \DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pos.\mbox{\hyperlink{structgeng_1_1_pos2_d_a3d059c7f8d28ae4bff09396c27655d8e}{y}}\ +=\ font.get\_height();}

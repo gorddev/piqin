@@ -100,7 +100,7 @@ Directories</h2></td></tr>
 <tr class="memitem:str_5Fview" id="r_str_5Fview"><td class="memItemLeft" align="right" valign="top"><span class="iconfolder"><div class="folder-icon"></div></span>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dir_5001f10696f7c046eb8dce289c78f884.html">str_view</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md0"></a>
 Strings Overview</h1>
 <p>Ok with all these strings it might get a little confusing, so I'll break each one down below.</p>
 <p>Each of my custom string classes have some really nice properties that makes it super easy to pass around data. For example, lets say I have an <span class="tt">hstring</span> and I want to store all the data from my <span class="tt">Sprite s</span>. What I can do is this: </p><div class="fragment"><div class="line">hstring my_string(50); <span class="comment">// Allocates 50 characters to the heap</span></div>
@@ -108,7 +108,7 @@ Strings Overview</h1>
 <div class="line">my_string &lt;&lt; sprite.animnum &lt;&lt; <span class="stringliteral">&quot;,\t&quot;</span> &lt;&lt; sprite.framenum; </div>
 </div><!-- fragment --><p> Thus all the data is immediately converted into the hstring formatted like <span class="tt">"30.0 40.0\n3,\t4"</span>. Furthermore, I can add even nicer features like: </p><div class="fragment"><div class="line">mystring &lt;&lt; trunc&lt;4&gt;() &lt;&lt; my_float &lt;&lt; geng::endl;</div>
 </div><!-- fragment --><p> Now, my_float will be truncated to four digits automatically without me having to do any annoying calculations. Now to get on to each type of string. </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
 fstrings</h2>
 <p>First up we have <span class="tt">fstring</span>, which stands for <b>fixed string</b>. <span class="tt">fstring</span> is a templatede class, and this means that upon creation, these strings have completely <b>fixed length</b> that cannot be changed. These are great for text buffers that get refreshed repeatedly, and for ensuring compliance with specific string lengths. However, the main benefits are below:</p><ul>
 <li>Significantly faster for writing and conversion than regular <span class="tt">std::string</span> (around 2x - 3x faster)</li>
@@ -125,17 +125,17 @@ fstrings</h2>
 <div class="line">std::cerr &lt;&lt; fstr.cstr() &lt;&lt; std::endl;</div>
 </div><!-- fragment --><p> Our output from this will be <span class="tt">Hello worl</span>, because we only allocated 10 characters.</p>
 <p><b>Warning:</b> <span class="tt">fstring</span> always allocates two additional bytes past what you specify to the internal character array. One is for the null terminator (at size + 0), and the next is for floating point conversion information (at size + 1).</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
 hstrings</h2>
 <p>Ok we'll keep this short. <span class="tt">hstrings</span> are just <span class="tt">fstrings</span> but their memory is allocated on the heap, and they don't have a fixed size.</p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
 Pros:</h3>
 <ul>
 <li>Still faster than regular <span class="tt">std::string</span>, but not by as much as <span class="tt">fstring</span></li>
 <li>Dynamically resizable &amp; virtually unlimited size</li>
 <li>Access to all the nice operator overloads <span class="tt">fstring</span> has. </li>
 </ul>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
 Cons:</h3>
 <ul>
 <li>It's on the heap, so fragmentation can be a problem</li>
@@ -151,7 +151,7 @@ Cons:</h3>
 <li>That's pretty much it.</li>
 </ol>
 <p>Moral of the story: use fstring. Mostly anything in a game engine is predictable enough that you can predict close to the number of characters you'll need before compilation. </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
 str_view</h2>
 <p>Now this is the crown-jewel of the string implementation. You might think "it's hella uncool to try and manage two different string types when writing code", and you'd be right. Hence, we have the <span class="tt">str_view</span> (name generously borrowed from the standard library).</p>
 <p>Instead of passing <span class="tt">fstring</span> and <span class="tt">hstring</span> through functions, you pass <span class="tt">str_view</span> instead, and you do this by "wrapping" the strings. </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> add_to_buffer(str_view buffer, <span class="keywordtype">float</span> my_float) {</div>
@@ -175,7 +175,7 @@ str_view</h2>
 <div class="line">My fixed string: 30.1234</div>
 <div class="line">My heap string: 90.1234</div>
 </div><!-- fragment --><p> Now you may be wondering, "how does this work"? And i'll say its magic cause i dont wanna bore you with the implementation. (it's just references &amp; pointers, and a shit ton of operator overloads). </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
 Usage</h2>
 <p><span class="tt">hstring</span> and <span class="tt">fstring</span> have the same member functions, so i'll cover them together.</p><ul>
 <li><span class="tt">capacity()</span>› Returns current capacity of the string</li>

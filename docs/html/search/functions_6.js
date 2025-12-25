@@ -13,7 +13,7 @@ var searchData=
   ['fontlist_10',['FontList',['../classgeng_1_1_font_list.html#afd1480f06f03930c6d709bc6d3680ecf',1,'geng::FontList']]],
   ['fpos2d_11',['FPos2D',['../structgeng_1_1_f_pos2_d.html#a4944e49ff28227de0c688a720ddfe29d',1,'geng::FPos2D::FPos2D()'],['../structgeng_1_1_f_pos2_d.html#a9e4f9ff778466f13e3ad05b4b9c885a9',1,'geng::FPos2D::FPos2D(const float x, const float y)'],['../struct_f_pos2_d.html#a4944e49ff28227de0c688a720ddfe29d',1,'FPos2D::FPos2D()'],['../struct_f_pos2_d.html#a9e4f9ff778466f13e3ad05b4b9c885a9',1,'FPos2D::FPos2D(const float x, const float y)']]],
   ['frame_5ftable_12',['frame_table',['../classgeng_1_1_initializer.html#a274d5e3c570608d12278c9553e196cb9',1,'geng::Initializer']]],
-  ['front_13',['front',['../classgch_1_1vector.html#aea686f0fc3dd7941d92b260f11ffdbe3',1,'gch::vector::front(void)'],['../classgch_1_1vector.html#ab52da7315468b727c51fe3693f2f48be',1,'gch::vector::front(void) const'],['../structgutils_1_1_sparse_vector.html#a9e44470044b28b466e6c6ee5d3e4f939',1,'gutils::SparseVector::front()']]],
+  ['front_13',['front',['../structgutils_1_1_sparse_vector.html#a9e44470044b28b466e6c6ee5d3e4f939',1,'gutils::SparseVector']]],
   ['fstr_5fview_5fthrow_5ferr_14',['fstr_view_throw_err',['../str__view_8inl.html#a27d6f337498fbfb79ede4b481a20be90',1,'str_view.inl']]],
   ['fstring_5fthrow_5ferr_15',['fstring_throw_err',['../fstring_8inl.html#a57c19fc162b2164446bfd67991fffa2a',1,'fstring.inl']]],
   ['full_16',['full',['../classblackjack_1_1_hand.html#aba252c8b308011ff5b49180e367f8ed8',1,'blackjack::Hand']]]

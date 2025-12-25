@@ -11,7 +11,7 @@
 \DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
 \DoxyCodeLine{00008\ }
 \DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1_tile_list_ad5309b017300f846f50a0d12f776d149}{TileList}}\ \{}
-\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<Tileset>}}\ tilesets;}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ gch::vector<Tileset>\ tilesets;}
 \DoxyCodeLine{00012\ }
 \DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_tile_list_ad5309b017300f846f50a0d12f776d149}{TileList}}()\ \{}
@@ -21,7 +21,7 @@
 \DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ tilesets.emplace\_back(new\_tileset);}
 \DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgeng_1_1_tile_list_a7062cbd5de5eb575b53cea8232121f1d}{size}}()\ -\/\ 1;}
 \DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_tile_list_aadcf967a29ebd895e0951c64d5b112fa}{add\_tilesets}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector<Tileset>}}\&\ new\_tilesets)\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_tile_list_aadcf967a29ebd895e0951c64d5b112fa}{add\_tilesets}}(gch::vector<Tileset>\&\ new\_tilesets)\ \{}
 \DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ t\ :\ new\_tilesets)\ \{}
 \DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tilesets.emplace\_back(t);}
 \DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \}}

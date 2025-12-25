@@ -104,7 +104,7 @@ $(function(){initNavTree('_banner_buffer_8hpp_source.html','',''); });
 <div class="foldopen" id="foldopen00010" data-start="{" data-end="};">
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="classgeng_1_1_banner_buffer.html">   10</a></span>    <span class="keyword">class </span><a class="code hl_function" href="classgeng_1_1_banner_buffer.html#afa5b8641c4c70f8522458b693227081a">BannerBuffer</a> {</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        <a class="code hl_class" href="classgch_1_1vector.html">gch::vector&lt;SDL_Vertex&gt;</a> buffer;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        gch::vector&lt;SDL_Vertex&gt; buffer;</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        Transform2D&amp; bannerT;</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        ShadowBank* shadows = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        SDL_FPoint white_point = {1.f, 1.f};</div>
@@ -119,7 +119,7 @@ $(function(){initNavTree('_banner_buffer_8hpp_source.html','',''); });
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span></div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_banner_buffer.html#a482a1794e8efc898b11dd96db786a2c7">_set_shadow_bank</a>(ShadowBank* new_bank);</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_banner_buffer.html#a34693d7674896ff1d5c960d1342e61b5">_set_white_point</a>(SDL_FPoint new_white_point);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        [[nodiscard]] <a class="code hl_class" href="classgch_1_1vector.html">gch::vector&lt;SDL_Vertex&gt;</a>&amp; <a class="code hl_function" href="classgeng_1_1_banner_buffer.html#a31266625f6d4f2c623f144d485add8ad">_get_vertex_buffer</a>();</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        [[nodiscard]] gch::vector&lt;SDL_Vertex&gt;&amp; <a class="code hl_function" href="classgeng_1_1_banner_buffer.html#a31266625f6d4f2c623f144d485add8ad">_get_vertex_buffer</a>();</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classgeng_1_1_banner_buffer.html#a28356ea065556c9c1dd3b1fcd664109d">_clear_buffer</a>();</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    };</div>
 </div>
@@ -128,7 +128,6 @@ $(function(){initNavTree('_banner_buffer_8hpp_source.html','',''); });
 <div class="ttc" id="a_pos2_d_8hpp_html"><div class="ttname"><a href="_pos2_d_8hpp.html">Pos2D.hpp</a></div></div>
 <div class="ttc" id="a_shadow_bank_8hpp_html"><div class="ttname"><a href="_shadow_bank_8hpp.html">ShadowBank.hpp</a></div></div>
 <div class="ttc" id="a_transform2_d_8hpp_html"><div class="ttname"><a href="_transform2_d_8hpp.html">Transform2D.hpp</a></div></div>
-<div class="ttc" id="aclassgch_1_1vector_html"><div class="ttname"><a href="classgch_1_1vector.html">gch::vector</a></div><div class="ttdef"><b>Definition</b> vector.hpp:5086</div></div>
 <div class="ttc" id="aclassgeng_1_1_banner_buffer_html_a28356ea065556c9c1dd3b1fcd664109d"><div class="ttname"><a href="classgeng_1_1_banner_buffer.html#a28356ea065556c9c1dd3b1fcd664109d">geng::BannerBuffer::_clear_buffer</a></div><div class="ttdeci">void _clear_buffer()</div><div class="ttdoc">Clears the buffer.</div><div class="ttdef"><b>Definition</b> BannerBuffer.cpp:45</div></div>
 <div class="ttc" id="aclassgeng_1_1_banner_buffer_html_a31266625f6d4f2c623f144d485add8ad"><div class="ttname"><a href="classgeng_1_1_banner_buffer.html#a31266625f6d4f2c623f144d485add8ad">geng::BannerBuffer::_get_vertex_buffer</a></div><div class="ttdeci">gch::vector&lt; SDL_Vertex &gt; &amp; _get_vertex_buffer()</div><div class="ttdoc">Gets the buffer of vertices.</div><div class="ttdef"><b>Definition</b> BannerBuffer.cpp:40</div></div>
 <div class="ttc" id="aclassgeng_1_1_banner_buffer_html_a34693d7674896ff1d5c960d1342e61b5"><div class="ttname"><a href="classgeng_1_1_banner_buffer.html#a34693d7674896ff1d5c960d1342e61b5">geng::BannerBuffer::_set_white_point</a></div><div class="ttdeci">void _set_white_point(SDL_FPoint new_white_point)</div><div class="ttdoc">Sets the wqhite point of the BannerBUffer.</div><div class="ttdef"><b>Definition</b> BannerBuffer.cpp:33</div></div>

@@ -21,6 +21,5 @@ var searchData=
   ['write_5fchar_5fvector_18',['write_char_vector',['../level-importer_8cpp.html#ae8dda63fefeabd91aee88770730d0de8',1,'level-importer.cpp']]],
   ['write_5fproperty_19',['write_property',['../level-importer_8cpp.html#a30d423a430ffeae50ce7707eb45db963',1,'level-importer.cpp']]],
   ['write_5fuint16_5fvector_20',['write_uint16_vector',['../level-importer_8cpp.html#a812a4c9134e870dac5c30bb5c4b1df05',1,'level-importer.cpp']]],
-  ['write_5fworld_21',['write_world',['../level-importer_8cpp.html#ab9064c6ff05bf32da4e6b4ee65cca8e9',1,'level-importer.cpp']]],
-  ['written_20by_20me_22',['External is a folder that contains code not written by me.',['../dir_e0266b0e017de2fde33ed6cf3f24f8eb.html#autotoc_md0',1,'']]]
+  ['write_5fworld_21',['write_world',['../level-importer_8cpp.html#ab9064c6ff05bf32da4e6b4ee65cca8e9',1,'level-importer.cpp']]]
 ];

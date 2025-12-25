@@ -1,0 +1,19 @@
+PROJECT_NAME           = "G-Engine"
+PROJECT_BRIEF          = "A lightweight, web-targeted, object-oriented game engine built with Emscripten + SDL2"
+
+OUTPUT_DIRECTORY       = docs
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+
+INPUT                  = include
+RECURSIVE              = YES
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+
+WARN_IF_UNDOCUMENTED   = YES
+WARN_NO_PARAMDOC       = YES
+
+QUIET                  = NO
+EXCLUDE_PATTERNS = */external/* */game/*

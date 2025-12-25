@@ -146,7 +146,7 @@ $(function(){initNavTree('_syntax_command_8hpp_source.html','',''); });
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                    <span class="comment">// If we match the next character, end wildcard mode.</span></div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                    <span class="keywordflow">if</span> (count &lt; key.length() &amp;&amp; key[count] == str[i]) {</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>                        wildcard = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                        arguments.<a class="code hl_function" href="classgch_1_1vector.html#ac01295a4fa615dc7a935d24a00bc8e57">push_back</a>(str.subview(wildcardpos, i - wildcardpos));</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                        arguments.push_back(str.subview(wildcardpos, i - wildcardpos));</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                        count++;</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                    }</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                }</div>
@@ -171,7 +171,6 @@ $(function(){initNavTree('_syntax_command_8hpp_source.html','',''); });
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>}</div>
 <div class="ttc" id="a_log_source_8hpp_html"><div class="ttname"><a href="_log_source_8hpp.html">LogSource.hpp</a></div></div>
 <div class="ttc" id="a_syntax_info_8hpp_html"><div class="ttname"><a href="_syntax_info_8hpp.html">SyntaxInfo.hpp</a></div></div>
-<div class="ttc" id="aclassgch_1_1vector_html_ac01295a4fa615dc7a935d24a00bc8e57"><div class="ttname"><a href="classgch_1_1vector.html#ac01295a4fa615dc7a935d24a00bc8e57">gch::vector::push_back</a></div><div class="ttdeci">GCH_CPP20_CONSTEXPR void push_back(const_reference value)</div><div class="ttdef"><b>Definition</b> vector.hpp:5932</div></div>
 <div class="ttc" id="aclassgeng_1_1str__view_html"><div class="ttname"><a href="classgeng_1_1str__view.html">geng::str_view</a></div><div class="ttdef"><b>Definition</b> str_view.hpp:17</div></div>
 <div class="ttc" id="ahstring_8hpp_html"><div class="ttname"><a href="hstring_8hpp.html">hstring.hpp</a></div></div>
 <div class="ttc" id="anamespacegeng_html"><div class="ttname"><a href="namespacegeng.html">geng</a></div><div class="ttdef"><b>Definition</b> Initializer.cpp:7</div></div>

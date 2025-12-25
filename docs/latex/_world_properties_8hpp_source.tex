@@ -18,13 +18,13 @@
 \DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structgeng_1_1_t_object_a8c91778887f22373a0e985e9508d6465}{id}};}
 \DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1hstring}{hstring}}\ \mbox{\hyperlink{structgeng_1_1_t_object_ad61847c2b0f26ca246dc1358a4dc4e1d}{templateName}};}
 \DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structgeng_1_1_t_object_a3b79ee13c759ee4b505ebcbdcc92ff7c}{x}}\ =\ 0.f,\ \mbox{\hyperlink{structgeng_1_1_t_object_ac832b586c9a88baeafa102a965a84cf4}{y}}\ =\ 0.f;}
-\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<TProperty>}}\ \mbox{\hyperlink{structgeng_1_1_t_object_a6c132509af4fb6e64b3b3c8a09993cb7}{properties}};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ gch::vector<TProperty>\ \mbox{\hyperlink{structgeng_1_1_t_object_a6c132509af4fb6e64b3b3c8a09993cb7}{properties}};}
 \DoxyCodeLine{00020\ \ \ \ \ \};}
 \DoxyCodeLine{00021\ }
 \DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgeng_1_1_t_layer}{TLayer}}\ \{}
 \DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{structgeng_1_1_t_layer_a7c09e7c1bcffcf714afde5e4c661be56}{Class}}\ \{\ \mbox{\hyperlink{structgeng_1_1_t_layer_a7c09e7c1bcffcf714afde5e4c661be56ac69924fd99116dce5f107f49327a1151}{VIS}},\ \mbox{\hyperlink{structgeng_1_1_t_layer_a7c09e7c1bcffcf714afde5e4c661be56ad39afab3abfb07d7fbdd1a6e9f1a2b18}{PHYSVIS}},\ \mbox{\hyperlink{structgeng_1_1_t_layer_a7c09e7c1bcffcf714afde5e4c661be56af34d534adfb78a9e6432be4621a93eec}{OBJ}}\ \}\ \mbox{\hyperlink{structgeng_1_1_t_layer_abf732d75b0a02ee52f8cad62a6134de4}{layerClass}};}
-\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<uint16\_t>}}\ \mbox{\hyperlink{structgeng_1_1_t_layer_a0b236309aeb22007dcffa5f60a53326b}{data}};\ \ \ \ \ \textcolor{comment}{//\ tile\ data}}
-\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<TObject>}}\ \mbox{\hyperlink{structgeng_1_1_t_layer_a9b144ca008abcd3744f0d6512f1aefac}{objects}};\ \ \ \ \textcolor{comment}{//\ only\ used\ for\ OBJ\ layers}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ gch::vector<uint16\_t>\ \mbox{\hyperlink{structgeng_1_1_t_layer_a0b236309aeb22007dcffa5f60a53326b}{data}};\ \ \ \ \ \textcolor{comment}{//\ tile\ data}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ gch::vector<TObject>\ \mbox{\hyperlink{structgeng_1_1_t_layer_a9b144ca008abcd3744f0d6512f1aefac}{objects}};\ \ \ \ \textcolor{comment}{//\ only\ used\ for\ OBJ\ layers}}
 \DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structgeng_1_1_t_layer_a465ca208b2fbfc926b10798495359369}{visible}}\ =\ \textcolor{keyword}{true};}
 \DoxyCodeLine{00028\ \ \ \ \ \};}
 \DoxyCodeLine{00029\ }
@@ -37,12 +37,12 @@
 \DoxyCodeLine{00037\ }
 \DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structgeng_1_1_game_level_a22cde71f3b192705590be9dd1df97ee5}{tileWidth}}\ =\ 0;}
 \DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structgeng_1_1_game_level_a235277dfa3505a67230b7e461536d76d}{tileHeight}}\ =\ 0;}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<std::string>}}\ \mbox{\hyperlink{structgeng_1_1_game_level_a74fb441259412613721e8a26166e569a}{tilesets}};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ gch::vector<std::string>\ \mbox{\hyperlink{structgeng_1_1_game_level_a74fb441259412613721e8a26166e569a}{tilesets}};}
 \DoxyCodeLine{00041\ }
-\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<TLayer>}}\ \mbox{\hyperlink{structgeng_1_1_game_level_a0cfd7c1f7be3f601cc9ef694bfe47ad9}{layers}};}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ gch::vector<TLayer>\ \mbox{\hyperlink{structgeng_1_1_game_level_a0cfd7c1f7be3f601cc9ef694bfe47ad9}{layers}};}
 \DoxyCodeLine{00043\ }
 \DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Grabs\ any\ physics\ layers\ from\ the\ level}}
-\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<uint16\_t>}}\ \&\mbox{\hyperlink{structgeng_1_1_game_level_aaf80211c648fc2ac4628fd1d738ec92e}{extract\_physics\_data}}()\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ gch::vector<uint16\_t>\ \&\mbox{\hyperlink{structgeng_1_1_game_level_aaf80211c648fc2ac4628fd1d738ec92e}{extract\_physics\_data}}()\ \{}
 \DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ i:\ \mbox{\hyperlink{structgeng_1_1_game_level_a0cfd7c1f7be3f601cc9ef694bfe47ad9}{layers}})\ \{}
 \DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i.layerClass\ ==\ \mbox{\hyperlink{structgeng_1_1_t_layer_a7c09e7c1bcffcf714afde5e4c661be56ad39afab3abfb07d7fbdd1a6e9f1a2b18}{TLayer::Class::PHYSVIS}})\ \{}
 \DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ i.data;}

@@ -5,7 +5,7 @@
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
 \DoxyCodeLine{00002\ }
 \DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_selector_8hpp}{Selector.hpp}}"{}}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vector_8hpp}{engine/types/external/vector.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}engine/types/external/vector.hpp"{}}}
 \DoxyCodeLine{00005\ }
 \DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
 \DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgeng_1_1_selection}{Selection}}\ \{}
@@ -16,9 +16,9 @@
 \DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Item>}
 \DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1_menu_region_af9d024aa1e16908a2032753b060c4e2c}{MenuRegion}}\ \{}
 \DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Takes\ a\ vector\ of\ vector\ pointers\ to}}
-\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<gch::vector<Item*>}}*>\ menus;}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ gch::vector<gch::vector<Item*>*>\ menus;}
 \DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Keeps\ track\ of\ the\ menus\ we\ have\ access\ to.}}
-\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<short>}}\ rows;}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ gch::vector<short>\ rows;}
 \DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tells\ us\ whether\ we\ wrap\ or\ not}}
 \DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ wrapy;}
 \DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ wrapx;}
@@ -34,10 +34,10 @@
 \DoxyCodeLine{00030\ }
 \DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{public}:}
 \DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Constructor}}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_af9d024aa1e16908a2032753b060c4e2c}{MenuRegion}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector}}<\mbox{\hyperlink{classgch_1_1vector}{gch::vector<Item*>}}*>\ menus,\ \textcolor{keywordtype}{bool}\ wrapy,\ \textcolor{keywordtype}{bool}\ wrapx);}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_af9d024aa1e16908a2032753b060c4e2c}{MenuRegion}}(gch::vector<gch::vector<Item*>*>\ menus,\ \textcolor{keywordtype}{bool}\ wrapy,\ \textcolor{keywordtype}{bool}\ wrapx);}
 \DoxyCodeLine{00034\ }
 \DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lets\ us\ set\ our\ selectable\ regions}}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_menu_region_aea5f5afcea553e413a16fa32b3c56c1a}{set\_selectables}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector<short>}}\ selects);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_menu_region_aea5f5afcea553e413a16fa32b3c56c1a}{set\_selectables}}(gch::vector<short>\ selects);}
 \DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lets\ us\ add\ a\ selectable\ region}}
 \DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_menu_region_a0d160759ffe2ef7ef077ee1b4f27e0ba}{add\_selectable}}(\textcolor{keywordtype}{short}\ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}});}
 \DoxyCodeLine{00039\ }
@@ -68,7 +68,7 @@
 \DoxyCodeLine{00064\ }
 \DoxyCodeLine{00065\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
 \DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item>}
-\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_af9d024aa1e16908a2032753b060c4e2c}{MenuRegion<Item>::MenuRegion}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector}}<\mbox{\hyperlink{classgch_1_1vector}{gch::vector<Item*>}}\ *>\ menus,\ \textcolor{keywordtype}{bool}\ wrapx,\ \textcolor{keywordtype}{bool}\ wrapy)}
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_af9d024aa1e16908a2032753b060c4e2c}{MenuRegion<Item>::MenuRegion}}(gch::vector<gch::vector<Item*>\ *>\ menus,\ \textcolor{keywordtype}{bool}\ wrapx,\ \textcolor{keywordtype}{bool}\ wrapy)}
 \DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ :\ menus(menus),\ wrapx(wrapx),\ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}(\{0,\ 0\}),\ selector(\textcolor{keyword}{nullptr}),}
 \DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ wrapy(wrapy)\ \{}
 \DoxyCodeLine{00070\ \ \ \ \ \}}
@@ -282,7 +282,7 @@
 \DoxyCodeLine{00278\ \ \ \ \ \}}
 \DoxyCodeLine{00279\ }
 \DoxyCodeLine{00280\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item>}
-\DoxyCodeLine{00281\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_menu_region_aea5f5afcea553e413a16fa32b3c56c1a}{MenuRegion<Item>::set\_selectables}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector<short>}}\ selects)\ \{}
+\DoxyCodeLine{00281\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_menu_region_aea5f5afcea553e413a16fa32b3c56c1a}{MenuRegion<Item>::set\_selectables}}(gch::vector<short>\ selects)\ \{}
 \DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ our\ rows}}
 \DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ rows\ =\ std::move(selects);}
 \DoxyCodeLine{00284\ }

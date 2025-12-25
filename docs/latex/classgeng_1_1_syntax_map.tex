@@ -7,9 +7,9 @@
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classgeng_1_1_syntax_map_a68f79f5535df6660523b1bee949379f7}{Syntax\+Map}} (\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Syntax\+Command $>$ commands, \mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Syntax\+Pattern $>$ patterns, \mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Syntax\+Highlight $>$ highlights)
+\mbox{\hyperlink{classgeng_1_1_syntax_map_a68f79f5535df6660523b1bee949379f7}{Syntax\+Map}} (gch\+::vector$<$ Syntax\+Command $>$ commands, gch\+::vector$<$ Syntax\+Pattern $>$ patterns, gch\+::vector$<$ Syntax\+Highlight $>$ highlights)
 \begin{DoxyCompactList}\small\item\em Constructor for a syntax map. \end{DoxyCompactList}\item 
-{\footnotesize template$<$uint32\+\_\+t C$>$ }\\fstring$<$ C $>$ \mbox{\hyperlink{classgeng_1_1_syntax_map_a6b9c1da7f538a36793c1b62b710de670}{parse}} (\mbox{\hyperlink{classgeng_1_1str__view}{str\+\_\+view}} text, Font \&font, \mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Font\+Char $>$ \&buffer, \mbox{\hyperlink{structgeng_1_1_syntax_info}{Syntax\+Info}} \texorpdfstring{$\ast$}{*}syntax\+\_\+info) const
+{\footnotesize template$<$uint32\+\_\+t C$>$ }\\fstring$<$ C $>$ \mbox{\hyperlink{classgeng_1_1_syntax_map_a6b9c1da7f538a36793c1b62b710de670}{parse}} (\mbox{\hyperlink{classgeng_1_1str__view}{str\+\_\+view}} text, Font \&font, gch\+::vector$<$ Font\+Char $>$ \&buffer, \mbox{\hyperlink{structgeng_1_1_syntax_info}{Syntax\+Info}} \texorpdfstring{$\ast$}{*}syntax\+\_\+info) const
 \end{DoxyCompactItemize}
 
 
@@ -23,7 +23,7 @@ The \doxylink{classgeng_1_1_syntax_map}{Syntax\+Map} can be used to modify the d
 \index{SyntaxMap@{SyntaxMap}!geng::SyntaxMap@{geng::SyntaxMap}}
 \doxysubsubsection{\texorpdfstring{SyntaxMap()}{SyntaxMap()}}
 {\footnotesize\ttfamily \label{classgeng_1_1_syntax_map_a68f79f5535df6660523b1bee949379f7} 
-geng\+::\+Syntax\+Map\+::\+Syntax\+Map (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Syntax\+Command $>$}]{commands}{, }\item[{\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Syntax\+Pattern $>$}]{patterns}{, }\item[{\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Syntax\+Highlight $>$}]{highlights}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+geng\+::\+Syntax\+Map\+::\+Syntax\+Map (\begin{DoxyParamCaption}\item[{gch\+::vector$<$ Syntax\+Command $>$}]{commands}{, }\item[{gch\+::vector$<$ Syntax\+Pattern $>$}]{patterns}{, }\item[{gch\+::vector$<$ Syntax\+Highlight $>$}]{highlights}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -39,7 +39,7 @@ Constructor for a syntax map.
 \doxysubsubsection{\texorpdfstring{parse()}{parse()}}
 {\footnotesize\ttfamily \label{classgeng_1_1_syntax_map_a6b9c1da7f538a36793c1b62b710de670} 
 template$<$uint32\+\_\+t C$>$ \\
-fstring$<$ C $>$ geng\+::\+Syntax\+Map\+::parse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeng_1_1str__view}{str\+\_\+view}}}]{text}{, }\item[{Font \&}]{font}{, }\item[{\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Font\+Char $>$ \&}]{buffer}{, }\item[{\mbox{\hyperlink{structgeng_1_1_syntax_info}{Syntax\+Info}} \texorpdfstring{$\ast$}{*}}]{syntax\+\_\+info}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+fstring$<$ C $>$ geng\+::\+Syntax\+Map\+::parse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeng_1_1str__view}{str\+\_\+view}}}]{text}{, }\item[{Font \&}]{font}{, }\item[{gch\+::vector$<$ Font\+Char $>$ \&}]{buffer}{, }\item[{\mbox{\hyperlink{structgeng_1_1_syntax_info}{Syntax\+Info}} \texorpdfstring{$\ast$}{*}}]{syntax\+\_\+info}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Parses through a block of text (oh goody!) and appends appropriate font characters. Returns an fstring of appropriate size 
 

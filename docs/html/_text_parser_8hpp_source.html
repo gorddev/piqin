@@ -95,12 +95,12 @@ $(function(){initNavTree('_text_parser_8hpp_source.html','',''); });
 <a href="_text_parser_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;SDL_pixels.h&gt;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="fstring_8hpp.html">../../../types/strings/fstring/fstring.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="vector_8hpp.html">engine/types/external/vector.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;engine/types/external/vector.hpp&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacegeng.html">geng</a> {</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="namespacegeng.html#a6e804e498765b0ffd837da61ce0549ea">   10</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="namespacegeng.html#a6e804e498765b0ffd837da61ce0549ea">ParseList</a> = <a class="code hl_class" href="classgch_1_1vector.html">gch::vector&lt;int&gt;</a>;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="namespacegeng.html#a6e804e498765b0ffd837da61ce0549ea">   10</a></span>    <span class="keyword">using </span><a class="code hl_typedef" href="namespacegeng.html#a6e804e498765b0ffd837da61ce0549ea">ParseList</a> = gch::vector&lt;int&gt;;</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="namespacegeng.html#a429769b2ff095d000a5c2bb50c79fc3aadc71a92e76930d745f1a70b3efc61122">   12</a></span>    <span class="keyword">enum</span> <a class="code hl_enumeration" href="namespacegeng.html#a429769b2ff095d000a5c2bb50c79fc3a">ParseType</a> { <a class="code hl_enumvalue" href="namespacegeng.html#a429769b2ff095d000a5c2bb50c79fc3aa4faba7c68029a78d3b66c9327401b49b">RawText</a>, <a class="code hl_enumvalue" href="namespacegeng.html#a429769b2ff095d000a5c2bb50c79fc3aa52b1fbdbad2aaacab2d4434d2b9cb9c9">Scale</a>, <a class="code hl_enumvalue" href="namespacegeng.html#a429769b2ff095d000a5c2bb50c79fc3aadc71a92e76930d745f1a70b3efc61122">Color</a>, <a class="code hl_enumvalue" href="namespacegeng.html#a429769b2ff095d000a5c2bb50c79fc3aa2e77e2413cf4f653a39e9050382eb7c0">End</a> };</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span></div>
@@ -125,7 +125,6 @@ $(function(){initNavTree('_text_parser_8hpp_source.html','',''); });
 </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>}</div>
-<div class="ttc" id="aclassgch_1_1vector_html"><div class="ttname"><a href="classgch_1_1vector.html">gch::vector</a></div><div class="ttdef"><b>Definition</b> vector.hpp:5086</div></div>
 <div class="ttc" id="aclassgeng_1_1_text_parser_html"><div class="ttname"><a href="classgeng_1_1_text_parser.html">geng::TextParser</a></div><div class="ttdef"><b>Definition</b> TextParser.hpp:27</div></div>
 <div class="ttc" id="aclassgeng_1_1_text_parser_html_a4e52b315313e15a62f961ad1c5298f9c"><div class="ttname"><a href="classgeng_1_1_text_parser.html#a4e52b315313e15a62f961ad1c5298f9c">geng::TextParser::parse_next</a></div><div class="ttdeci">static ParseEvent parse_next(const str_view &amp;src, int pos)</div><div class="ttdoc">Returns what you will need to edit from the parser.</div><div class="ttdef"><b>Definition</b> TextParser.cpp:19</div></div>
 <div class="ttc" id="aclassgeng_1_1str__view_html"><div class="ttname"><a href="classgeng_1_1str__view.html">geng::str_view</a></div><div class="ttdef"><b>Definition</b> str_view.hpp:17</div></div>
@@ -144,7 +143,6 @@ $(function(){initNavTree('_text_parser_8hpp_source.html','',''); });
 <div class="ttc" id="astructgeng_1_1_parse_event_html_a83e26b401d193751e84cd2142e0df065"><div class="ttname"><a href="structgeng_1_1_parse_event.html#a83e26b401d193751e84cd2142e0df065">geng::ParseEvent::advance</a></div><div class="ttdeci">int advance</div><div class="ttdef"><b>Definition</b> TextParser.hpp:20</div></div>
 <div class="ttc" id="astructgeng_1_1_parse_event_html_ad87a5e70664488393350043595755847"><div class="ttname"><a href="structgeng_1_1_parse_event.html#ad87a5e70664488393350043595755847">geng::ParseEvent::color</a></div><div class="ttdeci">SDL_Color color</div><div class="ttdef"><b>Definition</b> TextParser.hpp:19</div></div>
 <div class="ttc" id="astructgeng_1_1src_html"><div class="ttname"><a href="structgeng_1_1src.html">geng::src</a></div><div class="ttdef"><b>Definition</b> LogBucket.hpp:11</div></div>
-<div class="ttc" id="avector_8hpp_html"><div class="ttname"><a href="vector_8hpp.html">vector.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

@@ -28,19 +28,19 @@ void \mbox{\hyperlink{classgeng_1_1_input_handler_a202ccc66adbc04e03eb08564c0066
 \begin{DoxyCompactList}\small\item\em Gets each frame and updates the state if we don\textquotesingle{}t get input. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classgeng_1_1_input_handler_a6ac6148dc4f461bb48b70e087b1b9a9d}{add\+\_\+key\+\_\+press\+\_\+acceptor}} (Gear \texorpdfstring{$\ast$}{*}g)
 \begin{DoxyCompactList}\small\item\em Designates one object as a keyboard press input acceptor, such that it\textquotesingle{}s function is called upon key press. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classgeng_1_1_input_handler_a39b815b10b7b60d3571a8a4d1cde9464}{add\+\_\+key\+\_\+press\+\_\+acceptors}} (\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Gear \texorpdfstring{$\ast$}{*} $>$ \&gears)
+void \mbox{\hyperlink{classgeng_1_1_input_handler_a39b815b10b7b60d3571a8a4d1cde9464}{add\+\_\+key\+\_\+press\+\_\+acceptors}} (gch\+::vector$<$ Gear \texorpdfstring{$\ast$}{*} $>$ \&gears)
 \begin{DoxyCompactList}\small\item\em Designates multiple objects as keyboard press acceptors. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classgeng_1_1_input_handler_ab6a140060c6a8c02be901e6f0242de13}{add\+\_\+mouse\+\_\+acceptor}} (Gear \texorpdfstring{$\ast$}{*}g)
 \begin{DoxyCompactList}\small\item\em Designates one object as a mouse\+\_\+acceptor. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classgeng_1_1_input_handler_a601ccad12089890f694f9436108dad34}{add\+\_\+mouse\+\_\+acceptors}} (\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Gear \texorpdfstring{$\ast$}{*} $>$ \&gears)
+void \mbox{\hyperlink{classgeng_1_1_input_handler_a601ccad12089890f694f9436108dad34}{add\+\_\+mouse\+\_\+acceptors}} (gch\+::vector$<$ Gear \texorpdfstring{$\ast$}{*} $>$ \&gears)
 \begin{DoxyCompactList}\small\item\em Designates multiple objects as mouse\+\_\+acceptors. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classgeng_1_1_input_handler_acd205fd10f51a58ce7a78be02220b4c7}{remove\+\_\+key\+\_\+acceptor}} (Gear \texorpdfstring{$\ast$}{*}g)
 \begin{DoxyCompactList}\small\item\em Removes the key acceptor from the input handler. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classgeng_1_1_input_handler_aaf4fc8d6d4bf843b4462a86f3cb4d5fa}{remove\+\_\+key\+\_\+acceptors}} (\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Gear \texorpdfstring{$\ast$}{*} $>$ \&gears)
+void \mbox{\hyperlink{classgeng_1_1_input_handler_aaf4fc8d6d4bf843b4462a86f3cb4d5fa}{remove\+\_\+key\+\_\+acceptors}} (gch\+::vector$<$ Gear \texorpdfstring{$\ast$}{*} $>$ \&gears)
 \begin{DoxyCompactList}\small\item\em Removes multiple key acceptors from the input handler. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classgeng_1_1_input_handler_aa1936cd01bd8196b7fe12e8096cb8098}{remove\+\_\+mouse\+\_\+acceptor}} (Gear \texorpdfstring{$\ast$}{*}g)
 \begin{DoxyCompactList}\small\item\em Removes one gear from being a mouse acceptor. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classgeng_1_1_input_handler_ad6ddbfdc5da70b1bd7291772dcc384cc}{remove\+\_\+mouse\+\_\+acceptors}} (\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Gear \texorpdfstring{$\ast$}{*} $>$ \&g)
+void \mbox{\hyperlink{classgeng_1_1_input_handler_ad6ddbfdc5da70b1bd7291772dcc384cc}{remove\+\_\+mouse\+\_\+acceptors}} (gch\+::vector$<$ Gear \texorpdfstring{$\ast$}{*} $>$ \&g)
 \begin{DoxyCompactList}\small\item\em Removes multiple gears from being a mouse acceptor. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classgeng_1_1_input_handler_ac6df68fc12c7a0a5e5bf9380a63b0968}{flush}} ()
 \begin{DoxyCompactList}\small\item\em Removes all acceptors from the input\+Handler. \end{DoxyCompactList}\item 
@@ -158,7 +158,7 @@ Designates one object as a keyboard press input acceptor, such that it\textquote
 \index{add\_key\_press\_acceptors@{add\_key\_press\_acceptors}!geng::InputHandler@{geng::InputHandler}}
 \doxysubsubsection{\texorpdfstring{add\_key\_press\_acceptors()}{add\_key\_press\_acceptors()}}
 {\footnotesize\ttfamily \label{classgeng_1_1_input_handler_a39b815b10b7b60d3571a8a4d1cde9464} 
-void Input\+Handler\+::add\+\_\+key\+\_\+press\+\_\+acceptors (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Gear \texorpdfstring{$\ast$}{*} $>$ \&}]{gears}{}\end{DoxyParamCaption})}
+void Input\+Handler\+::add\+\_\+key\+\_\+press\+\_\+acceptors (\begin{DoxyParamCaption}\item[{gch\+::vector$<$ Gear \texorpdfstring{$\ast$}{*} $>$ \&}]{gears}{}\end{DoxyParamCaption})}
 
 
 
@@ -178,7 +178,7 @@ Designates one object as a mouse\+\_\+acceptor.
 \index{add\_mouse\_acceptors@{add\_mouse\_acceptors}!geng::InputHandler@{geng::InputHandler}}
 \doxysubsubsection{\texorpdfstring{add\_mouse\_acceptors()}{add\_mouse\_acceptors()}}
 {\footnotesize\ttfamily \label{classgeng_1_1_input_handler_a601ccad12089890f694f9436108dad34} 
-void Input\+Handler\+::add\+\_\+mouse\+\_\+acceptors (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Gear \texorpdfstring{$\ast$}{*} $>$ \&}]{gears}{}\end{DoxyParamCaption})}
+void Input\+Handler\+::add\+\_\+mouse\+\_\+acceptors (\begin{DoxyParamCaption}\item[{gch\+::vector$<$ Gear \texorpdfstring{$\ast$}{*} $>$ \&}]{gears}{}\end{DoxyParamCaption})}
 
 
 
@@ -248,7 +248,7 @@ Removes the key acceptor from the input handler.
 \index{remove\_key\_acceptors@{remove\_key\_acceptors}!geng::InputHandler@{geng::InputHandler}}
 \doxysubsubsection{\texorpdfstring{remove\_key\_acceptors()}{remove\_key\_acceptors()}}
 {\footnotesize\ttfamily \label{classgeng_1_1_input_handler_aaf4fc8d6d4bf843b4462a86f3cb4d5fa} 
-void Input\+Handler\+::remove\+\_\+key\+\_\+acceptors (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Gear \texorpdfstring{$\ast$}{*} $>$ \&}]{gears}{}\end{DoxyParamCaption})}
+void Input\+Handler\+::remove\+\_\+key\+\_\+acceptors (\begin{DoxyParamCaption}\item[{gch\+::vector$<$ Gear \texorpdfstring{$\ast$}{*} $>$ \&}]{gears}{}\end{DoxyParamCaption})}
 
 
 
@@ -268,7 +268,7 @@ Removes one gear from being a mouse acceptor.
 \index{remove\_mouse\_acceptors@{remove\_mouse\_acceptors}!geng::InputHandler@{geng::InputHandler}}
 \doxysubsubsection{\texorpdfstring{remove\_mouse\_acceptors()}{remove\_mouse\_acceptors()}}
 {\footnotesize\ttfamily \label{classgeng_1_1_input_handler_ad6ddbfdc5da70b1bd7291772dcc384cc} 
-void Input\+Handler\+::remove\+\_\+mouse\+\_\+acceptors (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Gear \texorpdfstring{$\ast$}{*} $>$ \&}]{g}{}\end{DoxyParamCaption})}
+void Input\+Handler\+::remove\+\_\+mouse\+\_\+acceptors (\begin{DoxyParamCaption}\item[{gch\+::vector$<$ Gear \texorpdfstring{$\ast$}{*} $>$ \&}]{g}{}\end{DoxyParamCaption})}
 
 
 
