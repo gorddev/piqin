@@ -2,7 +2,7 @@
 #include <SDL.h>
 
 #include "BackgroundPalette.hpp"
-#include "engine/EngineContext.hpp"
+#include "../../core/EngineContext.hpp"
 
 namespace geng {
     /** To be heavily altered/changed. Currently the Background edits every pixel in the background, which is very very inefficient. */

@@ -4,7 +4,7 @@
 #include <iostream>
 
 #include "testing/Card.hpp"
-#include "engine/Engine.hpp"
+#include "../include/engine/core/Engine.hpp"
 #include "engine/scene/banners/text/Text.hpp"
 #include "engine/scene/banners/widgets/WidgetBox.hpp"
 #include "engine/scene/morphs/morph-types/Stretch.hpp"
@@ -16,6 +16,8 @@
 #include "testing/PlayerTest.hpp"
 #include "testing/spritesheet.hpp"
 
+#include <engine/geng.hpp>
+
 
 geng::Collider* test;
 auto start_time = std::chrono::steady_clock::now();
@@ -25,10 +27,11 @@ bool gameloop(double time, void* userdata) {
 	// Grabs our engine from main
 	geng::Engine& bob = *static_cast<geng::Engine*>(userdata);
 
+	bob.tick(time);
 	// <><><><><><><><>
 	// Updates our time and grabs user input & runs events
 	// <><><><><><><><>
-	bob.tick(time);
+	bob.update();
 
 	// <><><><><><><><>
 	// Finally we render
@@ -115,9 +118,18 @@ int main() {
 	//plat.cell_bucket.add_cell(0, {0.5,0.5});
 
 	glog::note << "Excited entering main!\n";
+
+	auto game_loop = [&]() {
+		return true;
+	};
+
+	GENG_START_LOOP(bob, game_loop);
+
 	/******** END OF FUCK AROUND ZONE *******/
 	emscripten_request_animation_frame_loop(gameloop, &bob);
 	emscripten_exit_with_live_runtime();
+
+
 
 	return 0;
 }

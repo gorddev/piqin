@@ -5,7 +5,7 @@
 #include <SDL.h>
 
 #include "RenderBuffer.hpp"
-#include "engine/EngineContext.hpp"
+#include "../core/EngineContext.hpp"
 #include "engine/debug/Console.hpp"
 #include "engine/layers/Layer.hpp"
 #include "engine/scene/initializer/TextureRegister.hpp"

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "debug/Debugger.hpp"
-#include "rendering/Camera.hpp"
-#include "types/strings/fstring/fstring.hpp"
+#include "../debug/Debugger.hpp"
+#include "../rendering/Camera.hpp"
+#include "../types/strings/fstring/fstring.hpp"
 
 namespace geng {
 

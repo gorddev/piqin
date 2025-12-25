@@ -1,6 +1,6 @@
 #pragma once
 #include "positioning/FPos2D.hpp"
-#include "engine/EngineContext.hpp"
+#include "../core/EngineContext.hpp"
 #include <SDL.h>
 
 

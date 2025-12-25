@@ -1,6 +1,6 @@
 #pragma once
 
-#include "engine/EngineContext.hpp"
+#include "../core/EngineContext.hpp"
 #include "engine/types/Transform2D.hpp"
 #include "engine/types/positioning/Box2D.hpp"
 

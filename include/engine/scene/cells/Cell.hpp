@@ -1,7 +1,7 @@
 #pragma once
 #include <SDL_render.h>
 
-#include "engine/EngineContext.hpp"
+#include "../../core/EngineContext.hpp"
 
 namespace geng {
     static void GENG_cell_flatten_sdl_fpoint(SDL_FPoint& p) {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "engine/EngineContext.hpp"
+#include "../core/EngineContext.hpp"
 #include "engine/scene/initializer/TextureRegister.hpp"
 
 namespace geng {

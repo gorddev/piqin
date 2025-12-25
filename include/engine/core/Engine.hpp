@@ -1,9 +1,9 @@
 #pragma once
 
-#include "EngineContext.hpp"
-#include "debug/Console.hpp"
-#include "input/InputDistributor.hpp"
-#include "rendering/Renderer.hpp"
+#include "../EngineContext.hpp"
+#include "../debug/Console.hpp"
+#include "../input/InputDistributor.hpp"
+#include "../rendering/Renderer.hpp"
 #include "engine/layers/LayerManager.hpp"
 
 namespace geng {
@@ -44,8 +44,10 @@ namespace geng {
         // *******************
         /// Initializes the engine. Must be called in @code int main(...)@endcode
         void init();
+        /// Ticks the timer on the engine
+        void tick(double time);
         /// Runs the entire engine. Must call every frame, and put in the current time.
-        bool tick(double time);
+        bool update();
 
         // *******************
         // <><> Rendering <><>

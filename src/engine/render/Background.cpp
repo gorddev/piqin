@@ -1,6 +1,6 @@
 #include "engine/rendering/background/Background.hpp"
 
-#include "engine/EngineContext.hpp"
+#include "../../../include/engine/core/EngineContext.hpp"
 #include "../../../include/engine/types/positioning/FPos2D.hpp"
 #include "engine/debug/logging/LogSource.hpp"
 #include "engine/types/positioning/FPos3D.hpp"

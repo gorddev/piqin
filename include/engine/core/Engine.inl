@@ -1,6 +1,5 @@
 #pragma once
 
-
 template<typename T, typename... Args>
 T* geng::Engine::create_layer(Args &&... args) {
     static_assert(std::is_base_of_v<Layer, T>);

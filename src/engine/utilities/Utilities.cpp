@@ -1,5 +1,5 @@
 #include "engine/utilities/Utilities.hpp"
-#include "engine/EngineContext.hpp"
+#include "../../../include/engine/core/EngineContext.hpp"
 
 using namespace gutils;
 using namespace geng;

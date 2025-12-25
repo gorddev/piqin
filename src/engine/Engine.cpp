@@ -1,4 +1,4 @@
-#include "engine/Engine.hpp"
+#include "../../include/engine/core/Engine.hpp"
 
 #include "engine/debug/DebugRouter.hpp"
 #include "engine/debug/logging/LogSource.hpp"
@@ -18,11 +18,17 @@ void Engine::init() {
     console = create_router<debug::Console>();
 }
 
-
-bool Engine::tick(double time) {
+void Engine::tick(double time) {
     // First we update the engine_context with our time
     core.update(time);
 
+    // Next we get input for the input manager and send to the relevant layer.
+    SDL_Event e;
+    while (SDL_PollEvent(&e))
+        input.process_event(e, layers.get_active_layer());
+    input.update(layers.get_active_layer());
+
+    // Check if there's any layer change requests (this will be updated to a request interface later)
     geng::fstring<10> layerchange = core.get_layer_change();
     if (layerchange != "") {
         if (layerchange == "__next")
@@ -37,19 +43,14 @@ bool Engine::tick(double time) {
             set_active_layer(layerchange);
         core.set_layer_change("");
     }
+}
 
-    // Next we get input for the input manager and send to the relevant layer.
-    SDL_Event e;
-    while (SDL_PollEvent(&e))
-        input.process_event(e, layers.get_active_layer());
-    input.update(layers.get_active_layer());
+
+bool Engine::update() {
     // Next we update each of the active layers.
-
     for (auto& l : layers.get_layer_list()) {
         l->update(core.get_dt());
     }
-
-
     // Will add boolean functionality later
     return true;
 }

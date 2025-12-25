@@ -3,7 +3,7 @@
 #include <SDL.h>
 
 #include "InputRouter.hpp"
-#include "engine/EngineContext.hpp"
+#include "../core/EngineContext.hpp"
 #include "engine/layers/Layer.hpp"
 
 namespace geng {
