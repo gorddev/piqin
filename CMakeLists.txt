@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 project(norton)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 # These flags get passed when using emcmake
 set(CMAKE_EXECUTABLE_SUFFIX ".html")
@@ -51,6 +51,7 @@ add_executable(norton
         # Layering
         src/engine/layers/Layer.cpp
         src/engine/layers/LayerContext.cpp
+        src/engine/layers/LayerManager.cpp
 
         # Sprites
         src/engine/scene/sprites/SpriteManager.cpp
@@ -82,6 +83,7 @@ add_executable(norton
         src/engine/render/Renderer.cpp
         src/engine/render/Background.cpp
         src/engine/render/shadows/ShadowBank.cpp
+        src/engine/render/RenderBuffer.cpp
 
         # Routing
         src/engine/scene/routing/RouteManager.cpp
@@ -107,7 +109,7 @@ add_executable(norton
         # Types
         src/engine/types/positioning/FPos2D.cpp
         src/engine/types/Transform2D.cpp
-        src/engine/types/Quad.cpp
+        src/engine/types/AnimBox2D.cpp
 
         # Worlds
         src/engine/scene/world/GameWorld.cpp
@@ -134,11 +136,14 @@ target_link_options(norton PRIVATE
     "--shell-file=${CMAKE_SOURCE_DIR}/assets/game_shell.html"
     "--preload-file=assets"
     "--emrun"
+    "-O0"
     "-sMAXIMUM_MEMORY=256MB"
     "-sALLOW_MEMORY_GROWTH"
     "-sUSE_SDL_IMAGE=2"
     "-sSDL2_IMAGE_FORMATS=[\"png\"]"
     "-sUSE_WEBGL2=1"
+    "-fwasm-exceptions"
+    "-std=c++20"
 )
 
 
