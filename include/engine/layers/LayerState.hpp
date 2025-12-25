@@ -1,6 +1,7 @@
 #pragma once
-#include <cstdint>
+
 #include <SDL_scancode.h>
+#include "LayerFlag.hpp"
 
 namespace geng {
 
@@ -17,9 +18,11 @@ namespace geng {
         double time = 0;
         /// Pointer to all the held keys vs. not held keys
         uint8_t* held_keys = nullptr;
+        /// Reference to the layer flag
+        LayerFlag& lflag;
     public:
         /// Default constructor
-        LayerState() = default;
+        explicit LayerState(LayerFlag& lflag) : lflag(lflag) {};
 
         /// Updates the current time
         void _update(double& delta_time) {
@@ -30,8 +33,10 @@ namespace geng {
 
         /// Returns true if a key is held
         bool is_held(SDL_Scancode key) {
-            if (key < 512 && held_keys != nullptr)
-                return held_keys[key];
+            if (static_cast<bool>(lflag & LayerFlag::active) && static_cast<bool>(lflag & LayerFlag::running)) {
+                if (key < 512 && held_keys != nullptr)
+                    return held_keys[key];
+            }
             return false;
         }
 

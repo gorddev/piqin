@@ -1,5 +1,6 @@
 #pragma once
 #include "LayerContext.hpp"
+#include "LayerInit.hpp"
 #include "engine/rendering/DrawBatch.hpp"
 #include "engine/input/InputHandler.hpp"
 #include "engine/rendering/RenderBuffer.hpp"
@@ -10,7 +11,6 @@
 #include "engine/scene/particles/ParticleManager.hpp"
 #include "engine/scene/routes/RouteManager.hpp"
 #include "engine/rendering/background/Background.hpp"
-#include "engine/utilities/IDStack.hpp"
 #include "engine/scene/banners/BannerManager.hpp"
 #include "engine/scene/cells/CellBucket.hpp"
 #include "engine/scene/events/EventManager.hpp"
@@ -25,63 +25,74 @@ namespace geng {
      * functions such as @code set_strict()@endcode or @code set_z_indexed()@endcode. Every layer has the following member funcctions
      */
     class Layer {
+    private:
+        /// Name of the layer.
+        const geng::fstring<10> name;
+        /// Also keeps track of the core of the engine, like camera and scene width/height.
+        EngineContext& core;
     public:
-        /// Allows the user to access the scene of the layer.
+        /// Keeps track of the camera
+        const Camera& camera;
+        /// The scene contains important information concerning the layer.
+        /// Most of the member variables below recieve a reference to this scene object.
         LayerContext scene;
     private:
-        /// The TextureRegister of the Layer
-        TextureRegister texreg;
+        /// Contains the engine's texture register.
+        TextureRegister& texreg;
     public:
-        /// Allows the user to initialize components of the Layer.
-        Initializer init;
         /// Allows the user to access the input of the layer.
         InputHandler input;
         /// Allows users to directly add events.
-        EventManager event;
+        EventManager events;
         /// Allows users to directly add cells.[NOT RECOMMENDED FOR GAMEPLAY PURPOSES]
         CellBucket cell_bucket;
     private:
-        /// Keeps track of the EngineContext
-        EngineContext* engine_context;
+        // <><><> Three primary engine types <><><>
+        /// The SpriteManager of the Layer
+        SpriteManager sprites;
+        /// The BannerManager of the layer
+        BannerManager banners;
+        /// The ParticleManager of the Layer
+        ParticleManager particles;
+
+        // <><><> Texture Manipulation/Retrieval
         /// The background of the Layer
         Background* background = nullptr;
-        /// The SpriteManager of the Layer
-        SpriteManager sprite;
-        /// The BannerManager of the layer
-        BannerManager banner;
         /// The FontList of the layer
-        FontList fl;
+        FontList fonts;
         /// The FrameList of the layer
-        FrameList frame;
-        /// The MorphManager of the Layer
-        MorphManager morph;
-        /// The RouteManager of the layer
-        RouteManager route;
-        /// The ParticleManager of the Layer
-        ParticleManager particle;
+        FrameList frames;
         /// The TileList of the Layer
-        TileList tilesets;
+        TileList tiles;
+
+        // <><><> Effects applied to engine tyeps <><><>
+        /// The MorphManager of the Layer
+        MorphManager morphs;
+        /// The RouteManager of the layer
+        RouteManager routes;
+
+        // <><><> Physics/Worldbuilding <><><>
         /// The WorldManager of the Layer
         WorldManager world;
         /// The Physics Manager of the Lyaer
         PhysicsMaestro physics;
-
-        // ID-Assignment
-        /// Keeps track of the layer's id
-        int id = -1;
-        /// Keeps track of whether the layer is active or not
-        bool active = false;
-
+    public:
+        // <><><> Initialization <><><>
+        /// Allows the user to very easily call for initialization.
+        Initializer init;
+    private:
         // Adding/Removing Gears
         /// Holds all the renderable elements of the Layer
-        std::vector<Gear*> gears;
+        gch::vector<Gear*> gears;
+        /// Used for id-assignmnet
+        int id = 0;
         /// Adds one element to the Layer
         bool add_gear(Gear* g);
         /// Removes the specifies element from the Layer
         void remove_gear(Gear* g);
     public:
         /// Constructor for a Layer
-        explicit Layer(std::string name);
+        explicit Layer(LayerInit& layer_init, geng::fstring<10> name);
         /// Destructor for a Layer
         virtual ~Layer();
 
@@ -92,21 +103,21 @@ namespace geng {
         /// Adds an sprite to the Layer
         void add_sprite(Sprite* a);
         /// Adds several sprites to the scene.
-        void add_sprites(const std::vector<Sprite*>& sprites);
+        void add_sprites(gch::vector<Sprite *> &new_sprites);
         /// Removes an sprite from the engine.
         void remove_sprite(Sprite *a);
         /// Removes a vector of sprites from the engine.
-        void remove_sprites(const std::vector<Sprite*>& objs);
+        void remove_sprites(gch::vector<Sprite *> &objs);
 
         // <><><> Banners <><><>
         /// Adds a banner to the layer
         void add_banner(Banner* b);
         /// Adds several banners to the layer
-        void add_banners(const std::vector<Banner*>& banners);
+        void add_banners(gch::vector<Banner *> &banners);
         /// Removes a banner from the scene
         void remove_banner(Banner* b);
         /// Removes several banners from the scene
-        void remove_banners(const std::vector<Banner*>& banners);
+        void remove_banners(gch::vector<Banner *> &banners);
 
         // <><><> Fonts & Frames <><><>
         /// Gets a font
@@ -118,13 +129,13 @@ namespace geng {
         /// Attatches a particle to an sprite and then adds it to the rendering pipline.
         void attach_particle(Gear *g, ParticleGroup *pg);
         /// Adds multiple particles to the rendering pipeline.
-        void attach_particles(std::vector<ParticleGroup*>& pgs);
+        void attach_particles(gch::vector<ParticleGroup*>& pgs);
         /// Removes a particle
         void detach_particle(ParticleGroup* pg);
         /// Removes all particles attaches to an sprite.
         void detach_particle(Sprite *a);
         /// Detaches all particles attached to sprites
-        void detach_particles(const std::vector<Sprite*>& pgs);
+        void detach_particles(gch::vector<Sprite *> &pg);
         /// Adds a detatched particle to the rendering pipeline
         void instantiate_particle(ParticleGroup *pg);
 
@@ -141,7 +152,7 @@ namespace geng {
         // <><><> Physics <><><>
         /// Adds a collider to the physics engine
         void link_collider(Collider* c);
-        /// Removes a collider from the physic engine
+        /// Removes a collider from the physics engine
         void unlink_collider(Collider* c);
 
         // <><><> Routes <><><>
@@ -159,7 +170,7 @@ namespace geng {
 
         // <><><> Worlds <><><>
         /// Sets the current world given the filename
-        void load_world(std::string filename, int tileset_num);
+        void load_world(geng::hstring filename, int tileset_num);
 
         // <><><> Tilesets <><><>
         /// Lets you get a tileset from the tileset list
@@ -167,28 +178,29 @@ namespace geng {
 
         // <><><> Returns the center of the scene <><><>
         FPos2D get_scene_center() const;
-
+        // <><><> Returns whether we're active or not.
+        bool is_active() const;
+        // <><><> Returns the name of the layer
+        geng::fstring<10> get_name() const;
+    protected:
+        friend class Engine;
+        friend class Renderer;
         // <><><> Engine-Specific Functions <><><>
-        /// Called by the engine to initialize the scene. Only override if you really trust yourself.
-        virtual TextureRegister& _init();
         /// Called by the engine to render itself. Only override if you really trust yourself.
-        virtual std::vector<DrawBatch> _render_self(RenderBuffer& buffer);
+        virtual void render_self(RenderBuffer &buffer);
+    private:
         /// Renders the gears in the layer
-        void _render_gears(RenderBuffer &buffer,DrawBatch &current_batch,std::vector<DrawBatch> &batches);
+        void render_gears(RenderBuffer &buffer);
         /// Renders the debug grid in the layer
-        void _render_grid(RenderBuffer &buffer, int grid_div, int thickness, bool subdiv = false) const;
-        /// Called by _render_self to optionally render hitboxes. Only override if you really know what you're doing.
-        virtual void _render_hitboxes(RenderBuffer &buffer);
+        void render_grid(RenderBuffer &buffer, int grid_div, int thickness, bool subdiv = false) const;
+        /// Called by render_self to optionally render hitboxes. Only override if you really know what you're doing.
+        virtual void render_hitboxes(RenderBuffer &buffer);
 
         /// Orders the Layer based on ordering type. (batched, strict, z-indexed)
-        void _order();
-        /// Adds the engine context to the layer
-        void _add_engine_context(EngineContext* ec);
+        void order();
         /// Finds a texture from the texture register
         SDL_Texture* _find_texture(int texture_id);
-        /// Sets the layer's active status
-        void _set_active(bool status);
 
-        bool is_active() const;
+
     };
 }
