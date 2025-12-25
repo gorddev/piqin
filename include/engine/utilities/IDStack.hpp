@@ -1,5 +1,4 @@
 #pragma once
-#include <vector>
 
 #define INIT_QUEUE_SIZE 100
 
@@ -9,7 +8,7 @@ namespace gutils {
 	class IDStack {
 	private:
 		// List of all IDs
-		std::vector<int> IDs;
+		gch::vector<int> IDs;
 		// Top of the stack
 		int front = 0;
 		int stackSize = INIT_QUEUE_SIZE;

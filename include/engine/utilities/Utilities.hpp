@@ -19,5 +19,14 @@ namespace gutils {
     void adjust_to_relative_coords(SDL_Point &point, geng::EngineContext &world);
     /// Uses the sweep method to detect collisions
     bool swept_aabb(const geng::Box2D& moving, const geng::Box2D& target, const geng::FPos2D& delta, float& toi, geng::FPos2D& normal);
+
+    /// Converts a cstr to a float
+    bool cstr_to_float(const char* str, float& out);
+    /// Converts a cstr_to an integer
+    bool cstr_to_int(const char* str, int& out);
+    /// Checks if an input is a float
+    bool is_float(const char* str);
+    /// Checks if an input is an integer
+    bool is_int(const char* str);
 }
 

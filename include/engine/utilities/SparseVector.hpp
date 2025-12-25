@@ -8,7 +8,7 @@ namespace gutils {
     template <typename T>
     struct SparseVector {
     private:
-        std::vector<T*> entries;
+        gch::vector<T*> entries;
         std::queue<int> positions;
     public:
         SparseVector() = default;
