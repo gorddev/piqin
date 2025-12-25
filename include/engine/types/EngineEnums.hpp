@@ -1,7 +1,7 @@
 #pragma once
 
-#include <cstdint>
-#include <string>
+#include "engine/debug/logging/LogSource.hpp"
+#include "strings/fstring/fstring.hpp"
 
 // General editing
 //#define PIXEL_PERFECT false
@@ -38,15 +38,10 @@ namespace geng {
         draggable = 1 << 10,    /// Clicking on the object will call it's on_click() function
         dragged = 1 << 11,     /// This object can be dragged around by the cursor on click
         clicked = 1 << 12,  /// This object is currently is_clicked by the cursor. You do not manage this
-        sprite = 1 << 13,    /// Means that this object is an sprite (DO NOT CHANGE)
+        sprite = 1 << 13,    /// Means that this object is an sprites (DO NOT CHANGE)
         particle = 1 << 14, /// Means that this object is a particle (DO NOT CHANGE)
         banner = 1 << 15,    /// Means that this object is a banner (DO NOT CHANGE)
     };
-
-    /// Returns true if the inner flag contains the outer flag.
-    inline bool operator<<(GFlag f1, GFlag f2) {
-        return (static_cast<uint16_t>(f1) & static_cast<uint16_t>(f2));
-    }
 
     inline GFlag operator|(GFlag f1, GFlag f2) {
         return static_cast<GFlag>(static_cast<uint16_t>(f1) | static_cast<uint16_t>(f2));
@@ -86,23 +81,25 @@ namespace geng {
     }
 
     /// Converts a GFlag into a string.
-    inline std::string to_string(GFlag flag) {
-        auto f = [](bool op) { return (op) ? "true" : "false"; };
-        std::string ret = "Hidden: ";
-        ret += f(flag << GFlag::hidden);
-        ret += "\nShadow: ";
-        ret += f(flag << GFlag::shadow);
-        ret += "\nLocked: ";
-        ret += f(flag << GFlag::locked);
-        ret += "\nTagged: ";
-        ret += f(flag << GFlag::tagged);
-        ret += "\nRemove: ";
-        ret += f(flag << GFlag::remove);
-        ret += "\nClicked: ";
-        ret += f(flag << GFlag::clicked);
-        ret += "\nDragged: ";
-        ret += f(flag << GFlag::dragged);
-        return ret;
+    inline geng::str_view& to_fstring(geng::str_view& buffer, GFlag flag) {
+        auto f = [](GFlag op) { return (static_cast<bool>(op)) ? "true" : "false"; };
+        buffer << "type: ";
+        buffer << (static_cast<bool>(flag & GFlag::banner) ? "banner" : static_cast<bool>(flag & GFlag::sprite) ? "sprite" : "particle");
+        buffer << "\thidden: ";
+        buffer << f(flag & GFlag::hidden);
+        buffer << "\tshadow: ";
+        buffer << f(flag & GFlag::shadow);
+        buffer << "\tlocked: ";
+        buffer << f(flag & GFlag::locked);
+        buffer << "\ttagged: ";
+        buffer << f(flag & GFlag::tagged);
+        buffer << "\nremove: ";
+        buffer << f(flag & GFlag::remove);
+        buffer << "\tclicked: ";
+        buffer << f(flag & GFlag::clicked);
+        buffer << "\tdragged: ";
+        buffer << f(flag & GFlag::dragged);
+        return buffer;
     }
 
     /* Render Frames */
@@ -119,4 +116,16 @@ namespace geng {
         CONTINUE = 2,
         REPEAT = 3
     };
+
+    inline const char* to_string(GAnimType anim) {
+        if (anim == GAnimType::IDLE)
+            return "IDLE";
+        if (anim == GAnimType::RESET)
+            return "RESET";
+        if (anim == GAnimType::CONTINUE)
+            return "CONTINUE";
+        if (anim == GAnimType::REPEAT)
+            return "REPEAT";
+        return "null";
+    }
 }

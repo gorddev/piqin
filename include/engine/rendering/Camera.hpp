@@ -1,6 +1,8 @@
 #pragma once
 #include <sstream>
 
+#include "engine/debug/logging/LogSource.hpp"
+#include "engine/types/strings/str_view/str_view.hpp"
 #include "engine/types/positioning/Dim2D.hpp"
 #include "engine/types/positioning/Pos2D.hpp"
 
@@ -38,7 +40,7 @@ namespace geng {
         Pos2D pos;
 
         /** @brief Default constructor. Sets position to (0, 0) and size to (100, 100). */
-        Camera() : pos(0, 0), dim(100, 100) { }
+        Camera() : pos(0, 0), dim(100, 100) {  }
 
         /** @brief Construct camera with position and size.*/
         Camera(int x, int y, int w, int h) : pos(x, y), dim(w, h) { }
@@ -86,11 +88,9 @@ namespace geng {
          * @brief Convert camera to string.
          * @return String with position and size
          */
-        [[nodiscard]] std::string to_string() const {
-            std::stringstream ss;
-            ss << "x: " << pos.x << " y: " << pos.y
+        void to_fstring(geng::str_view& buffer) const {
+            buffer << "x: " << pos.x << " y: " << pos.y
                << " w: " << dim.w << " h: " << dim.h;
-            return ss.str();
         }
     };
 }

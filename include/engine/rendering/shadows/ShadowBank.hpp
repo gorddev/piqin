@@ -1,15 +1,16 @@
 #pragma once
+
 #include <SDL_render.h>
 #include <functional>
-#include <vector>
 
+#include "engine/types/strings/hstring/hstring.hpp"
 #include "shadow-types/ShadowBackground.hpp"
 #include "shadow-types/ShadowFloor.hpp"
 
 
 namespace geng {
     /// Alias so we don't have to write that out each time.
-    using shadowFunc = std::function<void(std::vector<SDL_Vertex>& buffer, int& numVertices, void* userdata)>;
+    using shadowFunc = std::function<void(gch::vector<SDL_Vertex>& buffer, int& numVertices, void* userdata)>;
 
     /** @brief The shadow calculator takes in a buffer of vertices, and renders a shadow behind the number of provided vertices.
      * @details The shadow calculator can dynamically change it's shadow render method on the fly with the set_function(...) method. Two shadow casting methods are pre-provided
@@ -30,7 +31,7 @@ namespace geng {
         int floor = 50;
     public:
         /// Unordered map containing all banked shaow functions.
-        std::unordered_map<std::string, shadowFunc> shadowfuncs {
+        std::unordered_map<hstring, shadowFunc> shadowfuncs {
                 {"background", gfx::shadow_background},
                 {"floor", gfx::shadow_floor}
         };
@@ -39,13 +40,13 @@ namespace geng {
         ShadowBank();
 
         /// Sets the current function via the provided string
-        void set_function(const std::string &shadow);
+        void set_function(const hstring shadow);
         /// Adds a shadow function to the current shadowBank
-        void add_function(const std::string& shadow, shadowFunc func);
+        void add_function(const hstring shadow, shadowFunc func);
         /// Applies a shadow to a buffer
-        void apply_shadow(std::vector<SDL_Vertex>& buffer, int numVertices, std::string shadow_type);
+        void apply_shadow(gch::vector<SDL_Vertex>& buffer, int numVertices, hstring shadow_type);
         /// Applies a shadow to a buffer
-        void apply_shadow(std::vector<SDL_Vertex>& buffer, int numVertices = 3);
+        void apply_shadow(gch::vector<SDL_Vertex>& buffer, int numVertices = 3);
         /// Sets the floor for floor-based shadows
         void set_floor(int shadowFloor);
     };

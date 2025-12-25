@@ -22,12 +22,12 @@ namespace geng {
         /// Whether the mouse is down or not.
         bool down = false;
         /// Reference to the vector of mouse recievers.
-        std::vector<Gear*>& mouse_recievers;
+        gch::vector<Gear*>& mouse_recievers;
         /// Gets access to the camera
-        Camera& cam;
+        const Camera& cam;
 
         /// This constructor links the mouse to the vector it oversees.
-        explicit Mouse(std::vector<Gear*>& mouse_recievers, Camera& cam)
+        explicit Mouse(gch::vector<Gear*>& mouse_recievers, const Camera& cam)
             : mouse_recievers(mouse_recievers), cam(cam) {}
 
         /// Does things to a target if the mouse is hovering over something right now.

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <SDL.h>
+
+#include "InputRouterInit.hpp"
 #include "engine/layers/Layer.hpp"
 
 namespace geng {
@@ -15,7 +17,7 @@ namespace geng {
      * - @code InputRouter()@endcode : Default constructor.
      * - @code virtual ~InputRouter()@endcode : Virtual destructor.
      * - ----- MUST OVERRIDE: --------
-     * - @code virtual bool update() = 0@endcode : You decide what this does. It can just return false, but you must override it.
+     * - @code virtual bool update(Layer*& active_layer) = 0@endcode : You decide what this does. It can just return false, but you must override it.
      * - Helpful: If you want keys down, use the @code is_held(SLD_Scancode key)@endcode function in @code InputRouter@endcode
      * - ------------ Input Callbacks (all @b virtual / overridable)
      * - @code virtual bool get_press(SDL_Scancode, Layer*)@endcode : Key press.
@@ -30,17 +32,19 @@ namespace geng {
     class InputRouter {
     private:
         /// Contains whether each key is held down or not
-        uint8_t* key_states = nullptr;
+        uint8_t*& key_states;
+    protected:
+        /// Contains the engine core
+        EngineContext& core;
+        /// Default input router constructor
+        InputRouter(InputRouterInit& init) : key_states(init.key_states), core(init.core) {}
+        virtual ~InputRouter() = default;
+
+        friend class Engine; // hey look a friend!!!!
+
     public:
         /// Accepts input if active
         bool active = true;
-
-        InputRouter() = default;
-        explicit InputRouter(bool active) : active(active) {}
-        virtual ~InputRouter() = default;
-
-        /// @return True if you want to block all future input. Can just be a statement that returns false if you don't want to use it.
-        virtual bool update(Layer*& active_layer) = 0;
 
         /// @return @code true@endcode if the specified key is held down
         bool is_held(SDL_Scancode key) {
@@ -48,6 +52,9 @@ namespace geng {
                 return key_states[key];
             return false;
         }
+
+        /// @return True if you want to block all future input. Can just be a statement that returns false if you don't want to use it.
+        virtual bool update(Layer*& active_layer) = 0;
 
         /** @return true if input is consumed */
         virtual bool get_press(SDL_Scancode key, Layer*& active_layer) { return false; }

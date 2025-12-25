@@ -2,9 +2,10 @@
 #include "positioning/FPos2D.hpp"
 #include "engine/EngineContext.hpp"
 #include <SDL.h>
-#include <string>
+
 
 #include "engine/layers/LayerContext.hpp"
+#include "strings/fstring/fstring.hpp"
 
 namespace geng {
 
@@ -25,7 +26,7 @@ namespace geng {
  * @warning Any negative value in a Transform2D object is not defined behavior within the engine. There are no safeguards.
  * @note In order for computationally-intensive Transform2D calculations like rotation to be used, the @code locked()@endcode flag must be set to @code false@endcode on the associated @code geng::Gear@endcode.
  */
-struct Transform2D {
+struct Transform2D final {
 private:
     /// Base width of the object
     uint16_t baseWidth = 10;
@@ -68,9 +69,6 @@ public:
     /// Returns width, height, and rotation to default values
     void reset();
 
-    /// Converts object to string representation for debugging
-    std::string to_string() const;
-
     /// Gets the base width and height
     uint16_t get_base_width() const;
     uint16_t get_base_height() const;
@@ -79,8 +77,17 @@ public:
     void snap_to_scene(LayerContext& scene);
 
     /// Gets the points to render the hitbox of the transform object.
-    std::vector<SDL_FPoint> to_vertex_hitbox(
+    gch::vector<SDL_FPoint> to_vertex_hitbox(
         uint16_t thickness);
+
+    /// Converts object to string representation for debugging
+    const char* to_string() const {
+        geng::fstring<200> ret;
+        ret << geng::precision<4>() << "scale: " << scale << "\t" << "  angle: " << angle << "\t"
+        << "\tbase_w: " << baseWidth << "\tbase_h: " << baseHeight << "\n"
+        << "x: " << pos.x << " \ty: " << pos.y << "\twidth: " << w << "\theight: " << h << "\n";
+        return ret.cstr();
+    }
 };
 
 } // namespace geng

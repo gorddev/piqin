@@ -1,14 +1,10 @@
 #pragma once
 
-#include <iostream>
-
 #include "EngineContext.hpp"
+#include "debug/Console.hpp"
 #include "input/InputDistributor.hpp"
-#include "wip/Random.hpp"
 #include "rendering/Renderer.hpp"
-#include "engine/layers/LayerList.hpp"
-#include "types/positioning/Pos2D.hpp"
-
+#include "engine/layers/LayerManager.hpp"
 
 namespace geng {
     /**
@@ -20,21 +16,27 @@ namespace geng {
      * - For @code Morph@endcode: @code layer.apply_morph(...)@endcode and @code engine.strip_morph(...)@endcode
      */
     class Engine {
+    public:
+        /// Camera of the layer
+        Camera camera;
     private:
         /// Keeps track of all the essential data for our engine to run.
-        EngineContext context;
-
+        EngineContext core;
+        /// Keeps track of all of the currently loaded textures
+        TextureRegister texreg;
         /// Engine's Renderer. Very very off-limits no touching. Like seriously do not touch it.
         Renderer rend;
         /// Keeps track of all our layers so we can send them to the Renderer.
-        LayerList layers;
+        LayerManager layers;
+        /// The console of the layer
+        debug::Console* console;
     public:
-
-        /// Engine's InputDistributor.
+        /// Engine's InputDistributor. Call this to add routers to the engine.
         InputDistributor input;
 
-        // Constructor/destructor
+        /// Constructor/destructor
         Engine();
+        /// Default destructor—no pointers in engine.
         ~Engine() = default;
 
         // *******************
@@ -59,44 +61,45 @@ namespace geng {
         // *******************
         // <><> Layers <><>
         // *******************
-        /// Adds a layer to the engine and composes uninitialized elements. Can be called multiple times on the same layer in case you add additional textures or frame tables.
-        void compose_layer(Layer *l);
+        /// Adds a layer to the engine
+        /// Typename... Args
+        template <typename T, typename... Args>
+        T* create_layer(Args&&... args);
         // <><> Active Layer <><><>
         /// Sets the active layer that recieves input to the specified layer.
         void set_active_layer(Layer *layer);
-
-        void set_active_layer(std::string name);
-
+        /// sets the active layer with the specified name.
+        void set_active_layer(geng::fstring<10> name);
+        /// Increases the active layer by one
         void increment_active_layer();
-
         /// Gets the active layer
         Layer* get_active_layer();
+
         // <><> Destroying Layers <><><>
         /// Removes a layer from the engine and destroys it based on layer pointer
         void destroy_layer(Layer *l);
         /// Removes a layer from the engine and destroys it based on layer name
-        void destroy_layer(std::string layer_name);
+        void destroy_layer(geng::fstring<10> layer_name);
         // <><> Getting Layer <><><>
         /// Gets a layer based on the layer name
-        Layer *get_layer(std::string layer_name);
+        Layer *get_layer(geng::fstring<10> layer_name);
 
 
         // ***************************
         // <><> Input Management <><><>
         // ***************************
-        /// Adds an InputRouter to the InputDistributor
-        void add_input_router(InputRouter* router);
+        template <typename T, typename... Args>
+        T* create_router(Args&&... args);
         /// Removes an InputRouter from the InputDistributor
-        void remove_input_router(InputRouter* router);
+        void remove_router(InputRouter* router);
 
         // *********************
         // <><> Debugging <><><>
         // *********************
-        /// Directly logs from engine root. Usually not recommended to do.
-        void direct_log(int severity, std::string msg, std::string src = "");
         /// Enables debugging modes in the engine
         void set_debug_mode(bool enabled);
-        /// Immediately prints all debug notifications
-        void set_debug_immediate_print(bool enabled);
+
     };
 }
+
+#include "engine/Engine.inl"

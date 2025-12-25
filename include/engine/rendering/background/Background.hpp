@@ -1,6 +1,5 @@
 #pragma once
 #include <SDL.h>
-#include <vector>
 
 #include "BackgroundPalette.hpp"
 #include "engine/EngineContext.hpp"
@@ -10,13 +9,13 @@ namespace geng {
     class Background {
     private:
         // Stores the pixel of each of our rgb values
-        std::vector<uint8_t> rgb;
+        gch::vector<uint8_t> rgb;
         // Heightmap for dune-like structure.
-        std::vector<float> heightMap;
+        gch::vector<float> heightMap;
         // Keeps track of the intended color of each pixel
-        std::vector<uint8_t> pixelColors;
+        gch::vector<uint8_t> pixelColors;
         // Keeps track of the BackgroundPalletes
-        std::vector<BackgroundPalette> palettes;
+        gch::vector<BackgroundPalette> palettes;
         // Then tells us what pallete we're on
         int paletteNum = 0;
         // The texture that the background writes to.

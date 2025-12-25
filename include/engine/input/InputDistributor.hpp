@@ -11,18 +11,22 @@ namespace geng {
      * @details the InputManager directly recieves keyboard polls and distributes the inputs accordingly. It has a */
     class InputDistributor final {
     private:
-        /// Contains the engine_context context
+        /// Contains the engine_context core
         EngineContext& world;
         /// Contains all the InputRouters
-        std::vector<InputRouter*> routers;
+        gch::vector<InputRouter*> routers;
         /// Contains a map with all the states
-        uint8_t* key_state;
+        uint8_t* key_states;
+
+        friend class Engine;
+        /// Gets the held keystates
+        uint8_t*& get_keystates();
 
     public:
         /// Constructor
         explicit InputDistributor(EngineContext& e);
         /// Update with a given key event & Layer. We use Layer Pointers because a layer might not be set up immedaitely.
-        void process_event(const SDL_Event & e, Layer* active_layer) const;
+        void process_event(const SDL_Event & e, Layer* active_layer);
         /// Updates all the input routers with the currently held events.
         void update(Layer *active_layer);
 
@@ -30,7 +34,8 @@ namespace geng {
         void add_input_router(InputRouter* router);
         /// Removes an input router
         void remove_input_router(InputRouter* router);
-        /// Adds the key_state pointer after initialization
+
+        /// Adds the key_states pointer after initialization
         void _init();
     };
 }

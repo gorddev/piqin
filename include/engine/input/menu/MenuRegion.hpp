@@ -1,8 +1,7 @@
 #pragma once
 
-#include <vector>
-
 #include "Selector.hpp"
+#include "engine/types/external/vector.hpp"
 
 namespace geng {
     struct Selection {
@@ -13,9 +12,9 @@ namespace geng {
     template <typename Item>
     class MenuRegion {
         // Takes a vector of vector pointers to
-        std::vector<std::vector<Item*>*> menus;
+        gch::vector<gch::vector<Item*>*> menus;
         // Keeps track of the menus we have access to.
-        std::vector<short> rows;
+        gch::vector<short> rows;
         // Tells us whether we wrap or not
         bool wrapy;
         bool wrapx;
@@ -31,10 +30,10 @@ namespace geng {
 
     public:
         // Constructor
-        MenuRegion(std::vector<std::vector<Item*>*> menus, bool wrapy, bool wrapx);
+        MenuRegion(gch::vector<gch::vector<Item*>*> menus, bool wrapy, bool wrapx);
 
         // Lets us set our selectable regions
-        void set_selectables(std::vector<short> selects);
+        void set_selectables(gch::vector<short> selects);
         // Lets us add a selectable region
         void add_selectable(short s);
 
@@ -57,7 +56,7 @@ namespace geng {
         void remove_selector();
 
         // Tostring solution
-        std::string to_string();
+        //std::string to_string();
     };
 }
 
@@ -65,7 +64,7 @@ namespace geng {
 
 namespace geng {
     template<typename Item>
-    MenuRegion<Item>::MenuRegion(std::vector<std::vector<Item*> *> menus, bool wrapx, bool wrapy)
+    MenuRegion<Item>::MenuRegion(gch::vector<gch::vector<Item*> *> menus, bool wrapx, bool wrapy)
         : menus(menus), wrapx(wrapx), s({0, 0}), selector(nullptr),
           wrapy(wrapy) {
     }
@@ -222,6 +221,7 @@ namespace geng {
         selector = nullptr;
     }
 
+    /*
     template<typename Item>
     std::string MenuRegion<Item>::to_string() {
         std::string ret = "Selector: Row " + std::to_string(s.row) + ", Col " + std::to_string(s.column);
@@ -244,6 +244,7 @@ namespace geng {
         ret+=  "}\n";
         return ret;
     }
+    */
 
     template<typename Item>
     bool MenuRegion<Item>::switch_selector_vertical() {
@@ -277,7 +278,7 @@ namespace geng {
     }
 
     template<typename Item>
- void MenuRegion<Item>::set_selectables(std::vector<short> selects) {
+ void MenuRegion<Item>::set_selectables(gch::vector<short> selects) {
         // Update our rows
         rows = std::move(selects);
 

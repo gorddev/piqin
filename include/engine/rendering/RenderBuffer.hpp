@@ -1,111 +1,96 @@
 #pragma once
 #include <SDL_render.h>
-#include <vector>
 
-#include "engine/types/positioning/Pos2D.hpp"
+
+#include "Camera.hpp"
+#include "DrawBatch.hpp"
+#include "engine/scene/initializer/TextureRegister.hpp"
+#include "engine/types/positioning/FPos2D.hpp"
 #include "engine/utilities/image-info/IMGDecoder.hpp"
 #include "shadows/ShadowBank.hpp"
 
 namespace geng {
+    namespace debug {
+        class Console;
+    }
 
+    /** The RenderBuffer contains all the information needed for the renderer to batch render calls. @code Layers@endcode append
+     * vertices to the render buffer, and the RenderBuffer offsets by camera effects. The RenderBuffer also has the capacity to handle
+     * undefined textures and the like*/
     class RenderBuffer final {
         /// The buffer that contains all the vertices we will render
-        std::vector<SDL_Vertex> buffer;
-        /// Contains the width and height of the current texture we're rendering
-        IMG_Info tex_info;
+        gch::vector<SDL_Vertex> buffer;
+        /// The buffer of batches if the renderer changes textures
+        TextureRegister& texreg;
+        /// Contains the current camera position of the scene
+        Pos2D campos;
+        /// Keeps track of the bank of shadows
+        ShadowBank& shadows;
         /// Contains the white point of the current texture we're rendering.
         SDL_FPoint white_point = {1.f, 1.f};
-        /// Contains the current camera position of the scene
-        Pos2D camera_pos;
-        /// Keeps track of the bank of shadows
-        ShadowBank shadows;
+        /// If our texture is not loaded:
+        bool loaded = true;
+        /// If we're in debug mode
+        bool debug = false;
+        /// Preps a vertex to be added
+        void prep_vertex(SDL_Vertex& vertex);
+    protected:
+        /// Contains each of the batches we'll render
+        gch::vector<DrawBatch> batches;
+        /// Contains the current draw batch
+        DrawBatch current_batch;
+
+        friend class Renderer; // hey look a friend
+
+        /// Renders console regardless of camera pos
+        void debug_mode(bool mode);
+        friend class debug::Console;
+
+        /// Returns the data of the buffer
+        [[nodiscard]] SDL_Vertex* data();
+        /// Size of the buffer
+        [[nodiscard]] int size() const;
+        /// Sets the position of the camera
+        void prep(Pos2D camera_pos);
+        /// Resize the render buffer
+        void resize(int num);
+        /// Pops the last batch onto the batch vector
+        void pop_last_batch();
     public:
         /// Constructed render buffer
-        explicit RenderBuffer(const ShadowBank& shadows) : buffer(10000),
-            tex_info("no image", 0, 0),
-            shadows(shadows) {}
+        explicit RenderBuffer(TextureRegister& texreg, ShadowBank& shadows);
 
+        /// Changes the current texture
+        void request_texture(int id);
+
+        // <><><> White Point <><><>
         /// Gets the white point of the current texture
-        SDL_FPoint get_white_point() { return white_point; }
+        SDL_FPoint get_white_point();
 
         // <><><> Standard push back functions <><><>
-        /// Adds FPos2D to the render buffer
-        void push_back(SDL_Vertex FPos2D) {
-            FPos2D.position.x -= camera_pos.x;
-            FPos2D.position.y -= camera_pos.y;
-            buffer.push_back(FPos2D);
-        }
+        /// Adds vertex to the render buffer
+        void push_back(SDL_Vertex vertex);
         /// Adds the properties of a FPos2D to the RenderBuffer to be added to the FPos2D buffer
-        void push_back(SDL_FPoint& pos, SDL_Color& color, SDL_FPoint& tex_coord) {
-            push_back({pos, color, tex_coord});
-        }
+        void push_back(SDL_FPoint& pos, SDL_Color& color, SDL_FPoint& tex_coord);
         /// Adds a buffer to the current buffer
-        void push_back(std::vector<SDL_Vertex>& vertices) {
-            for (auto& v : vertices) {
-                v.position.x -= camera_pos.x;
-                v.position.y -= camera_pos.y;
-            }
-            buffer.insert(buffer.end(), vertices.begin(), vertices.end());
-        }
+        void push_back(gch::vector<SDL_Vertex>& vertices);
 
         // <><><> Point-based push back functions
         /// Adds a point to the buffer -- thus ensuring that it is a single color. Default color is white.
-        void push_back(SDL_FPoint pos, SDL_Color color = {255, 255, 255, 255}) {
-            push_back({ pos, color, white_point});
-        }
+        void push_back(SDL_FPoint pos, SDL_Color color = {255, 255, 255, 255});
         /// Adds many points to the buffer with the specified color
-        void push_back(std::vector<SDL_FPoint>& pos, SDL_Color color = {255, 255, 255, 255}) {
-            for (auto& i : pos) {
-                push_back(i, color);
-            }
-        }
+        void push_back(gch::vector<SDL_FPoint>& pos, SDL_Color color = {255, 255, 255, 255});
 
         //<><><> Shadow Handling <><><>
         /// Gets the reference to the shadow bank
-        ShadowBank& get_shadow_bank() { return shadows; }
-        /// Renders a certain number of shadows from the top of the FPos2D buffer with a shadow_type
-        void push_shadow(int numShadows, std::string shadowType) {
-            shadows.apply_shadow(buffer, numShadows, std::move(shadowType));
-        }
+        ShadowBank& get_shadow_bank();
         /// Renders a certain number of shadows from the top of the FPos2D buffer with the default shadow type
-        void push_shadow(int numShadows) {
-            shadows.apply_shadow(buffer, numShadows);
-        }
-        /// Renders one shadow to the most recently added FPos2D.
-        void push_shadow() {
-            shadows.apply_shadow(buffer);
-        }
-        /// Adds shadows to a specific supplied buffer given the specified shadow type
-        void instanced_push_shadow(std::vector<SDL_Vertex>& vertices, int numShadows, std::string shadowType) {
-            shadows.apply_shadow(vertices, numShadows, std::move(shadowType));
-        }
-        /// Adds shadows to a specific supplied buffer
-        void instanced_push_shadow(std::vector<SDL_Vertex>& vertices, int numShadows) {
-            shadows.apply_shadow(vertices, numShadows);
-        }
-
-        // <><><> For use by the renderer <><><>
-        /// Size of the buffer
-        [[nodiscard]] long size() const { return buffer.size();}
-        /// Returns the data of the buffer
-        [[nodiscard]] SDL_Vertex* data() { return buffer.data();}
-        /// Clears the buffer
-        void clear() { buffer.clear(); }
-        /// Resize the render buffer
-        void resize(int num) { buffer.resize(num); }
-
-        // <><><> For Use By the Layers
-        /// Sets the image info
-        void set_img_info(IMG_Info info) {
-            tex_info = info;
-            white_point = {(tex_info.w - 0.5f)/tex_info.w,(tex_info.h - 0.5f)/tex_info.h};
-        }
-        /// Sets the camera position
-        void set_camera_pos(Pos2D pos) {
-            camera_pos = pos;
-        }
-
-
+        void push_shadow(int numShadows);
+        /// Renders one shadow to the most recently added 3 Vertexes.
+        void push_shadow();
+        /// Adds shadows to a specific supplied buffer, which is then added to the regular buffer
+        void instanced_push_shadow(gch::vector<SDL_Vertex>& vertices, int numShadows);
 
     };
-}
+
+} // namespace geng

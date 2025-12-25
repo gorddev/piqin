@@ -1,9 +1,8 @@
 #pragma once
-#include <cstdint>
-#include <utility>
 
 #include "debug/Debugger.hpp"
-#include "debug/debug-utilities/LogHistory.hpp"
+#include "rendering/Camera.hpp"
+#include "types/strings/fstring/fstring.hpp"
 
 namespace geng {
 
@@ -35,16 +34,22 @@ namespace geng {
         uint16_t borderY = 0;
         /// The scale of the scene.
         float scale = 1.f;
-
         /// Whether we are pixel perfect or not
         bool pixel_perfect = false;
         /// Whether they request a layer change
-        std::string layer_change;
+        geng::fstring<10> layer_change;
     public:
+        /// Reference to the camera of the engine
+        Camera& camera;
+
+        /* ***************** */
+        // Window information //
+        /* ***************** */
         /// Lets us have debug utilities
         debug::Debugger debugger;
 
-        EngineContext() = default;
+        explicit EngineContext(Camera& cam)
+            : camera(cam) {};
 
         /// Updates the engineContext to get new timings and everything!!!
         void update(const double game_time) {
@@ -54,12 +59,12 @@ namespace geng {
             frame++;
         }
 
-        /// Sets the window size of the current context. Not to be used except by the Engine.
+        /// Sets the window size of the current core. Not to be used except by the Engine.
         void _set_window_size(const uint16_t w, const uint16_t h) {
             width = w;
             height = h;
         }
-        /// Sets the border size of the current context. Not to be used except by the engine
+        /// Sets the border size of the current core. Not to be used except by the engine
         void _set_border_size(uint16_t bx, uint16_t by) {
             borderX = bx;
             borderY = by;
@@ -86,28 +91,14 @@ namespace geng {
             pixel_perfect = pix;
         }
 
-        /* ***************** */
-        // Logging & Debug //
-        /* ***************** */
-
-
-        void log(debug::Log& l) {
-            l.source = "ø/" + l.source;
-            debugger.log(l);
-        }
-        void log(int severity, const std::string msg, std::string src = "..") {
-            debug::Log l(static_cast<debug::Severity>(severity), msg, std::move(src));
-            log(l);
-        }
-
         void enable_debug() { debugger.debug_mode = true; }
         void disable_debug() { debugger.debug_mode = false;}
-        bool is_debug() { return debugger.is_debug(); }
+        bool is_debug() const { return debugger.is_debug(); }
 
-        void set_layer_change(std::string new_layer) {
+        void set_layer_change(const geng::fstring<10> &new_layer) {
             layer_change = new_layer;
         }
-        [[nodiscard]] std::string get_layer_change() {
+        [[nodiscard]] geng::fstring<10> get_layer_change() const {
             return layer_change;
         }
 

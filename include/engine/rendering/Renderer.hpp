@@ -6,6 +6,7 @@
 
 #include "RenderBuffer.hpp"
 #include "engine/EngineContext.hpp"
+#include "engine/debug/Console.hpp"
 #include "engine/layers/Layer.hpp"
 #include "engine/scene/initializer/TextureRegister.hpp"
 #include "shadows/ShadowBank.hpp"
@@ -18,7 +19,9 @@ namespace geng {
 	*/
 	class Renderer {
 	public:
-		explicit Renderer(EngineContext& world);
+		/// Makes the renderer with a core, a textureregister, and a camera.
+		explicit Renderer(EngineContext& world, TextureRegister& texreg, Camera& camera);
+		///
 		~Renderer();
 
 		/// Sets our render resolution to this size.
@@ -27,7 +30,7 @@ namespace geng {
 		/// Must call during engine setup
 		void _init();
 		/// Renders each engine element according to its type.
-		void render(std::vector<Layer *> &layers);
+		void render(gch::vector<Layer *> &layers, debug::Console *console = nullptr);
 		/// Present the render to the canvas
 		void present();
 		/// Initializes a texture register
@@ -37,6 +40,7 @@ namespace geng {
 		// RENDER PIPELINE
 		// Renders one layer and all it's components according to how it wants to be layered.
 		void render_layer(Layer *&lay);
+
 		// This sets our render texture to the small 300 x 200 window so we get pixel-perfect scaling.
 		void set_render_texture();
 		// Updates the canvas in case the user decides to resize the window
@@ -47,6 +51,10 @@ namespace geng {
 		ShadowBank shadows;
 		/// Holds all the buffer for vertices we will ever need
 		RenderBuffer buffer;
+		/// Holds the camera
+		Camera& camera;
+		/// Holds the texture register
+		TextureRegister& texreg;
 		/// Window is the SDL created window we draw to
 		SDL_Window* window = nullptr;
 		/// Renderer is the SDL created renderer we use to draw textures with. Tied to the window
@@ -59,7 +67,7 @@ namespace geng {
 		/// This is the texture we draw to before scaling up. It is the effective "resolution" of our window.
 		SDL_Texture* canvasTex = nullptr;
 
-		/// Holds engine context information necessary for rendering
+		/// Holds engine core information necessary for rendering
 		EngineContext& world;
 	};
 }

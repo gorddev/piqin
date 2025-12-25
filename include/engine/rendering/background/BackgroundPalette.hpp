@@ -1,8 +1,7 @@
 #pragma once
 
-#include <iostream>
 #include <utility>
-#include <vector>
+#include "engine/types/external/vector.hpp"
 
 namespace geng {
     struct BackgroundPalette {
@@ -11,9 +10,11 @@ namespace geng {
         uint8_t range;
         uint8_t speed;
         uint8_t chaos = 1;
-        std::vector<uint8_t> colors;
+        gch::vector<uint8_t> colors;
 
-        BackgroundPalette (uint8_t numColors, uint8_t range, uint8_t speed, uint8_t chaos, std::vector<uint8_t> weights, std::vector<uint8_t> colors)
+        BackgroundPalette() = default;
+
+        BackgroundPalette (uint8_t numColors, uint8_t range, uint8_t speed, uint8_t chaos, gch::vector<uint8_t> weights, gch::vector<uint8_t> colors)
             : numColors(numColors), range(range), speed(speed), chaos(chaos),
               colors(std::move(colors)) {
             // If our weights aren't enough

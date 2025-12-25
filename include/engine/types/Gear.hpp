@@ -1,10 +1,9 @@
 #pragma once
 
-#include <iostream>
-#include <vector>
 #include "EngineEnums.hpp"
 #include "Transform2D.hpp"
 #include "engine/rendering/RenderBuffer.hpp"
+#include "strings/fstring/fstring.hpp"
 
 namespace geng {
     /**
@@ -75,8 +74,8 @@ namespace geng {
         /// Virtual destructor of the gear.
         virtual ~Gear() = default;
         /// Virtual to_string for the gear
-        virtual std::string to_string() const {
-            return "Id: " + std::to_string(id) + "\nFlag: " + geng::to_string(flag);
+        virtual geng::str_view& to_fstring(geng::str_view& buffer) const {
+            return geng::to_fstring(buffer, flag) <<  t.to_string() << "\n";
         }
 
         /* ............. */
@@ -88,7 +87,7 @@ namespace geng {
         /// Unflips the lock flag, such that complex render calculations like rotation will be performed on the object
         void unlock() { flag &= ~GFlag::locked;}
         /// Returns if the flag is locked or not
-        bool locked() const { return flag << GFlag::locked; }
+        bool locked() const { return static_cast<bool>(flag & GFlag::locked); }
 
         // Hiding
         /// Hides the object
@@ -96,7 +95,7 @@ namespace geng {
         /// Unhides the object
         void unhide() { flag &= ~GFlag::hidden; }
         /// Returns true if the object is hidden
-        bool hidden() const { return flag << GFlag::hidden; }
+        bool hidden() const { return static_cast<bool>(flag & GFlag::hidden); }
 
         // Flipping
         /// Flips the object horizontally
@@ -108,9 +107,9 @@ namespace geng {
         /// Unflips the object vertically
         void unflipY() { flag &= ~GFlag::flipY; }
         /// Returns true if flipped horizontally
-        bool flippedX() const { return flag << GFlag::flipX; }
+        bool flippedX() const { return static_cast<bool>(flag & GFlag::flipX); }
         /// Returns true if flipped vertically
-        bool flippedY() const { return flag << GFlag::flipY; }
+        bool flippedY() const { return static_cast<bool>(flag & GFlag::flipY); }
 
         // Shadows
         /// Displays a shadow for this object
@@ -118,14 +117,14 @@ namespace geng {
         /// Prevents the display of a shadow for this object
         void unset_shadow() { flag &= ~GFlag::shadow; }
         /// Returns true if the object should have a shadow rendered
-        bool has_shadow() const { return flag << GFlag::shadow; }
+        bool has_shadow() const { return static_cast<bool>(flag & GFlag::shadow); }
 
         // Removal
         /// Flags the object to be removed in the next frame
         void flag_removal() { flag |= GFlag::remove; }
         void unflag_removal() { flag &= ~GFlag::remove; }
         /// Returns true if the object is flagged for removal
-        bool remove() const { return flag << GFlag::remove; }
+        bool remove() const { return static_cast<bool>(flag & GFlag::remove); }
 
         // Tagging
         /// The object's tostring will be printed out every frame
@@ -133,31 +132,31 @@ namespace geng {
         /// The object's tostring will not be printed out every frame
         void untag() { flag &= ~GFlag::tagged; }
         /// Returns true if is_tagged
-        bool is_tagged() const { return flag << GFlag::tagged; }
+        bool is_tagged() const { return static_cast<bool>(flag & GFlag::tagged); }
 
         // Gives the type of the object
-        /// Returns true if the object is an sprite
-        bool is_sprite() const { return flag << GFlag::sprite; }
+        /// Returns true if the object is an sprites
+        bool is_sprite() const { return static_cast<bool>(flag & GFlag::sprite); }
         /// Returns true if the object is a particle
-        bool is_particle() const { return flag << GFlag::particle; }
+        bool is_particle() const { return static_cast<bool>(flag & GFlag::particle); }
         /// Returns true if the object is a banner
-        bool is_banner() const { return flag << GFlag::banner; }
+        bool is_banner() const { return static_cast<bool>(flag & GFlag::banner); }
 
         /* .... Clicking and dragging .... */
         // Clicking
         /// Returns true if the object is currently is_clicked
-        bool is_clicked() { return flag << GFlag::clicked; }
+        bool is_clicked() { return static_cast<bool>(flag & GFlag::clicked); }
         /// Returns true if the object is currently being dragged.
-        bool is_dragged() const { return flag << GFlag::dragged; }
+        bool is_dragged() const { return static_cast<bool>(flag & GFlag::dragged); }
         /// Returns true if the object is currently hovered over
-        bool is_hovered() const { return flag << GFlag::hovered; }
+        bool is_hovered() const { return static_cast<bool>(flag & GFlag::hovered); }
 
         // Dragging
         /// Specifies this gear can be dragged
         void set_draggable() { flag |= GFlag::draggable; }
         /// Specifies this Gear can no longer be dragged
         void unset_draggable() { flag &= ~GFlag::draggable; }
-        bool is_draggable() const { return flag << GFlag::draggable; }
+        bool is_draggable() const { return static_cast<bool>(flag & GFlag::draggable); }
 
         // For engine use exclusively. DO NOT USE
         /// Adds special flags to the Gear
@@ -166,12 +165,12 @@ namespace geng {
         void _engine_deflagger(GFlag engine_deflag) { flag &= ~engine_deflag; }
 
         /// This function is called when the gear is designated as a keyboard_accepter
-        virtual void on_key_press(SDL_Scancode key) { std::cerr << "Gear::on_keypress: " << key << std::endl; }
+        virtual void on_key_press(SDL_Scancode key) {  }
         /// This function is called when the gear is designated as a keyboard acceptor and a key is released
-        virtual void on_key_release(SDL_Scancode key) { std::cerr << "Gear::on_keypress: " << key << std::endl; }
-        /// This function is called when hovering over the sprite with a cursor, and they are designated as a mouse acceptor
-        virtual void on_hover() { std::cerr << "Gear::on_hover()" << std::endl; }
-        /// This function is caleld when the is_hoverable is pulled away from the sprite
+        virtual void on_key_release(SDL_Scancode key) {  }
+        /// This function is called when hovering over the sprites with a cursor, and they are designated as a mouse acceptor
+        virtual void on_hover() {  }
+        /// This function is caleld when the is_hoverable is pulled away from the sprites
         virtual void on_hover_release() {}
         /// This function is called when the object is is_clicked on
         virtual void on_click() {}

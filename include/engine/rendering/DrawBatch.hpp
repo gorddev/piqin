@@ -1,25 +1,29 @@
 #pragma once
-#include <cstdint>
+
 #include <SDL_render.h>
 
 namespace geng {
 
-    /** The Layers send DrawBatches to the renderer so the renderer can batch render calls
-     * Because Layers have access to their own textures, they send them to the renderer so they renderer knows what to do.*/
+    /** @brief The Layers send DrawBatches to the renderer so the renderer can batch render calls.
+     * @details DrawBuffer has the following member functions:
+     * - @code num_vertices@endocde › THe number of vertices in the batch
+     * - @code start_index@endcode › The starting index in terms of the buffer where the batch starts
+     * - @code texture_id@endcode › The current texture if of the render buffer.
+     * **/
     struct DrawBatch {
         int num_vertices = 0;
         int start_index;
         int texture_id = -1;
-        SDL_Texture* tex;
-        DrawBatch(SDL_Texture* tex, int start_index)
-            : start_index(start_index), tex(tex) {}
+
+        DrawBatch() = default;
+
+        DrawBatch(int start_index)
+            : start_index(start_index) {}
 
         int size() const {
             return num_vertices;
         }
-        SDL_Texture* texture() const {
-            return tex;
-        }
+
         int begin() const {
             return start_index;
         }
