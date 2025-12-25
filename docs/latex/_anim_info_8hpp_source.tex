@@ -1,0 +1,62 @@
+\doxysection{Anim\+Info.\+hpp}
+\hypertarget{_anim_info_8hpp_source}{}\label{_anim_info_8hpp_source}\index{include/engine/scene/animation/AnimInfo.hpp@{include/engine/scene/animation/AnimInfo.hpp}}
+\mbox{\hyperlink{_anim_info_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_frame_8hpp}{Frame.hpp}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_layer_state_8hpp}{engine/layers/LayerState.hpp}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{struct\ }AnimInfo\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ Frame*\ frame;}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ uint16\_t\ animation\_index\ =\ 0;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ next\_anim\ =\ -\/1;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ queued\_anim\ =\ -\/1;}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ uint16\_t\ frame\_index\ =\ 0;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ uint16\_t\ default\_animation\ =\ 0;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ priority\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ duration\ =\ 0.f;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ dirty\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ AnimInfo(Frame\&\ first\_frame);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ AnimInfo(Frame\&\ first\_frame,\ uint16\_t\ default\_animation);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ update(LayerState\ \&time);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Getters}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ [[nodiscard]]\ uint16\_t\ get\_anim\_id()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ get\_next\_anim()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_next\_anim(\textcolor{keywordtype}{short}\ new\_anim);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ [[nodiscard]]\ uint16\_t\ get\_frame\_index()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ [[nodiscard]]\ GAnimType\ get\_frame\_type()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ [[nodiscard]]\ uint16\_t\ get\_default\_animation()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_frame\_id(uint16\_t\ new\_frame\_id);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Setters}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_frame(Frame\&\ s);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_animation(uint16\_t\ new\_animation,\ \textcolor{keywordtype}{bool}\ priorityStatus\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ suggest\_animation(\textcolor{keywordtype}{short}\ new\_animation);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ queue\_animation(\textcolor{keywordtype}{short}\ new\_animation);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_priority(\textcolor{keywordtype}{bool}\ state);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ has\_priority();}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_default\_animation(uint16\_t\ new\_default\_animation);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ get\_queued\_anim()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Utility}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ calc\_vertices(RenderBuffer\&\ buffer,\ Gear*\ gear);}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ pre\_increment\_frame();}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ [[nodiscard]]\ geng::str\_view\&\ to\_fstring(geng::str\_view\&\ buffer)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00097\ \ \ \ \ \};}
+\DoxyCodeLine{00098\ \}}
+
+\end{DoxyCode}

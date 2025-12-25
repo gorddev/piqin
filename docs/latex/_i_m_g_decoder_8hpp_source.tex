@@ -1,0 +1,23 @@
+\doxysection{IMGDecoder.\+hpp}
+\hypertarget{_i_m_g_decoder_8hpp_source}{}\label{_i_m_g_decoder_8hpp_source}\index{include/engine/utilities/image-\/info/IMGDecoder.hpp@{include/engine/utilities/image-\/info/IMGDecoder.hpp}}
+\mbox{\hyperlink{_i_m_g_decoder_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <SDL.h>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_texture_8hpp}{engine/scene/initializer/Texture.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{hstring_8hpp}{engine/types/strings/hstring/hstring.hpp}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1_i_m_g_decoder}{IMGDecoder}}\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Extracts\ the\ header\ information\ from\ a\ png.}}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structgeng_1_1_i_m_g___info}{IMG\_Info}}\ \mbox{\hyperlink{classgeng_1_1_i_m_g_decoder_a0de88a8e3db0b3b441f01c05382cd2db}{PNG\_Info}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ path[]);}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ New\ function\ signature\ for\ loading\ any\ image\ format\ supported\ by\ SDL\_image}}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structgeng_1_1_texture}{Texture}}\ \mbox{\hyperlink{classgeng_1_1_i_m_g_decoder_a59504eb7aa5a6fe988b04b023e8a7b84}{load\_image\_as\_texture}}(}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_Renderer\ *renderer,\ \mbox{\hyperlink{classgeng_1_1hstring}{hstring}}\ path);}
+\DoxyCodeLine{00019\ \ \ \ \ \};}
+\DoxyCodeLine{00020\ \}}
+
+\end{DoxyCode}

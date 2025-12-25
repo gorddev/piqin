@@ -1,0 +1,337 @@
+\doxysection{FPos2D Struct Reference}
+\hypertarget{struct_f_pos2_d}{}\label{struct_f_pos2_d}\index{FPos2D@{FPos2D}}
+
+
+{\ttfamily \#include $<$FPos2\+D.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_f_pos2_d_a4944e49ff28227de0c688a720ddfe29d}{FPos2D}} ()
+\begin{DoxyCompactList}\small\item\em Default constructs to 0, 0. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_f_pos2_d_a9e4f9ff778466f13e3ad05b4b9c885a9}{FPos2D}} (const float \mbox{\hyperlink{struct_f_pos2_d_a23949a4e0648bb4edbdc627b5fbea8e8}{x}}, const float \mbox{\hyperlink{struct_f_pos2_d_a181be76c32a0489aee802d52afaa2e74}{y}})
+\begin{DoxyCompactList}\small\item\em Can specify a construction. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} \mbox{\hyperlink{struct_f_pos2_d_a87bd46ccaa392b011b1cd9752f3a4169}{unit}} ()
+\begin{DoxyCompactList}\small\item\em Turns it into a unit vector. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{struct_f_pos2_d_ad8110ad74fd8830dc8d39fdb5cacbe74}{mag}} () const
+\begin{DoxyCompactList}\small\item\em Find the magnitude of the point. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{struct_f_pos2_d_af8952d9e13509b2a3103606fb136fc05}{dist}} (\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} p) const
+\begin{DoxyCompactList}\small\item\em Finds the distance to another \doxylink{struct_f_pos2_d}{FPos2D}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} \mbox{\hyperlink{struct_f_pos2_d_a5652627d581d994e4fcfcf771b8da26a}{abs}} ()
+\begin{DoxyCompactList}\small\item\em Gets the absolute value \doxylink{struct_f_pos2_d}{FPos2D} of this \doxylink{struct_f_pos2_d}{FPos2D}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_f_pos2_d_a8052e3e32021bf9053e7cc54353a6027}{to\+\_\+zero}} ()
+\begin{DoxyCompactList}\small\item\em Turns all the values in the \doxylink{struct_f_pos2_d}{FPos2D} to 0. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_f_pos2_d_ad80403a071ec8ae85491480be8db9f40}{randomize}} ()
+\begin{DoxyCompactList}\small\item\em Randomizes the values in the \doxylink{struct_f_pos2_d}{FPos2D}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_f_pos2_d_aa9597e491b03460f85bbd102c4e3c380}{sanitize}} ()
+\begin{DoxyCompactList}\small\item\em Converts to 0.\+f if the values are n\+An. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_f_pos2_d_a9165c3039bbd7c27819c0ce304d11967}{set}} (float new\+\_\+x, float new\+\_\+y)
+\begin{DoxyCompactList}\small\item\em sets the values in the object to the specified ones \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{struct_f_pos2_d_adec88ae2c39e5aae1b0b6d24591771f5}{is\+\_\+zero}} () const
+\begin{DoxyCompactList}\small\item\em Returns true if the \doxylink{struct_f_pos2_d}{FPos2D} is 0. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{struct_f_pos2_d_a3b80e0fa42555789e8c8fc2ea07de4c1}{is\+\_\+finite}} () const
+\begin{DoxyCompactList}\small\item\em Returns true if the values are finite. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{struct_f_pos2_d_a3a151d59f1339df6603d9008f4b381f0}{operator==}} (const \mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} \&p) const
+\begin{DoxyCompactList}\small\item\em Equality. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{struct_f_pos2_d_a6c908eac7ddaa4df58ce8f1789eb81cf}{operator!=}} (const \mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} \&p) const
+\begin{DoxyCompactList}\small\item\em Inequality. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} \mbox{\hyperlink{struct_f_pos2_d_aa5fae78419c4a076389369d4f4ff4f36}{operator+}} (const \mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} \&p) const
+\begin{DoxyCompactList}\small\item\em Addition by \doxylink{struct_f_pos2_d}{FPos2D}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} \mbox{\hyperlink{struct_f_pos2_d_aaaf67b081af23212f353759358eae414}{operator-\/}} (const \mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} \&p) const
+\begin{DoxyCompactList}\small\item\em Subtraction by \doxylink{struct_f_pos2_d}{FPos2D}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} \mbox{\hyperlink{struct_f_pos2_d_af7cb01e7ed069d6f06ac05a50194a23c}{operator\texorpdfstring{$\ast$}{*}}} (float scalar) const
+\begin{DoxyCompactList}\small\item\em Multiplication by scalar. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} \mbox{\hyperlink{struct_f_pos2_d_ab97a80e3805a1c8695c299e8167e9325}{operator/}} (float scalar) const
+\begin{DoxyCompactList}\small\item\em Division by scalar. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_f_pos2_d_a60241d5ceeb988b197f09d974843d4a9}{operator+=}} (const \mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} \&p)
+\begin{DoxyCompactList}\small\item\em Self Addition. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_f_pos2_d_a540cc8f535b3f43cbaecc724295cf52d}{operator-\/=}} (const \mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} \&p)
+\begin{DoxyCompactList}\small\item\em Self Subtraction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_f_pos2_d_aca085ce2da7eb011c547b6ce5c8de051}{operator\texorpdfstring{$\ast$}{*}=}} (float scalar)
+\begin{DoxyCompactList}\small\item\em Self Multiplication. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{struct_f_pos2_d_a233d921ead011fa92e9acf55c6c95bd7}{operator/=}} (float scalar)
+\begin{DoxyCompactList}\small\item\em Self Division. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_f_pos2_d_a27b7068d053493c42ee4f7c69ba38287}{operator SDL\+\_\+\+FPoint}} () const
+\begin{DoxyCompactList}\small\item\em Conversion to SDL\+\_\+\+FPoint. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgeng_1_1str__view}{geng\+::str\+\_\+view}} \& \mbox{\hyperlink{struct_f_pos2_d_a60b787f42fdaa1ff2bfeb87edbd04d78}{to\+\_\+string}} (\mbox{\hyperlink{classgeng_1_1str__view}{geng\+::str\+\_\+view}} \&buffer) const
+\begin{DoxyCompactList}\small\item\em To-\/\+String function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{struct_f_pos2_d_a23949a4e0648bb4edbdc627b5fbea8e8}{x}}
+\item 
+float \mbox{\hyperlink{struct_f_pos2_d_a181be76c32a0489aee802d52afaa2e74}{y}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{struct_f_pos2_d_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{struct_f_pos2_d_a4944e49ff28227de0c688a720ddfe29d}\index{FPos2D@{FPos2D}!FPos2D@{FPos2D}}
+\index{FPos2D@{FPos2D}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{FPos2D()}{FPos2D()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_a4944e49ff28227de0c688a720ddfe29d} 
+\mbox{\hyperlink{structgeng_1_1_f_pos2_d_a4944e49ff28227de0c688a720ddfe29d}{geng\+::\+FPos2\+D\+::\+FPos2D}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructs to 0, 0. 
+
+\Hypertarget{struct_f_pos2_d_a9e4f9ff778466f13e3ad05b4b9c885a9}\index{FPos2D@{FPos2D}!FPos2D@{FPos2D}}
+\index{FPos2D@{FPos2D}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{FPos2D()}{FPos2D()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_a9e4f9ff778466f13e3ad05b4b9c885a9} 
+\mbox{\hyperlink{structgeng_1_1_f_pos2_d_a4944e49ff28227de0c688a720ddfe29d}{geng\+::\+FPos2\+D\+::\+FPos2D}} (\begin{DoxyParamCaption}\item[{const float}]{x}{, }\item[{const float}]{y}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Can specify a construction. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{struct_f_pos2_d_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_f_pos2_d_a5652627d581d994e4fcfcf771b8da26a}\index{FPos2D@{FPos2D}!abs@{abs}}
+\index{abs@{abs}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{abs()}{abs()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_a5652627d581d994e4fcfcf771b8da26a} 
+\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} FPos2\+D\+::abs (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [nodiscard]}}
+
+
+
+Gets the absolute value \doxylink{struct_f_pos2_d}{FPos2D} of this \doxylink{struct_f_pos2_d}{FPos2D}. 
+
+\Hypertarget{struct_f_pos2_d_af8952d9e13509b2a3103606fb136fc05}\index{FPos2D@{FPos2D}!dist@{dist}}
+\index{dist@{dist}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{dist()}{dist()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_af8952d9e13509b2a3103606fb136fc05} 
+float FPos2\+D\+::dist (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}}}]{p}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [nodiscard]}}
+
+
+
+Finds the distance to another \doxylink{struct_f_pos2_d}{FPos2D}. 
+
+\Hypertarget{struct_f_pos2_d_a3b80e0fa42555789e8c8fc2ea07de4c1}\index{FPos2D@{FPos2D}!is\_finite@{is\_finite}}
+\index{is\_finite@{is\_finite}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{is\_finite()}{is\_finite()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_a3b80e0fa42555789e8c8fc2ea07de4c1} 
+bool FPos2\+D\+::is\+\_\+finite (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [nodiscard]}}
+
+
+
+Returns true if the values are finite. 
+
+\Hypertarget{struct_f_pos2_d_adec88ae2c39e5aae1b0b6d24591771f5}\index{FPos2D@{FPos2D}!is\_zero@{is\_zero}}
+\index{is\_zero@{is\_zero}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{is\_zero()}{is\_zero()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_adec88ae2c39e5aae1b0b6d24591771f5} 
+bool FPos2\+D\+::is\+\_\+zero (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [nodiscard]}}
+
+
+
+Returns true if the \doxylink{struct_f_pos2_d}{FPos2D} is 0. 
+
+\Hypertarget{struct_f_pos2_d_ad8110ad74fd8830dc8d39fdb5cacbe74}\index{FPos2D@{FPos2D}!mag@{mag}}
+\index{mag@{mag}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{mag()}{mag()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_ad8110ad74fd8830dc8d39fdb5cacbe74} 
+float FPos2\+D\+::mag (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [nodiscard]}}
+
+
+
+Find the magnitude of the point. 
+
+\Hypertarget{struct_f_pos2_d_a27b7068d053493c42ee4f7c69ba38287}\index{FPos2D@{FPos2D}!operator SDL\_FPoint@{operator SDL\_FPoint}}
+\index{operator SDL\_FPoint@{operator SDL\_FPoint}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{operator SDL\_FPoint()}{operator SDL\_FPoint()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_a27b7068d053493c42ee4f7c69ba38287} 
+FPos2\+D\+::operator SDL\+\_\+\+FPoint (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Conversion to SDL\+\_\+\+FPoint. 
+
+\Hypertarget{struct_f_pos2_d_a6c908eac7ddaa4df58ce8f1789eb81cf}\index{FPos2D@{FPos2D}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_a6c908eac7ddaa4df58ce8f1789eb81cf} 
+bool FPos2\+D\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} \&}]{p}{}\end{DoxyParamCaption}) const}
+
+
+
+Inequality. 
+
+\Hypertarget{struct_f_pos2_d_af7cb01e7ed069d6f06ac05a50194a23c}\index{FPos2D@{FPos2D}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_af7cb01e7ed069d6f06ac05a50194a23c} 
+\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} FPos2\+D\+::operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{float}]{scalar}{}\end{DoxyParamCaption}) const}
+
+
+
+Multiplication by scalar. 
+
+\Hypertarget{struct_f_pos2_d_aca085ce2da7eb011c547b6ce5c8de051}\index{FPos2D@{FPos2D}!operator\texorpdfstring{$\ast$}{*}=@{operator\texorpdfstring{$\ast$}{*}=}}
+\index{operator\texorpdfstring{$\ast$}{*}=@{operator\texorpdfstring{$\ast$}{*}=}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}=()}{operator*=()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_aca085ce2da7eb011c547b6ce5c8de051} 
+void FPos2\+D\+::operator\texorpdfstring{$\ast$}{*}= (\begin{DoxyParamCaption}\item[{float}]{scalar}{}\end{DoxyParamCaption})}
+
+
+
+Self Multiplication. 
+
+\Hypertarget{struct_f_pos2_d_aa5fae78419c4a076389369d4f4ff4f36}\index{FPos2D@{FPos2D}!operator+@{operator+}}
+\index{operator+@{operator+}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_aa5fae78419c4a076389369d4f4ff4f36} 
+\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} FPos2\+D\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} \&}]{p}{}\end{DoxyParamCaption}) const}
+
+
+
+Addition by \doxylink{struct_f_pos2_d}{FPos2D}. 
+
+\Hypertarget{struct_f_pos2_d_a60241d5ceeb988b197f09d974843d4a9}\index{FPos2D@{FPos2D}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_a60241d5ceeb988b197f09d974843d4a9} 
+void FPos2\+D\+::operator+= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} \&}]{p}{}\end{DoxyParamCaption})}
+
+
+
+Self Addition. 
+
+\Hypertarget{struct_f_pos2_d_aaaf67b081af23212f353759358eae414}\index{FPos2D@{FPos2D}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_aaaf67b081af23212f353759358eae414} 
+\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} FPos2\+D\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} \&}]{p}{}\end{DoxyParamCaption}) const}
+
+
+
+Subtraction by \doxylink{struct_f_pos2_d}{FPos2D}. 
+
+\Hypertarget{struct_f_pos2_d_a540cc8f535b3f43cbaecc724295cf52d}\index{FPos2D@{FPos2D}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_a540cc8f535b3f43cbaecc724295cf52d} 
+void FPos2\+D\+::operator-\/= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} \&}]{p}{}\end{DoxyParamCaption})}
+
+
+
+Self Subtraction. 
+
+\Hypertarget{struct_f_pos2_d_ab97a80e3805a1c8695c299e8167e9325}\index{FPos2D@{FPos2D}!operator/@{operator/}}
+\index{operator/@{operator/}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_ab97a80e3805a1c8695c299e8167e9325} 
+\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} FPos2\+D\+::operator/ (\begin{DoxyParamCaption}\item[{float}]{scalar}{}\end{DoxyParamCaption}) const}
+
+
+
+Division by scalar. 
+
+\Hypertarget{struct_f_pos2_d_a233d921ead011fa92e9acf55c6c95bd7}\index{FPos2D@{FPos2D}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{operator/=()}{operator/=()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_a233d921ead011fa92e9acf55c6c95bd7} 
+void FPos2\+D\+::operator/= (\begin{DoxyParamCaption}\item[{float}]{scalar}{}\end{DoxyParamCaption})}
+
+
+
+Self Division. 
+
+\Hypertarget{struct_f_pos2_d_a3a151d59f1339df6603d9008f4b381f0}\index{FPos2D@{FPos2D}!operator==@{operator==}}
+\index{operator==@{operator==}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_a3a151d59f1339df6603d9008f4b381f0} 
+bool FPos2\+D\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} \&}]{p}{}\end{DoxyParamCaption}) const}
+
+
+
+Equality. 
+
+\Hypertarget{struct_f_pos2_d_ad80403a071ec8ae85491480be8db9f40}\index{FPos2D@{FPos2D}!randomize@{randomize}}
+\index{randomize@{randomize}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{randomize()}{randomize()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_ad80403a071ec8ae85491480be8db9f40} 
+void FPos2\+D\+::randomize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Randomizes the values in the \doxylink{struct_f_pos2_d}{FPos2D}. 
+
+\Hypertarget{struct_f_pos2_d_aa9597e491b03460f85bbd102c4e3c380}\index{FPos2D@{FPos2D}!sanitize@{sanitize}}
+\index{sanitize@{sanitize}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{sanitize()}{sanitize()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_aa9597e491b03460f85bbd102c4e3c380} 
+void FPos2\+D\+::sanitize (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Converts to 0.\+f if the values are n\+An. 
+
+\Hypertarget{struct_f_pos2_d_a9165c3039bbd7c27819c0ce304d11967}\index{FPos2D@{FPos2D}!set@{set}}
+\index{set@{set}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_a9165c3039bbd7c27819c0ce304d11967} 
+void FPos2\+D\+::set (\begin{DoxyParamCaption}\item[{float}]{new\+\_\+x}{, }\item[{float}]{new\+\_\+y}{}\end{DoxyParamCaption})}
+
+
+
+sets the values in the object to the specified ones 
+
+\Hypertarget{struct_f_pos2_d_a60b787f42fdaa1ff2bfeb87edbd04d78}\index{FPos2D@{FPos2D}!to\_string@{to\_string}}
+\index{to\_string@{to\_string}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{to\_string()}{to\_string()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_a60b787f42fdaa1ff2bfeb87edbd04d78} 
+\mbox{\hyperlink{classgeng_1_1str__view}{geng\+::str\+\_\+view}} \& FPos2\+D\+::to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeng_1_1str__view}{geng\+::str\+\_\+view}} \&}]{buffer}{}\end{DoxyParamCaption}) const}
+
+
+
+To-\/\+String function. 
+
+\Hypertarget{struct_f_pos2_d_a8052e3e32021bf9053e7cc54353a6027}\index{FPos2D@{FPos2D}!to\_zero@{to\_zero}}
+\index{to\_zero@{to\_zero}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{to\_zero()}{to\_zero()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_a8052e3e32021bf9053e7cc54353a6027} 
+void FPos2\+D\+::to\+\_\+zero (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Turns all the values in the \doxylink{struct_f_pos2_d}{FPos2D} to 0. 
+
+\Hypertarget{struct_f_pos2_d_a87bd46ccaa392b011b1cd9752f3a4169}\index{FPos2D@{FPos2D}!unit@{unit}}
+\index{unit@{unit}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{unit()}{unit()}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_a87bd46ccaa392b011b1cd9752f3a4169} 
+\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} FPos2\+D\+::unit (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [nodiscard]}}
+
+
+
+Turns it into a unit vector. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{struct_f_pos2_d_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_f_pos2_d_a23949a4e0648bb4edbdc627b5fbea8e8}\index{FPos2D@{FPos2D}!x@{x}}
+\index{x@{x}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_a23949a4e0648bb4edbdc627b5fbea8e8} 
+float \mbox{\hyperlink{structgeng_1_1_f_pos2_d_a23949a4e0648bb4edbdc627b5fbea8e8}{geng\+::\+FPos2\+D\+::x}}}
+
+\Hypertarget{struct_f_pos2_d_a181be76c32a0489aee802d52afaa2e74}\index{FPos2D@{FPos2D}!y@{y}}
+\index{y@{y}!FPos2D@{FPos2D}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily \label{struct_f_pos2_d_a181be76c32a0489aee802d52afaa2e74} 
+float \mbox{\hyperlink{structgeng_1_1_f_pos2_d_a181be76c32a0489aee802d52afaa2e74}{geng\+::\+FPos2\+D\+::y}}}
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/types/positioning/\mbox{\hyperlink{_f_pos2_d_8hpp}{FPos2\+D.\+hpp}}\item 
+src/engine/types/positioning/\mbox{\hyperlink{_f_pos2_d_8cpp}{FPos2\+D.\+cpp}}\end{DoxyCompactItemize}

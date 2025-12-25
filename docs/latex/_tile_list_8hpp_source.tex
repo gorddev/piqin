@@ -1,0 +1,46 @@
+\doxysection{Tile\+List.\+hpp}
+\hypertarget{_tile_list_8hpp_source}{}\label{_tile_list_8hpp_source}\index{include/engine/scene/tilesets/TileList.hpp@{include/engine/scene/tilesets/TileList.hpp}}
+\mbox{\hyperlink{_tile_list_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_tileset_8hpp}{Tileset.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_log_source_8hpp}{engine/debug/logging/LogSource.hpp}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1_tile_list_ad5309b017300f846f50a0d12f776d149}{TileList}}\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<Tileset>}}\ tilesets;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_tile_list_ad5309b017300f846f50a0d12f776d149}{TileList}}()\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglog_aee5b7c6d10b7f7ad6196fc3f10bc4020}{glog::note}}\ <<\ \textcolor{stringliteral}{"{}Tileset\ formed\ (dunno\ where)"{}}\ <<\ \mbox{\hyperlink{namespaceglog_ac671f2284827317a1a8c390fde7ea46e}{glog::endlog}};}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classgeng_1_1_tile_list_ab242eb0fdb987f6ef1132358bfa093e4}{add\_tileset}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classgeng_1_1_tileset}{Tileset}}\&\ new\_tileset)\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ tilesets.emplace\_back(new\_tileset);}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgeng_1_1_tile_list_a7062cbd5de5eb575b53cea8232121f1d}{size}}()\ -\/\ 1;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_tile_list_aadcf967a29ebd895e0951c64d5b112fa}{add\_tilesets}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector<Tileset>}}\&\ new\_tilesets)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ t\ :\ new\_tilesets)\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tilesets.emplace\_back(t);}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_tileset}{Tileset}}\&\ \mbox{\hyperlink{classgeng_1_1_tile_list_adf58df78d1e264951502195b4124b162}{at}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ >=\ tilesets.size()\ ||\ \textcolor{keywordtype}{id}\ <\ 0)\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglog_acfa9573731c427f615347d8fdaea6142}{glog::err}}.src(\textcolor{stringliteral}{"{}tilesets"{}})\ <<\ \textcolor{stringliteral}{"{}ERR:\ Tileset\ "{}}\ <<\ \textcolor{keywordtype}{id}\ <<\ \textcolor{stringliteral}{"{}doesn't\ exist.\(\backslash\)n"{}};}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{id}\ =\ 0;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tilesets.at(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_tileset}{Tileset}}\&\ \mbox{\hyperlink{classgeng_1_1_tile_list_af0b0f8609cb93a20893ebf9d5576fd05}{operator[]}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgeng_1_1_tile_list_adf58df78d1e264951502195b4124b162}{at}}(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classgeng_1_1_tile_list_a7062cbd5de5eb575b53cea8232121f1d}{size}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(tilesets.size());}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \}}
+
+\end{DoxyCode}

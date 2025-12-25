@@ -1,0 +1,92 @@
+\doxysection{Engine\+Context.\+hpp}
+\hypertarget{_engine_context_8hpp_source}{}\label{_engine_context_8hpp_source}\index{include/engine/EngineContext.hpp@{include/engine/EngineContext.hpp}}
+\mbox{\hyperlink{_engine_context_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_debugger_8hpp}{debug/Debugger.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_camera_8hpp}{rendering/Camera.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{fstring_8hpp}{types/strings/fstring/fstring.hpp}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1_engine_context_ab987d8b11b6ddac3623472991a457753}{EngineContext}}\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ *****************\ */}}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Timing\ information\ //}}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ *****************\ */}}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ prevTime\ =\ 0.0f;}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ time\ =\ 0.0f;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ std::uint64\_t\ frame\ =\ 0;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ dt\ =\ 0;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ *****************\ */}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Window\ information\ //}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ *****************\ */}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ uint16\_t\ width\ =\ 200;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ uint16\_t\ height\ =\ 140;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ uint16\_t\ borderX\ =\ 0;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ uint16\_t\ borderY\ =\ 0;}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ scale\ =\ 1.f;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ pixel\_perfect\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ geng::fstring<10>\ layer\_change;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ Camera\&\ \mbox{\hyperlink{classgeng_1_1_engine_context_a86dc5191b9939fa05d94ad45065e0333}{camera}};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ *****************\ */}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Window\ information\ //}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ *****************\ */}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1debug_1_1_debugger}{debug::Debugger}}\ \mbox{\hyperlink{classgeng_1_1_engine_context_a5fdf5c2618f69e07c51b4fcd69e3d7cd}{debugger}};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classgeng_1_1_engine_context_ab987d8b11b6ddac3623472991a457753}{EngineContext}}(Camera\&\ cam)}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgeng_1_1_engine_context_a86dc5191b9939fa05d94ad45065e0333}{camera}}(cam)\ \{\};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_engine_context_a42a7347486b5658dd407c3d0d66c58a9}{update}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ game\_time)\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ time\ =\ game\_time;}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ dt\ =\ time\ -\/\ prevTime;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ prevTime\ =\ time;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ frame++;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_engine_context_a5b5b108c06ba4abd0fac4c64351f1676}{\_set\_window\_size}}(\textcolor{keyword}{const}\ uint16\_t\ w,\ \textcolor{keyword}{const}\ uint16\_t\ h)\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ width\ =\ w;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ height\ =\ h;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_engine_context_abb46c9b4bbe15211dc7b5b7d3ac87533}{\_set\_border\_size}}(uint16\_t\ bx,\ uint16\_t\ by)\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ borderX\ =\ bx;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ borderY\ =\ by;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_engine_context_a6e5ee185f238036ec65b72dd9a5204d8}{set\_scale}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ s)\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ scale\ =\ s;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classgeng_1_1_engine_context_a8c69acedb1015460def5bbaaa608ea15}{get\_time}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ time;\}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ [[nodiscard]]\ uint64\_t\ \mbox{\hyperlink{classgeng_1_1_engine_context_a10753d92e5328d1bb8f0ce9242c5aafb}{get\_frame}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ frame;\ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classgeng_1_1_engine_context_ae663ef441aac055a35fa6aadf95c1f13}{get\_dt}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ dt;\ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ [[nodiscard]]\ uint16\_t\ \mbox{\hyperlink{classgeng_1_1_engine_context_abc057b19e279f017f00d552fee3d7be6}{get\_width}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ width;\ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ [[nodiscard]]\ uint16\_t\ \mbox{\hyperlink{classgeng_1_1_engine_context_a73a142ee51a120ccc12e5e0d68f6161c}{get\_height}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ height;\ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ [[nodiscard]]\ uint16\_t\ \mbox{\hyperlink{classgeng_1_1_engine_context_a27747749c25ea4dd9d6494c8982a20c3}{get\_borderX}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ borderX;\ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ [[nodiscard]]\ uint16\_t\ \mbox{\hyperlink{classgeng_1_1_engine_context_a3c1c5595bb5c977cf367f822836d86ff}{get\_borderY}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ borderY;\ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classgeng_1_1_engine_context_ac8cdcc10242e69b485fff45186ffaebe}{get\_scale}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ scale;\ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1_engine_context_a5712e29d0d29885133c04cfae1876ce6}{is\_pixel\_perfect}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ pixel\_perfect;\ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_engine_context_ae848f785482eb713455dee80ed98175c}{set\_pixel\_perfect}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ pix)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ pixel\_perfect\ =\ pix;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_engine_context_a6d989432e855c60abbd11a1be6dea849}{enable\_debug}}()\ \{\ \mbox{\hyperlink{classgeng_1_1_engine_context_a5fdf5c2618f69e07c51b4fcd69e3d7cd}{debugger}}.debug\_mode\ =\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_engine_context_a9adc89aad7f4d9cc750ae83cd8357e66}{disable\_debug}}()\ \{\ \mbox{\hyperlink{classgeng_1_1_engine_context_a5fdf5c2618f69e07c51b4fcd69e3d7cd}{debugger}}.debug\_mode\ =\ \textcolor{keyword}{false};\}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1_engine_context_affbdd4efb75b9cc20db42c51594ac059}{is\_debug}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgeng_1_1_engine_context_a5fdf5c2618f69e07c51b4fcd69e3d7cd}{debugger}}.is\_debug();\ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_engine_context_a3b52bd1698e4e175057c8759d3b2ce8b}{set\_layer\_change}}(\textcolor{keyword}{const}\ geng::fstring<10>\ \&new\_layer)\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ layer\_change\ =\ new\_layer;}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ [[nodiscard]]\ geng::fstring<10>\ \mbox{\hyperlink{classgeng_1_1_engine_context_afb28e2db1c39de53635855a62886b695}{get\_layer\_change}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ layer\_change;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \};}
+\DoxyCodeLine{00106\ \}}
+
+\end{DoxyCode}

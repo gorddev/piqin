@@ -1,0 +1,97 @@
+\doxysection{geng\+::debug\+::Console Class Reference}
+\hypertarget{classgeng_1_1debug_1_1_console}{}\label{classgeng_1_1debug_1_1_console}\index{geng::debug::Console@{geng::debug::Console}}
+
+
+{\ttfamily \#include $<$Console.\+hpp$>$}
+
+Inheritance diagram for geng\+::debug\+::Console\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgeng_1_1debug_1_1_console}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgeng_1_1debug_1_1_console_af44ca9681bf77abb554a385227cf885c}{Console}} (\mbox{\hyperlink{classgeng_1_1_input_router_init}{Input\+Router\+Init}} \&init)
+\item 
+bool \mbox{\hyperlink{classgeng_1_1debug_1_1_console_a40b996ca0260a199dd8073f6dad2bada}{update}} (Layer \texorpdfstring{$\ast$}{*}\&active\+\_\+layer) override
+\item 
+void \mbox{\hyperlink{classgeng_1_1debug_1_1_console_a662d92e5c0676bd287e5e27190b8edf1}{to\+\_\+vertex}} (Render\+Buffer \&buffer)
+\item 
+bool \mbox{\hyperlink{classgeng_1_1debug_1_1_console_a1ba0ef8f36564e425531f39f6abd9322}{get\+\_\+press}} (SDL\+\_\+\+Scancode key, Layer \texorpdfstring{$\ast$}{*}\&active\+\_\+layer) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgeng_1_1_banner}{Banner}} \mbox{\hyperlink{classgeng_1_1debug_1_1_console_a5b19a86ec8574d3848308acac1b483f4}{topinfo}}
+\item 
+\mbox{\hyperlink{classgeng_1_1_text}{Text}}$<$ 800 $>$ \mbox{\hyperlink{classgeng_1_1debug_1_1_console_afaabb3fdbf04183ef89f8c9b4273b7c6}{text}}
+\item 
+Gear \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classgeng_1_1debug_1_1_console_aeed1e955bf31b0fc09acd36711615f5f}{selected}} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{classgeng_1_1debug_1_1_console}{Console} can be used to print out text and the like 
+
+\label{doc-constructors}
+\Hypertarget{classgeng_1_1debug_1_1_console_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classgeng_1_1debug_1_1_console_af44ca9681bf77abb554a385227cf885c}\index{geng::debug::Console@{geng::debug::Console}!Console@{Console}}
+\index{Console@{Console}!geng::debug::Console@{geng::debug::Console}}
+\doxysubsubsection{\texorpdfstring{Console()}{Console()}}
+{\footnotesize\ttfamily \label{classgeng_1_1debug_1_1_console_af44ca9681bf77abb554a385227cf885c} 
+geng\+::debug\+::\+Console\+::\+Console (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeng_1_1_input_router_init}{Input\+Router\+Init}} \&}]{init}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classgeng_1_1debug_1_1_console_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgeng_1_1debug_1_1_console_a1ba0ef8f36564e425531f39f6abd9322}\index{geng::debug::Console@{geng::debug::Console}!get\_press@{get\_press}}
+\index{get\_press@{get\_press}!geng::debug::Console@{geng::debug::Console}}
+\doxysubsubsection{\texorpdfstring{get\_press()}{get\_press()}}
+{\footnotesize\ttfamily \label{classgeng_1_1debug_1_1_console_a1ba0ef8f36564e425531f39f6abd9322} 
+bool geng\+::debug\+::\+Console\+::get\+\_\+press (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Scancode}]{key}{, }\item[{Layer \texorpdfstring{$\ast$}{*}\&}]{active\+\_\+layer}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\Hypertarget{classgeng_1_1debug_1_1_console_a662d92e5c0676bd287e5e27190b8edf1}\index{geng::debug::Console@{geng::debug::Console}!to\_vertex@{to\_vertex}}
+\index{to\_vertex@{to\_vertex}!geng::debug::Console@{geng::debug::Console}}
+\doxysubsubsection{\texorpdfstring{to\_vertex()}{to\_vertex()}}
+{\footnotesize\ttfamily \label{classgeng_1_1debug_1_1_console_a662d92e5c0676bd287e5e27190b8edf1} 
+void geng\+::debug\+::\+Console\+::to\+\_\+vertex (\begin{DoxyParamCaption}\item[{Render\+Buffer \&}]{buffer}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classgeng_1_1debug_1_1_console_a40b996ca0260a199dd8073f6dad2bada}\index{geng::debug::Console@{geng::debug::Console}!update@{update}}
+\index{update@{update}!geng::debug::Console@{geng::debug::Console}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classgeng_1_1debug_1_1_console_a40b996ca0260a199dd8073f6dad2bada} 
+bool geng\+::debug\+::\+Console\+::update (\begin{DoxyParamCaption}\item[{Layer \texorpdfstring{$\ast$}{*}\&}]{active\+\_\+layer}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classgeng_1_1debug_1_1_console_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classgeng_1_1debug_1_1_console_aeed1e955bf31b0fc09acd36711615f5f}\index{geng::debug::Console@{geng::debug::Console}!selected@{selected}}
+\index{selected@{selected}!geng::debug::Console@{geng::debug::Console}}
+\doxysubsubsection{\texorpdfstring{selected}{selected}}
+{\footnotesize\ttfamily \label{classgeng_1_1debug_1_1_console_aeed1e955bf31b0fc09acd36711615f5f} 
+Gear\texorpdfstring{$\ast$}{*} geng\+::debug\+::\+Console\+::selected = nullptr}
+
+\Hypertarget{classgeng_1_1debug_1_1_console_afaabb3fdbf04183ef89f8c9b4273b7c6}\index{geng::debug::Console@{geng::debug::Console}!text@{text}}
+\index{text@{text}!geng::debug::Console@{geng::debug::Console}}
+\doxysubsubsection{\texorpdfstring{text}{text}}
+{\footnotesize\ttfamily \label{classgeng_1_1debug_1_1_console_afaabb3fdbf04183ef89f8c9b4273b7c6} 
+\mbox{\hyperlink{classgeng_1_1_text}{Text}}$<$800$>$ geng\+::debug\+::\+Console\+::text}
+
+\Hypertarget{classgeng_1_1debug_1_1_console_a5b19a86ec8574d3848308acac1b483f4}\index{geng::debug::Console@{geng::debug::Console}!topinfo@{topinfo}}
+\index{topinfo@{topinfo}!geng::debug::Console@{geng::debug::Console}}
+\doxysubsubsection{\texorpdfstring{topinfo}{topinfo}}
+{\footnotesize\ttfamily \label{classgeng_1_1debug_1_1_console_a5b19a86ec8574d3848308acac1b483f4} 
+\mbox{\hyperlink{classgeng_1_1_banner}{Banner}} geng\+::debug\+::\+Console\+::topinfo}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/debug/\mbox{\hyperlink{_console_8hpp}{Console.\+hpp}}\end{DoxyCompactItemize}

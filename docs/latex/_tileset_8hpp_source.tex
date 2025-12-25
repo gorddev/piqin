@@ -1,0 +1,57 @@
+\doxysection{Tileset.\+hpp}
+\hypertarget{_tileset_8hpp_source}{}\label{_tileset_8hpp_source}\index{include/engine/scene/tilesets/Tileset.hpp@{include/engine/scene/tilesets/Tileset.hpp}}
+\mbox{\hyperlink{_tileset_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_tile_8hpp}{Tile.hpp}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1_tileset_ad4d843d5e9c299faedb445a7e2add5cd}{Tileset}}\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ texture\_id\ =\ -\/1;}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<Tile>}}\ tiles\ =\ \{\};}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ tile\_s\ =\ -\/1;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_tileset_ad4d843d5e9c299faedb445a7e2add5cd}{Tileset}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_tileset_ac3f48f2574489d2f61308089d9247d52}{Tileset}}(\textcolor{keywordtype}{int}\ tex\_W,\ \textcolor{keywordtype}{int}\ tex\_H,\ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{classgeng_1_1_tileset_a3b493bb165ad9cdf92f3f4c9fc14fbbc}{tile\_size}})\ :\ tile\_s(\mbox{\hyperlink{classgeng_1_1_tileset_a3b493bb165ad9cdf92f3f4c9fc14fbbc}{tile\_size}})\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ tiles.reserve(tex\_W\ *\ tex\_H\ /\ (\mbox{\hyperlink{classgeng_1_1_tileset_a3b493bb165ad9cdf92f3f4c9fc14fbbc}{tile\_size}}*\mbox{\hyperlink{classgeng_1_1_tileset_a3b493bb165ad9cdf92f3f4c9fc14fbbc}{tile\_size}}));}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ h\ =\ 0;\ h\ <\ tex\_H;\ h+=\ \mbox{\hyperlink{classgeng_1_1_tileset_a3b493bb165ad9cdf92f3f4c9fc14fbbc}{tile\_size}})\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ w\ =\ 0;\ w\ <\ tex\_W;\ w+=\ \mbox{\hyperlink{classgeng_1_1_tileset_a3b493bb165ad9cdf92f3f4c9fc14fbbc}{tile\_size}})\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tiles.emplace\_back(Box2D(w,\ h,\ \mbox{\hyperlink{classgeng_1_1_tileset_a3b493bb165ad9cdf92f3f4c9fc14fbbc}{tile\_size}},\ \mbox{\hyperlink{classgeng_1_1_tileset_a3b493bb165ad9cdf92f3f4c9fc14fbbc}{tile\_size}}),\ \mbox{\hyperlink{classgeng_1_1_tileset_a3b493bb165ad9cdf92f3f4c9fc14fbbc}{tile\_size}},\ tex\_W,\ tex\_H);}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classgeng_1_1_tileset_aa937f7c2d4a668cd7f8a6d00284d5ba1}{size}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tiles.size();}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{classgeng_1_1_tileset_a3b493bb165ad9cdf92f3f4c9fc14fbbc}{tile\_size}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tile\_s;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_tile}{Tile}}\&\ \mbox{\hyperlink{classgeng_1_1_tileset_ab216569a4f56051b85d0dfc4f587ea82}{operator[]}}(\textcolor{keywordtype}{int}\ index)\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tiles[index];}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_tileset_a276c416bf031704d7d6610c333920912}{set\_texture\_id}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ texture\_id\ =\ id;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classgeng_1_1_tileset_ab9d2889e4f052688b8d780d5ad9ad612}{get\_texture\_id}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ texture\_id;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_tileset_a38b6dbc924c27bf1cbeb0167676765b3}{render\_tileset}}(RenderBuffer\&\ buffer)\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_FPoint\ pos\ =\ \{0,\ 20\};}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ i:\ tiles)\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i.to\_vertex(buffer,\ pos);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pos.x\ +=\ tile\_s;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \};}
+\DoxyCodeLine{00052\ \}}
+
+\end{DoxyCode}

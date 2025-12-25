@@ -1,0 +1,154 @@
+\doxysection{include/engine/types/strings Directory Reference}
+\hypertarget{dir_37d7b697a7e655e52c3252ea687a045e}{}\label{dir_37d7b697a7e655e52c3252ea687a045e}\index{include/engine/types/strings Directory Reference@{include/engine/types/strings Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \mbox{\hyperlink{dir_d298bff13bbfed2b962b86b3d9b48a94}{fstring}}
+\item 
+directory \mbox{\hyperlink{dir_0a3bed381ca844af45bc215e4de8bbd9}{hstring}}
+\item 
+directory \mbox{\hyperlink{dir_5001f10696f7c046eb8dce289c78f884}{str\+\_\+view}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md2}{}\doxysubsection{\texorpdfstring{Strings Overview}{Strings Overview}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md2}
+Ok with all these strings it might get a little confusing, so I\textquotesingle{}ll break each one down below.
+
+Each of my custom string classes have some really nice properties that makes it super easy to pass around data. For example, lets say I have an {\ttfamily hstring} and I want to store all the data from my {\ttfamily Sprite s}. What I can do is this\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{hstring\ my\_string(50);\ \textcolor{comment}{//\ Allocates\ 50\ characters\ to\ the\ heap}}
+\DoxyCodeLine{my\_string\ <<\ sprite.pos.x\ <<\ \textcolor{charliteral}{'\ '}\ <<\ sprite.pos.y\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{my\_string\ <<\ sprite.animnum\ <<\ \textcolor{stringliteral}{"{},\(\backslash\)t"{}}\ <<\ sprite.framenum;\ }
+
+\end{DoxyCode}
+ Thus all the data is immediately converted into the hstring formatted like {\ttfamily "{}30.\+0 40.\+0\textbackslash{}n3,\textbackslash{}t4"{}}. Furthermore, I can add even nicer features like\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mystring\ <<\ trunc<4>()\ <<\ my\_float\ <<\ geng::endl;}
+
+\end{DoxyCode}
+ Now, my\+\_\+float will be truncated to four digits automatically without me having to do any annoying calculations. Now to get on to each type of string. \hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md3}{}\doxysubsubsection{\texorpdfstring{fstrings}{fstrings}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md3}
+First up we have {\ttfamily fstring}, which stands for {\bfseries{fixed string}}. {\ttfamily fstring} is a templatede class, and this means that upon creation, these strings have completely {\bfseries{fixed length}} that cannot be changed. These are great for text buffers that get refreshed repeatedly, and for ensuring compliance with specific string lengths. However, the main benefits are below\+:
+\begin{DoxyItemize}
+\item Significantly faster for writing and conversion than regular {\ttfamily std\+::string} (around 2x -\/ 3x faster)
+\item Lives on the stack, so heap fragmentation (especially in WASM) is not a concern for fstrings
+\item Prevents any overflow automatically.
+\end{DoxyItemize}
+
+For example, the {\ttfamily \doxylink{classgeng_1_1_text}{geng\+::\+Text}} class is templated with an {\ttfamily fstring}, because in reality, displayed text on screen should never be unbounded, and when users make a text object, they should define how it will be used.
+
+Note that {\ttfamily fstrings} have an internal limit of 65442 characters as a built in cap. Creating more than that many characters is bad for the stack and should not happen.
+\begin{DoxyItemize}
+\item Downsides\+: You must know your string length at compile time, so don\textquotesingle{}t use this for managing something like a pathname. (However, it is good for preventing users from adding too much input.)
+\item You can\textquotesingle{}t pass fstrings through virtual functions cause\textquotesingle{} they\textquotesingle{}re templated. However, there\textquotesingle{}s a real good solution for this in the {\ttfamily str\+\_\+view} section.
+\end{DoxyItemize}
+
+Here\textquotesingle{}s an example of how to make an fstring\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{geng::fstring<10>\ fstr;\ \textcolor{comment}{//\ creates\ fstring\ with\ 10\ char\ limit;}}
+\DoxyCodeLine{fstr\ <<\ \textcolor{stringliteral}{"{}Hello\ World!\(\backslash\)n"{}};\ \textcolor{comment}{//\ pipes\ in\ "{}hello\ world!\(\backslash\)n"{}\ (14\ chars)}}
+\DoxyCodeLine{std::cerr\ <<\ fstr.cstr()\ <<\ std::endl;}
+
+\end{DoxyCode}
+ Our output from this will be {\ttfamily Hello worl}, because we only allocated 10 characters.
+
+{\bfseries{Warning\+:}} {\ttfamily fstring} always allocates two additional bytes past what you specify to the internal character array. One is for the null terminator (at size + 0), and the next is for floating point conversion information (at size + 1).\hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md4}{}\doxysubsubsection{\texorpdfstring{hstrings}{hstrings}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md4}
+Ok we\textquotesingle{}ll keep this short. {\ttfamily hstrings} are just {\ttfamily fstrings} but their memory is allocated on the heap, and they don\textquotesingle{}t have a fixed size.\hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md5}{}\doxysubsubsubsection{\texorpdfstring{Pros\+:}{Pros\+:}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md5}
+
+\begin{DoxyItemize}
+\item Still faster than regular {\ttfamily std\+::string}, but not by as much as {\ttfamily fstring}
+\item Dynamically resizable \& virtually unlimited size
+\item Access to all the nice operator overloads {\ttfamily fstring} has. 
+\end{DoxyItemize}\hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md6}{}\doxysubsubsubsection{\texorpdfstring{Cons\+:}{Cons\+:}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md6}
+
+\begin{DoxyItemize}
+\item It\textquotesingle{}s on the heap, so fragmentation can be a problem
+\item Slower than {\ttfamily fstring}
+\item Higher memory baseline than {\ttfamily fstring}
+\item Constantly allocates new memory, which is really bad for WASM environment
+\item Cannot limit it\textquotesingle{}s own size. It\textquotesingle{}s buffer will grow to the C++ 32-\/bit unsigned int limit.
+\item Not memory-\/safe
+\end{DoxyItemize}
+
+Thus, for most general cases, please please please use an {\ttfamily fstring} as they\textquotesingle{}re so much better for engine performance than hstrings. Though there are several cases where {\ttfamily hstrings} are the best answer\+:
+\begin{DoxyEnumerate}
+\item Path names
+\item System-\/wide data collection
+\item That\textquotesingle{}s pretty much it.
+\end{DoxyEnumerate}
+
+Moral of the story\+: use fstring. Mostly anything in a game engine is predictable enough that you can predict close to the number of characters you\textquotesingle{}ll need before compilation. \hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md7}{}\doxysubsubsection{\texorpdfstring{str\+\_\+view}{str\+\_\+view}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md7}
+Now this is the crown-\/jewel of the string implementation. You might think "{}it\textquotesingle{}s hella uncool to try and manage two different string types when writing code"{}, and you\textquotesingle{}d be right. Hence, we have the {\ttfamily str\+\_\+view} (name generously borrowed from the standard library).
+
+Instead of passing {\ttfamily fstring} and {\ttfamily hstring} through functions, you pass {\ttfamily str\+\_\+view} instead, and you do this by "{}wrapping"{} the strings. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ add\_to\_buffer(str\_view\ buffer,\ \textcolor{keywordtype}{float}\ my\_float)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ adds\ a\ float\ to\ the\ string\ with\ a\ precision\ of\ 4}}
+\DoxyCodeLine{\ \ \ \ buffer\ <<\ trunc<4>()\ <<\ my\_float;\ }
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ create\ our\ strings}}
+\DoxyCodeLine{\ \ \ \ fstring<300>\ fixed\_string\ =\ \textcolor{stringliteral}{"{}My\ fixed\ string:\ "{}};}
+\DoxyCodeLine{\ \ \ \ hstring\ heap\_string\ =\ \textcolor{stringliteral}{"{}My\ dynamically\ allocated\ string:\ "{}};}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ now\ we\ add\ to\ buffer}}
+\DoxyCodeLine{\ \ \ \ add\_to\_buffer(fixed\_string.wrap(),\ 30.1234567f);}
+\DoxyCodeLine{\ \ \ \ add\_to\_buffer(heap\_string.wrap(),\ 90.1234567f);}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ print\ to\ console}}
+\DoxyCodeLine{\ \ \ \ std::cerr\ <<\ fixed\_string.cstr()\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \ \ std::cerr\ <<\ heap\_string.cstr()\ <<\ std::endl;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{output:}
+\DoxyCodeLine{My\ fixed\ string:\ 30.1234}
+\DoxyCodeLine{My\ heap\ string:\ 90.1234}
+
+\end{DoxyCode}
+ Now you may be wondering, "{}how does this work"{}? And i\textquotesingle{}ll say its magic cause i dont wanna bore you with the implementation. (it\textquotesingle{}s just references \& pointers, and a shit ton of operator overloads). \hypertarget{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md8}{}\doxysubsubsection{\texorpdfstring{Usage}{Usage}}\label{dir_37d7b697a7e655e52c3252ea687a045e_autotoc_md8}
+{\ttfamily hstring} and {\ttfamily fstring} have the same member functions, so i\textquotesingle{}ll cover them together.
+\begin{DoxyItemize}
+\item {\ttfamily capacity()}› Returns current capacity of the string
+\item {\ttfamily length()} › Returns length of the string
+\item {\ttfamily cstr()}› Returns a C-\/style string (usefull for printing to std\+::cout)
+\item {\ttfamily clear()} › Clears out the string. Does not resize
+\item {\ttfamily operator\mbox{[}$\,$\mbox{]}(index i)} › Accesses at index {\ttfamily i}
+\end{DoxyItemize}
+
+That\textquotesingle{}s pretty much it. You also have a ton of operator overloads as well\+:
+\begin{DoxyItemize}
+\item {\ttfamily ==} › Works from ({\ttfamily str\+\_\+view} compatable)\+:
+\begin{DoxyItemize}
+\item {\ttfamily fstring ‹-\/› fstring}
+\item {\ttfamily hstring ‹-\/› hstring}
+\item {\ttfamily fstring ‹-\/› const char\mbox{[}\mbox{]}}
+\item {\ttfamily hstring ‹-\/› const char\mbox{[}\mbox{]}}
+\end{DoxyItemize}
+\item {\ttfamily \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}} › Works with ({\ttfamily str\+\_\+view} compatable)\+:
+\begin{DoxyItemize}
+\item {\ttfamily f/hstring ‹-\/› bool, int, float, double, void\texorpdfstring{$\ast$}{*}, f/hstring}
+\end{DoxyItemize}
+\item {\ttfamily +} › Works with
+\begin{DoxyItemize}
+\item {\ttfamily fstring ‹-\/› fstring} › Creates new fstring of combined capacity, so be careful.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+{\ttfamily str\+\_\+view} also has one specialty function\+: {\ttfamily subview(uint32\+\_\+t start, uint32\+\_\+t sub\+\_\+len)}. This creates a const {\ttfamily str\+\_\+subview} object that has access to a singular operator overload\+: {\ttfamily == const char\mbox{[}\mbox{]}}.
+
+You might ask, what the fuck? Why would you make that? Simple reason\+: syntax highlighting. Let\textquotesingle{}s say you have a text parser who takes in a str\+\_\+view object. {\ttfamily .subview} acts as an equivalent to {\ttfamily .substr}, except there\textquotesingle{}s no dynamic memory allocation, and extremely quick comparison to string literals.
+
+Subview (and the rest of this string suite) is optimized to use any information, like the length of a constant literal, to it\textquotesingle{}s advantage. Thus, comparisons between {\ttfamily str\+\_\+subview} objects and const char objects are rapid. Most of the time you don\textquotesingle{}t even need to store the created {\ttfamily str\+\_\+subview} object. For example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ my\_str\_view.length();\ i++)\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (my\_str\_view.subview(i,\ 4)\ ==\ \textcolor{stringliteral}{"{}true"{}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ color\_text(\textcolor{stringliteral}{"{}blue"{}});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ i+=3;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ Isn\textquotesingle{}t that nifty. That\textquotesingle{}s all i have to say for now bye. 

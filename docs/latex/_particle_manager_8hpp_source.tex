@@ -1,0 +1,47 @@
+\doxysection{Particle\+Manager.\+hpp}
+\hypertarget{_particle_manager_8hpp_source}{}\label{_particle_manager_8hpp_source}\index{include/engine/scene/particles/ParticleManager.hpp@{include/engine/scene/particles/ParticleManager.hpp}}
+\mbox{\hyperlink{_particle_manager_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_layer_context_8hpp}{engine/layers/LayerContext.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_particle_group_8hpp}{engine/scene/particles/ParticleGroup.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sparse_vector_8hpp}{engine/utilities/SparseVector.hpp}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{comment}{//\ Manages\ all\ the\ particles\ in\ the\ scene}}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1_particle_manager_a0f2eed81a357ebdc1259927f661f1ae1}{ParticleManager}}\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgutils_1_1_sparse_vector}{gutils::SparseVector<geng::ParticleGroup>}}\ groups;}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<int>}}\ groups\_removed;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ LayerContext\&\ scene;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Construct/destruct}}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classgeng_1_1_particle_manager_a0f2eed81a357ebdc1259927f661f1ae1}{ParticleManager}}(LayerContext\&\ layer\_context);}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_particle_manager_a3d3be537ebf5e8d6cd00181bff9dfbd6}{\string~ParticleManager}}();}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Updates\ all\ particle\ groups}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_particle_manager_add3b932a679f0b8e97f9eaae0cad434f}{update}}();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ ParticleGroup\ *\mbox{\hyperlink{classgeng_1_1_particle_manager_acbae4fd19af1f2e09b8273f8ad695acd}{find\_by\_object}}(\textcolor{keyword}{const}\ Gear\ *o);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Adds\ a\ particle\ to\ the\ group}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ ParticleGroup*\&\ \mbox{\hyperlink{classgeng_1_1_particle_manager_ade194a83d294b1ca00a0db74840a6053}{add}}(ParticleGroup*\ g);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_particle_manager_ade194a83d294b1ca00a0db74840a6053}{add}}(\ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<ParticleGroup\ *>}}\ \&new\_groups);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lets\ a\ particle\ die\ out\ by\ ending}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_particle_manager_a482bfdd5fbe0293d12da4222075bd508}{dissolve}}(ParticleGroup*\ g);}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_particle_manager_a482bfdd5fbe0293d12da4222075bd508}{dissolve}}(\textcolor{keyword}{const}\ Gear\ *o);\ \textcolor{comment}{//Removes\ particle\ groups\ for\ any\ gear}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Removes\ a\ particle\ from\ the\ sparse\ vector}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_particle_manager_a0faa08b59f684714df27220f65419e44}{remove}}(ParticleGroup*\ g);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Checks\ if\ there's\ any\ particles\ to\ be\ removed}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1_particle_manager_a2df112844e76d5b77b8483d2fef81a66}{particles\_to\_remove}}();}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<int>}}\ \mbox{\hyperlink{classgeng_1_1_particle_manager_ad754e0348f8103dac6efe0d146f5f1bf}{pop\_removed\_particles}}();}
+\DoxyCodeLine{00041\ \ \ \ \ \};}
+\DoxyCodeLine{00042\ \}}
+
+\end{DoxyCode}

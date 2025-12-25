@@ -1,0 +1,70 @@
+\doxysection{src/main.cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+{\ttfamily \#include $<$SDL.\+h$>$}\newline
+{\ttfamily \#include $<$emscripten/html5.\+h$>$}\newline
+{\ttfamily \#include $<$emscripten.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include "{}testing/\+Card.\+hpp"{}}\newline
+{\ttfamily \#include "{}engine/\+Engine.\+hpp"{}}\newline
+{\ttfamily \#include "{}engine/scene/banners/text/\+Text.\+hpp"{}}\newline
+{\ttfamily \#include "{}engine/scene/banners/widgets/\+Widget\+Box.\+hpp"{}}\newline
+{\ttfamily \#include "{}engine/scene/morphs/morph-\/types/\+Stretch.\+hpp"{}}\newline
+{\ttfamily \#include "{}engine/scene/particles/particle-\/types/\+Rhombus.\+hpp"{}}\newline
+{\ttfamily \#include "{}engine/scene/particles/particle-\/types/\+Sparkle.\+hpp"{}}\newline
+{\ttfamily \#include "{}game/asset-\/info/sheets/\+Asset-\/\+Card-\/\+Stack.\+hpp"{}}\newline
+{\ttfamily \#include "{}game/asset-\/info/sheets/\+Asset-\/\+Deck.\+hpp"{}}\newline
+{\ttfamily \#include "{}../include/engine/defaults/sysfont.\+inl"{}}\newline
+{\ttfamily \#include "{}testing/\+Player\+Test.\+hpp"{}}\newline
+{\ttfamily \#include "{}testing/spritesheet.\+hpp"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{main_8cpp_a91dab68bb9cc6fcb0912968ffeaeeb41}{gameloop}} (double time, void \texorpdfstring{$\ast$}{*}userdata)
+\item 
+int \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+geng\+::\+Collider \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{main_8cpp_ab46efec470e48a62672b9acbf73b22de}{test}}
+\item 
+auto \mbox{\hyperlink{main_8cpp_ae79d771c5e4a335205a8e6ba68677e2f}{start\+\_\+time}} = std\+::chrono\+::steady\+\_\+clock\+::now()
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{main_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_a91dab68bb9cc6fcb0912968ffeaeeb41}\index{main.cpp@{main.cpp}!gameloop@{gameloop}}
+\index{gameloop@{gameloop}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{gameloop()}{gameloop()}}
+{\footnotesize\ttfamily \label{main_8cpp_a91dab68bb9cc6fcb0912968ffeaeeb41} 
+bool gameloop (\begin{DoxyParamCaption}\item[{double}]{time}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{userdata}{}\end{DoxyParamCaption})}
+
+\Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+Testing to see if banners work!
+
+Testing to see if particles work
+
+Creates a new layer to store the world in
+
+\label{doc-var-members}
+\Hypertarget{main_8cpp_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{main_8cpp_ae79d771c5e4a335205a8e6ba68677e2f}\index{main.cpp@{main.cpp}!start\_time@{start\_time}}
+\index{start\_time@{start\_time}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{start\_time}{start\_time}}
+{\footnotesize\ttfamily \label{main_8cpp_ae79d771c5e4a335205a8e6ba68677e2f} 
+auto start\+\_\+time = std\+::chrono\+::steady\+\_\+clock\+::now()}
+
+\Hypertarget{main_8cpp_ab46efec470e48a62672b9acbf73b22de}\index{main.cpp@{main.cpp}!test@{test}}
+\index{test@{test}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{test}{test}}
+{\footnotesize\ttfamily \label{main_8cpp_ab46efec470e48a62672b9acbf73b22de} 
+geng\+::\+Collider\texorpdfstring{$\ast$}{*} test}
+

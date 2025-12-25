@@ -1,0 +1,104 @@
+\doxysection{Text.\+hpp}
+\hypertarget{_text_8hpp_source}{}\label{_text_8hpp_source}\index{include/engine/scene/banners/text/Text.hpp@{include/engine/scene/banners/text/Text.hpp}}
+\mbox{\hyperlink{_text_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <SDL\_render.h>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_default_syntax_map_8hpp}{engine/defaults/DefaultSyntaxMap.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_font_8hpp}{engine/scene/font/Font.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_widget_8hpp}{engine/scene/banners/widgets/Widget.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_syntax_map_8hpp}{syntax/SyntaxMap.hpp}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{class\ }Renderer;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}16\_t\ C>}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1_text_a753a06491104f226ca23bffb20015c03}{Text}}\ :\ \textcolor{keyword}{public}\ Widget\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ fstring<C>\ textliteral;}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ Font\&\ font;}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<SDL\_Vertex>}}\ vertices;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classgeng_1_1_syntax_map}{SyntaxMap}}*\ syntax\_map\ =\ \&\mbox{\hyperlink{namespacegeng_a1bc70f2f823bd4d5625de3da6f2c4dc1}{geng\_default\_syntax\_map}};}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ Renderer;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_text_a753a06491104f226ca23bffb20015c03}{Text}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ text[],\ Font\&\ font)}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ :\ font(font),}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Widget(0,\ 0,\ 0,\ 0,\ font.get\_texture\_id())}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_text_aaaaa33c2c68da47ee32a77c1b48b3eb0}{update\_text}}(text);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ texture\_id\ =\ font.get\_texture\_id();}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_text_ab3e6daf703087810fb8b8d2844db42cb}{Text}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ text[],\ Font\&\ font,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classgeng_1_1_syntax_map}{SyntaxMap}}*\ syntax\_map)}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ :\ Widget(0,0,0,0,\ font.get\_texture\_id()),\ font(font),\ syntax\_map(syntax\_map)}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_text_aaaaa33c2c68da47ee32a77c1b48b3eb0}{update\_text}}(text);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ texture\_id\ =\ font.get\_texture\_id();}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_text_a389b9f445cc23840a2eef33686f8b231}{change\_dim}}(Dim2D\ dimensions)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ dim.w\ =\ dimensions.w;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ dim.h\ =\ dimensions.h;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classgeng_1_1_text_a19c5334ea6cf96649ae9093e31a9890a}{to\_vertex}}(\mbox{\hyperlink{classgeng_1_1_banner_buffer}{BannerBuffer}}\&\ buffer)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Copy\ to\ buffer}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ v\ :\ vertices)\ buffer.\mbox{\hyperlink{classgeng_1_1_banner_buffer_ace90f8853b2650d25ddd5bb26179c212}{push\_back}}(v);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(vertices.size());}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ [[nodiscard]]\ fstring<C>\ \mbox{\hyperlink{classgeng_1_1_text_a13dd91f0594b7b1453363fb27d02d640}{get\_text}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ textliteral;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \mbox{\hyperlink{classgeng_1_1str__view}{geng::str\_view}}\ \mbox{\hyperlink{classgeng_1_1_text_ade75b9f44937624880391c1361730592}{get\_fstr\_view}}()\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ textliteral.wrap();}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_text_aa4466527d716b964d7f821fb7574e4d9}{clear}}()\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ vertices.clear();}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ textliteral.clear();}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_text_aaaaa33c2c68da47ee32a77c1b48b3eb0}{update\_text}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ text[])\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Clears\ out\ all\ the\ cached\ data}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_text_aa4466527d716b964d7f821fb7574e4d9}{clear}}();}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ make\ our\ font\ character\ buffer}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<FontChar>}}\ buffer;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ create\ a\ wrapper\ text}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ fstring<C\ +\ 400>\ new\_text(text);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Grab\ any\ syntax\ information}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_syntax_info}{SyntaxInfo}}\ syntax\_info[C];}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Have\ our\ syntax\ map\ feed\ information\ into\ our\ buffer\ \&\ syntax\ info\ array.}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ textliteral\ =\ syntax\_map-\/>parse<C>(new\_text.wrap(),\ font,\ buffer,\ syntax\_info);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Then\ we\ render\ each\ of\ our\ font\ characters\ accordingly.}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ current\ position}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_pos2_d}{Pos2D}}\ pos\ =\ \{0,\ 0\};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Increment\ through\ our\ buffer}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0,\ k\ =\ 0;\ i\ <\ buffer.\mbox{\hyperlink{classgch_1_1vector_a404803bd4bd0b495fd177fbd44a284de}{size}}();\ i++,\ k++)\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ we\ have\ whitespace,\ that's\ characters\ that\ textliteral\ has\ that\ syntax\_info\ does\ not.}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (textliteral[k]\ ==\ \textcolor{charliteral}{'\(\backslash\)n'})\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pos.\mbox{\hyperlink{structgeng_1_1_pos2_d_a3d059c7f8d28ae4bff09396c27655d8e}{y}}\ +=\ font.get\_height();}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pos.\mbox{\hyperlink{structgeng_1_1_pos2_d_a30fb8eb2dbf136efa9c550eb124610eb}{x}}\ =\ 0;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i-\/-\/;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (textliteral[k]\ ==\ \textcolor{charliteral}{'\(\backslash\)t'})\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pos.\mbox{\hyperlink{structgeng_1_1_pos2_d_a30fb8eb2dbf136efa9c550eb124610eb}{x}}\ +=\ 16\ -\/\ (pos.\mbox{\hyperlink{structgeng_1_1_pos2_d_a30fb8eb2dbf136efa9c550eb124610eb}{x}}\ \%\ 16);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i-\/-\/;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (textliteral[k]\ ==\ \textcolor{charliteral}{'\ '})\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pos.\mbox{\hyperlink{structgeng_1_1_pos2_d_a30fb8eb2dbf136efa9c550eb124610eb}{x}}\ +=\ 4*font.get\_spacing();}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i-\/-\/;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buffer[i].to\_vertex(vertices,\ pos,\ syntax\_info[i].color,\ syntax\_info[i].scale);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pos.\mbox{\hyperlink{structgeng_1_1_pos2_d_a30fb8eb2dbf136efa9c550eb124610eb}{x}}\ +=\ buffer[i].w\ +\ font.get\_spacing();}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \};}
+\DoxyCodeLine{00103\ \}}
+
+\end{DoxyCode}

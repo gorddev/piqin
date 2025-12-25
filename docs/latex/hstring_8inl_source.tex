@@ -1,0 +1,241 @@
+\doxysection{hstring.\+inl}
+\hypertarget{hstring_8inl_source}{}\label{hstring_8inl_source}\index{include/engine/types/strings/hstring/hstring.inl@{include/engine/types/strings/hstring/hstring.inl}}
+\mbox{\hyperlink{hstring_8inl}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{str__view_8hpp}{engine/types/strings/str\_view/str\_view.hpp}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ ******************************}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ Private\ helpers}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ ******************************}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ hstring::ensure(uint32\_t\ needed)\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordflow}{if}\ (needed\ <=\ cap)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ uint32\_t\ new\_cap\ =\ std::max(cap\ *\ 2u,\ needed);}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{char}*\ n\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(::operator\ \textcolor{keyword}{new}(new\_cap\ +\ 1));}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{if}\ (data)\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ std::memcpy(n,\ data,\ len);}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ ::operator\ \textcolor{keyword}{delete}(data);}
+\DoxyCodeLine{00020\ \ \ \ \ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ data\ =\ n;}
+\DoxyCodeLine{00023\ \ \ \ \ cap\ \ =\ new\_cap;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ Maintain\ invariant:\ always\ null-\/terminated}}
+\DoxyCodeLine{00025\ \ \ \ \ data[len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00026\ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ ******************************}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ Constructors\ /\ Destructor}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ ******************************}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring::hstring}}()\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ ensure(1);\ \ \ \ \ \ \ \textcolor{comment}{//\ reserve\ at\ least\ one\ for\ null}}
+\DoxyCodeLine{00034\ \ \ \ \ len\ =\ 0;}
+\DoxyCodeLine{00035\ \ \ \ \ data[0]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};\ \ \textcolor{comment}{//\ always\ null-\/terminated}}
+\DoxyCodeLine{00036\ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring::hstring}}(uint32\_t\ reserve)\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ ensure(reserve\ +\ 1);\ \textcolor{comment}{//\ +1\ for\ null}}
+\DoxyCodeLine{00040\ \ \ \ \ len\ =\ 0;}
+\DoxyCodeLine{00041\ \ \ \ \ data[0]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00042\ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ N>}
+\DoxyCodeLine{00045\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring::hstring}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ (\&str)[N])\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ ensure(N);\ \ \ \ \ \ \ \textcolor{comment}{//\ N\ includes\ space\ for\ '\(\backslash\)0'}}
+\DoxyCodeLine{00047\ \ \ \ \ std::memcpy(data,\ str,\ N\ -\/\ 1);}
+\DoxyCodeLine{00048\ \ \ \ \ len\ =\ N\ -\/\ 1;}
+\DoxyCodeLine{00049\ \ \ \ \ data[len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00050\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring::hstring}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ str)\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{if}\ (!str)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ ensure(1);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ len\ =\ 0;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ data[0]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{auto}\ n\ =\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(std::strlen(str));}
+\DoxyCodeLine{00060\ \ \ \ \ ensure(n\ +\ 1);}
+\DoxyCodeLine{00061\ \ \ \ \ std::memcpy(data,\ str,\ n);}
+\DoxyCodeLine{00062\ \ \ \ \ len\ =\ n;}
+\DoxyCodeLine{00063\ \ \ \ \ data[len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00064\ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring::hstring}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ str,\ uint32\_t\ count)\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{if}\ (!str)\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ ensure(1);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ len\ =\ 0;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ data[0]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ ensure(count\ +\ 1);}
+\DoxyCodeLine{00074\ \ \ \ \ std::memcpy(data,\ str,\ count);}
+\DoxyCodeLine{00075\ \ \ \ \ len\ =\ count;}
+\DoxyCodeLine{00076\ \ \ \ \ data[len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring::hstring}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring}}\&\ other)\ \{}
+\DoxyCodeLine{00080\ \ \ \ \ ensure(other.len\ +\ 1);}
+\DoxyCodeLine{00081\ \ \ \ \ std::memcpy(data,\ other.data,\ other.len);}
+\DoxyCodeLine{00082\ \ \ \ \ len\ =\ other.len;}
+\DoxyCodeLine{00083\ \ \ \ \ data[len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00084\ \ \ \ \ precision\ =\ other.precision;}
+\DoxyCodeLine{00085\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring::hstring}}(\mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring}}\&\&\ other)\ noexcept}
+\DoxyCodeLine{00088\ \ \ \ \ :\ data(other.data),\ len(other.len),\ cap(other.cap),\ precision(other.precision)\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ other.data\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00090\ \ \ \ \ other.len\ =\ 0;}
+\DoxyCodeLine{00091\ \ \ \ \ other.cap\ =\ 0;}
+\DoxyCodeLine{00092\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1hstring_a2fea8784990a9cac485f0472d981d142}{hstring::\string~hstring}}()\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ ::operator\ \textcolor{keyword}{delete}(data);}
+\DoxyCodeLine{00096\ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{comment}{//\ ******************************}}
+\DoxyCodeLine{00099\ \textcolor{comment}{//\ Assignment\ operators}}
+\DoxyCodeLine{00100\ \textcolor{comment}{//\ ******************************}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring}}\&\ \mbox{\hyperlink{classgeng_1_1hstring_a5acee86957d956173e017975da5fdb8e}{hstring::operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring}}\&\ o)\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{this}\ ==\ \&o)\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00104\ \ \ \ \ ensure(o.len\ +\ 1);}
+\DoxyCodeLine{00105\ \ \ \ \ std::memcpy(data,\ o.data,\ o.len);}
+\DoxyCodeLine{00106\ \ \ \ \ len\ =\ o.len;}
+\DoxyCodeLine{00107\ \ \ \ \ data[len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00108\ \ \ \ \ precision\ =\ o.precision;}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00110\ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring}}\&\ \mbox{\hyperlink{classgeng_1_1hstring_a5acee86957d956173e017975da5fdb8e}{hstring::operator=}}(\mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring}}\&\&\ o)\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ std::swap(data,\ o.data);}
+\DoxyCodeLine{00114\ \ \ \ \ std::swap(len,\ o.len);}
+\DoxyCodeLine{00115\ \ \ \ \ std::swap(cap,\ o.cap);}
+\DoxyCodeLine{00116\ \ \ \ \ std::swap(precision,\ o.precision);}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00118\ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{comment}{//\ ******************************}}
+\DoxyCodeLine{00121\ \textcolor{comment}{//\ Utility}}
+\DoxyCodeLine{00122\ \textcolor{comment}{//\ ******************************}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{keyword}{inline}\ uint32\_t\ \mbox{\hyperlink{classgeng_1_1hstring_a8590f3d340d9edb08c90930cbb07598c}{hstring::length}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ len;\ \}}
+\DoxyCodeLine{00125\ \textcolor{keyword}{inline}\ uint32\_t\ \mbox{\hyperlink{classgeng_1_1hstring_a72188a545e8b842a51b3534b4359535a}{hstring::capacity}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ cap;\ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1hstring_aaf77aca1d52489f63c2348775f52ac5b}{hstring::clear}}()\ \{\ len\ =\ 0;\ data[0]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};\ \}}
+\DoxyCodeLine{00128\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1hstring_ab63d8a4d13af7eaf278dda1ced6dfcc8}{hstring::empty}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ len\ ==\ 0;\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{char}\&\ \mbox{\hyperlink{classgeng_1_1hstring_a1d5f6327e069007c10c7a90333457488}{hstring::operator[]}}(uint32\_t\ i)\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ >=\ len)\ \mbox{\hyperlink{namespacegeng_ad84fb97e9b62f2adbdca30447d0fed39}{hstring\_throw\_err}}(\textcolor{stringliteral}{"{}hstring\ index\ OOB"{}});}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{return}\ data[i];}
+\DoxyCodeLine{00133\ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\&\ \mbox{\hyperlink{classgeng_1_1hstring_a1d5f6327e069007c10c7a90333457488}{hstring::operator[]}}(uint32\_t\ i)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ >=\ len)\ \mbox{\hyperlink{namespacegeng_ad84fb97e9b62f2adbdca30447d0fed39}{hstring\_throw\_err}}(\textcolor{stringliteral}{"{}hstring\ index\ OOB"{}});}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{return}\ data[i];}
+\DoxyCodeLine{00138\ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{comment}{//\ Always\ safe:\ cstr\ just\ returns\ pointer,\ buffer\ is\ always\ null-\/terminated}}
+\DoxyCodeLine{00141\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classgeng_1_1hstring_a80e71d39f3eef021f2fe51310c12133b}{hstring::cstr}}()\ \{\ \textcolor{keywordflow}{return}\ data;\ \}}
+\DoxyCodeLine{00142\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classgeng_1_1hstring_a80e71d39f3eef021f2fe51310c12133b}{hstring::cstr}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ data;\ \}}
+\DoxyCodeLine{00143\ \textcolor{keyword}{inline}\ hstring::operator\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*()\ \{\ \textcolor{keywordflow}{return}\ data;\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1str__view}{str\_view}}\ \mbox{\hyperlink{classgeng_1_1hstring_acda3e01e689a27349980ddcacf3a1f82}{hstring::wrap}}()\ \{\ \textcolor{keywordflow}{return}\ \{data,\ len,\ cap\};\ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{comment}{//\ ******************************}}
+\DoxyCodeLine{00148\ \textcolor{comment}{//\ Equality}}
+\DoxyCodeLine{00149\ \textcolor{comment}{//\ ******************************}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ N>}
+\DoxyCodeLine{00152\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1hstring_af60a766371b6f05c1475a00c8ced5f17}{hstring::operator==}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ (\&str)[N])\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{if}\ (len\ !=\ N\ -\/\ 1)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordflow}{return}\ std::memcmp(data,\ str,\ len)\ ==\ 0;}
+\DoxyCodeLine{00155\ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1hstring_af60a766371b6f05c1475a00c8ced5f17}{hstring::operator==}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ str)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{if}\ (!str)\ \textcolor{keywordflow}{return}\ len\ ==\ 0;}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordflow}{return}\ std::strlen(str)\ ==\ len\ \&\&\ std::memcmp(data,\ str,\ len)\ ==\ 0;}
+\DoxyCodeLine{00160\ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1hstring_af60a766371b6f05c1475a00c8ced5f17}{hstring::operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring}}\&\ o)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordflow}{return}\ len\ ==\ o.len\ \&\&\ std::memcmp(data,\ o.data,\ len)\ ==\ 0;}
+\DoxyCodeLine{00164\ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{comment}{//\ ******************************}}
+\DoxyCodeLine{00167\ \textcolor{comment}{//\ Operator\ <<}}
+\DoxyCodeLine{00168\ \textcolor{comment}{//\ ******************************}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring}}\&\ \mbox{\hyperlink{classgeng_1_1hstring_a8c1996e28dbc4c49847f21ec1879c7de}{hstring::operator<<}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ str)\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{if}\ (!str)\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ <<\ \textcolor{stringliteral}{"{}nullptr"{}};}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{auto}\ n\ =\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(std::strlen(str));}
+\DoxyCodeLine{00173\ \ \ \ \ ensure(len\ +\ n\ +\ 1);}
+\DoxyCodeLine{00174\ \ \ \ \ std::memcpy(data\ +\ len,\ str,\ n);}
+\DoxyCodeLine{00175\ \ \ \ \ len\ +=\ n;}
+\DoxyCodeLine{00176\ \ \ \ \ data[len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00178\ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ N>}
+\DoxyCodeLine{00181\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring}}\&\ \mbox{\hyperlink{classgeng_1_1hstring_a8c1996e28dbc4c49847f21ec1879c7de}{hstring::operator<<}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ (\&str)[N])\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ ensure(len\ +\ (N\ -\/\ 1)\ +\ 1);}
+\DoxyCodeLine{00183\ \ \ \ \ std::memcpy(data\ +\ len,\ str,\ N\ -\/\ 1);}
+\DoxyCodeLine{00184\ \ \ \ \ len\ +=\ N\ -\/\ 1;}
+\DoxyCodeLine{00185\ \ \ \ \ data[len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00187\ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring}}\&\ \mbox{\hyperlink{classgeng_1_1hstring_a8c1996e28dbc4c49847f21ec1879c7de}{hstring::operator<<}}(\textcolor{keywordtype}{char}\ c)\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ ensure(len\ +\ 2);}
+\DoxyCodeLine{00191\ \ \ \ \ data[len++]\ =\ c;}
+\DoxyCodeLine{00192\ \ \ \ \ data[len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00194\ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring}}\&\ \mbox{\hyperlink{classgeng_1_1hstring_a8c1996e28dbc4c49847f21ec1879c7de}{hstring::operator<<}}(\textcolor{keywordtype}{int}\ num)\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ ensure(len\ +\ 32\ +\ 1);}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{auto}*\ start\ =\ data\ +\ len;}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keyword}{auto}\ res\ =\ std::to\_chars(start,\ data\ +\ cap,\ num);}
+\DoxyCodeLine{00200\ \ \ \ \ len\ +=\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(res.ptr\ -\/\ start);}
+\DoxyCodeLine{00201\ \ \ \ \ data[len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00203\ \}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring}}\&\ \mbox{\hyperlink{classgeng_1_1hstring_a8c1996e28dbc4c49847f21ec1879c7de}{hstring::operator<<}}(\textcolor{keywordtype}{float}\ num)\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ ensure(len\ +\ 32\ +\ 1);}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keyword}{auto}*\ start\ =\ data\ +\ len;}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keyword}{auto}\ res\ =\ std::to\_chars(start,\ data\ +\ cap,\ num,\ std::chars\_format::fixed,\ precision);}
+\DoxyCodeLine{00209\ \ \ \ \ len\ +=\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(res.ptr\ -\/\ start);}
+\DoxyCodeLine{00210\ \ \ \ \ data[len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00212\ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}8\_t\ P>}
+\DoxyCodeLine{00215\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring}}\&\ \mbox{\hyperlink{classgeng_1_1hstring_a8c1996e28dbc4c49847f21ec1879c7de}{hstring::operator<<}}(\mbox{\hyperlink{structgeng_1_1precision}{geng::precision<P>}})\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ precision\ =\ P;}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00218\ \}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring}}\&\ \mbox{\hyperlink{classgeng_1_1hstring_a8c1996e28dbc4c49847f21ec1879c7de}{hstring::operator<<}}(\textcolor{keywordtype}{bool}\ b)\ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ <<\ (b\ ?\ \textcolor{stringliteral}{"{}true"{}}\ :\ \textcolor{stringliteral}{"{}false"{}});}
+\DoxyCodeLine{00222\ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1hstring_a92dab6e26e474b5c662a564b714d5c00}{hstring}}\&\ \mbox{\hyperlink{classgeng_1_1hstring_a8c1996e28dbc4c49847f21ec1879c7de}{hstring::operator<<}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ ptr)\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordflow}{if}\ (!ptr)\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ <<\ \textcolor{stringliteral}{"{}nullptr"{}};}
+\DoxyCodeLine{00226\ \ \ \ \ ensure(len\ +\ 18\ +\ 1);}
+\DoxyCodeLine{00227\ \ \ \ \ *\textcolor{keyword}{this}\ <<\ \textcolor{stringliteral}{"{}0x"{}};}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keyword}{auto}*\ start\ =\ data\ +\ len;}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{auto}\ res\ =\ std::to\_chars(start,\ data\ +\ cap,\ \textcolor{keyword}{reinterpret\_cast<}uintptr\_t\textcolor{keyword}{>}(ptr),\ 16);}
+\DoxyCodeLine{00230\ \ \ \ \ len\ +=\ \textcolor{keyword}{static\_cast<}uint32\_t\textcolor{keyword}{>}(res.ptr\ -\/\ start);}
+\DoxyCodeLine{00231\ \ \ \ \ data[len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00233\ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \}\ \textcolor{comment}{//\ namespace\ geng}}
+
+\end{DoxyCode}

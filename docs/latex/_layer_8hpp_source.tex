@@ -1,0 +1,146 @@
+\doxysection{Layer.\+hpp}
+\hypertarget{_layer_8hpp_source}{}\label{_layer_8hpp_source}\index{include/engine/layers/Layer.hpp@{include/engine/layers/Layer.hpp}}
+\mbox{\hyperlink{_layer_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_layer_context_8hpp}{LayerContext.hpp}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_layer_init_8hpp}{LayerInit.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_draw_batch_8hpp}{engine/rendering/DrawBatch.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_input_handler_8hpp}{engine/input/InputHandler.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_render_buffer_8hpp}{engine/rendering/RenderBuffer.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sprite_manager_8hpp}{engine/scene/sprites/SpriteManager.hpp}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_morph_manager_8hpp}{engine/scene/morphs/MorphManager.hpp}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_font_list_8hpp}{engine/scene/font/FontList.hpp}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_initializer_8hpp}{engine/scene/initializer/Initializer.hpp}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_particle_manager_8hpp}{engine/scene/particles/ParticleManager.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_route_manager_8hpp}{engine/scene/routes/RouteManager.hpp}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_background_8hpp}{engine/rendering/background/Background.hpp}}"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_banner_manager_8hpp}{engine/scene/banners/BannerManager.hpp}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_cell_bucket_8hpp}{engine/scene/cells/CellBucket.hpp}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_event_manager_8hpp}{engine/scene/events/EventManager.hpp}}"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_physics_maestro_8hpp}{engine/scene/physics/PhysicsMaestro.hpp}}"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_tile_list_8hpp}{engine/scene/tilesets/TileList.hpp}}"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_world_manager_8hpp}{engine/scene/world/WorldManager.hpp}}"{}}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{class\ }Layer\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ geng::fstring<10>\ name;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ EngineContext\&\ core;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Camera\&\ camera;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ LayerContext\ scene;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ TextureRegister\&\ texreg;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ InputHandler\ input;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ EventManager\ events;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ CellBucket\ cell\_bucket;}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Three\ primary\ engine\ types\ <><><>}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ SpriteManager\ sprites;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ BannerManager\ banners;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ ParticleManager\ particles;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Texture\ Manipulation/Retrieval}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ Background*\ background\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ FontList\ fonts;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ FrameList\ frames;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ TileList\ tiles;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Effects\ applied\ to\ engine\ tyeps\ <><><>}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ MorphManager\ morphs;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ RouteManager\ routes;}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Physics/Worldbuilding\ <><><>}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ WorldManager\ world;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ PhysicsMaestro\ physics;}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Initialization\ <><><>}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ Initializer\ init;}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Adding/Removing\ Gears}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ gch::vector<Gear*>\ gears;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id}\ =\ 0;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ add\_gear(Gear*\ g);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ remove\_gear(Gear*\ g);}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ Layer(LayerInit\&\ layer\_init,\ geng::fstring<10>\ name);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \string~Layer();}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ update(\textcolor{keywordtype}{double}\ dt);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Sprites\ <><><>}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ add\_sprite(Sprite*\ a);}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ add\_sprites(gch::vector<Sprite\ *>\ \&new\_sprites);}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ remove\_sprite(Sprite\ *a);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ remove\_sprites(gch::vector<Sprite\ *>\ \&objs);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Banners\ <><><>}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ add\_banner(Banner*\ b);}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ add\_banners(gch::vector<Banner\ *>\ \&banners);}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ remove\_banner(Banner*\ b);}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ remove\_banners(gch::vector<Banner\ *>\ \&banners);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Fonts\ \&\ Frames\ <><><>}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ Font\&\ get\_font(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ FrameTable\&\ get\_frame\_table(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Particle\ groups\ <><><>}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ attach\_particle(Gear\ *g,\ ParticleGroup\ *pg);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ attach\_particles(gch::vector<ParticleGroup*>\&\ pgs);}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ detach\_particle(ParticleGroup*\ pg);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ detach\_particle(Sprite\ *a);}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ detach\_particles(gch::vector<Sprite\ *>\ \&pg);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ instantiate\_particle(ParticleGroup\ *pg);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Morphs\ <><><>}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ apply\_morph(Morph\ *e);}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ has\_morph(Gear\ *g);}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ strip\_morph(Morph*\ e);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ strip\_morph(Gear\ *g);}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Physics\ <><><>}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ link\_collider(Collider*\ c);}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ unlink\_collider(Collider*\ c);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Routes\ <><><>}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_route(Route*\ r);}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_route(Route\ *r,\ Gear*g,\ \textcolor{keyword}{const}\ FPos2D\ \&offset\ =\ \{0,0\});}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Rendering\ styles\ <><><>}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_render\_strict();}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_render\_z\_index();}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_render\_batch();}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Worlds\ <><><>}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ load\_world(geng::hstring\ filename,\ \textcolor{keywordtype}{int}\ tileset\_num);}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Tilesets\ <><><>}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ Tileset\&\ get\_tileset(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Returns\ the\ center\ of\ the\ scene\ <><><>}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ FPos2D\ get\_scene\_center()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Returns\ whether\ we're\ active\ or\ not.}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_active()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Returns\ the\ name\ of\ the\ layer}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ geng::fstring<10>\ get\_name()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }Engine;}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }Renderer;}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Engine-\/Specific\ Functions\ <><><>}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ render\_self(RenderBuffer\ \&buffer);}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ render\_gears(RenderBuffer\ \&buffer);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ render\_grid(RenderBuffer\ \&buffer,\ \textcolor{keywordtype}{int}\ grid\_div,\ \textcolor{keywordtype}{int}\ thickness,\ \textcolor{keywordtype}{bool}\ subdiv\ =\ \textcolor{keyword}{false})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ render\_hitboxes(RenderBuffer\ \&buffer);}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ order();}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ SDL\_Texture*\ \_find\_texture(\textcolor{keywordtype}{int}\ texture\_id);}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \};}
+\DoxyCodeLine{00206\ \}}
+
+\end{DoxyCode}

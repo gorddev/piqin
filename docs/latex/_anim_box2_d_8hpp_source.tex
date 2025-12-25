@@ -1,0 +1,27 @@
+\doxysection{Anim\+Box2\+D.\+hpp}
+\hypertarget{_anim_box2_d_8hpp_source}{}\label{_anim_box2_d_8hpp_source}\index{include/engine/types/AnimBox2D.hpp@{include/engine/types/AnimBox2D.hpp}}
+\mbox{\hyperlink{_anim_box2_d_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <SDL\_render.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_engine_enums_8hpp}{EngineEnums.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vector_8hpp}{external/vector.hpp}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{struct\ }AnimBox2D\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ duration;}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ uint16\_t\ x,\ y,\ w,\ h;}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ next\_anim\ =\ -\/1;}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ GAnimType\ anim;}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ AnimBox2D()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ AnimBox2D(\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{int}\ w,\ \textcolor{keywordtype}{int}\ h,}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ duration\ =\ 0.f,\ GAnimType\ anim\ =\ GAnimType::IDLE,\ \textcolor{keywordtype}{short}\ next\_anim\ =\ -\/1);}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ gch::vector<SDL\_FPoint>\ to\_vert\_points(\textcolor{keywordtype}{int}\ texW,\ \textcolor{keywordtype}{int}\ texH)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ std::string\ to\_string()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00027\ \ \ \ \ \};}
+\DoxyCodeLine{00028\ \}}
+
+\end{DoxyCode}

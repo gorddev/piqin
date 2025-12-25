@@ -1,0 +1,62 @@
+\doxysection{FPos3\+D.\+hpp}
+\hypertarget{_f_pos3_d_8hpp_source}{}\label{_f_pos3_d_8hpp_source}\index{include/engine/types/positioning/FPos3D.hpp@{include/engine/types/positioning/FPos3D.hpp}}
+\mbox{\hyperlink{_f_pos3_d_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{str__view_8hpp}{engine/types/strings/str\_view/str\_view.hpp}}"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{struct\ }FPos3D\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ 0;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ y\ =\ 0;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ z\ =\ 0;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Constructor\ for\ position}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ FPos3D()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ FPos3D(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ y)\ :\ x(x),\ y(y),\ z(0)\ \{\}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ FPos3D(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ y,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ z)\ :\ x(x),\ y(y),\ z(z)\ \{\}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Member\ functions}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set(\textcolor{keywordtype}{float}\ xpos,\ \textcolor{keywordtype}{float}\ ypos,\ \textcolor{keywordtype}{float}\ zpos);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ [[nodiscard]]\ FPos3D\ unit()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{float}\ mag()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{float}\ xy\_mag()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{float}\ dist(FPos3D\ v)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ to\_zero();}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ is\_zero()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ randomize(std::pair<float,\ float>\ range\ =\ std::make\_pair(0,\ 0));}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ FPos3D\ abs();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Operator\ overloads\ for\ Vertexes}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Operations\ with\ other\ Vertexes}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ FPos3D\ \mbox{\hyperlink{fstring_8inl_a24b203a4f197b30613bec180c750140a}{operator+}}(FPos3D\ other)\ \textcolor{keyword}{const};\ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ FPos3D\ \mbox{\hyperlink{namespacegch_aea1f9ec67c295f21ae95e7afb9189fba}{operator-\/}}(FPos3D\ other)\ \textcolor{keyword}{const};\ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ FPos3D\ operator*(\textcolor{keywordtype}{float}\ scalar)\ \textcolor{keyword}{const};\ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ FPos3D\ operator/(\textcolor{keywordtype}{float}\ scalar)\ \textcolor{keyword}{const};\ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ FPos3D\ operator\%(\textcolor{keywordtype}{int}\ scalar)\ \textcolor{keyword}{const};\ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Self\ operations}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ operator+=(FPos3D\ other);\ \ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ operator-\/=(FPos3D\ other);\ \ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ operator*=(\textcolor{keywordtype}{float}\ scalar);\ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ operator/=(\textcolor{keywordtype}{float}\ scalar);\ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ operator\%=(\textcolor{keywordtype}{int}\ scalar);\ \ \ \ }
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ operator*(FPos3D\ other);\ \ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\&\ operator[](\textcolor{keywordtype}{int}\ index);\ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ operator=(FPos3D\ other);\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ To\ string\ methods\ below}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{fstring_8inl_a24b203a4f197b30613bec180c750140a}{operator+}}(std::string\ s)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ std::string\ operator<<(std::string\ s)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ [[nodiscard]]\ geng::str\_view\ \&to\_fstring(str\_view\ \&buffer)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacegeng_a9f80aaff7c3db1f08156ee7f50140fb2}{operator==}}(FPos3D\ other)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_finite()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ sanitize();}
+\DoxyCodeLine{00086\ \ \ \ \ \};}
+\DoxyCodeLine{00087\ \}}
+
+\end{DoxyCode}

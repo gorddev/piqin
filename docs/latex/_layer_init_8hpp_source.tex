@@ -1,0 +1,24 @@
+\doxysection{Layer\+Init.\+hpp}
+\hypertarget{_layer_init_8hpp_source}{}\label{_layer_init_8hpp_source}\index{include/engine/layers/LayerInit.hpp@{include/engine/layers/LayerInit.hpp}}
+\mbox{\hyperlink{_layer_init_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_engine_context_8hpp}{engine/EngineContext.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_texture_register_8hpp}{engine/scene/initializer/TextureRegister.hpp}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{class\ }LayerInit\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ LayerInit(\mbox{\hyperlink{classgeng_1_1_engine_context}{EngineContext}}\&\ context,\ \textcolor{keyword}{const}\ Camera\&\ camera,\ TextureRegister\&\ texreg)}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ :\ core(context),\ camera(camera),\ texreg(texreg)\ \{\}}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1_layer_init_a3e1914489e4bed4f9f23cdeab34a43dc}{Engine}};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1_layer_init_a834e4e869446be644f61b4b456604f31}{Layer}};}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_engine_context}{EngineContext}}\&\ core;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Camera\&\ camera;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ TextureRegister\&\ texreg;}
+\DoxyCodeLine{00024\ \ \ \ \ \};}
+\DoxyCodeLine{00025\ \}}
+
+\end{DoxyCode}

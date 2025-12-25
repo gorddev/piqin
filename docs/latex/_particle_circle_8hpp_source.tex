@@ -1,0 +1,39 @@
+\doxysection{Particle\+Circle.\+hpp}
+\hypertarget{_particle_circle_8hpp_source}{}\label{_particle_circle_8hpp_source}\index{include/engine/scene/particles/particle-\/types/ParticleCircle.hpp@{include/engine/scene/particles/particle-\/types/ParticleCircle.hpp}}
+\mbox{\hyperlink{_particle_circle_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <deque>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <SDL\_rect.h>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}engine/particles/ParticleGroup.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgeng_1_1_p_circle_a23546329b1b2acfa3634e3c38231706e}{PCircle}}\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_f_pos2_d}{FPos2D}}\ \mbox{\hyperlink{structgeng_1_1_p_circle_a2975a0d0c95ff131436aaade14097f49}{pos}};}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_f_pos2_d}{FPos2D}}\ \mbox{\hyperlink{structgeng_1_1_p_circle_abe73997de563720083dd4a4c23cb4a21}{direction}};}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structgeng_1_1_p_circle_a915985ff3426ceb24c3da6d6c72b7836}{radius}};}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structgeng_1_1_p_circle_ae24445613be539b189f69a8f7fe81b15}{duration}};}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structgeng_1_1_p_circle_a2b1aaf1926c4a06a9eba45dd92ce5623}{initDuration}};}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_p_circle_a23546329b1b2acfa3634e3c38231706e}{PCircle}}(\mbox{\hyperlink{structgeng_1_1_f_pos2_d}{FPos2D}}\ \mbox{\hyperlink{structgeng_1_1_p_circle_a2975a0d0c95ff131436aaade14097f49}{pos}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structgeng_1_1_p_circle_a915985ff3426ceb24c3da6d6c72b7836}{radius}},\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structgeng_1_1_p_circle_ae24445613be539b189f69a8f7fe81b15}{duration}});}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structgeng_1_1_p_circle_a9b419b9d437bc11473027bbe6d1e336a}{update}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ [[nodiscard]]\ lni::vector<SDL\_FRect>\ \mbox{\hyperlink{structgeng_1_1_p_circle_ad06855787cf8f3f7625d6b335048416b}{to\_rect}}(\textcolor{keywordtype}{float}\&\ speed);}
+\DoxyCodeLine{00018\ \ \ \ \ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1_particle_circle_a357d7dec2b71902c3aef3aa1ed1b5b77}{ParticleCircle}}\ :\ \textcolor{keyword}{public}\ ParticleGroup\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ std::deque<PCircle>\ particles;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ deltat\ =\ 0;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ period;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_particle_circle_a357d7dec2b71902c3aef3aa1ed1b5b77}{ParticleCircle}}(\mbox{\hyperlink{structgeng_1_1_f_pos2_d}{FPos2D}}\ pos,\ \textcolor{keywordtype}{float}\ size,\ \textcolor{keywordtype}{float}\ speed,\ \textcolor{keywordtype}{float}\ duration,\ \textcolor{keywordtype}{float}\ frequency,\ SDL\_Color\ Tint\ =\ \{0,0,0,30\});}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_particle_circle_a2d71bf399605a80287de3d0003688ecb}{ParticleCircle}}(Sprite*\ a,\ \textcolor{keywordtype}{float}\ size,\ \textcolor{keywordtype}{float}\ speed,\ \textcolor{keywordtype}{float}\ duration,\ \textcolor{keywordtype}{float}\ period,\ SDL\_Color\ Tint\ =\ \{0,0,0,30\});}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1_particle_circle_ad126b7d3b854347f79c8866bed8e1400}{update}}(\textcolor{keywordtype}{double}\&\ dt)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ lni::vector<lni::vector<SDL\_FRect>>\ \mbox{\hyperlink{classgeng_1_1_particle_circle_ae4e43a8c0a60eb2fec3c03b664caee2c}{to\_vertex}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00031\ \ \ \ \ \};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \}}
+
+\end{DoxyCode}

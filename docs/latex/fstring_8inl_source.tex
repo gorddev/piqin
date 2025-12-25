@@ -1,0 +1,272 @@
+\doxysection{fstring.\+inl}
+\hypertarget{fstring_8inl_source}{}\label{fstring_8inl_source}\index{include/engine/types/strings/fstring/fstring.inl@{include/engine/types/strings/fstring/fstring.inl}}
+\mbox{\hyperlink{fstring_8inl}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <charconv>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdexcept>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{fstring_8inl_a57c19fc162b2164446bfd67991fffa2a}{fstring\_throw\_err}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ err[])\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keywordflow}{throw}\ std::runtime\_error(err);}
+\DoxyCodeLine{00008\ \}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ ******************************\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Constructors}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ ******************************\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00015\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}16\_t\ N>}
+\DoxyCodeLine{00016\ \textcolor{keyword}{constexpr}\ geng::fstring<C>::fstring(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ (\&str)[N])\ \{\ \textcolor{comment}{//\ NOLINT(*-\/explicit-\/constructor,\ *-\/pro-\/type-\/member-\/init)}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ Gets\ the\ lenght\ of\ our\ string}}
+\DoxyCodeLine{00018\ \ \ \ \ len\ =\ std::min<uint32\_t>(N\ -\/\ 1,\ C\ -\/\ 1);}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ Allocate\ memory\ for\ array}}
+\DoxyCodeLine{00020\ \ \ \ \ std::copy(str,\ str\ +\ len,\ arr);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ Assign\ our\ null\ character}}
+\DoxyCodeLine{00022\ \ \ \ \ arr[len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ Assign\ our\ precision\ identifier}}
+\DoxyCodeLine{00024\ \ \ \ \ arr[C+1]\ =\ 10;}
+\DoxyCodeLine{00025\ \}}
+\DoxyCodeLine{00027\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00028\ \textcolor{keyword}{constexpr}\ geng::fstring<C>::fstring(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ str)\ \{\ \textcolor{comment}{//\ NOLINT(*-\/pro-\/type-\/member-\/init)}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ If\ there's\ nothing\ there}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{if}\ (!str)\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ len\ =\ 0;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ arr[0]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ Gets\ the\ lenght\ of\ our\ string}}
+\DoxyCodeLine{00036\ \ \ \ \ len\ =\ std::min<uint32\_t>(strlen(str),\ C\ -\/\ 1);}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ Allocate\ memory\ for\ array\ with\ builtin\ memcpy}}
+\DoxyCodeLine{00038\ \ \ \ \ std::memcpy(arr,\ str,\ len);}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ Assign\ our\ null\ character}}
+\DoxyCodeLine{00040\ \ \ \ \ arr[len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ Assign\ our\ precision\ identifier}}
+\DoxyCodeLine{00042\ \ \ \ \ arr[C+1]\ =\ 10;}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00045\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00046\ \textcolor{keyword}{constexpr}\ geng::fstring<C>::fstring(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ str,\ \textcolor{keyword}{const}\ uint32\_t\ length)\ \{\ \textcolor{comment}{//\ NOLINT(*-\/pro-\/type-\/member-\/init)}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ If\ there's\ nothing\ there}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{if}\ (!str)\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ len\ =\ 0;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ arr[0]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ Gets\ the\ lenght\ of\ our\ string}}
+\DoxyCodeLine{00054\ \ \ \ \ len\ =\ std::min<uint32\_t>(length,\ C\ -\/\ 1);}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ Allocate\ memory\ for\ array\ with\ builtin\ memcpy}}
+\DoxyCodeLine{00056\ \ \ \ \ std::memcpy(arr,\ str,\ len);}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ Assign\ our\ null\ character}}
+\DoxyCodeLine{00058\ \ \ \ \ arr[len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ Assign\ our\ precision\ identifier}}
+\DoxyCodeLine{00060\ \ \ \ \ arr[C+1]\ =\ 10;}
+\DoxyCodeLine{00061\ \}}
+\DoxyCodeLine{00063\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00064\ \textcolor{keyword}{constexpr}\ geng::fstring<C>::fstring(\textcolor{keywordtype}{char}\ c)\ \{\ \textcolor{comment}{//\ NOLINT(*-\/pro-\/type-\/member-\/init)}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//\ Length\ equals\ one}}
+\DoxyCodeLine{00066\ \ \ \ \ len\ =\ 1;}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ Assign\ the\ first\ value}}
+\DoxyCodeLine{00068\ \ \ \ \ arr[0]\ =\ c;}
+\DoxyCodeLine{00069\ \ \ \ \ arr[1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//\ Assign\ our\ precision\ identifier}}
+\DoxyCodeLine{00071\ \ \ \ \ arr[C+1]\ =\ 10;}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00074\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00075\ \textcolor{keyword}{constexpr}\ geng::fstring<C>::fstring()\ \{\ \textcolor{comment}{//\ NOLINT(*-\/pro-\/type-\/member-\/init)}}
+\DoxyCodeLine{00076\ \ \ \ \ len\ =\ 0;}
+\DoxyCodeLine{00077\ \ \ \ \ arr[0]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ Assign\ our\ precision\ identifier}}
+\DoxyCodeLine{00079\ \ \ \ \ arr[C+1]\ =\ 10;}
+\DoxyCodeLine{00080\ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ ******************************\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00083\ \textcolor{comment}{//\ Utility\ functions}}
+\DoxyCodeLine{00084\ \textcolor{comment}{//\ ******************************\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00087\ \textcolor{keyword}{constexpr}\ uint32\_t\ geng::fstring<C>::length()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{return}\ len;}
+\DoxyCodeLine{00089\ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00092\ \textcolor{keyword}{constexpr}\ uint32\_t\ geng::fstring<C>::capacity()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{return}\ C;}
+\DoxyCodeLine{00094\ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00097\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ geng::fstring<C>::cstr()\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ arr[len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{return}\ \&arr[0];}
+\DoxyCodeLine{00100\ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00103\ \textcolor{keywordtype}{void}\ geng::fstring<C>::clear()\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ len\ =\ 0;}
+\DoxyCodeLine{00105\ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00108\ geng::fstring<C>\ geng::fstring<C>::pop()\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ fstring<C>\ ret\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00110\ \ \ \ \ clear();}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{00112\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00115\ \mbox{\hyperlink{classgeng_1_1str__view}{geng::str\_view}}\ geng::fstring<C>::wrap()\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{return}\ str\_view(arr,\ len,\ C);}
+\DoxyCodeLine{00117\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>\ \textcolor{keyword}{template}\ <u\textcolor{keywordtype}{int}32\_t\ N>}
+\DoxyCodeLine{00121\ \textcolor{keywordtype}{void}\ geng::fstring<C>::emplace(uint32\_t\ index,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ (\&str)[N])}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{requires}(index\ +\ N\ -\/\ 1\ <=\ C)}
+\DoxyCodeLine{00123\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ memcpy(arr\ +\ index,\ str,\ N\ -\/\ 1);}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ +\ (N\ -\/\ 1)\ >\ len)\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ len\ =\ index\ +\ (N\ -\/\ 1);}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ arr[len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00128\ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00132\ \textcolor{keywordtype}{void}\ geng::fstring<C>::emplace(uint32\_t\ index,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ str,\ uint32\_t\ count)}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{requires}(index\ +\ count\ <=\ C)}
+\DoxyCodeLine{00134\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{if}\ (!str)\ \textcolor{keywordflow}{return};\ \textcolor{comment}{//\ nothing\ to\ copy}}
+\DoxyCodeLine{00136\ \ \ \ \ std::memcpy(arr\ +\ index,\ str,\ count);}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{//\ Update\ length\ if\ we\ extended\ past\ current\ len}}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ +\ count\ >\ len)\ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ len\ =\ index\ +\ count;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ arr[len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00141\ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00145\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ N>}
+\DoxyCodeLine{00146\ \textcolor{keyword}{constexpr}\ geng::fstring<N>\ geng::fstring<C>::substr(uint32\_t\ index)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{if}\ (N\ >\ C\ -\/\ index)}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{fstring_8inl_a57c19fc162b2164446bfd67991fffa2a}{fstring\_throw\_err}}(\textcolor{stringliteral}{"{}fstring<C>::substr,\ access\ out\ of\ bounds\ memory."{}});}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{return}\ fstring<N>(arr\ +\ index,\ length);}
+\DoxyCodeLine{00150\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{comment}{//\ ******************************\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00153\ \textcolor{comment}{//\ Operator\ overloads}}
+\DoxyCodeLine{00154\ \textcolor{comment}{//\ ******************************\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00157\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{char}\&\ geng::fstring<C>::operator[](uint32\_t\ index)\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{if}\ (index\ >=\ len)}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{fstring_8inl_a57c19fc162b2164446bfd67991fffa2a}{fstring\_throw\_err}}(\textcolor{stringliteral}{"{}fstring<C>::operator[],\ access\ out\ of\ bounds\ memory."{}});}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordflow}{return}\ arr[index];}
+\DoxyCodeLine{00161\ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{comment}{//<><><><><>}}
+\DoxyCodeLine{00164\ \textcolor{comment}{//\ Equality\ tests}}
+\DoxyCodeLine{00165\ \textcolor{comment}{//\ <><><><><>}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00168\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ N>}
+\DoxyCodeLine{00169\ \textcolor{keywordtype}{bool}\ geng::fstring<C>::operator==(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}(\&str)[N])\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordflow}{if}\ (len\ !=\ N\ -\/\ 1)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{return}\ std::memcmp(arr,\ str,\ len)\ ==\ 0;}
+\DoxyCodeLine{00172\ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00175\ \textcolor{keywordtype}{bool}\ geng::fstring<C>::operator==(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str)\ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ len;\ i++)\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (arr[i]\ !=\ str[i])\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{return}\ str[len]\ ==\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00180\ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00183\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ N>}
+\DoxyCodeLine{00184\ geng::fstring<C>\&\ geng::fstring<C>::operator<<(fstring<N>\ \&other)\ \{}
+\DoxyCodeLine{00185\ \ \ \ \ uint32\_t\ bytes\ =\ std::min<uint32\_t>(\ other.length(),\ C\ -\/\ len);}
+\DoxyCodeLine{00186\ \ \ \ \ memcpy(arr\ +\ len,\ other.cstr(),\ bytes);}
+\DoxyCodeLine{00187\ \ \ \ \ len\ +=\ bytes;}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00189\ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00192\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ N>}
+\DoxyCodeLine{00193\ geng::fstring<C>\ \&\ geng::fstring<C>::operator<<(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}(\&str)[N])\ \{}
+\DoxyCodeLine{00194\ \ \ \ \ uint32\_t\ bytes\ =\ std::min<uint32\_t>(\ N,\ C\ -\/\ len);}
+\DoxyCodeLine{00195\ \ \ \ \ memcpy(arr\ +\ len,\ str,\ bytes);}
+\DoxyCodeLine{00196\ \ \ \ \ len\ +=\ bytes;}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00198\ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00201\ geng::fstring<C>\ \&\ geng::fstring<C>::operator<<(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str)\ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordflow}{if}\ (!str)\ \textcolor{keywordflow}{return}\ (*\textcolor{keyword}{this})\ <<\ \textcolor{stringliteral}{"{}null"{}};}
+\DoxyCodeLine{00203\ \ \ \ \ uint32\_t\ bytes\ =\ std::min<uint32\_t>(\ strlen(str),\ C\ -\/\ len);}
+\DoxyCodeLine{00204\ \ \ \ \ memcpy(arr\ +\ len,\ str,\ bytes);}
+\DoxyCodeLine{00205\ \ \ \ \ len\ +=\ bytes;}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00207\ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00210\ geng::fstring<C>\&\ geng::fstring<C>::operator<<(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ num)\ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keyword}{auto}*\ start\ =\ arr\ +\ len;}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keyword}{auto}\ res\ =\ std::to\_chars(start,\ arr\ +\ C,\ num);}
+\DoxyCodeLine{00213\ \ \ \ \ len\ +=\ res.ptr\ -\/\ start;}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00215\ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00218\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}8\_t\ P>}
+\DoxyCodeLine{00219\ geng::fstring<C>\ \&\ geng::fstring<C>::operator<<(precision<P>\ precision)\ \{}
+\DoxyCodeLine{00220\ \ \ \ \ arr[C\ +\ 1]\ =\ P;}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00222\ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00225\ geng::fstring<C>\ \&\ geng::fstring<C>::operator<<(\textcolor{keywordtype}{float}\ num)\ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keyword}{auto}*\ start\ =\ arr\ +\ len;}
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keyword}{auto}*\ \mbox{\hyperlink{namespacegch_abb89d2571c8b39c2d39f527f1d8b7005}{end}}\ =\ arr\ +\ C;}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keyword}{auto}\ res\ =\ std::to\_chars(start,\ end,\ num,\ std::chars\_format::fixed,\ arr[C+1]);}
+\DoxyCodeLine{00229\ \ \ \ \ len\ +=\ res.ptr\ -\/\ start;}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00231\ \}}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00234\ geng::fstring<C>\ \&\ geng::fstring<C>::operator<<(\textcolor{keywordtype}{char}\ c)\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keywordflow}{if}\ (len\ !=\ C\ -\/\ 1)}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ arr[len++]\ =\ c;}
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00238\ \}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00241\ geng::fstring<C>\&\ geng::fstring<C>::operator<<(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ ptr)\ \{}
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keywordflow}{if}\ (!ptr)\ \textcolor{keywordflow}{return}\ (*\textcolor{keyword}{this})\ <<\ \textcolor{stringliteral}{"{}nullptr"{}};}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keyword}{auto}\ addr\ =\ \textcolor{keyword}{reinterpret\_cast<}uintptr\_t\textcolor{keyword}{>}(ptr);}
+\DoxyCodeLine{00244\ \ \ \ \ *\textcolor{keyword}{this}\ <<\ \textcolor{stringliteral}{"{}0x"{}};}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keyword}{auto}*\ start\ =\ arr\ +\ len;}
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keyword}{auto}*\ \mbox{\hyperlink{namespacegch_abb89d2571c8b39c2d39f527f1d8b7005}{end}}\ =\ arr\ +\ C;}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keyword}{auto}\ res\ =\ std::to\_chars(start,\ end,\ addr,\ 16);}
+\DoxyCodeLine{00248\ \ \ \ \ len\ +=\ res.ptr\ -\/\ start;}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00250\ \}}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00253\ geng::fstring<C>\ \&\ geng::fstring<C>::operator<<(\textcolor{keywordtype}{bool}\ b)\ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this}\ <<\ (b\ ?\ \textcolor{stringliteral}{"{}true"{}}\ :\ \textcolor{stringliteral}{"{}false"{}});}
+\DoxyCodeLine{00255\ \}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1str__view}{geng::str\_view}}\&\ \mbox{\hyperlink{classgeng_1_1str__view_a37cd3a9e518b7231b875662ac4ba18c8}{geng::str\_view::operator<<}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classgeng_1_1str__view}{geng::str\_view}}\ \&other)\ \{}
+\DoxyCodeLine{00258\ \ \ \ \ uint32\_t\ bytes\ =\ std::min<uint32\_t>(\ other.\mbox{\hyperlink{classgeng_1_1str__view_a931ab8ad725cafb39276496b3264c4c5}{length}}(),\ cap\ -\/\ len);}
+\DoxyCodeLine{00259\ \ \ \ \ std::memmove(data\ +\ len,\ other.\mbox{\hyperlink{classgeng_1_1str__view_ac7e3bdd7667dd169ce2e53e0b6d2881e}{cstr}}(),\ bytes);}
+\DoxyCodeLine{00260\ \ \ \ \ len\ +=\ bytes;}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00262\ \}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ N,\ u\textcolor{keywordtype}{int}32\_t\ C>}
+\DoxyCodeLine{00265\ geng::fstring<N+C>\ \mbox{\hyperlink{fstring_8inl_a24b203a4f197b30613bec180c750140a}{operator+}}(\textcolor{keyword}{const}\ geng::fstring<N>\ self,\ \textcolor{keyword}{const}\ geng::fstring<C>\&\ other)\ \{}
+\DoxyCodeLine{00266\ \ \ \ \ geng::fstring<N\ +\ C>\ ret;}
+\DoxyCodeLine{00267\ \ \ \ \ ret\ <<\ self\ <<\ other;}
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{00269\ \}}
+\DoxyCodeLine{00270\ }
+
+\end{DoxyCode}

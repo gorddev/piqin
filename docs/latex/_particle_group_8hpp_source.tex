@@ -1,0 +1,44 @@
+\doxysection{Particle\+Group.\+hpp}
+\hypertarget{_particle_group_8hpp_source}{}\label{_particle_group_8hpp_source}\index{include/engine/scene/particles/ParticleGroup.hpp@{include/engine/scene/particles/ParticleGroup.hpp}}
+\mbox{\hyperlink{_particle_group_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <SDL.h>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_f_pos2_d_8hpp}{engine/types/positioning/FPos2D.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sprite_8hpp}{engine/scene/sprites/Sprite.hpp}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{class\ }ParticleGroup\ :\ \textcolor{keyword}{public}\ Gear\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lets\ us\ have\ relevant\ overloads}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ duration;\ \ \ \ \ \textcolor{comment}{//\ -\/1\ means\ permanent.}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ strength\ =\ 1.0f;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ speed\ =\ 1.0f;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ permanent\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ SDL\_Color\ shadow\_color\ =\ \{0,\ 0,\ 0,\ 30\};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ they're\ attatched\ to\ an\ object,\ they\ ride\ it\ like\ a\ horse}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ Gear*\ payload\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ ParticleGroup(\textcolor{keyword}{const}\ FPos2D\ pos,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ strength,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ speed,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ duration,\ \textcolor{keyword}{const}\ SDL\_Color\ color)\ :}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Gear(pos),\ duration(duration),\ strength(strength),\ speed(speed)\ \{\ \textcolor{keywordflow}{if}\ (duration\ ==\ -\/1)\ permanent\ =\ \textcolor{keyword}{true};\ t.color\ =\ color;\ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ ParticleGroup(Gear*\ g,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ strength,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ speed,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ duration,\ \textcolor{keyword}{const}\ SDL\_Color\ color)}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ :\ strength(strength),\ speed(speed),\ Gear(g-\/>t.pos),\ payload(g),\ duration(duration)\ \{\ z\_index\ =\ g-\/>z\_index\ -\/\ 1;\ t.color\ =\ color;\ \textcolor{keywordflow}{if}\ (duration\ ==\ -\/1)\ permanent\ =\ \textcolor{keyword}{true};\}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lets\ us\ update\ our\ particles.\ Should\ return\ true\ if\ done\ rendering.}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ update(LayerState\&\ t)\ =\ 0;\ \ \textcolor{comment}{//\ pure\ virtual}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ rendering\ buffer\ for\ our\ particle.\ MUST\ RETURN\ THE\ NUMBER\ OF\ VERTICES}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ to\_vertex(RenderBuffer\&\ buffer)\ \textcolor{keyword}{override}\ =\ 0;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Destructor}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \string~ParticleGroup()\ \textcolor{keyword}{override}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gets\ the\ color}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ SDL\_Color\&\ get\_color()\ \{\ \textcolor{keywordflow}{return}\ t.color;\ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ SDL\_Color\&\ get\_shadow\_color()\ \{\ \textcolor{keywordflow}{return}\ shadow\_color;\ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ends\ a\ particlegroup's\ generation}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacegch_abb89d2571c8b39c2d39f527f1d8b7005}{end}}()\ \{\ duration\ =\ 0;\ permanent\ =\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \};}
+\DoxyCodeLine{00058\ \}}
+
+\end{DoxyCode}

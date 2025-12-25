@@ -1,0 +1,54 @@
+\doxysection{src/game/blackjack/bj-\/objects/\+Pather.cpp File Reference}
+\hypertarget{_pather_8cpp}{}\label{_pather_8cpp}\index{src/game/blackjack/bj-\/objects/Pather.cpp@{src/game/blackjack/bj-\/objects/Pather.cpp}}
+{\ttfamily \#include "{}../../../../include/game/blackjack/bj-\/objects/\+Pather.\+hpp"{}}\newline
+{\ttfamily \#include "{}../../../../include/engine/particles/particle-\/types/\+Particle\+Rhombus.\+hpp"{}}\newline
+{\ttfamily \#include "{}../../../../include/game/blackjack/bj-\/objects/\+Deck.\+hpp"{}}\newline
+{\ttfamily \#include "{}../../../../include/engine/particles/particle-\/types/\+Particle\+Sparkle.\+hpp"{}}\newline
+{\ttfamily \#include "{}game/blackjack/\+Board.\+hpp"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_f_pos2_d}{FPos2D}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceblackjack}{blackjack}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_pather_8cpp_ab17ad735e0f25dccc3ac65c71fa4741e}{ADDEV}}(t,  f)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static geng\+::\+Path \mbox{\hyperlink{_pather_8cpp_a89786d778a6e51ae68b592e2030285c4}{hand\+\_\+path}} (\mbox{\hyperlink{classblackjack_1_1_hand}{Hand}} \&hand, \mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*}\&c, const float \&center, const float \&height, int index=-\/1)
+\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{_pather_8cpp_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_pather_8cpp_ab17ad735e0f25dccc3ac65c71fa4741e}\index{Pather.cpp@{Pather.cpp}!ADDEV@{ADDEV}}
+\index{ADDEV@{ADDEV}!Pather.cpp@{Pather.cpp}}
+\doxysubsubsection{\texorpdfstring{ADDEV}{ADDEV}}
+{\footnotesize\ttfamily \label{_pather_8cpp_ab17ad735e0f25dccc3ac65c71fa4741e} 
+\#define ADDEV(\begin{DoxyParamCaption}\item[{}]{t}{, }\item[{}]{f}{}\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{geng::GENG\_Events.add\_event(t,\ [=]\{f;\})}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\Hypertarget{_pather_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_pather_8cpp_a89786d778a6e51ae68b592e2030285c4}\index{Pather.cpp@{Pather.cpp}!hand\_path@{hand\_path}}
+\index{hand\_path@{hand\_path}!Pather.cpp@{Pather.cpp}}
+\doxysubsubsection{\texorpdfstring{hand\_path()}{hand\_path()}}
+{\footnotesize\ttfamily \label{_pather_8cpp_a89786d778a6e51ae68b592e2030285c4} 
+geng\+::\+Path hand\+\_\+path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classblackjack_1_1_hand}{Hand}} \&}]{hand}{, }\item[{\mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*}\&}]{c}{, }\item[{const float \&}]{center}{, }\item[{const float \&}]{height}{, }\item[{int}]{index}{ = {\ttfamily -\/1}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

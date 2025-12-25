@@ -1,0 +1,38 @@
+\doxysection{Sparkle.\+hpp}
+\hypertarget{_sparkle_8hpp_source}{}\label{_sparkle_8hpp_source}\index{include/engine/scene/particles/particle-\/types/Sparkle.hpp@{include/engine/scene/particles/particle-\/types/Sparkle.hpp}}
+\mbox{\hyperlink{_sparkle_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_particle_group_8hpp}{../ParticleGroup.hpp}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <deque>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_layer_state_8hpp}{engine/layers/LayerState.hpp}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegfx}{gfx}}\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgfx_1_1_sparkle_inst_a375e8f8f2f5c47a6d237e0f3a007171b}{SparkleInst}}\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_f_pos2_d}{geng::FPos2D}}\ \mbox{\hyperlink{structgfx_1_1_sparkle_inst_a75263db73116a77b6fff0ad97355a85c}{pos}};}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_f_pos2_d}{geng::FPos2D}}\ \mbox{\hyperlink{structgfx_1_1_sparkle_inst_a8ed7f43f66625195073a61eb6f28f81f}{velocity}};}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structgfx_1_1_sparkle_inst_afb0b78cd3a3fe58bf7e43e7e5a1b426a}{radius}};}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structgfx_1_1_sparkle_inst_a4a89e26306312a2fb2f191580b12b92b}{duration}}\ =\ 1500;}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgfx_1_1_sparkle_inst_a375e8f8f2f5c47a6d237e0f3a007171b}{SparkleInst}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgeng_1_1_f_pos2_d}{geng::FPos2D}}\ \&offset,\ \textcolor{keywordtype}{float}\ speed,\ \textcolor{keywordtype}{float}\ size);}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Updates\ rhombus\ position}}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structgfx_1_1_sparkle_inst_a8ba74387fffe33ecb63a69081cf62088}{update}}(\textcolor{keywordtype}{double}\&\ dt);}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structgfx_1_1_sparkle_inst_a568d7e9d94c82d28cba7e241d2170d55}{to\_vertex}}(geng::RenderBuffer\ \&buffer,\ SDL\_Color\ \&color);}
+\DoxyCodeLine{00018\ \ \ \ \ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgfx_1_1_sparkle_a0f207e1ad5b8ed5ffc24dbfbfc5a4666}{Sparkle}}\ :\ \textcolor{keyword}{public}\ geng::ParticleGroup\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ std::deque<SparkleInst>\ particles;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ deltat\ =\ 0;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ period;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgfx_1_1_sparkle_a0f207e1ad5b8ed5ffc24dbfbfc5a4666}{Sparkle}}(\mbox{\hyperlink{structgeng_1_1_f_pos2_d}{geng::FPos2D}}\ pos,\ \textcolor{keywordtype}{float}\ size,\ \textcolor{keywordtype}{float}\ speed,\ \textcolor{keywordtype}{float}\ duration,\ \textcolor{keywordtype}{float}\ frequency,\ SDL\_Color\ Tint\ =\ \{0,0,0,30\});}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgfx_1_1_sparkle_a0f207e1ad5b8ed5ffc24dbfbfc5a4666}{Sparkle}}(Gear*\ o,\ \textcolor{keywordtype}{float}\ size,\ \textcolor{keywordtype}{float}\ speed,\ \textcolor{keywordtype}{float}\ duration,\ \textcolor{keywordtype}{float}\ period,\ SDL\_Color\ Tint\ =\ \{0,0,0,30\});}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgfx_1_1_sparkle_ab208f2f90555b95d83ec9da840162294}{update}}(\mbox{\hyperlink{classgeng_1_1_layer_state}{geng::LayerState}}\ \&time)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgfx_1_1_sparkle_a97ee37c4ca957462684187174617a648}{to\_vertex}}(geng::RenderBuffer\ \&buffer)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00031\ \ \ \ \ \};}
+\DoxyCodeLine{00032\ \}}
+
+\end{DoxyCode}

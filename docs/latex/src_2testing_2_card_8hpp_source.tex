@@ -1,0 +1,68 @@
+\doxysection{Card.\+hpp}
+\hypertarget{src_2testing_2_card_8hpp_source}{}\label{src_2testing_2_card_8hpp_source}\index{src/testing/Card.hpp@{src/testing/Card.hpp}}
+\mbox{\hyperlink{src_2testing_2_card_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{_b_j_enums_8hpp}{game/blackjack/BJEnums.hpp}}>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_collider_8hpp}{engine/scene/physics/Collider.hpp}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_card_adf6d9fc8d927b879ab472d76afc1a2e9}{Card}}\ :\ \textcolor{keyword}{public}\ geng::Collider\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ value;}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093c}{blackjack::BJ\_Suit}}\ suit;}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ flipped\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Returns}}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ [[nodiscard]]\ uint8\_t\ to\_anim\_num();}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Base\ constructor}}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_card_adf6d9fc8d927b879ab472d76afc1a2e9}{Card}}(geng::FrameTable\&\ frame\_table,\ \textcolor{keywordtype}{int}\ val,\ \mbox{\hyperlink{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093c}{blackjack::BJ\_Suit}}\ suite);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Checks\ if\ two\ cards\ are\ equal.}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_card_a96290ef3f58d417633146abfaea06fe6}{operator==}}(\mbox{\hyperlink{class_card_adf6d9fc8d927b879ab472d76afc1a2e9}{Card}}\ c)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Flips\ a\ card\ from\ its\ current\ flip}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_card_ac9e1cecfe41118bdd2f019831549dd2a}{flip}}();}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Flips\ a\ card\ up\ if\ its\ down}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_card_ac6a41fb45ef2b87708420399551c270c}{flip\_up}}();}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fips\ a\ card\ down\ if\ its\ up}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_card_ad5715af77d8467b14dc4c139b2b3a560}{flip\_down}}();}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Returns\ true\ if\ flipped\ down.}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_card_a7d6f47e6227964383b8cfb657b9c9a08}{is\_flipped}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lets\ us\ see\ the\ true\ value\ of\ the\ card}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_card_a7bf56803a4412f24bce1e186d05429b5}{get\_value}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_card_a82222960d82ece47ad7d57392b5d9be9}{special}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gets\ the\ card\ score}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_card_a7677ca32dd3a408e4802648065598caa}{get\_score}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gets\ the\ suite}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093c}{blackjack::BJ\_Suit}}\ \mbox{\hyperlink{class_card_a081acefd624665cbcc607299fc98d63f}{get\_suit}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Changes\ the\ value\ on\ the\ card\ by\ the\ number}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_card_aa5395537cf34fe6e419afa4b0f1ed755}{adjust\_value}}(\textcolor{keywordtype}{int}\ num);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_card_ab46448b34cd0158a7f82ac1c960d44da}{update}}(\mbox{\hyperlink{classgeng_1_1_layer_state}{geng::LayerState}}\ \&state)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Function\ for\ cards\ with\ special\ purposes.}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_card_a1a6ccfb5112ec094b996e0e16e1a646c}{use}}(\mbox{\hyperlink{class_card_adf6d9fc8d927b879ab472d76afc1a2e9}{Card}}*\ c);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_card_a91402784235d0ee3e48e86c90905cbaa}{on\_click\_release}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_card_a6da6a5d87f612d672ff9afce5019238f}{mouse\_move}}(\mbox{\hyperlink{structgeng_1_1_f_pos2_d}{geng::FPos2D}}\ dist)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00052\ \ \ \ \ \};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ geng::Transform2D\ \mbox{\hyperlink{src_2testing_2_card_8hpp_ac8dea3c3f4689856be314148764b3b49}{defaultCardTransform2D}}\ =\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \{300\ /\ 2.0f,\ 0\},}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ 32,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ 48,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ 1}
+\DoxyCodeLine{00059\ \ \ \ \ \};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ Constants\ for\ all\ the\ different\ types\ of\ cards}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ CARD\_FLIPPED\ 53}}
+
+\end{DoxyCode}

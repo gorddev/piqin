@@ -1,0 +1,48 @@
+\doxysection{geng\+::Syntax\+Map Class Reference}
+\hypertarget{classgeng_1_1_syntax_map}{}\label{classgeng_1_1_syntax_map}\index{geng::SyntaxMap@{geng::SyntaxMap}}
+
+
+{\ttfamily \#include $<$Syntax\+Map.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgeng_1_1_syntax_map_a68f79f5535df6660523b1bee949379f7}{Syntax\+Map}} (\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Syntax\+Command $>$ commands, \mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Syntax\+Pattern $>$ patterns, \mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Syntax\+Highlight $>$ highlights)
+\begin{DoxyCompactList}\small\item\em Constructor for a syntax map. \end{DoxyCompactList}\item 
+{\footnotesize template$<$uint32\+\_\+t C$>$ }\\fstring$<$ C $>$ \mbox{\hyperlink{classgeng_1_1_syntax_map_a6b9c1da7f538a36793c1b62b710de670}{parse}} (\mbox{\hyperlink{classgeng_1_1str__view}{str\+\_\+view}} text, Font \&font, \mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Font\+Char $>$ \&buffer, \mbox{\hyperlink{structgeng_1_1_syntax_info}{Syntax\+Info}} \texorpdfstring{$\ast$}{*}syntax\+\_\+info) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{classgeng_1_1_syntax_map}{Syntax\+Map} can be used to modify the display of specific parts of text via Syntax\+Commands. Specifying a \doxylink{classgeng_1_1_syntax_map}{Syntax\+Map} with a piece of text will have the text automatically modify the displayed text based on your parameters. 
+
+\label{doc-constructors}
+\Hypertarget{classgeng_1_1_syntax_map_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classgeng_1_1_syntax_map_a68f79f5535df6660523b1bee949379f7}\index{geng::SyntaxMap@{geng::SyntaxMap}!SyntaxMap@{SyntaxMap}}
+\index{SyntaxMap@{SyntaxMap}!geng::SyntaxMap@{geng::SyntaxMap}}
+\doxysubsubsection{\texorpdfstring{SyntaxMap()}{SyntaxMap()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_syntax_map_a68f79f5535df6660523b1bee949379f7} 
+geng\+::\+Syntax\+Map\+::\+Syntax\+Map (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Syntax\+Command $>$}]{commands}{, }\item[{\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Syntax\+Pattern $>$}]{patterns}{, }\item[{\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Syntax\+Highlight $>$}]{highlights}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for a syntax map. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{classgeng_1_1_syntax_map_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgeng_1_1_syntax_map_a6b9c1da7f538a36793c1b62b710de670}\index{geng::SyntaxMap@{geng::SyntaxMap}!parse@{parse}}
+\index{parse@{parse}!geng::SyntaxMap@{geng::SyntaxMap}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_syntax_map_a6b9c1da7f538a36793c1b62b710de670} 
+template$<$uint32\+\_\+t C$>$ \\
+fstring$<$ C $>$ geng\+::\+Syntax\+Map\+::parse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeng_1_1str__view}{str\+\_\+view}}}]{text}{, }\item[{Font \&}]{font}{, }\item[{\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Font\+Char $>$ \&}]{buffer}{, }\item[{\mbox{\hyperlink{structgeng_1_1_syntax_info}{Syntax\+Info}} \texorpdfstring{$\ast$}{*}}]{syntax\+\_\+info}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Parses through a block of text (oh goody!) and appends appropriate font characters. Returns an fstring of appropriate size 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/scene/banners/text/syntax/\mbox{\hyperlink{_syntax_map_8hpp}{Syntax\+Map.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,46 @@
+\doxysection{Font.\+hpp}
+\hypertarget{_font_8hpp_source}{}\label{_font_8hpp_source}\index{include/engine/scene/font/Font.hpp@{include/engine/scene/font/Font.hpp}}
+\mbox{\hyperlink{_font_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_i_m_g_decoder_8hpp}{engine/utilities/image-\/info/IMGDecoder.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_font_char_8hpp}{FontChar.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_syntax_info_8hpp}{engine/scene/banners/text/syntax/SyntaxInfo.hpp}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vector_8hpp}{engine/types/external/vector.hpp}}"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{struct\ }Font\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ texture\_id\ =\ 0;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ spacing\ =\ 0.f;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ std::unordered\_map<char,\ FontChar>\ chars;}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ std::unordered\_map<char,\ AnimBox2D>\ quads;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ Font\ ()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ Font(std::unordered\_map<char,\ AnimBox2D>\ quads,\ \textcolor{keywordtype}{short}\ spacing\ =\ 0.f,\ \textcolor{keywordtype}{short}\ offset\_x\ =\ 0,\ \textcolor{keywordtype}{short}\ offset\_y\ =\ 0);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ Font(std::unordered\_map<char,\ AnimBox2D>\ quads,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ spacing,\ IMG\_Info\ info);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ Font(\textcolor{keyword}{const}\ Font\&\ f);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ add\_char\_to\_buffer(\textcolor{keywordtype}{char}\ c,\ gch::vector<FontChar>\ \&buffer);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \_init(IMG\_Info\ info);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{short}\ get\_height()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{int}\ get\_texture\_id()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{float}\ get\_spacing()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ has\_character(\textcolor{keywordtype}{char}\ c);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_texture\_id(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \};}
+\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00066\ }
+
+\end{DoxyCode}

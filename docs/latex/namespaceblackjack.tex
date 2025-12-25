@@ -1,0 +1,419 @@
+\doxysection{blackjack Namespace Reference}
+\hypertarget{namespaceblackjack}{}\label{namespaceblackjack}\index{blackjack@{blackjack}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structblackjack_1_1_card_selector}{Card\+Selector}}
+\item 
+class \mbox{\hyperlink{classblackjack_1_1_deck}{Deck}}
+\item 
+class \mbox{\hyperlink{classblackjack_1_1_discard}{Discard}}
+\item 
+class \mbox{\hyperlink{classblackjack_1_1_draw}{Draw}}
+\item 
+class \mbox{\hyperlink{classblackjack_1_1_hand}{Hand}}
+\item 
+struct \mbox{\hyperlink{structblackjack_1_1_pather}{Pather}}
+\item 
+class \mbox{\hyperlink{classblackjack_1_1_board}{Board}}
+\item 
+class \mbox{\hyperlink{classblackjack_1_1_card}{Card}}
+\item 
+class \mbox{\hyperlink{classblackjack_1_1_round}{Round}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862}{Selector\+\_\+\+Color}} \+: uint8\+\_\+t \{ \newline
+\mbox{\hyperlink{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862a8a568e5f41b7e4da88fe5c4a00aad34e}{YELLOW}} = 0
+, \mbox{\hyperlink{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862a3c551f0d1a06b4f852d1832daed357bf}{GREY}} = 1
+, \mbox{\hyperlink{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862aec9c138095a352a9b7ef9ca5363b14d9}{PURPLE}} = 2
+, \mbox{\hyperlink{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862a9de0e5dd94e861317e74964bed179fa0}{GREEN}} = 3
+, \newline
+\mbox{\hyperlink{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862aa2d9547b5d3dd9f05984475f7c926da0}{RED}} = 4
+, \mbox{\hyperlink{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862a2536bd3910cf3069e2cd184e614ea97d}{PINK}} = 5
+ \}
+\item 
+enum class \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3}{BJ\+\_\+\+Target}} \+: int \{ \newline
+\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a41b00f79ae19301abe87bd8bc19120d9}{HAND}} = 0
+, \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a07c80e2a355d91402a00d82b1fa13855}{PLAYER}} = 1
+, \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3aecd1d945f3cac918744bcc5766e0ae2d}{DISCARD}} = 2
+, \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a29214621cd699776fe72d93b7f875295}{OPPONENT}} = 3
+, \newline
+\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a778470f9fc61e0e57ec1d1873e1d7829}{DISCARD\+\_\+\+MENU}} = 4
+, \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a111b061bc4c0c289fbf087f7fbccfb82}{DRAWS}} = 5
+, \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a962241c6cd8e985f053c0a35b9e7b3e8}{HAND\+\_\+\+AND\+\_\+\+DRAWS}} = 6
+, \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a5fb1f955b45e38e31789286a1790398d}{ALL}} = 7
+ \}
+\item 
+enum class \mbox{\hyperlink{namespaceblackjack_a81268dac5171cec375618fd421791e66}{BJ\+\_\+\+Action}} \+: uint8\+\_\+t \{ \newline
+\mbox{\hyperlink{namespaceblackjack_a81268dac5171cec375618fd421791e66a6a216efc529825c60a4a4c0bc99ad77f}{PLAY}} = 0
+, \mbox{\hyperlink{namespaceblackjack_a81268dac5171cec375618fd421791e66a0068f4e18cb828499dbc0708bc9820ad}{PULL}} = 1
+, \mbox{\hyperlink{namespaceblackjack_a81268dac5171cec375618fd421791e66a73dabe4437725eedc05a1824a2c31550}{PUSH}} = 2
+, \mbox{\hyperlink{namespaceblackjack_a81268dac5171cec375618fd421791e66ac39aa6dbe619bb8ef8187b00b686df6a}{DESTROY}} = 3
+, \newline
+\mbox{\hyperlink{namespaceblackjack_a81268dac5171cec375618fd421791e66acbfa06628adfb8b826d5d3947fb8b2c4}{OPEN\+\_\+\+DISCARD}} = 4
+, \mbox{\hyperlink{namespaceblackjack_a81268dac5171cec375618fd421791e66aae51afd03be438d1b3d317fb13c9c261}{USE\+\_\+\+CARD}} = 5
+, \mbox{\hyperlink{namespaceblackjack_a81268dac5171cec375618fd421791e66a8695c57e30e957161af26fe52d8a5826}{GRAB}} = 6
+ \}
+\item 
+enum class \mbox{\hyperlink{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093c}{BJ\+\_\+\+Suit}} \+: char \{ \newline
+\mbox{\hyperlink{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093ca88793a84c2442620e19c832e2e2b40a6}{SPADE}} = \textquotesingle{}s\textquotesingle{}
+, \mbox{\hyperlink{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093cac54fc2509b0cd290993c32b5cbf26b09}{CLUB}} = \textquotesingle{}c\textquotesingle{}
+, \mbox{\hyperlink{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093ca337f43db5edddda90ef2156a9baaed09}{DIAMOND}} = \textquotesingle{}d\textquotesingle{}
+, \mbox{\hyperlink{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093ca60a63c9a983ad6966ffe95a8a6f003d8}{HEART}} = \textquotesingle{}h\textquotesingle{}
+, \newline
+\mbox{\hyperlink{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093caa72e4a34f10af98a9814d865e717399f}{SPECIAL}} = \textquotesingle{}x\textquotesingle{}
+ \}
+\item 
+enum \mbox{\hyperlink{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185}{BJ\+\_\+\+Card\+Value}} \+: uint8\+\_\+t \{ \newline
+\mbox{\hyperlink{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185ad5176ad36345ba3e7d68b3ce24b856d6}{BJ\+\_\+\+CARD\+\_\+\+NONE}} = 0
+, \mbox{\hyperlink{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185acd6ffd9dbc95e1ea6a63c25e03bbc314}{BJ\+\_\+\+CARD\+\_\+\+TAKER}} = 54
+, \mbox{\hyperlink{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185ab2e0c67977f0fb3cc6c94423a114136f}{BJ\+\_\+\+CARD\+\_\+\+INCREMENT}} = 55
+, \mbox{\hyperlink{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185a8e87a48a7c59ff8ac04f65658e429a9f}{BJ\+\_\+\+CARD\+\_\+\+DECREMENT}} = 56
+, \newline
+\mbox{\hyperlink{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185a46070d8af3543e345767ee850763ec32}{BJ\+\_\+\+CARD\+\_\+\+PUSH}} = 57
+, \mbox{\hyperlink{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185a45f60976256a97211e7ed1c86e52a050}{BJ\+\_\+\+CARD\+\_\+\+PULL}} = 58
+ \}
+\item 
+enum class \mbox{\hyperlink{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cb}{BJ\+\_\+\+Result}} \+: uint8\+\_\+t \{ \mbox{\hyperlink{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cbab50339a10e1de285ac99d4c3990b8693}{NONE}} = 0
+, \mbox{\hyperlink{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cba709181461ec3398615ecc2ae850589e6}{LOSE}} = 1
+, \mbox{\hyperlink{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cba8eb6c56ba51924a4cf185ec29e22be22}{TIE}} = 2
+, \mbox{\hyperlink{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cba92e56d8195a9dd45a9b90aacf82886b1}{WIN}} = 3
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{namespaceblackjack_aa8defaed3ae26cbd889762aea61c5a45}{operator==}} (char c, \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3}{BJ\+\_\+\+Target}} target)
+\item 
+bool \mbox{\hyperlink{namespaceblackjack_af711e6d909c45f4f664ca54de36955a5}{operator==}} (\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3}{BJ\+\_\+\+Target}} target, char c)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const geng\+::\+Transform \mbox{\hyperlink{namespaceblackjack_ae9f774144d724c1713677b08acc1c3cd}{card\+\_\+selector\+\_\+transform}}
+\item 
+\mbox{\hyperlink{structblackjack_1_1_pather}{Pather}} \mbox{\hyperlink{namespaceblackjack_a7cbd80ed3ad1410a679068cb57365629}{pather}}
+\item 
+int \mbox{\hyperlink{namespaceblackjack_a8f1951e63c0165ec3e29f8791b87b5ff}{round\+Score}} = 21
+\item 
+short \mbox{\hyperlink{namespaceblackjack_a96f487da2d4d9ea7fba7a548d335cf1b}{max\+Hand\+Size}} = 12
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespaceblackjack_aacaa1955d2ca8e78734994585d83ed38}{max\+Stack\+Size}} = 3
+\item 
+static std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3}{BJ\+\_\+\+Target}}, std\+::vector$<$ short $>$ $>$ \mbox{\hyperlink{namespaceblackjack_ae3c828bff7f2bad649474c04aa591e69}{selection\+\_\+range}}
+\item 
+static const geng\+::\+Transform2D \mbox{\hyperlink{namespaceblackjack_ab987b7cceef07a41c9a1d95af293629f}{default\+\_\+deck}}
+\item 
+const geng\+::\+Transform \mbox{\hyperlink{namespaceblackjack_a5604743ab2ca8b3eb8962b5086ed8d8e}{default\+Card\+Transform}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{namespaceblackjack_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{namespaceblackjack_a81268dac5171cec375618fd421791e66}\index{blackjack@{blackjack}!BJ\_Action@{BJ\_Action}}
+\index{BJ\_Action@{BJ\_Action}!blackjack@{blackjack}}
+\doxysubsubsection{\texorpdfstring{BJ\_Action}{BJ\_Action}}
+{\footnotesize\ttfamily \label{namespaceblackjack_a81268dac5171cec375618fd421791e66} 
+enum class \mbox{\hyperlink{namespaceblackjack_a81268dac5171cec375618fd421791e66}{blackjack\+::\+BJ\+\_\+\+Action}} \+: uint8\+\_\+t\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAY@{PLAY}!blackjack@{blackjack}}\index{blackjack@{blackjack}!PLAY@{PLAY}}}\Hypertarget{namespaceblackjack_a81268dac5171cec375618fd421791e66a6a216efc529825c60a4a4c0bc99ad77f}\label{namespaceblackjack_a81268dac5171cec375618fd421791e66a6a216efc529825c60a4a4c0bc99ad77f} 
+PLAY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PULL@{PULL}!blackjack@{blackjack}}\index{blackjack@{blackjack}!PULL@{PULL}}}\Hypertarget{namespaceblackjack_a81268dac5171cec375618fd421791e66a0068f4e18cb828499dbc0708bc9820ad}\label{namespaceblackjack_a81268dac5171cec375618fd421791e66a0068f4e18cb828499dbc0708bc9820ad} 
+PULL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PUSH@{PUSH}!blackjack@{blackjack}}\index{blackjack@{blackjack}!PUSH@{PUSH}}}\Hypertarget{namespaceblackjack_a81268dac5171cec375618fd421791e66a73dabe4437725eedc05a1824a2c31550}\label{namespaceblackjack_a81268dac5171cec375618fd421791e66a73dabe4437725eedc05a1824a2c31550} 
+PUSH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DESTROY@{DESTROY}!blackjack@{blackjack}}\index{blackjack@{blackjack}!DESTROY@{DESTROY}}}\Hypertarget{namespaceblackjack_a81268dac5171cec375618fd421791e66ac39aa6dbe619bb8ef8187b00b686df6a}\label{namespaceblackjack_a81268dac5171cec375618fd421791e66ac39aa6dbe619bb8ef8187b00b686df6a} 
+DESTROY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OPEN\_DISCARD@{OPEN\_DISCARD}!blackjack@{blackjack}}\index{blackjack@{blackjack}!OPEN\_DISCARD@{OPEN\_DISCARD}}}\Hypertarget{namespaceblackjack_a81268dac5171cec375618fd421791e66acbfa06628adfb8b826d5d3947fb8b2c4}\label{namespaceblackjack_a81268dac5171cec375618fd421791e66acbfa06628adfb8b826d5d3947fb8b2c4} 
+OPEN\+\_\+\+DISCARD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{USE\_CARD@{USE\_CARD}!blackjack@{blackjack}}\index{blackjack@{blackjack}!USE\_CARD@{USE\_CARD}}}\Hypertarget{namespaceblackjack_a81268dac5171cec375618fd421791e66aae51afd03be438d1b3d317fb13c9c261}\label{namespaceblackjack_a81268dac5171cec375618fd421791e66aae51afd03be438d1b3d317fb13c9c261} 
+USE\+\_\+\+CARD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GRAB@{GRAB}!blackjack@{blackjack}}\index{blackjack@{blackjack}!GRAB@{GRAB}}}\Hypertarget{namespaceblackjack_a81268dac5171cec375618fd421791e66a8695c57e30e957161af26fe52d8a5826}\label{namespaceblackjack_a81268dac5171cec375618fd421791e66a8695c57e30e957161af26fe52d8a5826} 
+GRAB&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185}\index{blackjack@{blackjack}!BJ\_CardValue@{BJ\_CardValue}}
+\index{BJ\_CardValue@{BJ\_CardValue}!blackjack@{blackjack}}
+\doxysubsubsection{\texorpdfstring{BJ\_CardValue}{BJ\_CardValue}}
+{\footnotesize\ttfamily \label{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185} 
+enum \mbox{\hyperlink{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185}{blackjack\+::\+BJ\+\_\+\+Card\+Value}} \+: uint8\+\_\+t}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BJ\_CARD\_NONE@{BJ\_CARD\_NONE}!blackjack@{blackjack}}\index{blackjack@{blackjack}!BJ\_CARD\_NONE@{BJ\_CARD\_NONE}}}\Hypertarget{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185ad5176ad36345ba3e7d68b3ce24b856d6}\label{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185ad5176ad36345ba3e7d68b3ce24b856d6} 
+BJ\+\_\+\+CARD\+\_\+\+NONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BJ\_CARD\_TAKER@{BJ\_CARD\_TAKER}!blackjack@{blackjack}}\index{blackjack@{blackjack}!BJ\_CARD\_TAKER@{BJ\_CARD\_TAKER}}}\Hypertarget{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185acd6ffd9dbc95e1ea6a63c25e03bbc314}\label{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185acd6ffd9dbc95e1ea6a63c25e03bbc314} 
+BJ\+\_\+\+CARD\+\_\+\+TAKER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BJ\_CARD\_INCREMENT@{BJ\_CARD\_INCREMENT}!blackjack@{blackjack}}\index{blackjack@{blackjack}!BJ\_CARD\_INCREMENT@{BJ\_CARD\_INCREMENT}}}\Hypertarget{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185ab2e0c67977f0fb3cc6c94423a114136f}\label{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185ab2e0c67977f0fb3cc6c94423a114136f} 
+BJ\+\_\+\+CARD\+\_\+\+INCREMENT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BJ\_CARD\_DECREMENT@{BJ\_CARD\_DECREMENT}!blackjack@{blackjack}}\index{blackjack@{blackjack}!BJ\_CARD\_DECREMENT@{BJ\_CARD\_DECREMENT}}}\Hypertarget{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185a8e87a48a7c59ff8ac04f65658e429a9f}\label{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185a8e87a48a7c59ff8ac04f65658e429a9f} 
+BJ\+\_\+\+CARD\+\_\+\+DECREMENT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BJ\_CARD\_PUSH@{BJ\_CARD\_PUSH}!blackjack@{blackjack}}\index{blackjack@{blackjack}!BJ\_CARD\_PUSH@{BJ\_CARD\_PUSH}}}\Hypertarget{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185a46070d8af3543e345767ee850763ec32}\label{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185a46070d8af3543e345767ee850763ec32} 
+BJ\+\_\+\+CARD\+\_\+\+PUSH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BJ\_CARD\_PULL@{BJ\_CARD\_PULL}!blackjack@{blackjack}}\index{blackjack@{blackjack}!BJ\_CARD\_PULL@{BJ\_CARD\_PULL}}}\Hypertarget{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185a45f60976256a97211e7ed1c86e52a050}\label{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185a45f60976256a97211e7ed1c86e52a050} 
+BJ\+\_\+\+CARD\+\_\+\+PULL&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cb}\index{blackjack@{blackjack}!BJ\_Result@{BJ\_Result}}
+\index{BJ\_Result@{BJ\_Result}!blackjack@{blackjack}}
+\doxysubsubsection{\texorpdfstring{BJ\_Result}{BJ\_Result}}
+{\footnotesize\ttfamily \label{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cb} 
+enum class \mbox{\hyperlink{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cb}{blackjack\+::\+BJ\+\_\+\+Result}} \+: uint8\+\_\+t\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NONE@{NONE}!blackjack@{blackjack}}\index{blackjack@{blackjack}!NONE@{NONE}}}\Hypertarget{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cbab50339a10e1de285ac99d4c3990b8693}\label{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cbab50339a10e1de285ac99d4c3990b8693} 
+NONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LOSE@{LOSE}!blackjack@{blackjack}}\index{blackjack@{blackjack}!LOSE@{LOSE}}}\Hypertarget{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cba709181461ec3398615ecc2ae850589e6}\label{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cba709181461ec3398615ecc2ae850589e6} 
+LOSE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TIE@{TIE}!blackjack@{blackjack}}\index{blackjack@{blackjack}!TIE@{TIE}}}\Hypertarget{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cba8eb6c56ba51924a4cf185ec29e22be22}\label{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cba8eb6c56ba51924a4cf185ec29e22be22} 
+TIE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WIN@{WIN}!blackjack@{blackjack}}\index{blackjack@{blackjack}!WIN@{WIN}}}\Hypertarget{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cba92e56d8195a9dd45a9b90aacf82886b1}\label{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cba92e56d8195a9dd45a9b90aacf82886b1} 
+WIN&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093c}\index{blackjack@{blackjack}!BJ\_Suit@{BJ\_Suit}}
+\index{BJ\_Suit@{BJ\_Suit}!blackjack@{blackjack}}
+\doxysubsubsection{\texorpdfstring{BJ\_Suit}{BJ\_Suit}}
+{\footnotesize\ttfamily \label{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093c} 
+enum class \mbox{\hyperlink{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093c}{blackjack\+::\+BJ\+\_\+\+Suit}} \+: char\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SPADE@{SPADE}!blackjack@{blackjack}}\index{blackjack@{blackjack}!SPADE@{SPADE}}}\Hypertarget{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093ca88793a84c2442620e19c832e2e2b40a6}\label{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093ca88793a84c2442620e19c832e2e2b40a6} 
+SPADE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLUB@{CLUB}!blackjack@{blackjack}}\index{blackjack@{blackjack}!CLUB@{CLUB}}}\Hypertarget{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093cac54fc2509b0cd290993c32b5cbf26b09}\label{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093cac54fc2509b0cd290993c32b5cbf26b09} 
+CLUB&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DIAMOND@{DIAMOND}!blackjack@{blackjack}}\index{blackjack@{blackjack}!DIAMOND@{DIAMOND}}}\Hypertarget{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093ca337f43db5edddda90ef2156a9baaed09}\label{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093ca337f43db5edddda90ef2156a9baaed09} 
+DIAMOND&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HEART@{HEART}!blackjack@{blackjack}}\index{blackjack@{blackjack}!HEART@{HEART}}}\Hypertarget{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093ca60a63c9a983ad6966ffe95a8a6f003d8}\label{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093ca60a63c9a983ad6966ffe95a8a6f003d8} 
+HEART&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SPECIAL@{SPECIAL}!blackjack@{blackjack}}\index{blackjack@{blackjack}!SPECIAL@{SPECIAL}}}\Hypertarget{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093caa72e4a34f10af98a9814d865e717399f}\label{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093caa72e4a34f10af98a9814d865e717399f} 
+SPECIAL&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3}\index{blackjack@{blackjack}!BJ\_Target@{BJ\_Target}}
+\index{BJ\_Target@{BJ\_Target}!blackjack@{blackjack}}
+\doxysubsubsection{\texorpdfstring{BJ\_Target}{BJ\_Target}}
+{\footnotesize\ttfamily \label{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3} 
+enum class \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3}{blackjack\+::\+BJ\+\_\+\+Target}} \+: int\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HAND@{HAND}!blackjack@{blackjack}}\index{blackjack@{blackjack}!HAND@{HAND}}}\Hypertarget{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a41b00f79ae19301abe87bd8bc19120d9}\label{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a41b00f79ae19301abe87bd8bc19120d9} 
+HAND&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLAYER@{PLAYER}!blackjack@{blackjack}}\index{blackjack@{blackjack}!PLAYER@{PLAYER}}}\Hypertarget{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a07c80e2a355d91402a00d82b1fa13855}\label{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a07c80e2a355d91402a00d82b1fa13855} 
+PLAYER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DISCARD@{DISCARD}!blackjack@{blackjack}}\index{blackjack@{blackjack}!DISCARD@{DISCARD}}}\Hypertarget{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3aecd1d945f3cac918744bcc5766e0ae2d}\label{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3aecd1d945f3cac918744bcc5766e0ae2d} 
+DISCARD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OPPONENT@{OPPONENT}!blackjack@{blackjack}}\index{blackjack@{blackjack}!OPPONENT@{OPPONENT}}}\Hypertarget{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a29214621cd699776fe72d93b7f875295}\label{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a29214621cd699776fe72d93b7f875295} 
+OPPONENT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DISCARD\_MENU@{DISCARD\_MENU}!blackjack@{blackjack}}\index{blackjack@{blackjack}!DISCARD\_MENU@{DISCARD\_MENU}}}\Hypertarget{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a778470f9fc61e0e57ec1d1873e1d7829}\label{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a778470f9fc61e0e57ec1d1873e1d7829} 
+DISCARD\+\_\+\+MENU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DRAWS@{DRAWS}!blackjack@{blackjack}}\index{blackjack@{blackjack}!DRAWS@{DRAWS}}}\Hypertarget{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a111b061bc4c0c289fbf087f7fbccfb82}\label{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a111b061bc4c0c289fbf087f7fbccfb82} 
+DRAWS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HAND\_AND\_DRAWS@{HAND\_AND\_DRAWS}!blackjack@{blackjack}}\index{blackjack@{blackjack}!HAND\_AND\_DRAWS@{HAND\_AND\_DRAWS}}}\Hypertarget{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a962241c6cd8e985f053c0a35b9e7b3e8}\label{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a962241c6cd8e985f053c0a35b9e7b3e8} 
+HAND\+\_\+\+AND\+\_\+\+DRAWS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ALL@{ALL}!blackjack@{blackjack}}\index{blackjack@{blackjack}!ALL@{ALL}}}\Hypertarget{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a5fb1f955b45e38e31789286a1790398d}\label{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a5fb1f955b45e38e31789286a1790398d} 
+ALL&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862}\index{blackjack@{blackjack}!Selector\_Color@{Selector\_Color}}
+\index{Selector\_Color@{Selector\_Color}!blackjack@{blackjack}}
+\doxysubsubsection{\texorpdfstring{Selector\_Color}{Selector\_Color}}
+{\footnotesize\ttfamily \label{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862} 
+enum class \mbox{\hyperlink{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862}{blackjack\+::\+Selector\+\_\+\+Color}} \+: uint8\+\_\+t\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{YELLOW@{YELLOW}!blackjack@{blackjack}}\index{blackjack@{blackjack}!YELLOW@{YELLOW}}}\Hypertarget{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862a8a568e5f41b7e4da88fe5c4a00aad34e}\label{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862a8a568e5f41b7e4da88fe5c4a00aad34e} 
+YELLOW&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GREY@{GREY}!blackjack@{blackjack}}\index{blackjack@{blackjack}!GREY@{GREY}}}\Hypertarget{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862a3c551f0d1a06b4f852d1832daed357bf}\label{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862a3c551f0d1a06b4f852d1832daed357bf} 
+GREY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PURPLE@{PURPLE}!blackjack@{blackjack}}\index{blackjack@{blackjack}!PURPLE@{PURPLE}}}\Hypertarget{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862aec9c138095a352a9b7ef9ca5363b14d9}\label{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862aec9c138095a352a9b7ef9ca5363b14d9} 
+PURPLE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GREEN@{GREEN}!blackjack@{blackjack}}\index{blackjack@{blackjack}!GREEN@{GREEN}}}\Hypertarget{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862a9de0e5dd94e861317e74964bed179fa0}\label{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862a9de0e5dd94e861317e74964bed179fa0} 
+GREEN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RED@{RED}!blackjack@{blackjack}}\index{blackjack@{blackjack}!RED@{RED}}}\Hypertarget{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862aa2d9547b5d3dd9f05984475f7c926da0}\label{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862aa2d9547b5d3dd9f05984475f7c926da0} 
+RED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PINK@{PINK}!blackjack@{blackjack}}\index{blackjack@{blackjack}!PINK@{PINK}}}\Hypertarget{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862a2536bd3910cf3069e2cd184e614ea97d}\label{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862a2536bd3910cf3069e2cd184e614ea97d} 
+PINK&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\label{doc-func-members}
+\Hypertarget{namespaceblackjack_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceblackjack_af711e6d909c45f4f664ca54de36955a5}\index{blackjack@{blackjack}!operator==@{operator==}}
+\index{operator==@{operator==}!blackjack@{blackjack}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{namespaceblackjack_af711e6d909c45f4f664ca54de36955a5} 
+bool blackjack\+::operator== (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3}{BJ\+\_\+\+Target}}}]{target}{, }\item[{char}]{c}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{namespaceblackjack_aa8defaed3ae26cbd889762aea61c5a45}\index{blackjack@{blackjack}!operator==@{operator==}}
+\index{operator==@{operator==}!blackjack@{blackjack}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{namespaceblackjack_aa8defaed3ae26cbd889762aea61c5a45} 
+bool blackjack\+::operator== (\begin{DoxyParamCaption}\item[{char}]{c}{, }\item[{\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3}{BJ\+\_\+\+Target}}}]{target}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-var-members}
+\Hypertarget{namespaceblackjack_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespaceblackjack_ae9f774144d724c1713677b08acc1c3cd}\index{blackjack@{blackjack}!card\_selector\_transform@{card\_selector\_transform}}
+\index{card\_selector\_transform@{card\_selector\_transform}!blackjack@{blackjack}}
+\doxysubsubsection{\texorpdfstring{card\_selector\_transform}{card\_selector\_transform}}
+{\footnotesize\ttfamily \label{namespaceblackjack_ae9f774144d724c1713677b08acc1c3cd} 
+const geng\+::\+Transform blackjack\+::card\+\_\+selector\+\_\+transform\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{_b_j_constants_8hpp_a5139d02b07430f134d13d41ac50ffd26}{BJ\_DEFAULT\_SELECTOR\_POS}},\ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 1}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{namespaceblackjack_ab987b7cceef07a41c9a1d95af293629f}\index{blackjack@{blackjack}!default\_deck@{default\_deck}}
+\index{default\_deck@{default\_deck}!blackjack@{blackjack}}
+\doxysubsubsection{\texorpdfstring{default\_deck}{default\_deck}}
+{\footnotesize\ttfamily \label{namespaceblackjack_ab987b7cceef07a41c9a1d95af293629f} 
+const geng\+::\+Transform2D blackjack\+::default\+\_\+deck\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{0,0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 53,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 37,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 1,}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{namespaceblackjack_a5604743ab2ca8b3eb8962b5086ed8d8e}\index{blackjack@{blackjack}!defaultCardTransform@{defaultCardTransform}}
+\index{defaultCardTransform@{defaultCardTransform}!blackjack@{blackjack}}
+\doxysubsubsection{\texorpdfstring{defaultCardTransform}{defaultCardTransform}}
+{\footnotesize\ttfamily \label{namespaceblackjack_a5604743ab2ca8b3eb8962b5086ed8d8e} 
+const geng\+::\+Transform blackjack\+::default\+Card\+Transform\hspace{0.3cm}{\ttfamily [inline]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{geng::global::scene.width\ /\ 2.0f,\ 0,\ 0\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 48,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 32,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ 1}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{namespaceblackjack_a96f487da2d4d9ea7fba7a548d335cf1b}\index{blackjack@{blackjack}!maxHandSize@{maxHandSize}}
+\index{maxHandSize@{maxHandSize}!blackjack@{blackjack}}
+\doxysubsubsection{\texorpdfstring{maxHandSize}{maxHandSize}}
+{\footnotesize\ttfamily \label{namespaceblackjack_a96f487da2d4d9ea7fba7a548d335cf1b} 
+short blackjack\+::max\+Hand\+Size = 12\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{namespaceblackjack_aacaa1955d2ca8e78734994585d83ed38}\index{blackjack@{blackjack}!maxStackSize@{maxStackSize}}
+\index{maxStackSize@{maxStackSize}!blackjack@{blackjack}}
+\doxysubsubsection{\texorpdfstring{maxStackSize}{maxStackSize}}
+{\footnotesize\ttfamily \label{namespaceblackjack_aacaa1955d2ca8e78734994585d83ed38} 
+uint8\+\_\+t blackjack\+::max\+Stack\+Size = 3\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{namespaceblackjack_a7cbd80ed3ad1410a679068cb57365629}\index{blackjack@{blackjack}!pather@{pather}}
+\index{pather@{pather}!blackjack@{blackjack}}
+\doxysubsubsection{\texorpdfstring{pather}{pather}}
+{\footnotesize\ttfamily \label{namespaceblackjack_a7cbd80ed3ad1410a679068cb57365629} 
+\mbox{\hyperlink{structblackjack_1_1_pather}{Pather}} blackjack\+::pather\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{namespaceblackjack_a8f1951e63c0165ec3e29f8791b87b5ff}\index{blackjack@{blackjack}!roundScore@{roundScore}}
+\index{roundScore@{roundScore}!blackjack@{blackjack}}
+\doxysubsubsection{\texorpdfstring{roundScore}{roundScore}}
+{\footnotesize\ttfamily \label{namespaceblackjack_a8f1951e63c0165ec3e29f8791b87b5ff} 
+int blackjack\+::round\+Score = 21\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{namespaceblackjack_ae3c828bff7f2bad649474c04aa591e69}\index{blackjack@{blackjack}!selection\_range@{selection\_range}}
+\index{selection\_range@{selection\_range}!blackjack@{blackjack}}
+\doxysubsubsection{\texorpdfstring{selection\_range}{selection\_range}}
+{\footnotesize\ttfamily \label{namespaceblackjack_ae3c828bff7f2bad649474c04aa591e69} 
+std\+::unordered\+\_\+map$<$\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3}{BJ\+\_\+\+Target}},std\+::vector$<$short$>$ $>$ blackjack\+::selection\+\_\+range\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a41b00f79ae19301abe87bd8bc19120d9}{BJ\_Target::HAND}},\ \{\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a41b00f79ae19301abe87bd8bc19120d9}{BJ\_Target::HAND}})\}\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a07c80e2a355d91402a00d82b1fa13855}{BJ\_Target::PLAYER}},\ \{\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a07c80e2a355d91402a00d82b1fa13855}{BJ\_Target::PLAYER}})\}\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a29214621cd699776fe72d93b7f875295}{BJ\_Target::OPPONENT}},\ \{\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a29214621cd699776fe72d93b7f875295}{BJ\_Target::OPPONENT}})\}\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a111b061bc4c0c289fbf087f7fbccfb82}{BJ\_Target::DRAWS}},\ \{\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a07c80e2a355d91402a00d82b1fa13855}{BJ\_Target::PLAYER}}),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a29214621cd699776fe72d93b7f875295}{BJ\_Target::OPPONENT}})\}\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a962241c6cd8e985f053c0a35b9e7b3e8}{BJ\_Target::HAND\_AND\_DRAWS}},\ \{\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a41b00f79ae19301abe87bd8bc19120d9}{BJ\_Target::HAND}}),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a07c80e2a355d91402a00d82b1fa13855}{BJ\_Target::PLAYER}}),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a29214621cd699776fe72d93b7f875295}{BJ\_Target::OPPONENT}})\}\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a5fb1f955b45e38e31789286a1790398d}{BJ\_Target::ALL}},\ \{\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a41b00f79ae19301abe87bd8bc19120d9}{BJ\_Target::HAND}}),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a07c80e2a355d91402a00d82b1fa13855}{BJ\_Target::PLAYER}}),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3aecd1d945f3cac918744bcc5766e0ae2d}{BJ\_Target::DISCARD}}),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a111b061bc4c0c289fbf087f7fbccfb82}{BJ\_Target::DRAWS}})\}\}}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}

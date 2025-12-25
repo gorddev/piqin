@@ -1,0 +1,132 @@
+\doxysection{geng\+::Game\+World Struct Reference}
+\hypertarget{structgeng_1_1_game_world}{}\label{structgeng_1_1_game_world}\index{geng::GameWorld@{geng::GameWorld}}
+
+
+\doxylink{structgeng_1_1_game_world}{Game\+World} contains all the tiles and the entire game world through which you play the game.  
+
+
+
+
+{\ttfamily \#include $<$Game\+World.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_game_level}{Game\+Level}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structgeng_1_1_game_world_aa58ef3b17a4657b2b7b14508663f789d}{get\+\_\+first\+\_\+level}} ()
+\begin{DoxyCompactList}\small\item\em Returns the first level. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_game_level}{Game\+Level}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structgeng_1_1_game_world_a9c918496002cc572d8588e94b1650a89}{search\+\_\+for\+\_\+level}} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Searches for a specific level. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structgeng_1_1_game_world_afb2fafe68aa6dd511f294bc4367543bb}{world\+Width}} ()
+\begin{DoxyCompactList}\small\item\em Returns the width of the engine\+\_\+context. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structgeng_1_1_game_world_a3696727cad8e6e12a24a4dd2c82727e3}{world\+Height}} ()
+\begin{DoxyCompactList}\small\item\em Returns the height of the engine\+\_\+context. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structgeng_1_1_game_world_af6b4ec8720fb908580bacd758dcecd6e}{render\+\_\+world}} (\mbox{\hyperlink{classgeng_1_1_tile_buffer}{geng\+::\+Tile\+Buffer}} \&buffer, const geng\+::\+Camera \&cam)
+\begin{DoxyCompactList}\small\item\em Renders everything within the game\+Level. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgeng_1_1str__view}{str\+\_\+view}} \& \mbox{\hyperlink{structgeng_1_1_game_world_a847ffedb917aee309f679c7720cdb65a}{to\+\_\+fstring}} (\mbox{\hyperlink{classgeng_1_1str__view}{str\+\_\+view}} \&buffer)
+\begin{DoxyCompactList}\small\item\em Prints out the gameworld\+: \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structgeng_1_1_game_world_a8b82b1c3dc3ce0b7fbcbaf5fea7801ac}{magic}} = 0
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structgeng_1_1_game_world_afd295770fbacddf4bde3a4412fe08fd9}{num\+\_\+levels}}
+\item 
+\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ \mbox{\hyperlink{struct_game_level}{Game\+Level}} $>$ \mbox{\hyperlink{structgeng_1_1_game_world_a7ac0ccb3dce1922f7f569da6be263760}{levels}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{structgeng_1_1_game_world}{Game\+World} contains all the tiles and the entire game world through which you play the game. 
+
+\label{doc-func-members}
+\Hypertarget{structgeng_1_1_game_world_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structgeng_1_1_game_world_aa58ef3b17a4657b2b7b14508663f789d}\index{geng::GameWorld@{geng::GameWorld}!get\_first\_level@{get\_first\_level}}
+\index{get\_first\_level@{get\_first\_level}!geng::GameWorld@{geng::GameWorld}}
+\doxysubsubsection{\texorpdfstring{get\_first\_level()}{get\_first\_level()}}
+{\footnotesize\ttfamily \label{structgeng_1_1_game_world_aa58ef3b17a4657b2b7b14508663f789d} 
+\mbox{\hyperlink{struct_game_level}{Game\+Level}} \texorpdfstring{$\ast$}{*} Game\+World\+::get\+\_\+first\+\_\+level (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Returns the first level. 
+
+\Hypertarget{structgeng_1_1_game_world_af6b4ec8720fb908580bacd758dcecd6e}\index{geng::GameWorld@{geng::GameWorld}!render\_world@{render\_world}}
+\index{render\_world@{render\_world}!geng::GameWorld@{geng::GameWorld}}
+\doxysubsubsection{\texorpdfstring{render\_world()}{render\_world()}}
+{\footnotesize\ttfamily \label{structgeng_1_1_game_world_af6b4ec8720fb908580bacd758dcecd6e} 
+void Game\+World\+::render\+\_\+world (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeng_1_1_tile_buffer}{geng\+::\+Tile\+Buffer}} \&}]{buffer}{, }\item[{const geng\+::\+Camera \&}]{cam}{}\end{DoxyParamCaption})}
+
+
+
+Renders everything within the game\+Level. 
+
+\Hypertarget{structgeng_1_1_game_world_a9c918496002cc572d8588e94b1650a89}\index{geng::GameWorld@{geng::GameWorld}!search\_for\_level@{search\_for\_level}}
+\index{search\_for\_level@{search\_for\_level}!geng::GameWorld@{geng::GameWorld}}
+\doxysubsubsection{\texorpdfstring{search\_for\_level()}{search\_for\_level()}}
+{\footnotesize\ttfamily \label{structgeng_1_1_game_world_a9c918496002cc572d8588e94b1650a89} 
+\mbox{\hyperlink{struct_game_level}{Game\+Level}} \texorpdfstring{$\ast$}{*} Game\+World\+::search\+\_\+for\+\_\+level (\begin{DoxyParamCaption}\item[{int}]{x}{, }\item[{int}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Searches for a specific level. 
+
+\Hypertarget{structgeng_1_1_game_world_a847ffedb917aee309f679c7720cdb65a}\index{geng::GameWorld@{geng::GameWorld}!to\_fstring@{to\_fstring}}
+\index{to\_fstring@{to\_fstring}!geng::GameWorld@{geng::GameWorld}}
+\doxysubsubsection{\texorpdfstring{to\_fstring()}{to\_fstring()}}
+{\footnotesize\ttfamily \label{structgeng_1_1_game_world_a847ffedb917aee309f679c7720cdb65a} 
+\mbox{\hyperlink{classgeng_1_1str__view}{geng\+::str\+\_\+view}} \& Game\+World\+::to\+\_\+fstring (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeng_1_1str__view}{geng\+::str\+\_\+view}} \&}]{buffer}{}\end{DoxyParamCaption})}
+
+
+
+Prints out the gameworld\+: 
+
+\Hypertarget{structgeng_1_1_game_world_a3696727cad8e6e12a24a4dd2c82727e3}\index{geng::GameWorld@{geng::GameWorld}!worldHeight@{worldHeight}}
+\index{worldHeight@{worldHeight}!geng::GameWorld@{geng::GameWorld}}
+\doxysubsubsection{\texorpdfstring{worldHeight()}{worldHeight()}}
+{\footnotesize\ttfamily \label{structgeng_1_1_game_world_a3696727cad8e6e12a24a4dd2c82727e3} 
+int Game\+World\+::world\+Height (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Returns the height of the engine\+\_\+context. 
+
+\Hypertarget{structgeng_1_1_game_world_afb2fafe68aa6dd511f294bc4367543bb}\index{geng::GameWorld@{geng::GameWorld}!worldWidth@{worldWidth}}
+\index{worldWidth@{worldWidth}!geng::GameWorld@{geng::GameWorld}}
+\doxysubsubsection{\texorpdfstring{worldWidth()}{worldWidth()}}
+{\footnotesize\ttfamily \label{structgeng_1_1_game_world_afb2fafe68aa6dd511f294bc4367543bb} 
+int Game\+World\+::world\+Width (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Returns the width of the engine\+\_\+context. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{structgeng_1_1_game_world_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structgeng_1_1_game_world_a7ac0ccb3dce1922f7f569da6be263760}\index{geng::GameWorld@{geng::GameWorld}!levels@{levels}}
+\index{levels@{levels}!geng::GameWorld@{geng::GameWorld}}
+\doxysubsubsection{\texorpdfstring{levels}{levels}}
+{\footnotesize\ttfamily \label{structgeng_1_1_game_world_a7ac0ccb3dce1922f7f569da6be263760} 
+\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$\mbox{\hyperlink{struct_game_level}{Game\+Level}}$>$ geng\+::\+Game\+World\+::levels}
+
+\Hypertarget{structgeng_1_1_game_world_a8b82b1c3dc3ce0b7fbcbaf5fea7801ac}\index{geng::GameWorld@{geng::GameWorld}!magic@{magic}}
+\index{magic@{magic}!geng::GameWorld@{geng::GameWorld}}
+\doxysubsubsection{\texorpdfstring{magic}{magic}}
+{\footnotesize\ttfamily \label{structgeng_1_1_game_world_a8b82b1c3dc3ce0b7fbcbaf5fea7801ac} 
+uint64\+\_\+t geng\+::\+Game\+World\+::magic = 0}
+
+\Hypertarget{structgeng_1_1_game_world_afd295770fbacddf4bde3a4412fe08fd9}\index{geng::GameWorld@{geng::GameWorld}!num\_levels@{num\_levels}}
+\index{num\_levels@{num\_levels}!geng::GameWorld@{geng::GameWorld}}
+\doxysubsubsection{\texorpdfstring{num\_levels}{num\_levels}}
+{\footnotesize\ttfamily \label{structgeng_1_1_game_world_afd295770fbacddf4bde3a4412fe08fd9} 
+uint16\+\_\+t geng\+::\+Game\+World\+::num\+\_\+levels}
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/scene/world/\mbox{\hyperlink{_game_world_8hpp}{Game\+World.\+hpp}}\item 
+src/engine/scene/world/\mbox{\hyperlink{_game_world_8cpp}{Game\+World.\+cpp}}\end{DoxyCompactItemize}

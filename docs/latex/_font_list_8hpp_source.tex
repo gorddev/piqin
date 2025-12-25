@@ -1,0 +1,42 @@
+\doxysection{Font\+List.\+hpp}
+\hypertarget{_font_list_8hpp_source}{}\label{_font_list_8hpp_source}\index{include/engine/scene/font/FontList.hpp@{include/engine/scene/font/FontList.hpp}}
+\mbox{\hyperlink{_font_list_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_font_8hpp}{Font.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_log_source_8hpp}{engine/debug/logging/LogSource.hpp}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1_font_list_afd1480f06f03930c6d709bc6d3680ecf}{FontList}}\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<Font>}}\ fonts;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_font_list_afd1480f06f03930c6d709bc6d3680ecf}{FontList}}()\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglog_aee5b7c6d10b7f7ad6196fc3f10bc4020}{glog::note}}\ <<\ \textcolor{stringliteral}{"{}Font\ list\ created\ (dunno\ where)."{}}\ <<\ \mbox{\hyperlink{namespaceglog_ac671f2284827317a1a8c390fde7ea46e}{glog::endlog}};}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classgeng_1_1_font_list_acd5c3dabc21903222ae3b68f9b634809}{add\_font}}(\textcolor{keyword}{const}\ Font\&\ new\_font)\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ fonts.emplace\_back(new\_font);}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fonts.size()\ -\/\ 1;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_font_list_a0432498fa8cf66e59179f4f41d70a02a}{add\_fonts}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector<Font>}}\&\ new\_fonts)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ f\ :\ new\_fonts)\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fonts.emplace\_back(f);}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ Font\&\ \mbox{\hyperlink{classgeng_1_1_font_list_aeec0c51fe21a68512a999dd5198ddca3}{at}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keywordtype}{id}\ >=\ fonts.size()\ ||\ \textcolor{keywordtype}{id}\ <\ 0)\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglog_a2422a0f6925418f89d8c0057555e7689}{glog::warn}}\ <<\ \textcolor{stringliteral}{"{}ERR:\ Font\ "{}}\ <<\ \textcolor{keywordtype}{id}\ <<\ \textcolor{stringliteral}{"{}doesn't\ exist.\ Using\ sysfont.\(\backslash\)n"{}}\ <<\ \mbox{\hyperlink{namespaceglog_ac671f2284827317a1a8c390fde7ea46e}{glog::endlog}};}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{id}\ =\ 0;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fonts.at(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ Font\&\ \mbox{\hyperlink{classgeng_1_1_font_list_a95e37b0a0f8cf805046ff0d59b7e85b0}{operator[]}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgeng_1_1_font_list_aeec0c51fe21a68512a999dd5198ddca3}{at}}(\textcolor{keywordtype}{id});}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,132 @@
+\doxysection{gutils\+::Sparse\+Vector\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Struct Template Reference}
+\hypertarget{structgutils_1_1_sparse_vector}{}\label{structgutils_1_1_sparse_vector}\index{gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}}
+
+
+{\ttfamily \#include $<$Sparse\+Vector.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structgutils_1_1_sparse_vector_abf739036385cfaf05fb1f4d99c9595a0}{Sparse\+Vector}} ()=default
+\item 
+\mbox{\hyperlink{structgutils_1_1_sparse_vector_abf724cf5b80a4a9cbae44d4ed5a54ac5}{Sparse\+Vector}} (int \mbox{\hyperlink{structgutils_1_1_sparse_vector_a1b51e0f018da8dacfb6d3c99a48680a2}{size}})
+\item 
+int \mbox{\hyperlink{structgutils_1_1_sparse_vector_a1ea2be22666a0856587d115fbf292251}{add}} (T \texorpdfstring{$\ast$}{*}t)
+\item 
+T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structgutils_1_1_sparse_vector_a9e44470044b28b466e6c6ee5d3e4f939}{front}} ()
+\item 
+T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structgutils_1_1_sparse_vector_ac2ccdf3c54b35b207a19c715ad6a25d6}{back}} ()
+\item 
+void \mbox{\hyperlink{structgutils_1_1_sparse_vector_abbb5d6ebf9ac88fed45cadd018885dce}{erase}} (T \texorpdfstring{$\ast$}{*}t)
+\item 
+void \mbox{\hyperlink{structgutils_1_1_sparse_vector_a5aef5b9d72862b5ad6ad0fb46650be9f}{erase}} (int i)
+\item 
+T \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{structgutils_1_1_sparse_vector_a441200fcab05b088fee709e2be7f750a}{operator\mbox{[}$\,$\mbox{]}}} (int i)
+\item 
+auto \mbox{\hyperlink{structgutils_1_1_sparse_vector_a7be40dae38e70088f1c5e1e306422ef5}{begin}} ()
+\item 
+auto \mbox{\hyperlink{structgutils_1_1_sparse_vector_a4c2db863ba4f2d0a1fc39349490427d3}{end}} ()
+\item 
+void \mbox{\hyperlink{structgutils_1_1_sparse_vector_a329d8bcaad406ccd64ce43b74c80b782}{reserve}} (int i)
+\item 
+int \mbox{\hyperlink{structgutils_1_1_sparse_vector_a1b51e0f018da8dacfb6d3c99a48680a2}{size}} ()
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{structgutils_1_1_sparse_vector_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structgutils_1_1_sparse_vector_abf739036385cfaf05fb1f4d99c9595a0}\index{gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}!SparseVector@{SparseVector}}
+\index{SparseVector@{SparseVector}!gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{SparseVector()}{SparseVector()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{structgutils_1_1_sparse_vector_abf739036385cfaf05fb1f4d99c9595a0} 
+template$<$typename T$>$ \\
+\mbox{\hyperlink{structgutils_1_1_sparse_vector}{gutils\+::\+Sparse\+Vector}}$<$ T $>$\+::\+Sparse\+Vector (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{structgutils_1_1_sparse_vector_abf724cf5b80a4a9cbae44d4ed5a54ac5}\index{gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}!SparseVector@{SparseVector}}
+\index{SparseVector@{SparseVector}!gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{SparseVector()}{SparseVector()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{structgutils_1_1_sparse_vector_abf724cf5b80a4a9cbae44d4ed5a54ac5} 
+template$<$typename T$>$ \\
+\mbox{\hyperlink{structgutils_1_1_sparse_vector}{gutils\+::\+Sparse\+Vector}}$<$ T $>$\+::\+Sparse\+Vector (\begin{DoxyParamCaption}\item[{int}]{size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{structgutils_1_1_sparse_vector_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structgutils_1_1_sparse_vector_a1ea2be22666a0856587d115fbf292251}\index{gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}!add@{add}}
+\index{add@{add}!gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily \label{structgutils_1_1_sparse_vector_a1ea2be22666a0856587d115fbf292251} 
+template$<$typename T$>$ \\
+int \mbox{\hyperlink{structgutils_1_1_sparse_vector}{gutils\+::\+Sparse\+Vector}}$<$ T $>$\+::add (\begin{DoxyParamCaption}\item[{T \texorpdfstring{$\ast$}{*}}]{t}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structgutils_1_1_sparse_vector_ac2ccdf3c54b35b207a19c715ad6a25d6}\index{gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}!back@{back}}
+\index{back@{back}!gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{back()}{back()}}
+{\footnotesize\ttfamily \label{structgutils_1_1_sparse_vector_ac2ccdf3c54b35b207a19c715ad6a25d6} 
+template$<$typename T$>$ \\
+T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structgutils_1_1_sparse_vector}{gutils\+::\+Sparse\+Vector}}$<$ T $>$\+::back (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structgutils_1_1_sparse_vector_a7be40dae38e70088f1c5e1e306422ef5}\index{gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}!begin@{begin}}
+\index{begin@{begin}!gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily \label{structgutils_1_1_sparse_vector_a7be40dae38e70088f1c5e1e306422ef5} 
+template$<$typename T$>$ \\
+auto \mbox{\hyperlink{structgutils_1_1_sparse_vector}{gutils\+::\+Sparse\+Vector}}$<$ T $>$\+::begin (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structgutils_1_1_sparse_vector_a4c2db863ba4f2d0a1fc39349490427d3}\index{gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}!end@{end}}
+\index{end@{end}!gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily \label{structgutils_1_1_sparse_vector_a4c2db863ba4f2d0a1fc39349490427d3} 
+template$<$typename T$>$ \\
+auto \mbox{\hyperlink{structgutils_1_1_sparse_vector}{gutils\+::\+Sparse\+Vector}}$<$ T $>$\+::end (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structgutils_1_1_sparse_vector_a5aef5b9d72862b5ad6ad0fb46650be9f}\index{gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}!erase@{erase}}
+\index{erase@{erase}!gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{structgutils_1_1_sparse_vector_a5aef5b9d72862b5ad6ad0fb46650be9f} 
+template$<$typename T$>$ \\
+void \mbox{\hyperlink{structgutils_1_1_sparse_vector}{gutils\+::\+Sparse\+Vector}}$<$ T $>$\+::erase (\begin{DoxyParamCaption}\item[{int}]{i}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structgutils_1_1_sparse_vector_abbb5d6ebf9ac88fed45cadd018885dce}\index{gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}!erase@{erase}}
+\index{erase@{erase}!gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{erase()}{erase()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{structgutils_1_1_sparse_vector_abbb5d6ebf9ac88fed45cadd018885dce} 
+template$<$typename T$>$ \\
+void \mbox{\hyperlink{structgutils_1_1_sparse_vector}{gutils\+::\+Sparse\+Vector}}$<$ T $>$\+::erase (\begin{DoxyParamCaption}\item[{T \texorpdfstring{$\ast$}{*}}]{t}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structgutils_1_1_sparse_vector_a9e44470044b28b466e6c6ee5d3e4f939}\index{gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}!front@{front}}
+\index{front@{front}!gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{front()}{front()}}
+{\footnotesize\ttfamily \label{structgutils_1_1_sparse_vector_a9e44470044b28b466e6c6ee5d3e4f939} 
+template$<$typename T$>$ \\
+T \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structgutils_1_1_sparse_vector}{gutils\+::\+Sparse\+Vector}}$<$ T $>$\+::front (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structgutils_1_1_sparse_vector_a441200fcab05b088fee709e2be7f750a}\index{gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily \label{structgutils_1_1_sparse_vector_a441200fcab05b088fee709e2be7f750a} 
+template$<$typename T$>$ \\
+T \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{structgutils_1_1_sparse_vector}{gutils\+::\+Sparse\+Vector}}$<$ T $>$\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{int}]{i}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structgutils_1_1_sparse_vector_a329d8bcaad406ccd64ce43b74c80b782}\index{gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}!reserve@{reserve}}
+\index{reserve@{reserve}!gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{reserve()}{reserve()}}
+{\footnotesize\ttfamily \label{structgutils_1_1_sparse_vector_a329d8bcaad406ccd64ce43b74c80b782} 
+template$<$typename T$>$ \\
+void \mbox{\hyperlink{structgutils_1_1_sparse_vector}{gutils\+::\+Sparse\+Vector}}$<$ T $>$\+::reserve (\begin{DoxyParamCaption}\item[{int}]{i}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structgutils_1_1_sparse_vector_a1b51e0f018da8dacfb6d3c99a48680a2}\index{gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}!size@{size}}
+\index{size@{size}!gutils::SparseVector$<$ T $>$@{gutils::SparseVector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily \label{structgutils_1_1_sparse_vector_a1b51e0f018da8dacfb6d3c99a48680a2} 
+template$<$typename T$>$ \\
+int \mbox{\hyperlink{structgutils_1_1_sparse_vector}{gutils\+::\+Sparse\+Vector}}$<$ T $>$\+::size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/utilities/\mbox{\hyperlink{_sparse_vector_8hpp}{Sparse\+Vector.\+hpp}}\end{DoxyCompactItemize}

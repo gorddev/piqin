@@ -1,0 +1,107 @@
+\doxysection{gfx\+::Stretch Class Reference}
+\hypertarget{classgfx_1_1_stretch}{}\label{classgfx_1_1_stretch}\index{gfx::Stretch@{gfx::Stretch}}
+
+
+{\ttfamily \#include $<$Stretch.\+hpp$>$}
+
+Inheritance diagram for gfx\+::Stretch\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgfx_1_1_stretch}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgfx_1_1_stretch_ac0e5389f747daf64bbcdf8486f462828}{Stretch}} (geng\+::\+Gear \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classgeng_1_1_morph_aaef3495a90add719259482e1b7a95391}{gear}}, float \mbox{\hyperlink{classgeng_1_1_morph_ae768351029783905fb40c02bc89a5284}{amplitude}}, float snappiness=1.f, float tolerance=1.f)
+\begin{DoxyCompactList}\small\item\em Snappiness specifies how fast the object stretches. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classgfx_1_1_stretch_a22cf6e8653df453b80daf8e36cf8e5fa}{update}} (\mbox{\hyperlink{classgeng_1_1_layer_state}{geng\+::\+Layer\+State}} \&time) override
+\begin{DoxyCompactList}\small\item\em Override function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classgeng_1_1_morph}{geng\+::\+Morph}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgeng_1_1_morph_a716e15fe7d1545c4994135c8527833c9}{Morph}} ()
+\begin{DoxyCompactList}\small\item\em Constructor without transform (permanent). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgeng_1_1_morph_a261304ca3bb9f3105007c8de0be3a10f}{Morph}} (float \mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}})
+\begin{DoxyCompactList}\small\item\em Constructor without transform (duration-\/limited). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgeng_1_1_morph_abb115bd43d9473256f803f273fdee13b}{Morph}} (float \mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}, float \mbox{\hyperlink{classgeng_1_1_morph_ae768351029783905fb40c02bc89a5284}{amplitude}})
+\begin{DoxyCompactList}\small\item\em Constructor without transform (duration-\/limited and amplitude). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgeng_1_1_morph_a84d6265ea49379456270647dabd54bed}{Morph}} (Gear \texorpdfstring{$\ast$}{*}t)
+\begin{DoxyCompactList}\small\item\em Constructor for Permanent \doxylink{classgeng_1_1_morph}{Morph}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgeng_1_1_morph_ae23eff053635ce39d2b27fde3b439759}{Morph}} (Gear \texorpdfstring{$\ast$}{*}t, float \mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}})
+\begin{DoxyCompactList}\small\item\em Constructor for duration-\/bound morph. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgeng_1_1_morph_a9adac7dd6610860afbebd15e1e5b59e7}{Morph}} (Gear \texorpdfstring{$\ast$}{*}t, float \mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}, float \mbox{\hyperlink{classgeng_1_1_morph_ae768351029783905fb40c02bc89a5284}{amplitude}})
+\begin{DoxyCompactList}\small\item\em Constructor for a duration and an amplitude. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classgeng_1_1_morph_a8955ddaec537061aa83e2d886710089e}{\texorpdfstring{$\sim$}{\string~}\+Morph}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor cause i\textquotesingle{}m considerate like that. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classgeng_1_1_morph_a1e7a0f4d5673bce731d52a0d8d9ff72e}{end}} ()
+\begin{DoxyCompactList}\small\item\em Immmediately ends an morph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgeng_1_1_morph_a94b6aa3005d1835720ed3c9e0374fa67}{set\+\_\+gear}} (Gear \texorpdfstring{$\ast$}{*}g)
+\begin{DoxyCompactList}\small\item\em Sets the transform the morph targets. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgeng_1_1_morph_af07944f4c3da5e8dc50fc3c2c2ca07ed}{set\+\_\+id}} (int i)
+\begin{DoxyCompactList}\small\item\em Sets the ID of the morph. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classgeng_1_1_morph_a7018c0d92bf7d62c8cf1a394d9a1ac35}{get\+\_\+id}} () const
+\begin{DoxyCompactList}\small\item\em Gets the ID of the morph. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classgeng_1_1_morph_a018a672fa5eacf0eca4463933c020dfc}{get\+\_\+gear\+\_\+id}} () const
+\begin{DoxyCompactList}\small\item\em Gets the id of the associated Gear. \end{DoxyCompactList}\item 
+Gear \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classgeng_1_1_morph_abd815ac8d119728c2f0dce06ebcb41ec}{get\+\_\+gear\+\_\+ptr}} () const
+\begin{DoxyCompactList}\small\item\em Gets the associated gear pointer. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classgeng_1_1_morph_a12b77a68c5554090e7ecfbfc3cc02f7c}{is\+\_\+permanent}} () const
+\begin{DoxyCompactList}\small\item\em Returns if the morph is permanent or not. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classgeng_1_1_morph}{geng\+::\+Morph}}}
+\begin{DoxyCompactItemize}
+\item 
+Gear \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classgeng_1_1_morph_aaef3495a90add719259482e1b7a95391}{gear}} = nullptr
+\begin{DoxyCompactList}\small\item\em Transform2D object the morph is applied to. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classgeng_1_1_morph_add07449b0e8ae5faebfcec470cc7d860}{init\+Duration}}
+\begin{DoxyCompactList}\small\item\em Initial duration of the morph. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}
+\begin{DoxyCompactList}\small\item\em Current duration of the morph. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classgeng_1_1_morph_ae768351029783905fb40c02bc89a5284}{amplitude}} = 1
+\begin{DoxyCompactList}\small\item\em Amplitude of the morph. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classgeng_1_1_morph_a92c6afece0a342588d9819b9662b9e99}{permanent}}
+\begin{DoxyCompactList}\small\item\em If the morph is permanent. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classgfx_1_1_stretch}{Stretch} is a permanent morph that stretches an object when it moves. 
+
+\label{doc-constructors}
+\Hypertarget{classgfx_1_1_stretch_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classgfx_1_1_stretch_ac0e5389f747daf64bbcdf8486f462828}\index{gfx::Stretch@{gfx::Stretch}!Stretch@{Stretch}}
+\index{Stretch@{Stretch}!gfx::Stretch@{gfx::Stretch}}
+\doxysubsubsection{\texorpdfstring{Stretch()}{Stretch()}}
+{\footnotesize\ttfamily \label{classgfx_1_1_stretch_ac0e5389f747daf64bbcdf8486f462828} 
+Stretch\+::\+Stretch (\begin{DoxyParamCaption}\item[{geng\+::\+Gear \texorpdfstring{$\ast$}{*}}]{gear}{, }\item[{float}]{amplitude}{, }\item[{float}]{snappiness}{ = {\ttfamily 1.f}, }\item[{float}]{tolerance}{ = {\ttfamily 1.f}}\end{DoxyParamCaption})}
+
+
+
+Snappiness specifies how fast the object stretches. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{classgfx_1_1_stretch_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgfx_1_1_stretch_a22cf6e8653df453b80daf8e36cf8e5fa}\index{gfx::Stretch@{gfx::Stretch}!update@{update}}
+\index{update@{update}!gfx::Stretch@{gfx::Stretch}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classgfx_1_1_stretch_a22cf6e8653df453b80daf8e36cf8e5fa} 
+bool Stretch\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeng_1_1_layer_state}{geng\+::\+Layer\+State}} \&}]{time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Override function. 
+
+
+
+Implements \mbox{\hyperlink{classgeng_1_1_morph_a09227482da74b711ffe0e4dc2d74c1da}{geng\+::\+Morph}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/scene/morphs/morph-\/types/\mbox{\hyperlink{_stretch_8hpp}{Stretch.\+hpp}}\item 
+src/engine/scene/morphs/morph-\/types/\mbox{\hyperlink{_stretch_8cpp}{Stretch.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,52 @@
+\doxysection{Tile\+Grid.\+hpp}
+\hypertarget{_tile_grid_8hpp_source}{}\label{_tile_grid_8hpp_source}\index{include/engine/scene/physics/TileGrid.hpp@{include/engine/scene/physics/TileGrid.hpp}}
+\mbox{\hyperlink{_tile_grid_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_world_properties_8hpp}{engine/scene/world/WorldProperties.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_box2_d_8hpp}{engine/types/positioning/Box2D.hpp}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgeng_1_1_tile_grid_a11f252c080a5e8e8e22ad15a496cd223}{TileGrid}}\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<uint16\_t>}}\&\ \mbox{\hyperlink{structgeng_1_1_tile_grid_a9b9ad19430e7eba51127d438ea4fcf0e}{tiles}};}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structgeng_1_1_tile_grid_aaa7f14d74b9d854884bc153714ffad2a}{width}};}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structgeng_1_1_tile_grid_a11f7e063a9b517b8c1acb07b4cc55e73}{height}};}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structgeng_1_1_tile_grid_ace44dd43ea110dbbc722aa08f4842068}{tileSize}};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_tile_grid_a11f252c080a5e8e8e22ad15a496cd223}{TileGrid}}(\mbox{\hyperlink{structgeng_1_1_game_level}{GameLevel}}*\ level,\ \textcolor{keywordtype}{int}\ tilesize)}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structgeng_1_1_tile_grid_a9b9ad19430e7eba51127d438ea4fcf0e}{tiles}}(level-\/>extract\_physics\_data()),}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_tile_grid_aaa7f14d74b9d854884bc153714ffad2a}{width}}(level-\/>\mbox{\hyperlink{structgeng_1_1_tile_grid_aaa7f14d74b9d854884bc153714ffad2a}{width}}),\ \mbox{\hyperlink{structgeng_1_1_tile_grid_a11f7e063a9b517b8c1acb07b4cc55e73}{height}}(level-\/>\mbox{\hyperlink{structgeng_1_1_tile_grid_a11f7e063a9b517b8c1acb07b4cc55e73}{height}}),}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_tile_grid_ace44dd43ea110dbbc722aa08f4842068}{tileSize}}(tilesize)\ \{\}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structgeng_1_1_tile_grid_a6f5ea992992920592f0c2ee9377de75f}{at}}(\textcolor{keywordtype}{int}\ tx,\ \textcolor{keywordtype}{int}\ ty)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tx\ <\ 0\ ||\ ty\ <\ 0\ ||\ tx\ >=\ \mbox{\hyperlink{structgeng_1_1_tile_grid_aaa7f14d74b9d854884bc153714ffad2a}{width}}\ ||\ ty\ >=\ \mbox{\hyperlink{structgeng_1_1_tile_grid_a11f7e063a9b517b8c1acb07b4cc55e73}{height}})}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structgeng_1_1_tile_grid_a9b9ad19430e7eba51127d438ea4fcf0e}{tiles}}[ty\ *\ \mbox{\hyperlink{structgeng_1_1_tile_grid_aaa7f14d74b9d854884bc153714ffad2a}{width}}\ +\ tx];}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ Box2D\ \mbox{\hyperlink{structgeng_1_1_tile_grid_ab86d9c923f7df951124f3bb4bd0a6a5a}{tile\_box}}(\textcolor{keywordtype}{int}\ tx,\ \textcolor{keywordtype}{int}\ ty)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tx\ *\ \mbox{\hyperlink{structgeng_1_1_tile_grid_ace44dd43ea110dbbc722aa08f4842068}{tileSize}},}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ty\ *\ \mbox{\hyperlink{structgeng_1_1_tile_grid_ace44dd43ea110dbbc722aa08f4842068}{tileSize}},}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_tile_grid_ace44dd43ea110dbbc722aa08f4842068}{tileSize}},}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_tile_grid_ace44dd43ea110dbbc722aa08f4842068}{tileSize}}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<SDL\_FPoint>}}\ \mbox{\hyperlink{structgeng_1_1_tile_grid_a2f235f0610e59e4c6ac0b8f7657156b9}{display\_hitboxes}}(uint16\_t\ thickness)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<SDL\_FPoint>}}\ buffer;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{structgeng_1_1_tile_grid_aaa7f14d74b9d854884bc153714ffad2a}{width}};\ i++)\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{structgeng_1_1_tile_grid_a11f7e063a9b517b8c1acb07b4cc55e73}{height}};\ j++)\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{structgeng_1_1_tile_grid_a6f5ea992992920592f0c2ee9377de75f}{at}}(i,j)\ !=\ 0)\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<SDL\_FPoint>}}\ points\ =\ \mbox{\hyperlink{structgeng_1_1_tile_grid_ab86d9c923f7df951124f3bb4bd0a6a5a}{tile\_box}}(i,\ j).to\_vertex\_hitbox(thickness);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buffer.\mbox{\hyperlink{classgch_1_1vector_a757aa39e3abd056903097eca6c9d1067}{insert}}(buffer.\mbox{\hyperlink{classgch_1_1vector_ad4f298ecf306d3d6e0c92cb6d8587a2f}{end}}(),\ points.\mbox{\hyperlink{classgch_1_1vector_ad730bf7e3418031c0a38960e9dc917bf}{begin}}(),\ points.\mbox{\hyperlink{classgch_1_1vector_ad4f298ecf306d3d6e0c92cb6d8587a2f}{end}}());}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ buffer;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \};}
+\DoxyCodeLine{00053\ \}}
+
+\end{DoxyCode}

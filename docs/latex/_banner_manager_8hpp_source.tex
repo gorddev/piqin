@@ -1,0 +1,41 @@
+\doxysection{Banner\+Manager.\+hpp}
+\hypertarget{_banner_manager_8hpp_source}{}\label{_banner_manager_8hpp_source}\index{include/engine/scene/banners/BannerManager.hpp@{include/engine/scene/banners/BannerManager.hpp}}
+\mbox{\hyperlink{_banner_manager_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_banner_8hpp}{Banner.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_layer_context_8hpp}{engine/layers/LayerContext.hpp}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1_banner_manager_a46ca72e8014caf009f277f1140704cde}{BannerManager}}\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<Banner*>}}\ banners;}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ LayerContext\&\ scene;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classgeng_1_1_banner_manager_a46ca72e8014caf009f277f1140704cde}{BannerManager}}(LayerContext\ \&\ layer\_context)\ :}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ scene(layer\_context)\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglog_aee5b7c6d10b7f7ad6196fc3f10bc4020}{glog::note}}\ <<\ \textcolor{stringliteral}{"{}BannerManager\ for\ "{}}\ <<\ scene.get\_name()\ <<\ \textcolor{stringliteral}{"{}\ formed."{}}\ <<\ \mbox{\hyperlink{namespaceglog_ac671f2284827317a1a8c390fde7ea46e}{glog::endlog}};}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_banner_manager_a594ebac5454729bd550a1f32ed4e4369}{update}}()\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&i\ :\ banners)}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i-\/>update(scene.state);}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_banner_manager_acb5f8340f5faa50391b3a84f28b85b26}{add\_banner}}(\mbox{\hyperlink{classgeng_1_1_banner}{Banner}}*\ banner)\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ banners.push\_back(banner);}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_banner_manager_ac83c79e90d0532488bfb3a437644c7b6}{remove\_banner}}(\mbox{\hyperlink{classgeng_1_1_banner}{Banner}}*\ banner)\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ it\ =\ banners.begin();\ it\ !=\ banners.end();\ ++it)\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (*it\ ==\ banner)\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ banners.erase(it);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \};}
+\DoxyCodeLine{00040\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,90 @@
+\doxysection{Board.\+hpp}
+\hypertarget{_board_8hpp_source}{}\label{_board_8hpp_source}\index{include/game/blackjack/Board.hpp@{include/game/blackjack/Board.hpp}}
+\mbox{\hyperlink{_board_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_card_selector_8hpp}{bj-\/objects/CardSelector.hpp}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_pather_8hpp}{bj-\/objects/Pather.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_b_j_enums_8hpp}{BJEnums.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}EngineSource.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_menu_region_8hpp}{engine/input/menu/MenuRegion.hpp}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceblackjack}{blackjack}}\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{comment}{//\ We\ must\ be\ able\ to\ input\ to\ our\ InputTarget}}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classblackjack_1_1_board_a9ee491d4fea680cf69b033374a9fdfcb}{Board}}\ :\ \textcolor{keyword}{public}\ geng::InputTarget\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Member\ Objects\ */}}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ need\ to\ be\ able\ to\ select\ cards}}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structblackjack_1_1_card_selector}{CardSelector}}\ \mbox{\hyperlink{classblackjack_1_1_board_aa6712e52bfbc886d9b5000a64a5c3894}{slct}};}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ need\ access\ to\ the\ deck}}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classblackjack_1_1_deck}{Deck}}\ \mbox{\hyperlink{classblackjack_1_1_board_af22832c5cef0977ab117a6df27083d17}{deck}};}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Discard\ pile}}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classblackjack_1_1_discard}{Discard}}\ \mbox{\hyperlink{classblackjack_1_1_board_a09f83e4254323f87acb6d50f20f07f8e}{discard}};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ need\ acces\ to\ the\ player\ hand}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classblackjack_1_1_hand}{Hand}}\ \mbox{\hyperlink{classblackjack_1_1_board_abf5549c2d46abd4ebaca36a4a7208d52}{hand}};}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Then,\ we\ need\ to\ keep\ drack\ of\ the\ draws\ for\ both\ the\ player\ and\ opponent}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classblackjack_1_1_draw}{Draw}}\ \mbox{\hyperlink{classblackjack_1_1_board_a2c9b93b1a563c2039fa094be3298ed8e}{playerDraw}};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classblackjack_1_1_draw}{Draw}}\ \mbox{\hyperlink{classblackjack_1_1_board_a895174b8495548ac99ec8545d555c170}{opponentDraw}};}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Finally,\ we\ have\ a\ floater\ card\ if\ we're\ using\ a\ special\ card}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classblackjack_1_1_card}{Card}}*\ \mbox{\hyperlink{classblackjack_1_1_board_a103b33939fe107f2152dbac9e40a3e2c}{floater}};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ lets\ us\ keep\ track\ of\ the\ menu}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region}{geng::MenuRegion<Card>}}\ menu;}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Creates\ a\ menu\ region\ wrapper\ (dont\ worry\ about\ it)}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ std::vector<Card*>\ discardTemp;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Member\ Variables\ */}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3}{BJ\_Target}}\ target\ =\ \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a41b00f79ae19301abe87bd8bc19120d9}{BJ\_Target::HAND}};}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3}{BJ\_Target}}\ range\ =\ \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a41b00f79ae19301abe87bd8bc19120d9}{BJ\_Target::HAND}};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceblackjack_a81268dac5171cec375618fd421791e66}{BJ\_Action}}\ action\ =\ \mbox{\hyperlink{namespaceblackjack_a81268dac5171cec375618fd421791e66a6a216efc529825c60a4a4c0bc99ad77f}{BJ\_Action::PLAY}};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ selectEnabled\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Public\ constructor}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classblackjack_1_1_board_a9ee491d4fea680cf69b033374a9fdfcb}{Board}}();}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classblackjack_1_1_board_afafd468ead59e672d1f78a3382365de1}{\string~Board}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gathers\ all\ the\ actors\ in\ the\ BlackjackPlayer\ class.}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ [[nodiscard]]\ std::vector<geng::Actor*>\ \mbox{\hyperlink{classblackjack_1_1_board_a73288410836d7eb3f1df71c709e6d873}{gather\_objects}}();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ CARD\_SELECTOR\ */}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Functions\ that\ concern\ the\ selector\ */}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblackjack_1_1_board_afb7ff3caba6e013a0a4d892c95f16ee6}{update\_selector}}();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ HAND\ */}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Functions\ that\ concern\ management\ of\ the\ hand\ */}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classblackjack_1_1_board_aea080b53efdffb18e2c66a275e6f4976}{add\_card\_to\_hand}}(\mbox{\hyperlink{classblackjack_1_1_card}{Card}}*\ c);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ INPUT\ HANDLING\ */}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classblackjack_1_1_board_a2eef9b59e5f635991d18633d3b42bfba}{get\_press}}(geng::GENG\_Input\ keybind)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblackjack_1_1_board_a44ce01f41e2d352a3545c060a9308798}{get\_release}}(geng::GENG\_Input\ keybind)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Updates}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblackjack_1_1_board_aa170cb05bb38de48e19a72b51d898eca}{update}}();}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tells\ us\ if\ a\ card\ is\ usable\ or\ not}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ usable(\mbox{\hyperlink{classblackjack_1_1_card}{Card}}*\ c);}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Using\ Special\ Cards\ */}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ apply\_special\_card(\mbox{\hyperlink{classblackjack_1_1_card}{Card}}*\ c);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Using\ various\ cards\ on\ other\ cards}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ play\_card();\ \ \ \textcolor{comment}{//\ Plays\ a\ card\ to\ the\ draw}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ use\_card();\ \ \ \ \textcolor{comment}{//\ Uses\ a\ card's\ ability}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ pull\_card();\ \ \ \textcolor{comment}{//\ Pulls\ a\ card\ from\ a\ location\ to\ the\ draw}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ grab\_card();\ \ \ \textcolor{comment}{//\ Grabs\ a\ card\ and\ puts\ it\ to\ the\ hand}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ push\_card();\ \ \ \textcolor{comment}{//\ Pushes\ a\ card\ to\ the\ opponent's\ craw}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Updates\ our\ selection\ parameters}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_target\_range(\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3}{BJ\_Target}}\ targetRange);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_target\_action(\mbox{\hyperlink{namespaceblackjack_a81268dac5171cec375618fd421791e66}{BJ\_Action}}\ new\_action);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ De-\/initializes\ the\ floater\ and\ puts\ it\ back\ into\ the\ hand}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ deactivate\_floater();}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ When\ we\ select\ something,\ we\ call\ this\ function}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ select();}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ back();}
+\DoxyCodeLine{00083\ \ \ \ \ \};}
+\DoxyCodeLine{00084\ \}}
+
+\end{DoxyCode}

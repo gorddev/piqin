@@ -1,0 +1,50 @@
+\doxysection{Input\+Router.\+hpp}
+\hypertarget{_input_router_8hpp_source}{}\label{_input_router_8hpp_source}\index{include/engine/input/InputRouter.hpp@{include/engine/input/InputRouter.hpp}}
+\mbox{\hyperlink{_input_router_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <SDL.h>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_input_router_init_8hpp}{InputRouterInit.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_layer_8hpp}{engine/layers/Layer.hpp}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{class\ }InputRouter\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ uint8\_t*\&\ key\_states;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ EngineContext\&\ core;}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ InputRouter(InputRouterInit\&\ init)\ :\ key\_states(init.key\_states),\ core(init.core)\ \{\}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \string~InputRouter()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }Engine;\ \textcolor{comment}{//\ hey\ look\ a\ friend!!!!}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ active\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_held(SDL\_Scancode\ key)\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (key\ <\ 512\ \&\&\ key\_states\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ key\_states[key];}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ update(Layer*\&\ active\_layer)\ =\ 0;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ get\_press(SDL\_Scancode\ key,\ Layer*\&\ active\_layer)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ get\_release(SDL\_Scancode\ key,\ Layer*\&\ active\_layer)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ get\_click(Uint8\ button,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ Layer*\&\ active\_layer)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ get\_click\_release(Uint8\ button,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ Layer*\&\ active\_layer)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ get\_scroll(\textcolor{keywordtype}{int}\ dx,\ \textcolor{keywordtype}{int}\ dy,\ Layer*\&\ active\_layer)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ get\_mouse\_move(\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ Layer*\&\ active\_layer)\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ For\ use\ by\ the\ engine\ only.\ <><><>}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \_update\_key\_pointer(uint8\_t*\ ptr)\ \{\ key\_states\ =\ ptr;\ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \};}
+\DoxyCodeLine{00078\ \}}
+
+\end{DoxyCode}

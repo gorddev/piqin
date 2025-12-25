@@ -1,0 +1,34 @@
+\doxysection{Selector.\+hpp}
+\hypertarget{_selector_8hpp_source}{}\label{_selector_8hpp_source}\index{include/engine/input/menu/Selector.hpp@{include/engine/input/menu/Selector.hpp}}
+\mbox{\hyperlink{_selector_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sprite_8hpp}{engine/scene/sprites/Sprite.hpp}}"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00005\ \ \ \ \ \textcolor{comment}{//\ Generic\ selector\ object}}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgeng_1_1_selector_a7fb1ef480a70dbb6a9a52bc370080264}{Selector}}\ :\ Sprite\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Target\ of\ the\ selector}}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ T*\ \mbox{\hyperlink{structgeng_1_1_selector_a540b85eb154bc35266bd26ab336462f1}{target}};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Constructor}}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_selector_a7fb1ef480a70dbb6a9a52bc370080264}{Selector}}()\ :\ \mbox{\hyperlink{structgeng_1_1_selector_a540b85eb154bc35266bd26ab336462f1}{target}}(nullptr)\ \{\}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Then\ we\ implement\ our\ selector\ movements}}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structgeng_1_1_selector_a3d4ac155cc2b6d5e05b180586eb33732}{move}}()\ \{\mbox{\hyperlink{structgeng_1_1_selector_a3d4ac155cc2b6d5e05b180586eb33732}{move}}(\textcolor{keyword}{false});\ \};}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structgeng_1_1_selector_a89a7c9778ad110b13161d4e27ae9a5d3}{move}}(\textcolor{keywordtype}{bool}\ recess)\ =\ 0;}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structgeng_1_1_selector_a095783923dffb642a0f4d8905186148d}{move}}(\mbox{\hyperlink{structgeng_1_1_f_pos2_d}{FPos2D}}\ pos,\ \textcolor{keywordtype}{float}\ speed)\ =\ 0;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Make\ sure\ that\ we\ can\ define\ switching\ of\ targetgs}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structgeng_1_1_selector_af6809d95f340b06ee038c827b97a340e}{switchTarget}}(T*\ newTarget,\ \textcolor{keywordtype}{bool}\ moveTarget)\ =\ 0;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lets\ us\ deactivate\ the\ selector\ if\ needed}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structgeng_1_1_selector_a660b599d3ae5c9bc52bd0610a16b9f9d}{deactivate}}()\ =\ 0;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lets\ us\ shake\ the\ current\ selection\ if\ we\ try\ an\ move\ out\ of\ bounds;}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structgeng_1_1_selector_a3d8c3b866eb2927a3de1bbb0df9f7454}{shake\_target}}()\ =\ 0;;}
+\DoxyCodeLine{00027\ \ \ \ \ \};}
+\DoxyCodeLine{00028\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,49 @@
+\doxysection{Background.\+hpp}
+\hypertarget{_background_8hpp_source}{}\label{_background_8hpp_source}\index{include/engine/rendering/background/Background.hpp@{include/engine/rendering/background/Background.hpp}}
+\mbox{\hyperlink{_background_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <SDL.h>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_background_palette_8hpp}{BackgroundPalette.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_engine_context_8hpp}{engine/EngineContext.hpp}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1_background_a77c25488e81c479296dd2f393b592ab9}{Background}}\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Stores\ the\ pixel\ of\ each\ of\ our\ rgb\ values}}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<uint8\_t>}}\ rgb;}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Heightmap\ for\ dune-\/like\ structure.}}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<float>}}\ heightMap;}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Keeps\ track\ of\ the\ intended\ color\ of\ each\ pixel}}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<uint8\_t>}}\ pixelColors;}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Keeps\ track\ of\ the\ BackgroundPalletes}}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<BackgroundPalette>}}\ palettes;}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Then\ tells\ us\ what\ pallete\ we're\ on}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ paletteNum\ =\ 0;}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ texture\ that\ the\ background\ writes\ to.}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ SDL\_Texture*\ background\_texture;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Keeps\ track\ of\ the\ engine\_context}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_engine_context}{EngineContext}}\&\ world;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ update\_pixels();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Constructor}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classgeng_1_1_background_a77c25488e81c479296dd2f393b592ab9}{Background}}(SDL\_Renderer*\ renderer,\ \mbox{\hyperlink{classgeng_1_1_engine_context}{EngineContext}}\&\ world);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Destructor}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_background_a36754df1deb720393217ade59da41557}{\string~Background}}\ ();}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Texture\ getter}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ SDL\_Texture*\ \mbox{\hyperlink{classgeng_1_1_background_abe5f0a7bc96598d331cc6fe2f3708201}{get\_texture}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Updater}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_background_a3d60a7bb3b7b54f2fd410d226da13143}{update}}(\textcolor{keywordtype}{int}\ dt);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Palette\ management}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_background_a1f3dd4f8c0f10a61376212d77308c848}{addPalette}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structgeng_1_1_background_palette}{BackgroundPalette}}\&\ bp);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_background_a85dd3eb3e5b07c3c8c55a97ac37db13a}{setPalette}}(\textcolor{keywordtype}{int}\ newPalette);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_background_a41e588ff0a07335cefabeae2a7166e60}{create\_heightMap}}();}
+\DoxyCodeLine{00043\ \ \ \ \ \};}
+\DoxyCodeLine{00044\ \}}
+
+\end{DoxyCode}

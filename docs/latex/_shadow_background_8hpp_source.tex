@@ -1,0 +1,39 @@
+\doxysection{Shadow\+Background.\+hpp}
+\hypertarget{_shadow_background_8hpp_source}{}\label{_shadow_background_8hpp_source}\index{include/engine/rendering/shadows/shadow-\/types/ShadowBackground.hpp@{include/engine/rendering/shadows/shadow-\/types/ShadowBackground.hpp}}
+\mbox{\hyperlink{_shadow_background_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vector_8hpp}{engine/types/external/vector.hpp}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegfx}{gfx}}\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacegfx_ae04f82e93c5ae6c28f9656cbb60b9347}{shadow\_background}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector<SDL\_Vertex>}}\&\ buffer,\ \textcolor{keywordtype}{int}\&\ numVertices,\ \textcolor{keywordtype}{void}*\ userdata)\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ First\ gets\ our\ size\ before\ we\ update\ with\ new\ buffer}}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ oldsize\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(buffer.\mbox{\hyperlink{classgch_1_1vector_a404803bd4bd0b495fd177fbd44a284de}{size}}());}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Resize\ our\ vector\ accordingly.}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ buffer.\mbox{\hyperlink{classgch_1_1vector_a40b0e8544d4f77ae2751522830efb659}{resize}}(oldsize\ +\ numVertices);}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Now\ we\ copy\ the\ old\ memory\ to\ the\ new\ positions}}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ First\ we\ get\ the\ location\ of\ the\ new\ data}}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ SDL\_Vertex*\ loc\ =\ buffer.\mbox{\hyperlink{classgch_1_1vector_a676e56dcfbb9a73a4917792513f51903}{data}}()\ +\ oldsize;}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ And\ the\ size\ of\ each\ SDL\_Vertex\ is\ 24,\ so\ we\ have\ 24*numVertices\ bytes\ to\ copy}}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Then\ we\ memcpy\ them\ cause\ it's\ fast}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ std::memcpy(loc,\ loc\ -\/\ numVertices,\ numVertices*\textcolor{keyword}{sizeof}(SDL\_Vertex));}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Finally\ we\ update\ each\ FPos2D\ location}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ oldsize\ -\/\ numVertices;\ i\ <\ oldsize;\ i++)\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ FPos2D\ in\ reference\ for\ easy\ access}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_Vertex\&\ vert\ =\ buffer[i];}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ its\ position}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ vert.position\ =\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vert.position.x\ +\ 0.035f*(vert.position.x\ -\/\ (200*0.5f)),}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vert.position.y\ +\ (0.035f*(vert.position.y\ -\/\ 200*0.25f))}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ it's\ color}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ vert.color\ =\ \{0,\ 0,\ 0,\ 50\};}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ \}}
+
+\end{DoxyCode}

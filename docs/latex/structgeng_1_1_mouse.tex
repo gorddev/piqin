@@ -1,0 +1,194 @@
+\doxysection{geng\+::Mouse Struct Reference}
+\hypertarget{structgeng_1_1_mouse}{}\label{structgeng_1_1_mouse}\index{geng::Mouse@{geng::Mouse}}
+
+
+Holds basic information for a mouse to be used by the Inputhandler\texorpdfstring{$\ast$}{*}.  
+
+
+
+
+{\ttfamily \#include $<$Mouse.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structgeng_1_1_mouse_ae3030b1d38eae08fecb96b10345ec75c}{Mouse}} (\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Gear \texorpdfstring{$\ast$}{*} $>$ \&\mbox{\hyperlink{structgeng_1_1_mouse_a518fec3465754fe5d3a903e71aaf38ce}{mouse\+\_\+recievers}}, const Camera \&\mbox{\hyperlink{structgeng_1_1_mouse_acf9071a6a8edceecdd5fcb5c01741ab2}{cam}})
+\begin{DoxyCompactList}\small\item\em This constructor links the mouse to the vector it oversees. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structgeng_1_1_mouse_a6f984397527e87df91a3d684ad6d6281}{on\+\_\+click}} ()
+\begin{DoxyCompactList}\small\item\em Does things to a target if the mouse is hovering over something right now. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structgeng_1_1_mouse_a3a32d13ce15ecfca0cf13896026848d1}{on\+\_\+click\+\_\+release}} ()
+\begin{DoxyCompactList}\small\item\em Does things on click release. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structgeng_1_1_mouse_ada9b70066f23cc86320066f1fdc33806}{pop\+\_\+target}} ()
+\begin{DoxyCompactList}\small\item\em Pops the current target for if the target becomes invalid. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structgeng_1_1_mouse_a61886c1c8436fb2e2652c2d88d72ec32}{on\+\_\+movement}} (SDL\+\_\+\+Point new\+\_\+pos, float dx, float dy, Layer\+Context \&scene)
+\begin{DoxyCompactList}\small\item\em Called when the mouse is moved by some distance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structgeng_1_1_mouse_a479ef15d96d3e9cd1b8785fbed778b2b}{flush\+\_\+target}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structgeng_1_1_pos2_d}{Pos2D}} \mbox{\hyperlink{structgeng_1_1_mouse_acd39ad6b852496c17ac37aa200699709}{pos}}
+\begin{DoxyCompactList}\small\item\em Coordinates of the mouse. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} \mbox{\hyperlink{structgeng_1_1_mouse_a9405c700f25275c1e123e0c693b3c654}{dpos}}
+\begin{DoxyCompactList}\small\item\em Change in position of mouse frame to frame. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} \mbox{\hyperlink{structgeng_1_1_mouse_aa6c0ae9086d5e6c91b06a7c6de1ca120}{relpos}} = \{0, 0\}
+\begin{DoxyCompactList}\small\item\em Attatchment point of object relative to center of mouse. \end{DoxyCompactList}\item 
+Gear \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}} = nullptr
+\begin{DoxyCompactList}\small\item\em Target of mouse action. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structgeng_1_1_mouse_a508d1f84a08a3f4cac5e08cc4be08c05}{down}} = false
+\begin{DoxyCompactList}\small\item\em Whether the mouse is down or not. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Gear \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{structgeng_1_1_mouse_a518fec3465754fe5d3a903e71aaf38ce}{mouse\+\_\+recievers}}
+\begin{DoxyCompactList}\small\item\em Reference to the vector of mouse recievers. \end{DoxyCompactList}\item 
+const Camera \& \mbox{\hyperlink{structgeng_1_1_mouse_acf9071a6a8edceecdd5fcb5c01741ab2}{cam}}
+\begin{DoxyCompactList}\small\item\em Gets access to the camera. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Holds basic information for a mouse to be used by the Inputhandler\texorpdfstring{$\ast$}{*}. 
+
+\doxylink{structgeng_1_1_mouse}{Mouse} has the following member variables 
+
+\label{doc-constructors}
+\Hypertarget{structgeng_1_1_mouse_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structgeng_1_1_mouse_ae3030b1d38eae08fecb96b10345ec75c}\index{geng::Mouse@{geng::Mouse}!Mouse@{Mouse}}
+\index{Mouse@{Mouse}!geng::Mouse@{geng::Mouse}}
+\doxysubsubsection{\texorpdfstring{Mouse()}{Mouse()}}
+{\footnotesize\ttfamily \label{structgeng_1_1_mouse_ae3030b1d38eae08fecb96b10345ec75c} 
+geng\+::\+Mouse\+::\+Mouse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Gear \texorpdfstring{$\ast$}{*} $>$ \&}]{mouse\+\_\+recievers}{, }\item[{const Camera \&}]{cam}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+This constructor links the mouse to the vector it oversees. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{structgeng_1_1_mouse_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structgeng_1_1_mouse_a479ef15d96d3e9cd1b8785fbed778b2b}\index{geng::Mouse@{geng::Mouse}!flush\_target@{flush\_target}}
+\index{flush\_target@{flush\_target}!geng::Mouse@{geng::Mouse}}
+\doxysubsubsection{\texorpdfstring{flush\_target()}{flush\_target()}}
+{\footnotesize\ttfamily \label{structgeng_1_1_mouse_a479ef15d96d3e9cd1b8785fbed778b2b} 
+void geng\+::\+Mouse\+::flush\+\_\+target (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{structgeng_1_1_mouse_a6f984397527e87df91a3d684ad6d6281}\index{geng::Mouse@{geng::Mouse}!on\_click@{on\_click}}
+\index{on\_click@{on\_click}!geng::Mouse@{geng::Mouse}}
+\doxysubsubsection{\texorpdfstring{on\_click()}{on\_click()}}
+{\footnotesize\ttfamily \label{structgeng_1_1_mouse_a6f984397527e87df91a3d684ad6d6281} 
+void geng\+::\+Mouse\+::on\+\_\+click (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Does things to a target if the mouse is hovering over something right now. 
+
+\Hypertarget{structgeng_1_1_mouse_a3a32d13ce15ecfca0cf13896026848d1}\index{geng::Mouse@{geng::Mouse}!on\_click\_release@{on\_click\_release}}
+\index{on\_click\_release@{on\_click\_release}!geng::Mouse@{geng::Mouse}}
+\doxysubsubsection{\texorpdfstring{on\_click\_release()}{on\_click\_release()}}
+{\footnotesize\ttfamily \label{structgeng_1_1_mouse_a3a32d13ce15ecfca0cf13896026848d1} 
+void geng\+::\+Mouse\+::on\+\_\+click\+\_\+release (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Does things on click release. 
+
+\Hypertarget{structgeng_1_1_mouse_a61886c1c8436fb2e2652c2d88d72ec32}\index{geng::Mouse@{geng::Mouse}!on\_movement@{on\_movement}}
+\index{on\_movement@{on\_movement}!geng::Mouse@{geng::Mouse}}
+\doxysubsubsection{\texorpdfstring{on\_movement()}{on\_movement()}}
+{\footnotesize\ttfamily \label{structgeng_1_1_mouse_a61886c1c8436fb2e2652c2d88d72ec32} 
+void geng\+::\+Mouse\+::on\+\_\+movement (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Point}]{new\+\_\+pos}{, }\item[{float}]{dx}{, }\item[{float}]{dy}{, }\item[{Layer\+Context \&}]{scene}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Called when the mouse is moved by some distance. 
+
+\Hypertarget{structgeng_1_1_mouse_ada9b70066f23cc86320066f1fdc33806}\index{geng::Mouse@{geng::Mouse}!pop\_target@{pop\_target}}
+\index{pop\_target@{pop\_target}!geng::Mouse@{geng::Mouse}}
+\doxysubsubsection{\texorpdfstring{pop\_target()}{pop\_target()}}
+{\footnotesize\ttfamily \label{structgeng_1_1_mouse_ada9b70066f23cc86320066f1fdc33806} 
+void geng\+::\+Mouse\+::pop\+\_\+target (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Pops the current target for if the target becomes invalid. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{structgeng_1_1_mouse_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structgeng_1_1_mouse_acf9071a6a8edceecdd5fcb5c01741ab2}\index{geng::Mouse@{geng::Mouse}!cam@{cam}}
+\index{cam@{cam}!geng::Mouse@{geng::Mouse}}
+\doxysubsubsection{\texorpdfstring{cam}{cam}}
+{\footnotesize\ttfamily \label{structgeng_1_1_mouse_acf9071a6a8edceecdd5fcb5c01741ab2} 
+const Camera\& geng\+::\+Mouse\+::cam}
+
+
+
+Gets access to the camera. 
+
+\Hypertarget{structgeng_1_1_mouse_a508d1f84a08a3f4cac5e08cc4be08c05}\index{geng::Mouse@{geng::Mouse}!down@{down}}
+\index{down@{down}!geng::Mouse@{geng::Mouse}}
+\doxysubsubsection{\texorpdfstring{down}{down}}
+{\footnotesize\ttfamily \label{structgeng_1_1_mouse_a508d1f84a08a3f4cac5e08cc4be08c05} 
+bool geng\+::\+Mouse\+::down = false}
+
+
+
+Whether the mouse is down or not. 
+
+\Hypertarget{structgeng_1_1_mouse_a9405c700f25275c1e123e0c693b3c654}\index{geng::Mouse@{geng::Mouse}!dpos@{dpos}}
+\index{dpos@{dpos}!geng::Mouse@{geng::Mouse}}
+\doxysubsubsection{\texorpdfstring{dpos}{dpos}}
+{\footnotesize\ttfamily \label{structgeng_1_1_mouse_a9405c700f25275c1e123e0c693b3c654} 
+\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} geng\+::\+Mouse\+::dpos}
+
+
+
+Change in position of mouse frame to frame. 
+
+\Hypertarget{structgeng_1_1_mouse_a518fec3465754fe5d3a903e71aaf38ce}\index{geng::Mouse@{geng::Mouse}!mouse\_recievers@{mouse\_recievers}}
+\index{mouse\_recievers@{mouse\_recievers}!geng::Mouse@{geng::Mouse}}
+\doxysubsubsection{\texorpdfstring{mouse\_recievers}{mouse\_recievers}}
+{\footnotesize\ttfamily \label{structgeng_1_1_mouse_a518fec3465754fe5d3a903e71aaf38ce} 
+\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$Gear\texorpdfstring{$\ast$}{*}$>$\& geng\+::\+Mouse\+::mouse\+\_\+recievers}
+
+
+
+Reference to the vector of mouse recievers. 
+
+\Hypertarget{structgeng_1_1_mouse_acd39ad6b852496c17ac37aa200699709}\index{geng::Mouse@{geng::Mouse}!pos@{pos}}
+\index{pos@{pos}!geng::Mouse@{geng::Mouse}}
+\doxysubsubsection{\texorpdfstring{pos}{pos}}
+{\footnotesize\ttfamily \label{structgeng_1_1_mouse_acd39ad6b852496c17ac37aa200699709} 
+\mbox{\hyperlink{structgeng_1_1_pos2_d}{Pos2D}} geng\+::\+Mouse\+::pos}
+
+
+
+Coordinates of the mouse. 
+
+\Hypertarget{structgeng_1_1_mouse_aa6c0ae9086d5e6c91b06a7c6de1ca120}\index{geng::Mouse@{geng::Mouse}!relpos@{relpos}}
+\index{relpos@{relpos}!geng::Mouse@{geng::Mouse}}
+\doxysubsubsection{\texorpdfstring{relpos}{relpos}}
+{\footnotesize\ttfamily \label{structgeng_1_1_mouse_aa6c0ae9086d5e6c91b06a7c6de1ca120} 
+\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} geng\+::\+Mouse\+::relpos = \{0, 0\}}
+
+
+
+Attatchment point of object relative to center of mouse. 
+
+\Hypertarget{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}\index{geng::Mouse@{geng::Mouse}!target@{target}}
+\index{target@{target}!geng::Mouse@{geng::Mouse}}
+\doxysubsubsection{\texorpdfstring{target}{target}}
+{\footnotesize\ttfamily \label{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb} 
+Gear\texorpdfstring{$\ast$}{*} geng\+::\+Mouse\+::target = nullptr}
+
+
+
+Target of mouse action. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/input/\mbox{\hyperlink{_mouse_8hpp}{Mouse.\+hpp}}\end{DoxyCompactItemize}

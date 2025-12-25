@@ -1,0 +1,31 @@
+\doxysection{Tile\+Buffer.\+hpp}
+\hypertarget{_tile_buffer_8hpp_source}{}\label{_tile_buffer_8hpp_source}\index{include/engine/scene/tilesets/TileBuffer.hpp@{include/engine/scene/tilesets/TileBuffer.hpp}}
+\mbox{\hyperlink{_tile_buffer_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_tileset_8hpp}{Tileset.hpp}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_render_buffer_8hpp}{engine/rendering/RenderBuffer.hpp}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1_tile_buffer_ad84b4c463abaf552a344bf3557c4090f}{TileBuffer}}\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ RenderBuffer\&\ rend\_buffer;}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_tileset}{Tileset}}\&\ tileset;}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_tile_buffer_ad84b4c463abaf552a344bf3557c4090f}{TileBuffer}}(RenderBuffer\&\ buffer,\ \mbox{\hyperlink{classgeng_1_1_tileset}{Tileset}}\&\ tileset)\ :\ rend\_buffer(buffer),\ tileset(tileset)\ \{\}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_tile_buffer_a44925e6462791d85132122a8be9c9a4a}{push\_back}}(\textcolor{keywordtype}{int}\ tile\_id,\ \mbox{\hyperlink{structgeng_1_1_pos2_d}{Pos2D}}\ tileOffset)\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tile\_id\ >\ tileset.size())}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tile\_id\ =\ 0;}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ tileset[tile\_id].to\_vertex(rend\_buffer,\ (tileOffset).to\_f\_point());}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classgeng_1_1_tile_buffer_a4607024e895db7b645d5cfc77e7e2bcb}{get\_tile\_size}}()\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tileset.tile\_size();}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \};}
+\DoxyCodeLine{00026\ \}}
+
+\end{DoxyCode}

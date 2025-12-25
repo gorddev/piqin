@@ -1,0 +1,42 @@
+\doxysection{Direction2\+D.\+hpp}
+\hypertarget{_direction2_d_8hpp_source}{}\label{_direction2_d_8hpp_source}\index{include/engine/types/positioning/Direction2D.hpp@{include/engine/types/positioning/Direction2D.hpp}}
+\mbox{\hyperlink{_direction2_d_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{struct\ }Direction2D\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ top,\ bottom,\ left,\ right;}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ Direction2D(\textcolor{keywordtype}{short}\ top,\ \textcolor{keywordtype}{short}\ bottom,\ \textcolor{keywordtype}{short}\ left,\ \textcolor{keywordtype}{short}\ right)}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \ \ \ \ :\ top(top),\ bottom(bottom),\ left(left),\ right(right)\ \{\}}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacegeng_a9f80aaff7c3db1f08156ee7f50140fb2}{operator==}}(\textcolor{keyword}{const}\ Direction2D\&\ d)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (top\ ==\ d.top\ \&\&\ bottom\ ==\ d.bottom\ \&\&\ left\ ==\ d.left\ \&\&\ right\ ==\ d.right);}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacegch_a514c6f05de2c9046b49ab2f2b8ce7ab6}{operator!=}}(\textcolor{keyword}{const}\ Direction2D\&\ d)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (top\ !=\ d.top\ ||\ bottom\ !=\ d.bottom\ ||\ left\ !=\ d.left\ ||\ right\ !=\ d.right);}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ Direction2D\ \mbox{\hyperlink{fstring_8inl_a24b203a4f197b30613bec180c750140a}{operator+}}(\textcolor{keyword}{const}\ Direction2D\&\ d)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(top\ +\ d.top),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(bottom\ +\ d.bottom),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(left\ +\ d.left),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(right\ +\ d.right)\};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ Direction2D\ \mbox{\hyperlink{namespacegch_aea1f9ec67c295f21ae95e7afb9189fba}{operator-\/}}(\textcolor{keyword}{const}\ Direction2D\&\ d)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(top\ +\ d.top),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(bottom\ +\ d.bottom),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(left\ +\ d.left),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(right\ +\ d.left)\};}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ operator+=(\textcolor{keyword}{const}\ Direction2D\&\ d)\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ top\ +=\ d.top;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ bottom\ +=\ d.bottom;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ left\ +=\ d.left;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ right\ +=\ d.right;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ operator-\/=(\textcolor{keyword}{const}\ Direction2D\&\ d)\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ top\ -\/=\ d.top;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ bottom\ -\/=\ d.bottom;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ left\ -\/=\ d.left;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ right\ -\/=\ d.right;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ Direction2D\ \mbox{\hyperlink{namespacegch_aea1f9ec67c295f21ae95e7afb9189fba}{operator-\/}}()\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(-\/top),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(-\/bottom),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(-\/left),\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{short}\textcolor{keyword}{>}(-\/right)\};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \};}
+\DoxyCodeLine{00039\ \}}
+
+\end{DoxyCode}

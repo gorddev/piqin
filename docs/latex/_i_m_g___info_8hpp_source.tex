@@ -1,0 +1,27 @@
+\doxysection{IMG\+\_\+\+Info.\+hpp}
+\hypertarget{_i_m_g___info_8hpp_source}{}\label{_i_m_g___info_8hpp_source}\index{include/engine/utilities/image-\/info/IMG\_Info.hpp@{include/engine/utilities/image-\/info/IMG\_Info.hpp}}
+\mbox{\hyperlink{_i_m_g___info_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{fstring_8hpp}{../../types/strings/fstring/fstring.hpp}}"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ GENG\_PATH\_MAX\_LEN\ 50}}
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgeng_1_1_i_m_g___info_ae546d5aba505b31d80d8b47bcfbcaf6d}{IMG\_Info}}\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ fstring<GENG\_PATH\_MAX\_LEN>\ \mbox{\hyperlink{structgeng_1_1_i_m_g___info_ae56117fac2fc648a017b914b95a67a80}{filename}}\ =\ \textcolor{stringliteral}{"{}null"{}};}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structgeng_1_1_i_m_g___info_aedc92d71be7d2907f89505ba0d5e9531}{w}};}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structgeng_1_1_i_m_g___info_a1ac52ee05de1ae5a10dc72087338445b}{h}};}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_i_m_g___info_ae546d5aba505b31d80d8b47bcfbcaf6d}{IMG\_Info}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ filen[],\ uint32\_t\ \mbox{\hyperlink{structgeng_1_1_i_m_g___info_aedc92d71be7d2907f89505ba0d5e9531}{w}},\ uint32\_t\ \mbox{\hyperlink{structgeng_1_1_i_m_g___info_a1ac52ee05de1ae5a10dc72087338445b}{h}})}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structgeng_1_1_i_m_g___info_ae56117fac2fc648a017b914b95a67a80}{filename}}(filen),\ \mbox{\hyperlink{structgeng_1_1_i_m_g___info_aedc92d71be7d2907f89505ba0d5e9531}{w}}(\mbox{\hyperlink{structgeng_1_1_i_m_g___info_aedc92d71be7d2907f89505ba0d5e9531}{w}}),\ \mbox{\hyperlink{structgeng_1_1_i_m_g___info_a1ac52ee05de1ae5a10dc72087338445b}{h}}(\mbox{\hyperlink{structgeng_1_1_i_m_g___info_a1ac52ee05de1ae5a10dc72087338445b}{h}})\ \{\}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ SDL\_FPoint\ \mbox{\hyperlink{structgeng_1_1_i_m_g___info_a4e5f463d7756f8a5e8263b60c49507c3}{get\_white\_point}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{(\mbox{\hyperlink{structgeng_1_1_i_m_g___info_aedc92d71be7d2907f89505ba0d5e9531}{w}}\ -\/\ 0.5f)/\mbox{\hyperlink{structgeng_1_1_i_m_g___info_aedc92d71be7d2907f89505ba0d5e9531}{w}},\ (\mbox{\hyperlink{structgeng_1_1_i_m_g___info_a1ac52ee05de1ae5a10dc72087338445b}{h}}\ -\/\ 0.5f)/\mbox{\hyperlink{structgeng_1_1_i_m_g___info_a1ac52ee05de1ae5a10dc72087338445b}{h}}\};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1str__view}{geng::str\_view}}\&\ \mbox{\hyperlink{structgeng_1_1_i_m_g___info_a0a554b95a709a627ef5557f87d97eec8}{to\_fstring}}(\mbox{\hyperlink{classgeng_1_1str__view}{geng::str\_view}}\&\ buffer)\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ buffer\ <<\ \ \textcolor{stringliteral}{"{}Filename:\ "{}}\ <<\ \mbox{\hyperlink{structgeng_1_1_i_m_g___info_ae56117fac2fc648a017b914b95a67a80}{filename}}.wrap()\ <<\ \textcolor{stringliteral}{"{}\ w:\ "{}}\ <<\ \mbox{\hyperlink{structgeng_1_1_i_m_g___info_aedc92d71be7d2907f89505ba0d5e9531}{w}}\ <<\ \textcolor{stringliteral}{"{}\ h:\ "{}}\ <<\ \mbox{\hyperlink{structgeng_1_1_i_m_g___info_a1ac52ee05de1ae5a10dc72087338445b}{h}};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00024\ \ \ \ \ \};}
+\DoxyCodeLine{00025\ \}}
+
+\end{DoxyCode}

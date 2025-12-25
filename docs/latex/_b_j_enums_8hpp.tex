@@ -1,0 +1,82 @@
+\doxysection{include/game/blackjack/\+BJEnums.hpp File Reference}
+\hypertarget{_b_j_enums_8hpp}{}\label{_b_j_enums_8hpp}\index{include/game/blackjack/BJEnums.hpp@{include/game/blackjack/BJEnums.hpp}}
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \#include "{}engine/types/\+Transform2\+D.\+hpp"{}}\newline
+{\ttfamily \#include "{}BJConstants.\+hpp"{}}\newline
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceblackjack}{blackjack}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3}{blackjack\+::\+BJ\+\_\+\+Target}} \+: int \{ \newline
+\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a41b00f79ae19301abe87bd8bc19120d9}{blackjack\+::\+HAND}} = 0
+, \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a07c80e2a355d91402a00d82b1fa13855}{blackjack\+::\+PLAYER}} = 1
+, \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3aecd1d945f3cac918744bcc5766e0ae2d}{blackjack\+::\+DISCARD}} = 2
+, \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a29214621cd699776fe72d93b7f875295}{blackjack\+::\+OPPONENT}} = 3
+, \newline
+\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a778470f9fc61e0e57ec1d1873e1d7829}{blackjack\+::\+DISCARD\+\_\+\+MENU}} = 4
+, \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a111b061bc4c0c289fbf087f7fbccfb82}{blackjack\+::\+DRAWS}} = 5
+, \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a962241c6cd8e985f053c0a35b9e7b3e8}{blackjack\+::\+HAND\+\_\+\+AND\+\_\+\+DRAWS}} = 6
+, \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3a5fb1f955b45e38e31789286a1790398d}{blackjack\+::\+ALL}} = 7
+ \}
+\item 
+enum class \mbox{\hyperlink{namespaceblackjack_a81268dac5171cec375618fd421791e66}{blackjack\+::\+BJ\+\_\+\+Action}} \+: uint8\+\_\+t \{ \newline
+\mbox{\hyperlink{namespaceblackjack_a81268dac5171cec375618fd421791e66a6a216efc529825c60a4a4c0bc99ad77f}{blackjack\+::\+PLAY}} = 0
+, \mbox{\hyperlink{namespaceblackjack_a81268dac5171cec375618fd421791e66a0068f4e18cb828499dbc0708bc9820ad}{blackjack\+::\+PULL}} = 1
+, \mbox{\hyperlink{namespaceblackjack_a81268dac5171cec375618fd421791e66a73dabe4437725eedc05a1824a2c31550}{blackjack\+::\+PUSH}} = 2
+, \mbox{\hyperlink{namespaceblackjack_a81268dac5171cec375618fd421791e66ac39aa6dbe619bb8ef8187b00b686df6a}{blackjack\+::\+DESTROY}} = 3
+, \newline
+\mbox{\hyperlink{namespaceblackjack_a81268dac5171cec375618fd421791e66acbfa06628adfb8b826d5d3947fb8b2c4}{blackjack\+::\+OPEN\+\_\+\+DISCARD}} = 4
+, \mbox{\hyperlink{namespaceblackjack_a81268dac5171cec375618fd421791e66aae51afd03be438d1b3d317fb13c9c261}{blackjack\+::\+USE\+\_\+\+CARD}} = 5
+, \mbox{\hyperlink{namespaceblackjack_a81268dac5171cec375618fd421791e66a8695c57e30e957161af26fe52d8a5826}{blackjack\+::\+GRAB}} = 6
+ \}
+\item 
+enum class \mbox{\hyperlink{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093c}{blackjack\+::\+BJ\+\_\+\+Suit}} \+: char \{ \newline
+\mbox{\hyperlink{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093ca88793a84c2442620e19c832e2e2b40a6}{blackjack\+::\+SPADE}} = \textquotesingle{}s\textquotesingle{}
+, \mbox{\hyperlink{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093cac54fc2509b0cd290993c32b5cbf26b09}{blackjack\+::\+CLUB}} = \textquotesingle{}c\textquotesingle{}
+, \mbox{\hyperlink{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093ca337f43db5edddda90ef2156a9baaed09}{blackjack\+::\+DIAMOND}} = \textquotesingle{}d\textquotesingle{}
+, \mbox{\hyperlink{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093ca60a63c9a983ad6966ffe95a8a6f003d8}{blackjack\+::\+HEART}} = \textquotesingle{}h\textquotesingle{}
+, \newline
+\mbox{\hyperlink{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093caa72e4a34f10af98a9814d865e717399f}{blackjack\+::\+SPECIAL}} = \textquotesingle{}x\textquotesingle{}
+ \}
+\item 
+enum \mbox{\hyperlink{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185}{blackjack\+::\+BJ\+\_\+\+Card\+Value}} \+: uint8\+\_\+t \{ \newline
+\mbox{\hyperlink{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185ad5176ad36345ba3e7d68b3ce24b856d6}{blackjack\+::\+BJ\+\_\+\+CARD\+\_\+\+NONE}} = 0
+, \mbox{\hyperlink{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185acd6ffd9dbc95e1ea6a63c25e03bbc314}{blackjack\+::\+BJ\+\_\+\+CARD\+\_\+\+TAKER}} = 54
+, \mbox{\hyperlink{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185ab2e0c67977f0fb3cc6c94423a114136f}{blackjack\+::\+BJ\+\_\+\+CARD\+\_\+\+INCREMENT}} = 55
+, \mbox{\hyperlink{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185a8e87a48a7c59ff8ac04f65658e429a9f}{blackjack\+::\+BJ\+\_\+\+CARD\+\_\+\+DECREMENT}} = 56
+, \newline
+\mbox{\hyperlink{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185a46070d8af3543e345767ee850763ec32}{blackjack\+::\+BJ\+\_\+\+CARD\+\_\+\+PUSH}} = 57
+, \mbox{\hyperlink{namespaceblackjack_a56bfc4d7f10739e19bed1b0c5b516185a45f60976256a97211e7ed1c86e52a050}{blackjack\+::\+BJ\+\_\+\+CARD\+\_\+\+PULL}} = 58
+ \}
+\item 
+enum class \mbox{\hyperlink{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cb}{blackjack\+::\+BJ\+\_\+\+Result}} \+: uint8\+\_\+t \{ \mbox{\hyperlink{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cbab50339a10e1de285ac99d4c3990b8693}{blackjack\+::\+NONE}} = 0
+, \mbox{\hyperlink{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cba709181461ec3398615ecc2ae850589e6}{blackjack\+::\+LOSE}} = 1
+, \mbox{\hyperlink{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cba8eb6c56ba51924a4cf185ec29e22be22}{blackjack\+::\+TIE}} = 2
+, \mbox{\hyperlink{namespaceblackjack_a95b78fbb14fee4c6996cc3a5c7b378cba92e56d8195a9dd45a9b90aacf82886b1}{blackjack\+::\+WIN}} = 3
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{namespaceblackjack_aa8defaed3ae26cbd889762aea61c5a45}{blackjack\+::operator==}} (char c, \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3}{BJ\+\_\+\+Target}} target)
+\item 
+bool \mbox{\hyperlink{namespaceblackjack_af711e6d909c45f4f664ca54de36955a5}{blackjack\+::operator==}} (\mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3}{BJ\+\_\+\+Target}} target, char c)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{namespaceblackjack_a8f1951e63c0165ec3e29f8791b87b5ff}{blackjack\+::round\+Score}} = 21
+\item 
+short \mbox{\hyperlink{namespaceblackjack_a96f487da2d4d9ea7fba7a548d335cf1b}{blackjack\+::max\+Hand\+Size}} = 12
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespaceblackjack_aacaa1955d2ca8e78734994585d83ed38}{blackjack\+::max\+Stack\+Size}} = 3
+\item 
+static std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{namespaceblackjack_acac26e84a8897c3e118e3ad11f94fef3}{BJ\+\_\+\+Target}}, std\+::vector$<$ short $>$ $>$ \mbox{\hyperlink{namespaceblackjack_ae3c828bff7f2bad649474c04aa591e69}{blackjack\+::selection\+\_\+range}}
+\item 
+static const geng\+::\+Transform2D \mbox{\hyperlink{namespaceblackjack_ab987b7cceef07a41c9a1d95af293629f}{blackjack\+::default\+\_\+deck}}
+\end{DoxyCompactItemize}

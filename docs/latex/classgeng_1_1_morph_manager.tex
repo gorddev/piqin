@@ -1,0 +1,112 @@
+\doxysection{geng\+::Morph\+Manager Class Reference}
+\hypertarget{classgeng_1_1_morph_manager}{}\label{classgeng_1_1_morph_manager}\index{geng::MorphManager@{geng::MorphManager}}
+
+
+{\ttfamily \#include $<$Morph\+Manager.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgeng_1_1_morph_manager_abb0c6acfff6a360f293457ab1ab31aac}{Morph\+Manager}} (Layer\+Context \&layer\+\_\+context)
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgeng_1_1_morph_manager_a29500e04e68fd7fafdee291d1db9ac77}{\texorpdfstring{$\sim$}{\string~}\+Morph\+Manager}} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgeng_1_1_morph_manager_a56c1da0c665092cfbea5da89b6e65310}{apply\+\_\+morph}} (\mbox{\hyperlink{classgeng_1_1_morph}{Morph}} \texorpdfstring{$\ast$}{*}e)
+\begin{DoxyCompactList}\small\item\em Adds an morph to the manager. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgeng_1_1_morph_manager_a4e29cccd376f5c61c09026d2a3a2374b}{strip\+\_\+morph}} (const Gear \texorpdfstring{$\ast$}{*}g)
+\begin{DoxyCompactList}\small\item\em Removes all morphs on a gear (by searching through target\+\_\+id). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgeng_1_1_morph_manager_a20df207ed5e171ce035ef8754f80411d}{strip\+\_\+morph}} (\mbox{\hyperlink{classgeng_1_1_morph}{Morph}} \texorpdfstring{$\ast$}{*}e)
+\begin{DoxyCompactList}\small\item\em Removes a singular morph by Morph\texorpdfstring{$\ast$}{*}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgeng_1_1_morph_manager_a0474e0743803891b0f673dc58cddef72}{update}} ()
+\begin{DoxyCompactList}\small\item\em Updates all morphs in the morph manager. Removes finished morphs. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classgeng_1_1_morph_manager_aa220880ecb970930b3f34a9c44e6997a}{has\+\_\+morph}} (const Gear \texorpdfstring{$\ast$}{*}g)
+\begin{DoxyCompactList}\small\item\em Check if a gear has a morph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classgeng_1_1_morph_manager}{Morph\+Manager} class. For explicit and exclusive use by the engine. Handles updating each morph pointer, and removing morphs when completed. \doxylink{classgeng_1_1_morph_manager}{Morph\+Manager} uses a Sparse\+Vector class for removal/insertion efficiency. 
+
+\label{doc-constructors}
+\Hypertarget{classgeng_1_1_morph_manager_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classgeng_1_1_morph_manager_abb0c6acfff6a360f293457ab1ab31aac}\index{geng::MorphManager@{geng::MorphManager}!MorphManager@{MorphManager}}
+\index{MorphManager@{MorphManager}!geng::MorphManager@{geng::MorphManager}}
+\doxysubsubsection{\texorpdfstring{MorphManager()}{MorphManager()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_morph_manager_abb0c6acfff6a360f293457ab1ab31aac} 
+Morph\+Manager\+::\+Morph\+Manager (\begin{DoxyParamCaption}\item[{Layer\+Context \&}]{layer\+\_\+context}{}\end{DoxyParamCaption})}
+
+
+
+Default constructor. 
+
+\Hypertarget{classgeng_1_1_morph_manager_a29500e04e68fd7fafdee291d1db9ac77}\index{geng::MorphManager@{geng::MorphManager}!````~MorphManager@{\texorpdfstring{$\sim$}{\string~}MorphManager}}
+\index{````~MorphManager@{\texorpdfstring{$\sim$}{\string~}MorphManager}!geng::MorphManager@{geng::MorphManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}MorphManager()}{\string~MorphManager()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_morph_manager_a29500e04e68fd7fafdee291d1db9ac77} 
+geng\+::\+Morph\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Morph\+Manager (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Default destructor. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{classgeng_1_1_morph_manager_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgeng_1_1_morph_manager_a56c1da0c665092cfbea5da89b6e65310}\index{geng::MorphManager@{geng::MorphManager}!apply\_morph@{apply\_morph}}
+\index{apply\_morph@{apply\_morph}!geng::MorphManager@{geng::MorphManager}}
+\doxysubsubsection{\texorpdfstring{apply\_morph()}{apply\_morph()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_morph_manager_a56c1da0c665092cfbea5da89b6e65310} 
+void Morph\+Manager\+::apply\+\_\+morph (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeng_1_1_morph}{Morph}} \texorpdfstring{$\ast$}{*}}]{e}{}\end{DoxyParamCaption})}
+
+
+
+Adds an morph to the manager. 
+
+\Hypertarget{classgeng_1_1_morph_manager_aa220880ecb970930b3f34a9c44e6997a}\index{geng::MorphManager@{geng::MorphManager}!has\_morph@{has\_morph}}
+\index{has\_morph@{has\_morph}!geng::MorphManager@{geng::MorphManager}}
+\doxysubsubsection{\texorpdfstring{has\_morph()}{has\_morph()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_morph_manager_aa220880ecb970930b3f34a9c44e6997a} 
+bool Morph\+Manager\+::has\+\_\+morph (\begin{DoxyParamCaption}\item[{const Gear \texorpdfstring{$\ast$}{*}}]{g}{}\end{DoxyParamCaption})}
+
+
+
+Check if a gear has a morph. 
+
+\Hypertarget{classgeng_1_1_morph_manager_a4e29cccd376f5c61c09026d2a3a2374b}\index{geng::MorphManager@{geng::MorphManager}!strip\_morph@{strip\_morph}}
+\index{strip\_morph@{strip\_morph}!geng::MorphManager@{geng::MorphManager}}
+\doxysubsubsection{\texorpdfstring{strip\_morph()}{strip\_morph()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classgeng_1_1_morph_manager_a4e29cccd376f5c61c09026d2a3a2374b} 
+void Morph\+Manager\+::strip\+\_\+morph (\begin{DoxyParamCaption}\item[{const Gear \texorpdfstring{$\ast$}{*}}]{g}{}\end{DoxyParamCaption})}
+
+
+
+Removes all morphs on a gear (by searching through target\+\_\+id). 
+
+\Hypertarget{classgeng_1_1_morph_manager_a20df207ed5e171ce035ef8754f80411d}\index{geng::MorphManager@{geng::MorphManager}!strip\_morph@{strip\_morph}}
+\index{strip\_morph@{strip\_morph}!geng::MorphManager@{geng::MorphManager}}
+\doxysubsubsection{\texorpdfstring{strip\_morph()}{strip\_morph()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classgeng_1_1_morph_manager_a20df207ed5e171ce035ef8754f80411d} 
+void Morph\+Manager\+::strip\+\_\+morph (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeng_1_1_morph}{Morph}} \texorpdfstring{$\ast$}{*}}]{e}{}\end{DoxyParamCaption})}
+
+
+
+Removes a singular morph by Morph\texorpdfstring{$\ast$}{*}. 
+
+\Hypertarget{classgeng_1_1_morph_manager_a0474e0743803891b0f673dc58cddef72}\index{geng::MorphManager@{geng::MorphManager}!update@{update}}
+\index{update@{update}!geng::MorphManager@{geng::MorphManager}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_morph_manager_a0474e0743803891b0f673dc58cddef72} 
+void Morph\+Manager\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Updates all morphs in the morph manager. Removes finished morphs. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/scene/morphs/\mbox{\hyperlink{_morph_manager_8hpp}{Morph\+Manager.\+hpp}}\item 
+src/engine/scene/morphs/\mbox{\hyperlink{_morph_manager_8cpp}{Morph\+Manager.\+cpp}}\end{DoxyCompactItemize}

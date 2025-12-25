@@ -1,0 +1,58 @@
+\doxysection{Renderer.\+hpp}
+\hypertarget{_renderer_8hpp_source}{}\label{_renderer_8hpp_source}\index{include/engine/rendering/Renderer.hpp@{include/engine/rendering/Renderer.hpp}}
+\mbox{\hyperlink{_renderer_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Libraries}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ \ <emscripten/html5.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <SDL.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_render_buffer_8hpp}{RenderBuffer.hpp}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_engine_context_8hpp}{engine/EngineContext.hpp}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_console_8hpp}{engine/debug/Console.hpp}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_layer_8hpp}{engine/layers/Layer.hpp}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_texture_register_8hpp}{engine/scene/initializer/TextureRegister.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_shadow_bank_8hpp}{shadows/ShadowBank.hpp}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{class\ }Renderer\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ Renderer(EngineContext\&\ world,\ TextureRegister\&\ texreg,\ Camera\&\ camera);}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \string~Renderer();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_render\_resolution(uint16\_t\ width,\ uint16\_t\ height);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \_init();}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ render(gch::vector<Layer\ *>\ \&layers,\ debug::Console\ *console\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ present();}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ prime\_tex\_register(TextureRegister\&\ reg);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ RENDER\ PIPELINE}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Renders\ one\ layer\ and\ all\ it's\ components\ according\ to\ how\ it\ wants\ to\ be\ layered.}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ render\_layer(Layer\ *\&lay);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ sets\ our\ render\ texture\ to\ the\ small\ 300\ x\ 200\ window\ so\ we\ get\ pixel-\/perfect\ scaling.}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_render\_texture();}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Updates\ the\ canvas\ in\ case\ the\ user\ decides\ to\ resize\ the\ window}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ update\_canvas\_size(\textcolor{keywordtype}{bool}\ force\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ ShadowBank\ shadows;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ RenderBuffer\ buffer;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ Camera\&\ camera;}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ TextureRegister\&\ texreg;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ SDL\_Window*\ window\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ SDL\_Renderer*\ renderer\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ canvasWidth\ =\ 0.0f;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ canvasHeight\ =\ 0.0f;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ SDL\_Texture*\ canvasTex\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ EngineContext\&\ world;}
+\DoxyCodeLine{00072\ \ \ \ \ \};}
+\DoxyCodeLine{00073\ \}}
+
+\end{DoxyCode}

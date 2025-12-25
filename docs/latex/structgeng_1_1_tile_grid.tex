@@ -1,0 +1,124 @@
+\doxysection{geng\+::Tile\+Grid Struct Reference}
+\hypertarget{structgeng_1_1_tile_grid}{}\label{structgeng_1_1_tile_grid}\index{geng::TileGrid@{geng::TileGrid}}
+
+
+{\ttfamily \#include $<$Tile\+Grid.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structgeng_1_1_tile_grid_a11f252c080a5e8e8e22ad15a496cd223}{Tile\+Grid}} (\mbox{\hyperlink{struct_game_level}{Game\+Level}} \texorpdfstring{$\ast$}{*}level, int tilesize)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structgeng_1_1_tile_grid_a6f5ea992992920592f0c2ee9377de75f}{at}} (int tx, int ty) const
+\begin{DoxyCompactList}\small\item\em Gets the tile at a location. \end{DoxyCompactList}\item 
+Box2D \mbox{\hyperlink{structgeng_1_1_tile_grid_ab86d9c923f7df951124f3bb4bd0a6a5a}{tile\+\_\+box}} (int tx, int ty) const
+\begin{DoxyCompactList}\small\item\em Turns the tile into a box. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ SDL\+\_\+\+FPoint $>$ \mbox{\hyperlink{structgeng_1_1_tile_grid_a2f235f0610e59e4c6ac0b8f7657156b9}{display\+\_\+hitboxes}} (uint16\+\_\+t thickness) const
+\begin{DoxyCompactList}\small\item\em Returns a buffer of vertices with the hitboxes of each box. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ uint16\+\_\+t $>$ \& \mbox{\hyperlink{structgeng_1_1_tile_grid_a9b9ad19430e7eba51127d438ea4fcf0e}{tiles}}
+\begin{DoxyCompactList}\small\item\em Contains all the tiles in a single gameworld. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structgeng_1_1_tile_grid_aaa7f14d74b9d854884bc153714ffad2a}{width}}
+\begin{DoxyCompactList}\small\item\em Width of one gameworld level. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structgeng_1_1_tile_grid_a11f7e063a9b517b8c1acb07b4cc55e73}{height}}
+\begin{DoxyCompactList}\small\item\em Height of one gameworld level. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structgeng_1_1_tile_grid_ace44dd43ea110dbbc722aa08f4842068}{tile\+Size}}
+\begin{DoxyCompactList}\small\item\em Tilesize of a gameworld level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{structgeng_1_1_tile_grid_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structgeng_1_1_tile_grid_a11f252c080a5e8e8e22ad15a496cd223}\index{geng::TileGrid@{geng::TileGrid}!TileGrid@{TileGrid}}
+\index{TileGrid@{TileGrid}!geng::TileGrid@{geng::TileGrid}}
+\doxysubsubsection{\texorpdfstring{TileGrid()}{TileGrid()}}
+{\footnotesize\ttfamily \label{structgeng_1_1_tile_grid_a11f252c080a5e8e8e22ad15a496cd223} 
+geng\+::\+Tile\+Grid\+::\+Tile\+Grid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_level}{Game\+Level}} \texorpdfstring{$\ast$}{*}}]{level}{, }\item[{int}]{tilesize}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{structgeng_1_1_tile_grid_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structgeng_1_1_tile_grid_a6f5ea992992920592f0c2ee9377de75f}\index{geng::TileGrid@{geng::TileGrid}!at@{at}}
+\index{at@{at}!geng::TileGrid@{geng::TileGrid}}
+\doxysubsubsection{\texorpdfstring{at()}{at()}}
+{\footnotesize\ttfamily \label{structgeng_1_1_tile_grid_a6f5ea992992920592f0c2ee9377de75f} 
+uint16\+\_\+t geng\+::\+Tile\+Grid\+::at (\begin{DoxyParamCaption}\item[{int}]{tx}{, }\item[{int}]{ty}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the tile at a location. 
+
+\Hypertarget{structgeng_1_1_tile_grid_a2f235f0610e59e4c6ac0b8f7657156b9}\index{geng::TileGrid@{geng::TileGrid}!display\_hitboxes@{display\_hitboxes}}
+\index{display\_hitboxes@{display\_hitboxes}!geng::TileGrid@{geng::TileGrid}}
+\doxysubsubsection{\texorpdfstring{display\_hitboxes()}{display\_hitboxes()}}
+{\footnotesize\ttfamily \label{structgeng_1_1_tile_grid_a2f235f0610e59e4c6ac0b8f7657156b9} 
+\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ SDL\+\_\+\+FPoint $>$ geng\+::\+Tile\+Grid\+::display\+\_\+hitboxes (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{thickness}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns a buffer of vertices with the hitboxes of each box. 
+
+\Hypertarget{structgeng_1_1_tile_grid_ab86d9c923f7df951124f3bb4bd0a6a5a}\index{geng::TileGrid@{geng::TileGrid}!tile\_box@{tile\_box}}
+\index{tile\_box@{tile\_box}!geng::TileGrid@{geng::TileGrid}}
+\doxysubsubsection{\texorpdfstring{tile\_box()}{tile\_box()}}
+{\footnotesize\ttfamily \label{structgeng_1_1_tile_grid_ab86d9c923f7df951124f3bb4bd0a6a5a} 
+Box2D geng\+::\+Tile\+Grid\+::tile\+\_\+box (\begin{DoxyParamCaption}\item[{int}]{tx}{, }\item[{int}]{ty}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Turns the tile into a box. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{structgeng_1_1_tile_grid_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structgeng_1_1_tile_grid_a11f7e063a9b517b8c1acb07b4cc55e73}\index{geng::TileGrid@{geng::TileGrid}!height@{height}}
+\index{height@{height}!geng::TileGrid@{geng::TileGrid}}
+\doxysubsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily \label{structgeng_1_1_tile_grid_a11f7e063a9b517b8c1acb07b4cc55e73} 
+int geng\+::\+Tile\+Grid\+::height}
+
+
+
+Height of one gameworld level. 
+
+\Hypertarget{structgeng_1_1_tile_grid_a9b9ad19430e7eba51127d438ea4fcf0e}\index{geng::TileGrid@{geng::TileGrid}!tiles@{tiles}}
+\index{tiles@{tiles}!geng::TileGrid@{geng::TileGrid}}
+\doxysubsubsection{\texorpdfstring{tiles}{tiles}}
+{\footnotesize\ttfamily \label{structgeng_1_1_tile_grid_a9b9ad19430e7eba51127d438ea4fcf0e} 
+const \mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$uint16\+\_\+t$>$\& geng\+::\+Tile\+Grid\+::tiles}
+
+
+
+Contains all the tiles in a single gameworld. 
+
+\Hypertarget{structgeng_1_1_tile_grid_ace44dd43ea110dbbc722aa08f4842068}\index{geng::TileGrid@{geng::TileGrid}!tileSize@{tileSize}}
+\index{tileSize@{tileSize}!geng::TileGrid@{geng::TileGrid}}
+\doxysubsubsection{\texorpdfstring{tileSize}{tileSize}}
+{\footnotesize\ttfamily \label{structgeng_1_1_tile_grid_ace44dd43ea110dbbc722aa08f4842068} 
+int geng\+::\+Tile\+Grid\+::tile\+Size}
+
+
+
+Tilesize of a gameworld level. 
+
+\Hypertarget{structgeng_1_1_tile_grid_aaa7f14d74b9d854884bc153714ffad2a}\index{geng::TileGrid@{geng::TileGrid}!width@{width}}
+\index{width@{width}!geng::TileGrid@{geng::TileGrid}}
+\doxysubsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily \label{structgeng_1_1_tile_grid_aaa7f14d74b9d854884bc153714ffad2a} 
+int geng\+::\+Tile\+Grid\+::width}
+
+
+
+Width of one gameworld level. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/scene/physics/\mbox{\hyperlink{_tile_grid_8hpp}{Tile\+Grid.\+hpp}}\end{DoxyCompactItemize}

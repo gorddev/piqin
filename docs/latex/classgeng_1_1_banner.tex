@@ -1,0 +1,118 @@
+\doxysection{geng\+::Banner Class Reference}
+\hypertarget{classgeng_1_1_banner}{}\label{classgeng_1_1_banner}\index{geng::Banner@{geng::Banner}}
+
+
+{\ttfamily \#include $<$Banner.\+hpp$>$}
+
+Inheritance diagram for geng\+::Banner\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgeng_1_1_banner}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgeng_1_1_banner_a35f2ff36aa8fdb3094ba450574774491}{Banner}} (\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} pos, uint16\+\_\+t width, uint16\+\_\+t height)
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgeng_1_1_banner_aa3222e36f8bad22f7d1bd56a9bbb1311}{to\+\_\+vertex}} (Render\+Buffer \&buffer) override
+\begin{DoxyCompactList}\small\item\em To\+\_\+vertex that lets the banner be renderable. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgeng_1_1_banner_aba4ba84e3f17f2652cd2f33d4e962919}{update}} (\mbox{\hyperlink{classgeng_1_1_layer_state}{Layer\+State}} \&time)
+\begin{DoxyCompactList}\small\item\em Calling update on our \doxylink{classgeng_1_1_banner}{Banner}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classgeng_1_1_banner_aef30895f66cb2af820ee6e99618ad78f}{add\+\_\+background}} (Widget \texorpdfstring{$\ast$}{*}w)
+\begin{DoxyCompactList}\small\item\em Add a background widget. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classgeng_1_1_banner_a7450f9175f945279c5ce9a5c6f2719b7}{add\+\_\+widget}} (Widget \texorpdfstring{$\ast$}{*}w)
+\begin{DoxyCompactList}\small\item\em Add a normal widget. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classgeng_1_1_banner_ab694728c69d2ca8ff90ecfad4ed5c36d}{get\+\_\+texture\+\_\+id}} () const
+\begin{DoxyCompactList}\small\item\em Get banner texture id. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Widget \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{classgeng_1_1_banner_a0b103ec3ef29e98215fad116b8cebe98}{get\+\_\+widgets}} ()
+\begin{DoxyCompactList}\small\item\em Access widgets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classgeng_1_1_banner}{Banner} is how you make text and all types of other shit that you want to make and display on the screen hooray hooray 
+
+\label{doc-constructors}
+\Hypertarget{classgeng_1_1_banner_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classgeng_1_1_banner_a35f2ff36aa8fdb3094ba450574774491}\index{geng::Banner@{geng::Banner}!Banner@{Banner}}
+\index{Banner@{Banner}!geng::Banner@{geng::Banner}}
+\doxysubsubsection{\texorpdfstring{Banner()}{Banner()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_banner_a35f2ff36aa8fdb3094ba450574774491} 
+Banner\+::\+Banner (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}}}]{pos}{, }\item[{uint16\+\_\+t}]{width}{, }\item[{uint16\+\_\+t}]{height}{}\end{DoxyParamCaption})}
+
+
+
+Default constructor. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{classgeng_1_1_banner_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgeng_1_1_banner_aef30895f66cb2af820ee6e99618ad78f}\index{geng::Banner@{geng::Banner}!add\_background@{add\_background}}
+\index{add\_background@{add\_background}!geng::Banner@{geng::Banner}}
+\doxysubsubsection{\texorpdfstring{add\_background()}{add\_background()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_banner_aef30895f66cb2af820ee6e99618ad78f} 
+bool Banner\+::add\+\_\+background (\begin{DoxyParamCaption}\item[{Widget \texorpdfstring{$\ast$}{*}}]{w}{}\end{DoxyParamCaption})}
+
+
+
+Add a background widget. 
+
+\Hypertarget{classgeng_1_1_banner_a7450f9175f945279c5ce9a5c6f2719b7}\index{geng::Banner@{geng::Banner}!add\_widget@{add\_widget}}
+\index{add\_widget@{add\_widget}!geng::Banner@{geng::Banner}}
+\doxysubsubsection{\texorpdfstring{add\_widget()}{add\_widget()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_banner_a7450f9175f945279c5ce9a5c6f2719b7} 
+bool Banner\+::add\+\_\+widget (\begin{DoxyParamCaption}\item[{Widget \texorpdfstring{$\ast$}{*}}]{w}{}\end{DoxyParamCaption})}
+
+
+
+Add a normal widget. 
+
+\Hypertarget{classgeng_1_1_banner_ab694728c69d2ca8ff90ecfad4ed5c36d}\index{geng::Banner@{geng::Banner}!get\_texture\_id@{get\_texture\_id}}
+\index{get\_texture\_id@{get\_texture\_id}!geng::Banner@{geng::Banner}}
+\doxysubsubsection{\texorpdfstring{get\_texture\_id()}{get\_texture\_id()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_banner_ab694728c69d2ca8ff90ecfad4ed5c36d} 
+int Banner\+::get\+\_\+texture\+\_\+id (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Get banner texture id. 
+
+\Hypertarget{classgeng_1_1_banner_a0b103ec3ef29e98215fad116b8cebe98}\index{geng::Banner@{geng::Banner}!get\_widgets@{get\_widgets}}
+\index{get\_widgets@{get\_widgets}!geng::Banner@{geng::Banner}}
+\doxysubsubsection{\texorpdfstring{get\_widgets()}{get\_widgets()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_banner_a0b103ec3ef29e98215fad116b8cebe98} 
+\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ Widget \texorpdfstring{$\ast$}{*} $>$ \& Banner\+::get\+\_\+widgets (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Access widgets. 
+
+\Hypertarget{classgeng_1_1_banner_aa3222e36f8bad22f7d1bd56a9bbb1311}\index{geng::Banner@{geng::Banner}!to\_vertex@{to\_vertex}}
+\index{to\_vertex@{to\_vertex}!geng::Banner@{geng::Banner}}
+\doxysubsubsection{\texorpdfstring{to\_vertex()}{to\_vertex()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_banner_aa3222e36f8bad22f7d1bd56a9bbb1311} 
+void Banner\+::to\+\_\+vertex (\begin{DoxyParamCaption}\item[{Render\+Buffer \&}]{buffer}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+To\+\_\+vertex that lets the banner be renderable. 
+
+\Hypertarget{classgeng_1_1_banner_aba4ba84e3f17f2652cd2f33d4e962919}\index{geng::Banner@{geng::Banner}!update@{update}}
+\index{update@{update}!geng::Banner@{geng::Banner}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_banner_aba4ba84e3f17f2652cd2f33d4e962919} 
+void Banner\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeng_1_1_layer_state}{Layer\+State}} \&}]{time}{}\end{DoxyParamCaption})}
+
+
+
+Calling update on our \doxylink{classgeng_1_1_banner}{Banner}. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/scene/banners/\mbox{\hyperlink{_banner_8hpp}{Banner.\+hpp}}\item 
+src/engine/scene/banners/\mbox{\hyperlink{_banner_8cpp}{Banner.\+cpp}}\end{DoxyCompactItemize}

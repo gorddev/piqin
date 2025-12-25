@@ -1,0 +1,63 @@
+\doxysection{geng\+::Particle\+Circle Class Reference}
+\hypertarget{classgeng_1_1_particle_circle}{}\label{classgeng_1_1_particle_circle}\index{geng::ParticleCircle@{geng::ParticleCircle}}
+
+
+{\ttfamily \#include $<$Particle\+Circle.\+hpp$>$}
+
+Inheritance diagram for geng\+::Particle\+Circle\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgeng_1_1_particle_circle}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgeng_1_1_particle_circle_a357d7dec2b71902c3aef3aa1ed1b5b77}{Particle\+Circle}} (\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}} pos, float size, float speed, float duration, float frequency, SDL\+\_\+\+Color Tint=\{0, 0, 0, 30\})
+\item 
+\mbox{\hyperlink{classgeng_1_1_particle_circle_a2d71bf399605a80287de3d0003688ecb}{Particle\+Circle}} (Sprite \texorpdfstring{$\ast$}{*}a, float size, float speed, float duration, float period, SDL\+\_\+\+Color Tint=\{0, 0, 0, 30\})
+\item 
+bool \mbox{\hyperlink{classgeng_1_1_particle_circle_ad126b7d3b854347f79c8866bed8e1400}{update}} (double \&dt) override
+\item 
+lni\+::vector$<$ lni\+::vector$<$ SDL\+\_\+\+FRect $>$ $>$ \mbox{\hyperlink{classgeng_1_1_particle_circle_ae4e43a8c0a60eb2fec3c03b664caee2c}{to\+\_\+vertex}} () override
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classgeng_1_1_particle_circle_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classgeng_1_1_particle_circle_a357d7dec2b71902c3aef3aa1ed1b5b77}\index{geng::ParticleCircle@{geng::ParticleCircle}!ParticleCircle@{ParticleCircle}}
+\index{ParticleCircle@{ParticleCircle}!geng::ParticleCircle@{geng::ParticleCircle}}
+\doxysubsubsection{\texorpdfstring{ParticleCircle()}{ParticleCircle()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classgeng_1_1_particle_circle_a357d7dec2b71902c3aef3aa1ed1b5b77} 
+Particle\+Circle\+::\+Particle\+Circle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_f_pos2_d}{FPos2D}}}]{pos}{, }\item[{float}]{size}{, }\item[{float}]{speed}{, }\item[{float}]{duration}{, }\item[{float}]{frequency}{, }\item[{SDL\+\_\+\+Color}]{Tint}{ = {\ttfamily \{0,0,0,30\}}}\end{DoxyParamCaption})}
+
+\Hypertarget{classgeng_1_1_particle_circle_a2d71bf399605a80287de3d0003688ecb}\index{geng::ParticleCircle@{geng::ParticleCircle}!ParticleCircle@{ParticleCircle}}
+\index{ParticleCircle@{ParticleCircle}!geng::ParticleCircle@{geng::ParticleCircle}}
+\doxysubsubsection{\texorpdfstring{ParticleCircle()}{ParticleCircle()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classgeng_1_1_particle_circle_a2d71bf399605a80287de3d0003688ecb} 
+geng\+::\+Particle\+Circle\+::\+Particle\+Circle (\begin{DoxyParamCaption}\item[{Sprite \texorpdfstring{$\ast$}{*}}]{a}{, }\item[{float}]{size}{, }\item[{float}]{speed}{, }\item[{float}]{duration}{, }\item[{float}]{period}{, }\item[{SDL\+\_\+\+Color}]{Tint}{ = {\ttfamily \{0,~0,~0,~30\}}}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classgeng_1_1_particle_circle_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgeng_1_1_particle_circle_ae4e43a8c0a60eb2fec3c03b664caee2c}\index{geng::ParticleCircle@{geng::ParticleCircle}!to\_vertex@{to\_vertex}}
+\index{to\_vertex@{to\_vertex}!geng::ParticleCircle@{geng::ParticleCircle}}
+\doxysubsubsection{\texorpdfstring{to\_vertex()}{to\_vertex()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_particle_circle_ae4e43a8c0a60eb2fec3c03b664caee2c} 
+lni\+::vector$<$ lni\+::vector$<$ SDL\+\_\+\+FRect $>$ $>$ Particle\+Circle\+::to\+\_\+vertex (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+\Hypertarget{classgeng_1_1_particle_circle_ad126b7d3b854347f79c8866bed8e1400}\index{geng::ParticleCircle@{geng::ParticleCircle}!update@{update}}
+\index{update@{update}!geng::ParticleCircle@{geng::ParticleCircle}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_particle_circle_ad126b7d3b854347f79c8866bed8e1400} 
+bool Particle\+Circle\+::update (\begin{DoxyParamCaption}\item[{double \&}]{dt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/scene/particles/particle-\/types/\mbox{\hyperlink{_particle_circle_8hpp}{Particle\+Circle.\+hpp}}\item 
+src/engine/scene/particles/particle-\/types/\mbox{\hyperlink{_particle_circle_8cpp}{Particle\+Circle.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,75 @@
+\doxysection{str\+\_\+view.\+hpp}
+\hypertarget{str__view_8hpp_source}{}\label{str__view_8hpp_source}\index{include/engine/types/strings/str\_view/str\_view.hpp@{include/engine/types/strings/str\_view/str\_view.hpp}}
+\mbox{\hyperlink{str__view_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <concepts>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{str__subview_8hpp}{str\_subview.hpp}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}8\_t\ C>}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgeng_1_1precision_ab18fe5786d469fa3c9a6495b0bc595f6}{precision}}\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_assert}(C\ <=\ 10,\ \textcolor{stringliteral}{"{}Maximum\ float\ precision\ is\ 10\ digits."{}});}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1precision_ab18fe5786d469fa3c9a6495b0bc595f6}{precision<C>}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00014\ \ \ \ \ \};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{class\ }str\_view\ final\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ str\_view;}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ data;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ uint32\_t\&\ len;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ uint32\_t\ cap;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1str__view_a5bf9ae4758a33f3cc78a8d6b48ff86e4}{str\_view}}(\textcolor{keywordtype}{char}*\ data,\ uint32\_t\&\ len,\ uint32\_t\ cap);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ **************}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Utility\ functions}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ **************}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Getters\ <><><>}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ uint32\_t\ \mbox{\hyperlink{classgeng_1_1str__view_a931ab8ad725cafb39276496b3264c4c5}{length}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ uint32\_t\ \mbox{\hyperlink{classgeng_1_1str__view_a9a27077f4c7d9c45baeb71fd56e9da2d}{capacity}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classgeng_1_1str__view_ac7e3bdd7667dd169ce2e53e0b6d2881e}{cstr}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classgeng_1_1str__subview}{str\_subview}}\ \mbox{\hyperlink{classgeng_1_1str__view_aa938decd52c62df4e070f386d9503d94}{subview}}(uint32\_t\ start,\ uint32\_t\ sub\_len)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <u\textcolor{keywordtype}{int}32\_t\ N>}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1str__view_ab3abd8d0a62b733edc66a63e02bbda0a}{emplace}}(uint32\_t\ index,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ (\&str)[N]);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1str__view_ab3abd8d0a62b733edc66a63e02bbda0a}{emplace}}(uint32\_t\ index,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ str,\ uint32\_t\ count);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classgeng_1_1str__view_af84180bfc51025677e050664e5206b01}{find}}(\textcolor{keywordtype}{char}\ c,\ \textcolor{keywordtype}{int}\ pos\ =\ 0)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ **************}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Operator\ overloads}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ **************}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Equality\ <><><>}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\&\ \mbox{\hyperlink{classgeng_1_1str__view_a2a7e60100c0e7a9b4d51deb966c9a32e}{operator[]}}(uint32\_t\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ N>}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1str__view_aad9a2768e4458878697e934be2bb59bb}{operator==}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ (\&str)[N]);}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1str__view_aad9a2768e4458878697e934be2bb59bb}{operator==}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ str)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ Piping\ Into\ String\ <><><>}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}32\_t\ N>}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ str\_view\&\ \mbox{\hyperlink{classgeng_1_1str__view_a37cd3a9e518b7231b875662ac4ba18c8}{operator<<}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ (\&str)[N]);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ str\_view\&\ \mbox{\hyperlink{classgeng_1_1str__view_a37cd3a9e518b7231b875662ac4ba18c8}{operator<<}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ str);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ str\_view\&\ \mbox{\hyperlink{classgeng_1_1str__view_a37cd3a9e518b7231b875662ac4ba18c8}{operator<<}}(\textcolor{keywordtype}{int}\ num);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ str\_view\&\ \mbox{\hyperlink{classgeng_1_1str__view_a82a512ca325bb0a5481a068d60c55f4e}{operator<<}}(\textcolor{keywordtype}{size\_t}\ num)\ \{\ \textcolor{keywordflow}{return}\ *this\ <<\ static\_cast<int>(num);\ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<std::\textcolor{keywordtype}{int}egral\ K>}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ str\_view\&\ \mbox{\hyperlink{classgeng_1_1str__view_a41fed51b2ae90b5854dd836dd57738db}{operator<<}}(K\ integer)\ \{\ \textcolor{keywordflow}{return}\ *this\ <<\ static\_cast<int>(integer);\ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<u\textcolor{keywordtype}{int}8\_t\ P>}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1str__view}{str\_view}}\&\ \mbox{\hyperlink{classgeng_1_1str__view_a37cd3a9e518b7231b875662ac4ba18c8}{operator<<}}(\mbox{\hyperlink{structgeng_1_1precision}{precision<P>}}\ \mbox{\hyperlink{structgeng_1_1precision}{precision}});}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1str__view}{str\_view}}\&\ \mbox{\hyperlink{classgeng_1_1str__view_a37cd3a9e518b7231b875662ac4ba18c8}{operator<<}}(\textcolor{keywordtype}{float}\ num);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ str\_view\&\ \mbox{\hyperlink{classgeng_1_1str__view_a1c6653b14bbebd24ee96923cb026f589}{operator<<}}(\textcolor{keywordtype}{double}\ num)\ \{\ \textcolor{keywordflow}{return}\ *this\ <<\ static\_cast<float>(num);\ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1str__view}{str\_view}}\&\ \mbox{\hyperlink{classgeng_1_1str__view_a37cd3a9e518b7231b875662ac4ba18c8}{operator<<}}(\textcolor{keywordtype}{char}\ c);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1str__view}{str\_view}}\&\ \mbox{\hyperlink{classgeng_1_1str__view_a37cd3a9e518b7231b875662ac4ba18c8}{operator<<}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1str__view}{str\_view}}\&\ \mbox{\hyperlink{classgeng_1_1str__view_a37cd3a9e518b7231b875662ac4ba18c8}{operator<<}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classgeng_1_1str__view}{str\_view}}\ \&other);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1str__view}{str\_view}}\&\ \mbox{\hyperlink{classgeng_1_1str__view_a37cd3a9e518b7231b875662ac4ba18c8}{operator<<}}(\textcolor{keywordtype}{bool}\ b);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \};}
+\DoxyCodeLine{00095\ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{str__view_8inl}{str\_view.inl}}"{}}}
+
+\end{DoxyCode}

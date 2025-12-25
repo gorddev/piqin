@@ -1,0 +1,339 @@
+\doxysection{Menu\+Region.\+hpp}
+\hypertarget{_menu_region_8hpp_source}{}\label{_menu_region_8hpp_source}\index{include/engine/input/menu/MenuRegion.hpp@{include/engine/input/menu/MenuRegion.hpp}}
+\mbox{\hyperlink{_menu_region_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_selector_8hpp}{Selector.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vector_8hpp}{engine/types/external/vector.hpp}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgeng_1_1_selection}{Selection}}\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structgeng_1_1_selection_adb70eab471fe7952b6c8bb3c121635de}{row}};}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structgeng_1_1_selection_a3076e277a2a485a5905b56b318784305}{column}};}
+\DoxyCodeLine{00010\ \ \ \ \ \};}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1_menu_region_af9d024aa1e16908a2032753b060c4e2c}{MenuRegion}}\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Takes\ a\ vector\ of\ vector\ pointers\ to}}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<gch::vector<Item*>}}*>\ menus;}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Keeps\ track\ of\ the\ menus\ we\ have\ access\ to.}}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<short>}}\ rows;}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tells\ us\ whether\ we\ wrap\ or\ not}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ wrapy;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ wrapx;}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ moveUp\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lets\ us\ update\ a\ selector\ vertically\ with\ logic}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ switch\_selector\_vertical();}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ switch\_selector\_horizontal();}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Keeps\ track\ of\ what\ we're\ actually\ selecting}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_selection}{Selection}}\ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}\{\};}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gives\ us\ a\ selector\ to\ move\ around}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_selector}{Selector<Item>}}*\ \mbox{\hyperlink{classgeng_1_1_menu_region_ae571f1bfa44cfca66b45358cbf9fa700}{selector}};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Constructor}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_af9d024aa1e16908a2032753b060c4e2c}{MenuRegion}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector}}<\mbox{\hyperlink{classgch_1_1vector}{gch::vector<Item*>}}*>\ menus,\ \textcolor{keywordtype}{bool}\ wrapy,\ \textcolor{keywordtype}{bool}\ wrapx);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lets\ us\ set\ our\ selectable\ regions}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_menu_region_aea5f5afcea553e413a16fa32b3c56c1a}{set\_selectables}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector<short>}}\ selects);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lets\ us\ add\ a\ selectable\ region}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_menu_region_a0d160759ffe2ef7ef077ee1b4f27e0ba}{add\_selectable}}(\textcolor{keywordtype}{short}\ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}});}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Now\ we\ can\ start\ coding\ our\ logic\ for\ movement}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Directional\ Movement}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1_menu_region_ac0aeb424a55ad2f87190ce0ad051b32e}{move\_up}}();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1_menu_region_a23645018adaaea174e16089824a62331}{move\_down}}();}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1_menu_region_a5425fdf451730e772c839f1a8eb00cb9}{move\_left}}();}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1_menu_region_aac54f5b33264fcc5ac5cb1c6599eb7dc}{move\_right}}();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tells\ us\ to\ update\ our\ selector\ if\ something\ changed}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_menu_region_ae26424ff2c1d25b7fd5e6aa716383b61}{update\_selector}}(\textcolor{keywordtype}{bool}\ backByOne\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lets\ us\ grab\ the\ row\ our\ selector\ is\ on}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classgeng_1_1_menu_region_a861e7e01d0213ea360df50573ab19604}{row}}();}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lets\ us\ grab\ the\ column\ our\ selector\ is\ on}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classgeng_1_1_menu_region_a26028692cf505f94a5319b3057b0ee18}{col}}();}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lets\ us\ select\ the\ selector}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_menu_region_a3716e7a4bd450552af268b0ab391dce5}{set\_selector}}(\mbox{\hyperlink{structgeng_1_1_selector}{Selector<Item>}}*\ sel);}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lets\ us\ remove\ the\ selector}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_menu_region_ad67afa50b8cb1147a004e3b99f6d61fa}{remove\_selector}}();}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tostring\ solution}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//std::string\ to\_string();}}
+\DoxyCodeLine{00060\ \ \ \ \ \};}
+\DoxyCodeLine{00061\ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{comment}{/*\ Implementation\ is\ below\ */}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_af9d024aa1e16908a2032753b060c4e2c}{MenuRegion<Item>::MenuRegion}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector}}<\mbox{\hyperlink{classgch_1_1vector}{gch::vector<Item*>}}\ *>\ menus,\ \textcolor{keywordtype}{bool}\ wrapx,\ \textcolor{keywordtype}{bool}\ wrapy)}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ :\ menus(menus),\ wrapx(wrapx),\ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}(\{0,\ 0\}),\ selector(\textcolor{keyword}{nullptr}),}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ wrapy(wrapy)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1_menu_region_ac0aeb424a55ad2f87190ce0ad051b32e}{MenuRegion<Item>::move\_up}}()\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rows.size()\ <=\ 1)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row\ <\ rows.size()\ -\/\ 1)\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ found\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row\ +\ 1;\ i\ <\ rows.size();\ ++i)\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ actualRow\ =\ rows[i];}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (actualRow\ >=\ 0\ \&\&\ actualRow\ <\ (\textcolor{keywordtype}{int})menus.size()\ \&\&\ menus[actualRow]\ \&\&\ !menus[actualRow]-\/>empty())\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row\ =\ (int)i;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ found\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!found)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ switch\_selector\_vertical();}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (wrapy)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row\ =\ 0;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ switch\_selector\_vertical();}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1_menu_region_a23645018adaaea174e16089824a62331}{MenuRegion<Item>::move\_down}}()\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rows.size()\ <=\ 1)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row\ >\ 0)\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ found\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row\ -\/\ 1;\ i\ >=\ 0;\ -\/-\/i)\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ actualRow\ =\ rows[i];}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (actualRow\ >=\ 0\ \&\&\ actualRow\ <\ (\textcolor{keywordtype}{int})menus.size()\ \&\&\ menus[actualRow]\ \&\&\ !menus[actualRow]-\/>empty())\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row\ =\ i;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ found\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!found)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ switch\_selector\_vertical();}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (wrapy)\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row\ =\ (int)rows.size()\ -\/\ 1;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ switch\_selector\_vertical();}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1_menu_region_a5425fdf451730e772c839f1a8eb00cb9}{MenuRegion<Item>::move\_left}}()\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rows.empty())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ actualRow\ =\ rows[\mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row];}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (actualRow\ <\ 0\ ||\ actualRow\ >=\ (\textcolor{keywordtype}{int})menus.size())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ *rowVec\ =\ menus[actualRow];}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!rowVec\ ||\ rowVec-\/>empty())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.column\ >=\ (\textcolor{keywordtype}{int})rowVec-\/>size())}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.column\ =\ (int)rowVec-\/>size()\ -\/\ 1;}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.column\ >\ 0)\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ -\/-\/\mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.column;}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ switch\_selector\_horizontal();}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (wrapx)\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.column\ =\ (int)rowVec-\/>size()\ -\/\ 1;}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ switch\_selector\_horizontal();}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00146\ \ \ \ \ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1_menu_region_aac54f5b33264fcc5ac5cb1c6599eb7dc}{MenuRegion<Item>::move\_right}}()\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rows.empty())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ actualRow\ =\ rows[\mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row];}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (actualRow\ <\ 0\ ||\ actualRow\ >=\ (\textcolor{keywordtype}{int})menus.size())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ *rowVec\ =\ menus[actualRow];}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!rowVec\ ||\ rowVec-\/>empty())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.column\ >=\ (\textcolor{keywordtype}{int})rowVec-\/>size())\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.column\ =\ 0;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ switch\_selector\_horizontal();}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.column\ <\ (\textcolor{keywordtype}{int})rowVec-\/>size()\ -\/\ 1)\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ ++\mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.column;}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ switch\_selector\_horizontal();}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (wrapx)\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.column\ =\ 0;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ switch\_selector\_horizontal();}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00172\ \ \ \ \ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_menu_region_ae26424ff2c1d25b7fd5e6aa716383b61}{MenuRegion<Item>::update\_selector}}(\textcolor{keywordtype}{bool}\ backByOne)\ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rows.empty())\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgeng_1_1_menu_region_ae571f1bfa44cfca66b45358cbf9fa700}{selector}})\ \mbox{\hyperlink{classgeng_1_1_menu_region_ae571f1bfa44cfca66b45358cbf9fa700}{selector}}-\/>deactivate();}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row\ >=\ (\textcolor{keywordtype}{int})rows.size())\ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row\ =\ (int)rows.size()\ -\/\ 1;}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ actualRow\ =\ rows[\mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row];}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (actualRow\ <\ 0\ ||\ actualRow\ >=\ (\textcolor{keywordtype}{int})menus.size())\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgeng_1_1_menu_region_ae571f1bfa44cfca66b45358cbf9fa700}{selector}})\ \mbox{\hyperlink{classgeng_1_1_menu_region_ae571f1bfa44cfca66b45358cbf9fa700}{selector}}-\/>deactivate();}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \&rowVec\ =\ *(menus[actualRow]);}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rowVec.empty())\ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgeng_1_1_menu_region_ae571f1bfa44cfca66b45358cbf9fa700}{selector}})\ \mbox{\hyperlink{classgeng_1_1_menu_region_ae571f1bfa44cfca66b45358cbf9fa700}{selector}}-\/>deactivate();}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.column\ >=\ (\textcolor{keywordtype}{int})rowVec.size())\ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.column\ =\ (int)rowVec.size()\ -\/\ 1;}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (backByOne\ \&\&\ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.column\ >\ 0)\ -\/-\/\mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.column;}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgeng_1_1_menu_region_ae571f1bfa44cfca66b45358cbf9fa700}{selector}})\ \mbox{\hyperlink{classgeng_1_1_menu_region_ae571f1bfa44cfca66b45358cbf9fa700}{selector}}-\/>switchTarget(rowVec[\mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.column],\ moveUp);}
+\DoxyCodeLine{00196\ \ \ \ \ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classgeng_1_1_menu_region_a861e7e01d0213ea360df50573ab19604}{MenuRegion<Item>::row}}()\ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rows.empty())}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row\ <\ 0)}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row\ =\ 0;}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row\ >=\ (\textcolor{keywordtype}{int})rows.size())}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row\ =\ (int)rows.size()\ -\/\ 1;}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ rows[\mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row];}
+\DoxyCodeLine{00207\ \ \ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classgeng_1_1_menu_region_a26028692cf505f94a5319b3057b0ee18}{MenuRegion<Item>::col}}()\ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.column;}
+\DoxyCodeLine{00212\ \ \ \ \ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_menu_region_a3716e7a4bd450552af268b0ab391dce5}{MenuRegion<Item>::set\_selector}}(\mbox{\hyperlink{structgeng_1_1_selector}{Selector<Item>}}\ *sel)\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_ae571f1bfa44cfca66b45358cbf9fa700}{selector}}\ =\ sel;}
+\DoxyCodeLine{00217\ \ \ \ \ \}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_menu_region_ad67afa50b8cb1147a004e3b99f6d61fa}{MenuRegion<Item>::remove\_selector}}()\ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_ae571f1bfa44cfca66b45358cbf9fa700}{selector}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00222\ \ \ \ \ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00225\ \textcolor{comment}{\ \ \ \ template<typename\ Item>}}
+\DoxyCodeLine{00226\ \textcolor{comment}{\ \ \ \ std::string\ MenuRegion<Item>::to\_string()\ \{}}
+\DoxyCodeLine{00227\ \textcolor{comment}{\ \ \ \ \ \ \ \ std::string\ ret\ =\ "{}Selector:\ Row\ "{}\ +\ std::to\_string(s.row)\ +\ "{},\ Col\ "{}\ +\ std::to\_string(s.column);}}
+\DoxyCodeLine{00228\ \textcolor{comment}{\ \ \ \ \ \ \ \ ret\ +=\ "{}\(\backslash\)nNum\ Rows:\ "{}\ +\ std::to\_string(rows.size())\ +\ "{},\ Num\ Columns:\ "{}\ +\ std::to\_string(menus.size());}}
+\DoxyCodeLine{00229\ \textcolor{comment}{\ \ \ \ \ \ \ \ ret\ +=\ "{}\(\backslash\)nPrinting\ Total\ Rows\ \&\ Columns\ Avaliable:\ \(\backslash\)n"{};}}
+\DoxyCodeLine{00230\ \textcolor{comment}{\ \ \ \ \ \ \ \ for\ (auto\&\ i:\ menus)\ \{}}
+\DoxyCodeLine{00231\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ ret\ +=\ "{}\{"{};}}
+\DoxyCodeLine{00232\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ if\ (i)\ \{}}
+\DoxyCodeLine{00233\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ for\ (auto\&\ j:\ *i)\ \{}}
+\DoxyCodeLine{00234\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ret+=\ "{}X,\ "{};}}
+\DoxyCodeLine{00235\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00236\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00237\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ ret+=\ \ "{}\}\(\backslash\)n"{};}}
+\DoxyCodeLine{00238\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00239\ \textcolor{comment}{\ \ \ \ \ \ \ \ ret\ +=\ "{}Printing\ Avaliable\ rows:\(\backslash\)n"{};}}
+\DoxyCodeLine{00240\ \textcolor{comment}{\ \ \ \ \ \ \ \ ret\ +=\ "{}\{"{};}}
+\DoxyCodeLine{00241\ \textcolor{comment}{\ \ \ \ \ \ \ \ for\ (auto\&\ i:\ rows)\ \{}}
+\DoxyCodeLine{00242\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ ret\ +=\ std::to\_string(i)\ +\ "{},\ "{};}}
+\DoxyCodeLine{00243\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00244\ \textcolor{comment}{\ \ \ \ \ \ \ \ ret+=\ \ "{}\}\(\backslash\)n"{};}}
+\DoxyCodeLine{00245\ \textcolor{comment}{\ \ \ \ \ \ \ \ return\ ret;}}
+\DoxyCodeLine{00246\ \textcolor{comment}{\ \ \ \ \}}}
+\DoxyCodeLine{00247\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keywordtype}{bool}\ MenuRegion<Item>::switch\_selector\_vertical()\ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!selector\ ||\ rows.empty())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (s.row\ <\ 0)\ s.row\ =\ 0;}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (s.row\ >=\ (\textcolor{keywordtype}{int})rows.size())\ s.row\ =\ (int)rows.size()\ -\/\ 1;}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ actualRow\ =\ rows[s.row];}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (actualRow\ <\ 0\ ||\ actualRow\ >=\ (\textcolor{keywordtype}{int})menus.size())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \&menuRow\ =\ *(menus[actualRow]);}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (menuRow.empty())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (s.column\ >=\ (\textcolor{keywordtype}{int})menuRow.size())\ s.column\ =\ (int)menuRow.size()\ -\/\ 1;}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ selector-\/>switchTarget(menuRow[s.column],\ moveUp);}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00263\ \ \ \ \ \}}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{keywordtype}{bool}\ MenuRegion<Item>::switch\_selector\_horizontal()\ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!selector\ ||\ rows.empty())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (s.row\ <\ 0)\ s.row\ =\ 0;}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (s.row\ >=\ (\textcolor{keywordtype}{int})rows.size())\ s.row\ =\ (int)rows.size()\ -\/\ 1;}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ actualRow\ =\ rows[s.row];}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (actualRow\ <\ 0\ ||\ actualRow\ >=\ (\textcolor{keywordtype}{int})menus.size())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \&menuRow\ =\ *(menus[actualRow]);}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (menuRow.empty())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ selector-\/>switchTarget(menuRow[s.column],\ moveUp);}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00278\ \ \ \ \ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00281\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_menu_region_aea5f5afcea553e413a16fa32b3c56c1a}{MenuRegion<Item>::set\_selectables}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector<short>}}\ selects)\ \{}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ our\ rows}}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ rows\ =\ std::move(selects);}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgeng_1_1_menu_region_ae571f1bfa44cfca66b45358cbf9fa700}{selector}}\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ we\ have\ no\ selectable\ rows,\ deactivate\ and\ return}}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rows.empty())\ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_ae571f1bfa44cfca66b45358cbf9fa700}{selector}}-\/>deactivate();}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Try\ to\ find\ the\ first\ row\ that\ actually\ has\ selectable\ items}}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ foundValid\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ rows.size();\ ++i)\ \{}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ actualRow\ =\ rows[i];}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ bounds\ and\ row\ content}}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (actualRow\ >=\ 0\ \&\&}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ actualRow\ <\ (\textcolor{keywordtype}{int})menus.size()\ \&\&}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ menus[actualRow]\ \&\&}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !menus[actualRow]-\/>empty())\ \{}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row\ =\ i;\ \ \ \textcolor{comment}{//\ found\ a\ valid\ row\ for\ the\ selector}}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ foundValid\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ none\ of\ the\ selectable\ regions\ have\ any\ valid\ options,}}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ deactivate\ the\ selector.}}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!foundValid)\ \{}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_ae571f1bfa44cfca66b45358cbf9fa700}{selector}}-\/>deactivate();}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Otherwise\ update\ the\ selector\ normally}}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_menu_region_ae26424ff2c1d25b7fd5e6aa716383b61}{update\_selector}}();}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00314\ \ \ \ \ \}}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ Item>}
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_menu_region_a0d160759ffe2ef7ef077ee1b4f27e0ba}{MenuRegion<Item>::add\_selectable}}(\textcolor{keywordtype}{short}\ sel)\ \{}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rows.empty())\ \{}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ rows.push\_back(sel);}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ inserted\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ rows.size();\ ++i)\ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sel\ <\ rows[i])\ \{}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rows.insert(rows.begin()\ +\ i,\ sel);}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row\ >=\ (\textcolor{keywordtype}{int})i)\ ++\mbox{\hyperlink{classgeng_1_1_menu_region_ae6188ca1c5c2c73bf8cd92043bd76c73}{s}}.row;}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inserted\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!inserted)\ rows.push\_back(sel);}
+\DoxyCodeLine{00332\ \ \ \ \ \}}
+\DoxyCodeLine{00333\ \}}
+
+\end{DoxyCode}

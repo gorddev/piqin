@@ -1,0 +1,102 @@
+\doxysection{Player\+Test Class Reference}
+\hypertarget{class_player_test}{}\label{class_player_test}\index{PlayerTest@{PlayerTest}}
+
+
+{\ttfamily \#include $<$Player\+Test.\+hpp$>$}
+
+Inheritance diagram for Player\+Test\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_player_test}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_player_test_a3334119425177c0c2904345ee6f58f0e}{Player\+Test}} (geng\+::\+Frame\+Table \&frames)
+\item 
+void \mbox{\hyperlink{class_player_test_abeef334d36aec2444cd14bc583012f91}{update}} (\mbox{\hyperlink{classgeng_1_1_layer_state}{geng\+::\+Layer\+State}} \&state) override
+\item 
+void \mbox{\hyperlink{class_player_test_a2a546b075607720aed4633c4daad2a77}{collide}} (\mbox{\hyperlink{structgeng_1_1_proposed_collision}{geng\+::\+Proposed\+Collision}} \&collision) override
+\item 
+void \mbox{\hyperlink{class_player_test_ac48562d02c002e55e79cfd0882cb09e6}{on\+\_\+key\+\_\+press}} (SDL\+\_\+\+Scancode key) override
+\item 
+void \mbox{\hyperlink{class_player_test_a7665847d110e98a3166e3478af01c104}{on\+\_\+click}} () override
+\item 
+void \mbox{\hyperlink{class_player_test_a467f5347cf2f43f0c1629c77e8e5992f}{on\+\_\+click\+\_\+release}} () override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_player_test_aa4d2489888faab0146eea2a2507244e4}{grounded}} = false
+\item 
+bool \mbox{\hyperlink{class_player_test_aac08289b40e379b24e82906bc5dad042}{clicked}} = false
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_player_test_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_player_test_a3334119425177c0c2904345ee6f58f0e}\index{PlayerTest@{PlayerTest}!PlayerTest@{PlayerTest}}
+\index{PlayerTest@{PlayerTest}!PlayerTest@{PlayerTest}}
+\doxysubsubsection{\texorpdfstring{PlayerTest()}{PlayerTest()}}
+{\footnotesize\ttfamily \label{class_player_test_a3334119425177c0c2904345ee6f58f0e} 
+Player\+Test\+::\+Player\+Test (\begin{DoxyParamCaption}\item[{geng\+::\+Frame\+Table \&}]{frames}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_player_test_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_player_test_a2a546b075607720aed4633c4daad2a77}\index{PlayerTest@{PlayerTest}!collide@{collide}}
+\index{collide@{collide}!PlayerTest@{PlayerTest}}
+\doxysubsubsection{\texorpdfstring{collide()}{collide()}}
+{\footnotesize\ttfamily \label{class_player_test_a2a546b075607720aed4633c4daad2a77} 
+void Player\+Test\+::collide (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgeng_1_1_proposed_collision}{geng\+::\+Proposed\+Collision}} \&}]{collision}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\Hypertarget{class_player_test_a7665847d110e98a3166e3478af01c104}\index{PlayerTest@{PlayerTest}!on\_click@{on\_click}}
+\index{on\_click@{on\_click}!PlayerTest@{PlayerTest}}
+\doxysubsubsection{\texorpdfstring{on\_click()}{on\_click()}}
+{\footnotesize\ttfamily \label{class_player_test_a7665847d110e98a3166e3478af01c104} 
+void Player\+Test\+::on\+\_\+click (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\Hypertarget{class_player_test_a467f5347cf2f43f0c1629c77e8e5992f}\index{PlayerTest@{PlayerTest}!on\_click\_release@{on\_click\_release}}
+\index{on\_click\_release@{on\_click\_release}!PlayerTest@{PlayerTest}}
+\doxysubsubsection{\texorpdfstring{on\_click\_release()}{on\_click\_release()}}
+{\footnotesize\ttfamily \label{class_player_test_a467f5347cf2f43f0c1629c77e8e5992f} 
+void Player\+Test\+::on\+\_\+click\+\_\+release (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\Hypertarget{class_player_test_ac48562d02c002e55e79cfd0882cb09e6}\index{PlayerTest@{PlayerTest}!on\_key\_press@{on\_key\_press}}
+\index{on\_key\_press@{on\_key\_press}!PlayerTest@{PlayerTest}}
+\doxysubsubsection{\texorpdfstring{on\_key\_press()}{on\_key\_press()}}
+{\footnotesize\ttfamily \label{class_player_test_ac48562d02c002e55e79cfd0882cb09e6} 
+void Player\+Test\+::on\+\_\+key\+\_\+press (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Scancode}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\Hypertarget{class_player_test_abeef334d36aec2444cd14bc583012f91}\index{PlayerTest@{PlayerTest}!update@{update}}
+\index{update@{update}!PlayerTest@{PlayerTest}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{class_player_test_abeef334d36aec2444cd14bc583012f91} 
+void Player\+Test\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeng_1_1_layer_state}{geng\+::\+Layer\+State}} \&}]{state}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_player_test_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_player_test_aac08289b40e379b24e82906bc5dad042}\index{PlayerTest@{PlayerTest}!clicked@{clicked}}
+\index{clicked@{clicked}!PlayerTest@{PlayerTest}}
+\doxysubsubsection{\texorpdfstring{clicked}{clicked}}
+{\footnotesize\ttfamily \label{class_player_test_aac08289b40e379b24e82906bc5dad042} 
+bool Player\+Test\+::clicked = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_player_test_aa4d2489888faab0146eea2a2507244e4}\index{PlayerTest@{PlayerTest}!grounded@{grounded}}
+\index{grounded@{grounded}!PlayerTest@{PlayerTest}}
+\doxysubsubsection{\texorpdfstring{grounded}{grounded}}
+{\footnotesize\ttfamily \label{class_player_test_aa4d2489888faab0146eea2a2507244e4} 
+bool Player\+Test\+::grounded = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/testing/\mbox{\hyperlink{_player_test_8hpp}{Player\+Test.\+hpp}}\end{DoxyCompactItemize}

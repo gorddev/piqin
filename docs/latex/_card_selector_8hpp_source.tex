@@ -1,0 +1,58 @@
+\doxysection{Card\+Selector.\+hpp}
+\hypertarget{_card_selector_8hpp_source}{}\label{_card_selector_8hpp_source}\index{include/game/blackjack/bj-\/objects/CardSelector.hpp@{include/game/blackjack/bj-\/objects/CardSelector.hpp}}
+\mbox{\hyperlink{_card_selector_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_selector_8hpp}{engine/input/menu/Selector.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_b_j_enums_8hpp}{game/blackjack/BJEnums.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{include_2game_2blackjack_2cards_2_card_8hpp}{game/blackjack/cards/Card.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_b_j_constants_8hpp}{game/blackjack/BJConstants.hpp}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceblackjack}{blackjack}}\ \{}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862}{Selector\_Color}}\ :\ uint8\_t\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862a8a568e5f41b7e4da88fe5c4a00aad34e}{YELLOW}}\ =\ 0,}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862a3c551f0d1a06b4f852d1832daed357bf}{GREY}}\ =\ 1,}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862aec9c138095a352a9b7ef9ca5363b14d9}{PURPLE}}\ =\ 2,}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862a9de0e5dd94e861317e74964bed179fa0}{GREEN}}\ =\ 3,}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862aa2d9547b5d3dd9f05984475f7c926da0}{RED}}\ =\ 4,}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862a2536bd3910cf3069e2cd184e614ea97d}{PINK}}\ =\ 5}
+\DoxyCodeLine{00017\ \ \ \ \ \};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{//\ CardSelector\ Object!}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structblackjack_1_1_card_selector_aa4625e1df56a448bbe4a28c863f5a8a3}{CardSelector}}\ :\ \mbox{\hyperlink{structgeng_1_1_selector}{geng::Selector}}<Card>\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ }Selector::target;}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structblackjack_1_1_card_selector_a2f35bbd972146bbb1bbe5f646f3918b6}{targetNum}}\ =\ 0;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Constructor}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structblackjack_1_1_card_selector_aa4625e1df56a448bbe4a28c863f5a8a3}{CardSelector}}();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tells\ the\ selector\ to\ move\ to\ it's\ target\ card.\ Recess\ if\ you\ want\ the\ pointer\ closer}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structgeng_1_1_selector_a3d4ac155cc2b6d5e05b180586eb33732}{move}}(\textcolor{keywordtype}{bool}\ recess)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structblackjack_1_1_card_selector_a7c4ec9c54d1c7c122b0b4b0d62f9b8ae}{move}}(geng::Vertex\ pos,\ \textcolor{keywordtype}{float}\ speed)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lets\ us\ switch\ targets}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structblackjack_1_1_card_selector_af80c76ef5382cd53aa5c6d3ffd6eb0eb}{switchTarget}}(\mbox{\hyperlink{classblackjack_1_1_card}{Card}}*\ newTarget,\ \textcolor{keywordtype}{bool}\ moveTarget)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sets\ the\ color\ of\ the\ pointer}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structblackjack_1_1_card_selector_a87d1100cecdbf94532d8f163934dc824}{set\_color}}(\mbox{\hyperlink{namespaceblackjack_a377b35ba5352bc48a52ba9b06389d862}{Selector\_Color}}\ color);}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lets\ us\ deactivate\ the\ pointer\ for\ a\ period\ of\ time}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structblackjack_1_1_card_selector_ad766f4cfe6b355da9438d9cbd408f7f3}{deactivate}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Then\ we\ need\ to\ say\ we\ shake\ if\ we're\ out\ of\ bounds}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structblackjack_1_1_card_selector_a28336cda4db0acf247076c47b7892b2b}{shake\_target}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ target}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classblackjack_1_1_card}{Card}}*\ \mbox{\hyperlink{structblackjack_1_1_card_selector_aaec9f41723d13e0a86b70f86b40be8a7}{get\_target}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structblackjack_1_1_card_selector_aae843af77bb06f2c7b77237c5a1e6aa8}{remove\_target}}();}
+\DoxyCodeLine{00042\ \ \ \ \ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{/*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ Default\ transform\ properties\ for\ our\ object}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ geng::Transform\ \mbox{\hyperlink{namespaceblackjack_ae9f774144d724c1713677b08acc1c3cd}{card\_selector\_transform}}\ =\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_b_j_constants_8hpp_a5139d02b07430f134d13d41ac50ffd26}{BJ\_DEFAULT\_SELECTOR\_POS}},\ \textcolor{comment}{//\ NOLINT(*-\/narrowing-\/conversions)}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ 8,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ 8,}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ 1}
+\DoxyCodeLine{00051\ \ \ \ \ \};}
+\DoxyCodeLine{00052\ \}}
+
+\end{DoxyCode}

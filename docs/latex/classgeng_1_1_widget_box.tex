@@ -1,0 +1,93 @@
+\doxysection{geng\+::Widget\+Box Class Reference}
+\hypertarget{classgeng_1_1_widget_box}{}\label{classgeng_1_1_widget_box}\index{geng::WidgetBox@{geng::WidgetBox}}
+
+
+{\ttfamily \#include $<$Widget\+Box.\+hpp$>$}
+
+Inheritance diagram for geng\+::Widget\+Box\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgeng_1_1_widget_box}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgeng_1_1_widget_box_a2601f9364978714dbab3eb437f56e4d5}{Widget\+Box}} (int thickness, int length, SDL\+\_\+\+Color color=\{255, 255, 255, 255\}, short padding\+\_\+vert=0, short padding\+\_\+hor=0)
+\begin{DoxyCompactList}\small\item\em Creates the horizontal line with thickness, length, vertical padding, horizontal padding, ect. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classgeng_1_1_widget_box_a85eebc2630f9ee55aab66143e0fa8f7e}{\texorpdfstring{$\sim$}{\string~}\+Widget\+Box}} () override=default
+\begin{DoxyCompactList}\small\item\em Default destructor. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classgeng_1_1_widget_box_ae255966af236a1c0d1b05829c40a9475}{to\+\_\+vertex}} (\mbox{\hyperlink{classgeng_1_1_banner_buffer}{geng\+::\+Banner\+Buffer}} \&buffer) override
+\begin{DoxyCompactList}\small\item\em Creates our \doxylink{classgeng_1_1_widget_box}{Widget\+Box} \doxylink{structgeng_1_1_f_pos2_d}{FPos2D} map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgeng_1_1_widget_box_ac1872124fbc32fb920c38bc8f07c4691}{change\+\_\+dim}} (Dim2D dimensions) override
+\begin{DoxyCompactList}\small\item\em Updates our dimension accordingly. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classgeng_1_1_widget_box_addcdd57e43dbb22557912964c12e9f22}{update}} (\mbox{\hyperlink{classgeng_1_1_layer_state}{geng\+::\+Layer\+State}} \&time) override
+\begin{DoxyCompactList}\small\item\em Update function does nothing, but allows us to continue overriding. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{classgeng_1_1_widget_box}{Widget\+Box} is a widget that is just a horizontal line with a color 
+
+\label{doc-constructors}
+\Hypertarget{classgeng_1_1_widget_box_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classgeng_1_1_widget_box_a2601f9364978714dbab3eb437f56e4d5}\index{geng::WidgetBox@{geng::WidgetBox}!WidgetBox@{WidgetBox}}
+\index{WidgetBox@{WidgetBox}!geng::WidgetBox@{geng::WidgetBox}}
+\doxysubsubsection{\texorpdfstring{WidgetBox()}{WidgetBox()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_widget_box_a2601f9364978714dbab3eb437f56e4d5} 
+geng\+::\+Widget\+Box\+::\+Widget\+Box (\begin{DoxyParamCaption}\item[{int}]{thickness}{, }\item[{int}]{length}{, }\item[{SDL\+\_\+\+Color}]{color}{ = {\ttfamily \{255,~255,~255,~255\}}, }\item[{short}]{padding\+\_\+vert}{ = {\ttfamily 0}, }\item[{short}]{padding\+\_\+hor}{ = {\ttfamily 0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Creates the horizontal line with thickness, length, vertical padding, horizontal padding, ect. 
+
+\Hypertarget{classgeng_1_1_widget_box_a85eebc2630f9ee55aab66143e0fa8f7e}\index{geng::WidgetBox@{geng::WidgetBox}!````~WidgetBox@{\texorpdfstring{$\sim$}{\string~}WidgetBox}}
+\index{````~WidgetBox@{\texorpdfstring{$\sim$}{\string~}WidgetBox}!geng::WidgetBox@{geng::WidgetBox}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}WidgetBox()}{\string~WidgetBox()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_widget_box_a85eebc2630f9ee55aab66143e0fa8f7e} 
+geng\+::\+Widget\+Box\+::\texorpdfstring{$\sim$}{\string~}\+Widget\+Box (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [default]}}
+
+
+
+Default destructor. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{classgeng_1_1_widget_box_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgeng_1_1_widget_box_ac1872124fbc32fb920c38bc8f07c4691}\index{geng::WidgetBox@{geng::WidgetBox}!change\_dim@{change\_dim}}
+\index{change\_dim@{change\_dim}!geng::WidgetBox@{geng::WidgetBox}}
+\doxysubsubsection{\texorpdfstring{change\_dim()}{change\_dim()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_widget_box_ac1872124fbc32fb920c38bc8f07c4691} 
+void geng\+::\+Widget\+Box\+::change\+\_\+dim (\begin{DoxyParamCaption}\item[{Dim2D}]{dimensions}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+
+
+Updates our dimension accordingly. 
+
+\Hypertarget{classgeng_1_1_widget_box_ae255966af236a1c0d1b05829c40a9475}\index{geng::WidgetBox@{geng::WidgetBox}!to\_vertex@{to\_vertex}}
+\index{to\_vertex@{to\_vertex}!geng::WidgetBox@{geng::WidgetBox}}
+\doxysubsubsection{\texorpdfstring{to\_vertex()}{to\_vertex()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_widget_box_ae255966af236a1c0d1b05829c40a9475} 
+int geng\+::\+Widget\+Box\+::to\+\_\+vertex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeng_1_1_banner_buffer}{geng\+::\+Banner\+Buffer}} \&}]{buffer}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+
+
+Creates our \doxylink{classgeng_1_1_widget_box}{Widget\+Box} \doxylink{structgeng_1_1_f_pos2_d}{FPos2D} map. 
+
+\Hypertarget{classgeng_1_1_widget_box_addcdd57e43dbb22557912964c12e9f22}\index{geng::WidgetBox@{geng::WidgetBox}!update@{update}}
+\index{update@{update}!geng::WidgetBox@{geng::WidgetBox}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_widget_box_addcdd57e43dbb22557912964c12e9f22} 
+void geng\+::\+Widget\+Box\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeng_1_1_layer_state}{geng\+::\+Layer\+State}} \&}]{time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+
+
+Update function does nothing, but allows us to continue overriding. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/scene/banners/widgets/\mbox{\hyperlink{_widget_box_8hpp}{Widget\+Box.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,158 @@
+\doxysection{geng\+::debug\+::Log\+Bucket\texorpdfstring{$<$}{<} L, S \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classgeng_1_1debug_1_1_log_bucket}{}\label{classgeng_1_1debug_1_1_log_bucket}\index{geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}}
+
+
+the whole thing is private except constructor and overload  
+
+
+
+
+{\ttfamily \#include $<$Log\+Bucket.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a0f5c322733762bcce79c1bf6b6a23002}{Log\+Bucket}} ()
+\item 
+\mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a0f5c322733762bcce79c1bf6b6a23002}{Log\+Bucket}} \& \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a40c5993c37761266c02e34d6ca0d948f}{src}} (const char source\mbox{[}$\,$\mbox{]})
+\item 
+\mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a0f5c322733762bcce79c1bf6b6a23002}{Log\+Bucket}} \& \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a0b08b637ab4e99baba933e14fe7f2f8d}{operator$<$$<$}} (const char \texorpdfstring{$\ast$}{*}msg)
+\item 
+\mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a0f5c322733762bcce79c1bf6b6a23002}{Log\+Bucket}} \& \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_abc891442b052b8461fe769cd8c144b13}{operator$<$$<$}} (char c)
+\item 
+{\footnotesize template$<$signed\+\_\+int T$>$ }\\\mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a0f5c322733762bcce79c1bf6b6a23002}{Log\+Bucket}} \& \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a85432c274462f52d41e71509c51e0499}{operator$<$$<$}} (T v)
+\item 
+{\footnotesize template$<$unsigned\+\_\+int T$>$ }\\\mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a0f5c322733762bcce79c1bf6b6a23002}{Log\+Bucket}} \& \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a85432c274462f52d41e71509c51e0499}{operator$<$$<$}} (T v)
+\item 
+{\footnotesize template$<$any\+\_\+float T$>$ }\\\mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a0f5c322733762bcce79c1bf6b6a23002}{Log\+Bucket}} \& \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a85432c274462f52d41e71509c51e0499}{operator$<$$<$}} (T v)
+\item 
+{\footnotesize template$<$uint32\+\_\+t C$>$ }\\\mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a0f5c322733762bcce79c1bf6b6a23002}{Log\+Bucket}} \& \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a5b88cbb6da666944fb7a3bbe0ca85393}{operator$<$$<$}} (fstring$<$ C $>$ str)
+\item 
+\mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a0f5c322733762bcce79c1bf6b6a23002}{Log\+Bucket}} \& \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_adcaa251fc647d48db0878e537cee107e}{operator$<$$<$}} (void \texorpdfstring{$\ast$}{*}ptr)
+\item 
+void \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a14958a382758fd53a9ee4f62ca001184}{operator$<$$<$}} (\mbox{\hyperlink{namespacegeng_aa170cef4e8157245fa0ad4818290b2be}{logcommands}} command)
+\item 
+void \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_ac9953c5cb7a1b3c3a3111c8a9b65c260}{operator$<$$<$}} (Log \&l)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_aaa98810874c67664127370c7d8dc2ece}{Console}}
+\begin{DoxyCompactList}\small\item\em console is a friend \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$uint16\+\_\+t L, Severity S$>$\newline
+class geng\+::debug\+::\+Log\+Bucket$<$ L, S $>$}
+the whole thing is private except constructor and overload 
+
+\label{doc-constructors}
+\Hypertarget{classgeng_1_1debug_1_1_log_bucket_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classgeng_1_1debug_1_1_log_bucket_a0f5c322733762bcce79c1bf6b6a23002}\index{geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}!LogBucket@{LogBucket}}
+\index{LogBucket@{LogBucket}!geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}}
+\doxysubsubsection{\texorpdfstring{LogBucket()}{LogBucket()}}
+{\footnotesize\ttfamily \label{classgeng_1_1debug_1_1_log_bucket_a0f5c322733762bcce79c1bf6b6a23002} 
+template$<$uint16\+\_\+t L, Severity S$>$ \\
+\mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket}{geng\+::debug\+::\+Log\+Bucket}}$<$ L, S $>$\+::\+Log\+Bucket (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classgeng_1_1debug_1_1_log_bucket_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgeng_1_1debug_1_1_log_bucket_abc891442b052b8461fe769cd8c144b13}\index{geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily \label{classgeng_1_1debug_1_1_log_bucket_abc891442b052b8461fe769cd8c144b13} 
+template$<$uint16\+\_\+t L, Severity S$>$ \\
+\mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a0f5c322733762bcce79c1bf6b6a23002}{Log\+Bucket}} \& \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket}{geng\+::debug\+::\+Log\+Bucket}}$<$ L, S $>$\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{char}]{c}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classgeng_1_1debug_1_1_log_bucket_a0b08b637ab4e99baba933e14fe7f2f8d}\index{geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily \label{classgeng_1_1debug_1_1_log_bucket_a0b08b637ab4e99baba933e14fe7f2f8d} 
+template$<$uint16\+\_\+t L, Severity S$>$ \\
+\mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a0f5c322733762bcce79c1bf6b6a23002}{Log\+Bucket}} \& \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket}{geng\+::debug\+::\+Log\+Bucket}}$<$ L, S $>$\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{msg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classgeng_1_1debug_1_1_log_bucket_a5b88cbb6da666944fb7a3bbe0ca85393}\index{geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily \label{classgeng_1_1debug_1_1_log_bucket_a5b88cbb6da666944fb7a3bbe0ca85393} 
+template$<$uint16\+\_\+t L, Severity S$>$ \\
+template$<$uint32\+\_\+t C$>$ \\
+\mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a0f5c322733762bcce79c1bf6b6a23002}{Log\+Bucket}} \& \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket}{geng\+::debug\+::\+Log\+Bucket}}$<$ L, S $>$\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{fstring$<$ C $>$}]{str}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classgeng_1_1debug_1_1_log_bucket_ac9953c5cb7a1b3c3a3111c8a9b65c260}\index{geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily \label{classgeng_1_1debug_1_1_log_bucket_ac9953c5cb7a1b3c3a3111c8a9b65c260} 
+template$<$uint16\+\_\+t L, Severity S$>$ \\
+void \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket}{geng\+::debug\+::\+Log\+Bucket}}$<$ L, S $>$\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{Log \&}]{l}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classgeng_1_1debug_1_1_log_bucket_a14958a382758fd53a9ee4f62ca001184}\index{geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily \label{classgeng_1_1debug_1_1_log_bucket_a14958a382758fd53a9ee4f62ca001184} 
+template$<$uint16\+\_\+t L, Severity S$>$ \\
+void \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket}{geng\+::debug\+::\+Log\+Bucket}}$<$ L, S $>$\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacegeng_aa170cef4e8157245fa0ad4818290b2be}{logcommands}}}]{command}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classgeng_1_1debug_1_1_log_bucket_a85432c274462f52d41e71509c51e0499}\index{geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily \label{classgeng_1_1debug_1_1_log_bucket_a85432c274462f52d41e71509c51e0499} 
+template$<$uint16\+\_\+t L, Severity S$>$ \\
+template$<$any\+\_\+float T$>$ \\
+\mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a0f5c322733762bcce79c1bf6b6a23002}{Log\+Bucket}} \& \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket}{geng\+::debug\+::\+Log\+Bucket}}$<$ L, S $>$\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{T}]{v}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classgeng_1_1debug_1_1_log_bucket_a85432c274462f52d41e71509c51e0499}\index{geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily \label{classgeng_1_1debug_1_1_log_bucket_a85432c274462f52d41e71509c51e0499} 
+template$<$uint16\+\_\+t L, Severity S$>$ \\
+template$<$unsigned\+\_\+int T$>$ \\
+\mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a0f5c322733762bcce79c1bf6b6a23002}{Log\+Bucket}} \& \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket}{geng\+::debug\+::\+Log\+Bucket}}$<$ L, S $>$\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{T}]{v}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classgeng_1_1debug_1_1_log_bucket_a85432c274462f52d41e71509c51e0499}\index{geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily \label{classgeng_1_1debug_1_1_log_bucket_a85432c274462f52d41e71509c51e0499} 
+template$<$uint16\+\_\+t L, Severity S$>$ \\
+template$<$signed\+\_\+int T$>$ \\
+\mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a0f5c322733762bcce79c1bf6b6a23002}{Log\+Bucket}} \& \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket}{geng\+::debug\+::\+Log\+Bucket}}$<$ L, S $>$\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{T}]{v}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classgeng_1_1debug_1_1_log_bucket_adcaa251fc647d48db0878e537cee107e}\index{geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily \label{classgeng_1_1debug_1_1_log_bucket_adcaa251fc647d48db0878e537cee107e} 
+template$<$uint16\+\_\+t L, Severity S$>$ \\
+\mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a0f5c322733762bcce79c1bf6b6a23002}{Log\+Bucket}} \& \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket}{geng\+::debug\+::\+Log\+Bucket}}$<$ L, S $>$\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{ptr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classgeng_1_1debug_1_1_log_bucket_a40c5993c37761266c02e34d6ca0d948f}\index{geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}!src@{src}}
+\index{src@{src}!geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}}
+\doxysubsubsection{\texorpdfstring{src()}{src()}}
+{\footnotesize\ttfamily \label{classgeng_1_1debug_1_1_log_bucket_a40c5993c37761266c02e34d6ca0d948f} 
+template$<$uint16\+\_\+t L, Severity S$>$ \\
+\mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket_a0f5c322733762bcce79c1bf6b6a23002}{Log\+Bucket}} \& \mbox{\hyperlink{classgeng_1_1debug_1_1_log_bucket}{geng\+::debug\+::\+Log\+Bucket}}$<$ L, S $>$\+::src (\begin{DoxyParamCaption}\item[{const char}]{source}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-related-members}
+\Hypertarget{classgeng_1_1debug_1_1_log_bucket_doc-related-members}
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{classgeng_1_1debug_1_1_log_bucket_aaa98810874c67664127370c7d8dc2ece}\index{geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}!Console@{Console}}
+\index{Console@{Console}!geng::debug::LogBucket$<$ L, S $>$@{geng::debug::LogBucket$<$ L, S $>$}}
+\doxysubsubsection{\texorpdfstring{Console}{Console}}
+{\footnotesize\ttfamily \label{classgeng_1_1debug_1_1_log_bucket_aaa98810874c67664127370c7d8dc2ece} 
+template$<$uint16\+\_\+t L, Severity S$>$ \\
+friend class Console\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+console is a friend 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/debug/logging/\mbox{\hyperlink{_log_bucket_8hpp}{Log\+Bucket.\+hpp}}\end{DoxyCompactItemize}

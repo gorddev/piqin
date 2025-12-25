@@ -1,0 +1,78 @@
+\doxysection{Engine.\+hpp}
+\hypertarget{_engine_8hpp_source}{}\label{_engine_8hpp_source}\index{include/engine/Engine.hpp@{include/engine/Engine.hpp}}
+\mbox{\hyperlink{_engine_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_engine_context_8hpp}{EngineContext.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_console_8hpp}{debug/Console.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_input_distributor_8hpp}{input/InputDistributor.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_renderer_8hpp}{rendering/Renderer.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_layer_manager_8hpp}{engine/layers/LayerManager.hpp}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{class\ }Engine\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ Camera\ camera;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ EngineContext\ core;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ TextureRegister\ texreg;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ Renderer\ \mbox{\hyperlink{namespacegch_afb3d7d444b06b67086a4d5c3d31f7618}{rend}};}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ LayerManager\ layers;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ debug::Console*\ console;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ InputDistributor\ input;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ Engine();}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \string~Engine()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ *******************}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><>\ Engine\ Vitals\ <><>}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ *******************}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ init();}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ tick(\textcolor{keywordtype}{double}\ time);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ *******************}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><>\ Rendering\ <><>}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ *******************}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ render();}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_resolution(Dim2D\ d);}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ [[nodiscard]]\ Dim2D\ get\_resolution()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ *******************}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><>\ Layers\ <><>}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ *******************}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ Args>}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ T*\ create\_layer(Args\&\&...\ args);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><>\ Active\ Layer\ <><><>}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_active\_layer(Layer\ *layer);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_active\_layer(geng::fstring<10>\ name);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ increment\_active\_layer();}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ Layer*\ get\_active\_layer();}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><>\ Destroying\ Layers\ <><><>}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ destroy\_layer(Layer\ *l);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ destroy\_layer(geng::fstring<10>\ layer\_name);}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><>\ Getting\ Layer\ <><><>}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ Layer\ *get\_layer(geng::fstring<10>\ layer\_name);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ***************************}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><>\ Input\ Management\ <><><>}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ***************************}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}...\ Args>}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ T*\ create\_router(Args\&\&...\ args);}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ remove\_router(InputRouter*\ router);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ *********************}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><>\ Debugging\ <><><>}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ *********************}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_debug\_mode(\textcolor{keywordtype}{bool}\ enabled);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \};}
+\DoxyCodeLine{00103\ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_engine_8inl}{engine/Engine.inl}}"{}}}
+
+\end{DoxyCode}

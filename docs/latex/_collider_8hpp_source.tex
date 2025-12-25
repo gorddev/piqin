@@ -1,0 +1,39 @@
+\doxysection{Collider.\+hpp}
+\hypertarget{_collider_8hpp_source}{}\label{_collider_8hpp_source}\index{include/engine/scene/physics/Collider.hpp@{include/engine/scene/physics/Collider.hpp}}
+\mbox{\hyperlink{_collider_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_tile_contact_8hpp}{TileContact.hpp}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_sprite_8hpp}{engine/scene/sprites/Sprite.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_box2_d_8hpp}{engine/types/positioning/Box2D.hpp}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{class\ }Collider\ :\ \textcolor{keyword}{public}\ Sprite\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ Dim2D\ hitbox;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ Pos2D\ offset;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ FPos2D\ vel;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ Collider(FrameTable\&\ frames,\ Dim2D\ hitbox)\ :\ Sprite(frames),\ hitbox(hitbox)\ \{\}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ Collider(FrameTable\&\ frames,\ Transform2D\ t,\ Dim2D\ hitbox,\ Pos2D\ offset\ =\ \{0,\ 0\})\ :\ Sprite(frames,\ t),\ hitbox(hitbox),\ offset(offset)\ \{\}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ collide(ProposedCollision\&\ collision)\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ t.pos\ =\ collision.newPos;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ FPos2D\ get\_position()\ \{\ \textcolor{keywordflow}{return}\ t.pos;\ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ FPos2D\ get\_velocity()\ \{\ \textcolor{keywordflow}{return}\ vel;\ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ Dim2D\ get\_hitbox()\ \{\ \textcolor{keywordflow}{return}\ hitbox;\ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ Pos2D\ get\_offset()\ \{\ \textcolor{keywordflow}{return}\ offset;\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ set\_velocity(FPos2D\ v)\ \{\ vel\ =\ v;\ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ gch::vector<SDL\_FPoint>\ to\_vertex\_hitbox(uint16\_t\ thickness)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ gch::vector<SDL\_FPoint>\ points\ =\ Box2D(t.pos.x\ -\/\ hitbox.w/2\ +\ offset.x,\ t.pos.y\ -\/\ hitbox.h/2\ +\ offset.y,\ hitbox.w,\ hitbox.h).to\_vertex\_hitbox(thickness);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ points;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \};}
+\DoxyCodeLine{00054\ \}}
+
+\end{DoxyCode}

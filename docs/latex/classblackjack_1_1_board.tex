@@ -1,0 +1,162 @@
+\doxysection{blackjack\+::Board Class Reference}
+\hypertarget{classblackjack_1_1_board}{}\label{classblackjack_1_1_board}\index{blackjack::Board@{blackjack::Board}}
+
+
+{\ttfamily \#include $<$Board.\+hpp$>$}
+
+Inheritance diagram for blackjack\+::Board\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classblackjack_1_1_board}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classblackjack_1_1_board_a9ee491d4fea680cf69b033374a9fdfcb}{Board}} ()
+\item 
+\mbox{\hyperlink{classblackjack_1_1_board_afafd468ead59e672d1f78a3382365de1}{\texorpdfstring{$\sim$}{\string~}\+Board}} () override
+\item 
+std\+::vector$<$ geng\+::\+Actor \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classblackjack_1_1_board_a73288410836d7eb3f1df71c709e6d873}{gather\+\_\+objects}} ()
+\item 
+void \mbox{\hyperlink{classblackjack_1_1_board_afb7ff3caba6e013a0a4d892c95f16ee6}{update\+\_\+selector}} ()
+\item 
+bool \mbox{\hyperlink{classblackjack_1_1_board_aea080b53efdffb18e2c66a275e6f4976}{add\+\_\+card\+\_\+to\+\_\+hand}} (\mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*}c)
+\item 
+bool \mbox{\hyperlink{classblackjack_1_1_board_a2eef9b59e5f635991d18633d3b42bfba}{get\+\_\+press}} (geng\+::\+GENG\+\_\+\+Input keybind) override
+\item 
+void \mbox{\hyperlink{classblackjack_1_1_board_a44ce01f41e2d352a3545c060a9308798}{get\+\_\+release}} (geng\+::\+GENG\+\_\+\+Input keybind) override
+\item 
+void \mbox{\hyperlink{classblackjack_1_1_board_aa170cb05bb38de48e19a72b51d898eca}{update}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structblackjack_1_1_card_selector}{Card\+Selector}} \mbox{\hyperlink{classblackjack_1_1_board_aa6712e52bfbc886d9b5000a64a5c3894}{slct}}
+\item 
+\mbox{\hyperlink{classblackjack_1_1_deck}{Deck}} \mbox{\hyperlink{classblackjack_1_1_board_af22832c5cef0977ab117a6df27083d17}{deck}}
+\item 
+\mbox{\hyperlink{classblackjack_1_1_discard}{Discard}} \mbox{\hyperlink{classblackjack_1_1_board_a09f83e4254323f87acb6d50f20f07f8e}{discard}}
+\item 
+\mbox{\hyperlink{classblackjack_1_1_hand}{Hand}} \mbox{\hyperlink{classblackjack_1_1_board_abf5549c2d46abd4ebaca36a4a7208d52}{hand}}
+\item 
+\mbox{\hyperlink{classblackjack_1_1_draw}{Draw}} \mbox{\hyperlink{classblackjack_1_1_board_a2c9b93b1a563c2039fa094be3298ed8e}{player\+Draw}}
+\item 
+\mbox{\hyperlink{classblackjack_1_1_draw}{Draw}} \mbox{\hyperlink{classblackjack_1_1_board_a895174b8495548ac99ec8545d555c170}{opponent\+Draw}}
+\item 
+\mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classblackjack_1_1_board_a103b33939fe107f2152dbac9e40a3e2c}{floater}}
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classblackjack_1_1_board_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classblackjack_1_1_board_a9ee491d4fea680cf69b033374a9fdfcb}\index{blackjack::Board@{blackjack::Board}!Board@{Board}}
+\index{Board@{Board}!blackjack::Board@{blackjack::Board}}
+\doxysubsubsection{\texorpdfstring{Board()}{Board()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_board_a9ee491d4fea680cf69b033374a9fdfcb} 
+Board\+::\+Board (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classblackjack_1_1_board_afafd468ead59e672d1f78a3382365de1}\index{blackjack::Board@{blackjack::Board}!````~Board@{\texorpdfstring{$\sim$}{\string~}Board}}
+\index{````~Board@{\texorpdfstring{$\sim$}{\string~}Board}!blackjack::Board@{blackjack::Board}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Board()}{\string~Board()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_board_afafd468ead59e672d1f78a3382365de1} 
+Board\+::\texorpdfstring{$\sim$}{\string~}\+Board (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classblackjack_1_1_board_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classblackjack_1_1_board_aea080b53efdffb18e2c66a275e6f4976}\index{blackjack::Board@{blackjack::Board}!add\_card\_to\_hand@{add\_card\_to\_hand}}
+\index{add\_card\_to\_hand@{add\_card\_to\_hand}!blackjack::Board@{blackjack::Board}}
+\doxysubsubsection{\texorpdfstring{add\_card\_to\_hand()}{add\_card\_to\_hand()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_board_aea080b53efdffb18e2c66a275e6f4976} 
+bool Board\+::add\+\_\+card\+\_\+to\+\_\+hand (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*}}]{c}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classblackjack_1_1_board_a73288410836d7eb3f1df71c709e6d873}\index{blackjack::Board@{blackjack::Board}!gather\_objects@{gather\_objects}}
+\index{gather\_objects@{gather\_objects}!blackjack::Board@{blackjack::Board}}
+\doxysubsubsection{\texorpdfstring{gather\_objects()}{gather\_objects()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_board_a73288410836d7eb3f1df71c709e6d873} 
+lni\+::vector$<$ geng\+::\+Sprite \texorpdfstring{$\ast$}{*} $>$ Board\+::gather\+\_\+objects (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [nodiscard]}}
+
+\Hypertarget{classblackjack_1_1_board_a2eef9b59e5f635991d18633d3b42bfba}\index{blackjack::Board@{blackjack::Board}!get\_press@{get\_press}}
+\index{get\_press@{get\_press}!blackjack::Board@{blackjack::Board}}
+\doxysubsubsection{\texorpdfstring{get\_press()}{get\_press()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_board_a2eef9b59e5f635991d18633d3b42bfba} 
+bool Board\+::get\+\_\+press (\begin{DoxyParamCaption}\item[{geng\+::\+GENG\+\_\+\+Input}]{keybind}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+\Hypertarget{classblackjack_1_1_board_a44ce01f41e2d352a3545c060a9308798}\index{blackjack::Board@{blackjack::Board}!get\_release@{get\_release}}
+\index{get\_release@{get\_release}!blackjack::Board@{blackjack::Board}}
+\doxysubsubsection{\texorpdfstring{get\_release()}{get\_release()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_board_a44ce01f41e2d352a3545c060a9308798} 
+void Board\+::get\+\_\+release (\begin{DoxyParamCaption}\item[{geng\+::\+GENG\+\_\+\+Input}]{keybind}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+\Hypertarget{classblackjack_1_1_board_aa170cb05bb38de48e19a72b51d898eca}\index{blackjack::Board@{blackjack::Board}!update@{update}}
+\index{update@{update}!blackjack::Board@{blackjack::Board}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_board_aa170cb05bb38de48e19a72b51d898eca} 
+void Board\+::update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classblackjack_1_1_board_afb7ff3caba6e013a0a4d892c95f16ee6}\index{blackjack::Board@{blackjack::Board}!update\_selector@{update\_selector}}
+\index{update\_selector@{update\_selector}!blackjack::Board@{blackjack::Board}}
+\doxysubsubsection{\texorpdfstring{update\_selector()}{update\_selector()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_board_afb7ff3caba6e013a0a4d892c95f16ee6} 
+void Board\+::update\+\_\+selector (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classblackjack_1_1_board_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classblackjack_1_1_board_af22832c5cef0977ab117a6df27083d17}\index{blackjack::Board@{blackjack::Board}!deck@{deck}}
+\index{deck@{deck}!blackjack::Board@{blackjack::Board}}
+\doxysubsubsection{\texorpdfstring{deck}{deck}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_board_af22832c5cef0977ab117a6df27083d17} 
+\mbox{\hyperlink{classblackjack_1_1_deck}{Deck}} blackjack\+::\+Board\+::deck}
+
+\Hypertarget{classblackjack_1_1_board_a09f83e4254323f87acb6d50f20f07f8e}\index{blackjack::Board@{blackjack::Board}!discard@{discard}}
+\index{discard@{discard}!blackjack::Board@{blackjack::Board}}
+\doxysubsubsection{\texorpdfstring{discard}{discard}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_board_a09f83e4254323f87acb6d50f20f07f8e} 
+\mbox{\hyperlink{classblackjack_1_1_discard}{Discard}} blackjack\+::\+Board\+::discard}
+
+\Hypertarget{classblackjack_1_1_board_a103b33939fe107f2152dbac9e40a3e2c}\index{blackjack::Board@{blackjack::Board}!floater@{floater}}
+\index{floater@{floater}!blackjack::Board@{blackjack::Board}}
+\doxysubsubsection{\texorpdfstring{floater}{floater}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_board_a103b33939fe107f2152dbac9e40a3e2c} 
+\mbox{\hyperlink{class_card}{Card}}\texorpdfstring{$\ast$}{*} blackjack\+::\+Board\+::floater}
+
+\Hypertarget{classblackjack_1_1_board_abf5549c2d46abd4ebaca36a4a7208d52}\index{blackjack::Board@{blackjack::Board}!hand@{hand}}
+\index{hand@{hand}!blackjack::Board@{blackjack::Board}}
+\doxysubsubsection{\texorpdfstring{hand}{hand}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_board_abf5549c2d46abd4ebaca36a4a7208d52} 
+\mbox{\hyperlink{classblackjack_1_1_hand}{Hand}} blackjack\+::\+Board\+::hand}
+
+\Hypertarget{classblackjack_1_1_board_a895174b8495548ac99ec8545d555c170}\index{blackjack::Board@{blackjack::Board}!opponentDraw@{opponentDraw}}
+\index{opponentDraw@{opponentDraw}!blackjack::Board@{blackjack::Board}}
+\doxysubsubsection{\texorpdfstring{opponentDraw}{opponentDraw}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_board_a895174b8495548ac99ec8545d555c170} 
+\mbox{\hyperlink{classblackjack_1_1_draw}{Draw}} blackjack\+::\+Board\+::opponent\+Draw}
+
+\Hypertarget{classblackjack_1_1_board_a2c9b93b1a563c2039fa094be3298ed8e}\index{blackjack::Board@{blackjack::Board}!playerDraw@{playerDraw}}
+\index{playerDraw@{playerDraw}!blackjack::Board@{blackjack::Board}}
+\doxysubsubsection{\texorpdfstring{playerDraw}{playerDraw}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_board_a2c9b93b1a563c2039fa094be3298ed8e} 
+\mbox{\hyperlink{classblackjack_1_1_draw}{Draw}} blackjack\+::\+Board\+::player\+Draw}
+
+\Hypertarget{classblackjack_1_1_board_aa6712e52bfbc886d9b5000a64a5c3894}\index{blackjack::Board@{blackjack::Board}!slct@{slct}}
+\index{slct@{slct}!blackjack::Board@{blackjack::Board}}
+\doxysubsubsection{\texorpdfstring{slct}{slct}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_board_aa6712e52bfbc886d9b5000a64a5c3894} 
+\mbox{\hyperlink{structblackjack_1_1_card_selector}{Card\+Selector}} blackjack\+::\+Board\+::slct}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/game/blackjack/\mbox{\hyperlink{_board_8hpp}{Board.\+hpp}}\item 
+src/game/blackjack/bj-\/logic/\mbox{\hyperlink{_b_j-_actions_8cpp}{BJ-\/\+Actions.\+cpp}}\item 
+src/game/blackjack/bj-\/logic/\mbox{\hyperlink{_b_j-_card_logic_8cpp}{BJ-\/\+Card\+Logic.\+cpp}}\item 
+src/game/blackjack/bj-\/logic/\mbox{\hyperlink{_b_j-_input_8cpp}{BJ-\/\+Input.\+cpp}}\item 
+src/game/blackjack/\mbox{\hyperlink{_board_8cpp}{Board.\+cpp}}\end{DoxyCompactItemize}

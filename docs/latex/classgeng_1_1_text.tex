@@ -1,0 +1,107 @@
+\doxysection{geng\+::Text\texorpdfstring{$<$}{<} C \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classgeng_1_1_text}{}\label{classgeng_1_1_text}\index{geng::Text$<$ C $>$@{geng::Text$<$ C $>$}}
+
+
+{\ttfamily \#include $<$Text.\+hpp$>$}
+
+Inheritance diagram for geng\+::Text\texorpdfstring{$<$}{<} C \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgeng_1_1_text}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgeng_1_1_text_a753a06491104f226ca23bffb20015c03}{Text}} (const char text\mbox{[}$\,$\mbox{]}, Font \&font)
+\item 
+\mbox{\hyperlink{classgeng_1_1_text_ab3e6daf703087810fb8b8d2844db42cb}{Text}} (const char text\mbox{[}$\,$\mbox{]}, Font \&font, const \mbox{\hyperlink{classgeng_1_1_syntax_map}{Syntax\+Map}} \texorpdfstring{$\ast$}{*}syntax\+\_\+map)
+\item 
+void \mbox{\hyperlink{classgeng_1_1_text_a389b9f445cc23840a2eef33686f8b231}{change\+\_\+dim}} (Dim2D dimensions) override
+\item 
+int \mbox{\hyperlink{classgeng_1_1_text_a19c5334ea6cf96649ae9093e31a9890a}{to\+\_\+vertex}} (\mbox{\hyperlink{classgeng_1_1_banner_buffer}{Banner\+Buffer}} \&buffer) override
+\item 
+fstring$<$ C $>$ \mbox{\hyperlink{classgeng_1_1_text_a13dd91f0594b7b1453363fb27d02d640}{get\+\_\+text}} () const
+\item 
+\mbox{\hyperlink{classgeng_1_1str__view}{geng\+::str\+\_\+view}} \mbox{\hyperlink{classgeng_1_1_text_ade75b9f44937624880391c1361730592}{get\+\_\+fstr\+\_\+view}} ()
+\item 
+void \mbox{\hyperlink{classgeng_1_1_text_aa4466527d716b964d7f821fb7574e4d9}{clear}} ()
+\item 
+void \mbox{\hyperlink{classgeng_1_1_text_aaaaa33c2c68da47ee32a77c1b48b3eb0}{update\+\_\+text}} (const char text\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$uint16\+\_\+t C$>$\newline
+class geng\+::\+Text$<$ C $>$}
+Simple debug text rendering 
+
+\label{doc-constructors}
+\Hypertarget{classgeng_1_1_text_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classgeng_1_1_text_a753a06491104f226ca23bffb20015c03}\index{geng::Text$<$ C $>$@{geng::Text$<$ C $>$}!Text@{Text}}
+\index{Text@{Text}!geng::Text$<$ C $>$@{geng::Text$<$ C $>$}}
+\doxysubsubsection{\texorpdfstring{Text()}{Text()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classgeng_1_1_text_a753a06491104f226ca23bffb20015c03} 
+template$<$uint16\+\_\+t C$>$ \\
+\mbox{\hyperlink{classgeng_1_1_text}{geng\+::\+Text}}$<$ C $>$\+::\+Text (\begin{DoxyParamCaption}\item[{const char}]{text}{\mbox{[}$\,$\mbox{]}, }\item[{Font \&}]{font}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classgeng_1_1_text_ab3e6daf703087810fb8b8d2844db42cb}\index{geng::Text$<$ C $>$@{geng::Text$<$ C $>$}!Text@{Text}}
+\index{Text@{Text}!geng::Text$<$ C $>$@{geng::Text$<$ C $>$}}
+\doxysubsubsection{\texorpdfstring{Text()}{Text()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classgeng_1_1_text_ab3e6daf703087810fb8b8d2844db42cb} 
+template$<$uint16\+\_\+t C$>$ \\
+\mbox{\hyperlink{classgeng_1_1_text}{geng\+::\+Text}}$<$ C $>$\+::\+Text (\begin{DoxyParamCaption}\item[{const char}]{text}{\mbox{[}$\,$\mbox{]}, }\item[{Font \&}]{font}{, }\item[{const \mbox{\hyperlink{classgeng_1_1_syntax_map}{Syntax\+Map}} \texorpdfstring{$\ast$}{*}}]{syntax\+\_\+map}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classgeng_1_1_text_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgeng_1_1_text_a389b9f445cc23840a2eef33686f8b231}\index{geng::Text$<$ C $>$@{geng::Text$<$ C $>$}!change\_dim@{change\_dim}}
+\index{change\_dim@{change\_dim}!geng::Text$<$ C $>$@{geng::Text$<$ C $>$}}
+\doxysubsubsection{\texorpdfstring{change\_dim()}{change\_dim()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_text_a389b9f445cc23840a2eef33686f8b231} 
+template$<$uint16\+\_\+t C$>$ \\
+void \mbox{\hyperlink{classgeng_1_1_text}{geng\+::\+Text}}$<$ C $>$\+::change\+\_\+dim (\begin{DoxyParamCaption}\item[{Dim2D}]{dimensions}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\Hypertarget{classgeng_1_1_text_aa4466527d716b964d7f821fb7574e4d9}\index{geng::Text$<$ C $>$@{geng::Text$<$ C $>$}!clear@{clear}}
+\index{clear@{clear}!geng::Text$<$ C $>$@{geng::Text$<$ C $>$}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_text_aa4466527d716b964d7f821fb7574e4d9} 
+template$<$uint16\+\_\+t C$>$ \\
+void \mbox{\hyperlink{classgeng_1_1_text}{geng\+::\+Text}}$<$ C $>$\+::clear (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classgeng_1_1_text_ade75b9f44937624880391c1361730592}\index{geng::Text$<$ C $>$@{geng::Text$<$ C $>$}!get\_fstr\_view@{get\_fstr\_view}}
+\index{get\_fstr\_view@{get\_fstr\_view}!geng::Text$<$ C $>$@{geng::Text$<$ C $>$}}
+\doxysubsubsection{\texorpdfstring{get\_fstr\_view()}{get\_fstr\_view()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_text_ade75b9f44937624880391c1361730592} 
+template$<$uint16\+\_\+t C$>$ \\
+\mbox{\hyperlink{classgeng_1_1str__view}{geng\+::str\+\_\+view}} \mbox{\hyperlink{classgeng_1_1_text}{geng\+::\+Text}}$<$ C $>$\+::get\+\_\+fstr\+\_\+view (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+\Hypertarget{classgeng_1_1_text_a13dd91f0594b7b1453363fb27d02d640}\index{geng::Text$<$ C $>$@{geng::Text$<$ C $>$}!get\_text@{get\_text}}
+\index{get\_text@{get\_text}!geng::Text$<$ C $>$@{geng::Text$<$ C $>$}}
+\doxysubsubsection{\texorpdfstring{get\_text()}{get\_text()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_text_a13dd91f0594b7b1453363fb27d02d640} 
+template$<$uint16\+\_\+t C$>$ \\
+fstring$<$ C $>$ \mbox{\hyperlink{classgeng_1_1_text}{geng\+::\+Text}}$<$ C $>$\+::get\+\_\+text (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [nodiscard]}}
+
+\Hypertarget{classgeng_1_1_text_a19c5334ea6cf96649ae9093e31a9890a}\index{geng::Text$<$ C $>$@{geng::Text$<$ C $>$}!to\_vertex@{to\_vertex}}
+\index{to\_vertex@{to\_vertex}!geng::Text$<$ C $>$@{geng::Text$<$ C $>$}}
+\doxysubsubsection{\texorpdfstring{to\_vertex()}{to\_vertex()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_text_a19c5334ea6cf96649ae9093e31a9890a} 
+template$<$uint16\+\_\+t C$>$ \\
+int \mbox{\hyperlink{classgeng_1_1_text}{geng\+::\+Text}}$<$ C $>$\+::to\+\_\+vertex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeng_1_1_banner_buffer}{Banner\+Buffer}} \&}]{buffer}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}}
+
+\Hypertarget{classgeng_1_1_text_aaaaa33c2c68da47ee32a77c1b48b3eb0}\index{geng::Text$<$ C $>$@{geng::Text$<$ C $>$}!update\_text@{update\_text}}
+\index{update\_text@{update\_text}!geng::Text$<$ C $>$@{geng::Text$<$ C $>$}}
+\doxysubsubsection{\texorpdfstring{update\_text()}{update\_text()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_text_aaaaa33c2c68da47ee32a77c1b48b3eb0} 
+template$<$uint16\+\_\+t C$>$ \\
+void \mbox{\hyperlink{classgeng_1_1_text}{geng\+::\+Text}}$<$ C $>$\+::update\+\_\+text (\begin{DoxyParamCaption}\item[{const char}]{text}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/scene/banners/text/\mbox{\hyperlink{_text_8hpp}{Text.\+hpp}}\end{DoxyCompactItemize}

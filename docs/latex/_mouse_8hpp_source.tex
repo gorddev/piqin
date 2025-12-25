@@ -1,0 +1,92 @@
+\doxysection{Mouse.\+hpp}
+\hypertarget{_mouse_8hpp_source}{}\label{_mouse_8hpp_source}\index{include/engine/input/Mouse.hpp@{include/engine/input/Mouse.hpp}}
+\mbox{\hyperlink{_mouse_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_gear_8hpp}{engine/types/Gear.hpp}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_utilities_8hpp}{engine/utilities/Utilities.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_camera_8hpp}{engine/rendering/Camera.hpp}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgeng_1_1_mouse_ae3030b1d38eae08fecb96b10345ec75c}{Mouse}}\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_pos2_d}{Pos2D}}\ \mbox{\hyperlink{structgeng_1_1_mouse_acd39ad6b852496c17ac37aa200699709}{pos}};}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_f_pos2_d}{FPos2D}}\ \mbox{\hyperlink{structgeng_1_1_mouse_a9405c700f25275c1e123e0c693b3c654}{dpos}};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_f_pos2_d}{FPos2D}}\ \mbox{\hyperlink{structgeng_1_1_mouse_aa6c0ae9086d5e6c91b06a7c6de1ca120}{relpos}}\ =\ \{0,\ 0\};}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ Gear*\ \mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structgeng_1_1_mouse_a508d1f84a08a3f4cac5e08cc4be08c05}{down}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<Gear*>}}\&\ \mbox{\hyperlink{structgeng_1_1_mouse_a518fec3465754fe5d3a903e71aaf38ce}{mouse\_recievers}};}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Camera\&\ \mbox{\hyperlink{structgeng_1_1_mouse_acf9071a6a8edceecdd5fcb5c01741ab2}{cam}};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{structgeng_1_1_mouse_ae3030b1d38eae08fecb96b10345ec75c}{Mouse}}(\mbox{\hyperlink{classgch_1_1vector}{gch::vector<Gear*>}}\&\ \mbox{\hyperlink{structgeng_1_1_mouse_a518fec3465754fe5d3a903e71aaf38ce}{mouse\_recievers}},\ \textcolor{keyword}{const}\ Camera\&\ \mbox{\hyperlink{structgeng_1_1_mouse_acf9071a6a8edceecdd5fcb5c01741ab2}{cam}})}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{structgeng_1_1_mouse_a518fec3465754fe5d3a903e71aaf38ce}{mouse\_recievers}}(\mbox{\hyperlink{structgeng_1_1_mouse_a518fec3465754fe5d3a903e71aaf38ce}{mouse\_recievers}}),\ \mbox{\hyperlink{structgeng_1_1_mouse_acf9071a6a8edceecdd5fcb5c01741ab2}{cam}}(\mbox{\hyperlink{structgeng_1_1_mouse_acf9071a6a8edceecdd5fcb5c01741ab2}{cam}})\ \{\}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structgeng_1_1_mouse_a6f984397527e87df91a3d684ad6d6281}{on\_click}}()\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_a508d1f84a08a3f4cac5e08cc4be08c05}{down}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}-\/>\_engine\_flagger(GFlag::clicked);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}-\/>on\_click();}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}-\/>is\_draggable())\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_aa6c0ae9086d5e6c91b06a7c6de1ca120}{relpos}}.x\ =\ \mbox{\hyperlink{structgeng_1_1_mouse_acd39ad6b852496c17ac37aa200699709}{pos}}.x\ -\/\ \mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}-\/>t.pos.x;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_aa6c0ae9086d5e6c91b06a7c6de1ca120}{relpos}}.y\ =\ \mbox{\hyperlink{structgeng_1_1_mouse_acd39ad6b852496c17ac37aa200699709}{pos}}.y\ -\/\ \mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}-\/>t.pos.y;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}-\/>\_engine\_flagger(GFlag::dragged);}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structgeng_1_1_mouse_a3a32d13ce15ecfca0cf13896026848d1}{on\_click\_release}}()\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_a508d1f84a08a3f4cac5e08cc4be08c05}{down}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}-\/>\_engine\_deflagger(GFlag::clicked);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}-\/>\_engine\_deflagger(GFlag::dragged);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}-\/>on\_click\_release();}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structgeng_1_1_mouse_ada9b70066f23cc86320066f1fdc33806}{pop\_target}}()\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_a479ef15d96d3e9cd1b8785fbed778b2b}{flush\_target}}();}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structgeng_1_1_mouse_a61886c1c8436fb2e2652c2d88d72ec32}{on\_movement}}(SDL\_Point\ new\_pos,\ \textcolor{keywordtype}{float}\ dx,\ \textcolor{keywordtype}{float}\ dy,\ LayerContext\&\ scene)\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ First\ we\ need\ to\ sort\ by\ z-\/index\ first.}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ std::sort(\mbox{\hyperlink{structgeng_1_1_mouse_a518fec3465754fe5d3a903e71aaf38ce}{mouse\_recievers}}.begin(),\ \mbox{\hyperlink{structgeng_1_1_mouse_a518fec3465754fe5d3a903e71aaf38ce}{mouse\_recievers}}.end(),\ [](\textcolor{keyword}{const}\ Gear*\ a,\ \textcolor{keyword}{const}\ Gear*\ b)\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ a-\/>z\_index\ >\ b-\/>z\_index;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \});}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ First\ update\ our\ cursor\ position}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_acd39ad6b852496c17ac37aa200699709}{pos}}\ =\ \{new\_pos.x,\ new\_pos.y\};}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_a9405c700f25275c1e123e0c693b3c654}{dpos}}\ =\ \{dx,\ dy\};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ we\ currently\ have\ a\ target}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ we're\ dragging,\ we\ update\ position.}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}-\/>is\_dragged())\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}-\/>t.pos.x\ =\ \mbox{\hyperlink{structgeng_1_1_mouse_acd39ad6b852496c17ac37aa200699709}{pos}}.x\ -\/\ \mbox{\hyperlink{structgeng_1_1_mouse_aa6c0ae9086d5e6c91b06a7c6de1ca120}{relpos}}.x;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}-\/>t.pos.y\ =\ \mbox{\hyperlink{structgeng_1_1_mouse_acd39ad6b852496c17ac37aa200699709}{pos}}.y\ -\/\ \mbox{\hyperlink{structgeng_1_1_mouse_aa6c0ae9086d5e6c91b06a7c6de1ca120}{relpos}}.y;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}-\/>t.snap\_to\_scene(scene);}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Search\ for\ a\ new\ target.}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(\mbox{\hyperlink{structgeng_1_1_mouse_a518fec3465754fe5d3a903e71aaf38ce}{mouse\_recievers}}.size())\ -\/\ 1;\ i\ >=\ 0;\ i-\/-\/)\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacegutils_aef61207fedf92b0b21188b992e80597e}{gutils::contained\_within}}(\{\mbox{\hyperlink{structgeng_1_1_mouse_acd39ad6b852496c17ac37aa200699709}{pos}}.x\ +\ \mbox{\hyperlink{structgeng_1_1_mouse_acf9071a6a8edceecdd5fcb5c01741ab2}{cam}}.pos.x,\mbox{\hyperlink{structgeng_1_1_mouse_acd39ad6b852496c17ac37aa200699709}{pos}}.y\ +\ \mbox{\hyperlink{structgeng_1_1_mouse_acf9071a6a8edceecdd5fcb5c01741ab2}{cam}}.pos.y\},\ \mbox{\hyperlink{structgeng_1_1_mouse_a518fec3465754fe5d3a903e71aaf38ce}{mouse\_recievers}}[i]-\/>t))\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}\ =\ \mbox{\hyperlink{structgeng_1_1_mouse_a518fec3465754fe5d3a903e71aaf38ce}{mouse\_recievers}}[i];}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}-\/>on\_hover();}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structgeng_1_1_mouse_a479ef15d96d3e9cd1b8785fbed778b2b}{flush\_target}}()\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}-\/>\_engine\_deflagger(GFlag::clicked);}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}-\/>\_engine\_deflagger(GFlag::dragged);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}-\/>\_engine\_deflagger(GFlag::hovered);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_mouse_a265eeb4a1871783c08ec843256fddcbb}{target}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \ \ \};}
+\DoxyCodeLine{00101\ \}}
+
+\end{DoxyCode}

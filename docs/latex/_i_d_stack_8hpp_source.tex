@@ -1,0 +1,60 @@
+\doxysection{IDStack.\+hpp}
+\hypertarget{_i_d_stack_8hpp_source}{}\label{_i_d_stack_8hpp_source}\index{include/engine/utilities/IDStack.hpp@{include/engine/utilities/IDStack.hpp}}
+\mbox{\hyperlink{_i_d_stack_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ INIT\_QUEUE\_SIZE\ 100}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegutils}{gutils}}\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{comment}{//\ Allows\ us\ to\ keep\ track\ of\ ids\ easily\ and\ re-\/use\ them\ (stack)}}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgutils_1_1_i_d_stack_a5aa60b552940e9a22c1a24922110a5d2}{IDStack}}\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ List\ of\ all\ IDs}}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<int>}}\ IDs;}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Top\ of\ the\ stack}}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ front\ =\ 0;}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ stackSize\ =\ \mbox{\hyperlink{_i_d_stack_8hpp_ad289c686ae68b848e67273e614789d18}{INIT\_QUEUE\_SIZE}};}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ empty\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgutils_1_1_i_d_stack_a5aa60b552940e9a22c1a24922110a5d2}{IDStack}}()\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ IDs.reserve(\mbox{\hyperlink{_i_d_stack_8hpp_ad289c686ae68b848e67273e614789d18}{INIT\_QUEUE\_SIZE}});}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgutils_1_1_i_d_stack_a6905b2e32cb94e73d4b52cf25da48bde}{push}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (front\ >=\ stackSize)\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ stackSize\ +=\ \mbox{\hyperlink{_i_d_stack_8hpp_ad289c686ae68b848e67273e614789d18}{INIT\_QUEUE\_SIZE}};}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IDs.reserve(stackSize);}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ IDs[front++]\ =\ id;}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ empty\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classgutils_1_1_i_d_stack_ac80d27bb1e7bf210a35f622e322f7533}{pop}}()\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (front\ -\/\ 1\ ==\ 0)\ empty\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (front\ !=\ 0)\ ?\ IDs[-\/-\/front]\ :\ -\/1;}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgutils_1_1_i_d_stack_a18a0bac158b2a782f722975426aad38b}{is\_empty}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ empty;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classgutils_1_1_i_d_stack_a9624c026d572d918470e776851256507}{num\_elements}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ front;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classgutils_1_1_i_d_stack_a77f9f1f1041edc66752683a24994c14a}{size}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ IDs.size();}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classgutils_1_1_i_d_stack_a5098d545e1df509a9ad3eeb8c6943cf7}{top}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (front\ ==\ 0)\ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ IDs[front\ -\/\ 1];}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \};}
+\DoxyCodeLine{00054\ \}}
+
+\end{DoxyCode}

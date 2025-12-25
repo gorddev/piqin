@@ -1,0 +1,55 @@
+\doxysection{Layer\+Flag.\+hpp}
+\hypertarget{_layer_flag_8hpp_source}{}\label{_layer_flag_8hpp_source}\index{include/engine/layers/LayerFlag.hpp@{include/engine/layers/LayerFlag.hpp}}
+\mbox{\hyperlink{_layer_flag_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{enum\ class}\ LayerFlag\ :\ uint8\_t\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ none\ \ \ \ \ \ \ \ =\ 0,}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ visible\ \ \ \ \ =\ 1\ <<\ 0,}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ active\ \ \ \ \ \ =\ 1\ <<\ 1,}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ running\ \ \ \ \ =\ 1\ <<\ 2,}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ initialized\ =\ 1\ <<\ 3,}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ strict\ \ \ \ \ \ =\ 1\ <<\ 4,}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ z\_indexed\ \ \ =\ 1\ <<\ 5,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ batched\ \ \ \ \ =\ 1\ <<\ 6}
+\DoxyCodeLine{00024\ \ \ \ \ \};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{constexpr}\ LayerFlag\ \mbox{\hyperlink{namespacegeng_afed7a6387feb6328bc4faadfd8a979ed}{operator|}}(LayerFlag\ a,\ LayerFlag\ b)\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}LayerFlag\textcolor{keyword}{>}(\textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(a)\ |\ \textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(b));}
+\DoxyCodeLine{00028\ \ \ \ \ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{constexpr}\ LayerFlag\ \mbox{\hyperlink{namespacegeng_a448a806cb5446aea4960ca9640a5da1a}{operator\&}}(LayerFlag\ a,\ LayerFlag\ b)\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}LayerFlag\textcolor{keyword}{>}(\textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(a)\ \&\ \textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(b));}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{constexpr}\ LayerFlag\&\ \mbox{\hyperlink{namespacegeng_aabd22c72fbf3b43a993d01c75632ebcc}{operator|=}}(LayerFlag\&\ a,\ LayerFlag\ b)\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ a\ =\ \textcolor{keyword}{static\_cast<}LayerFlag\textcolor{keyword}{>}(\textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(a)\ |\ \textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(b));}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ a;}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{constexpr}\ LayerFlag\&\ \mbox{\hyperlink{namespacegeng_a634b3dce52711f9379e4ad1c605690de}{operator\&=}}(LayerFlag\&\ a,\ LayerFlag\ b)\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ a\ =\ \textcolor{keyword}{static\_cast<}LayerFlag\textcolor{keyword}{>}(\textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(a)\ \&\ \textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(b));}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ a;}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{constexpr}\ LayerFlag\ LayerFlagMask\ =}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ LayerFlag::visible\ \ \ \ \ |}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ LayerFlag::active\ \ \ \ \ \ |}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ LayerFlag::running\ \ \ \ \ |}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ LayerFlag::initialized\ |}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ LayerFlag::strict\ \ \ \ \ \ |}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ LayerFlag::z\_indexed\ \ \ |}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ LayerFlag::batched;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{constexpr}\ LayerFlag\ operator\string~(LayerFlag\ f)\ \textcolor{keyword}{noexcept}\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}LayerFlag\textcolor{keyword}{>}(}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(LayerFlagMask)\ \&}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \string~static\_cast<uint8\_t>(f)}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \}}
+
+\end{DoxyCode}

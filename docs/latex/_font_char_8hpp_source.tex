@@ -1,0 +1,51 @@
+\doxysection{Font\+Char.\+hpp}
+\hypertarget{_font_char_8hpp_source}{}\label{_font_char_8hpp_source}\index{include/engine/scene/font/FontChar.hpp@{include/engine/scene/font/FontChar.hpp}}
+\mbox{\hyperlink{_font_char_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <SDL\_rect.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <SDL\_render.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_pos2_d_8hpp}{engine/types/positioning/Pos2D.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_anim_box2_d_8hpp}{engine/types/AnimBox2D.hpp}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{struct\ }FontChar\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ gch::vector<SDL\_FPoint>\ points;}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ w,\ h,\ s;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ to\_vertex(gch::vector<SDL\_Vertex>\&\ buffer,\ Pos2D\&\ pos,\ SDL\_Color\&\ color,\ \textcolor{keywordtype}{float}\&\ scale)\ \{}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_Vertex\ topleft\ =\ \{\ \{pos.x\ +\ 0.f,\ pos.y\ +\ 0.f\},\ color,\ points[0]\};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_Vertex\ topright\ =\ \{\{pos.x\ +\ w\ *\ scale,\ pos.y\ +\ 0.f\},\ color,\ points[1]\};}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_Vertex\ bottomleft\ =\ \{\ \{pos.x\ +\ 0.f,\ pos.y\ +\ h\ *\ scale\},\ color,\ points[2]\};}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_Vertex\ bottomright\ =\ \{\{pos.x\ +\ w\ *\ scale,\ pos.y\ +\ h\ *\ scale\},\ color,\ points[3]\};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ buffer.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(topleft);}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ buffer.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(bottomleft);}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ buffer.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(bottomright);}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ buffer.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(topleft);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ buffer.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(topright);}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ buffer.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(bottomright);}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ FontChar()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ FontChar(\textcolor{keyword}{const}\ AnimBox2D\&\ quad,\ \textcolor{keyword}{const}\ IMG\_Info\&\ img,\ \textcolor{keywordtype}{short}\ spacing\ =\ 0)\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ points\ =\ quad.to\_vert\_points(img.w,\ img.h);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ s\ =\ spacing;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ w\ =\ quad.w;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ h\ =\ quad.h;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ geng::str\_view\&\ to\_fstring(geng::str\_view\&\ buffer)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ points.\mbox{\hyperlink{classgch_1_1vector_a404803bd4bd0b495fd177fbd44a284de}{size}}();\ ++i)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buffer\ <<\ \textcolor{charliteral}{'('}\ <<\ points[i].x\ <<\ \textcolor{stringliteral}{"{},\ "{}}\ <<\ points[i].y\ <<\ \textcolor{charliteral}{')'};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ +\ 1\ <\ points.\mbox{\hyperlink{classgch_1_1vector_a404803bd4bd0b495fd177fbd44a284de}{size}}())\ buffer\ <<\ \textcolor{stringliteral}{"{},\ "{}};}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ buffer\ <<\ \textcolor{stringliteral}{"{}]\ \}"{}};}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \};}
+\DoxyCodeLine{00054\ \}}
+
+\end{DoxyCode}

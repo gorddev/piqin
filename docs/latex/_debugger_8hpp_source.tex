@@ -1,0 +1,39 @@
+\doxysection{Debugger.\+hpp}
+\hypertarget{_debugger_8hpp_source}{}\label{_debugger_8hpp_source}\index{include/engine/debug/Debugger.hpp@{include/engine/debug/Debugger.hpp}}
+\mbox{\hyperlink{_debugger_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng_1_1debug}{geng::debug}}\ \{}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1debug_1_1_debugger}{Debugger}}\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ make\ the\ debug\ boolean\ easily\ togglable.}}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1debug_1_1_debugger_ab32d2e438a3e343bc0db8e95c86ae46d}{debug\_mode}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ hitboxes\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ object\_info\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ grid\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ******************}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Boilerplate\ code}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ******************}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1debug_1_1_debugger_aee6457cd39130906ae6c7dbb8cf60c01}{is\_debug}}()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgeng_1_1debug_1_1_debugger_ab32d2e438a3e343bc0db8e95c86ae46d}{debug\_mode}};\}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ hitboxes\ <><><>}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1debug_1_1_debugger_ab79cf531055b316375ff1115e3942778}{enable\_hitboxes}}()\ \{\ hitboxes\ =\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1debug_1_1_debugger_a7547c7b32ffa644b857da58f9e6bc38a}{disable\_hitboxes}}()\ \{\ hitboxes\ =\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1debug_1_1_debugger_acb48adf6e25639f6b89e4b46ba37cbb3}{toggle\_hitboxes}}()\ \{\ hitboxes\ =\ !hitboxes;\ \}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1debug_1_1_debugger_abd37409b9c2e2699c17c5d7149975e4f}{is\_hitboxes}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ hitboxes\ \&\&\ \mbox{\hyperlink{classgeng_1_1debug_1_1_debugger_ab32d2e438a3e343bc0db8e95c86ae46d}{debug\_mode}};\ \}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ <><><>\ grid\ <><><>}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ enables\ the\ grid}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1debug_1_1_debugger_a4a7bc86ca400f6f335153e4637df59a9}{enable\_grid}}()\ \{\ grid\ =\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1debug_1_1_debugger_a20d35897d90413b34274b916d6726ae1}{disable\_grid}}()\ \{\ grid\ =\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1debug_1_1_debugger_afde4f61e6c04745468c5898b75859b5c}{toggle\_grid}}()\ \{\ grid\ =\ !grid;\ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1debug_1_1_debugger_afc923fff946381072394e06190335369}{is\_grid}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ grid\ \&\&\ \mbox{\hyperlink{classgeng_1_1debug_1_1_debugger_ab32d2e438a3e343bc0db8e95c86ae46d}{debug\_mode}};\ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \};}
+\DoxyCodeLine{00047\ \}}
+
+\end{DoxyCode}

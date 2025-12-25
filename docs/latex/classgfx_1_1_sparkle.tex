@@ -1,0 +1,63 @@
+\doxysection{gfx\+::Sparkle Class Reference}
+\hypertarget{classgfx_1_1_sparkle}{}\label{classgfx_1_1_sparkle}\index{gfx::Sparkle@{gfx::Sparkle}}
+
+
+{\ttfamily \#include $<$Sparkle.\+hpp$>$}
+
+Inheritance diagram for gfx\+::Sparkle\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgfx_1_1_sparkle}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgfx_1_1_sparkle_a0f207e1ad5b8ed5ffc24dbfbfc5a4666}{Sparkle}} (\mbox{\hyperlink{structgeng_1_1_f_pos2_d}{geng\+::\+FPos2D}} pos, float size, float speed, float duration, float frequency, SDL\+\_\+\+Color Tint=\{0, 0, 0, 30\})
+\item 
+\mbox{\hyperlink{classgfx_1_1_sparkle_a17676ec639028c91ff4b4fc50bf1afdf}{Sparkle}} (Gear \texorpdfstring{$\ast$}{*}o, float size, float speed, float duration, float period, SDL\+\_\+\+Color Tint=\{0, 0, 0, 30\})
+\item 
+bool \mbox{\hyperlink{classgfx_1_1_sparkle_ab208f2f90555b95d83ec9da840162294}{update}} (\mbox{\hyperlink{classgeng_1_1_layer_state}{geng\+::\+Layer\+State}} \&time) override
+\item 
+void \mbox{\hyperlink{classgfx_1_1_sparkle_a97ee37c4ca957462684187174617a648}{to\+\_\+vertex}} (geng\+::\+Render\+Buffer \&buffer) override
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classgfx_1_1_sparkle_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classgfx_1_1_sparkle_a0f207e1ad5b8ed5ffc24dbfbfc5a4666}\index{gfx::Sparkle@{gfx::Sparkle}!Sparkle@{Sparkle}}
+\index{Sparkle@{Sparkle}!gfx::Sparkle@{gfx::Sparkle}}
+\doxysubsubsection{\texorpdfstring{Sparkle()}{Sparkle()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classgfx_1_1_sparkle_a0f207e1ad5b8ed5ffc24dbfbfc5a4666} 
+Sparkle\+::\+Sparkle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgeng_1_1_f_pos2_d}{geng\+::\+FPos2D}}}]{pos}{, }\item[{float}]{size}{, }\item[{float}]{speed}{, }\item[{float}]{duration}{, }\item[{float}]{frequency}{, }\item[{SDL\+\_\+\+Color}]{Tint}{ = {\ttfamily \{0,0,0,30\}}}\end{DoxyParamCaption})}
+
+\Hypertarget{classgfx_1_1_sparkle_a17676ec639028c91ff4b4fc50bf1afdf}\index{gfx::Sparkle@{gfx::Sparkle}!Sparkle@{Sparkle}}
+\index{Sparkle@{Sparkle}!gfx::Sparkle@{gfx::Sparkle}}
+\doxysubsubsection{\texorpdfstring{Sparkle()}{Sparkle()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classgfx_1_1_sparkle_a17676ec639028c91ff4b4fc50bf1afdf} 
+Sparkle\+::\+Sparkle (\begin{DoxyParamCaption}\item[{Gear \texorpdfstring{$\ast$}{*}}]{o}{, }\item[{float}]{size}{, }\item[{float}]{speed}{, }\item[{float}]{duration}{, }\item[{float}]{period}{, }\item[{SDL\+\_\+\+Color}]{Tint}{ = {\ttfamily \{0,0,0,30\}}}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classgfx_1_1_sparkle_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgfx_1_1_sparkle_a97ee37c4ca957462684187174617a648}\index{gfx::Sparkle@{gfx::Sparkle}!to\_vertex@{to\_vertex}}
+\index{to\_vertex@{to\_vertex}!gfx::Sparkle@{gfx::Sparkle}}
+\doxysubsubsection{\texorpdfstring{to\_vertex()}{to\_vertex()}}
+{\footnotesize\ttfamily \label{classgfx_1_1_sparkle_a97ee37c4ca957462684187174617a648} 
+void Sparkle\+::to\+\_\+vertex (\begin{DoxyParamCaption}\item[{geng\+::\+Render\+Buffer \&}]{buffer}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+\Hypertarget{classgfx_1_1_sparkle_ab208f2f90555b95d83ec9da840162294}\index{gfx::Sparkle@{gfx::Sparkle}!update@{update}}
+\index{update@{update}!gfx::Sparkle@{gfx::Sparkle}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classgfx_1_1_sparkle_ab208f2f90555b95d83ec9da840162294} 
+bool Sparkle\+::update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgeng_1_1_layer_state}{geng\+::\+Layer\+State}} \&}]{time}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/scene/particles/particle-\/types/\mbox{\hyperlink{_sparkle_8hpp}{Sparkle.\+hpp}}\item 
+src/engine/scene/particles/particle-\/types/\mbox{\hyperlink{_sparkle_8cpp}{Sparkle.\+cpp}}\end{DoxyCompactItemize}

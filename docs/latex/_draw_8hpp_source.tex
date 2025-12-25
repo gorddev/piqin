@@ -1,0 +1,54 @@
+\doxysection{Draw.\+hpp}
+\hypertarget{_draw_8hpp_source}{}\label{_draw_8hpp_source}\index{include/game/blackjack/bj-\/objects/Draw.hpp@{include/game/blackjack/bj-\/objects/Draw.hpp}}
+\mbox{\hyperlink{_draw_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{include_2game_2blackjack_2cards_2_card_8hpp}{game/blackjack/cards/Card.hpp}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceblackjack}{blackjack}}\ \{}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classblackjack_1_1_draw_a4ac45a729cc3364a353b4bcf78e81485}{Draw}}\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Holds\ all\ the\ cards\ in\ our\ hand}}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ std::vector<Card*>\ draw;}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lets\ us\ keep\ track\ of\ positions\ we\ excavate}}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ std::vector<short>\ removals;}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Position\ of\ the\ draw}}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ geng::Vertex\ pos;}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Only\ one\ constructor.\ We\ specify\ a\ position.}}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classblackjack_1_1_draw_a4ac45a729cc3364a353b4bcf78e81485}{Draw}}(geng::Vertex\ pos);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gets\ the\ number\ of\ cards\ in\ the\ current\ draw}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classblackjack_1_1_draw_ab628bffb2bd8fd9d8cd0d3151445778b}{get\_num\_cards}}();}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Adds\ a\ card\ to\ the\ deal\ \&\ gives\ it\ a\ target\ path.}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblackjack_1_1_draw_a2145bbb6d8742500167b69a5c8a05fb3}{add\_card}}(\mbox{\hyperlink{classblackjack_1_1_card}{Card}}*\ card,\ \textcolor{keywordtype}{bool}\ flipped\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gets\ the\ score\ of\ the\ curent\ deal.\ Needs\ the\ target\ to\ work.}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classblackjack_1_1_draw_a4a2ff0fa7ee61533fbbfb93c65842770}{get\_score}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Returns\ if\ the\ card\ will\ bust}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classblackjack_1_1_draw_ac9d5e42384e546b13a5a24a41455a885}{will\_bust}}(\mbox{\hyperlink{classblackjack_1_1_card}{Card}}*\ c);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pops\ cards\ off\ the\ Card\ draws}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classblackjack_1_1_card}{Card}}*\ \mbox{\hyperlink{classblackjack_1_1_draw_aea5a4c6cd0af5ffb5414d6290ab7ef21}{pop\_card}}(\textcolor{keywordtype}{int}\ cardNum\ =\ -\/1);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ std::vector<Card*>\ \mbox{\hyperlink{classblackjack_1_1_draw_a5604691ed4965b5855cd3e3e9e86d8b4}{pop\_cards}}();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gathers\ all\ the\ actors\ in\ the\ draw}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ std::vector<Card*>\&\ \mbox{\hyperlink{classblackjack_1_1_draw_a3953e879f0c4bbe78678197f01a9e80f}{gather\_objects}}();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ geng::Vertex\ \mbox{\hyperlink{classblackjack_1_1_draw_a3336fac56f1ce863b91a04467b0570b5}{get\_pos}}();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classblackjack_1_1_draw_aa425463689a30153988dd9ae0c6ef566}{get\_index}}(\mbox{\hyperlink{classblackjack_1_1_card}{Card}}\ *c);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblackjack_1_1_draw_a046293d9b9d9b6816fe4c40809b57a93}{print\_ptrs}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Utility\ functions}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classblackjack_1_1_draw_a88e86cda18a8ef24c6a26c213cabaa0e}{size}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classblackjack_1_1_draw_a67254aa464120fa4ca085ca99c280bbe}{empty}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classblackjack_1_1_draw_af2f0f6bbdaded22fd2dfa9c100e81e8a}{set\_pos}}(geng::Vertex\ v)\ ;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classblackjack_1_1_card}{Card}}*\ \mbox{\hyperlink{classblackjack_1_1_draw_a8b74620e86868f3c465b1855c1fb405c}{operator[]}}(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00047\ \ \ \ \ \};}
+\DoxyCodeLine{00048\ \}}
+
+\end{DoxyCode}

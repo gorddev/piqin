@@ -1,0 +1,141 @@
+\doxysection{gutils Namespace Reference}
+\hypertarget{namespacegutils}{}\label{namespacegutils}\index{gutils@{gutils}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classgutils_1_1_i_d_stack}{IDStack}}
+\item 
+struct \mbox{\hyperlink{structgutils_1_1_sparse_vector}{Sparse\+Vector}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+signed char \mbox{\hyperlink{namespacegutils_ab0436fb0e84184c00f0910482f12ad13}{sgn}} (long double)
+\item 
+bool \mbox{\hyperlink{namespacegutils_aef61207fedf92b0b21188b992e80597e}{contained\+\_\+within}} (SDL\+\_\+\+Point point, geng\+::\+Transform2D \&t)
+\begin{DoxyCompactList}\small\item\em Returns true if the point is within the transform. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacegutils_a973bba1457f302d246ef5a7e3c096d6a}{adjust\+\_\+to\+\_\+relative\+\_\+coords}} (SDL\+\_\+\+Point \&point, \mbox{\hyperlink{classgeng_1_1_engine_context}{geng\+::\+Engine\+Context}} \&world)
+\begin{DoxyCompactList}\small\item\em Moves the cursor into the frame of the actual scene considering borders. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacegutils_a7cd0c891b0f6fdf7236c89097b17f7b6}{swept\+\_\+aabb}} (const geng\+::\+Box2D \&moving, const geng\+::\+Box2D \&target, const \mbox{\hyperlink{structgeng_1_1_f_pos2_d}{geng\+::\+FPos2D}} \&delta, float \&toi, \mbox{\hyperlink{structgeng_1_1_f_pos2_d}{geng\+::\+FPos2D}} \&normal)
+\begin{DoxyCompactList}\small\item\em Uses the sweep method to detect collisions. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacegutils_ad435add84e43d0b4c1a15cc5ce55ae23}{cstr\+\_\+to\+\_\+float}} (const char \texorpdfstring{$\ast$}{*}str, float \&out)
+\begin{DoxyCompactList}\small\item\em Converts a cstr to a float. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacegutils_ad80ae555d10766067cb748edef3f4b0a}{cstr\+\_\+to\+\_\+int}} (const char \texorpdfstring{$\ast$}{*}str, int \&out)
+\begin{DoxyCompactList}\small\item\em Converts a cstr\+\_\+to an integer. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacegutils_a99a13d4f2bd0ca6f36fdcb8be2c270c1}{is\+\_\+float}} (const char \texorpdfstring{$\ast$}{*}str)
+\begin{DoxyCompactList}\small\item\em Checks if an input is a float. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacegutils_a6793e33ba13f4496e3635344419fb0dd}{is\+\_\+int}} (const char \texorpdfstring{$\ast$}{*}str)
+\begin{DoxyCompactList}\small\item\em Checks if an input is an integer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr float \mbox{\hyperlink{namespacegutils_ab11b5ffdeeec262804727df1952798ff}{pi}} = 3.\+14159265358
+\item 
+constexpr float \mbox{\hyperlink{namespacegutils_a882a707baf2870ee6e1df62ab0e8fc17}{degrees\+To\+Radians}} = (\mbox{\hyperlink{namespacegutils_ab11b5ffdeeec262804727df1952798ff}{pi}} / 180.\+0f)
+\item 
+constexpr float \mbox{\hyperlink{namespacegutils_aafea8528aaff5af940a96786259f2b36}{roottwo}} = 1.\+4142135624
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{namespacegutils_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacegutils_a973bba1457f302d246ef5a7e3c096d6a}\index{gutils@{gutils}!adjust\_to\_relative\_coords@{adjust\_to\_relative\_coords}}
+\index{adjust\_to\_relative\_coords@{adjust\_to\_relative\_coords}!gutils@{gutils}}
+\doxysubsubsection{\texorpdfstring{adjust\_to\_relative\_coords()}{adjust\_to\_relative\_coords()}}
+{\footnotesize\ttfamily \label{namespacegutils_a973bba1457f302d246ef5a7e3c096d6a} 
+void gutils\+::adjust\+\_\+to\+\_\+relative\+\_\+coords (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Point \&}]{point}{, }\item[{\mbox{\hyperlink{classgeng_1_1_engine_context}{geng\+::\+Engine\+Context}} \&}]{world}{}\end{DoxyParamCaption})}
+
+
+
+Moves the cursor into the frame of the actual scene considering borders. 
+
+\Hypertarget{namespacegutils_aef61207fedf92b0b21188b992e80597e}\index{gutils@{gutils}!contained\_within@{contained\_within}}
+\index{contained\_within@{contained\_within}!gutils@{gutils}}
+\doxysubsubsection{\texorpdfstring{contained\_within()}{contained\_within()}}
+{\footnotesize\ttfamily \label{namespacegutils_aef61207fedf92b0b21188b992e80597e} 
+bool gutils\+::contained\+\_\+within (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Point}]{point}{, }\item[{geng\+::\+Transform2D \&}]{t}{}\end{DoxyParamCaption})}
+
+
+
+Returns true if the point is within the transform. 
+
+\Hypertarget{namespacegutils_ad435add84e43d0b4c1a15cc5ce55ae23}\index{gutils@{gutils}!cstr\_to\_float@{cstr\_to\_float}}
+\index{cstr\_to\_float@{cstr\_to\_float}!gutils@{gutils}}
+\doxysubsubsection{\texorpdfstring{cstr\_to\_float()}{cstr\_to\_float()}}
+{\footnotesize\ttfamily \label{namespacegutils_ad435add84e43d0b4c1a15cc5ce55ae23} 
+bool gutils\+::cstr\+\_\+to\+\_\+float (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{str}{, }\item[{float \&}]{out}{}\end{DoxyParamCaption})}
+
+
+
+Converts a cstr to a float. 
+
+\Hypertarget{namespacegutils_ad80ae555d10766067cb748edef3f4b0a}\index{gutils@{gutils}!cstr\_to\_int@{cstr\_to\_int}}
+\index{cstr\_to\_int@{cstr\_to\_int}!gutils@{gutils}}
+\doxysubsubsection{\texorpdfstring{cstr\_to\_int()}{cstr\_to\_int()}}
+{\footnotesize\ttfamily \label{namespacegutils_ad80ae555d10766067cb748edef3f4b0a} 
+bool gutils\+::cstr\+\_\+to\+\_\+int (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{str}{, }\item[{int \&}]{out}{}\end{DoxyParamCaption})}
+
+
+
+Converts a cstr\+\_\+to an integer. 
+
+\Hypertarget{namespacegutils_a99a13d4f2bd0ca6f36fdcb8be2c270c1}\index{gutils@{gutils}!is\_float@{is\_float}}
+\index{is\_float@{is\_float}!gutils@{gutils}}
+\doxysubsubsection{\texorpdfstring{is\_float()}{is\_float()}}
+{\footnotesize\ttfamily \label{namespacegutils_a99a13d4f2bd0ca6f36fdcb8be2c270c1} 
+bool gutils\+::is\+\_\+float (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{str}{}\end{DoxyParamCaption})}
+
+
+
+Checks if an input is a float. 
+
+\Hypertarget{namespacegutils_a6793e33ba13f4496e3635344419fb0dd}\index{gutils@{gutils}!is\_int@{is\_int}}
+\index{is\_int@{is\_int}!gutils@{gutils}}
+\doxysubsubsection{\texorpdfstring{is\_int()}{is\_int()}}
+{\footnotesize\ttfamily \label{namespacegutils_a6793e33ba13f4496e3635344419fb0dd} 
+bool gutils\+::is\+\_\+int (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{str}{}\end{DoxyParamCaption})}
+
+
+
+Checks if an input is an integer. 
+
+\Hypertarget{namespacegutils_ab0436fb0e84184c00f0910482f12ad13}\index{gutils@{gutils}!sgn@{sgn}}
+\index{sgn@{sgn}!gutils@{gutils}}
+\doxysubsubsection{\texorpdfstring{sgn()}{sgn()}}
+{\footnotesize\ttfamily \label{namespacegutils_ab0436fb0e84184c00f0910482f12ad13} 
+signed char gutils\+::sgn (\begin{DoxyParamCaption}\item[{long double}]{d}{}\end{DoxyParamCaption})}
+
+\Hypertarget{namespacegutils_a7cd0c891b0f6fdf7236c89097b17f7b6}\index{gutils@{gutils}!swept\_aabb@{swept\_aabb}}
+\index{swept\_aabb@{swept\_aabb}!gutils@{gutils}}
+\doxysubsubsection{\texorpdfstring{swept\_aabb()}{swept\_aabb()}}
+{\footnotesize\ttfamily \label{namespacegutils_a7cd0c891b0f6fdf7236c89097b17f7b6} 
+bool gutils\+::swept\+\_\+aabb (\begin{DoxyParamCaption}\item[{const geng\+::\+Box2D \&}]{moving}{, }\item[{const geng\+::\+Box2D \&}]{target}{, }\item[{const \mbox{\hyperlink{structgeng_1_1_f_pos2_d}{geng\+::\+FPos2D}} \&}]{delta}{, }\item[{float \&}]{toi}{, }\item[{\mbox{\hyperlink{structgeng_1_1_f_pos2_d}{geng\+::\+FPos2D}} \&}]{normal}{}\end{DoxyParamCaption})}
+
+
+
+Uses the sweep method to detect collisions. 
+
+
+
+\label{doc-var-members}
+\Hypertarget{namespacegutils_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacegutils_a882a707baf2870ee6e1df62ab0e8fc17}\index{gutils@{gutils}!degreesToRadians@{degreesToRadians}}
+\index{degreesToRadians@{degreesToRadians}!gutils@{gutils}}
+\doxysubsubsection{\texorpdfstring{degreesToRadians}{degreesToRadians}}
+{\footnotesize\ttfamily \label{namespacegutils_a882a707baf2870ee6e1df62ab0e8fc17} 
+float gutils\+::degrees\+To\+Radians = (\mbox{\hyperlink{namespacegutils_ab11b5ffdeeec262804727df1952798ff}{pi}} / 180.\+0f)\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+\Hypertarget{namespacegutils_ab11b5ffdeeec262804727df1952798ff}\index{gutils@{gutils}!pi@{pi}}
+\index{pi@{pi}!gutils@{gutils}}
+\doxysubsubsection{\texorpdfstring{pi}{pi}}
+{\footnotesize\ttfamily \label{namespacegutils_ab11b5ffdeeec262804727df1952798ff} 
+float gutils\+::pi = 3.\+14159265358\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+\Hypertarget{namespacegutils_aafea8528aaff5af940a96786259f2b36}\index{gutils@{gutils}!roottwo@{roottwo}}
+\index{roottwo@{roottwo}!gutils@{gutils}}
+\doxysubsubsection{\texorpdfstring{roottwo}{roottwo}}
+{\footnotesize\ttfamily \label{namespacegutils_aafea8528aaff5af940a96786259f2b36} 
+float gutils\+::roottwo = 1.\+4142135624\hspace{0.3cm}{\ttfamily [constexpr]}}
+

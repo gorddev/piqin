@@ -1,0 +1,83 @@
+\doxysection{Syntax\+Command.\+hpp}
+\hypertarget{_syntax_command_8hpp_source}{}\label{_syntax_command_8hpp_source}\index{include/engine/scene/banners/text/syntax/SyntaxCommand.hpp@{include/engine/scene/banners/text/syntax/SyntaxCommand.hpp}}
+\mbox{\hyperlink{_syntax_command_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <SDL\_pixels.h>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_syntax_info_8hpp}{SyntaxInfo.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_log_source_8hpp}{engine/debug/logging/LogSource.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{hstring_8hpp}{engine/types/strings/hstring/hstring.hpp}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ syntx\_verif\_blank(gch::vector<str\_subview>,\ \mbox{\hyperlink{structgeng_1_1_syntax_info}{SyntaxInfo}}\&\ out)\ \{\ \}}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ syntx\_update\_blank(\mbox{\hyperlink{structgeng_1_1_syntax_info}{SyntaxInfo}}\&\ out)\ \{\ \}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{using\ }SyntaxVerifier\ =\ void\ (*)(gch::vector<str\_subview>,\ \mbox{\hyperlink{structgeng_1_1_syntax_info}{SyntaxInfo}}\&\ out);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{class\ }SyntaxCommand\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ hstring\ key;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ SyntaxVerifier\ verifier\ =\ syntx\_verif\_blank;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ SyntaxCommand(hstring\ key,\ SyntaxVerifier\ fn)}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ :\ key(key),\ verifier(fn)\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (key.empty())}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglog_acfa9573731c427f615347d8fdaea6142}{glog::err}}.src(\textcolor{stringliteral}{"{}SyntaxCommand::SyntaxCommand"{}})\ <<\ \textcolor{stringliteral}{"{}hstring\ key\ cannot\ be\ empty\ for\ SyntaxCommand."{}}\ <<\ \mbox{\hyperlink{namespaceglog_ac671f2284827317a1a8c390fde7ea46e}{glog::endlog}};}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (key[key.length()-\/1]\ ==\ \textcolor{charliteral}{'@'})}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglog_acfa9573731c427f615347d8fdaea6142}{glog::err}}.src(\textcolor{stringliteral}{"{}SyntaxCommand::SyntaxCommand"{}})\ <<\ \textcolor{stringliteral}{"{}hstring\ key\ cannot\ end\ in\ '@'"{}};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (key[0]\ ==\ \textcolor{charliteral}{'@'})}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglog_acfa9573731c427f615347d8fdaea6142}{glog::err}}.src(\textcolor{stringliteral}{"{}SyntaxCommand::SyntaxCommand"{}})\ <<\ \textcolor{stringliteral}{"{}hstring\ key\ cannot\ start\ in\ '@'"{}};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ number\ of\ characters\ to\ move\ forward\ to\ finish\ the\ command.\ 0\ if\ the\ command\ fails\ to\ execute.}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ match(str\_view\ str,\ \textcolor{keywordtype}{int}\ pos,\ SyntaxInfo\&\ out)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Keeps\ track\ of\ internal\ index\ and\ string\ index}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 0,\ i,\ wildcardpos\ =\ 0;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ keeps\ track\ of\ whether\ we're\ in\ wildcard\ mode\ or\ not}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ wildcard\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ keeps\ track\ of\ the\ arguments\ the\ custom\ function\ will\ recieve.}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ gch::vector<str\_subview>\ arguments;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ pos;\ count\ <\ key.length()\ \&\&\ i\ <\ str.length();\ i++)\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ we're\ not\ in\ wildcard\ mode.}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!wildcard)\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (key[count]\ ==\ \textcolor{charliteral}{'@'})\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ wildcard\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ wildcardpos\ =\ i;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count++;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (key[count++]\ !=\ str[i])\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ we're\ in\ wildcard\ mode}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ we\ match\ the\ next\ character,\ end\ wildcard\ mode.}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ <\ key.length()\ \&\&\ key[count]\ ==\ str[i])\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ wildcard\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ arguments.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(str.subview(wildcardpos,\ i\ -\/\ wildcardpos));}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count++;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ ==\ key.length())\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ verifier(arguments,\ out);}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ i\ -\/\ pos;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{using\ }SyntaxPattern\ =\ void\ (*)(\mbox{\hyperlink{classgeng_1_1str__view}{str\_view}},\ \textcolor{keywordtype}{int}\ pos,\ \mbox{\hyperlink{structgeng_1_1_syntax_info}{SyntaxInfo}}\&\ out);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{using\ }SyntaxUpdate\ =\ void\ (*)(\mbox{\hyperlink{structgeng_1_1_syntax_info}{SyntaxInfo}}\&\ out);}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{struct\ }SyntaxHighlight\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ hstring\ key;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ SyntaxUpdate\ update\ =\ syntx\_update\_blank;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ SyntaxHighlight(hstring\ key,\ SyntaxUpdate\ update)\ :\ key(key),\ update(update)\ \{\}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \};}
+\DoxyCodeLine{00090\ \}}
+
+\end{DoxyCode}

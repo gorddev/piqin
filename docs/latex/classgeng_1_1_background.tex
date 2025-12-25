@@ -1,0 +1,84 @@
+\doxysection{geng\+::Background Class Reference}
+\hypertarget{classgeng_1_1_background}{}\label{classgeng_1_1_background}\index{geng::Background@{geng::Background}}
+
+
+{\ttfamily \#include $<$Background.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classgeng_1_1_background_a77c25488e81c479296dd2f393b592ab9}{Background}} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, \mbox{\hyperlink{classgeng_1_1_engine_context}{Engine\+Context}} \&world)
+\item 
+\mbox{\hyperlink{classgeng_1_1_background_a36754df1deb720393217ade59da41557}{\texorpdfstring{$\sim$}{\string~}\+Background}} ()
+\item 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classgeng_1_1_background_abe5f0a7bc96598d331cc6fe2f3708201}{get\+\_\+texture}} () const
+\item 
+void \mbox{\hyperlink{classgeng_1_1_background_a3d60a7bb3b7b54f2fd410d226da13143}{update}} (int dt)
+\item 
+void \mbox{\hyperlink{classgeng_1_1_background_a1f3dd4f8c0f10a61376212d77308c848}{add\+Palette}} (const \mbox{\hyperlink{structgeng_1_1_background_palette}{Background\+Palette}} \&bp)
+\item 
+void \mbox{\hyperlink{classgeng_1_1_background_a85dd3eb3e5b07c3c8c55a97ac37db13a}{set\+Palette}} (int new\+Palette)
+\item 
+void \mbox{\hyperlink{classgeng_1_1_background_a41e588ff0a07335cefabeae2a7166e60}{create\+\_\+height\+Map}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+To be heavily altered/changed. Currently the \doxylink{classgeng_1_1_background}{Background} edits every pixel in the background, which is very very inefficient. 
+
+\label{doc-constructors}
+\Hypertarget{classgeng_1_1_background_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classgeng_1_1_background_a77c25488e81c479296dd2f393b592ab9}\index{geng::Background@{geng::Background}!Background@{Background}}
+\index{Background@{Background}!geng::Background@{geng::Background}}
+\doxysubsubsection{\texorpdfstring{Background()}{Background()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_background_a77c25488e81c479296dd2f393b592ab9} 
+Background\+::\+Background (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}}]{renderer}{, }\item[{\mbox{\hyperlink{classgeng_1_1_engine_context}{Engine\+Context}} \&}]{world}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+\Hypertarget{classgeng_1_1_background_a36754df1deb720393217ade59da41557}\index{geng::Background@{geng::Background}!````~Background@{\texorpdfstring{$\sim$}{\string~}Background}}
+\index{````~Background@{\texorpdfstring{$\sim$}{\string~}Background}!geng::Background@{geng::Background}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Background()}{\string~Background()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_background_a36754df1deb720393217ade59da41557} 
+Background\+::\texorpdfstring{$\sim$}{\string~}\+Background (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classgeng_1_1_background_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classgeng_1_1_background_a1f3dd4f8c0f10a61376212d77308c848}\index{geng::Background@{geng::Background}!addPalette@{addPalette}}
+\index{addPalette@{addPalette}!geng::Background@{geng::Background}}
+\doxysubsubsection{\texorpdfstring{addPalette()}{addPalette()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_background_a1f3dd4f8c0f10a61376212d77308c848} 
+void Background\+::add\+Palette (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structgeng_1_1_background_palette}{Background\+Palette}} \&}]{bp}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classgeng_1_1_background_a41e588ff0a07335cefabeae2a7166e60}\index{geng::Background@{geng::Background}!create\_heightMap@{create\_heightMap}}
+\index{create\_heightMap@{create\_heightMap}!geng::Background@{geng::Background}}
+\doxysubsubsection{\texorpdfstring{create\_heightMap()}{create\_heightMap()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_background_a41e588ff0a07335cefabeae2a7166e60} 
+void Background\+::create\+\_\+height\+Map (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classgeng_1_1_background_abe5f0a7bc96598d331cc6fe2f3708201}\index{geng::Background@{geng::Background}!get\_texture@{get\_texture}}
+\index{get\_texture@{get\_texture}!geng::Background@{geng::Background}}
+\doxysubsubsection{\texorpdfstring{get\_texture()}{get\_texture()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_background_abe5f0a7bc96598d331cc6fe2f3708201} 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} Background\+::get\+\_\+texture (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{classgeng_1_1_background_a85dd3eb3e5b07c3c8c55a97ac37db13a}\index{geng::Background@{geng::Background}!setPalette@{setPalette}}
+\index{setPalette@{setPalette}!geng::Background@{geng::Background}}
+\doxysubsubsection{\texorpdfstring{setPalette()}{setPalette()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_background_a85dd3eb3e5b07c3c8c55a97ac37db13a} 
+void Background\+::set\+Palette (\begin{DoxyParamCaption}\item[{int}]{new\+Palette}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classgeng_1_1_background_a3d60a7bb3b7b54f2fd410d226da13143}\index{geng::Background@{geng::Background}!update@{update}}
+\index{update@{update}!geng::Background@{geng::Background}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classgeng_1_1_background_a3d60a7bb3b7b54f2fd410d226da13143} 
+void Background\+::update (\begin{DoxyParamCaption}\item[{int}]{dt}{}\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/engine/rendering/background/\mbox{\hyperlink{_background_8hpp}{Background.\+hpp}}\item 
+src/engine/render/\mbox{\hyperlink{_background_8cpp}{Background.\+cpp}}\end{DoxyCompactItemize}

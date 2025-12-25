@@ -1,0 +1,69 @@
+\doxysection{Console.\+hpp}
+\hypertarget{_console_8hpp_source}{}\label{_console_8hpp_source}\index{include/engine/debug/Console.hpp@{include/engine/debug/Console.hpp}}
+\mbox{\hyperlink{_console_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_input_router_8hpp}{engine/input/InputRouter.hpp}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_layer_8hpp}{engine/layers/Layer.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_text_8hpp}{engine/scene/banners/text/Text.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sysfont_8inl}{../defaults/sysfont.inl}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{fstring_8hpp}{../types/strings/fstring/fstring.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{default-debug-syntax-map_8hpp}{debug-\/utilities/default-\/debug-\/syntax-\/map.hpp}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng_1_1debug}{geng::debug}}\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1debug_1_1_console_af44ca9681bf77abb554a385227cf885c}{Console}}\ :\ \textcolor{keyword}{public}\ InputRouter\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_banner}{Banner}}\ \mbox{\hyperlink{classgeng_1_1debug_1_1_console_a5b19a86ec8574d3848308acac1b483f4}{topinfo}};}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_text}{Text<800>}}\ \mbox{\hyperlink{classgeng_1_1debug_1_1_console_afaabb3fdbf04183ef89f8c9b4273b7c6}{text}};}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ Gear*\ \mbox{\hyperlink{classgeng_1_1debug_1_1_console_aeed1e955bf31b0fc09acd36711615f5f}{selected}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classgeng_1_1debug_1_1_console_af44ca9681bf77abb554a385227cf885c}{Console}}(\mbox{\hyperlink{classgeng_1_1_input_router_init}{InputRouterInit}}\&\ init)}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ InputRouter(init),\ \mbox{\hyperlink{classgeng_1_1debug_1_1_console_afaabb3fdbf04183ef89f8c9b4273b7c6}{text}}(\textcolor{stringliteral}{"{}debug"{}},\ \mbox{\hyperlink{namespacegeng_a34aa823bebc59d1ba6a8d7b7b7e5f032}{sys\_font}},\ \&\mbox{\hyperlink{namespacegeng_1_1debug_aec114485bfe7fd3488fc8e281646ca75}{geng\_default\_debug\_syntax\_map}}),\ \mbox{\hyperlink{classgeng_1_1debug_1_1_console_a5b19a86ec8574d3848308acac1b483f4}{topinfo}}(\{10,0\},0,0)\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1debug_1_1_console_afaabb3fdbf04183ef89f8c9b4273b7c6}{text}}.\mbox{\hyperlink{classgeng_1_1_text_ade75b9f44937624880391c1361730592}{get\_fstr\_view}}()\ <<\ \textcolor{stringliteral}{"{}debug:\ "{}}\ <<\ core.debugger.is\_debug();}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1debug_1_1_console_a5b19a86ec8574d3848308acac1b483f4}{topinfo}}.\mbox{\hyperlink{classgeng_1_1_banner_a7450f9175f945279c5ce9a5c6f2719b7}{add\_widget}}(\&\mbox{\hyperlink{classgeng_1_1debug_1_1_console_afaabb3fdbf04183ef89f8c9b4273b7c6}{text}});}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1debug_1_1_console_a40b996ca0260a199dd8073f6dad2bada}{update}}(Layer*\&\ active\_layer)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1debug_1_1_console_afaabb3fdbf04183ef89f8c9b4273b7c6}{text}}.clear();}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1str__view}{geng::str\_view}}\ view\ =\ \mbox{\hyperlink{classgeng_1_1debug_1_1_console_afaabb3fdbf04183ef89f8c9b4273b7c6}{text}}.get\_fstr\_view();}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ view\ <<\ \textcolor{stringliteral}{"{}debug:\ "{}}\ <<\ core.debugger.is\_debug()\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)thitbox:\ "{}}\ <<\ core.debugger.is\_hitboxes()\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)tgrid:\ "{}}\ <<\ core.debugger.is\_grid()}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)tvisible:\ "{}}\ <<\ active\_layer-\/>scene.is\_visible()\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}active\_layer:\ [e]"{}}\ <<\ active\_layer-\/>get\_name().cstr()\ <<\ \textcolor{stringliteral}{"{}\ [n]("{}}\ <<\ active\_layer-\/>scene.get\_id()\ <<\ \textcolor{stringliteral}{"{})\string^c:white\string^\(\backslash\)n"{}}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}mouse\ selection:\ "{}}\ <<\ active\_layer-\/>input.mouse.target\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgeng_1_1debug_1_1_console_aeed1e955bf31b0fc09acd36711615f5f}{selected}}\ ==\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (active\_layer-\/>input.mouse.target\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ active\_layer-\/>input.mouse.target-\/>to\_fstring(view)\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ view\ <<\ \mbox{\hyperlink{classgeng_1_1debug_1_1_console_aeed1e955bf31b0fc09acd36711615f5f}{selected}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1debug_1_1_console_aeed1e955bf31b0fc09acd36711615f5f}{selected}}-\/>to\_fstring(view)\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1debug_1_1_console_a662d92e5c0676bd287e5e27190b8edf1}{to\_vertex}}(RenderBuffer\&\ buffer)\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (core.debugger.is\_debug())\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buffer.debug\_mode(\textcolor{keyword}{true});}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1debug_1_1_console_a5b19a86ec8574d3848308acac1b483f4}{topinfo}}.to\_vertex(buffer);}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buffer.debug\_mode(\textcolor{keyword}{false});}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1debug_1_1_console_a1ba0ef8f36564e425531f39f6abd9322}{get\_press}}(SDL\_Scancode\ key,\ Layer\ *\&active\_layer)\textcolor{keyword}{\ override\ }\{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (key\ ==\ SDL\_SCANCODE\_RETURN)\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classgeng_1_1debug_1_1_console_aeed1e955bf31b0fc09acd36711615f5f}{selected}}\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1debug_1_1_console_aeed1e955bf31b0fc09acd36711615f5f}{selected}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1debug_1_1_console_aeed1e955bf31b0fc09acd36711615f5f}{selected}}\ =\ active\_layer-\/>input.mouse.target;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \};}
+\DoxyCodeLine{00064\ \}}
+
+\end{DoxyCode}

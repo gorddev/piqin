@@ -1,0 +1,58 @@
+\doxysection{src/engine/scene/world/deserialization/\+World\+Loader.cpp File Reference}
+\hypertarget{_world_loader_8cpp}{}\label{_world_loader_8cpp}\index{src/engine/scene/world/deserialization/WorldLoader.cpp@{src/engine/scene/world/deserialization/WorldLoader.cpp}}
+{\ttfamily \#include "{}engine/scene/world/deserialization/\+World\+Loader.\+hpp"{}}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include "{}engine/debug/logging/\+Log\+Source.\+hpp"{}}\newline
+{\ttfamily \#include "{}engine/scene/world/\+Game\+World.\+hpp"{}}\newline
+{\ttfamily \#include "{}engine/scene/world/\+World\+Properties.\+hpp"{}}\newline
+{\ttfamily \#include "{}engine/utilities/\+Utilities.\+hpp"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T$>$ }\\void \mbox{\hyperlink{_world_loader_8cpp_ac2408dd4964c8bc581d02574c6b3c2cd}{write\+\_\+binary}} (std\+::ofstream \&out, const T \&val)
+\item 
+{\footnotesize template$<$typename T$>$ }\\T \mbox{\hyperlink{_world_loader_8cpp_ae75b0ebab4cf65d66fb7e20ee530d189}{read\+\_\+binary}} (std\+::ifstream \&in)
+\item 
+\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ char $>$ \mbox{\hyperlink{_world_loader_8cpp_a97be3a93b24acd40a869c754ed77d1fc}{read\+\_\+char\+\_\+vector}} (std\+::ifstream \&in)
+\item 
+\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ uint16\+\_\+t $>$ \mbox{\hyperlink{_world_loader_8cpp_a384d4d4ae2f3ef19f05cf5447616eeb4}{read\+\_\+uint16\+\_\+vector}} (std\+::ifstream \&in)
+\item 
+\mbox{\hyperlink{struct_t_property}{TProperty}} \mbox{\hyperlink{_world_loader_8cpp_a2143128861c49d5505ecd1e303c3ed35}{read\+\_\+property}} (std\+::ifstream \&in)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{_world_loader_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_world_loader_8cpp_ae75b0ebab4cf65d66fb7e20ee530d189}\index{WorldLoader.cpp@{WorldLoader.cpp}!read\_binary@{read\_binary}}
+\index{read\_binary@{read\_binary}!WorldLoader.cpp@{WorldLoader.cpp}}
+\doxysubsubsection{\texorpdfstring{read\_binary()}{read\_binary()}}
+{\footnotesize\ttfamily \label{_world_loader_8cpp_ae75b0ebab4cf65d66fb7e20ee530d189} 
+template$<$typename T$>$ \\
+T read\+\_\+binary (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{in}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_world_loader_8cpp_a97be3a93b24acd40a869c754ed77d1fc}\index{WorldLoader.cpp@{WorldLoader.cpp}!read\_char\_vector@{read\_char\_vector}}
+\index{read\_char\_vector@{read\_char\_vector}!WorldLoader.cpp@{WorldLoader.cpp}}
+\doxysubsubsection{\texorpdfstring{read\_char\_vector()}{read\_char\_vector()}}
+{\footnotesize\ttfamily \label{_world_loader_8cpp_a97be3a93b24acd40a869c754ed77d1fc} 
+\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ char $>$ read\+\_\+char\+\_\+vector (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{in}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_world_loader_8cpp_a2143128861c49d5505ecd1e303c3ed35}\index{WorldLoader.cpp@{WorldLoader.cpp}!read\_property@{read\_property}}
+\index{read\_property@{read\_property}!WorldLoader.cpp@{WorldLoader.cpp}}
+\doxysubsubsection{\texorpdfstring{read\_property()}{read\_property()}}
+{\footnotesize\ttfamily \label{_world_loader_8cpp_a2143128861c49d5505ecd1e303c3ed35} 
+\mbox{\hyperlink{struct_t_property}{TProperty}} read\+\_\+property (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{in}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_world_loader_8cpp_a384d4d4ae2f3ef19f05cf5447616eeb4}\index{WorldLoader.cpp@{WorldLoader.cpp}!read\_uint16\_vector@{read\_uint16\_vector}}
+\index{read\_uint16\_vector@{read\_uint16\_vector}!WorldLoader.cpp@{WorldLoader.cpp}}
+\doxysubsubsection{\texorpdfstring{read\_uint16\_vector()}{read\_uint16\_vector()}}
+{\footnotesize\ttfamily \label{_world_loader_8cpp_a384d4d4ae2f3ef19f05cf5447616eeb4} 
+\mbox{\hyperlink{classgch_1_1vector}{gch\+::vector}}$<$ uint16\+\_\+t $>$ read\+\_\+uint16\+\_\+vector (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{in}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_world_loader_8cpp_ac2408dd4964c8bc581d02574c6b3c2cd}\index{WorldLoader.cpp@{WorldLoader.cpp}!write\_binary@{write\_binary}}
+\index{write\_binary@{write\_binary}!WorldLoader.cpp@{WorldLoader.cpp}}
+\doxysubsubsection{\texorpdfstring{write\_binary()}{write\_binary()}}
+{\footnotesize\ttfamily \label{_world_loader_8cpp_ac2408dd4964c8bc581d02574c6b3c2cd} 
+template$<$typename T$>$ \\
+void write\+\_\+binary (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{out}{, }\item[{const T \&}]{val}{}\end{DoxyParamCaption})}
+

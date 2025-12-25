@@ -1,0 +1,51 @@
+\doxysection{Morph.\+hpp}
+\hypertarget{_morph_8hpp_source}{}\label{_morph_8hpp_source}\index{include/engine/scene/morphs/Morph.hpp@{include/engine/scene/morphs/Morph.hpp}}
+\mbox{\hyperlink{_morph_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_gear_8hpp}{engine/types/Gear.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_layer_state_8hpp}{engine/layers/LayerState.hpp}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1_morph_a716e15fe7d1545c4994135c8527833c9}{Morph}}\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ Gear*\ \mbox{\hyperlink{classgeng_1_1_morph_aaef3495a90add719259482e1b7a95391}{gear}}\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classgeng_1_1_morph_add07449b0e8ae5faebfcec470cc7d860}{initDuration}};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classgeng_1_1_morph_ae768351029783905fb40c02bc89a5284}{amplitude}}\ =\ 1;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1_morph_a92c6afece0a342588d9819b9662b9e99}{permanent}};}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id}\ =\ -\/1;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_morph_a716e15fe7d1545c4994135c8527833c9}{Morph}}()}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgeng_1_1_morph_add07449b0e8ae5faebfcec470cc7d860}{initDuration}}(0),\ \mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}(0),\ \mbox{\hyperlink{classgeng_1_1_morph_a92c6afece0a342588d9819b9662b9e99}{permanent}}(true)\ \{\}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classgeng_1_1_morph_a261304ca3bb9f3105007c8de0be3a10f}{Morph}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}})}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgeng_1_1_morph_add07449b0e8ae5faebfcec470cc7d860}{initDuration}}(\mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}),\ \mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}(\mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}),\ \mbox{\hyperlink{classgeng_1_1_morph_a92c6afece0a342588d9819b9662b9e99}{permanent}}(\mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}\ ==\ -\/1)\ \{\}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classgeng_1_1_morph_abb115bd43d9473256f803f273fdee13b}{Morph}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}},\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classgeng_1_1_morph_ae768351029783905fb40c02bc89a5284}{amplitude}})}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgeng_1_1_morph_add07449b0e8ae5faebfcec470cc7d860}{initDuration}}(\mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}),\ \mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}(\mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}),\ \mbox{\hyperlink{classgeng_1_1_morph_ae768351029783905fb40c02bc89a5284}{amplitude}}(\mbox{\hyperlink{classgeng_1_1_morph_ae768351029783905fb40c02bc89a5284}{amplitude}}),\ \mbox{\hyperlink{classgeng_1_1_morph_a92c6afece0a342588d9819b9662b9e99}{permanent}}(\mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}\ ==\ -\/1)\ \{\}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classgeng_1_1_morph_a84d6265ea49379456270647dabd54bed}{Morph}}(Gear*\ t)}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgeng_1_1_morph_aaef3495a90add719259482e1b7a95391}{gear}}(t),\ \mbox{\hyperlink{classgeng_1_1_morph_add07449b0e8ae5faebfcec470cc7d860}{initDuration}}(0),\ \mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}(0),\ \mbox{\hyperlink{classgeng_1_1_morph_a92c6afece0a342588d9819b9662b9e99}{permanent}}(true)\ \{\}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_morph_ae23eff053635ce39d2b27fde3b439759}{Morph}}(Gear*\ t,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}})}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgeng_1_1_morph_aaef3495a90add719259482e1b7a95391}{gear}}(t),\ \mbox{\hyperlink{classgeng_1_1_morph_add07449b0e8ae5faebfcec470cc7d860}{initDuration}}(\mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}),\ \mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}(\mbox{\hyperlink{classgeng_1_1_morph_add07449b0e8ae5faebfcec470cc7d860}{initDuration}}),\ \mbox{\hyperlink{classgeng_1_1_morph_a92c6afece0a342588d9819b9662b9e99}{permanent}}(\mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}\ ==\ -\/1)\ \{\}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_morph_a9adac7dd6610860afbebd15e1e5b59e7}{Morph}}(Gear*\ t,\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}},\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classgeng_1_1_morph_ae768351029783905fb40c02bc89a5284}{amplitude}})}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classgeng_1_1_morph_aaef3495a90add719259482e1b7a95391}{gear}}(t),\ \mbox{\hyperlink{classgeng_1_1_morph_add07449b0e8ae5faebfcec470cc7d860}{initDuration}}(\mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}),\ \mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}(\mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}),}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_morph_ae768351029783905fb40c02bc89a5284}{amplitude}}(\mbox{\hyperlink{classgeng_1_1_morph_ae768351029783905fb40c02bc89a5284}{amplitude}}),\ \mbox{\hyperlink{classgeng_1_1_morph_a92c6afece0a342588d9819b9662b9e99}{permanent}}(\mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}\ ==\ -\/1)\ \{\}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classgeng_1_1_morph_a8955ddaec537061aa83e2d886710089e}{\string~Morph}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1_morph_a09227482da74b711ffe0e4dc2d74c1da}{update}}(\mbox{\hyperlink{classgeng_1_1_layer_state}{LayerState}}\&\ time)\ =\ 0;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_morph_a1e7a0f4d5673bce731d52a0d8d9ff72e}{end}}()\ \{\ \mbox{\hyperlink{classgeng_1_1_morph_ab51da39c93da186fc8c4aa01887bf46e}{duration}}\ =\ 0;\ \mbox{\hyperlink{classgeng_1_1_morph_a92c6afece0a342588d9819b9662b9e99}{permanent}}\ =\ \textcolor{keyword}{false};\};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ...............\ //}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ use\ by\ the\ engine\ //}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ...............\ //}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_morph_a94b6aa3005d1835720ed3c9e0374fa67}{set\_gear}}(Gear*\ g)\ \{\ \mbox{\hyperlink{classgeng_1_1_morph_aaef3495a90add719259482e1b7a95391}{gear}}\ =\ g;\ \}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_morph_af07944f4c3da5e8dc50fc3c2c2ca07ed}{set\_id}}(\textcolor{keywordtype}{int}\ i)\ \{\ \textcolor{keywordtype}{id}\ =\ i;\ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classgeng_1_1_morph_a7018c0d92bf7d62c8cf1a394d9a1ac35}{get\_id}}\ ()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ id;\ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classgeng_1_1_morph_a018a672fa5eacf0eca4463933c020dfc}{get\_gear\_id}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgeng_1_1_morph_aaef3495a90add719259482e1b7a95391}{gear}}-\/>id;\ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ Gear*\ \mbox{\hyperlink{classgeng_1_1_morph_abd815ac8d119728c2f0dce06ebcb41ec}{get\_gear\_ptr}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgeng_1_1_morph_aaef3495a90add719259482e1b7a95391}{gear}};\ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1_morph_a12b77a68c5554090e7ecfbfc3cc02f7c}{is\_permanent}}\ ()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classgeng_1_1_morph_a92c6afece0a342588d9819b9662b9e99}{permanent}};\ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \};}
+\DoxyCodeLine{00087\ \}}
+
+\end{DoxyCode}

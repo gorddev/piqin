@@ -1,0 +1,64 @@
+\doxysection{World\+Manager.\+hpp}
+\hypertarget{_world_manager_8hpp_source}{}\label{_world_manager_8hpp_source}\index{include/engine/scene/world/WorldManager.hpp@{include/engine/scene/world/WorldManager.hpp}}
+\mbox{\hyperlink{_world_manager_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_game_world_8hpp}{GameWorld.hpp}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_world_loader_8hpp}{deserialization/WorldLoader.hpp}}"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_log_source_8hpp}{engine/debug/logging/LogSource.hpp}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1_world_manager_a61e0a1dca06ad02296b74929751e422b}{WorldManager}}\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_game_level}{GameLevel}}*\ current\_level\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_game_world}{GameWorld}}\ world;}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_tileset}{Tileset}}*\ tileset\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Camera\&\ cam;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classgeng_1_1_world_manager_a61e0a1dca06ad02296b74929751e422b}{WorldManager}}(\textcolor{keyword}{const}\ Camera\&\ cam)\ :\ world(),\ cam(cam)\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglog_aee5b7c6d10b7f7ad6196fc3f10bc4020}{glog::note}}\ <<\ \textcolor{stringliteral}{"{}WorldManager\ for\ random\ ass\ layer\ formed."{}}\ <<\ \mbox{\hyperlink{namespaceglog_ac671f2284827317a1a8c390fde7ea46e}{glog::endlog}};}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_world_manager_ac7c515fca38600f091fe4dc242f62286}{load\_world}}(\mbox{\hyperlink{classgeng_1_1hstring}{hstring}}\ filename,\ \mbox{\hyperlink{classgeng_1_1_tileset}{Tileset}}*\ t)\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglog_a90e5549371e5ca7b0e89077f2181b438}{glog::dev}}\ <<\ \textcolor{stringliteral}{"{}loading\ world?\(\backslash\)n"{}};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ world\ =\ \mbox{\hyperlink{classgeng_1_1_world_loader_a729e7fcc24683c5e8179be9fd2ebf975}{WorldLoader::read\_world}}(filename);}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ fstring<900>\ buffer;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ view\ =\ buffer.wrap();}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ world.to\_fstring(view);}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglog_a90e5549371e5ca7b0e89077f2181b438}{glog::dev}}\ <<\ buffer.cstr()\ <<\ \mbox{\hyperlink{namespaceglog_ac671f2284827317a1a8c390fde7ea46e}{glog::endlog}};}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ current\_level\ =\ world.get\_first\_level();}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ tileset\ =\ t;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_world_manager_abde2cfe084d8d2d59815e79a67e7447c}{render\_world}}(RenderBuffer\&\ buffer)\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (world.magic)\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_tile_buffer}{TileBuffer}}\ tile\_buffer(buffer,\ *tileset);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ world.render\_world(tile\_buffer,\ cam);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classgeng_1_1_world_manager_a1397c59779839952c959f67c87cefd35}{get\_texture\_id}}()\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!world.magic)}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tileset-\/>get\_texture\_id();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_game_level}{GameLevel}}*\ \mbox{\hyperlink{classgeng_1_1_world_manager_aa00bdedcada5fcda981e803373325b56}{get\_current\_level}}()\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ current\_level;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structgeng_1_1_game_world}{GameWorld}}\&\ \mbox{\hyperlink{classgeng_1_1_world_manager_a508b20f61e97cebcf5dc4149138b5957}{get\_world}}()\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ world;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{classgeng_1_1_world_manager_ad1808c614a0f75c5cdf48e0484896b92}{get\_tile\_size}}()\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!tileset)\ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tileset-\/>tile\_size();}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \};}
+\DoxyCodeLine{00060\ \}}
+
+\end{DoxyCode}

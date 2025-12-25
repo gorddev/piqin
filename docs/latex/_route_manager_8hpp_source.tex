@@ -1,0 +1,33 @@
+\doxysection{Route\+Manager.\+hpp}
+\hypertarget{_route_manager_8hpp_source}{}\label{_route_manager_8hpp_source}\index{include/engine/scene/routes/RouteManager.hpp@{include/engine/scene/routes/RouteManager.hpp}}
+\mbox{\hyperlink{_route_manager_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_route_8hpp}{Route.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_layer_context_8hpp}{engine/layers/LayerContext.hpp}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{class\ }RouteManager\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ std::unordered\_map<uint32\_t,\ Route*>\ paths;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ LayerContext\&\ scene;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ RouteManager(LayerContext\&\ scene)}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ :\ scene(scene)\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceglog_aee5b7c6d10b7f7ad6196fc3f10bc4020}{glog::note}}\ <<\ \textcolor{stringliteral}{"{}RouteManager\ for\ \(\backslash\)"{}"{}}\ <<\ scene.get\_name()\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)"{}\ formed."{}}\ <<\ \mbox{\hyperlink{namespaceglog_ac671f2284827317a1a8c390fde7ea46e}{glog::endlog}};}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ add\_route(Route\ *p);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ add\_route(Route\ *p,\ Gear*\ g,\ \textcolor{keyword}{const}\ FPos2D\ \&offset\ =\ \{0.f,0.f\});}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ remove\_path(\textcolor{keyword}{const}\ Gear*\ g);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ remove\_path(\textcolor{keyword}{const}\ Route\ *path);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ update();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \string~RouteManager();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \};}
+\DoxyCodeLine{00045\ \}}
+
+\end{DoxyCode}

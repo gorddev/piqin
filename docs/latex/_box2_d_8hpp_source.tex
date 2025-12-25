@@ -1,0 +1,96 @@
+\doxysection{Box2\+D.\+hpp}
+\hypertarget{_box2_d_8hpp_source}{}\label{_box2_d_8hpp_source}\index{include/engine/types/positioning/Box2D.hpp@{include/engine/types/positioning/Box2D.hpp}}
+\mbox{\hyperlink{_box2_d_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <SDL\_rect.h>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{struct\ }Box2D\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x,\ y;}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ w,\ h;}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ Box2D()\ :\ x(0),\ y(0),\ w(0),\ h(0)\ \{\}}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ Box2D(\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{int}\ w,\ \textcolor{keywordtype}{int}\ h)\ :\ x(x),\ y(y),\ w(w),\ h(h)\ \{\}}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacegeng_a9f80aaff7c3db1f08156ee7f50140fb2}{operator==}}(\textcolor{keyword}{const}\ Box2D\&\ b)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (x\ ==\ b.x\ \&\&\ y\ ==\ b.y\ \&\&\ w\ ==\ b.w\ \&\&\ h\ ==\ b.h);}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacegch_a514c6f05de2c9046b49ab2f2b8ce7ab6}{operator!=}}(\textcolor{keyword}{const}\ Box2D\&\ b)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (x\ !=\ b.x\ ||\ y\ !=\ b.y\ ||\ w\ !=\ b.w\ ||\ h\ !=\ b.h);}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ Box2D\ \mbox{\hyperlink{fstring_8inl_a24b203a4f197b30613bec180c750140a}{operator+}}(\textcolor{keyword}{const}\ Box2D\&\ b)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{x\ +\ b.x,\ y\ +\ b.y,\ w\ +\ b.w,\ h\ +\ b.h\};}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ Box2D\ \mbox{\hyperlink{namespacegch_aea1f9ec67c295f21ae95e7afb9189fba}{operator-\/}}(\textcolor{keyword}{const}\ Box2D\&\ b)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{x\ -\/\ b.x,\ y\ -\/\ b.y,\ w\ -\/\ b.w,\ h\ -\/\ b.h\};}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ operator+=(\textcolor{keyword}{const}\ Box2D\&\ b)\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ x\ +=\ b.x;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ y\ +=\ b.y;}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ w\ +=\ b.w;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ h\ +=\ b.h;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ operator-\/=(\textcolor{keyword}{const}\ Box2D\&\ b)\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ x\ -\/=\ b.x;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ y\ -\/=\ b.y;}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ w\ -\/=\ b.w;}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ h\ -\/=\ b.h;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ Box2D\ \mbox{\hyperlink{namespacegch_aea1f9ec67c295f21ae95e7afb9189fba}{operator-\/}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{-\/x,\ -\/y,\ -\/w,\ -\/h\};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ area()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ w*h;\ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ gch::vector<SDL\_FPoint>\ to\_points()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ gch::vector<SDL\_FPoint>\ points;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_FPoint\ tl\ =\ \{x\ +\ 0.f,\ y\ +0.f\};}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_FPoint\ bl\ =\ \{x\ +\ 0.f,\ y\ +\ h\ +\ 0.f\};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_FPoint\ br\ =\ \{x\ +\ w\ +\ 0.f,\ y\ +\ h\ +\ 0.f\};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_FPoint\ tr\ =\ \{x\ +\ w\ +\ 0.f,\ y\ +\ 0.f\};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ points.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(tl);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ points.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(bl);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ points.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(br);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ points.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(tr);}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ points;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ to\_vert\_points(gch::vector<SDL\_FPoint>\&\ points)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ gch::vector<SDL\_FPoint>\ my\_points\ =\ to\_points();}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ points.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(my\_points[0]);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ points.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(my\_points[1]);}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ points.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(my\_points[2]);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ points.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(my\_points[0]);}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ points.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(my\_points[2]);}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ points.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(my\_points[3]);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ gch::vector<SDL\_FPoint>\ to\_normalized\_coordinates(\textcolor{keywordtype}{float}\ texW,\ \textcolor{keywordtype}{float}\ texH)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ gch::vector<SDL\_FPoint>\ points;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_FPoint\ tl\ =\ \{x\ /\ texW,\ y\ /\ texH\};}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_FPoint\ bl\ =\ \{x\ /\ texW,\ (y\ +\ h)/texH\};}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_FPoint\ br\ =\ \{(x\ +\ w)/texW,\ (y\ +\ h)/texH\};}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_FPoint\ tr\ =\ \{(x\ +\ w)/texW,\ y\ /texH\};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ points.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(tl);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ points.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(bl);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ points.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(br);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ points.\mbox{\hyperlink{classgch_1_1vector_ac01295a4fa615dc7a935d24a00bc8e57}{push\_back}}(tr);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ points;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ gch::vector<SDL\_FPoint>\ to\_vertex\_hitbox(uint16\_t\ thickness)\ \{}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ Box2D\ left\ =\ \{x,\ y,\ thickness,\ h\};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ Box2D\ top\ =\ \{x\ ,\ y,\ w,\ thickness\};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ Box2D\ bottom\ =\ \{x\ +\ thickness,\ y\ +\ h\ -\/\ thickness,\ w\ -\/\ thickness,\ thickness\};}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ Box2D\ right\ =\ \{x\ +\ w\ -\/\ thickness,\ y,\ thickness,\ h\};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ gch::vector<SDL\_FPoint>\ points;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ left.to\_vert\_points(points);}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ top.to\_vert\_points(points);}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ bottom.to\_vert\_points(points);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ right.to\_vert\_points(points);}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ points;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \};}
+\DoxyCodeLine{00096\ \}}
+
+\end{DoxyCode}

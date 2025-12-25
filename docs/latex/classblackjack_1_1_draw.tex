@@ -1,0 +1,145 @@
+\doxysection{blackjack\+::Draw Class Reference}
+\hypertarget{classblackjack_1_1_draw}{}\label{classblackjack_1_1_draw}\index{blackjack::Draw@{blackjack::Draw}}
+
+
+{\ttfamily \#include $<$Draw.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classblackjack_1_1_draw_a4ac45a729cc3364a353b4bcf78e81485}{Draw}} (geng\+::\+Vertex pos)
+\item 
+int \mbox{\hyperlink{classblackjack_1_1_draw_ab628bffb2bd8fd9d8cd0d3151445778b}{get\+\_\+num\+\_\+cards}} ()
+\item 
+void \mbox{\hyperlink{classblackjack_1_1_draw_a2145bbb6d8742500167b69a5c8a05fb3}{add\+\_\+card}} (\mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*}card, bool flipped=false)
+\item 
+int \mbox{\hyperlink{classblackjack_1_1_draw_a4a2ff0fa7ee61533fbbfb93c65842770}{get\+\_\+score}} () const
+\item 
+bool \mbox{\hyperlink{classblackjack_1_1_draw_ac9d5e42384e546b13a5a24a41455a885}{will\+\_\+bust}} (\mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*}c)
+\item 
+\mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classblackjack_1_1_draw_aea5a4c6cd0af5ffb5414d6290ab7ef21}{pop\+\_\+card}} (int card\+Num=-\/1)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classblackjack_1_1_draw_a5604691ed4965b5855cd3e3e9e86d8b4}{pop\+\_\+cards}} ()
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{classblackjack_1_1_draw_a3953e879f0c4bbe78678197f01a9e80f}{gather\+\_\+objects}} ()
+\item 
+geng\+::\+Vertex \mbox{\hyperlink{classblackjack_1_1_draw_a3336fac56f1ce863b91a04467b0570b5}{get\+\_\+pos}} ()
+\item 
+int \mbox{\hyperlink{classblackjack_1_1_draw_aa425463689a30153988dd9ae0c6ef566}{get\+\_\+index}} (\mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*}c)
+\item 
+void \mbox{\hyperlink{classblackjack_1_1_draw_a046293d9b9d9b6816fe4c40809b57a93}{print\+\_\+ptrs}} () const
+\item 
+int \mbox{\hyperlink{classblackjack_1_1_draw_a88e86cda18a8ef24c6a26c213cabaa0e}{size}} () const
+\item 
+bool \mbox{\hyperlink{classblackjack_1_1_draw_a67254aa464120fa4ca085ca99c280bbe}{empty}} () const
+\item 
+void \mbox{\hyperlink{classblackjack_1_1_draw_af2f0f6bbdaded22fd2dfa9c100e81e8a}{set\+\_\+pos}} (geng\+::\+Vertex v)
+\item 
+\mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classblackjack_1_1_draw_a8b74620e86868f3c465b1855c1fb405c}{operator\mbox{[}$\,$\mbox{]}}} (int index)
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classblackjack_1_1_draw_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classblackjack_1_1_draw_a4ac45a729cc3364a353b4bcf78e81485}\index{blackjack::Draw@{blackjack::Draw}!Draw@{Draw}}
+\index{Draw@{Draw}!blackjack::Draw@{blackjack::Draw}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_draw_a4ac45a729cc3364a353b4bcf78e81485} 
+Draw\+::\+Draw (\begin{DoxyParamCaption}\item[{geng\+::\+Vertex}]{pos}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classblackjack_1_1_draw_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classblackjack_1_1_draw_a2145bbb6d8742500167b69a5c8a05fb3}\index{blackjack::Draw@{blackjack::Draw}!add\_card@{add\_card}}
+\index{add\_card@{add\_card}!blackjack::Draw@{blackjack::Draw}}
+\doxysubsubsection{\texorpdfstring{add\_card()}{add\_card()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_draw_a2145bbb6d8742500167b69a5c8a05fb3} 
+void Draw\+::add\+\_\+card (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*}}]{card}{, }\item[{bool}]{flipped}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+\Hypertarget{classblackjack_1_1_draw_a67254aa464120fa4ca085ca99c280bbe}\index{blackjack::Draw@{blackjack::Draw}!empty@{empty}}
+\index{empty@{empty}!blackjack::Draw@{blackjack::Draw}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_draw_a67254aa464120fa4ca085ca99c280bbe} 
+bool Draw\+::empty (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [nodiscard]}}
+
+\Hypertarget{classblackjack_1_1_draw_a3953e879f0c4bbe78678197f01a9e80f}\index{blackjack::Draw@{blackjack::Draw}!gather\_objects@{gather\_objects}}
+\index{gather\_objects@{gather\_objects}!blackjack::Draw@{blackjack::Draw}}
+\doxysubsubsection{\texorpdfstring{gather\_objects()}{gather\_objects()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_draw_a3953e879f0c4bbe78678197f01a9e80f} 
+lni\+::vector$<$ \mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*} $>$ \& Draw\+::gather\+\_\+objects (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classblackjack_1_1_draw_aa425463689a30153988dd9ae0c6ef566}\index{blackjack::Draw@{blackjack::Draw}!get\_index@{get\_index}}
+\index{get\_index@{get\_index}!blackjack::Draw@{blackjack::Draw}}
+\doxysubsubsection{\texorpdfstring{get\_index()}{get\_index()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_draw_aa425463689a30153988dd9ae0c6ef566} 
+int Draw\+::get\+\_\+index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*}}]{c}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classblackjack_1_1_draw_ab628bffb2bd8fd9d8cd0d3151445778b}\index{blackjack::Draw@{blackjack::Draw}!get\_num\_cards@{get\_num\_cards}}
+\index{get\_num\_cards@{get\_num\_cards}!blackjack::Draw@{blackjack::Draw}}
+\doxysubsubsection{\texorpdfstring{get\_num\_cards()}{get\_num\_cards()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_draw_ab628bffb2bd8fd9d8cd0d3151445778b} 
+int Draw\+::get\+\_\+num\+\_\+cards (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [nodiscard]}}
+
+\Hypertarget{classblackjack_1_1_draw_a3336fac56f1ce863b91a04467b0570b5}\index{blackjack::Draw@{blackjack::Draw}!get\_pos@{get\_pos}}
+\index{get\_pos@{get\_pos}!blackjack::Draw@{blackjack::Draw}}
+\doxysubsubsection{\texorpdfstring{get\_pos()}{get\_pos()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_draw_a3336fac56f1ce863b91a04467b0570b5} 
+\mbox{\hyperlink{structgeng_1_1_f_pos2_d}{geng\+::\+FPos2D}} Draw\+::get\+\_\+pos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classblackjack_1_1_draw_a4a2ff0fa7ee61533fbbfb93c65842770}\index{blackjack::Draw@{blackjack::Draw}!get\_score@{get\_score}}
+\index{get\_score@{get\_score}!blackjack::Draw@{blackjack::Draw}}
+\doxysubsubsection{\texorpdfstring{get\_score()}{get\_score()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_draw_a4a2ff0fa7ee61533fbbfb93c65842770} 
+int Draw\+::get\+\_\+score (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [nodiscard]}}
+
+\Hypertarget{classblackjack_1_1_draw_a8b74620e86868f3c465b1855c1fb405c}\index{blackjack::Draw@{blackjack::Draw}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!blackjack::Draw@{blackjack::Draw}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_draw_a8b74620e86868f3c465b1855c1fb405c} 
+\mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*} Draw\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{int}]{index}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classblackjack_1_1_draw_aea5a4c6cd0af5ffb5414d6290ab7ef21}\index{blackjack::Draw@{blackjack::Draw}!pop\_card@{pop\_card}}
+\index{pop\_card@{pop\_card}!blackjack::Draw@{blackjack::Draw}}
+\doxysubsubsection{\texorpdfstring{pop\_card()}{pop\_card()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_draw_aea5a4c6cd0af5ffb5414d6290ab7ef21} 
+\mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*} Draw\+::pop\+\_\+card (\begin{DoxyParamCaption}\item[{int}]{card\+Num}{ = {\ttfamily -\/1}}\end{DoxyParamCaption})}
+
+\Hypertarget{classblackjack_1_1_draw_a5604691ed4965b5855cd3e3e9e86d8b4}\index{blackjack::Draw@{blackjack::Draw}!pop\_cards@{pop\_cards}}
+\index{pop\_cards@{pop\_cards}!blackjack::Draw@{blackjack::Draw}}
+\doxysubsubsection{\texorpdfstring{pop\_cards()}{pop\_cards()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_draw_a5604691ed4965b5855cd3e3e9e86d8b4} 
+lni\+::vector$<$ \mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*} $>$ Draw\+::pop\+\_\+cards (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classblackjack_1_1_draw_a046293d9b9d9b6816fe4c40809b57a93}\index{blackjack::Draw@{blackjack::Draw}!print\_ptrs@{print\_ptrs}}
+\index{print\_ptrs@{print\_ptrs}!blackjack::Draw@{blackjack::Draw}}
+\doxysubsubsection{\texorpdfstring{print\_ptrs()}{print\_ptrs()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_draw_a046293d9b9d9b6816fe4c40809b57a93} 
+void Draw\+::print\+\_\+ptrs (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{classblackjack_1_1_draw_af2f0f6bbdaded22fd2dfa9c100e81e8a}\index{blackjack::Draw@{blackjack::Draw}!set\_pos@{set\_pos}}
+\index{set\_pos@{set\_pos}!blackjack::Draw@{blackjack::Draw}}
+\doxysubsubsection{\texorpdfstring{set\_pos()}{set\_pos()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_draw_af2f0f6bbdaded22fd2dfa9c100e81e8a} 
+void Draw\+::set\+\_\+pos (\begin{DoxyParamCaption}\item[{geng\+::\+Vertex}]{v}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classblackjack_1_1_draw_a88e86cda18a8ef24c6a26c213cabaa0e}\index{blackjack::Draw@{blackjack::Draw}!size@{size}}
+\index{size@{size}!blackjack::Draw@{blackjack::Draw}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_draw_a88e86cda18a8ef24c6a26c213cabaa0e} 
+int Draw\+::size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [nodiscard]}}
+
+\Hypertarget{classblackjack_1_1_draw_ac9d5e42384e546b13a5a24a41455a885}\index{blackjack::Draw@{blackjack::Draw}!will\_bust@{will\_bust}}
+\index{will\_bust@{will\_bust}!blackjack::Draw@{blackjack::Draw}}
+\doxysubsubsection{\texorpdfstring{will\_bust()}{will\_bust()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_draw_ac9d5e42384e546b13a5a24a41455a885} 
+bool Draw\+::will\+\_\+bust (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*}}]{c}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [nodiscard]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/game/blackjack/bj-\/objects/\mbox{\hyperlink{_draw_8hpp}{Draw.\+hpp}}\item 
+src/game/blackjack/bj-\/objects/\mbox{\hyperlink{_draw_8cpp}{Draw.\+cpp}}\end{DoxyCompactItemize}

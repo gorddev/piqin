@@ -1,0 +1,39 @@
+\doxysection{Banner.\+hpp}
+\hypertarget{_banner_8hpp_source}{}\label{_banner_8hpp_source}\index{include/engine/scene/banners/Banner.hpp@{include/engine/scene/banners/Banner.hpp}}
+\mbox{\hyperlink{_banner_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_widget_8hpp}{engine/scene/banners/widgets/Widget.hpp}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_gear_8hpp}{engine/types/Gear.hpp}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacegeng}{geng}}\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classgeng_1_1_banner_a35f2ff36aa8fdb3094ba450574774491}{Banner}}\ :\ \textcolor{keyword}{public}\ Gear\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<Widget*>}}\ background\_widgets;}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<Widget*>}}\ widgets;}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_banner_buffer}{BannerBuffer}}\ banner\_buffer;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgeng_1_1_banner_a35f2ff36aa8fdb3094ba450574774491}{Banner}}(\mbox{\hyperlink{structgeng_1_1_f_pos2_d}{FPos2D}}\ pos,\ uint16\_t\ width,\ uint16\_t\ height);}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_banner_aa3222e36f8bad22f7d1bd56a9bbb1311}{to\_vertex}}(RenderBuffer\ \&buffer)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classgeng_1_1_banner_aba4ba84e3f17f2652cd2f33d4e962919}{update}}(\mbox{\hyperlink{classgeng_1_1_layer_state}{LayerState}}\&\ time);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1_banner_aef30895f66cb2af820ee6e99618ad78f}{add\_background}}(Widget*\ w);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classgeng_1_1_banner_a7450f9175f945279c5ce9a5c6f2719b7}{add\_widget}}(Widget*\ w);}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classgeng_1_1_banner_ab694728c69d2ca8ff90ecfad4ed5c36d}{get\_texture\_id}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classgch_1_1vector}{gch::vector<Widget*>}}\&\ \mbox{\hyperlink{classgeng_1_1_banner_a0b103ec3ef29e98215fad116b8cebe98}{get\_widgets}}();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ add\_widget\_internal(Widget*\ w);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ on\_hover()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ on\_click()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00042\ \ \ \ \ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \}}
+
+\end{DoxyCode}

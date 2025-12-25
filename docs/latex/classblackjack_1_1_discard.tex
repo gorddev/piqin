@@ -1,0 +1,122 @@
+\doxysection{blackjack\+::Discard Class Reference}
+\hypertarget{classblackjack_1_1_discard}{}\label{classblackjack_1_1_discard}\index{blackjack::Discard@{blackjack::Discard}}
+
+
+{\ttfamily \#include $<$Discard.\+hpp$>$}
+
+Inheritance diagram for blackjack\+::Discard\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classblackjack_1_1_discard}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classblackjack_1_1_discard_a52b2cb54cda86bb47f256e7ec3de8241}{Discard}} ()
+\item 
+void \mbox{\hyperlink{classblackjack_1_1_discard_ab184da129bb6b1369493807254b2d133}{add\+\_\+card}} (\mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*}c, int card\+Num=0)
+\item 
+void \mbox{\hyperlink{classblackjack_1_1_discard_a9d3162d51254e8fd83f7080f94905eb5}{add\+\_\+cards}} (std\+::vector$<$ \mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*} $>$ cards)
+\item 
+\mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classblackjack_1_1_discard_a2275d5d697215498e54bea78e7f8655e}{pop\+\_\+card}} ()
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classblackjack_1_1_discard_a8dc5612bcff2c3163ce63305d045776c}{pop\+\_\+all}} ()
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{classblackjack_1_1_discard_a026d34e03798972df482c055e9eeee2e}{gather\+\_\+objects}} ()
+\item 
+int \mbox{\hyperlink{classblackjack_1_1_discard_a74094b9d4f0c4ccb658fdef622d44b0c}{size}} ()
+\item 
+bool \mbox{\hyperlink{classblackjack_1_1_discard_ad75adec2cb1a4697f0b5ac1d94b41e87}{empty}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classblackjack_1_1_card}{blackjack\+::\+Card}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classblackjack_1_1_card_a2048427024d97fe6fced2138745ab9a0}{Card}} (int val, \mbox{\hyperlink{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093c}{BJ\+\_\+\+Suit}} suite)
+\item 
+bool \mbox{\hyperlink{classblackjack_1_1_card_a63e8d676a851de4d9b8edb47ed74fa02}{operator==}} (const \mbox{\hyperlink{class_card}{Card}} c) const
+\item 
+void \mbox{\hyperlink{classblackjack_1_1_card_a4de519aa71464063127261ec943b5dd2}{flip}} ()
+\item 
+void \mbox{\hyperlink{classblackjack_1_1_card_aadf14d44dfe387730b3ab4b26c0093dc}{flip\+\_\+up}} ()
+\item 
+void \mbox{\hyperlink{classblackjack_1_1_card_a11e7128963f03bd963c4a586e8308ef9}{flip\+\_\+down}} ()
+\item 
+bool \mbox{\hyperlink{classblackjack_1_1_card_a9bdf69513fd96d7fb40b8163f9e5b94e}{is\+\_\+flipped}} () const
+\item 
+int \mbox{\hyperlink{classblackjack_1_1_card_a1b185ca881c9945e8c25be3836894177}{get\+\_\+value}} () const
+\item 
+bool \mbox{\hyperlink{classblackjack_1_1_card_ac472bfcd4219dba30494d6ced7766cc6}{special}} () const
+\item 
+int \mbox{\hyperlink{classblackjack_1_1_card_a5d8e7aa293ff5c1932de27e289e218df}{get\+\_\+score}} () const
+\item 
+\mbox{\hyperlink{namespaceblackjack_a4b71c3d07147f4a7d2e5e6f96999093c}{BJ\+\_\+\+Suit}} \mbox{\hyperlink{classblackjack_1_1_card_ab32557100c65f0a77dd12d3e20112782}{get\+\_\+suit}} () const
+\item 
+bool \mbox{\hyperlink{classblackjack_1_1_card_afeb8ca2d2b00fae6ec9623400b43a528}{adjust\+\_\+value}} (int num)
+\item 
+bool \mbox{\hyperlink{classblackjack_1_1_card_aafcf44cb1493c3446e477b9bd4bc1fe6}{use}} (\mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*}c)
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classblackjack_1_1_discard_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classblackjack_1_1_discard_a52b2cb54cda86bb47f256e7ec3de8241}\index{blackjack::Discard@{blackjack::Discard}!Discard@{Discard}}
+\index{Discard@{Discard}!blackjack::Discard@{blackjack::Discard}}
+\doxysubsubsection{\texorpdfstring{Discard()}{Discard()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_discard_a52b2cb54cda86bb47f256e7ec3de8241} 
+Discard\+::\+Discard (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classblackjack_1_1_discard_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classblackjack_1_1_discard_ab184da129bb6b1369493807254b2d133}\index{blackjack::Discard@{blackjack::Discard}!add\_card@{add\_card}}
+\index{add\_card@{add\_card}!blackjack::Discard@{blackjack::Discard}}
+\doxysubsubsection{\texorpdfstring{add\_card()}{add\_card()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_discard_ab184da129bb6b1369493807254b2d133} 
+void Discard\+::add\+\_\+card (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*}}]{c}{, }\item[{int}]{card\+Num}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+\Hypertarget{classblackjack_1_1_discard_a9d3162d51254e8fd83f7080f94905eb5}\index{blackjack::Discard@{blackjack::Discard}!add\_cards@{add\_cards}}
+\index{add\_cards@{add\_cards}!blackjack::Discard@{blackjack::Discard}}
+\doxysubsubsection{\texorpdfstring{add\_cards()}{add\_cards()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_discard_a9d3162d51254e8fd83f7080f94905eb5} 
+void Discard\+::add\+\_\+cards (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*} $>$}]{cards}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classblackjack_1_1_discard_ad75adec2cb1a4697f0b5ac1d94b41e87}\index{blackjack::Discard@{blackjack::Discard}!empty@{empty}}
+\index{empty@{empty}!blackjack::Discard@{blackjack::Discard}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_discard_ad75adec2cb1a4697f0b5ac1d94b41e87} 
+bool Discard\+::empty (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classblackjack_1_1_discard_a026d34e03798972df482c055e9eeee2e}\index{blackjack::Discard@{blackjack::Discard}!gather\_objects@{gather\_objects}}
+\index{gather\_objects@{gather\_objects}!blackjack::Discard@{blackjack::Discard}}
+\doxysubsubsection{\texorpdfstring{gather\_objects()}{gather\_objects()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_discard_a026d34e03798972df482c055e9eeee2e} 
+lni\+::vector$<$ \mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*} $>$ \& Discard\+::gather\+\_\+objects (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classblackjack_1_1_discard_a8dc5612bcff2c3163ce63305d045776c}\index{blackjack::Discard@{blackjack::Discard}!pop\_all@{pop\_all}}
+\index{pop\_all@{pop\_all}!blackjack::Discard@{blackjack::Discard}}
+\doxysubsubsection{\texorpdfstring{pop\_all()}{pop\_all()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_discard_a8dc5612bcff2c3163ce63305d045776c} 
+lni\+::vector$<$ \mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*} $>$ Discard\+::pop\+\_\+all (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classblackjack_1_1_discard_a2275d5d697215498e54bea78e7f8655e}\index{blackjack::Discard@{blackjack::Discard}!pop\_card@{pop\_card}}
+\index{pop\_card@{pop\_card}!blackjack::Discard@{blackjack::Discard}}
+\doxysubsubsection{\texorpdfstring{pop\_card()}{pop\_card()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_discard_a2275d5d697215498e54bea78e7f8655e} 
+\mbox{\hyperlink{class_card}{Card}} \texorpdfstring{$\ast$}{*} Discard\+::pop\+\_\+card (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classblackjack_1_1_discard_a74094b9d4f0c4ccb658fdef622d44b0c}\index{blackjack::Discard@{blackjack::Discard}!size@{size}}
+\index{size@{size}!blackjack::Discard@{blackjack::Discard}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily \label{classblackjack_1_1_discard_a74094b9d4f0c4ccb658fdef622d44b0c} 
+int Discard\+::size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/game/blackjack/bj-\/objects/\mbox{\hyperlink{_discard_8hpp}{Discard.\+hpp}}\item 
+src/game/blackjack/bj-\/objects/\mbox{\hyperlink{_discard_8cpp}{Discard.\+cpp}}\end{DoxyCompactItemize}
