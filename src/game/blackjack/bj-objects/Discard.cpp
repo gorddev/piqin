@@ -15,7 +15,7 @@ void Discard::add_card(Card *c, int cardNum) {
     discardPile.push_back(c);
 }
 
-void Discard::add_cards(std::vector<Card *> cards) {
+void Discard::add_cards(lni::vector<Card *> cards) {
     for (auto c : cards)
         add_card(c);
 }
@@ -26,13 +26,13 @@ Card* Discard::pop_card() {
     return c;
 }
 
-std::vector<Card*> Discard::pop_all() {
-    std::vector<Card*> temp = discardPile;
+lni::vector<Card*> Discard::pop_all() {
+    lni::vector<Card*> temp = discardPile;
     discardPile.clear();
     return temp;
 }
 
-std::vector<Card*>& Discard::gather_objects() {
+lni::vector<Card*>& Discard::gather_objects() {
     return discardPile;
 }
 

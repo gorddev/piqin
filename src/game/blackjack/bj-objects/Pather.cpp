@@ -45,7 +45,7 @@ void Pather::move(Card* c, Deck* deck) {
     travel_to_deck.push_back(c);
 }
 
-void Pather::move(std::vector<Card*> cards, Deck* deck) {
+void Pather::move(lni::vector<Card*> cards, Deck* deck) {
     for (auto& c : cards) {
         ADDEV(20, pather.move(c, deck));
     }
@@ -67,7 +67,7 @@ void Pather::to_discard(Card * c, Discard* discard, geng::GENG_Path path, short 
     c = nullptr;
 }
 
-void Pather::to_discard(std::vector<Card*>& cards, Discard* discard) {
+void Pather::to_discard(lni::vector<Card*>& cards, Discard* discard) {
     for (int i = 0; i < cards.size(); i++)
         ADDEV(std::max(abs(60 - 5*i), 10), to_discard(cards[i], discard, i));
 }
@@ -112,7 +112,7 @@ bool Pather::move(Card *c, Hand &hand) {
 void Pather::update_hand(Hand& hand) {
     float center = geng::global::scene.width/2;
     float height = 9.8*geng::global::scene.height/10;
-    std::vector<Card*> cards = hand.gather_objects();
+    lni::vector<Card*> cards = hand.gather_objects();
     for (int i = 0; i < cards.size(); i++) {
         cards[i]->set_path(hand_path(hand, cards[i], center, height, i), true);
     }
@@ -146,7 +146,7 @@ void Pather::move(Card *c, Draw& draw, int index, bool down) {
 
 }
 
-void Pather::move(std::vector<Card*>& cards, Draw& draw) {
+void Pather::move(lni::vector<Card*>& cards, Draw& draw) {
     for (int i = 0; i < cards.size(); i++)
         move(cards[i], draw, i);
 }

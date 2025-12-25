@@ -62,15 +62,15 @@ Card* Deck::pop_card() {
     return c;
 }
 
-std::vector<Card *> Deck::pop_all() {
-    std::vector<Card*> temp = drawPile;
+lni::vector<Card *> Deck::pop_all() {
+    lni::vector<Card*> temp = drawPile;
     for (auto& c : drawPile)
         prep_card_for_pop(c);
     drawPile.clear();
     return temp;
 }
 
-std::vector<Card *> & Deck::gather_objects() {
+lni::vector<Card *> & Deck::gather_objects() {
     return drawPile;
 }
 

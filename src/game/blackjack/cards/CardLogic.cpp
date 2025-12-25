@@ -1,3 +1,4 @@
+#include "engine/debug/logging/LogSource.hpp"
 #include "game/blackjack/cards/Card.hpp"
 
 using namespace blackjack;
@@ -21,7 +22,7 @@ int Card::get_score() const {
     size_t align = alignof(Card);
     if (addr % align != 0) {
         // THis is what happens if we feed card that's not a card :o
-        std::cerr << "card::get_score() alignment is not 0" << std::endl;
+        glog::dev << "card::get_score() alignment is not 0" << std::endl;
         abort(); // goodbye
     }
 

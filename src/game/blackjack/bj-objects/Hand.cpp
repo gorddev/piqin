@@ -1,7 +1,4 @@
 #include "../../../../include/game/blackjack/bj-objects/Hand.hpp"
-
-#include <iostream>
-
 #include "game/blackjack/BJEnums.hpp"
 
 using namespace blackjack;
@@ -80,6 +77,6 @@ int Hand::get_index(Card* c) {
     return -1;
 }
 
-std::vector<Card*>& Hand::gather_objects() {
+lni::vector<Card*>& Hand::gather_objects() {
     return cards;
 }

@@ -64,8 +64,8 @@ void Round::round_end() {
     ADDEV(200, board->opponentDraw.gather_objects()[0]->flip_up());
 
     int k = 0;
-    std::vector<Card*>& pdr = board->playerDraw.gather_objects();
-    std::vector<Card*>& opr = board->opponentDraw.gather_objects();
+    lni::vector<Card*>& pdr = board->playerDraw.gather_objects();
+    lni::vector<Card*>& opr = board->opponentDraw.gather_objects();
     for (auto& i: board->playerDraw.gather_objects())
         ADDEV(std::max(abs(120 - 5*k++), 10), bob.apply_effect(*i, BJ_SHAKE_END_ROUND));
     for (auto& i: board->opponentDraw.gather_objects())
@@ -73,7 +73,7 @@ void Round::round_end() {
 
 
     ADDEV(750,
-        std::vector<Card*> cs = board->playerDraw.pop_cards(); std::vector<Card*> os = board->opponentDraw.pop_cards();
+        lni::vector<Card*> cs = board->playerDraw.pop_cards(); lni::vector<Card*> os = board->opponentDraw.pop_cards();
         pather.to_discard(cs, &board->discard); pather.to_discard(os, &board->discard);
         done = true
     );

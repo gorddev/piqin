@@ -32,8 +32,8 @@ Board::~Board() {
 }
 
 // Gathers all sprites in the BlackjackPlayer for storage in the ObjectManager.
-std::vector<geng::Sprite*> Board::gather_objects() {
-    std::vector<geng::Sprite*> allObjects;
+lni::vector<geng::Sprite*> Board::gather_objects() {
+    lni::vector<geng::Sprite*> allObjects;
     allObjects.reserve(100);
     // First we grab all of the easy sprites
     allObjects.push_back(&slct);

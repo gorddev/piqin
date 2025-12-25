@@ -1,7 +1,5 @@
 #include "../../../../include/game/blackjack/bj-objects/Draw.hpp"
 
-#include <iostream>
-
 #include "engine/types/positioning/FPos2D.hpp"
 #include "game/blackjack/BJEnums.hpp"
 
@@ -33,8 +31,8 @@ void Draw::add_card(Card *card, bool flipped) {
 }
 
 // Gives all the cards back to the Dealer
-std::vector<Card*> Draw::pop_cards() {
-    std::vector<Card*> cards = draw;
+lni::vector<Card*> Draw::pop_cards() {
+    lni::vector<Card*> cards = draw;
     draw.clear();
     removals.clear();
     return cards;
@@ -90,7 +88,7 @@ Card * Draw::operator[](int index) {
     return draw[index];
 }
 
-std::vector<Card*>& Draw::gather_objects() {
+lni::vector<Card*>& Draw::gather_objects() {
     return draw;
 }
 
@@ -107,8 +105,5 @@ int Draw::get_index(Card* c) {
 }
 
 void Draw::print_ptrs() const {
-    std::cerr << "Printing ptrs (" << geng::global::scene.time << ")\n";
-    for (int i = 0; i < draw.size(); i++) {
-        std::cerr << "c[" << i  << "] = " << draw[i] << std::endl;
-    }
+
 }

@@ -1,9 +1,6 @@
 #include "../../../../include/game/blackjack/bj-objects/CardSelector.hpp"
 
-#include <iostream>
-#include <ostream>
-
-#include "engine/pathing/path-types/BalloonPath.hpp"
+#include "engine/scene/routes/path-types/BalloonPath.hpp"
 #include "game/blackjack/BJEnums.hpp"
 
 using namespace blackjack;
