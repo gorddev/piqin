@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+
 #include "Banner.hpp"
 #include "engine/layers/LayerContext.hpp"
 
@@ -8,12 +8,14 @@ namespace geng {
     /** Manages all the banners and makes sure that they get updated and shit **/
     class BannerManager {
     private:
-        std::vector<Banner*> banners;
+        gch::vector<Banner*> banners;
         LayerContext& scene;
     public:
         /// Default constructor
         explicit BannerManager(LayerContext & layer_context) :
-            scene(layer_context) {}
+            scene(layer_context) {
+            glog::note << "BannerManager for " << scene.get_name() << " formed." << glog::endlog;
+        }
 
         /// Updates all banners
         void update() {

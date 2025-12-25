@@ -17,9 +17,6 @@ namespace geng {
     inline bool operator ==(Align a, Align b) {
         return static_cast<uint8_t>(a) == static_cast<uint8_t>(b);
     }
-    inline bool operator <<(Align a, Align b) {
-        return static_cast<uint8_t>(a) & static_cast<uint8_t>(b);
-    }
     inline Align operator &(Align a, Align b) {
         return static_cast<Align>(static_cast<uint8_t>(a) & static_cast<uint8_t>(b));
     }

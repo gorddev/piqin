@@ -1,7 +1,5 @@
 #pragma once
 
-#include <vector>
-
 #include "Route.hpp"
 #include "engine/layers/LayerContext.hpp"
 
@@ -23,7 +21,9 @@ namespace geng {
     public:
         /// Default constructor for RouteManager
         explicit RouteManager(LayerContext& scene)
-            : scene(scene) {}
+            : scene(scene) {
+            glog::note << "RouteManager for \"" << scene.get_name() << "\" formed." << glog::endlog;
+        }
 
         /// Adds a path to the path manager
         void add_route(Route *p);

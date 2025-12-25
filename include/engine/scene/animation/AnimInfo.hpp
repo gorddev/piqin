@@ -25,12 +25,18 @@ namespace geng {
     private:
         /// Frame we are currently on.
         Frame* frame;
-        /// The current animation the sprite is on.
+        /// The current animation the sprites is on.
         uint16_t animation_index = 0;
-        /// The current frame of the animation the sprite is on.
+        /// The next animation to head to
+        short next_anim = -1;
+        /// A queued animation
+        short queued_anim = -1;
+        /// The current frame of the animation the sprites is on.
         uint16_t frame_index = 0;
-        /// The default animation for this sprite
+        /// The default animation for this sprites
         uint16_t default_animation = 0;
+        /// Determines if the current animation has priority against suggestion
+        bool priority = false;
         /// Running duration of the animation
         float duration = 0.f;
     public:
@@ -48,6 +54,11 @@ namespace geng {
         // Getters
         /// Returns a copy of the animation_index of the AnimInfo
         [[nodiscard]] uint16_t get_anim_id() const;
+
+        short get_next_anim() const;
+
+        void set_next_anim(short new_anim);
+
         /// Returns a copy of the frame index
         [[nodiscard]] uint16_t get_frame_index() const;
         /// Returns a copy of the frame type.
@@ -61,9 +72,20 @@ namespace geng {
         /// Sets the frame of the AnimInfo
         void set_frame(Frame& s);
         /// Sets the animation for the AnimInfo, and flags the engine to change the frame.
-        void set_animation(uint16_t new_animation);
+        void set_animation(uint16_t new_animation, bool priorityStatus = false);
+        /// Sets the animation to start as soon as the current frame expires
+        void suggest_animation(short new_animation);
+        /// Queues up an animation to start once the current one is finished.
+        void queue_animation(short new_animation);
+
+        void set_priority(bool state);
+
+        bool has_priority();
+
         /// Sets the default animation
         void set_default_animation(uint16_t new_default_animation);
+
+        short get_queued_anim() const;
 
         // Utility
         /// Appends buffer to the buffer
@@ -71,6 +93,6 @@ namespace geng {
         /// Increments the frame_index by one, and returns the new frame_index
         int pre_increment_frame();
         /// Debugger printer for AnimInfo.
-        [[nodiscard]] std::string to_string() const;
+        [[nodiscard]] geng::str_view& to_fstring(geng::str_view& buffer) const;
     };
 }

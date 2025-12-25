@@ -8,7 +8,7 @@ namespace geng {
         /// Color of the line
         SDL_Color color;
         /// Vertexes where the WidgetBox should be rendered relative to the Banner
-        std::vector<SDL_FPoint> points;
+        gch::vector<SDL_FPoint> points;
     public:
         /// Creates the horizontal line with thickness, length, vertical padding, horizontal padding, ect.
         WidgetBox(int thickness, int length, SDL_Color color = {255, 255, 255, 255}, short padding_vert = 0, short padding_hor = 0)

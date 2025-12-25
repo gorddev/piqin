@@ -1,43 +1,103 @@
 #pragma once
 #include <SDL_render.h>
-#include <vector>
-#include <string>
 
-#include "TextParser.hpp"
+#include "engine/defaults/DefaultSyntaxMap.hpp"
 #include "engine/scene/font/Font.hpp"
 #include "engine/scene/banners/widgets/Widget.hpp"
+#include "syntax/SyntaxMap.hpp"
 
 namespace geng {
-    /** A text is a set collection of letters combined together. **/
+    class Renderer;
+
+    /** Simple debug text rendering **/
+    template<uint16_t C>
     class Text : public Widget {
     private:
-        /** Contains the positions of the letters of the string inputted **/
-        std::vector<FontChar> characters;
-        /// Contains the raw text of the font.
-        std::string textliteral;
-        /** Contains a reference to the original font **/
+        /// The actual text stripped of commands
+        fstring<C> textliteral;
+        /// The font this text uses
         Font& font;
-        /// Allows text to have duration-based effects
-        float time = 0;
-        /** Keeps track of vertices so we don't need to re-do them every time **/
-        std::vector<SDL_Vertex> vertices;
-
-        void update_character_reserve(const std::string& string_text);
-
+        /// Cached vertices for later use
+        gch::vector<SDL_Vertex> vertices;
+        /// A pointer to the SyntaxMap this text uses
+        const SyntaxMap* syntax_map = &geng_default_syntax_map;
+        friend Renderer;
     public:
-        /** Mandatory constructor for a piece of text
-         * - @code std::string textliteral@endcode › actual text you want to be printed
-         * - @code geng::Font font@endcode › the font you want to use
-         * - @code geng::FPos2D pos@endcode › position of the text */
-        Text(const std::string& string_text, Font& font);
+        Text(const char text[], Font& font)
+            : font(font),
+              Widget(0, 0, 0, 0, font.get_texture_id())
+        {
+            update_text(text);
+            texture_id = font.get_texture_id();
+        }
 
-        /** Changes nothing about the text (for now) **/
-        void change_dim(Dim2D dimensions) override;
+        Text(const char text[], Font& font, const SyntaxMap* syntax_map)
+            : Widget(0,0,0,0, font.get_texture_id()), font(font), syntax_map(syntax_map)
+        {
+            update_text(text);
+            texture_id = font.get_texture_id();
+        }
 
-        /** Changes the text of a text object **/
-        int to_vertex(BannerBuffer& buffer) override;
+        void change_dim(Dim2D dimensions) override {
+            dim.w = dimensions.w;
+            dim.h = dimensions.h;
+        }
 
-        /// to_string function
-        std::string to_string() const;
+        int to_vertex(BannerBuffer& buffer) override {
+            // Copy to buffer
+            for (auto& v : vertices) buffer.push_back(v);
+            return static_cast<int>(vertices.size());
+        }
+
+        [[nodiscard]] fstring<C> get_text() const {
+            return textliteral;
+        }
+
+        [[nodiscard]] geng::str_view get_fstr_view() {
+            return textliteral.wrap();
+        }
+
+        void clear() {
+            vertices.clear();
+            textliteral.clear();
+        }
+
+        void update_text(const char text[]) {
+            // Clears out all the cached data
+            clear();
+            // make our font character buffer
+            gch::vector<FontChar> buffer;
+            // create a wrapper text
+            fstring<C + 400> new_text(text);
+            // Grab any syntax information
+            SyntaxInfo syntax_info[C];
+            // Have our syntax map feed information into our buffer & syntax info array.
+            textliteral = syntax_map->parse<C>(new_text.wrap(), font, buffer, syntax_info);
+            // Then we render each of our font characters accordingly.
+            // current position
+            Pos2D pos = {0, 0};
+            // Increment through our buffer
+            for (int i = 0, k = 0; i < buffer.size(); i++, k++) {
+                // If we have whitespace, that's characters that textliteral has that syntax_info does not.
+                if (textliteral[k] == '\n') {
+                    pos.y += font.get_height();
+                    pos.x = 0;
+                    i--;
+                    continue;
+                }
+                if (textliteral[k] == '\t') {
+                    pos.x += 16 - (pos.x % 16);
+                    i--;
+                    continue;
+                }
+                if (textliteral[k] == ' ') {
+                    pos.x += 4*font.get_spacing();
+                    i--;
+                    continue;
+                }
+                buffer[i].to_vertex(vertices, pos, syntax_info[i].color, syntax_info[i].scale);
+                pos.x += buffer[i].w + font.get_spacing();
+            }
+        }
     };
 }

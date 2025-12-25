@@ -1,20 +1,25 @@
 #pragma once
 
-#include <iostream>
-#include <ostream>
-
 #include "Font.hpp"
+#include "engine/debug/logging/LogSource.hpp"
 
 namespace geng {
 
     /** Manages all fonts so you can easily print fonts to either the canvas or the UI */
     class FontList {
-        std::vector<Font> fonts;
+        gch::vector<Font> fonts;
 
     public:
-        FontList() = default;
+        FontList() {
+            glog::note << "Font list created (dunno where)." << glog::endlog;
+        };
+        /// Must call add_font before game loop.
+        int add_font(const Font& new_font) {
+            fonts.emplace_back(new_font);
+            return fonts.size() - 1;
+        }
         /// Must call add_fonts before game loop.
-        void add_fonts(const std::vector<Font>& new_fonts) {
+        void add_fonts(gch::vector<Font>& new_fonts) {
             for (auto& f : new_fonts) {
                 fonts.emplace_back(f);
             }
@@ -22,7 +27,7 @@ namespace geng {
         /// grabs a font
         Font& at(int id) {
             if (id >= fonts.size() || id < 0) {
-                std::cerr << "ERR: Font " << id << "doesn't exist. Using sysfont.\n";
+                glog::warn << "ERR: Font " << id << "doesn't exist. Using sysfont.\n" << glog::endlog;
                 id = 0;
             }
             return fonts.at(id);

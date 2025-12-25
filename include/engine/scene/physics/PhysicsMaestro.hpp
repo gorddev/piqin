@@ -17,9 +17,9 @@ namespace geng {
         /// Contains a reference to the LayerContext
         LayerContext& scene;
         /// Contains a vector of all the colliders
-        std::vector<Collider*> colliders;
+        gch::vector<Collider*> colliders;
         /// Contains a vector of all the object's previous positions
-        std::vector<FPos2D> prev_positions;
+        gch::vector<FPos2D> prev_positions;
         /// Whether colliders can collide with each other
         bool internal_collisions = false;
 
@@ -39,7 +39,7 @@ namespace geng {
         void update();
 
         /// Returns a reference to the vector of colliders
-        std::vector<Collider*>& get_colliders();
+        gch::vector<Collider*>& get_colliders();
 
         /// Appends the hitboxes of everything to the render buffer
         void render_hitboxes(RenderBuffer &buffer, SDL_Color color, uint16_t thickness);

@@ -1,5 +1,4 @@
 #pragma once
-#include <vector>
 
 #include "engine/scene/banners/widgets/Widget.hpp"
 #include "engine/types/Gear.hpp"
@@ -10,9 +9,9 @@ namespace geng {
     class Banner : public Gear {
     private:
         /// Contains all the background widgets
-        std::vector<Widget*> background_widgets;
+        gch::vector<Widget*> background_widgets;
         /// Contains all the regular widgets.
-        std::vector<Widget*> widgets;
+        gch::vector<Widget*> widgets;
         /// The buffer you pass to each widget, because they don't get to see the regular renderbuffer.
         BannerBuffer banner_buffer;
 
@@ -33,7 +32,7 @@ namespace geng {
         /// Get banner texture id
         int get_texture_id() const;
         /// Access widgets
-        const std::vector<Widget*>& get_widgets() const;
+        gch::vector<Widget*>& get_widgets();
 
     private:
         bool add_widget_internal(Widget* w);

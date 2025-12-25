@@ -1,6 +1,4 @@
 #pragma once
-#include <vector>
-#include <string>
 
 #include "TextureRegister.hpp"
 #include "engine/scene/animation//FrameList.hpp"
@@ -15,39 +13,26 @@ namespace geng {
      * The initializer takes care of making sure object definitions get to the right place, and that textures are initialized
      */
     class Initializer final {
-        /// Contains all the frameTables that will be created
-        std::vector<FrameTable> frameTables;
-        int table_num = 0;
-        /// Contains all the textures that will need to be created
-        TextureRegister& tex_reg;
-        /// Contains all the fonts the user specifies
-        std::vector<Font> fonts;
-        int font_num = 0;
-        /// Contains all the tilesets the user specifies
-        std::vector<Tileset> tilesets;
-        int tileset_num = 0;
-
-        /// Clears out the system font
-        void _clear();
-
         /// The layerContext object
         LayerContext& scene;
+        /// Allows the initializer to add frametables to the layer's framelist.
+        FrameList& frames;
+        /// Allows the initializer to add fonts to the layer's fontlist.
+        FontList& fonts;
+        /// Contains all the tilesets that will be added to the layer's tilesetlist
+        TileList& tiles;
+        /// Contains all the textures that will need to be created
+        TextureRegister& texreg;
+
     public:
-        explicit Initializer(TextureRegister& tex_reg, LayerContext& scene);
-
+        explicit Initializer(LayerContext& scene, FrameList& frames, FontList& fonts, TileList& tiles, TextureRegister& tex_reg);
         /// Texture
-        int texture(const std::string &path, bool _internal = false);
+        int texture(hstring path);
         /// Sets up a FrameTable and its corresponding texture to be initialized. Returns the ID of the frameTable
-        int frame_table(const std::string &path, FrameTable ft);
+        int frame_table(hstring path, FrameTable ft);
         /// Sets up a Font and its corresponding texture to be initialized
-        int font(const std::string &path, Font f, int id = -1);
+        int font(hstring path, Font f, int id = -1);
         /// Sets up a Tileset and it's corresponding texture
-        int tileset(const std::string &path, Tileset t);
-
-        /// Sets the system font. Do not call after first initialization.
-        void set_sys_font(const std::string &path, const Font &fnt);
-
-        /// Actually initializes the frameTables, fonts, & the textures
-        void _compose(FrameList &fm, FontList &fl, TileList &tl);
+        int tileset(hstring path, Tileset t);
     };
 }

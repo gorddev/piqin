@@ -11,8 +11,8 @@ namespace geng {
 	class SpriteManager {
 	private:
 		/// Vector of all of the sprites in the scene
-		std::vector<Sprite*> sprites;
-		/// Links each of the sprite's IDs to their position in the vector.
+		gch::vector<Sprite*> sprites;
+		/// Links each of the sprites's IDs to their position in the vector.
 		std::unordered_map<int, int> id_to_pos;
 		/// Holds the LayerContex object for dt stuff
 		LayerContext& scene;
@@ -22,22 +22,22 @@ namespace geng {
 
 		// Adds an object to the objectManager
 		void add_sprite(Sprite*) noexcept;
-		void add_sprites(const std::vector<Sprite*>& vec) noexcept;
+		void add_sprites(gch::vector<Sprite *> &vec) noexcept;
 
 		// Removes an object from the objectManager
 		void dissolve(int id);
 		void dissolve(const Sprite *a);
-		void dissolve(std::vector<Sprite*> vec);
+		void dissolve(gch::vector<Sprite*> vec);
 
 		// Updates properties of all sprites.
 		void update();
-		// Updates the sprites of each sprite
-		void update_sprites();
+		// Updates the sprites of each sprites
+		void update_frames();
 
 		// Allows us to return our object list
 		auto begin();
 		auto end();
 
-		std::string to_string();
+		fstring<40> to_string();
 	};
 }

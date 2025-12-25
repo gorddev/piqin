@@ -30,9 +30,7 @@ namespace geng {
         /// @param collision › the box the object collides with
         /// @param tile_type › the type of tile the collider collides with
         virtual void collide(ProposedCollision& collision) {
-            std::cerr << "collision with tile: " << collision.tile_type << "\n";
             t.pos = collision.newPos;
-            vel = collision.delta;
         }
 
         /// Gets the position of the Collider
@@ -48,8 +46,8 @@ namespace geng {
         void set_velocity(FPos2D v) { vel = v; }
 
         /// Turns the collider into a hitbox
-        std::vector<SDL_FPoint> to_vertex_hitbox(uint16_t thickness) {
-            std::vector<SDL_FPoint> points = Box2D(t.pos.x - hitbox.w/2 + offset.x, t.pos.y - hitbox.h/2 + offset.y, hitbox.w, hitbox.h).to_vertex_hitbox(thickness);
+        gch::vector<SDL_FPoint> to_vertex_hitbox(uint16_t thickness) {
+            gch::vector<SDL_FPoint> points = Box2D(t.pos.x - hitbox.w/2 + offset.x, t.pos.y - hitbox.h/2 + offset.y, hitbox.w, hitbox.h).to_vertex_hitbox(thickness);
             return points;
         }
     };

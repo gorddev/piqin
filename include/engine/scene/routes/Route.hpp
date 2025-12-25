@@ -62,10 +62,10 @@ namespace geng {
         /// Sets the callback function, which is called upon route completion
         void set_callback(std::function<void()>* cb) { callback = cb; }
         /// Returns a string with route information.
-        virtual std::string to_string() {
-            std::string ret = "Target: "  + target.to_string();
-            ret += "\nSpeed: " + std::to_string(speed);
-            ret += "\nComplete: " + std::to_string(int(completeX));
+        virtual geng::str_view to_string(geng::str_view& ret) {
+            ret << "Target: "  << target.to_string(ret)
+                << "\nSpeed: " << speed
+                << "\nComplete: " << int(completeX);
             return ret;
         }
     };

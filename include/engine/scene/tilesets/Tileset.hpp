@@ -8,9 +8,10 @@ namespace geng {
     class Tileset {
     private:
         int texture_id = -1;
-        std::vector<Tile> tiles;
-        short tile_s;
+        gch::vector<Tile> tiles = {};
+        short tile_s = -1;
     public:
+        Tileset() = default;
         Tileset(int tex_W, int tex_H, short tile_size) : tile_s(tile_size) {
             tiles.reserve(tex_W * tex_H / (tile_size*tile_size));
             for (int h = 0; h < tex_H; h+= tile_size) {

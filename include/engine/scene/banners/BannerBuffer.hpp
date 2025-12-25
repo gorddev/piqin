@@ -1,6 +1,5 @@
 #pragma once
 #include <SDL_render.h>
-#include <vector>
 
 #include "engine/rendering/shadows/ShadowBank.hpp"
 #include "engine/types/positioning/Pos2D.hpp"
@@ -11,7 +10,7 @@ namespace geng {
     class BannerBuffer {
     private:
         /// Contains the buffer of vertices
-        std::vector<SDL_Vertex> buffer;
+        gch::vector<SDL_Vertex> buffer;
         /// Contains the position of the banner
         Transform2D& bannerT;
         /// Contains a pointer to the ShadowBank
@@ -37,7 +36,7 @@ namespace geng {
         /// Sets the wqhite point of the BannerBUffer
         void _set_white_point(SDL_FPoint new_white_point);
         /// Gets the buffer of vertices
-        [[nodiscard]] std::vector<SDL_Vertex>& _get_vertex_buffer();
+        [[nodiscard]] gch::vector<SDL_Vertex>& _get_vertex_buffer();
         /// Clears the buffer
         void _clear_buffer();
     };

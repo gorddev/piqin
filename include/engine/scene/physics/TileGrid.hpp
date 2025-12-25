@@ -1,5 +1,4 @@
 #pragma once
-#include <vector>
 
 #include "engine/scene/world/WorldProperties.hpp"
 #include "engine/types/positioning/Box2D.hpp"
@@ -7,7 +6,7 @@
 namespace geng {
     struct TileGrid {
         /// Contains all the tiles in a single gameworld.
-        const std::vector<uint16_t>& tiles;
+        const gch::vector<uint16_t>& tiles;
         /// Width of one gameworld level
         int width;
         /// Height of one gameworld level
@@ -38,12 +37,12 @@ namespace geng {
         }
 
         /// Returns a buffer of vertices with the hitboxes of each box
-        std::vector<SDL_FPoint> display_hitboxes(uint16_t thickness) const {
-            std::vector<SDL_FPoint> buffer;
+        gch::vector<SDL_FPoint> display_hitboxes(uint16_t thickness) const {
+            gch::vector<SDL_FPoint> buffer;
             for (int i = 0; i < width; i++) {
                 for (int j = 0; j < height; j++) {
                     if (at(i,j) != 0) {
-                        std::vector<SDL_FPoint> points = tile_box(i, j).to_vertex_hitbox(thickness);
+                        gch::vector<SDL_FPoint> points = tile_box(i, j).to_vertex_hitbox(thickness);
                         buffer.insert(buffer.end(), points.begin(), points.end());
                     }
                 }

@@ -1,5 +1,4 @@
 #pragma once
-#include <vector>
 
 #include "engine/layers/LayerContext.hpp"
 #include "engine/scene/particles/ParticleGroup.hpp"
@@ -10,9 +9,9 @@ namespace geng {
     class ParticleManager {
     private:
         gutils::SparseVector<geng::ParticleGroup> groups;
-        std::vector<int> groups_removed;
+        gch::vector<int> groups_removed;
 
-        /// Holds the layer context needded for dts
+        /// Holds the layer core needded for dts
         LayerContext& scene;
     public:
         // Construct/destruct
@@ -27,7 +26,7 @@ namespace geng {
         // Adds a particle to the group
         ParticleGroup*& add(ParticleGroup* g);
 
-        void add(const std::vector<ParticleGroup *> &new_groups);
+        void add( gch::vector<ParticleGroup *> &new_groups);
 
         // Lets a particle die out by ending
         static void dissolve(ParticleGroup* g);
@@ -38,6 +37,6 @@ namespace geng {
 
         // Checks if there's any particles to be removed
         bool particles_to_remove();
-        std::vector<int> pop_removed_particles();
+        gch::vector<int> pop_removed_particles();
     };
 }

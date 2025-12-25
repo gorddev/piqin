@@ -1,6 +1,5 @@
 #pragma once
 #include <SDL_render.h>
-#include <vector>
 
 #include "engine/EngineContext.hpp"
 
@@ -13,10 +12,11 @@ namespace geng {
     }
     /** A Cell is a simple rendering tool that allows for quick testing of textures, ect. They are not efficient and should not be used for general design.**/
     struct Cell {
-        int texture_id;
+        int texture_id = -1;
         /// Normalized texture coordinate
-        SDL_FPoint tex_start;
-        SDL_FPoint tex_end;
+        SDL_FPoint tex_start = {0,0};
+        SDL_FPoint tex_end = {1, 1};
+        Cell() = default;
         /// Default constructor for a Cell
         Cell(int tex_id, SDL_FPoint tex_start = {0.f,0.f}, SDL_FPoint tex_end = {1.f,1.f})
             : texture_id(tex_id), tex_start(tex_start), tex_end(tex_end) {

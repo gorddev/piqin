@@ -24,15 +24,15 @@ namespace geng {
      */
     struct Sprite : public geng::Gear {
     protected:
-        /// An sprite's animation information.
+        /// An sprites's animation information.
         AnimInfo anim;
-        /// An sprite's frameTable
+        /// An sprites's frameTable
         FrameTable& frameTable;
 
     public:
-        /// Defines an sprite with a given frametable, sets default animation to 0.
+        /// Defines an sprites with a given frametable, sets default animation to 0.
         Sprite(FrameTable& frames);
-        /// Defines an sprite with a given frametable and a default animation
+        /// Defines an sprites with a given frametable and a default animation
         Sprite(FrameTable& frames, uint16_t default_animation);
         /// Defines an Sprite with a starting position
         explicit Sprite(FrameTable& frames, Transform2D t, uint16_t default_animation = 0);
@@ -48,16 +48,16 @@ namespace geng {
         void update_frame(LayerState& time);
 
         /// To String
-        [[nodiscard]] std::string to_string() const override;
+        geng::str_view& to_fstring(geng::str_view& buffer) const override;
 
         // <><>< Manual overrides for Gears <><><>
-        /// Converts an sprite to FPos2D for the buffer. overridable, but not recommended to do so.
+        /// Converts an sprites to FPos2D for the buffer. overridable, but not recommended to do so.
         void to_vertex(RenderBuffer &buffer) override;
 
         // Input handling
-        /// This function is called when hovering over the sprite with a cursor
+        /// This function is called when hovering over the sprites with a cursor
         void on_hover() override {}
-        /// This function is caleld when the is_hoverable is pulled away from the sprite
+        /// This function is caleld when the is_hoverable is pulled away from the sprites
         void on_hover_release() override {}
         /// This function is called when the object is is_clicked on
         void on_click() override {}

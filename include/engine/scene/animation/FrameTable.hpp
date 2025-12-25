@@ -1,10 +1,8 @@
 #pragma once
 
-#include <iostream>
-
 #include "Frame.hpp"
 #include "AnimInfo.hpp"
-#include "../../types/Quad.hpp"
+#include "../../types/AnimBox2D.hpp"
 #include "engine/utilities/image-info/IMGDecoder.hpp"
 
 
@@ -21,23 +19,24 @@ namespace geng {
     class FrameTable final {
     private:
         /// Holds all the frame-information, indexed by animation number, and then frame number -> frames[anim_num][frame_num].
-        std::vector<std::vector<Frame>> frames;
+        gch::vector<gch::vector<Frame>> frames;
         /// Holds temporary vector of quads that will be deleted
-        std::vector<std::vector<Quad>> quads;
+        gch::vector<gch::vector<AnimBox2D>> quads;
         /// Links this FrameSheet to a texture in the @code TextureRegistry @endcode
         int texture_id = -1;
 
     public:
-        /// For this constructor, you manually specify the x, y, width, and height of each Frame with a Quad {x, y, w, h}. Use an initializer list.
-        FrameTable(std::vector<std::vector<Quad>> quads);
+        FrameTable() = default;
+        /// For this constructor, you manually specify the x, y, width, and height of each Frame with a AnimBox2D {x, y, w, h}. Use an initializer list.
+        FrameTable(gch::vector<gch::vector<AnimBox2D>> quads);
         /// For this constructor, you specify a start x, y, width, height, numColumns, and numAnimations. Then, this constructor will go horizontaly, move onto the next row, go horizontally, ect. to create frames with the specified width and height.
         FrameTable(int startx, int starty, int w, int h, short numColumns, short numAnimations);
         /// For this constructor, you specify a start x, y, width, height, numColumns, and numAnimations. Then, this constructor will go horizontaly, move onto the next row, go horizontally, ect. to create frames with the specified width and height. You can
-        /// specify a number of overrides with a @code std::vector<std::pair<int, std::vector<Quad>>>@endcode. Here, the int represent the animation_index you want to start overriding at, and the @code std::vector<Quad> @endcode contains your specified quad
+        /// specify a number of overrides with a @code lni::vector<std::pair<int, lni::vector<AnimBox2D>>>@endcode. Here, the int represent the animation_index you want to start overriding at, and the @code lni::vector<AnimBox2D> @endcode contains your specified quad
         /// overrides. Each override increments numAnimations by one, so make sure for each override, you consider it in your numAnimations varible. Overrides also do NOT alter the x, y, w, h parameters, so the function will continue as if the override didn't exist.
         /// Please consider this when forming a spritesheet.
         FrameTable(int startx, int starty, int w, int h, short numColumns, short numAnimations,
-                const std::vector<std::pair<int, std::vector<Quad>>>& overrides);
+            gch::vector<std::pair<int, gch::vector<AnimBox2D>>>& overrides);
 
         /// Initializes the frame table with the texture it will use.
         void _init(IMG_Info& info);

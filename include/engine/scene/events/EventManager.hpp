@@ -15,10 +15,10 @@ namespace geng {
     class EventManager final {
     private:
         std::deque<std::pair<double, std::function<void()>>> relative_queue;
-        std::vector<std::pair<double, std::function<void()>>> absolute_queue;
+        gch::vector<std::pair<double, std::function<void()>>> absolute_queue;
         std::deque<std::pair<double, std::function<void()>>> epoch_queue;
 
-        /// Contains the layer context for updating queues
+        /// Contains the layer core for updating queues
         LayerContext scene;
     public:
         explicit EventManager(LayerContext& layer_context);

@@ -1,9 +1,7 @@
 #pragma once
 #include <SDL.h>
-#include <vector>
-#include <iostream>
 
-#include "../../types/positioning/FPos2D.hpp"
+#include "engine/types/positioning/FPos2D.hpp"
 #include "engine/scene/sprites/Sprite.hpp"
 
 namespace geng {
@@ -22,7 +20,7 @@ namespace geng {
      * 8. int id -> used for indexing purposes by the engine
      * 9. Transform2D* horse -> if the ParticleGroup is attatched to a transform object, horse is not nullptr.
      * @warning There exists two essential functions to override for ParticleGroups:
-     * @code update()@endcode and @code to_vertex()@endcode. @code update()@endcode returns true when the particle effect is over. @code to_vertex(std::vector<SDL_Vertex>&buffer)@endcode
+     * @code update()@endcode and @code to_vertex()@endcode. @code update()@endcode returns true when the particle effect is over. @code to_vertex(lni::vector<SDL_Vertex>&buffer)@endcode
      * takes in the FPos2D buffer DIRECTLY FROM THE RENDERER. Thus, you must manually specify the proper vertices for your particle effect manually. There is no nice tool to do this for you.
      * If you do not properly add your @code SDL_Vertices@endcode in sets of three to the render buffer, visuals likely will bug and not work, and there is a high probability of memory corruption.
      * @note There exists an "inline SDL_FPoint white" in this definition. Just make sure you set the "4.f and 4.f" to a point on your atlas texture that is RGB(255,255,255,255)
@@ -38,12 +36,12 @@ namespace geng {
 
     public:
         // If they're attatched to an object, they ride it like a horse
-        Gear* horse = nullptr;
+        Gear* payload = nullptr;
 
         ParticleGroup(const FPos2D pos, const float strength, const float speed, const float duration, const SDL_Color color) :
                 Gear(pos), duration(duration), strength(strength), speed(speed) { if (duration == -1) permanent = true; t.color = color; }
         ParticleGroup(Gear* g, const float strength, const float speed, const float duration, const SDL_Color color)
-            : strength(strength), speed(speed), Gear(g->t.pos), horse(g), duration(duration) { z_index = g->z_index - 1; t.color = color; if (duration == -1) permanent = true;}
+            : strength(strength), speed(speed), Gear(g->t.pos), payload(g), duration(duration) { z_index = g->z_index - 1; t.color = color; if (duration == -1) permanent = true;}
 
         // Lets us update our particles. Should return true if done rendering.
         virtual bool update(LayerState& t) = 0;  // pure virtual

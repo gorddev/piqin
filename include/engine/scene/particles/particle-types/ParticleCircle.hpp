@@ -14,7 +14,7 @@ namespace geng {
         float initDuration;
         PCircle(FPos2D pos, int radius, float duration);
         bool update();
-        [[nodiscard]] std::vector<SDL_FRect> to_rect(float& speed);
+        [[nodiscard]] lni::vector<SDL_FRect> to_rect(float& speed);
     };
 
     class ParticleCircle : public ParticleGroup {
@@ -27,7 +27,7 @@ namespace geng {
         ParticleCircle(Sprite* a, float size, float speed, float duration, float period, SDL_Color Tint = {0,0,0,30});
 
         bool update(double& dt) override;
-        std::vector<std::vector<SDL_FRect>> to_vertex() override;
+        lni::vector<lni::vector<SDL_FRect>> to_vertex() override;
     };
 
 }

@@ -1,18 +1,17 @@
 #pragma once
-#include <vector>
 
 #include "engine/rendering/RenderBuffer.hpp"
 #include "engine/types/positioning/Box2D.hpp"
-#include "../../types/Quad.hpp"
 
 namespace geng {
 
     /// @brief A tile is a fundamental unit a tileset contains.
     /// @details Once a tile is made, it can't be transmuted.
     class Tile {
-        std::vector<SDL_FPoint> tex_points;
+        gch::vector<SDL_FPoint> tex_points = {};
         int size = 4;
     public:
+        Tile() = default;
         /// Basic constructor
         Tile(Box2D b, int size, int tex_W, int tex_H) : size(size){
             tex_points = b.to_normalized_coordinates(tex_W, tex_H);
