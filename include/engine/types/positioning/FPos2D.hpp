@@ -1,6 +1,8 @@
 #pragma once
 #include <SDL_rect.h>
-#include <string>
+
+#include "engine/types/strings/str_view/str_view.hpp"
+
 
 namespace geng {
 
@@ -68,7 +70,7 @@ namespace geng {
         operator SDL_FPoint() const; // NOLINT(*-explicit-constructor)
 
         /// To-String function
-        std::string to_string() const;
+        geng::str_view& to_string(geng::str_view& buffer) const;
 
     };
     

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <SDL_rect.h>
-#include <vector>
 
 namespace geng {
 
@@ -41,8 +40,8 @@ namespace geng {
         }
         int area() const { return w*h; }
         /// Converts the box into two repsentative SDL tex_points. Order: topleft, bottomleft, bottomright, topright.
-        std::vector<SDL_FPoint> to_points() const {
-            std::vector<SDL_FPoint> points;
+        gch::vector<SDL_FPoint> to_points() const {
+            gch::vector<SDL_FPoint> points;
             SDL_FPoint tl = {x + 0.f, y +0.f};
             SDL_FPoint bl = {x + 0.f, y + h + 0.f};
             SDL_FPoint br = {x + w + 0.f, y + h + 0.f};
@@ -55,8 +54,8 @@ namespace geng {
             return points;
         }
         /// Converts the box into 6 representative tex_points that can be used to render the box accordingly, appended to a point buffer.
-        void to_vert_points(std::vector<SDL_FPoint>& points) const {
-            std::vector<SDL_FPoint> my_points = to_points();
+        void to_vert_points(gch::vector<SDL_FPoint>& points) const {
+            gch::vector<SDL_FPoint> my_points = to_points();
             points.push_back(my_points[0]);
             points.push_back(my_points[1]);
             points.push_back(my_points[2]);
@@ -65,8 +64,8 @@ namespace geng {
             points.push_back(my_points[3]);
         }
         /// special version which uses the normalized coordinates
-        std::vector<SDL_FPoint> to_normalized_coordinates(float texW, float texH) const {
-            std::vector<SDL_FPoint> points;
+        gch::vector<SDL_FPoint> to_normalized_coordinates(float texW, float texH) const {
+            gch::vector<SDL_FPoint> points;
             SDL_FPoint tl = {x / texW, y / texH};
             SDL_FPoint bl = {x / texW, (y + h)/texH};
             SDL_FPoint br = {(x + w)/texW, (y + h)/texH};
@@ -79,14 +78,14 @@ namespace geng {
             return points;
         }
         /// Turns it into a hitbox for rendering
-        std::vector<SDL_FPoint> to_vertex_hitbox(uint16_t thickness) {
+        gch::vector<SDL_FPoint> to_vertex_hitbox(uint16_t thickness) {
 
             Box2D left = {x, y, thickness, h};
             Box2D top = {x , y, w, thickness};
             Box2D bottom = {x + thickness, y + h - thickness, w - thickness, thickness};
             Box2D right = {x + w - thickness, y, thickness, h};
 
-            std::vector<SDL_FPoint> points;
+            gch::vector<SDL_FPoint> points;
             left.to_vert_points(points);
             top.to_vert_points(points);
             bottom.to_vert_points(points);

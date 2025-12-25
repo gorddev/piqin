@@ -1,5 +1,6 @@
 #pragma once
-#include <string>
+#include "engine/types/strings/str_view/str_view.hpp"
+
 
 namespace geng {
     /**
@@ -75,7 +76,7 @@ namespace geng {
         /// Pipe a FPos3D with a string
         std::string operator<<(std::string s) const;
         /// Converts a FPos3D to a string.
-        [[nodiscard]] std::string to_string() const;
+        [[nodiscard]] geng::str_view &to_fstring(str_view &buffer) const;
         /// Checks to the fourth decimal if two Vertexes are equal.
         bool operator==(FPos3D other) const;
 

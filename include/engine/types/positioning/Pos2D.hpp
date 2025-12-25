@@ -1,7 +1,6 @@
 #pragma once
 #include <SDL_rect.h>
 
-
 namespace geng {
 
     struct Pos2D {
