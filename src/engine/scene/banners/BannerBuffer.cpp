@@ -37,7 +37,7 @@ void BannerBuffer::_set_white_point(SDL_FPoint new_white_point) {
 }
 
 /// Gets the buffer of vertices
-std::vector<SDL_Vertex>& BannerBuffer::_get_vertex_buffer() {
+gch::vector<SDL_Vertex>& BannerBuffer::_get_vertex_buffer() {
     return buffer;
 }
 

@@ -2,7 +2,9 @@
 
 using namespace geng;
 
-EventManager::EventManager(LayerContext &layer_context) : scene(layer_context) {}
+EventManager::EventManager(LayerContext &layer_context) : scene(layer_context) {
+    glog::note << "EventManager for " << scene.get_name() << " formed." << glog::endlog;
+}
 
 void EventManager::update() {
     double dt = scene.state.get_dt();

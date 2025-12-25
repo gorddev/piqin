@@ -30,9 +30,10 @@ void Sprite::update_frame(LayerState& time) {
         frameTable.update_frame(anim);
 }
 
-/// To String
-std::string Sprite::to_string() const {
-    return "Sprite:" + Gear::to_string() + " " + t.to_string() + "\n" + anim.to_string();
+/// To Fstring
+geng::str_view& Sprite::to_fstring(geng::str_view& buffer) const {
+    Gear::to_fstring(buffer) << "\n";
+    return anim.to_fstring(buffer);
 }
 
 /// Converts an sprite to buffer

@@ -1,18 +1,18 @@
 #include "engine/rendering/Renderer.hpp"
-#include <string>
+
+
+#include "engine/debug/Console.hpp"
 
 using namespace geng;
 
-Renderer::Renderer(EngineContext& world) : world(world), buffer(shadows) {
+Renderer::Renderer(EngineContext& world, TextureRegister& texreg, Camera& camera)
+		: world(world), camera(camera), texreg(texreg), buffer(texreg, shadows) {
 	// Create the texture we will end up rendering to.
 	canvasTex = nullptr;
-	// Initializes good stuff
-	buffer.resize(10000);
-	buffer.clear();
 }
 
 void Renderer::set_render_resolution(const uint16_t width, const uint16_t height) {
-	// Destroy our canvas tex if it doesn't already exist. 
+	// Destroy our canvas tex if it doesn't already exist.
 	if (canvasTex != nullptr)
 		SDL_DestroyTexture(canvasTex);
 	world._set_window_size(width, height);
@@ -35,9 +35,9 @@ void Renderer::_init() {
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
-	// Set the canvas size we'll render to. 
+	// Set the canvas size we'll render to.
 	set_render_resolution(world.get_width(), world.get_height());
-	// Tells us to use nearest neighbor scaling. 
+	// Tells us to use nearest neighbor scaling.
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
 }
 
@@ -50,7 +50,7 @@ void Renderer::set_render_texture() {
 	SDL_RenderClear(renderer);
 }
 
-void Renderer::render(std::vector<Layer*>& layers) {
+void Renderer::render(gch::vector<Layer*>& layers, debug::Console* console) {
 
 	/* RENDER SETUP */
 	// First we set our draw color in case nothing renders
@@ -59,17 +59,48 @@ void Renderer::render(std::vector<Layer*>& layers) {
 	update_canvas_size();
 	// We flush the page
 	SDL_RenderClear(renderer);
-	/* RENDERING SHIT */
 
-	buffer.clear();
+	// Now we check if any textures need rendering
+	if (texreg.dirty) {
+		for (auto& [str, id]: texreg.ready_textures) {
+			texreg.load_texture(id, IMGDecoder::load_image_as_texture(renderer, str));
+		}
+		texreg.ready_textures.clear();
+		texreg.dirty = false;
+	}
 	// Now we set our renderTexutre (global::scene.width x global::scene.height)
-	// This will be engine_context.get_scale()d up after we draw the background & sprites
 	set_render_texture();
 
+	// Prep the buffer with the camera's position.
+	buffer.prep(camera.pos);
 	// ><><><><><>< BIG PHASE ><><><><><><
-	for (auto& l : layers)
-		render_layer(l);
+	for (auto& l : layers) {
+		if (l->scene.is_visible())
+			render_layer(l);
+	}
 
+
+	if (console != nullptr) {
+		buffer.request_texture(0);
+		fstring<800> newtext = console->text.get_text();
+		Text<800> temp(newtext.cstr(), layers.back()->get_font(0), &debug::geng_default_debug_syntax_map);
+		console->topinfo.get_widgets()[0] = &temp;
+		console->to_vertex(buffer);
+	}
+
+
+	// We pop the final batch onto the buffer
+	buffer.pop_last_batch();
+	// Now we render each batch.
+	for (auto& batch : buffer.batches) {
+		SDL_RenderGeometry(
+		renderer,
+		texreg[batch.texture_id].texture,
+		buffer.data() + batch.start_index,
+		batch.num_vertices,
+		nullptr,
+		0);
+	}
 }
 
 
@@ -82,34 +113,14 @@ void Renderer::render(std::vector<Layer*>& layers) {
 // <><><><><><><><><><><>><>
 // Then, we separate each element into it's proper type and render it.
 void Renderer::render_layer(Layer*& lay) {
-	// Grabs the draw batches from the layer
-	std::vector<DrawBatch> batches = lay->_render_self(buffer);
 
-	// Now we render each batch.
-	for (auto& batch : batches) {
-		SDL_RenderGeometry(
-		renderer,
-		batch.tex,
-		buffer.data() + batch.start_index,
-		batch.num_vertices,
-		nullptr,
-		0);
-	}
-	buffer.clear();
+	// <><><> First the layer renders itself
+	lay->render_self(buffer);
 
 	// <><><> Here's where we render the cell bucket.
 	for (auto& cell: lay->cell_bucket) {
-		SDL_Texture* tex = lay->_find_texture(cell.texture_id);
+		buffer.request_texture(cell.texture_id);
 		cell.to_vertex(buffer, world);
-		SDL_RenderGeometry(
-			renderer,
-			tex,
-			buffer.data(),
-			buffer.size(),
-			nullptr,
-			0
-			);
-		buffer.clear();
 	}
 }
 
@@ -138,11 +149,11 @@ void Renderer::present() {
 }
 
 void Renderer::prime_tex_register(TextureRegister &reg) {
-	for (auto& [str, id] : reg.path_to_textureID) {
-		if (reg.ID_to_texture.find(id) == reg.ID_to_texture.end()) {
+	for (auto& [str, id] : reg.path_to_id) {
+		if (reg.id_to_tex.find(id) == reg.id_to_tex.end()) {
 			Texture tex = IMGDecoder::load_image_as_texture(renderer, str);
-			world.log(0, "Loading image to texture: " + tex.info.filename, "Renderer::prime_tex_register");
-			reg.ID_to_texture.emplace(id, std::move(tex));
+			glog::note.src("Renderer::prime_tex_register") << "Loading image to texture: " << tex.info.filename.cstr();
+			reg.id_to_tex.emplace(id, std::move(tex));
 		}
 	}
 }

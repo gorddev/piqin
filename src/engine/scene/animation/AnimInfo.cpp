@@ -10,6 +10,7 @@ using namespace geng;
 
 AnimInfo::AnimInfo(Frame& first_frame) : frame(&first_frame) {
     default_animation = 0;
+    next_anim = -1;
     duration = frame->get_duration();
 }
 
@@ -33,6 +34,14 @@ uint16_t AnimInfo::get_anim_id() const {
     return animation_index;
 }
 
+short AnimInfo::get_next_anim() const {
+    return next_anim;
+}
+
+void AnimInfo::set_next_anim(short new_anim) {
+    next_anim = new_anim;
+}
+
 uint16_t AnimInfo::get_frame_index() const {
     return frame_index;
 }
@@ -52,18 +61,41 @@ void AnimInfo::set_frame_id(uint16_t new_frame_id) {
 void AnimInfo::set_frame(Frame& s) {
     frame = &s;
     dirty = false;
-    duration += s.get_duration();
+    duration = s.get_duration();
+    next_anim = s.get_next_anim();
 }
 
-void AnimInfo::set_animation(uint16_t new_animation) {
+void AnimInfo::set_animation(uint16_t new_animation, bool priorityStatus) {
     dirty = true;
+    this->priority = priorityStatus;
     animation_index = new_animation;
+    frame_index = 0;
     duration = 0.0f;
+}
+
+void AnimInfo::suggest_animation(short new_animation) {
+    next_anim = new_animation;
+}
+
+void AnimInfo::queue_animation(short new_animation) {
+    queued_anim = new_animation;
+}
+
+void AnimInfo::set_priority(bool state) {
+    priority = state;
+}
+
+bool AnimInfo::has_priority() {
+    return priority;
 }
 
 void AnimInfo::set_default_animation(
     uint16_t new_default_animation) {
     default_animation = new_default_animation;
+}
+
+short AnimInfo::get_queued_anim() const {
+    return queued_anim;
 }
 
 
@@ -75,12 +107,7 @@ int AnimInfo::pre_increment_frame() {
     return ++frame_index;
 }
 
-std::string AnimInfo::to_string() const {
-    return std::string("AnimInfo { ") +
-        "duration=" + std::to_string(duration) + ", " +
-        "animation_index=" + std::to_string(animation_index) + ", " +
-        "frame_index=" + std::to_string(frame_index) + ", " +
-        "default_animation=" + std::to_string(default_animation) + ", " +
-        "dirty=" + (dirty ? "true" : "false") +
-        " }";
+geng::str_view& AnimInfo::to_fstring(geng::str_view &buffer) const {
+    return buffer   << "[AnimInfo] " <<  "\tdefault_anim: " << default_animation << "\tbasedur: " << frame->get_duration() <<"\tdirty: " << (dirty ? "true" : "false") << "\n"
+                    << "dur: " << static_cast<int>(duration) << "  \tanim_id: " << get_anim_id() << "\tframe_id: " << frame_index << "\t" << frame->get_duration() << "\t" << "anim_type: " << geng::to_string(frame->get_anim_type());
 }

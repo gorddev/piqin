@@ -39,29 +39,20 @@ int GameWorld::worldHeight() {
     return max;
 }
 
-void GameWorld::render_world(geng::TileBuffer &buffer, geng::Camera &cam) {
+void GameWorld::render_world(geng::TileBuffer &buffer, const geng::Camera &cam) {
     // Get camera bounds
-    float camX = cam.pos.x;
-    float camY = cam.pos.y;
-    float camW = cam.get_width();
-    float camH = cam.get_height();
-
     int tileSize = buffer.get_tile_size();
-
-    // Compute visible tile range
-    int startCol = static_cast<int>(camX / tileSize);
-    int endCol   = static_cast<int>((camX + camW) / tileSize);
 
     // Iterate levels
     int count = 0;
-    for (const auto &lvl : levels) {
+    for (auto &lvl : levels) {
         if (lvl.xOffset > cam.right()) continue;
         if (lvl.xOffset + lvl.width*tileSize < cam.pos.x) continue;
         if (lvl.yOffset > cam.bottom()) continue;
         if (lvl.yOffset + lvl.height*tileSize < cam.pos.y) continue;
 
         // Iterate layers
-        for (const auto &layer : lvl.layers) {
+        for (auto &layer : lvl.layers) {
             if (!layer.visible || layer.layerClass == TLayer::Class::OBJ) continue;
             // Iterate only visible tiles
             for (int col = 0; col < lvl.width; col++) {
@@ -80,6 +71,8 @@ void GameWorld::render_world(geng::TileBuffer &buffer, geng::Camera &cam) {
     }
 }
 
+
+
 static const char* layer_class_to_string(TLayer::Class c) {
     switch (c) {
         case TLayer::Class::VIS:     return "VIS";
@@ -89,57 +82,56 @@ static const char* layer_class_to_string(TLayer::Class c) {
     }
 }
 
-std::string GameWorld::to_string() const {
-    std::ostringstream out;
+geng::str_view& GameWorld::to_fstring(geng::str_view& buffer) {
 
-    out << "=== GameWorld ===\n";
-    out << "Magic: 0x" << std::hex << magic << std::dec << "\n";
-    out << "Num Levels: " << num_levels << "\n\n";
+    buffer << "=== GameWorld ===\n";
+    buffer << magic << "\n";
+    buffer << "Num Levels: " << num_levels << "\n\n";
 
     for (size_t li = 0; li < levels.size(); ++li) {
-        const GameLevel& lvl = levels[li];
+        GameLevel& lvl = levels[li];
 
-        out << "Level [" << li << "]\n";
-        out << "  Size: " << lvl.width << " x " << lvl.height << "\n";
-        out << "  Offset: (" << lvl.xOffset << ", " << lvl.yOffset << ")\n";
-        out << "  Num Layers: " << lvl.layers.size() << "\n";
+        buffer << "Level [" << li << "]\n";
+        buffer << "  Size: " << lvl.width << " x " << lvl.height << "\n";
+        buffer << "  Offset: (" << lvl.xOffset << ", " << lvl.yOffset << ")\n";
+        buffer << "  Num Layers: " << lvl.layers.size() << "\n";
 
         for (size_t ly = 0; ly < lvl.layers.size(); ++ly) {
-            const TLayer& layer = lvl.layers[ly];
+            TLayer& layer = lvl.layers[ly];
 
-            out << "    Layer [" << ly << "]\n";
-            out << "      Class: " << layer_class_to_string(layer.layerClass) << "\n";
-            out << "      Visible: " << (layer.visible ? "true" : "false") << "\n";
+            buffer << "    Layer [" << ly << "]\n";
+            buffer << "      Class: " << layer_class_to_string(layer.layerClass) << "\n";
+            buffer << "      Visible: " << (layer.visible ? "true" : "false") << "\n";
 
             if (layer.layerClass == TLayer::Class::OBJ) {
-                out << "      Objects: " << layer.objects.size() << "\n";
+                buffer << "      Objects: " << layer.objects.size() << "\n";
                 for (size_t oi = 0; oi < layer.objects.size(); ++oi) {
-                    const TObject& obj = layer.objects[oi];
-                    out << "        Object [" << oi << "] id=" << obj.id
-                        << " template=" << obj.templateName
+                    TObject& obj = layer.objects[oi];
+                    buffer << "        Object [" << oi << "] id=" << obj.id
+                        << " template=" << obj.templateName.cstr()
                         << " pos=(" << obj.x << "," << obj.y << ")\n";
                     if (!obj.properties.empty()) {
-                        out << "          Properties:\n";
-                        for (const auto& prop : obj.properties) {
-                            out << "            " << prop.name << " = " << prop.value << "\n";
+                        buffer << "          Properties:\n";
+                        for (auto&[name, value] : obj.properties) {
+                            buffer << "            " << name.cstr() << " = " << value << "\n";
                         }
                     }
                 }
             } else {
-                out << "      Tiles: " << layer.data.size() << "\n";
-                out << "      Tile Grid:\n";
+                buffer << "      Tiles: " << layer.data.size() << "\n";
+                buffer << "      Tile Grid:\n";
                 for (uint32_t y = 0; y < lvl.height; ++y) {
-                    out << "        ";
+                    buffer << "        ";
                     for (uint32_t x = 0; x < lvl.width; ++x) {
                         uint32_t idx = y * lvl.width + x;
                         uint16_t t = (idx < layer.data.size()) ? layer.data[idx] : 0;
-                        out << std::setw(4) << t << " ";
+                        buffer <<  t << " ";
                     }
-                    out << "\n";
+                    buffer << "\n";
                 }
             }
         }
-        out << "\n";
+        buffer << "\n";
     }
-    return out.str();
+    return buffer;
 }

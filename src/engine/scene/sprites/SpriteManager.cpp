@@ -1,10 +1,14 @@
 #include "engine/scene/sprites/SpriteManager.hpp"
-#include <iostream>
+
+#include "../../../../include/engine/types/strings/fstring/fstring.hpp"
+#include "engine/debug/logging/LogSource.hpp"
 
 using namespace geng;
 
 // Constructor
-SpriteManager::SpriteManager(LayerContext& layer_context) noexcept : scene(layer_context) {}
+SpriteManager::SpriteManager(LayerContext& layer_context) noexcept : scene(layer_context) {
+	glog::note << "SpriteManager for " << scene.get_name() << " formed." << glog::endlog;
+}
 
 // Add object, pointer (preferred method)
 void SpriteManager::add_sprite(Sprite *a) noexcept {
@@ -12,14 +16,12 @@ void SpriteManager::add_sprite(Sprite *a) noexcept {
 	id_to_pos[a->id] = sprites.size();
 	// If our flag is notempty
 	if (a->is_tagged())
-		std:: cerr << "Sprite Tagged."
-					<< "\nObject Info:\n"
-					<< a->to_string() << std::endl;
+		glog::note << "Sprite Tagged." << glog::endlog;
 	// Then we just push it to the back of the vector
 	sprites.push_back(a);
 }
 
-void SpriteManager::add_sprites(const std::vector<Sprite *>& vec) noexcept {
+void SpriteManager::add_sprites(gch::vector<Sprite *>& vec) noexcept {
 	for (auto& a: vec)
 		add_sprite(a);
 }
@@ -28,8 +30,8 @@ void SpriteManager::add_sprites(const std::vector<Sprite *>& vec) noexcept {
 void SpriteManager::dissolve(int id) {
 	// First we grab sprite's index
 	if (id_to_pos.find(id) == id_to_pos.end()) {
-		scene.log(2, "Id " + std::to_string(id) + " not found",
-				  "SpriteManager::dissolve(int id)");
+		glog::err.src("SpriteManager::dissolve")
+			<< "Id " << id << " does not exist." << glog::endlog;
 	}
 	int index = id_to_pos[id];
 	int last = static_cast<int>(sprites.size()) - 1;
@@ -52,7 +54,7 @@ void SpriteManager::dissolve(const Sprite* a) {
 }
 
 // This grabs ids from all sprites and removes them.
-void SpriteManager::dissolve(std::vector<Sprite *> vec) {
+void SpriteManager::dissolve(gch::vector<Sprite *> vec) {
 	for (auto& a: vec)
 		dissolve(a->id);
 }
@@ -62,14 +64,14 @@ void SpriteManager::update(){
 		Sprite& sprite = *a;
 		// Print out a flag for testing purposes.
 		if (sprite.is_tagged())
-			std::cerr << "Sprite Tagged:"
-						<< sprite.to_string() << std::endl;
+			glog::note.src("SpriteManager::Update")
+				<< ("Sprite Tagged");
 		// Update our object's update functions
 		sprite.update(scene.state);
 	}
 }
 
-void SpriteManager::update_sprites() {
+void SpriteManager::update_frames() {
 	for (auto& a: sprites) {
 		a->update_frame(scene.state);
 	}
@@ -83,10 +85,10 @@ auto SpriteManager::end() {
 	return sprites.end();
 }
 
-std::string SpriteManager::to_string() {
-	std::string ret;
-	ret += "Printing SpriteManager: ";
-	ret += "\n::Num sprites: " + std::to_string(sprites.size());
-	ret += "\n";
+fstring<40> SpriteManager::to_string() {
+	fstring<40> ret;
+	ret << "Printing SpriteManager: "
+		<< "\n::Num sprites: " << static_cast<int>(sprites.size());
+	ret << "\n";
 	return ret;
 }

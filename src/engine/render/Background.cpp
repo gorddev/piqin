@@ -1,9 +1,8 @@
 #include "engine/rendering/background/Background.hpp"
-#include <iostream>
-#include <vector>
 
 #include "engine/EngineContext.hpp"
 #include "../../../include/engine/types/positioning/FPos2D.hpp"
+#include "engine/debug/logging/LogSource.hpp"
 #include "engine/types/positioning/FPos3D.hpp"
 
 using namespace geng;
@@ -21,7 +20,7 @@ Background::Background(SDL_Renderer* renderer, EngineContext& world) : world(wor
     // Then we resize our vector in accordance with the number of pixels we'll need.
     rgb.resize(world.get_width() * world.get_height() * 4);
     create_heightMap();
-    pixelColors = std::vector<uint8_t>(world.get_width() * world.get_height());
+    pixelColors = gch::vector<uint8_t>(world.get_width() * world.get_height());
 
     // Then, we set up a default Palette to use.
     addPalette(defaultBackgroundPalette);
@@ -128,7 +127,7 @@ void Background::setPalette(int newPalette) {
     }
     // Return error if the palette is not loaded
     if (newPalette >= palettes.size()) {
-        std::cerr << "Err::Background::setPalette " << newPalette << " not found." << std::endl;
+        glog::warn.src("Err::Background::setPalette ") << newPalette << " not found." << glog::endlog;
         return;
     }
     paletteNum = newPalette;

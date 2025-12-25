@@ -1,8 +1,8 @@
 #include "engine/scene/banners/Banner.hpp"
-
 #include "engine/types/positioning/Box2D.hpp"
 #include <algorithm>
-#include <iostream>
+
+#include "engine/debug/logging/LogSource.hpp"
 
 using namespace geng;
 
@@ -52,7 +52,7 @@ int Banner::get_texture_id() const {
 }
 
 /// Access widgets
-const std::vector<Widget*>& Banner::get_widgets() const {
+gch::vector<Widget*>& Banner::get_widgets() {
     return widgets;
 }
 
@@ -66,7 +66,7 @@ bool Banner::add_widget_internal(Widget* w) {
 
     // Reject widget if texture_id doesn't match
     if (w->get_texture_id() != texture_id) {
-        std::cerr << "Widget rejected: texture_id mismatch ("
+        glog::warn << "Widget rejected: texture_id mismatch ("
                   << w->get_texture_id() << " != " << texture_id << ")\n";
         return false;
     }
@@ -78,7 +78,7 @@ bool Banner::add_widget_internal(Widget* w) {
 
     if (w->get_height() < 0) {
         float mod = std::min(100.f, 0.f + std::abs(w->get_height())) / 99.9f;
-        std::cerr << "mod: " << mod << "\n";
+        glog::note << "mod: " << mod << "\n";
         w->change_dim({w->get_width(), static_cast<int>(t.h * mod)});
     }
 

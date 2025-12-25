@@ -4,14 +4,15 @@
 
 using namespace geng;
 
-Layer::Layer(std::string name)
-        : engine_context(nullptr), scene(std::move(name)), texreg(scene), sprite(scene),
-        event(scene), morph(scene),
-        particle(scene), route(scene),
-        init(texreg, scene), banner(scene),
-        frame(scene), world(scene.camera),
+Layer::Layer(LayerInit& layer_init, fstring<10> name)
+        : core(layer_init.core), camera(layer_init.camera), texreg(layer_init.texreg),
+        name(name), scene(layer_init.core, this->name, layer_init.camera),
+        sprites(scene), events(scene), morphs(scene),
+        particles(scene), routes(scene),
+        init(scene, frames, fonts, tiles, texreg), banners(scene),
+        frames(scene), world(layer_init.camera),
         input(scene), physics(scene, world) {
-    scene.log(1, "Layer created: " + scene.get_name(), "Layer::Layer");
+
 }
 
 Layer::~Layer() {
@@ -19,35 +20,33 @@ Layer::~Layer() {
 }
 
 void Layer::update(double dt) {
-    // We first update the scene with dt.
-    scene._update(dt);
-    // Then we update all our objects' positions
-    sprite.update();
-    // We manage the physics for sprites
-    physics.update();
-    // Then we update the spritesheet of each sprite
-    sprite.update_sprites();
-    // Now we update the partices.
-    particle.update();
-    // Next we update any dynamic banner elements
-    banner.update();
-    // Next we update all the routing info for our objects
-    route.update();
-    // Next we update all the morphs
-    morph.update();
-
+    if (scene.is_running()) {
+        // 1. Grab time from the main loop
+        scene._update(dt);
+        // 2. Update each sprites via. their update fcuntion
+        sprites.update();
+        // 3. Update the physics of each collider sprites
+        physics.update();
+        // 4. Update the spritesheet of each sprites after everything
+        sprites.update_frames();
+        // 5. Update particle effects
+        particles.update();
+        // 6. Update banners
+        banners.update();
+        // 7. Update routes
+        routes.update();
+        // 8. Update morphs
+        morphs.update();
+    }
 }
 
 // *********************** //
 // Rendering //
 // *********************** //
 
-std::vector<DrawBatch> Layer::_render_self(RenderBuffer& buffer) {
+void Layer::render_self(RenderBuffer &buffer) {
     // If we have no gears, we return
-    if (gears.empty()) return {};
-
-    // Then we set up the camera position
-    buffer.set_camera_pos({scene.camera.pos.x, scene.camera.pos.y});
+    if (gears.empty()) return;
 
     // If we're z-ordered, we sort based on that
     std::sort(gears.begin(), gears.end(), [](const Gear* e1, const Gear* e2) {
@@ -55,111 +54,79 @@ std::vector<DrawBatch> Layer::_render_self(RenderBuffer& buffer) {
     });
 
     // If the debug grid is enabled
-    if (active && scene.world->debugger.is_grid())
-        _render_grid(buffer, 16, 1, true);
-
-    // veector of batches for the renderer to handle
-    std::vector<DrawBatch> batches;
-    // in an ideal scenario, we reserve the number of textures we have
-    batches.reserve(texreg.size());
-    // If we have no textures, we crash.
-    if (texreg.size() == 0)
-        scene.log(2, "No textures detected to render layer "+ scene.get_name(), "Layer::_render_self()");
-    // Create the current draw batch from the initial texture. (This will likely be overwritten)
-    std::pair<int, Texture> initial = texreg.front();
-    DrawBatch current_batch = {initial.second.texture, 0}; // Start with texreg[0] for particle fallback
-    // Set the img_info for the RenderBuffer for various objects to use.
-    buffer.set_img_info(initial.second.info);
-    // Setrs the current texture id to 0.
-    current_batch.texture_id = initial.first;
+    if (is_active() && core.debugger.is_grid())
+        render_grid(buffer, 16, 1, true);
 
     // We render our world here
-    if (world.get_texture_id() != -1) {
-        current_batch.texture_id = world.get_texture_id();
-        buffer.set_img_info(texreg[world.get_texture_id()].info);
-        current_batch.tex = texreg[world.get_texture_id()].texture;
-    }
+
+    if (world.get_texture_id() != -1)
+        buffer.request_texture(world.get_texture_id());
     world.render_world(buffer);
 
     // We render our gears here.
-    _render_gears(buffer, current_batch, batches);
+    render_gears(buffer);
 
     // Holy we're done!
     // Wait what about debug mode
-    if (active&& scene.world->debugger.is_hitboxes())
-        _render_hitboxes(buffer);
-
-    // We push back the final batch before exiting the render self function
-    current_batch.num_vertices = buffer.size() - current_batch.start_index;
-    batches.push_back(current_batch);
-
-    return batches;
+    if (is_active() && core.debugger.is_hitboxes())
+        render_hitboxes(buffer);
 }
 
-void Layer::_render_gears(RenderBuffer& buffer, DrawBatch& current_batch, std::vector<DrawBatch>& batches) {
+void Layer::render_gears(RenderBuffer& buffer) {
     for (auto & gear : gears) {
         // Reference our gear for faster access.
         auto& g = *gear;
         // If our texture ID doesn't match, we end the batch and create a new one (if -1, it doesn't have a texture, so it's chill)
-        if (g.texture_id != -1 && g.texture_id != current_batch.texture_id) {
-            // First we get the number of vertices we'll render
-            current_batch.num_vertices = buffer.size() - current_batch.start_index;
-            // Then we push back the current batch cause we won't be needing it anymore.
-            batches.push_back(current_batch);
-            // next, we get the start index for the next batch
-            current_batch.start_index = buffer.size();
-            // along with the requisite texture_id
-            current_batch.texture_id = g.texture_id;
-            // Then we set the texture
-            current_batch.tex = texreg[g.texture_id].texture;
-            // and update our image info.
-            buffer.set_img_info(texreg[g.texture_id].info);
-        }
+        buffer.request_texture(g.texture_id);
+        // Adds the gear's vertices to the buffer.
+        fstring<800> ginfo;
+        str_view f = ginfo.wrap();
+        g.to_fstring(f);
         g.to_vertex(buffer);
     }
 }
 
-void Layer::_render_grid(RenderBuffer& buffer, int grid_div, int thickness, bool subdiv) const {
-    Pos2D startpos = {scene.camera.pos.x - scene.camera.pos.x%grid_div, scene.camera.pos.y - scene.camera.pos.y%grid_div};
+void Layer::render_grid(RenderBuffer& buffer, int grid_div, int thickness, bool subdiv) const {
+    Pos2D startpos = {camera.pos.x - camera.pos.x%grid_div, camera.pos.y - camera.pos.y%grid_div};
     Pos2D endpos = {};
-    for (int i = startpos.x; i < scene.camera.right(); i+= grid_div) {
-        Box2D line = {i, scene.camera.pos.y, thickness, scene.camera.get_height()};
-        std::vector<SDL_FPoint> points;
+    for (int i = startpos.x; i < camera.right(); i+= grid_div) {
+        Box2D line = {i, camera.pos.y, thickness, camera.get_height()};
+        gch::vector<SDL_FPoint> points;
         line.to_vert_points(points);
         for (auto& i: points)
-            buffer.push_back(i, {255, 255, 255, 90});
+            buffer.push_back(i, {255, 255, 255, 40});
     }
-    for (int i = startpos.y; i < scene.camera.bottom(); i+= grid_div) {
-        Box2D line = {scene.camera.pos.x, i, scene.camera.get_width(), thickness};
-        std::vector<SDL_FPoint> points;
+    for (int i = startpos.y; i < camera.bottom(); i+= grid_div) {
+        Box2D line = {camera.pos.x, i, camera.get_width(), thickness};
+        gch::vector<SDL_FPoint> points;
         line.to_vert_points(points);
         for (auto& i: points)
             buffer.push_back(i, {255, 255, 255, 40});
     }
 
     if (subdiv) {
-        for (int i = startpos.x + grid_div/2; i < scene.camera.right(); i+= grid_div) {
-            Box2D line = {i, scene.camera.pos.y, thickness, scene.camera.get_height()};
-            std::vector<SDL_FPoint> points;
+        for (int i = startpos.x + grid_div/2; i < camera.right(); i+= grid_div) {
+            Box2D line = {i, camera.pos.y, thickness, camera.get_height()};
+            gch::vector<SDL_FPoint> points;
             line.to_vert_points(points);
             for (auto& i: points)
-                buffer.push_back(i, {255, 255, 255, 20});
+                buffer.push_back(i, {255, 255, 255, 15});
         }
-        for (int i = startpos.y + grid_div/2; i < scene.camera.bottom(); i+= grid_div) {
-            Box2D line = {scene.camera.pos.x, i, scene.camera.get_width(), thickness};
-            std::vector<SDL_FPoint> points;
+        for (int i = startpos.y + grid_div/2; i < camera.bottom(); i+= grid_div) {
+            Box2D line = {camera.pos.x, i, camera.get_width(), thickness};
+            gch::vector<SDL_FPoint> points;
             line.to_vert_points(points);
             for (auto& i: points)
-                buffer.push_back(i, {255, 255, 255, 20});
+                buffer.push_back(i, {255, 255, 255, 15});
         }
     }
 }
 
-void Layer::_render_hitboxes(RenderBuffer& buffer) {
+void Layer::render_hitboxes(RenderBuffer& buffer) {
     // we need to go through and render all the hitboxes
     for (auto & gear : gears) {
         auto& g = *gear;
-        std::vector<SDL_FPoint> hitbox = g.t.to_vertex_hitbox(1);
+        gch::vector<SDL_FPoint> hitbox = g.t.to_vertex_hitbox(1);
         if (g.is_banner())
             buffer.push_back(hitbox, {0, 255, 0, 255});
         else if (g.is_sprite())
@@ -172,12 +139,12 @@ void Layer::_render_hitboxes(RenderBuffer& buffer) {
     // goes through all the colliders in the physics engine
     for (auto & c : physics.get_colliders()) {
         // first we actually render the physical scene
-        std::vector<SDL_FPoint> hitbox = c->to_vertex_hitbox(1);
+        gch::vector<SDL_FPoint> hitbox = c->to_vertex_hitbox(1);
         buffer.push_back(hitbox, {255, 0, 0, 255});
     }
 }
 
-void Layer::_order() {
+void Layer::order() {
     // If the Layer is z-indexed
     if (scene.is_z_indexed()) {
         std::sort(gears.begin(), gears.end(), [](const Gear* e1, const Gear* e2) {
@@ -186,22 +153,16 @@ void Layer::_order() {
     }
 }
 
-void Layer::_add_engine_context(EngineContext *ec) {
-    engine_context = ec;
-    scene._add_engine_context(ec);
-}
-
 SDL_Texture * Layer::_find_texture(int texture_id) {
     return texreg.get_texture(texture_id).texture;
 }
 
-void Layer::_set_active(bool status) {
-    std::cerr << scene.get_name() + " active: " << status << std::endl;
-    active = status;
+bool Layer::is_active() const {
+    return scene.is_active();
 }
 
-bool Layer::is_active() const {
-    return active;
+fstring<10> Layer::get_name() const {
+    return name;
 }
 
 // ********************** //
@@ -238,6 +199,7 @@ void Layer::remove_gear(Gear* g) {
 }
 
 
+
 // ********************** //
 // Sprites //
 // ********************** //
@@ -247,26 +209,26 @@ void Layer::add_sprite(Sprite *a) {
     // Adds a gear to the engine
     add_gear(a);
     // Add object to manager
-    sprite.add_sprite(a);
+    sprites.add_sprite(a);
 }
 
-void Layer::add_sprites(const std::vector<Sprite*>& sprites) {
-    for (auto& a: sprites) {
+void Layer::add_sprites(gch::vector<Sprite*>& new_sprites) {
+    for (auto& a: new_sprites) {
         a->_engine_flagger(GFlag::sprite);
         add_gear(a);
     }
-    sprite.add_sprites(sprites);
+    sprites.add_sprites(new_sprites);
 }
 
 void Layer::remove_sprite(Sprite* a) {
     if (a == nullptr) return;
-    particle.dissolve(a);
-    morph.strip_morph(a);
-    sprite.dissolve(a);
+    particles.dissolve(a);
+    morphs.strip_morph(a);
+    sprites.dissolve(a);
     remove_gear(a);
 }
 
-void Layer::remove_sprites(const std::vector<Sprite*>& objs) {
+void Layer::remove_sprites(gch::vector<Sprite*>& objs) {
     for (const auto& i: objs) {
         remove_sprite(i);
     }
@@ -277,13 +239,12 @@ void Layer::remove_sprites(const std::vector<Sprite*>& objs) {
 // Banners //
 // ********************** //
 void Layer::add_banner(Banner *b) {
-    banner.add_banner(b);
+    banners.add_banner(b);
     b->_engine_flagger(GFlag::banner);
     add_gear(b);
 }
 
-void Layer::add_banners(
-    const std::vector<Banner *> &banners) {
+void Layer::add_banners(gch::vector<Banner *> &banners) {
     for (const auto& i: banners) {
         add_banner(i);
         add_gear(i);
@@ -291,11 +252,11 @@ void Layer::add_banners(
 }
 
 void Layer::remove_banner(Banner *b) {
-    banner.remove_banner(b);
+    banners.remove_banner(b);
     remove_gear(b);
 }
 
-void Layer::remove_banners(const std::vector<Banner*>& banners) {
+void Layer::remove_banners(gch::vector<Banner*>& banners) {
     for (const auto& i: banners) {
         remove_banner(i);
         remove_gear(i);
@@ -303,11 +264,11 @@ void Layer::remove_banners(const std::vector<Banner*>& banners) {
 }
 
 Font & Layer::get_font(int index) {
-    return fl[index];
+    return fonts[index];
 }
 
 FrameTable & Layer::get_frame_table(int index) {
-    return frame.get_table(index);
+    return frames.get_table(index);
 }
 
 
@@ -319,7 +280,7 @@ void Layer::instantiate_particle(ParticleGroup *pg) {
         // Define our element
         pg->_engine_flagger(GFlag::particle);
         // Add to our particle manager
-        particle.add(pg);
+        particles.add(pg);
         // Add it as a gear.
     }
     add_gear(pg);
@@ -327,16 +288,16 @@ void Layer::instantiate_particle(ParticleGroup *pg) {
 
 void Layer::attach_particle(Gear *g, ParticleGroup *pg) {
     instantiate_particle(pg);
-    pg->horse = g;
+    pg->payload = g;
 }
 
-void Layer::attach_particles(std::vector<ParticleGroup*>& pgs) {
+void Layer::attach_particles(gch::vector<ParticleGroup*>& pgs) {
     for (auto&i : pgs)
         instantiate_particle(i);
 }
 
 void Layer::detach_particle(Sprite *a) {
-    particle.dissolve(a);
+    particles.dissolve(a);
 }
 
 void Layer::detach_particle(ParticleGroup* pg) {
@@ -344,12 +305,12 @@ void Layer::detach_particle(ParticleGroup* pg) {
     if (pg->id != id)
         scene.log(1, "Item does not belong to layer.", "Layer::detach_particle()");
     else {
-        particle.remove(pg);
+        particles.remove(pg);
         remove_gear(pg);
     }
 }
 
-void Layer::detach_particles(const std::vector<Sprite*>& pg) {
+void Layer::detach_particles(gch::vector<Sprite*>& pg) {
     for (const auto& i: pg)
         detach_particle(i);
 }
@@ -361,14 +322,14 @@ void Layer::apply_morph(geng::Morph *e) {
     if (e->get_gear_id() != id)
         scene.log(1, "Item does not belong to layer.", "Layer::apply_morph()");
     else
-        morph.apply_morph(e);
+        morphs.apply_morph(e);
 }
 
 void Layer::strip_morph(Gear *g) {
     if (g->id != id)
         scene.log(1, "Item does not belong to layer.", "Layer::strip_morph");
     else
-        morph.strip_morph(g);
+        morphs.strip_morph(g);
 }
 
 void Layer::link_collider(Collider *c) {
@@ -389,14 +350,14 @@ void Layer::strip_morph(geng::Morph *e) {
     if (e->get_gear_id() != id)
         scene.log(1, "Item does not belong to layer.", "Layer::strip_morph");
     else
-        morph.strip_morph(e);
+        morphs.strip_morph(e);
 }
 
 bool Layer::has_morph(Gear* g) {
     if (g->id != id)
         scene.log(1, "Item does not belong to layer.", "Layer::has_morph");
     else
-        return morph.has_morph(g);
+        return morphs.has_morph(g);
     return false;
 }
 
@@ -404,29 +365,15 @@ bool Layer::has_morph(Gear* g) {
 // Routes //
 // *********************** //
 void Layer::set_route(Route *p) {
-    if (!engine_context)
-        scene.log(1, "Cannot add route, as layer is not composed yet.", "Layer::set_route");
-    else if (p->get_payload()->id != id)
+    if (p->get_payload()->id != id)
         scene.log(1, "Cannot add route, as payload does not belong to layer.", "Layer::set_route");
-    route.add_route(p);
+    routes.add_route(p);
 }
 
 void Layer::set_route(Route *r, Gear* g, const FPos2D &offset) {
-    if (!engine_context)
-        scene.log(1, "Cannot add route, as layer is not composed yet.", "Layer::set_route");
-    else if (r->get_payload()->id != id)
+    if (r->get_payload()->id != id)
         scene.log(1, "Cannot add route, as payload does not belong to layer.", "Layer::set_route");
-    route.add_route(r, g, offset);
-}
-
-// *********************** //
-// Initialization //
-// *********************** //
-
-TextureRegister& Layer::_init() {
-    init._compose(frame, fl, tilesets);
-    // The renderer will emplace the correct textures into the texture register.
-    return texreg;
+    routes.add_route(r, g, offset);
 }
 
 // *********************** //
@@ -450,22 +397,17 @@ void Layer::set_render_batch() {
     });
 }
 
-void Layer::load_world(std::string filename, int tileset_num) {
-    if (engine_context == nullptr) {
-        std::cerr << "[FATAL] Cannot load world without tileset loaded. Call engine.compose_layer() before loading a world." << std::endl;
-        abort();
-    }
-    world.load_world(std::move(filename), &tilesets[tileset_num]);
+void Layer::load_world(hstring filename, int tileset_num) {
+    world.load_world(filename, &tiles[tileset_num]);
     physics.load_current_level();
 }
 
 Tileset & Layer::get_tileset(int index) {
-    return tilesets[index];
+    return tiles[index];
 }
 
 FPos2D Layer::get_scene_center() const {
-    if (engine_context != nullptr)
-        return {engine_context->get_width()/2.f, engine_context->get_height()/2.f};
+    return {core.get_width()/2.f, core.get_height()/2.f};
     return {-1, -1};
 }
 

@@ -1,11 +1,12 @@
 #include "engine/scene/animation/FrameTable.hpp"
 #include "engine/scene/animation/AnimInfo.hpp"
-#include <iostream>
 #include <utility>
+
+#include "engine/debug/logging/LogSource.hpp"
 
 using namespace geng;
 
-FrameTable::FrameTable(std::vector<std::vector<Quad>> quadVec) {
+FrameTable::FrameTable(gch::vector<gch::vector<AnimBox2D>> quadVec) {
     quads = std::move(quadVec);
 }
 
@@ -15,7 +16,7 @@ FrameTable::FrameTable(int startx, int starty, int w, int h,
     int count = 0;
     for (int k = 0; count < numAnimations; k++) {
         for (int i = 0; i < numColumns && count < numAnimations; i++) {
-            Quad q(startx + (w*i), starty + (k*h), w, h);
+            AnimBox2D q(startx + (w*i), starty + (k*h), w, h);
             quads.push_back({q});
             count++;
         }
@@ -24,7 +25,7 @@ FrameTable::FrameTable(int startx, int starty, int w, int h,
 
 FrameTable::FrameTable(int startx, int starty,
         int w, int h, short numColumns, short numAnimations,
-        const std::vector<std::pair<int, std::vector<Quad>>>& overrides)
+        gch::vector<std::pair<int, gch::vector<AnimBox2D>>>& overrides)
 {
     quads.resize(numAnimations);
     size_t ovr = 0;
@@ -32,14 +33,14 @@ FrameTable::FrameTable(int startx, int starty,
 
         if (ovr < overrides.size() && overrides[ovr].first == anim) {
             // Explicit override frames
-            for (const Quad& q : overrides[ovr].second)
+            for (const AnimBox2D& q : overrides[ovr].second)
                 quads[anim].push_back(q);
             ++ovr;
         }
         else {
             int col = anim % numColumns;
             int row = anim / numColumns;
-            Quad q(startx + col * w, starty + row * h, w, h);
+            AnimBox2D q(startx + col * w, starty + row * h, w, h);
             quads.push_back({q});
         }
     }
@@ -70,23 +71,42 @@ Frame& FrameTable::get_frame(int animationNum, int frameNum) {
     }
 
     for (auto& q : frames) {
-        std::cerr << "<" << q.size() << "> ";
+        glog::dev << "<" << q.size() << "> ";
     }
-    std::cerr << std::endl;
     abort();
 }
 
 
 void FrameTable::update_frame(AnimInfo& s) {
-    if (s.get_frame_type()== GAnimType::IDLE) {
+    if (!s.has_priority() && s.get_next_anim() != -1 && s.get_next_anim() != s.get_anim_id()) {
+        glog::note << "suggestions?\n";
+        s.set_animation(s.get_next_anim());
         s.set_frame(frames[s.get_anim_id()][0]);
+    }
+    else if (s.get_frame_type()== GAnimType::IDLE) {
+        s.set_priority(false);
+        s.set_frame(frames[s.get_anim_id()][s.get_frame_index()]);
     }
     else if (s.get_frame_type() == GAnimType::CONTINUE) {
         s.pre_increment_frame();
         s.set_frame(frames[s.get_anim_id()][s.get_frame_index()]);
     }
     else if (s.get_frame_type() == GAnimType::RESET) {
-        s.set_frame(frames[s.get_default_animation()][0]);
+        if (s.get_queued_anim() >= 0) {
+            glog::dev << "uh oh queue" << glog::endlog;
+            s.set_animation(s.get_queued_anim());
+            s.queue_animation(-1);
+            s.set_frame(frames[s.get_anim_id()][0]);
+        }
+        else {
+            s.set_frame_id(0);
+            glog::dev << "next anim: " << s.get_next_anim() << glog::endlog;
+            if (s.get_next_anim() < 0)
+                s.set_animation(s.get_default_animation());
+            else
+                s.set_animation(s.get_next_anim());
+            s.set_frame(frames[s.get_anim_id()][0]);
+        }
     }
     else if (s.get_frame_type() == GAnimType::REPEAT) {
         s.set_frame(frames[s.get_anim_id()][0]);

@@ -99,7 +99,6 @@ FPos2D::operator SDL_FPoint() const { // NOLINT(*-explicit-constructor)
     return {x, y};
 }
 
-std::string FPos2D::to_string() const {
-    std::string ret = "FPos2D{x: " + std::to_string(x) + ", y: " + std::to_string(y) + "}";
-    return ret;
+geng::str_view & FPos2D::to_string(geng::str_view &buffer) const {
+    return buffer << "FPos2D{x: " << (x) << ", y: " << y << '}';
 }

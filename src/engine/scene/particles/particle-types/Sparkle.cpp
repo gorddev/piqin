@@ -1,7 +1,5 @@
 #include "engine/scene/particles/particle-types/Sparkle.hpp"
 
-#include <iostream>
-
 #include "engine/scene/sprites/Sprite.hpp"
 #include "engine/layers/LayerState.hpp"
 
@@ -75,9 +73,9 @@ bool Sparkle::update(LayerState& time) {
     if (!done) {
         while (deltat > period) {
             deltat -= period;
-            if (horse != nullptr) {
-                z_index = horse->z_index - 1;
-                particles.emplace_back(horse->t.offset + horse->t.pos - FPos2D(0,0), speed, strength);
+            if (payload != nullptr) {
+                z_index = payload->z_index - 1;
+                particles.emplace_back(payload->t.offset + payload->t.pos - FPos2D(0,0), speed, strength);
             }
             else
                 particles.emplace_back(t.pos, speed, strength);
@@ -99,8 +97,8 @@ bool Sparkle::update(LayerState& time) {
 
 void Sparkle::to_vertex(RenderBuffer& buffer) {
     int count = 0;
-    if (horse != nullptr)
-        t.pos = horse->t.pos;
+    if (payload != nullptr)
+        t.pos = payload->t.pos;
     for (auto& i : particles) {
         i.to_vertex(buffer, t.color);
         count += 18;

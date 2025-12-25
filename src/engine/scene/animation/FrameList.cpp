@@ -1,16 +1,21 @@
-#include <iostream>
 #include "engine/scene/animation/FrameList.hpp"
 
-#include <sstream>
+#include "engine/debug/logging/LogSource.hpp"
 
 
 using namespace geng;
 
 
 FrameList::FrameList(LayerContext &scene) : scene(scene) {
+    glog::note << "FrameList created for \"" << scene.get_name() << "\"!" << glog::endlog;
 }
 
-void FrameList::add_tables(const std::vector<FrameTable>& frameTables) {
+int FrameList::add_table(const FrameTable &table) {
+    tables.push_back(table);
+    return tables.size() - 1;
+}
+
+void FrameList::add_tables(gch::vector<FrameTable>& frameTables) {
     // Links each Frame Table to a Table ID.
     for (auto& i: frameTables) {
         tables.emplace_back(i);
@@ -20,9 +25,7 @@ void FrameList::add_tables(const std::vector<FrameTable>& frameTables) {
 FrameTable& FrameList::get_table(int id) {
     if (id >= 0 && id < tables.size())
         return tables[id];
-    std::stringstream ss;
-    ss << "Table with table id " << id << " not found";
-    scene.log(2, ss.str(), "FrameList::get_table");
+    glog::err.src("FrameList::get_table") << "Table with table id " << id << " not found.\n";
     abort();
 }
 

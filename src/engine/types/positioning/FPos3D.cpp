@@ -1,10 +1,10 @@
-#include "../../../../include/engine/types/positioning/FPos3D.hpp"
+#include "engine/types/positioning/FPos3D.hpp"
 
 #include <cassert>
 #include <cmath>
-#include <iostream>
 
-#include "../../../../include/engine/wip/Random.hpp"
+#include "engine/types/strings/str_view/str_view.hpp"
+#include "engine/wip/Random.hpp"
 
 using namespace geng;
 
@@ -42,16 +42,6 @@ void FPos3D::to_zero() {
 
 bool FPos3D::is_zero() const {
 	return x==0 && y==0 && z==0;
-}
-
-void FPos3D::randomize(std::pair<float, float> range)  {
-	if (range.first == 0.f && range.second == 0.f) {
-		range.first = -1.f;
-		range.second = 1.f;
-	}
-	x = (random() * (random()%2 ? -1 : 1));
-	y = (random() * (random()%2 ? -1 : 1));
-	z = (random() * (random()%2 ? -1 : 1));
 }
 
 FPos3D FPos3D::abs() {
@@ -127,19 +117,12 @@ void FPos3D::operator=(FPos3D other) {
 	z = other.z;
 }
 
-std::string FPos3D::operator+(std::string s) const {
-	return to_string() + s;
-}
 
-std::string FPos3D::operator<<(std::string s) const {
-	return to_string() + s;
-}
-
-std::string FPos3D::to_string() const {
-	return "{"	+ std::to_string(x)
-				+ "," + std::to_string(y)
-				+ "," + std::to_string(z)
-				+ "}";
+geng::str_view& FPos3D::to_fstring(geng::str_view& buffer) const {
+	return buffer	<< "{" << x
+					<< "," << y
+					<< "," << z
+					<< "}";
 }
 
 bool FPos3D::operator==(FPos3D other) const {

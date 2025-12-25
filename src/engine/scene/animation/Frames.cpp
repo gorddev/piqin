@@ -1,6 +1,3 @@
-#include <iostream>
-#include <ostream>
-
 #include "engine/scene/animation/Frame.hpp"
 #include "engine/types/EngineEnums.hpp"
 #include "engine/utilities/Utilities.hpp"
@@ -11,8 +8,9 @@ using namespace geng;
 // Frame Code
 // ................
 
-Frame::Frame(Quad q, IMG_Info& info)
-    : vertexPoints(q.to_vert_points(info.w, info.h)),duration(q.duration), anim(q.anim) {
+Frame::Frame(AnimBox2D anibox, IMG_Info& info)
+    : vertexPoints(anibox.to_vert_points(info.w, info.h)),duration(anibox.duration),
+        anim(anibox.anim), next_anim(anibox.next_anim) {
 }
 
 void Frame::append_vertices(RenderBuffer& buffer, Gear* gear) {
@@ -81,6 +79,10 @@ float Frame::get_duration() const {
 
 geng::GAnimType Frame::get_anim_type() const {
     return anim;
+}
+
+short Frame::get_next_anim() const {
+    return next_anim;
 }
 
 

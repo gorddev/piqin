@@ -1,7 +1,5 @@
 #include "engine/scene/particles/particle-types/Rhombus.hpp"
 
-#include <iostream>
-
 #include "engine/layers/LayerState.hpp"
 
 using namespace geng;
@@ -66,9 +64,9 @@ bool Rhombus::update(LayerState &time) {
     if (!done) {
         while (deltat > period) {
 
-            if (horse != nullptr) {
-                FPos2D diff = (t.pos - horse->t.pos) * period/deltat;
-                particles.emplace_back(horse->t.offset + horse->t.pos + diff, speed, strength);
+            if (payload != nullptr) {
+                FPos2D diff = (t.pos - payload->t.pos) * period/deltat;
+                particles.emplace_back(payload->t.offset + payload->t.pos + diff, speed, strength);
             }
             else
                 particles.emplace_back(FPos2D(0,0), speed, strength);
@@ -91,8 +89,8 @@ bool Rhombus::update(LayerState &time) {
 
 void Rhombus::to_vertex(RenderBuffer& buffer) {
     int count = 0;
-    if (horse != nullptr)
-        t.pos = horse->t.pos;
+    if (payload != nullptr)
+        t.pos = payload->t.pos;
     for (auto& i : particles) {
         i.to_vertex(buffer, t.color);
         count+=6;

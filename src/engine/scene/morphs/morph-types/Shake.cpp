@@ -1,5 +1,4 @@
 #include "engine/scene/morphs/morph-types/Shake.hpp"
-#include <iostream>
 #include "engine/utilities/Utilities.hpp"
 
 using namespace gfx;

@@ -12,9 +12,13 @@
 using namespace geng;
 
 
-InputDistributor::InputDistributor(EngineContext &e) : world(e), key_state(nullptr) {}
+uint8_t *& InputDistributor::get_keystates() {
+    return key_states;
+}
 
-void InputDistributor::process_event(const SDL_Event& e, Layer* active_layer) const {
+InputDistributor::InputDistributor(EngineContext &e) : world(e), key_states(nullptr) {}
+
+void InputDistributor::process_event(const SDL_Event& e, Layer* active_layer) {
     bool consumed = false;
     for (auto& r : routers) {
         if (!consumed) {
@@ -42,7 +46,7 @@ void InputDistributor::process_event(const SDL_Event& e, Layer* active_layer) co
             break;
     }
     if (active_layer != nullptr && !consumed) {
-        active_layer->input._keys_down(key_state);
+        active_layer->input._keys_down(key_states);
         if (e.type == SDL_KEYDOWN && e.key.repeat == false) {
             // Sends the press to the input taret
             active_layer->input._key_press(e.key.keysym.scancode);
@@ -75,7 +79,7 @@ void InputDistributor::update(Layer* active_layer) {
     bool consumed = false;
     for (auto& r : routers) {
         if (!consumed) {
-            r->_update_key_pointer(key_state);
+            r->_update_key_pointer(key_states);
             consumed = r->update(active_layer);
         }
         else
@@ -97,5 +101,5 @@ void InputDistributor::remove_input_router(InputRouter *router) {
 }
 
 void InputDistributor::_init() {
-    key_state = const_cast<uint8_t*>(SDL_GetKeyboardState(NULL));
+    key_states = const_cast<uint8_t*>(SDL_GetKeyboardState(NULL));
 }

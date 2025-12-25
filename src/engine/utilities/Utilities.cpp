@@ -1,5 +1,4 @@
 #include "engine/utilities/Utilities.hpp"
-
 #include "engine/EngineContext.hpp"
 
 using namespace gutils;
@@ -88,4 +87,32 @@ bool swept_aabb(const Box2D& moving, const Box2D& target, const FPos2D& delta, f
         normal.y = (delta.y < 0.0f) ? 1.0f : -1.0f;
 
     return true;
+}
+
+bool gutils::cstr_to_float(const char* str, float& out) {
+    if (!str) return false;
+    auto first = str;
+    auto last = str;
+    while (*last) ++last;
+    auto [ptr, ec] = std::from_chars(first, last, out);
+    return ec == std::errc();
+}
+
+bool gutils::cstr_to_int(const char* str, int& out) {
+    if (!str) return false;
+    auto first = str;
+    auto last = str;
+    while (*last) ++last;
+    auto [ptr, ec] = std::from_chars(first, last, out);
+    return ec == std::errc();
+}
+
+bool gutils::is_float(const char* str){
+    float f;
+    return (cstr_to_float(str, f));
+}
+
+bool gutils::is_int(const char *str) {
+    int i;
+    return (cstr_to_int(str, i));
 }

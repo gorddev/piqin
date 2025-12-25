@@ -1,7 +1,5 @@
 #include <fstream>
-#include <iostream>
-#include <vector>
-#include <string>
+
 #include "../../../../../.protected/json-importer/json-helpers/json.hpp"
 
 using json = nlohmann::json;
@@ -19,14 +17,14 @@ struct TObject {
     uint32_t id;
     std::string templateName;
     float x = 0.f, y = 0.f;
-    std::vector<TProperty> properties;
+    lni::vector<TProperty> properties;
 };
 
 // --- Layer ---
 struct TLayer {
     enum class Class { VIS, PHYSVIS, OBJ } layerClass;
-    std::vector<uint16_t> data;     // tile data
-    std::vector<TObject> objects;    // only used for OBJ layers
+    lni::vector<uint16_t> data;     // tile data
+    lni::vector<TObject> objects;    // only used for OBJ layers
     bool visible = true;
 };
 
@@ -35,14 +33,14 @@ struct GameLevel {
     uint16_t num_layers;
     uint32_t width, height;
     int32_t xOffset = 0, yOffset = 0;
-    std::vector<TLayer> layers;
+    lni::vector<TLayer> layers;
 };
 
 // --- GameWorld ---
 struct GameWorld {
     uint64_t magic;
     uint16_t num_levels;
-    std::vector<GameLevel> levels;
+    lni::vector<GameLevel> levels;
 };
 
 // --- Binary helpers ---
@@ -58,41 +56,41 @@ T read_binary(std::ifstream& in) {
     return val;
 }
 
-void write_char_vector(std::ofstream& out, const std::vector<char>& v) {
+void write_char_vector(std::ofstream& out, const lni::vector<char>& v) {
     uint32_t len = static_cast<uint32_t>(v.size());
     write_binary(out, len);
     if(len) out.write(v.data(), len);
 }
 
-std::vector<char> read_char_vector(std::ifstream& in) {
+lni::vector<char> read_char_vector(std::ifstream& in) {
     uint32_t len = read_binary<uint32_t>(in);
-    std::vector<char> v(len);
+    lni::vector<char> v(len);
     if(len) in.read(v.data(), len);
     return v;
 }
 
-void write_uint16_vector(std::ofstream& out, const std::vector<uint16_t>& v) {
+void write_uint16_vector(std::ofstream& out, const lni::vector<uint16_t>& v) {
     uint32_t len = static_cast<uint32_t>(v.size());
     write_binary(out, len);
     if(len) out.write(reinterpret_cast<const char*>(v.data()), len * sizeof(uint16_t));
 }
 
-std::vector<uint16_t> read_uint16_vector(std::ifstream& in) {
+lni::vector<uint16_t> read_uint16_vector(std::ifstream& in) {
     uint32_t len = read_binary<uint32_t>(in);
-    std::vector<uint16_t> v(len);
+    lni::vector<uint16_t> v(len);
     if(len) in.read(reinterpret_cast<char*>(v.data()), len * sizeof(uint16_t));
     return v;
 }
 
 // --- Serialize/deserialize TProperty ---
 void write_property(std::ofstream& out, const TProperty& prop) {
-    write_char_vector(out, std::vector<char>(prop.name.begin(), prop.name.end()));
+    write_char_vector(out, lni::vector<char>(prop.name.begin(), prop.name.end()));
     write_binary(out, prop.value);
 }
 
 TProperty read_property(std::ifstream& in) {
     TProperty prop;
-    std::vector<char> name_chars = read_char_vector(in);
+    lni::vector<char> name_chars = read_char_vector(in);
     prop.name = std::string(name_chars.begin(), name_chars.end());
     prop.value = read_binary<int32_t>(in);
     return prop;
@@ -186,7 +184,7 @@ void write_world(const GameWorld& world, const std::string& outputfile) {
                 write_binary(out, num_objects);
                 for(const auto& obj : layer.objects) {
                     write_binary(out, obj.id);
-                    write_char_vector(out, std::vector<char>(obj.templateName.begin(), obj.templateName.end()));
+                    write_char_vector(out, lni::vector<char>(obj.templateName.begin(), obj.templateName.end()));
                     write_binary(out, obj.x);
                     write_binary(out, obj.y);
 
@@ -229,7 +227,7 @@ GameWorld read_world(const std::string& filename) {
                 layer.objects.resize(num_objects);
                 for(auto& obj : layer.objects) {
                     obj.id = read_binary<uint32_t>(in);
-                    std::vector<char> temp = read_char_vector(in);
+                    lni::vector<char> temp = read_char_vector(in);
                     obj.templateName = std::string(temp.begin(), temp.end());
                     obj.x = read_binary<float>(in);
                     obj.y = read_binary<float>(in);

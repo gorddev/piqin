@@ -16,12 +16,12 @@ bool PCircle::update() {
 }
 
 // fancy circle calculating formula.
-std::vector<SDL_FRect> PCircle::to_rect(float &speed) {
+lni::vector<SDL_FRect> PCircle::to_rect(float &speed) {
     FPos2D tpos = direction * (speed * (initDuration - duration));
     int trad = static_cast<int>(radius * fabsf((duration)/initDuration));
     int d = 3 - (2*trad);
     int y = trad, x = 0;
-    std::vector<SDL_FRect> rects;
+    lni::vector<SDL_FRect> rects;
     while (x<=y) {
         rects.push_back({pos.x + tpos.x + x, pos.y +tpos.y + y, 1.f, 1.f});
         rects.push_back({pos.x + tpos.x - x, pos.y +tpos.y + y, 1.f, 1.f});
@@ -79,8 +79,8 @@ bool ParticleCircle::update() {
     return done;
 }
 
-std::vector<std::vector<SDL_FRect> > ParticleCircle::to_vertex() {
-    std::vector<std::vector<SDL_FRect>> rects;
+lni::vector<lni::vector<SDL_FRect> > ParticleCircle::to_vertex() {
+    lni::vector<lni::vector<SDL_FRect>> rects;
     for (auto& i: particles) {
         rects.push_back(i.to_rect(speed));
     }

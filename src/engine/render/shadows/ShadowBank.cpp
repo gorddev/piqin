@@ -1,6 +1,6 @@
 #include "engine/rendering/shadows/ShadowBank.hpp"
 
-#include <iostream>
+#include "engine/debug/logging/LogSource.hpp"
 
 using namespace geng;
 
@@ -8,39 +8,38 @@ ShadowBank::ShadowBank() {
     currentFunc = shadowfuncs["background"];
 }
 
-void ShadowBank::set_function(const std::string &shadow) {
+void ShadowBank::set_function(const hstring shadow) {
     if (shadowfuncs.find(shadow) != shadowfuncs.end()) {
         currentFunc = shadowfuncs[shadow];
     }
     else {
-        std::cerr << "FATAL: Shadow function does not exist.\n";
-        abort();
+        glog::err << "FATAL: Shadow function does not exist." << glog::endlog;
     }
 }
-void ShadowBank::add_function(const std::string& shadow, shadowFunc func) {
+void ShadowBank::add_function(const hstring shadow, shadowFunc func) {
     if (shadowfuncs.find(shadow) != shadowfuncs.end()) {
-        std::cerr << "Err adding shadow: function already exists.\n";
+        glog::warn << "Err adding shadow: function already exists." << glog::endlog;
     }
     else {
         shadowfuncs[shadow] = std::move(func);
     }
 }
 
-void ShadowBank::apply_shadow(std::vector<SDL_Vertex> &buffer, int numVertices, std::string shadow_type) {
+void ShadowBank::apply_shadow(gch::vector<SDL_Vertex> &buffer, int numVertices, hstring shadow_type) {
     if (buffer.size() < numVertices) {
-        std::cerr << "ERR: Requesting more shadows than Vertices rendered.\n";
+        glog::warn << "ERR: Requesting more shadows than Vertices rendered." << glog::endlog;
         numVertices = buffer.size();
     }
     if (shadowfuncs.find(shadow_type) == shadowfuncs.end()) {
-        std::cerr << "Shadow function does not exist.\n";
+        glog::warn << "Shadow function does not exist." << glog::endlog;
         return;
     }
     shadowfuncs[shadow_type](buffer, numVertices, nullptr);
 }
 
-void ShadowBank::apply_shadow(std::vector<SDL_Vertex>& buffer, int numVertices) {
+void ShadowBank::apply_shadow(gch::vector<SDL_Vertex>& buffer, int numVertices) {
     if (buffer.size() < numVertices) {
-        std::cerr << "ERR: Requesting more shadows than Vertices rendered.\n";
+        glog::err << "ERR: Requesting more shadows than Vertices rendered.\n" << glog::endlog;
         numVertices = buffer.size();
     }
     currentFunc(buffer, numVertices, nullptr);

@@ -1,22 +1,15 @@
-#include "../../../include/engine/utilities/image-info/IMGDecoder.hpp"
-#include <iostream>
+#include "engine/utilities/image-info/IMGDecoder.hpp"
 #include <SDL2/SDL_image.h>
 #include <fstream>
-#include <vector>
 
+#include "engine/debug/logging/LogSource.hpp"
 #include "engine/scene/initializer/Texture.hpp"
+#include "engine/types/strings/hstring/hstring.hpp"
 
 using namespace geng;
 
-static bool is_PNG(const std::string& path) {
-    if (path.length() < 4)
-        return false;
-    // Grabs the extension
-    std::string extension = path.substr(path.length() - 4);
-    // Transform2Ds the extension to lowercase
-    std::transform(extension.begin(), extension.end(), extension.begin(), ::tolower);
-    // Returns whether our extension is PNG or not
-    return (extension == ".png");
+static bool is_PNG(geng::hstring path) {
+    return true;
 }
 
 static long to_pow_2(const int x) {
@@ -25,17 +18,14 @@ static long to_pow_2(const int x) {
     return i;
 }
 
-IMG_Info IMGDecoder::PNG_Info(const std::string &path) {
+IMG_Info IMGDecoder::PNG_Info(const char path[]) {
     if (!is_PNG(path)) {
-        std::cerr << "File " + path + "is not a png\n";
-        abort();
+        glog::err << "File " << path << "is not a png\n";
     }
     // Creates a file we read with binary from
     std::ifstream file(path, std::ios::binary);
-    if (!file) {
-        std::cerr << "FATAL: Image" + path + " does not exist." << std::endl;;
-        abort();
-    }
+    if (!file)
+        glog::err.src("Is_PNG") << "FATAL: Image" << path << " does not exist.";
     uint8_t header[24];
     // Read from the file
     file.read(reinterpret_cast<char*>(header), 24);
@@ -44,7 +34,7 @@ IMG_Info IMGDecoder::PNG_Info(const std::string &path) {
         {137, 80, 78, 71, 13, 10, 26, 10};
     // actually we'll just use memcmp instead
     if (std::memcmp(header, sig, 8) != 0) {
-        std::cerr << "FATAL: "+ path+" File signature does not match .png format" << std::endl;
+        glog::err << "FATAL: " << path << " File signature does not match .png format";
         abort();
     }
     // create a small function lambda that grabs the bits
@@ -61,10 +51,10 @@ IMG_Info IMGDecoder::PNG_Info(const std::string &path) {
 
 // Note: We rename load_ktx2_as_texture to the new function name load_image_as_texture
 Texture IMGDecoder::load_image_as_texture(
-    SDL_Renderer *renderer, std::string path) {
+    SDL_Renderer *renderer, hstring path) {
 
 
-    SDL_Surface* src = IMG_Load(path.c_str());
+    SDL_Surface* src = IMG_Load(path.cstr());
     src = SDL_ConvertSurfaceFormat(src, SDL_PIXELFORMAT_RGBA8888, 0);
 
     int new_w = to_pow_2(src->w);
@@ -88,8 +78,8 @@ Texture IMGDecoder::load_image_as_texture(
     SDL_FreeSurface(padded);
 
     if (tex == nullptr) {
-        std::cerr << "Failed to load image file " << path << " using SDL_image.\n";
-        std::cerr << "SDL_image Error: " << IMG_GetError() << "\n";
+        glog::err << "Failed to load image file " << path << " using SDL_image.\n";
+        glog::err << "SDL_image Error: " << IMG_GetError() << "\n";
         abort();
     }
 

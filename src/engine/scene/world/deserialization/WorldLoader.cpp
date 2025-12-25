@@ -1,8 +1,8 @@
 #include "engine/scene/world/deserialization/WorldLoader.hpp"
 
 #include <fstream>
-#include <iostream>
 
+#include "engine/debug/logging/LogSource.hpp"
 #include "engine/scene/world/GameWorld.hpp"
 #include "engine/scene/world/WorldProperties.hpp"
 #include "engine/utilities/Utilities.hpp"
@@ -21,32 +21,32 @@ T read_binary(std::ifstream& in) {
     return val;
 }
 
-std::vector<char> read_char_vector(std::ifstream& in) {
+gch::vector<char> read_char_vector(std::ifstream& in) {
     auto len = read_binary<uint32_t>(in);
-    std::vector<char> v(len);
+    gch::vector<char> v(len);
     if(len) in.read(v.data(), len);
     return v;
 }
 
-std::vector<uint16_t> read_uint16_vector(std::ifstream& in) {
+gch::vector<uint16_t> read_uint16_vector(std::ifstream& in) {
     auto len = read_binary<uint32_t>(in);
-    std::vector<uint16_t> v(len);
+    gch::vector<uint16_t> v(len);
     if(len) in.read(reinterpret_cast<char*>(v.data()), len * sizeof(uint16_t));
     return v;
 }
 
 TProperty read_property(std::ifstream& in) {
     TProperty prop;
-    std::vector<char> name_chars = read_char_vector(in);
-    prop.name = std::string(name_chars.begin(), name_chars.end());
+    gch::vector<char> name_chars = read_char_vector(in);
+    prop.name = hstring(name_chars.data(), name_chars.size());
     prop.value = read_binary<int32_t>(in);
     return prop;
 }
-GameWorld WorldLoader::read_world(const std::string& filename) {
-    std::cerr << "reading world time.\n";
+GameWorld WorldLoader::read_world(hstring filename) {
+    glog::note << "reading world time.\n" << glog::endlog;
     std::ifstream in(filename, std::ios::binary);
     if(!in.is_open()) {
-        std::cerr << "Failed to open file: " + filename << std::endl;
+        glog::note << "Failed to open file: " << filename << glog::endlog;
         abort();
     }
 
@@ -62,11 +62,11 @@ GameWorld WorldLoader::read_world(const std::string& filename) {
         lvl.height = read_binary<uint32_t>(in);
         lvl.xOffset = read_binary<int32_t>(in);
         lvl.yOffset = read_binary<int32_t>(in);
-        std::cerr << "NUMLAYERS: " << num_layers << std::endl;
-        std::cerr << "WIDTH: " << lvl.width << std::endl;
-        std::cerr << "HEIGHT: " << lvl.height << std::endl;
-        std::cerr << "XOFFSET: " << lvl.xOffset << std::endl;
-        std::cerr << "YOFFSET: " << lvl.yOffset << std::endl;
+        glog::note << "NUMLAYERS: " << num_layers << glog::endlog;
+        glog::note << "WIDTH: " << lvl.width << glog::endlog;
+        glog::note << "HEIGHT: " << lvl.height << glog::endlog;
+        glog::note << "XOFFSET: " << lvl.xOffset << glog::endlog;
+        glog::note << "YOFFSET: " << lvl.yOffset << glog::endlog;
         // Resize layers vector according to num_layers
         lvl.layers.resize(num_layers);
 
@@ -82,8 +82,8 @@ GameWorld WorldLoader::read_world(const std::string& filename) {
 
                 for (auto& obj : layer.objects) {
                     obj.id = read_binary<uint32_t>(in);
-                    std::vector<char> temp = read_char_vector(in);
-                    obj.templateName = std::string(temp.begin(), temp.end());
+                    gch::vector<char> temp = read_char_vector(in);
+                    obj.templateName = hstring(temp.data(), temp.size());
                     obj.x = read_binary<float>(in);
                     obj.y = read_binary<float>(in);
 

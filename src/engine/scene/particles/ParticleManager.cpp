@@ -1,7 +1,5 @@
 #include "engine/scene/particles/ParticleManager.hpp"
 
-#include <iostream>
-
 #include "engine/layers/LayerContext.hpp"
 
 using namespace geng;
@@ -24,8 +22,8 @@ void ParticleManager::remove(ParticleGroup *g) {
 }
 
 
-std::vector<int> ParticleManager::pop_removed_particles() {
-    std::vector<int> removed_particle_ids = groups_removed;
+gch::vector<int> ParticleManager::pop_removed_particles() {
+    gch::vector<int> removed_particle_ids = groups_removed;
     groups_removed.clear();
     return removed_particle_ids;
 }
@@ -33,7 +31,7 @@ std::vector<int> ParticleManager::pop_removed_particles() {
 void ParticleManager::update() {
     size_t size = groups.size();
     // Lets us keep track of the particle groups we need to remove
-    std::vector<ParticleGroup*> groups_to_remove;
+    gch::vector<ParticleGroup*> groups_to_remove;
 
     for (size_t index = 0; index < size; index++) {
         ParticleGroup* g = groups[index];
@@ -53,7 +51,7 @@ void ParticleManager::update() {
 
 ParticleGroup* ParticleManager::find_by_object(const Gear* o) {
     for (auto& i: groups) {
-        if (i->horse == o) {
+        if (i->payload == o) {
             return i;
         }
     }
@@ -64,7 +62,7 @@ ParticleGroup*& ParticleManager::add(ParticleGroup *g) {
     return groups[groups.add(g)];
 }
 
-void ParticleManager::add(const std::vector<ParticleGroup*>& new_groups) {
+void ParticleManager::add(gch::vector<ParticleGroup*>& new_groups) {
     for (auto&i: new_groups)
         add(i);
 }
@@ -76,7 +74,7 @@ void ParticleManager::dissolve(ParticleGroup *g) {
 void ParticleManager::dissolve(const Gear *o) {
     if (o == nullptr) return;
     for (auto&i: groups) {
-        if (i->horse == o) {
+        if (i->payload == o) {
             i->end();
         }
     }

@@ -9,7 +9,9 @@ using namespace geng;
 
 
 PhysicsMaestro::PhysicsMaestro(LayerContext& scene, WorldManager &world)
-    : world(world), scene(scene) {}
+    : world(world), scene(scene) {
+    glog::note << "PhysicsMaestro for " << scene.get_name() << " formed." << glog::endlog;
+}
 
 void PhysicsMaestro::add_collider(Collider *collider) {
     /// Add the collider
@@ -47,13 +49,13 @@ void PhysicsMaestro::update() {
     }
 }
 
-std::vector<Collider *> & PhysicsMaestro::get_colliders() {
+gch::vector<Collider *> & PhysicsMaestro::get_colliders() {
     return colliders;
 }
 
 void PhysicsMaestro::render_hitboxes(RenderBuffer &buffer, SDL_Color color, uint16_t thickness) {
     if (grid != nullptr) {
-        std::vector<SDL_FPoint> points = grid->display_hitboxes(thickness);
+        gch::vector<SDL_FPoint> points = grid->display_hitboxes(thickness);
         buffer.push_back(points, color);
     }
 }
