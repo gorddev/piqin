@@ -7,11 +7,12 @@ namespace geng::debug {
     class DebugRouter : public InputRouter {
     private:
         Debugger& debugger;
-        EngineContext& engine_context;
     public:
-        explicit DebugRouter(Debugger& debugger, EngineContext& engine_context) : debugger(debugger), engine_context(engine_context) {}
+        explicit DebugRouter(InputRouterInit& init) : InputRouter(init), debugger(core.debugger) {}
 
-        bool update(Layer*& active_layer) override { return false; }
+        bool update(Layer*& active_layer) override {
+            return false;
+        }
 
         bool get_press(SDL_Scancode key, Layer *&active_layer) override {
             if (key == SDL_SCANCODE_F1) {
@@ -24,7 +25,13 @@ namespace geng::debug {
                 debugger.toggle_grid();
             }
             else if (key == SDL_SCANCODE_F4) {
-                engine_context.set_layer_change("__next");
+                core.set_layer_change("__next");
+            }
+            else if (key == SDL_SCANCODE_F5) {
+                core.set_layer_change("__run");
+            }
+            else if (key == SDL_SCANCODE_F6) {
+                core.set_layer_change("__visible");
             }
             return false;
         }

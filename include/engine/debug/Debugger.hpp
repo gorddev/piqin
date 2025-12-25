@@ -1,6 +1,5 @@
 #pragma once
 
-#include "debug-utilities/LogHistory.hpp"
 
 namespace geng::debug {
 
@@ -11,8 +10,6 @@ namespace geng::debug {
         /// Enables debug mode or not
         bool debug_mode = false;
     private:
-        /// Contains all the logs from the system
-        LogHistory logs;
         /// Whether we display hitboxes or not
         bool hitboxes = true;
         /// Whether we display selected object info or not
@@ -20,35 +17,6 @@ namespace geng::debug {
         /// Whether we display the layer/scene grid or not
         bool grid = true;
     public:
-
-        /// Allows us to add a log
-        void log(Log& l) {
-            // Only store if debug mode is enabled.
-            if (debug_mode) {
-                // Adds a log to the log history
-                logs.add_log(l);
-                // If it's worthy of an error, we abort
-                if (l.level == 2) {
-                    logs.dump_logs();
-                    abort();
-                }
-            }
-        }
-
-        /// Sets the log severity
-        void set_log_severity(int severity) {
-            logs.set_severity(severity);
-        }
-
-        /// Enables immedaite print
-        void enable_immediate_print() {
-            logs.enable_immediate_print();
-        }
-
-        /// Disables immediate print
-        void disable_immediate_print() {
-            logs.disable_immediate_print();
-        }
 
         // ******************
         // Boilerplate code
@@ -74,7 +42,6 @@ namespace geng::debug {
         void toggle_grid() { grid = !grid; }
         /// returns true if the grid is enabled
         [[nodiscard]] bool is_grid() const { return grid && debug_mode; }
-
 
     };
 }
