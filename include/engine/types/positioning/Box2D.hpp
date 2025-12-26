@@ -77,8 +77,8 @@ namespace geng {
             points.push_back(tr);
             return points;
         }
-        /// Turns it into a hitbox for rendering
-        gch::vector<SDL_FPoint> to_vertex_hitbox(uint16_t thickness) {
+        /// Turns it into a hitbox for rendering, 4 vertices in total.
+        gch::vector<SDL_FPoint> to_hitbox(uint16_t thickness) {
 
             Box2D left = {x, y, thickness, h};
             Box2D top = {x , y, w, thickness};

@@ -2,7 +2,7 @@
 #include "GameWorld.hpp"
 #include "deserialization/WorldLoader.hpp"
 
-#include "engine/debug/logging/LogSource.hpp"
+#include "../../debug/geng_debug.hpp"
 
 
 namespace geng {
@@ -13,18 +13,15 @@ namespace geng {
         GameWorld world;
         Tileset* tileset = nullptr;
         const Camera& cam;
+        friend class PhysicsMaestro;
     public:
-        explicit WorldManager(const Camera& cam) : world(), cam(cam) {
-            glog::note << "WorldManager for random ass layer formed." << glog::endlog;
-        };
+        explicit WorldManager(const Camera& cam) : world(), cam(cam) {};
 
         void load_world(hstring filename, Tileset* t) {
-            glog::dev << "loading world?\n";
             world = WorldLoader::read_world(filename);
             fstring<900> buffer;
             auto view = buffer.wrap();
             world.to_fstring(view);
-            glog::dev << buffer.cstr() << glog::endlog;
             current_level = world.get_first_level();
             tileset = t;
         }

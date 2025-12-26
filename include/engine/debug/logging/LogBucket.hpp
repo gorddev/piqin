@@ -4,19 +4,8 @@
 #include <stdexcept>
 #include "engine/types/external/vector.hpp"
 #include "Log.hpp"
+#include "LogCommands.hpp"
 
-namespace geng {
-    /// Allows us to specify sources for our logs
-    static const char geng_default_log_path[] = "";
-    struct src {
-        geng::fstring<64> srcpath = geng_default_log_path;
-        src(const char path[]) : srcpath(path) {}
-    };
-
-    enum class logcommands {
-        STOP = 0
-    };
-}
 
 namespace geng::debug {
 
@@ -59,7 +48,7 @@ namespace geng::debug {
         /// if a log's been added
         bool logged = false;
         /// console is a friend
-        friend class Console;
+        friend class DebugManager;
     public:
         LogBucket() {
             logs.resize(L);
@@ -111,7 +100,7 @@ namespace geng::debug {
         }
 
         void operator<<(logcommands command) {
-            if (command == logcommands::STOP) {
+            if (command == logcommands::ENDLOG) {
                 auto now = std::chrono::steady_clock::now();
                 curlog.timestamp = std::chrono::duration_cast<std::chrono::milliseconds>(now - start_time).count();
                 push(curlog);
@@ -127,7 +116,7 @@ namespace geng::debug {
 
         void operator<<(Log& l) {
             curlog = l;
-            *this << logcommands::STOP;
+            *this << logcommands::ENDLOG;
         }
 
     private:

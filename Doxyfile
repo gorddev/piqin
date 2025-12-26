@@ -16,4 +16,4 @@ WARN_IF_UNDOCUMENTED   = YES
 WARN_NO_PARAMDOC       = YES
 
 QUIET                  = NO
-EXCLUDE_PATTERNS = */external/* */docs/html */docs/latex
+EXCLUDE_PATTERNS = */external/*

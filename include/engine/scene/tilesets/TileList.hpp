@@ -2,7 +2,7 @@
 
 #include <fstream>
 #include "Tileset.hpp"
-#include "engine/debug/logging/LogSource.hpp"
+#include "../../debug/geng_debug.hpp"
 
 namespace geng {
 
@@ -11,9 +11,8 @@ namespace geng {
         gch::vector<Tileset> tilesets;
 
     public:
-        TileList() {
-            glog::note << "Tileset formed (dunno where)" << glog::endlog;
-        }
+        TileList() = default;
+
         int add_tileset(const Tileset& new_tileset) {
             tilesets.emplace_back(new_tileset);
             return size() - 1;

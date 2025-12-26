@@ -1,9 +1,9 @@
 #pragma once
 
-#include "EngineEnums.hpp"
-#include "Transform2D.hpp"
+#include "GearFlag.hpp"
+#include "../../types/Transform2D.hpp"
 #include "engine/rendering/RenderBuffer.hpp"
-#include "strings/fstring/fstring.hpp"
+#include "../../types/strings/fstring/fstring.hpp"
 
 namespace geng {
     /**
@@ -73,10 +73,17 @@ namespace geng {
         virtual void to_vertex(RenderBuffer& buffer) = 0;
         /// Virtual destructor of the gear.
         virtual ~Gear() = default;
-        /// Virtual to_string for the gear
-        virtual geng::str_view& to_fstring(geng::str_view& buffer) const {
-            return geng::to_fstring(buffer, flag) <<  t.to_string() << "\n";
+        /// Virtual to_string verbose for the gear
+        virtual str_view& to_fstring_verbose(geng::str_view& buffer) const {
+            geng::to_fstring_verbose(buffer, flag) << "\n";
+            return t.to_fstring_verbose(buffer);
         }
+        /// Vritual to_string short for the gear
+        virtual str_view& to_fstring(geng::str_view& buffer) const {
+            geng::to_fstring(buffer, flag) << "\n";
+            return t.to_fstring(buffer);
+        }
+
 
         /* ............. */
         /* Bitmask helpers for easy flagging */
@@ -169,14 +176,14 @@ namespace geng {
         /// This function is called when the gear is designated as a keyboard acceptor and a key is released
         virtual void on_key_release(SDL_Scancode key) {  }
         /// This function is called when hovering over the sprites with a cursor, and they are designated as a mouse acceptor
-        virtual void on_hover() {  }
+        virtual void on_hover() { }
         /// This function is caleld when the is_hoverable is pulled away from the sprites
         virtual void on_hover_release() {}
         /// This function is called when the object is is_clicked on
-        virtual void on_click() {}
+        virtual void on_click(Pos2D mouse_pos) {}
         /// This function is called when the click for this object is released
-        virtual void on_click_release() {}
-        /// This function is called by the input manager when moving an object.
-        virtual void mouse_move(FPos2D dist) {}
+        virtual void on_click_release(Pos2D mouse_pos) {}
+        /// This function is called by the input manager when moving an object. Gives the position the object wants to move to.
+        virtual void on_drag(Pos2D pos) { t.pos = {pos.x + 0.f, pos.y + 0.f}; }
     };
 }

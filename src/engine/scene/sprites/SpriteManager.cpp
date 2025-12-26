@@ -1,14 +1,13 @@
 #include "engine/scene/sprites/SpriteManager.hpp"
 
 #include "../../../../include/engine/types/strings/fstring/fstring.hpp"
-#include "engine/debug/logging/LogSource.hpp"
+#include "../../../../include/engine/debug/geng_debug.hpp"
 
 using namespace geng;
 
 // Constructor
-SpriteManager::SpriteManager(LayerContext& layer_context) noexcept : scene(layer_context) {
-	glog::note << "SpriteManager for " << scene.get_name() << " formed." << glog::endlog;
-}
+SpriteManager::SpriteManager(LayerContext& layer_context) noexcept
+	: scene(layer_context) {}
 
 // Add object, pointer (preferred method)
 void SpriteManager::add_sprite(Sprite *a) noexcept {

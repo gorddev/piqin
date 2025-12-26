@@ -1,6 +1,6 @@
 #include "engine/rendering/shadows/ShadowBank.hpp"
 
-#include "engine/debug/logging/LogSource.hpp"
+#include "../../../../include/engine/debug/geng_debug.hpp"
 
 using namespace geng;
 

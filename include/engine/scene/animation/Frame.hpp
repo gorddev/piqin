@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../types/EngineEnums.hpp"
-#include "engine/types/Gear.hpp"
+#include "../../core/gears/GearFlag.hpp"
+#include "../../core/gears/Gear.hpp"
 #include "../../types/AnimBox2D.hpp"
 #include "engine/utilities/image-info/IMGDecoder.hpp"
 

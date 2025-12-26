@@ -2,16 +2,14 @@
 
 #include <sstream>
 
-#include "engine/debug/logging/LogSource.hpp"
+#include "engine/debug/geng_debug.hpp"
 
 using namespace geng;
 
 
 // LayerContext methods
-LayerContext::LayerContext(EngineContext &core, const geng::fstring<10>& name, const Camera& camera)
-    : core(core), name(name), camera(camera), state(lflag) {
-    glog::note.src("layercontext") << "making layer context." << glog::endlog;
-}
+LayerContext::LayerContext(const geng::fstring<10>& name, const Camera& camera)
+    :name(name), camera(camera), state(lflag) {}
 
 geng::fstring<10> LayerContext::get_name() const { return name; }
 
@@ -75,8 +73,4 @@ void LayerContext::log(debug::Log l) const {
 
 void LayerContext::log(int severity, const char msg[], const char src[]) {
     log(debug::Log(static_cast<debug::Severity>(severity), msg, src));
-}
-
-bool LayerContext::is_debug() const {
-    return core.is_debug();
 }

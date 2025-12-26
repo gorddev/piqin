@@ -4,16 +4,18 @@ template<typename T, typename... Args>
 T* geng::Engine::create_layer(Args &&... args) {
     static_assert(std::is_base_of_v<Layer, T>);
     // Creates our layer initializer
-    glog::warn << "before making layer initializer" << glog::endlog;
     LayerInit init(core, camera, texreg);
-    glog::warn << "after making layer itself" << glog::endlog;
 
     // Creates the layer from our arguments
     T* layer = new T(init, std::forward<Args>(args)...);
     // Adds the layer to the layer map.
-    glog::note.src("Engine::create_layer") << "Adding layer to engine.";
+    glog::note.src("Engine::create_layer") << "Adding layer "
+        << layer->get_name().cstr() << " to engine." << glog::endlog;
+    // Adds layer to the layer manager
     layers.add_layer(layer);
-    // Returns the layer for the user to use
+    // Gives the layer access to the current keybinds
+    input.emplace_key_states(layer);
+
     return layer;
 }
 

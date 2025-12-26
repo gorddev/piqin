@@ -7,7 +7,6 @@ public:
         : InputRouter(init) {}
 
     bool update(geng::Layer*& active_layer) override {
-        glog::note << "camerarouter goes crazy." << glog::endlog;
         if (is_held(SDL_SCANCODE_LEFT)) {
             core.camera.pos.x -= 1;
         }

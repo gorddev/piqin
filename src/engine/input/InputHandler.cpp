@@ -4,11 +4,9 @@
 
 using namespace geng;
 
-InputHandler::InputHandler(LayerContext& scene) : scene(scene), cam(scene.get_camera()), mouse(mouse_acceptors, scene.get_camera()) {
-    glog::note << "InputHandler for " << scene.get_name().cstr() << " formed" << glog::endlog;
-}
+InputHandler::InputHandler(LayerContext& scene) : scene(scene), cam(scene.get_camera()), mouse(mouse_acceptors, scene.get_camera()) {}
 
-void InputHandler::_key_press(SDL_Scancode key) {
+void InputHandler::_get_key_press(SDL_Scancode key) {
     if (active) {
         heldKeys[key] = true;
         for (auto&g : key_press_acceptors) {
@@ -17,7 +15,7 @@ void InputHandler::_key_press(SDL_Scancode key) {
     }
 }
 
-void InputHandler::_key_release(SDL_Scancode key) {
+void InputHandler::_get_key_release(SDL_Scancode key) {
     if (active) {
         if (heldKeys.find(key) != heldKeys.end()) {
             heldKeys.erase(key);
@@ -28,19 +26,17 @@ void InputHandler::_key_release(SDL_Scancode key) {
     }
 }
 
-void InputHandler::_mouse_click() {
-    if (active)
-        mouse.on_click();
+void InputHandler::_get_mouse_click(Pos2D mousepos) {
+    mouse.on_click();
 }
 
-void InputHandler::_mouse_release() {
-    if (active)
-        mouse.on_click_release();
+void InputHandler::_get_mouse_release(Pos2D mousepos) {
+    mouse.on_click_release();
 }
 
-void InputHandler::_mouse_move(SDL_Point pos, float dx, float dy) {
-    if (active)
-        mouse.on_movement(pos, dx, dy, scene);
+
+void InputHandler::_mouse_move(Pos2D mousepos, FPos2D deltapos) {
+    mouse.on_movement(mousepos, deltapos, scene);
 }
 
 void InputHandler::_keys_down(uint8_t *keys) const {
@@ -60,7 +56,6 @@ void InputHandler::add_key_press_acceptors(gch::vector<Gear *> &gears) {
 }
 
 void InputHandler::add_mouse_acceptor(Gear *g) {
-    scene.log(0, "Adding mouse acceptor.", "InputHandler::add_mouse_acceptor");
     mouse_acceptors.push_back(g);
 }
 

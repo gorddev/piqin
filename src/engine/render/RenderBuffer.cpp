@@ -96,7 +96,7 @@ int RenderBuffer::size() const {
     return static_cast<int>(buffer.size());
 }
 
-void RenderBuffer::prep(Pos2D camera_pos) {
+void RenderBuffer::prep(FPos2D camera_pos) {
     campos = camera_pos;
     buffer.clear();
     batches.clear();

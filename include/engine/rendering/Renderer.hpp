@@ -6,7 +6,8 @@
 
 #include "RenderBuffer.hpp"
 #include "../core/EngineContext.hpp"
-#include "engine/debug/Console.hpp"
+#include "../debug/console/Console.hpp"
+#include "engine/debug/DebugManager.hpp"
 #include "engine/layers/Layer.hpp"
 #include "engine/scene/initializer/TextureRegister.hpp"
 #include "shadows/ShadowBank.hpp"
@@ -30,7 +31,8 @@ namespace geng {
 		/// Must call during engine setup
 		void _init();
 		/// Renders each engine element according to its type.
-		void render(gch::vector<Layer *> &layers, debug::Console *console = nullptr);
+		void render(gch::vector<Layer *> &layers, debug::DebugManager *console
+				            = nullptr);
 		/// Present the render to the canvas
 		void present();
 		/// Initializes a texture register

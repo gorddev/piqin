@@ -2,7 +2,7 @@
 
 #include "../../../include/engine/core/EngineContext.hpp"
 #include "../../../include/engine/types/positioning/FPos2D.hpp"
-#include "engine/debug/logging/LogSource.hpp"
+#include "../../../include/engine/debug/geng_debug.hpp"
 #include "engine/types/positioning/FPos3D.hpp"
 
 using namespace geng;

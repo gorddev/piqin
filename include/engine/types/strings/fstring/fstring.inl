@@ -116,6 +116,10 @@ geng::str_view geng::fstring<C>::wrap() {
     return str_view(arr, len, C);
 }
 
+template<uint32_t C>
+bool geng::fstring<C>::empty() const {
+    return len == 0;
+}
 
 template<uint32_t C> template <uint32_t N>
 void geng::fstring<C>::emplace(uint32_t index, const char (&str)[N])

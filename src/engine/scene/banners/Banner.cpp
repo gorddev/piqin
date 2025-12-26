@@ -2,7 +2,7 @@
 #include "engine/types/positioning/Box2D.hpp"
 #include <algorithm>
 
-#include "engine/debug/logging/LogSource.hpp"
+#include "engine/debug/geng_debug.hpp"
 
 using namespace geng;
 
@@ -18,9 +18,11 @@ void Banner::to_vertex(RenderBuffer &buffer) {
     banner_buffer._set_shadow_bank(&buffer.get_shadow_bank());
 
     for (auto& b : background_widgets)
-        b->to_vertex(banner_buffer);
+        if (b->is_visible())
+            b->to_vertex(banner_buffer);
     for (auto& w : widgets)
-        w->to_vertex(banner_buffer);
+        if (w->is_visible())
+            w->to_vertex(banner_buffer);
 
     buffer.push_back(banner_buffer._get_vertex_buffer());
 
@@ -51,6 +53,10 @@ int Banner::get_texture_id() const {
     return texture_id;
 }
 
+void Banner::set_pos(FPos2D pos) {
+    t.pos = pos;
+}
+
 /// Access widgets
 gch::vector<Widget*>& Banner::get_widgets() {
     return widgets;
@@ -78,14 +84,9 @@ bool Banner::add_widget_internal(Widget* w) {
 
     if (w->get_height() < 0) {
         float mod = std::min(100.f, 0.f + std::abs(w->get_height())) / 99.9f;
-        glog::note << "mod: " << mod << "\n";
         w->change_dim({w->get_width(), static_cast<int>(t.h * mod)});
     }
 
     widgets.push_back(w);
     return true;
 }
-
-void Banner::on_hover() {}
-
-void Banner::on_click() {}

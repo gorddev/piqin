@@ -69,13 +69,13 @@ public:
         }
     }
 
-    void on_click() override {
+    void on_click(geng::Pos2D pos) override {
         clicked = true;
         vel.y = 0;
         vel.x = 0;
     }
 
-    void on_click_release() override {
+    void on_click_release(geng::Pos2D pos) override {
         clicked = false;
     }
 };

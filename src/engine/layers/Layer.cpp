@@ -6,11 +6,11 @@ using namespace geng;
 
 Layer::Layer(LayerInit& layer_init, fstring<10> name)
         : core(layer_init.core), camera(layer_init.camera), texreg(layer_init.texreg),
-        name(name), scene(layer_init.core, this->name, layer_init.camera),
+        name(name), scene(this->name, layer_init.camera),
         sprites(scene), events(scene), morphs(scene),
         particles(scene), routes(scene),
-        init(scene, frames, fonts, tiles, texreg), banners(scene),
-        frames(scene), world(layer_init.camera),
+        init(scene, frames, fonts, tiles, texreg), banners(),
+        frames(), world(layer_init.camera),
         input(scene), physics(scene, world) {
 
 }
@@ -32,7 +32,7 @@ void Layer::update(double dt) {
         // 5. Update particle effects
         particles.update();
         // 6. Update banners
-        banners.update();
+        banners.update(scene);
         // 7. Update routes
         routes.update();
         // 8. Update morphs
@@ -81,23 +81,23 @@ void Layer::render_gears(RenderBuffer& buffer) {
         // Adds the gear's vertices to the buffer.
         fstring<800> ginfo;
         str_view f = ginfo.wrap();
-        g.to_fstring(f);
+        g.to_fstring_verbose(f);
         g.to_vertex(buffer);
     }
 }
 
 void Layer::render_grid(RenderBuffer& buffer, int grid_div, int thickness, bool subdiv) const {
-    Pos2D startpos = {camera.pos.x - camera.pos.x%grid_div, camera.pos.y - camera.pos.y%grid_div};
+    Pos2D startpos = {static_cast<int>(camera.pos.x) - static_cast<int>(camera.pos.x)%grid_div, static_cast<int>(camera.pos.y) - static_cast<int>(camera.pos.y)%grid_div};
     Pos2D endpos = {};
     for (int i = startpos.x; i < camera.right(); i+= grid_div) {
-        Box2D line = {i, camera.pos.y, thickness, camera.get_height()};
+        Box2D line = {i, static_cast<int>(camera.pos.y), thickness, camera.get_height()};
         gch::vector<SDL_FPoint> points;
         line.to_vert_points(points);
         for (auto& i: points)
             buffer.push_back(i, {255, 255, 255, 40});
     }
     for (int i = startpos.y; i < camera.bottom(); i+= grid_div) {
-        Box2D line = {camera.pos.x, i, camera.get_width(), thickness};
+        Box2D line = {static_cast<int>(camera.pos.x), i, camera.get_width(), thickness};
         gch::vector<SDL_FPoint> points;
         line.to_vert_points(points);
         for (auto& i: points)
@@ -106,14 +106,14 @@ void Layer::render_grid(RenderBuffer& buffer, int grid_div, int thickness, bool 
 
     if (subdiv) {
         for (int i = startpos.x + grid_div/2; i < camera.right(); i+= grid_div) {
-            Box2D line = {i, camera.pos.y, thickness, camera.get_height()};
+            Box2D line = {i, static_cast<int>(camera.pos.y), thickness, camera.get_height()};
             gch::vector<SDL_FPoint> points;
             line.to_vert_points(points);
             for (auto& i: points)
                 buffer.push_back(i, {255, 255, 255, 15});
         }
         for (int i = startpos.y + grid_div/2; i < camera.bottom(); i+= grid_div) {
-            Box2D line = {camera.pos.x, i, camera.get_width(), thickness};
+            Box2D line = {static_cast<int>(camera.pos.x), i, camera.get_width(), thickness};
             gch::vector<SDL_FPoint> points;
             line.to_vert_points(points);
             for (auto& i: points)
@@ -173,7 +173,7 @@ bool Layer::add_gear(Gear *g) {
     if (g->id == -1)
         g->id = id;
     else {
-        scene.log(1, "Cannot add item, as it has already been assigned to a layer.", "Layer::add_gear");
+        glog::warn.src((get_name() << "::add_gear").cstr()) << "Cannot add item, as it has already been assigned to a layer";
         return false;
     }
 

@@ -136,7 +136,7 @@ inline str_view& str_view::operator<<(int num) {
 inline str_view& str_view::operator<<(float num) {
     auto* start = data + len;
     auto* end = data + cap;
-    auto res = std::to_chars(start, end - 1, num, std::chars_format::fixed, data[cap - 1]);
+    auto res = std::to_chars(start, end - 1, num, std::chars_format::fixed, prec);
     len += res.ptr - start;
     data[len] = '\0';
     return *this;
@@ -144,7 +144,7 @@ inline str_view& str_view::operator<<(float num) {
 
 template<uint8_t P>
 inline str_view& str_view::operator<<(precision<P>) {
-    if (cap > 0) data[cap - 1] = P; // store precision in last byte
+    prec = P;
     return *this;
 }
 
@@ -164,4 +164,4 @@ inline str_view& str_view::operator<<(const void* ptr) {
     return *this;
 }
 
-} // namespace geng
+}

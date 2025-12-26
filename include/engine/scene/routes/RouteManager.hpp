@@ -21,9 +21,7 @@ namespace geng {
     public:
         /// Default constructor for RouteManager
         explicit RouteManager(LayerContext& scene)
-            : scene(scene) {
-            glog::note << "RouteManager for \"" << scene.get_name() << "\" formed." << glog::endlog;
-        }
+            : scene(scene) {}
 
         /// Adds a path to the path manager
         void add_route(Route *p);

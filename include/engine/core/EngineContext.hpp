@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../debug/Debugger.hpp"
+#include "../debug/DebugContext.hpp"
 #include "../rendering/Camera.hpp"
 #include "../types/strings/fstring/fstring.hpp"
 
@@ -46,7 +46,7 @@ namespace geng {
         // Window information //
         /* ***************** */
         /// Lets us have debug utilities
-        debug::Debugger debugger;
+        debug::DebugContext debugger;
 
         explicit EngineContext(Camera& cam)
             : camera(cam) {};

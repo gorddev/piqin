@@ -18,7 +18,7 @@ bool gutils::contained_within(SDL_Point point, geng::Transform2D &t) {
             point.y >= t.pos.y - t.get_base_height()/2.f && point.y <= t.pos.y + t.get_base_height()/2.f);
 }
 
-void gutils::adjust_to_relative_coords(SDL_Point& point, geng::EngineContext& world) {
+void gutils::adjust_to_relative_coords(Pos2D& point, geng::EngineContext& world) {
     point.x -= world.get_borderX();
     point.y -= world.get_borderY();
     point.x /= world.get_scale();

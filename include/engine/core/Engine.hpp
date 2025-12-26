@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../EngineContext.hpp"
-#include "../debug/Console.hpp"
-#include "../input/InputDistributor.hpp"
-#include "../rendering/Renderer.hpp"
+#include "EngineContext.hpp"
+#include "engine/debug/console/Console.hpp"
+#include "engine/input/InputDistributor.hpp"
+#include "engine/rendering/Renderer.hpp"
 #include "engine/layers/LayerManager.hpp"
 
 namespace geng {
@@ -29,7 +29,7 @@ namespace geng {
         /// Keeps track of all our layers so we can send them to the Renderer.
         LayerManager layers;
         /// The console of the layer
-        debug::Console* console;
+        debug::DebugManager* console;
     public:
         /// Engine's InputDistributor. Call this to add routers to the engine.
         InputDistributor input;
@@ -104,4 +104,4 @@ namespace geng {
     };
 }
 
-#include "engine/Engine.inl"
+#include "engine/core/Engine.inl"

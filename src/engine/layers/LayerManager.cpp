@@ -21,19 +21,13 @@ Layer* LayerManager::get_layer(geng::fstring<10> layer_name)  {
         if (l->scene.get_name() == layer_name.cstr())
             return l;
     }
-    glog::warn.src("LayerManager::get_layer()")
-        << "Cannot get layer, as layer " << layer_name.cstr() << " is not composed in the engine."
-        << glog::endlog;
     return nullptr;
 }
 
 /// Returns the active layer
 Layer* LayerManager::get_active_layer() {
-    if (active_id == -1) {
-        glog::warn.src("LayerManager::get_active_layer()") <<
-            "No active layer currently set." << glog::endlog;
+    if (active_id == -1)
         return nullptr;
-    }
     return layers[active_id];
 }
 
@@ -54,10 +48,6 @@ void LayerManager::set_active_layer(geng::fstring<10> name) {
             return;
         }
     }
-
-    glog::warn.src("LayerManager::set_active_layer()") <<
-        "Layer " << name.cstr() << " not composed. Cannot set as active."
-        << glog::endlog;
 
     if (get_active_layer() != nullptr)
         get_active_layer()->scene._engine_flag(LayerFlag::active);

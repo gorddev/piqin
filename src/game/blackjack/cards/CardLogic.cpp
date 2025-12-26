@@ -1,4 +1,4 @@
-#include "engine/debug/logging/LogSource.hpp"
+#include "../../../../include/engine/debug/geng_debug.hpp"
 #include "game/blackjack/cards/Card.hpp"
 
 using namespace blackjack;

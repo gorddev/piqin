@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include "engine/debug/logging/LogSource.hpp"
+#include "../../debug/geng_debug.hpp"
 #include "engine/types/strings/hstring/hstring.hpp"
 
 namespace geng {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "engine/types/Gear.hpp"
+#include "../../core/gears/Gear.hpp"
 #include "engine/scene/animation/AnimInfo.hpp"
 #include "engine/scene/animation/FrameTable.hpp"
 
@@ -47,23 +47,13 @@ namespace geng {
         /// Non-virtual update_frame function.
         void update_frame(LayerState& time);
 
-        /// To String
-        geng::str_view& to_fstring(geng::str_view& buffer) const override;
+        /// To String verbose
+        geng::str_view& to_fstring_verbose(geng::str_view& buffer) const override;
+        /// to string short
+        geng::str_view& to_fstring(geng::str_view &buffer) const override;
 
         // <><>< Manual overrides for Gears <><><>
         /// Converts an sprites to FPos2D for the buffer. overridable, but not recommended to do so.
         void to_vertex(RenderBuffer &buffer) override;
-
-        // Input handling
-        /// This function is called when hovering over the sprites with a cursor
-        void on_hover() override {}
-        /// This function is caleld when the is_hoverable is pulled away from the sprites
-        void on_hover_release() override {}
-        /// This function is called when the object is is_clicked on
-        void on_click() override {}
-        /// This function is called when the click for this object is released
-        void on_click_release() override {}
-        /// This function is called by the input manager when moving an object.
-        void mouse_move(FPos2D dist) override {}
     };
 }

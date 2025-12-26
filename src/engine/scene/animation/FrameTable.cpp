@@ -2,7 +2,7 @@
 #include "engine/scene/animation/AnimInfo.hpp"
 #include <utility>
 
-#include "engine/debug/logging/LogSource.hpp"
+#include "../../../../include/engine/debug/geng_debug.hpp"
 
 using namespace geng;
 
@@ -79,7 +79,6 @@ Frame& FrameTable::get_frame(int animationNum, int frameNum) {
 
 void FrameTable::update_frame(AnimInfo& s) {
     if (!s.has_priority() && s.get_next_anim() != -1 && s.get_next_anim() != s.get_anim_id()) {
-        glog::note << "suggestions?\n";
         s.set_animation(s.get_next_anim());
         s.set_frame(frames[s.get_anim_id()][0]);
     }
@@ -100,7 +99,6 @@ void FrameTable::update_frame(AnimInfo& s) {
         }
         else {
             s.set_frame_id(0);
-            glog::dev << "next anim: " << s.get_next_anim() << glog::endlog;
             if (s.get_next_anim() < 0)
                 s.set_animation(s.get_default_animation());
             else

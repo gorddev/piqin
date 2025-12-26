@@ -46,9 +46,7 @@ class Card : public geng::Collider {
         // Function for cards with special purposes.
         bool use(Card* c);
 
-        void on_click_release() override;
-
-        void mouse_move(geng::FPos2D dist) override;
+        void on_click_release(geng::Pos2D pos) override;
     };
 
     inline const geng::Transform2D defaultCardTransform2D = {

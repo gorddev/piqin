@@ -4,6 +4,7 @@
 #include <utility>
 
 #include "engine/layers/LayerContext.hpp"
+#include "engine/types/external/vector.hpp"
 
 namespace geng {
 

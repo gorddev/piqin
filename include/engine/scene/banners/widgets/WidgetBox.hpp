@@ -14,7 +14,7 @@ namespace geng {
         WidgetBox(int thickness, int length, SDL_Color color = {255, 255, 255, 255}, short padding_vert = 0, short padding_hor = 0)
             : Widget(length, thickness, -1, geng::Align::CENTER, {padding_vert, padding_vert, padding_hor, padding_hor})
                 , color(color) {
-            points = dim.to_points();
+            points = box.to_points();
         }
         /// Default destructor
         ~WidgetBox() override = default;
@@ -32,9 +32,9 @@ namespace geng {
 
         /// Updates our dimension accordingly
         void change_dim(Dim2D dimensions) override {
-            dim.w = dimensions.w;
-            dim.h = dimensions.h;
-            points = dim.to_points();
+            box.w = dimensions.w;
+            box.h = dimensions.h;
+            points = box.to_points();
         }
 
         /// Update function does nothing, but allows us to continue overriding.

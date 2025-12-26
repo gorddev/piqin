@@ -1,7 +1,7 @@
 #pragma once
 
 #include "engine/scene/banners/widgets/Widget.hpp"
-#include "engine/types/Gear.hpp"
+#include "../../core/gears/Gear.hpp"
 
 namespace geng {
 
@@ -24,21 +24,20 @@ namespace geng {
 
         /// Calling update on our Banner
         void update(LayerState& time);
-
         /// Add a background widget
         bool add_background(Widget* w);
         /// Add a normal widget
         bool add_widget(Widget* w);
         /// Get banner texture id
         int get_texture_id() const;
+        /// Sets the banner position
+        void set_pos(FPos2D pos);
         /// Access widgets
         gch::vector<Widget*>& get_widgets();
 
     private:
+        /// Adds a widget interally
         bool add_widget_internal(Widget* w);
-
-        void on_hover() override;
-        void on_click() override;
     };
 
 }

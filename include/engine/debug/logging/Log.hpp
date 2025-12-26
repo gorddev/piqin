@@ -48,7 +48,7 @@ namespace geng::debug {
             };
 
             buffer << severity();
-            return buffer << '[' << timestamp << "], " << source.wrap()
+            return buffer << '[' << precision<1>() << timestamp << "], " << source.wrap()
                                 <<  "\n¨¨¨¨¨¨¨ " << message.wrap();
         }
         /// clears out the log's contents

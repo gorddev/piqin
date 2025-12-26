@@ -107,7 +107,13 @@ int AnimInfo::pre_increment_frame() {
     return ++frame_index;
 }
 
-geng::str_view& AnimInfo::to_fstring(geng::str_view &buffer) const {
-    return buffer   << "[AnimInfo] " <<  "\tdefault_anim: " << default_animation << "\tbasedur: " << frame->get_duration() <<"\tdirty: " << (dirty ? "true" : "false") << "\n"
-                    << "dur: " << static_cast<int>(duration) << "  \tanim_id: " << get_anim_id() << "\tframe_id: " << frame_index << "\t" << frame->get_duration() << "\t" << "anim_type: " << geng::to_string(frame->get_anim_type());
+geng::str_view& AnimInfo::to_fstring_verbose(geng::str_view &buffer) const {
+    return buffer   << precision<2>() << "[t][AnimInfo][n] " <<  "\tdefault_anim: " << default_animation << "\tbasedur: " << frame->get_duration() <<"\tdirty: " << (dirty ? "true" : "false") << "\n"
+                    << "dur: " << static_cast<int>(duration)/100.f << "  \tanim_id: " << get_anim_id() << "\t\tframe_id: " << frame_index << "\t" << "anim_type: [e]" << geng::to_string(frame->get_anim_type()) << "[n]";
+}
+
+str_view & AnimInfo::to_fstring(geng::str_view &buffer) const {
+    return buffer << precision<1>() << "[t][AInfo][n]\tAnim: "
+        << animation_index << "\tFrm: " << frame_index
+        << "\tType:[e] " << geng::to_string(frame->get_anim_type()) << "[n]";
 }

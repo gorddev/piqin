@@ -4,7 +4,7 @@
 namespace geng::debug {
 
     /** Contains a lot of information and utilities for debugging. **/
-    class Debugger {
+    class DebugContext {
         // We make the debug boolean easily togglable.
     public:
         /// Enables debug mode or not
@@ -12,10 +12,16 @@ namespace geng::debug {
     private:
         /// Whether we display hitboxes or not
         bool hitboxes = true;
-        /// Whether we display selected object info or not
-        bool object_info = true;
         /// Whether we display the layer/scene grid or not
         bool grid = true;
+        /// Recovery mode
+        bool recovery = false;
+        /// Whether we're displaying in verbose mode or not
+        bool verbose = false;
+        /// Whether we want to move to the next layer or not
+        bool change_layer = false;
+        /// Pause current layer or not
+        bool pause_layer = false;
     public:
 
         // ******************
@@ -42,6 +48,24 @@ namespace geng::debug {
         void toggle_grid() { grid = !grid; }
         /// returns true if the grid is enabled
         [[nodiscard]] bool is_grid() const { return grid && debug_mode; }
-
+        // <><><><> Recovery <><><><>
+        /// returns true if in recovery mode
+        [[nodiscard]] bool is_recovery() { return recovery; }
+        // <><><> debug mode <><><>
+        /// toggles debug mode
+        void toggle_debug() { debug_mode = !debug_mode; }
+        // <><><> verbose <><><>
+        bool is_verbose() { return verbose; }
+    private:
+        // Only the engine can enable/disable recovery mode
+        friend class Engine;
+        friend class DebugManager;
+        friend class DebugButtonPanel;
+        // <><><> recovery <><><>
+        // enables recovery mode
+        /// enables recovery mode
+        void enable_recovery() { recovery = true; }
+        /// disables recovery mode
+        void disable_recovery() { recovery = false; }
     };
 }

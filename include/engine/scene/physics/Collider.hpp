@@ -47,7 +47,7 @@ namespace geng {
 
         /// Turns the collider into a hitbox
         gch::vector<SDL_FPoint> to_vertex_hitbox(uint16_t thickness) {
-            gch::vector<SDL_FPoint> points = Box2D(t.pos.x - hitbox.w/2 + offset.x, t.pos.y - hitbox.h/2 + offset.y, hitbox.w, hitbox.h).to_vertex_hitbox(thickness);
+            gch::vector<SDL_FPoint> points = Box2D(t.pos.x - hitbox.w/2 + offset.x, t.pos.y - hitbox.h/2 + offset.y, hitbox.w, hitbox.h).to_hitbox(thickness);
             return points;
         }
     };

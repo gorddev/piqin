@@ -22,7 +22,7 @@ namespace geng {
         eng.render();
         return continue_loop;
     }
-} // namespace geng
+}
 
 // starts the primary game loop in main
 #define GENG_START_LOOP(engine, user_lambda) \

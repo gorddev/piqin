@@ -47,6 +47,8 @@ namespace geng {
         [[nodiscard]] constexpr uint32_t capacity() const;
         /// Returns the data containing the fstring
         [[nodiscard]] const char* cstr();
+        /// Returns true if the fstring is empty
+        [[nodiscard]] bool empty() const;
         // <><><> Modifiers <><><>
         /// Clears out all the data in the fstring
         void clear();
@@ -54,6 +56,7 @@ namespace geng {
         fstring<C> pop();
         /// Wraps up a view for the current fstring
         str_view wrap();
+
         // <><><> Emplacing <><><>
         /// Emplaces text at a positions within the string
         template<uint32_t N>

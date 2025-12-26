@@ -16,7 +16,7 @@ namespace gutils {
     /// Returns true if the point is within the transform.
     bool contained_within(SDL_Point point, geng::Transform2D& t);
     /// Moves the cursor into the frame of the actual scene considering borders.
-    void adjust_to_relative_coords(SDL_Point &point, geng::EngineContext &world);
+    void adjust_to_relative_coords(geng::Pos2D &point, geng::EngineContext &world);
     /// Uses the sweep method to detect collisions
     bool swept_aabb(const geng::Box2D& moving, const geng::Box2D& target, const geng::FPos2D& delta, float& toi, geng::FPos2D& normal);
 

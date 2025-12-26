@@ -2,7 +2,7 @@
 #include <SDL2/SDL_image.h>
 #include <fstream>
 
-#include "engine/debug/logging/LogSource.hpp"
+#include "../../../include/engine/debug/geng_debug.hpp"
 #include "engine/scene/initializer/Texture.hpp"
 #include "engine/types/strings/hstring/hstring.hpp"
 

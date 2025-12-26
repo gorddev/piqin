@@ -1,6 +1,6 @@
 #include "engine/scene/font/Font.hpp"
 
-#include "engine/debug/logging/LogSource.hpp"
+#include "../../../../include/engine/debug/geng_debug.hpp"
 
 using namespace geng;
 
@@ -13,10 +13,10 @@ Font::Font(std::unordered_map<char, geng::AnimBox2D> quads, const short spacing,
 }
 
 Font::Font(std::unordered_map<char, AnimBox2D> quads,
-    short spacing, IMG_Info info) {
-    this->quads = quads;
-    _init({"sys-font.png",128, 128} );
-    glog::note.src("Font") << "special constructor";
+    short spacing, IMG_Info info) : spacing(spacing), quads(quads) {
+    texture_id = 0;
+    _init(info);
+    glog::note.src("Font") << "special constructor" << glog::endlog;
 }
 
 Font::Font(const Font& f) : texture_id(f.texture_id), spacing(f.spacing), chars(f.chars), quads(f.quads) {}
@@ -44,8 +44,35 @@ bool Font::has_character(char c) {
 }
 
 void Font::set_texture_id(int id) {
-    glog::note << "Font::Setting texture id??\n";
     texture_id = id;
+}
+
+FontChar * Font::get_char(char c) {
+    if (chars.find(c) != chars.end())
+        return &chars.at(c);
+    return nullptr;
+}
+
+uint16_t Font::get_width(char c) {
+    if (chars.find(c) != chars.end())
+        return chars.at(c).w;
+    return 0;
+}
+
+uint16_t Font::get_height(char c) {
+    if (chars.find(c) != chars.end())
+        return chars.at(c).h;
+    return 0;
+}
+
+str_view & Font::to_fstring(str_view& buffer) {
+    buffer << "Font: texid: " << texture_id << " spacing: " << spacing << "\n";
+    buffer << "characters: ";
+    for (auto& [c, fc] : chars) {
+        buffer << c << ':';
+        fc.to_fstring(buffer) << '\n';
+    }
+    return buffer;
 }
 
 

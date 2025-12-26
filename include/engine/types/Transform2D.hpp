@@ -80,14 +80,10 @@ public:
     gch::vector<SDL_FPoint> to_vertex_hitbox(
         uint16_t thickness);
 
-    /// Converts object to string representation for debugging
-    const char* to_string() const {
-        geng::fstring<200> ret;
-        ret << geng::precision<4>() << "scale: " << scale << "\t" << "  angle: " << angle << "\t"
-        << "\tbase_w: " << baseWidth << "\tbase_h: " << baseHeight << "\n"
-        << "x: " << pos.x << " \ty: " << pos.y << "\twidth: " << w << "\theight: " << h << "\n";
-        return ret.cstr();
-    }
+    /// Converts object to string representation for debugging verbose style
+    str_view &to_fstring_verbose(str_view &buffer) const;
+    /// Converts object to string representation short style.
+    str_view &to_fstring(str_view &buffer) const;
 };
 
-} // namespace geng
+}

@@ -70,3 +70,17 @@ gch::vector<SDL_FPoint> Transform2D::to_vertex_hitbox(uint16_t thickness) {
     right.to_vert_points(points);
     return points;
 }
+
+str_view& Transform2D::to_fstring_verbose(str_view& buffer) const {
+    buffer << precision<2>() << "[t][Transform][n] \tscl: " << scale << "\tang: " << angle << "\n"
+    << "dim: {" << w << ",  \t" << h << "}\tbase: [" << baseWidth << ", " << baseHeight << "]\n"
+    << "pos: {" << pos.x << ",  \t" << pos.y << "}";
+    return buffer;
+}
+
+str_view& Transform2D::to_fstring(str_view& buffer) const {
+    buffer << precision<2>() << "[[t]Tsfm[n]]\t" << "pos: {" << pos.x << ",  \t" << pos.y << "} \tdim: {" << w << ",  \t" << h << "}";
+    return buffer;
+}
+
+

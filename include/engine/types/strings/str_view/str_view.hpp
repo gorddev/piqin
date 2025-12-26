@@ -23,6 +23,9 @@ namespace geng {
         uint32_t& len;
         /// Contains the capacity of the original fstring
         uint32_t cap;
+        /// Contains precision information
+        uint8_t prec;
+
     public:
         /// public constructor for str_view
         str_view(char* data, uint32_t& len, uint32_t cap);

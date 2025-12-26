@@ -92,7 +92,9 @@ namespace geng {
         void calc_vertices(RenderBuffer& buffer, Gear* gear);
         /// Increments the frame_index by one, and returns the new frame_index
         int pre_increment_frame();
-        /// Debugger printer for AnimInfo.
-        [[nodiscard]] geng::str_view& to_fstring(geng::str_view& buffer) const;
+        /// Debugger printer for AnimInfo verbose style
+        [[nodiscard]] geng::str_view& to_fstring_verbose(geng::str_view& buffer) const;
+        /// Debugger printer for AnimInfo short style
+        [[nodiscard]] str_view& to_fstring(geng::str_view& buffer) const;
     };
 }

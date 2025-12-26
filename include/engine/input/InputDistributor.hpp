@@ -3,7 +3,7 @@
 #include <SDL.h>
 
 #include "InputRouter.hpp"
-#include "../core/EngineContext.hpp"
+#include "engine/core/EngineContext.hpp"
 #include "engine/layers/Layer.hpp"
 
 namespace geng {
@@ -25,8 +25,16 @@ namespace geng {
     public:
         /// Constructor
         explicit InputDistributor(EngineContext& e);
+
+        void event_key_down(SDL_Scancode key,
+                            Layer *&active_layer);
+
+        void event_key_up(SDL_Scancode key,
+                               Layer *&active_layer);
+
+
         /// Update with a given key event & Layer. We use Layer Pointers because a layer might not be set up immedaitely.
-        void process_event(const SDL_Event & e, Layer* active_layer);
+        void process_event(const SDL_Event &e, Layer *active_layer);
         /// Updates all the input routers with the currently held events.
         void update(Layer *active_layer);
 
@@ -35,7 +43,21 @@ namespace geng {
         /// Removes an input router
         void remove_input_router(InputRouter* router);
 
+        void emplace_key_states(Layer *layer) const;
+
         /// Adds the key_states pointer after initialization
         void _init();
+
+    private:
+        void event_mouse_click(
+            const SDL_Event &e,
+            Layer *&active_layer);
+
+        void event_mouse_release(
+            const SDL_Event &e,
+            Layer *&active_layer);
+
+        /// Cllas the appropriate functions to handle mouse motion.
+        void event_mouse_motion(const SDL_Event &e, Layer *&active_layer);
     };
 }

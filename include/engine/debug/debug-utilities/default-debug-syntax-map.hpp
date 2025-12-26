@@ -1,5 +1,5 @@
 #pragma once
-#include "engine/defaults/GengColors.hpp"
+#include "engine/core/defaults/GengColors.hpp"
 #include "engine/scene/banners/text/syntax/SyntaxMap.hpp"
 
 namespace geng::debug {
@@ -7,8 +7,10 @@ namespace geng::debug {
     // Commands
     inline void syntax_emphasize(gch::vector<str_subview> args, SyntaxInfo& out)
         { out.color = color_orange; }
-    inline void syntax_unemphasize(gch::vector<str_subview> args, SyntaxInfo& out)
+    inline void syntax_normal(gch::vector<str_subview> args, SyntaxInfo& out)
         { out.color = color_white; }
+    inline void syntax_type(gch::vector<str_subview> args, SyntaxInfo& out)
+        { out.color = color_pink; }
 
     // Patterns
     void syntax_integers(str_view str, int pos, SyntaxInfo& out);
@@ -16,13 +18,14 @@ namespace geng::debug {
     // Highlights
     inline void syntax_true(SyntaxInfo& out) { out.color = color_green; }
     inline void syntax_false(SyntaxInfo& out) { out.color = color_red; }
-    inline void syntax_nullptr(SyntaxInfo& out) { out.color = color_blue; }
-    inline void syntax_ptr(SyntaxInfo& out) { out.color = color_pink; }
+    inline void syntax_nullptr(SyntaxInfo& out) { out.color = color_purple; }
+    inline void syntax_ptr(SyntaxInfo& out) { out.color = color_light_blue; }
 
     const SyntaxMap geng_default_debug_syntax_map {
         {
             {"[e]", syntax_emphasize},
-            {"[n]", syntax_unemphasize}
+            {"[t]", syntax_type},
+            {"[n]", syntax_normal}
         },
         {syntax_integers},
         {
@@ -35,10 +38,10 @@ namespace geng::debug {
 
     inline void syntax_integers(str_view str, int pos, SyntaxInfo& out) {
         char c = str[pos];
+        if (c == '.' && pos < str.length())
+            c = str[pos + 1];
         if (c >= '0' && c <= '9')
-            out.color = color_pink;
-        else if (c == '.' && pos < str.length() && (str[pos+1] >= '0' && str[pos+1] <= '9'))
-            out.color = color_pink;
+            out.color = color_light_blue;
     }
 
 }

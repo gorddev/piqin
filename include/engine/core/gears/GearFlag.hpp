@@ -1,7 +1,7 @@
 #pragma once
 
-#include "engine/debug/logging/LogSource.hpp"
-#include "strings/fstring/fstring.hpp"
+#include "../../debug/geng_debug.hpp"
+#include "../../types/strings/fstring/fstring.hpp"
 
 // General editing
 //#define PIXEL_PERFECT false
@@ -80,52 +80,36 @@ namespace geng {
         );
     }
 
-    /// Converts a GFlag into a string.
-    inline geng::str_view& to_fstring(geng::str_view& buffer, GFlag flag) {
+    /// Converts a GFlag into a verbose string.
+    inline geng::str_view& to_fstring_verbose(geng::str_view& buffer, GFlag flag) {
         auto f = [](GFlag op) { return (static_cast<bool>(op)) ? "true" : "false"; };
         buffer << "type: ";
-        buffer << (static_cast<bool>(flag & GFlag::banner) ? "banner" : static_cast<bool>(flag & GFlag::sprite) ? "sprite" : "particle");
-        buffer << "\thidden: ";
-        buffer << f(flag & GFlag::hidden);
-        buffer << "\tshadow: ";
+        buffer << (static_cast<bool>(flag & GFlag::banner) ? "[e]banner[n] " : static_cast<bool>(flag & GFlag::sprite) ? "[e]sprite[n] " : "[e]particle[n] ");
+        buffer << "\tvis: ";
+        buffer << f((~flag & GFlag::hidden));
+        buffer << "\tsdw: ";
         buffer << f(flag & GFlag::shadow);
-        buffer << "\tlocked: ";
+        buffer << "\tlock: ";
         buffer << f(flag & GFlag::locked);
-        buffer << "\ttagged: ";
-        buffer << f(flag & GFlag::tagged);
-        buffer << "\nremove: ";
-        buffer << f(flag & GFlag::remove);
-        buffer << "\tclicked: ";
+        buffer << "\tclk: ";
         buffer << f(flag & GFlag::clicked);
-        buffer << "\tdragged: ";
+        buffer << "\tdrag: ";
         buffer << f(flag & GFlag::dragged);
         return buffer;
     }
 
-    /* Render Frames */
-    /**
-     * @brief Describes what happens after each frame ends
-     * - @code GAnim::IDLE@endcode › Stop at the end of the animation
-     * - @code GAnim::RESET@endcode › Reset the animation to the default_animation
-     * - @code GAnim::CONTINUE@endcode › Move to the next frame in memory
-     * - @code GAnim::REPEAT@endcode › Repeat the current animation
-     */
-    enum class GAnimType : uint8_t {
-        IDLE = 0,
-        RESET = 1,
-        CONTINUE = 2,
-        REPEAT = 3
-    };
-
-    inline const char* to_string(GAnimType anim) {
-        if (anim == GAnimType::IDLE)
-            return "IDLE";
-        if (anim == GAnimType::RESET)
-            return "RESET";
-        if (anim == GAnimType::CONTINUE)
-            return "CONTINUE";
-        if (anim == GAnimType::REPEAT)
-            return "REPEAT";
-        return "null";
+    /// Converts a GFlag into a short string.
+    inline geng::str_view& to_fstring(geng::str_view& buffer, GFlag flag) {
+        auto f = [](GFlag op) { return (static_cast<bool>(op)) ? "true" : "false"; };
+        buffer << "type: ";
+        buffer << (static_cast<bool>(flag & GFlag::banner) ? "[e]banner[n] " : static_cast<bool>(flag & GFlag::sprite) ? "[e]sprite[n] " : "[e]particle[n] ");
+        buffer << "\tsdw: ";
+        buffer << f(flag & GFlag::shadow);
+        buffer << "\tclk: ";
+        buffer << f(flag & GFlag::clicked);
+        return buffer;
     }
+
+    /* Render Frames */
+
 }

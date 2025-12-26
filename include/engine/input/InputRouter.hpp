@@ -57,19 +57,19 @@ namespace geng {
         virtual bool update(Layer*& active_layer) = 0;
 
         /** @return true if input is consumed */
-        virtual bool get_press(SDL_Scancode key, Layer*& active_layer) { return false; }
+        virtual bool get_key_press(SDL_Scancode key, Layer*& active_layer) { return false; }
 
         /** @return true if input is consumed */
-        virtual bool get_release(SDL_Scancode key, Layer*& active_layer) { return false; }
+        virtual bool get_key_release(SDL_Scancode key, Layer*& active_layer) { return false; }
 
         /** @return true if input is consumed */
-        virtual bool get_click(Uint8 button, int x, int y, Layer*& active_layer) { return false; }
+        virtual bool get_mouse_click(Uint8 button, Pos2D mousepos, Layer*& active_layer) { return false; }
 
         /** @return true if input is consumed */
-        virtual bool get_click_release(Uint8 button, int x, int y, Layer*& active_layer) { return false; }
+        virtual bool get_mouse_release(Uint8 button, Pos2D mousepos, Layer*& active_layer) { return false; }
 
         virtual bool get_scroll(int dx, int dy, Layer*& active_layer) { return false; }
-        virtual bool get_mouse_move(int x, int y, Layer*& active_layer) { return false; }
+        virtual bool get_mouse_move(Pos2D mousepos, FPos2D deltapos, Layer*& active_layer) { return false; }
 
         // <><><> For use by the engine only. <><><>
         /// Updates the pointer that contains key states

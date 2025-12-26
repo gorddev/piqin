@@ -2,7 +2,7 @@
 #include <engine/types/external/vector.hpp>
 
 #include "Mouse.hpp"
-#include "engine/types/Gear.hpp"
+#include "../core/gears/Gear.hpp"
 #include <unordered_map>
 
 #include "engine/rendering/Camera.hpp"
@@ -41,15 +41,15 @@ namespace geng {
         //<><><> Accepting Input <><><>
         // ************************************
         /// Called when key is pressed
-        void _key_press(SDL_Scancode key);
+        void _get_key_press(SDL_Scancode key);
         /// Called when a key is released
-        void _key_release(SDL_Scancode key);
+        void _get_key_release(SDL_Scancode key);
         /// Gets when a mouse is is_clicked
-        void _mouse_click();
+        void _get_mouse_click(Pos2D mousepos);
         /// Gets when a mouse click is released
-        void _mouse_release();
+        void _get_mouse_release(Pos2D mousepos);
         /// Gets when the mouse moves positions
-        void _mouse_move(SDL_Point pos, float dx, float dy);
+        void _mouse_move(Pos2D mousepos, FPos2D deltapos);
         /// Gets each frame and updates the state if we don't get input
         void _keys_down(uint8_t* keys) const;
 

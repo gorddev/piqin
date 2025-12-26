@@ -42,7 +42,7 @@ namespace geng {
             for (int i = 0; i < width; i++) {
                 for (int j = 0; j < height; j++) {
                     if (at(i,j) != 0) {
-                        gch::vector<SDL_FPoint> points = tile_box(i, j).to_vertex_hitbox(thickness);
+                        gch::vector<SDL_FPoint> points = tile_box(i, j).to_hitbox(thickness);
                         buffer.insert(buffer.end(), points.begin(), points.end());
                     }
                 }

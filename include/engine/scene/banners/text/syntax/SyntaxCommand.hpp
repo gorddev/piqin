@@ -3,7 +3,7 @@
 #include <SDL_pixels.h>
 
 #include "SyntaxInfo.hpp"
-#include "engine/debug/logging/LogSource.hpp"
+#include "../../../../debug/geng_debug.hpp"
 #include "engine/types/strings/hstring/hstring.hpp"
 
 namespace geng {
@@ -74,13 +74,15 @@ namespace geng {
         }
     };
 
+    using SyntaxUpdate = void (*)(SyntaxInfo& out);
+
     /// The syntax pattern is used to identify common patterns of strings, such as numbers and the like.
     /// For example, the qualifier @code { if (str[pos] >= '0' && str[pos] <= '9') }@endcode will target all numbers.
     using SyntaxPattern = void (*)(str_view, int pos, SyntaxInfo& out);
 
     /// Syntax highlight highlights specific syntax structure easily.
     /// For example, if key == "true," it calls your SyntaxUpdate function easily.
-    using SyntaxUpdate = void (*)(SyntaxInfo& out);
+
     struct SyntaxHighlight {
         hstring key;
         SyntaxUpdate update = syntx_update_blank;

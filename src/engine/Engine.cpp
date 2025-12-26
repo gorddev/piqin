@@ -1,21 +1,28 @@
 #include "../../include/engine/core/Engine.hpp"
 
-#include "engine/debug/DebugRouter.hpp"
-#include "engine/debug/logging/LogSource.hpp"
+
+#include "../../include/engine/debug/geng_debug.hpp"
+#include "engine/debug/DebugManager.hpp"
 
 using namespace geng;
 
-Engine::Engine() : core(camera), texreg(core), input(core), layers(core), rend(core, texreg, camera) {}
+Engine::Engine() : core(camera), texreg(core), input(core), layers(core), rend(core, texreg, camera) {
+    glog::note.src("root") << "Engine creation complete." << glog::endlog;
+}
 
 void Engine::init() {
     // Initialize SDL Video
     SDL_Init(SDL_INIT_VIDEO);
     rend._init();
+    glog::note.src("root") << "Engine SDL Backend Formed" << glog::endlog;
+
+    // Initialize our input
     input._init();
 
     // Then we create our debug router
-    create_router<debug::DebugRouter>();
-    console = create_router<debug::Console>();
+    console = create_router<debug::DebugManager>(core);
+
+    glog::note.src("root") << "Engine initialized." << glog::endlog;
 }
 
 void Engine::tick(double time) {
@@ -30,13 +37,12 @@ void Engine::tick(double time) {
 
     // Check if there's any layer change requests (this will be updated to a request interface later)
     geng::fstring<10> layerchange = core.get_layer_change();
-    if (layerchange != "") {
+    if (layerchange.length()) {
         if (layerchange == "__next")
             increment_active_layer();
         else if (layerchange == "__run")
             get_active_layer()->scene.toggle_running();
         else if (layerchange == "__visible") {
-            glog::note << "togglign visible\n";
             get_active_layer()->scene.toggle_visible();
         }
         else
@@ -51,7 +57,6 @@ bool Engine::update() {
     for (auto& l : layers.get_layer_list()) {
         l->update(core.get_dt());
     }
-    // Will add boolean functionality later
     return true;
 }
 
@@ -63,7 +68,9 @@ void Engine::render() {
 }
 
 void Engine::set_resolution(Dim2D d) {
+    core._set_window_size(d.w, d.h);
     rend.set_render_resolution(d.w, d.h);
+    console->notify_screen_resolution_change(d);
 }
 
 Dim2D Engine::get_resolution() const {

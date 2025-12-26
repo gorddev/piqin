@@ -31,6 +31,12 @@ void Sprite::update_frame(LayerState& time) {
 }
 
 /// To Fstring
+geng::str_view& Sprite::to_fstring_verbose(geng::str_view& buffer) const {
+    Gear::to_fstring_verbose(buffer) << "\n";
+    return anim.to_fstring_verbose(buffer);
+}
+
+/// To Fstring
 geng::str_view& Sprite::to_fstring(geng::str_view& buffer) const {
     Gear::to_fstring(buffer) << "\n";
     return anim.to_fstring(buffer);

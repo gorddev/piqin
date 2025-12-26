@@ -49,13 +49,16 @@ namespace geng {
                     continue;
                 }
                 // Apply each of our commands
+                bool command = false;
                 for (auto& c : commands) {
                     int advance = c.match(text, i, info);
                     if (advance > 0) {
-                        i += advance;
+                        i += advance - 1;
+                        command = true;
                         break;
                     }
                 }
+                if (command) continue;
                 // Create a temporary info object for instanced patterns & highlights
                 tempinfo = info;
                 // Go through each of our patterns

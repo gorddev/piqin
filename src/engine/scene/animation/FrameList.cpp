@@ -1,14 +1,9 @@
 #include "engine/scene/animation/FrameList.hpp"
 
-#include "engine/debug/logging/LogSource.hpp"
+#include "engine/debug/geng_debug.hpp"
 
 
 using namespace geng;
-
-
-FrameList::FrameList(LayerContext &scene) : scene(scene) {
-    glog::note << "FrameList created for \"" << scene.get_name() << "\"!" << glog::endlog;
-}
 
 int FrameList::add_table(const FrameTable &table) {
     tables.push_back(table);

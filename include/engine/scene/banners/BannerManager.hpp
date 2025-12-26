@@ -9,16 +9,12 @@ namespace geng {
     class BannerManager {
     private:
         gch::vector<Banner*> banners;
-        LayerContext& scene;
     public:
         /// Default constructor
-        explicit BannerManager(LayerContext & layer_context) :
-            scene(layer_context) {
-            glog::note << "BannerManager for " << scene.get_name() << " formed." << glog::endlog;
-        }
+        explicit BannerManager() = default;
 
         /// Updates all banners
-        void update() {
+        void update(LayerContext& scene) {
             for (auto &i : banners)
                 i->update(scene.state);
         }

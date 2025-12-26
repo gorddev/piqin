@@ -1,6 +1,6 @@
 #pragma once
 #include "engine/types/Transform2D.hpp"
-#include "engine/types/Gear.hpp"
+#include "../../core/gears/Gear.hpp"
 #include "engine/layers/LayerState.hpp"
 
 namespace geng {

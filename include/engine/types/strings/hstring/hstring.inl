@@ -232,4 +232,4 @@ inline hstring& hstring::operator<<(const void* ptr) {
     return *this;
 }
 
-} // namespace geng
+}

@@ -1,7 +1,8 @@
 #include "engine/rendering/Renderer.hpp"
 
 
-#include "engine/debug/Console.hpp"
+#include "../../../include/engine/debug/console/Console.hpp"
+#include "engine/debug/DebugManager.hpp"
 
 using namespace geng;
 
@@ -50,7 +51,7 @@ void Renderer::set_render_texture() {
 	SDL_RenderClear(renderer);
 }
 
-void Renderer::render(gch::vector<Layer*>& layers, debug::Console* console) {
+void Renderer::render(gch::vector<Layer*>& layers, debug::DebugManager* console) {
 
 	/* RENDER SETUP */
 	// First we set our draw color in case nothing renders
@@ -79,15 +80,11 @@ void Renderer::render(gch::vector<Layer*>& layers, debug::Console* console) {
 			render_layer(l);
 	}
 
-
 	if (console != nullptr) {
+		buffer.campos = {0,0};
 		buffer.request_texture(0);
-		fstring<800> newtext = console->text.get_text();
-		Text<800> temp(newtext.cstr(), layers.back()->get_font(0), &debug::geng_default_debug_syntax_map);
-		console->topinfo.get_widgets()[0] = &temp;
 		console->to_vertex(buffer);
 	}
-
 
 	// We pop the final batch onto the buffer
 	buffer.pop_last_batch();
@@ -120,7 +117,7 @@ void Renderer::render_layer(Layer*& lay) {
 	// <><><> Here's where we render the cell bucket.
 	for (auto& cell: lay->cell_bucket) {
 		buffer.request_texture(cell.texture_id);
-		cell.to_vertex(buffer, world);
+		cell.to_vertex(buffer, world.get_width(), world.get_height() );
 	}
 }
 

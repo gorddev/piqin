@@ -1,9 +1,10 @@
 #pragma once
 #include <sstream>
 
-#include "engine/debug/logging/LogSource.hpp"
+#include "../debug/geng_debug.hpp"
 #include "engine/types/strings/str_view/str_view.hpp"
 #include "engine/types/positioning/Dim2D.hpp"
+#include "engine/types/positioning/FPos2D.hpp"
 #include "engine/types/positioning/Pos2D.hpp"
 
 namespace geng {
@@ -37,7 +38,7 @@ namespace geng {
 
     public:
         /** @brief Camera position. */
-        Pos2D pos;
+        FPos2D pos;
 
         /** @brief Default constructor. Sets position to (0, 0) and size to (100, 100). */
         Camera() : pos(0, 0), dim(100, 100) {  }

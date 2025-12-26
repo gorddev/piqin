@@ -2,8 +2,7 @@
 
 #include "LayerFlag.hpp"
 #include "LayerState.hpp"
-#include "../core/EngineContext.hpp"
-#include "../debug/logging/Log.hpp"
+#include "engine/core/EngineContext.hpp"
 #include "engine/rendering/Camera.hpp"
 #include "engine/types/external/vector.hpp"
 
@@ -19,8 +18,6 @@ namespace geng {
     private:
         /// Camera of the layer
         const Camera& camera;
-        /// Contains the engine Context
-        EngineContext& core;
         /// Name of the layer
         const fstring<10>& name;
 
@@ -38,7 +35,7 @@ namespace geng {
 
     public:
         /// Default constructor.
-        explicit LayerContext(EngineContext &core, const fstring<10>& name, const Camera& camera);
+        explicit LayerContext(const fstring<10>& name, const Camera& camera);
 
         /// Returns the name of the layer
         [[nodiscard]] fstring<10> get_name() const;

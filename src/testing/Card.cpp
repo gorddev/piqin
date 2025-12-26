@@ -109,10 +109,6 @@ bool Card::use(Card *c) {
     return true;
 }
 
-void Card::on_click_release() {
+void Card::on_click_release(geng::Pos2D pos) {
     t.reset();
-}
-
-void Card::mouse_move(geng::FPos2D dist) {
-
 }

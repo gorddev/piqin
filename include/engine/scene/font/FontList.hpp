@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Font.hpp"
-#include "engine/debug/logging/LogSource.hpp"
+#include "../../debug/geng_debug.hpp"
 
 namespace geng {
 
@@ -10,9 +10,8 @@ namespace geng {
         gch::vector<Font> fonts;
 
     public:
-        FontList() {
-            glog::note << "Font list created (dunno where)." << glog::endlog;
-        };
+        FontList() = default;
+
         /// Must call add_font before game loop.
         int add_font(const Font& new_font) {
             fonts.emplace_back(new_font);
@@ -35,6 +34,10 @@ namespace geng {
         /// grabs a font with the [] operator
         Font& operator[](int id) {
             return at(id);
+        }
+        /// Returns the size of the fontlist
+        [[nodiscard]] int size() {
+            return static_cast<int>(fonts.size());
         }
     };
 

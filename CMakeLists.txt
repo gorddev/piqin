@@ -115,7 +115,9 @@ add_executable(norton
         src/engine/scene/world/GameWorld.cpp
         src/engine/scene/world/deserialization/WorldLoader.cpp
 
-        # Globals
+        # Debug
+        src/engine/debug/DebugManager.cpp
+        src/engine/debug/debug-utilities/DebugInfoBanner.cpp
 )
 
 target_include_directories(norton PRIVATE

@@ -60,6 +60,15 @@ namespace geng {
         [[nodiscard]] bool has_character(char c);
         /// stets the texture id of the font
         void set_texture_id(int id);
+        /// gets a specific fontchar from the map
+        FontChar* get_char(char c);
+        /// gets a width of a cahracter
+        uint16_t get_width(char c);
+        /// gets the height of a character
+        uint16_t get_height(char c);
+
+        /// Puts the font into a string format
+        str_view& to_fstring(str_view &buffer);
 
     };
 }

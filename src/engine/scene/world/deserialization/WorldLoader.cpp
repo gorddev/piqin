@@ -2,7 +2,7 @@
 
 #include <fstream>
 
-#include "engine/debug/logging/LogSource.hpp"
+#include "../../../../../include/engine/debug/geng_debug.hpp"
 #include "engine/scene/world/GameWorld.hpp"
 #include "engine/scene/world/WorldProperties.hpp"
 #include "engine/utilities/Utilities.hpp"
@@ -43,7 +43,6 @@ TProperty read_property(std::ifstream& in) {
     return prop;
 }
 GameWorld WorldLoader::read_world(hstring filename) {
-    glog::note << "reading world time.\n" << glog::endlog;
     std::ifstream in(filename, std::ios::binary);
     if(!in.is_open()) {
         glog::note << "Failed to open file: " << filename << glog::endlog;
@@ -62,11 +61,12 @@ GameWorld WorldLoader::read_world(hstring filename) {
         lvl.height = read_binary<uint32_t>(in);
         lvl.xOffset = read_binary<int32_t>(in);
         lvl.yOffset = read_binary<int32_t>(in);
-        glog::note << "NUMLAYERS: " << num_layers << glog::endlog;
-        glog::note << "WIDTH: " << lvl.width << glog::endlog;
-        glog::note << "HEIGHT: " << lvl.height << glog::endlog;
-        glog::note << "XOFFSET: " << lvl.xOffset << glog::endlog;
-        glog::note << "YOFFSET: " << lvl.yOffset << glog::endlog;
+        glog::dev << "\nCreating level:\n";
+        glog::dev << "\tNUMLAYERS: " << num_layers << "\n";
+        glog::dev << "\tWIDTH: " << lvl.width << "\n";
+        glog::dev << "\tHEIGHT: " << lvl.height << "\n";
+        glog::dev << "\tXOFFSET: " << lvl.xOffset << "\n";
+        glog::dev << "\tYOFFSET: " << lvl.yOffset << glog::endlog;
         // Resize layers vector according to num_layers
         lvl.layers.resize(num_layers);
 

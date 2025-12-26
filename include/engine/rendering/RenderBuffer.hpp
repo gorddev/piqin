@@ -23,7 +23,7 @@ namespace geng {
         /// The buffer of batches if the renderer changes textures
         TextureRegister& texreg;
         /// Contains the current camera position of the scene
-        Pos2D campos;
+        FPos2D campos;
         /// Keeps track of the bank of shadows
         ShadowBank& shadows;
         /// Contains the white point of the current texture we're rendering.
@@ -51,7 +51,7 @@ namespace geng {
         /// Size of the buffer
         [[nodiscard]] int size() const;
         /// Sets the position of the camera
-        void prep(Pos2D camera_pos);
+        void prep(FPos2D camera_pos);
         /// Resize the render buffer
         void resize(int num);
         /// Pops the last batch onto the batch vector

@@ -1,21 +1,18 @@
 #include "engine/scene/initializer/TextureRegister.hpp"
 
 #include "../../../../include/engine/types/strings/fstring/fstring.hpp"
-#include "engine/debug/logging/LogSource.hpp"
+#include "../../../../include/engine/debug/geng_debug.hpp"
 #include "engine/utilities/image-info/IMGDecoder.hpp"
 
 using namespace geng;
 
 TextureRegister::TextureRegister(EngineContext& core) : core(core) {
-    glog::note.src("TextureRegisterConstructor") << "Making a texture register" << glog::endlog;
     id_num = 0;
 }
 
 int TextureRegister::register_texture(hstring path) {
-    glog::note << "Checking in-tactness of path: " << path << glog::endlog;
     // Checks if the texture is added yet
     if (path_to_id.find(path) == path_to_id.end()) {
-        glog::note << "Hashing appear to work?" << glog::endlog;
         // Set dirty to true
         dirty = true;
         // Incremnet id by one
@@ -24,20 +21,15 @@ int TextureRegister::register_texture(hstring path) {
         path_to_id[path] = i;
         // Adds a ready texture
         ready_textures[path] = i;
-        glog::note << "testing the hash:" << glog::endlog;
-        for (auto& [str, id] : ready_textures) {
-            glog::note << "printing string: " << str.cstr() << glog::endlog;
-        }
         // Returns the number
         return i;
     }
-    glog::note << "It appears that it thinks it's in the map" << glog::endlog;
     // Just returns the texture id.
     return path_to_id[path];
 }
 
 void TextureRegister::load_texture(int index, Texture tex) {
-    glog::note << "loading texture: " << tex.texture << glog::endlog;
+    glog::note << "Loading Texture: " << tex.info.filename << " (" << tex.texture << ')' << glog::endlog;
     id_to_tex[index] = tex;
 }
 void TextureRegister::clear() {

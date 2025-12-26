@@ -1,5 +1,5 @@
 #pragma once
-#include "engine/types/Gear.hpp"
+#include "../core/gears/Gear.hpp"
 #include "engine/utilities/Utilities.hpp"
 #include "engine/rendering/Camera.hpp"
 
@@ -35,7 +35,7 @@ namespace geng {
             down = true;
             if (target != nullptr) {
                 target->_engine_flagger(GFlag::clicked);
-                target->on_click();
+                target->on_click(pos);
                 if (target->is_draggable()) {
                     relpos.x = pos.x - target->t.pos.x;
                     relpos.y = pos.y - target->t.pos.y;
@@ -50,7 +50,7 @@ namespace geng {
             if (target != nullptr) {
                 target->_engine_deflagger(GFlag::clicked);
                 target->_engine_deflagger(GFlag::dragged);
-                target->on_click_release();
+                target->on_click_release(pos);
             }
         }
 
@@ -62,31 +62,41 @@ namespace geng {
         }
 
         /// Called when the mouse is moved by some distance.
-        void on_movement(SDL_Point new_pos, float dx, float dy, LayerContext& scene) {
+        void on_movement(Pos2D mousepos, FPos2D deltapos, LayerContext& scene) {
             // First we need to sort by z-index first.
             std::sort(mouse_recievers.begin(), mouse_recievers.end(), [](const Gear* a, const Gear* b) {
                 return a->z_index > b->z_index;
             });
             // First update our cursor position
-            pos = {new_pos.x, new_pos.y};
-            dpos = {dx, dy};
+            pos = {mousepos.x, mousepos.y};
+            dpos = {deltapos.x, deltapos.x};
 
             // If we currently have a target
             if (target != nullptr) {
                 // If we're dragging, we update position.
                 if (target->is_dragged()) {
-                    target->t.pos.x = pos.x - relpos.x;
-                    target->t.pos.y = pos.y - relpos.y;
+                    target->on_drag({static_cast<int>(pos.x - relpos.x),static_cast<int>(pos.y - relpos.y)});
                     target->t.snap_to_scene(scene);
                     return;
                 }
+                if (!gutils::contained_within({static_cast<int>(pos.x + cam.pos.x),static_cast<int>(pos.y + cam.pos.y)}, target->t)) {
+                    target->on_hover_release();
+
+                    target = nullptr;
+                }
             }
+            auto oldtarget = target;
             target = nullptr;
             // Search for a new target.
             for (int i = static_cast<int>(mouse_recievers.size()) - 1; i >= 0; i--) {
-                if (gutils::contained_within({pos.x + cam.pos.x,pos.y + cam.pos.y}, mouse_recievers[i]->t)) {
+                if (gutils::contained_within({static_cast<int>(pos.x + cam.pos.x),static_cast<int>(pos.y + cam.pos.y)}, mouse_recievers[i]->t)) {
                     target = mouse_recievers[i];
-                    target->on_hover();
+                    if (target != oldtarget) {
+                        target->on_hover();
+                        if (oldtarget != nullptr)
+                            oldtarget->on_hover_release();
+                    }
+                    break;
                 }
             }
         }

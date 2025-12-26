@@ -140,4 +140,4 @@ Each of these objects can optionally be tied to a **Texture** via the `Initializ
 
 - [Text System Overview](text_system.md)
 - [SyntaxMap Overview](syntax_map.md)
-- [Rendering API](class_geng_1_1_renderer.html
+- [Rendering API](class_geng_1_1_renderer.html)

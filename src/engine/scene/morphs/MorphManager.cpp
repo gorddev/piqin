@@ -2,9 +2,7 @@
 
 using namespace geng;
 
-MorphManager::MorphManager(LayerContext &layer_context) : scene(layer_context) {
-    glog::note << "Morph Manager for " << scene.get_name() << " formed." << glog::endlog;
-}
+MorphManager::MorphManager(LayerContext &layer_context) : scene(layer_context) {}
 
 void MorphManager::apply_morph(Morph *e) {
     morphs.add(e);

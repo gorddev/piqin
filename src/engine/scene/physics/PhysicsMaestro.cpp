@@ -9,9 +9,7 @@ using namespace geng;
 
 
 PhysicsMaestro::PhysicsMaestro(LayerContext& scene, WorldManager &world)
-    : world(world), scene(scene) {
-    glog::note << "PhysicsMaestro for " << scene.get_name() << " formed." << glog::endlog;
-}
+    : world(world), scene(scene) {}
 
 void PhysicsMaestro::add_collider(Collider *collider) {
     /// Add the collider
@@ -99,10 +97,12 @@ void PhysicsMaestro::collide(TileGrid& grid, int& id) {
         // ************************
         pos.x += stepDelta.x;
 
+        constexpr float EPS = 0.001f;
+
         int min_tx = std::max(0, static_cast<int>(std::floor(pos.x / grid.tileSize)));
         int max_tx = std::min(grid.width - 1, static_cast<int>(std::floor((pos.x + box.w) / grid.tileSize)));
         int min_ty = std::max(0, static_cast<int>(std::floor(pos.y / grid.tileSize)));
-        int max_ty = std::min(grid.height - 1, static_cast<int>(std::floor((pos.y + box.h) / grid.tileSize)));
+        int max_ty = std::min(grid.height - 1,static_cast<int>(std::floor((pos.y + box.h - EPS) / grid.tileSize)));
 
         for (int ty = min_ty; ty <= max_ty; ++ty) {
             for (int tx = min_tx; tx <= max_tx; ++tx) {

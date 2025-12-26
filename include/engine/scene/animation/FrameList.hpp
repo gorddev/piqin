@@ -18,12 +18,10 @@ namespace geng {
     private:
         /// Links frame_table_ids in AnimInfo sprites to FrameTables.
         gch::vector<FrameTable> tables;
-        /// Allows for debugging
-        LayerContext& scene;
 
     public:
         /// Constructs the animation manager.
-        explicit FrameList(LayerContext& scene);
+        explicit FrameList() = default;
 
         int add_table(const FrameTable &table);
 
