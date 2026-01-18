@@ -4,7 +4,7 @@
 #include "engine/types/strings/str_view/str_view.hpp"
 
 
-namespace geng {
+namespace gan {
 
     struct FPos2D {
         float x, y;
@@ -70,7 +70,7 @@ namespace geng {
         operator SDL_FPoint() const; // NOLINT(*-explicit-constructor)
 
         /// To-String function
-        geng::str_view& to_string(geng::str_view& buffer) const;
+        gan::str_view& to_string(gan::str_view& buffer) const;
 
     };
     

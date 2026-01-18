@@ -7,7 +7,7 @@
 
 #include "engine/rendering/Camera.hpp"
 
-namespace geng {
+namespace gan {
 
     /** @brief InputHandler is intended to be used exclusively by Layers to help manage the organization of Gears that accept inputs.
      * @details Input handler has two vectors, that contain the objects that accept keyboard input and those that accept mouse input.
@@ -50,6 +50,12 @@ namespace geng {
         void _get_mouse_release(Pos2D mousepos);
         /// Gets when the mouse moves positions
         void _mouse_move(Pos2D mousepos, FPos2D deltapos);
+        /// Gets when finger down
+        void _finger_down(SDL_TouchFingerEvent finger);
+
+        void _finger_release(SDL_TouchFingerEvent finger);
+
+        // <><><> Held keys
         /// Gets each frame and updates the state if we don't get input
         void _keys_down(uint8_t* keys) const;
 

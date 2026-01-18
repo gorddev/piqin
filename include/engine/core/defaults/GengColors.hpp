@@ -1,7 +1,7 @@
 #pragma once
 #include <SDL_pixels.h>
 
-namespace geng {
+namespace gan {
 
     // primary colors
     constexpr SDL_Color color_red = {255, 60, 60, 255};

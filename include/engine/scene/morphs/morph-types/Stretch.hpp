@@ -6,18 +6,18 @@
 namespace gfx {
 
     /** Stretch is a permanent morph that stretches an object when it moves. **/
-    class Stretch final : public geng::Morph{
+    class Stretch final : public gan::Morph{
     private:
-        geng::FPos2D oldPos;
+        gan::FPos2D oldPos;
         float stretchX = 1.f;
         float stretchY = 1.f;
         float snappiness = 1.f;
         float tolerance = 1.f;
     public:
         /// Snappiness specifies how fast the object stretches.
-        Stretch(geng::Gear* gear, float amplitude, float snappiness = 1.f, float tolerance = 1.f);
+        Stretch(gan::Gear* gear, float amplitude, float snappiness = 1.f, float tolerance = 1.f);
 
         /// Override function.
-        bool update(geng::LayerState &time) override;
+        bool update(gan::LayerState &time) override;
     };
 }

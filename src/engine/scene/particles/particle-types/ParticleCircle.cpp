@@ -1,6 +1,6 @@
 #include "engine/scene/particles/particle-types/ParticleCircle.hpp"
 
-using namespace geng;
+using namespace gan;
 
 PCircle::PCircle(FPos2D pos, int radius, float duration) : pos(pos), radius(radius), duration(duration) {
     direction.randomize();

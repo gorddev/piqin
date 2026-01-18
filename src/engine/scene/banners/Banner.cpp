@@ -4,18 +4,20 @@
 
 #include "engine/debug/geng_debug.hpp"
 
-using namespace geng;
+using namespace gan;
 
 /// Default constructor
 Banner::Banner(FPos2D pos, uint16_t width, uint16_t height)
     : Gear({pos, width, height}),
-      banner_buffer(t) {}
+      banner_buffer(t) {
+}
 
 /// To_vertex that lets the banner be renderable.
 void Banner::to_vertex(RenderBuffer &buffer) {
     // Set up our banner_buffer
     banner_buffer._set_white_point(buffer.get_white_point());
     banner_buffer._set_shadow_bank(&buffer.get_shadow_bank());
+
 
     for (auto& b : background_widgets)
         if (b->is_visible())
@@ -24,7 +26,11 @@ void Banner::to_vertex(RenderBuffer &buffer) {
         if (w->is_visible())
             w->to_vertex(banner_buffer);
 
-    buffer.push_back(banner_buffer._get_vertex_buffer());
+    buffer.begin_object();
+    for (const auto& w: banner_buffer._get_vertex_buffer()) {
+        buffer.push_back(w);
+    }
+    buffer.end_object();
 
     // Clear out our banner buffer
     banner_buffer._clear_buffer();
@@ -45,6 +51,7 @@ bool Banner::add_background(Widget* w) {
 
 /// Add a normal widget
 bool Banner::add_widget(Widget* w) {
+    glog::dev << "adding widget" << glog::endlog;
     return add_widget_internal(w);
 }
 
@@ -72,8 +79,6 @@ bool Banner::add_widget_internal(Widget* w) {
 
     // Reject widget if texture_id doesn't match
     if (w->get_texture_id() != texture_id) {
-        glog::warn << "Widget rejected: texture_id mismatch ("
-                  << w->get_texture_id() << " != " << texture_id << ")\n";
         return false;
     }
 

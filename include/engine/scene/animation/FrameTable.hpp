@@ -6,11 +6,11 @@
 #include "engine/utilities/image-info/IMGDecoder.hpp"
 
 
-namespace geng {
+namespace gan {
     /**
-     * FrameTables hold a double-vector of @code gengine::Frame@endcode objects. Their intended use is to serve as a data bank to keep track of animation tables for @code AnimInfo@endcode objects.
-     * @details FrameTables are controlled by the @code gengine::FrameManager@endcode in the engine.
-     * - It is recommended to review the structure of a @code gengine::Quad@endcode before making a FrameTable.
+     * FrameTables hold a double-vector of @code ganine::Frame@endcode objects. Their intended use is to serve as a data bank to keep track of animation tables for @code AnimInfo@endcode objects.
+     * @details FrameTables are controlled by the @code ganine::FrameManager@endcode in the engine.
+     * - It is recommended to review the structure of a @code ganine::Quad@endcode before making a FrameTable.
      * - When the engine detects a frame change, it sends the changed AnimInfo to it's associated FrameTable, and calls this FrameTable's @code FrameTable::update_frame(AnimInfo&)@endcode function.
      * - When the engine initializes objects into the pipeline, it calls @code FrameTable::get_frame()@endcode on them.
      * @warning It is up to the user to decide how they will keep track of animation numbers and frame numbers. There exists no easy tool to do this. If you are not worried about low-level memory optimization,

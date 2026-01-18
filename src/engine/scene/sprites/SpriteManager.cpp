@@ -3,7 +3,7 @@
 #include "../../../../include/engine/types/strings/fstring/fstring.hpp"
 #include "../../../../include/engine/debug/geng_debug.hpp"
 
-using namespace geng;
+using namespace gan;
 
 // Constructor
 SpriteManager::SpriteManager(LayerContext& layer_context) noexcept
@@ -12,6 +12,7 @@ SpriteManager::SpriteManager(LayerContext& layer_context) noexcept
 // Add object, pointer (preferred method)
 void SpriteManager::add_sprite(Sprite *a) noexcept {
 	// First we add the sprite to our link between ids and index
+	a->id = sprites.size();
 	id_to_pos[a->id] = sprites.size();
 	// If our flag is notempty
 	if (a->is_tagged())
@@ -25,37 +26,21 @@ void SpriteManager::add_sprites(gch::vector<Sprite *>& vec) noexcept {
 		add_sprite(a);
 }
 
-// We have to remove an object by its id
-void SpriteManager::dissolve(int id) {
-	// First we grab sprite's index
-	if (id_to_pos.find(id) == id_to_pos.end()) {
-		glog::err.src("SpriteManager::dissolve")
-			<< "Id " << id << " does not exist." << glog::endlog;
-	}
-	int index = id_to_pos[id];
-	int last = static_cast<int>(sprites.size()) - 1;
-	// Swap only if not already last
-	if (index != last) {
-		std::swap(sprites[index], sprites.back());
-		id_to_pos[sprites[index]->id] = index;
-	}
-	// Then we erase the id from the map.
-	id_to_pos.erase(id);
-	// And delete our sprite
-	delete sprites.back();
-	// And remove it from the back
-	sprites.pop_back();
-}
-
 // We take in an object and convert it to an id.
 void SpriteManager::dissolve(const Sprite* a) {
-	dissolve(a->id);
+	for (auto& s: sprites) {
+		if (s == a) {
+			std::swap(s, sprites.back());
+			sprites.pop_back();
+			break;
+		}
+	}
 }
 
 // This grabs ids from all sprites and removes them.
 void SpriteManager::dissolve(gch::vector<Sprite *> vec) {
 	for (auto& a: vec)
-		dissolve(a->id);
+		dissolve(a);
 }
 
 void SpriteManager::update(){

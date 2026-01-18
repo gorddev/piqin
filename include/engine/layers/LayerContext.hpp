@@ -6,7 +6,7 @@
 #include "engine/rendering/Camera.hpp"
 #include "engine/types/external/vector.hpp"
 
-namespace geng {
+namespace gan {
 
     /** @brief A LayerContext Object contains all the information needed to operate a layer under specific conditions.
      * These conditions include:
@@ -15,9 +15,10 @@ namespace geng {
      * - @code LayerFlag lflag@endcode › Flags the engine and layer use to determine display and management of the layer.
      */
     class LayerContext {
-    private:
+    public:
         /// Camera of the layer
         const Camera& camera;
+    private:
         /// Name of the layer
         const fstring<10>& name;
 
@@ -28,14 +29,19 @@ namespace geng {
         /// Allows us to keep track of logs before the engine core is formed
         gch::vector<debug::Log> logs;
 
+        /// Reference to scene width and height
+        const uint16_t& canvas_width;
+        const uint16_t& canvas_height;
+
         friend class LayerManager;
+        friend class Renderer;
     public:
         /// State of the layer (time, keys held, ect)
         LayerState state;
 
     public:
         /// Default constructor.
-        explicit LayerContext(const fstring<10>& name, const Camera& camera);
+        explicit LayerContext(const fstring<10>& name, const Camera& camera, const uint16_t& canvas_width, const uint16_t& canvas_height);
 
         /// Returns the name of the layer
         [[nodiscard]] fstring<10> get_name() const;

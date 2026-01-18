@@ -3,7 +3,7 @@
 #include "engine/scene/world/WorldProperties.hpp"
 #include "engine/types/positioning/Box2D.hpp"
 
-namespace geng {
+namespace gan {
     struct TileGrid {
         /// Contains all the tiles in a single gameworld.
         const gch::vector<uint16_t>& tiles;

@@ -7,14 +7,14 @@ namespace groute {
     /**
      * @brief TorpedoPath starts an object moving slowly, and then speeds it up as it moves along.
      */
-    class Torpedo final : public geng::Route {
+    class Torpedo final : public gan::Route {
     private:
         /// Direction of travel for the path.
-        geng::FPos2D direction;
+        gan::FPos2D direction;
     public:
         /// Regular constructor
-        Torpedo(geng::Gear& gear, const geng::FPos2D &target, float speed);
+        Torpedo(gan::Gear& gear, const gan::FPos2D &target, float speed);
         /// Update override (true if done)
-        bool update(geng::LayerState& time) override;
+        bool update(gan::LayerState& time) override;
     };
 }

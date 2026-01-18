@@ -2,9 +2,9 @@
 
 #include "engine/scene/routes/Route.hpp"
 
-using namespace geng;
+using namespace gan;
 
-InputHandler::InputHandler(LayerContext& scene) : scene(scene), cam(scene.get_camera()), mouse(mouse_acceptors, scene.get_camera()) {}
+InputHandler::InputHandler(LayerContext& scene) : scene(scene), cam(scene.get_camera()), mouse(mouse_acceptors, scene.get_camera(), scene.state) {}
 
 void InputHandler::_get_key_press(SDL_Scancode key) {
     if (active) {
@@ -37,6 +37,14 @@ void InputHandler::_get_mouse_release(Pos2D mousepos) {
 
 void InputHandler::_mouse_move(Pos2D mousepos, FPos2D deltapos) {
     mouse.on_movement(mousepos, deltapos, scene);
+}
+
+void InputHandler::_finger_down(SDL_TouchFingerEvent finger) {
+    return;
+}
+
+void InputHandler::_finger_release(SDL_TouchFingerEvent finger) {
+    return;
 }
 
 void InputHandler::_keys_down(uint8_t *keys) const {

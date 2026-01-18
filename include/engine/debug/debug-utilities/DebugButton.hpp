@@ -1,12 +1,12 @@
 #pragma once
-#include "engine/core/defaults/sysfont.inl"
 #include "engine/scene/banners/Banner.hpp"
 #include "engine/scene/banners/text/Text.hpp"
 #include "engine/scene/banners/widgets/WidgetBorder.hpp"
 #include "engine/scene/banners/widgets/WidgetBox.hpp"
 
-namespace geng::debug {
+namespace gan::debug {
 
+    const Dim2D debug_button_size = {20, 20};
 
     class DebugButton : public Banner {
     private:
@@ -20,15 +20,16 @@ namespace geng::debug {
         WidgetBox background;
         /// Text of the button
         Text<12> text;
+
     public:
-        DebugButton(FPos2D pos, bool& bind, char symbol = '#',  Dim2D size = {11, 11})
-            : Banner(pos, size.w, size.h), symbol(symbol), bind(bind), text("[c:green]", sys_font),
+        DebugButton(FPos2D pos, bool& bind, Font& font, char symbol = '#',  Dim2D size = debug_button_size)
+            : Banner(pos, size.w, size.h), symbol(symbol), bind(bind), text("[c:green]", font),
                 border(1), background(-100, -100, {0,0,0,120}) {
             add_background(&background);
             add_background(&border);
             text.get_fstr_view() << "[c:green]" << symbol;
-            text.set_pos({5 - sys_font.get_width(symbol)/2, 6 - sys_font.get_height(symbol)/2});
-            text.update_text(text.get_fstr_view().cstr());
+            text.set_pos({size.w/2 - text.get_font()->get_width(symbol)/2, size.h/2 - text.get_font()->get_height(symbol)/2});
+            text.update_text(text.get_fstr_view().c_str());
             add_widget(&text);
             DebugButton::on_hover_release();
         }
@@ -36,13 +37,12 @@ namespace geng::debug {
         // on click
         void on_click(Pos2D pos) override {
             bind = !bind;
-            glog::dev << "on_click" << glog::endlog;
             if (bind) {
-                text.update_text((fstring<11>("[c:green]") << symbol).cstr());
+                text.update_text((fstring<11>("[c:green]") << symbol).c_str());
                 on_hover();
             }
             else {
-                text.update_text((fstring<11>("[c:red]") << symbol).cstr());
+                text.update_text((fstring<11>("[c:red]") << symbol).c_str());
                 on_hover();
             }
         }
@@ -62,6 +62,10 @@ namespace geng::debug {
 
         void update() {
 
+        }
+
+        void to_vertex(RenderBuffer& buffer) override {
+            Banner::to_vertex(buffer);
         }
     };
 }

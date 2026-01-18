@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-using namespace geng;
+using namespace gan;
 
 FPos2D FPos2D::unit() {
     float norm = sqrtf(x * x + y * y);
@@ -99,6 +99,6 @@ FPos2D::operator SDL_FPoint() const { // NOLINT(*-explicit-constructor)
     return {x, y};
 }
 
-geng::str_view & FPos2D::to_string(geng::str_view &buffer) const {
+gan::str_view & FPos2D::to_string(gan::str_view &buffer) const {
     return buffer << "FPos2D{x: " << (x) << ", y: " << y << '}';
 }

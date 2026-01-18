@@ -3,8 +3,8 @@
 #include "Route.hpp"
 #include "engine/layers/LayerContext.hpp"
 
-namespace geng {
-    /** @brief Updates all paths such that they affect their assigned @code gengine::Transform2D@endcode object correctly.
+namespace gan {
+    /** @brief Updates all paths such that they affect their assigned @code ganine::Transform2D@endcode object correctly.
      * @details Constains a @code std::unordered_map<Path*>@endcode and defines how it can be interacted with.
      * The following member functions apply:
      * 1. @code PathManager()@endcode › default constructor
@@ -15,7 +15,7 @@ namespace geng {
      */
     class RouteManager {
         /// A SparseVector containing all the paths. Destroyed paths are nullptrs.
-        std::unordered_map<uint32_t, Route*> paths;
+        gch::vector<Route*> paths;
         /// Holds the LayerContext
         LayerContext& scene;
     public:

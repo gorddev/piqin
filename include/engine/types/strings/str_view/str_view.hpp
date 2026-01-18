@@ -1,11 +1,9 @@
 #pragma once
-#include <cstdint>
-#include <cstddef>
 
 #include <concepts>
 #include "str_subview.hpp"
 
-namespace geng {
+namespace gan {
     /** Allows for memoryless setting of the precision parameter of an fstring **/
     template<uint8_t C>
     struct precision {
@@ -39,7 +37,7 @@ namespace geng {
         /// Returns the capacity of the parent fstring
         [[nodiscard]] constexpr uint32_t capacity() const;
         /// Returns the data containing the parent fstring
-        [[nodiscard]] constexpr const char* cstr() const;
+        [[nodiscard]] constexpr const char* c_str() const;
         /// Createas a subview of the current view
         inline str_subview subview(uint32_t start, uint32_t sub_len) const;
         /// Emplaces a text at a position within the parent fstring.

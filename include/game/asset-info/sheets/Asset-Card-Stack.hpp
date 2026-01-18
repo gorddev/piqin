@@ -6,7 +6,7 @@
 #define ASSET_DRAW_DECK_DRAW_TYPE RENDER_VERTICAL
 
 
-const geng::FrameTable asset_draw_deck = {
+const gan::FrameTable asset_draw_deck = {
     416, 0,
     37, 53,
     2, 6,

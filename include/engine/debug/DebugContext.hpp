@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace geng::debug {
+namespace gan::debug {
 
     /** Contains a lot of information and utilities for debugging. **/
     class DebugContext {
@@ -59,7 +59,7 @@ namespace geng::debug {
     private:
         // Only the engine can enable/disable recovery mode
         friend class Engine;
-        friend class DebugManager;
+        friend class Console;
         friend class DebugButtonPanel;
         // <><><> recovery <><><>
         // enables recovery mode

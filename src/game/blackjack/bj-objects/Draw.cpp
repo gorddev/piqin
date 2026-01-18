@@ -5,13 +5,13 @@
 
 using namespace blackjack;
 
-Draw::Draw(geng::FPos2D pos) : pos(pos) {}
+Draw::Draw(gan::FPos2D pos) : pos(pos) {}
 
 int Draw::get_num_cards() {
     return draw.size();
 }
 
-// Adds a card and assigns it a geng::Path.
+// Adds a card and assigns it a gan::Path.
 void Draw::add_card(Card *card, bool flipped) {
     card->flip_up();
     // Lets us flip it down if we want.
@@ -78,7 +78,7 @@ bool Draw::empty() const {
     return draw.empty();
 }
 
-void Draw::set_pos(geng::FPos2D v) {
+void Draw::set_pos(gan::FPos2D v) {
     pos = v;
 }
 
@@ -92,7 +92,7 @@ lni::vector<Card*>& Draw::gather_objects() {
     return draw;
 }
 
-geng::FPos2D Draw::get_pos() {
+gan::FPos2D Draw::get_pos() {
     return pos;
 }
 

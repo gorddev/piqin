@@ -3,7 +3,7 @@
 #include "../../debug/geng_debug.hpp"
 #include "engine/types/strings/hstring/hstring.hpp"
 
-namespace geng {
+namespace gan {
 
     /// Singular property of an object passed through the parser
     struct TProperty {
@@ -49,7 +49,6 @@ namespace geng {
                 }
             }
             glog::err.src("extract_physics_data") << "Fatal: Could not find physics layer for level: " << fileName << "\n";
-            abort();
         }
     };
 }

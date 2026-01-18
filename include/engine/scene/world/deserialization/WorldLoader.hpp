@@ -4,7 +4,7 @@
 
 #include "../../world/GameWorld.hpp"
 
-namespace geng {
+namespace gan {
     class WorldLoader {
     public:
         static GameWorld read_world(hstring filename);

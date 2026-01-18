@@ -1,6 +1,6 @@
 #include "engine/scene/events/EventManager.hpp"
 
-using namespace geng;
+using namespace gan;
 
 EventManager::EventManager(LayerContext &layer_context) : scene(layer_context) {}
 

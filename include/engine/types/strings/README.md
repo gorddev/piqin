@@ -9,7 +9,7 @@ my_string << sprite.animnum << ",\t" << sprite.framenum;
 ```
 Thus all the data is immediately converted into the hstring formatted like `"30.0 40.0\n3,\t4"`. Furthermore, I can add even nicer features like:
 ```c++
-mystring << trunc<4>() << my_float << geng::endl;
+mystring << trunc<4>() << my_float << gan::endl;
 ```
 Now, my_float will be truncated to four digits automatically without me having to do any annoying calculations. Now to get on to each type of string.
 ### fstrings  
@@ -18,7 +18,7 @@ First up we have `fstring`, which stands for **fixed string**. `fstring` is a te
 - Lives on the stack, so heap fragmentation (especially in WASM) is not a concern for fstrings
 - Prevents any overflow automatically.
 
-For example, the `geng::Text` class is templated with an `fstring`, because in reality, displayed text on screen should never be unbounded, and when users make a text object, they should define how it will be used.
+For example, the `gan::Text` class is templated with an `fstring`, because in reality, displayed text on screen should never be unbounded, and when users make a text object, they should define how it will be used.
 
 Note that `fstrings` have an internal limit of 65442 characters as a built in cap. Creating more than that many characters is bad for the stack and should not happen. 
 - Downsides: You must know your string length at compile time, so don't use this for managing something like a pathname. (However, it is good for preventing users from adding too much input.)
@@ -26,9 +26,9 @@ Note that `fstrings` have an internal limit of 65442 characters as a built in ca
 
 Here's an example of how to make an fstring:
 ```c++
-geng::fstring<10> fstr; // creates fstring with 10 char limit;
+gan::fstring<10> fstr; // creates fstring with 10 char limit;
 fstr << "Hello World!\n"; // pipes in "hello world!\n" (14 chars)
-std::cerr << fstr.cstr() << std::endl;
+std::cerr << fstr.c_str() << std::endl;
 ```
 Our output from this will be `Hello worl`, because we only allocated 10 characters. 
 
@@ -73,8 +73,8 @@ int main() {
     add_to_buffer(fixed_string.wrap(), 30.1234567f);
     add_to_buffer(heap_string.wrap(), 90.1234567f);
     // print to console
-    std::cerr << fixed_string.cstr() << std::endl;
-    std::cerr << heap_string.cstr() << std::endl;
+    std::cerr << fixed_string.c_str() << std::endl;
+    std::cerr << heap_string.c_str() << std::endl;
 }
 ```
 ```commandline

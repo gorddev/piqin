@@ -3,7 +3,7 @@
 #include "Banner.hpp"
 #include "engine/layers/LayerContext.hpp"
 
-namespace geng {
+namespace gan {
 
     /** Manages all the banners and makes sure that they get updated and shit **/
     class BannerManager {

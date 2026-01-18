@@ -7,24 +7,24 @@
 #include "engine/layers/LayerContext.hpp"
 #include "strings/fstring/fstring.hpp"
 
-namespace geng {
+namespace gan {
 
 /** @brief The fundamental target for all morphs, routes, shaking, and rendering.
- * @details The Transform2D contains all the position information necessary for a game object to be rendered. Although @code geng::Gear@endcode s are the primary
- * holders of transforms, other object types, like user-defined subclasses of @code geng::Mesh@endcode can also hold transforms. We briefly cover
- * how the engine interfaces with @code geng::Transform2D@endcode.
- * - @code engine.render()@endcode Relies on the width, height, position, and offset within a transform to render @code geng::Sprites@endcode
- * - @code geng::FPos2D pos@endcode and @code geng::FPos2D offset@endcode perform two different functions. @code pos@endcode keeps track of the absolute position
+ * @details The Transform2D contains all the position information necessary for a game object to be rendered. Although @code gan::Gear@endcode s are the primary
+ * holders of transforms, other object types, like user-defined subclasses of @code gan::Mesh@endcode can also hold transforms. We briefly cover
+ * how the engine interfaces with @code gan::Transform2D@endcode.
+ * - @code engine.render()@endcode Relies on the width, height, position, and offset within a transform to render @code gan::Sprites@endcode
+ * - @code gan::FPos2D pos@endcode and @code gan::FPos2D offset@endcode perform two different functions. @code pos@endcode keeps track of the absolute position
  * - Member variables below:
  * - @code uint16_t baseWidth, baseHeight@endcode › Base width and height of the object: private.
  * - @code float scale@endcode › scale of the displayed object on screen
  * - @code float angle@endcode › Angle of rotation of the object on screen
  * - @code float w, h@endcode › Editable width and height of the object (this actually determines the rendering)
  * - @code SDL_Color color@endcode › Color of the thing
- * - @code geng::FPos2D pos@endcode › Pos of the transform
- * - @code geng::FPos2D offset@endcode › How far off from center the object is rendered.
+ * - @code gan::FPos2D pos@endcode › Pos of the transform
+ * - @code gan::FPos2D offset@endcode › How far off from center the object is rendered.
  * @warning Any negative value in a Transform2D object is not defined behavior within the engine. There are no safeguards.
- * @note In order for computationally-intensive Transform2D calculations like rotation to be used, the @code locked()@endcode flag must be set to @code false@endcode on the associated @code geng::Gear@endcode.
+ * @note In order for computationally-intensive Transform2D calculations like rotation to be used, the @code locked()@endcode flag must be set to @code false@endcode on the associated @code gan::Gear@endcode.
  */
 struct Transform2D final {
 private:

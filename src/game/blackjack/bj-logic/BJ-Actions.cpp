@@ -4,7 +4,7 @@
 
 using namespace blackjack;
 
-#define ADDEV(t, f) geng::GENG_Events.add_event(t, [=]{f;})
+#define ADDEV(t, f) gan::GENG_Events.add_event(t, [=]{f;})
 
 void Board::select() {
     // If we're currently playing a card
@@ -60,7 +60,7 @@ void Board::pull_card() {
     else if (menu.row() == BJ_Target::OPPONENT)
         c = opponentDraw.pop_card(menu.col());
     if (c != nullptr) {
-        //auto* pc = new geng::ParticleCircle(c, 20.0, 0.125, 200, 20, {180, 220, 180, 255});
+        //auto* pc = new gan::ParticleCircle(c, 20.0, 0.125, 200, 20, {180, 220, 180, 255});
         //bob.attach_new_particle(c, pc);
         pather.move(c, playerDraw);
     }
@@ -74,7 +74,7 @@ void Board::push_card() {
     else if (menu.row() == BJ_Target::PLAYER)
         c = playerDraw.pop_card(menu.col());
     if (c != nullptr) {
-        //auto* pc = new geng::ParticleCircle(c, 20.0, 0.125, 200, 20, {180, 220, 180, 255});
+        //auto* pc = new gan::ParticleCircle(c, 20.0, 0.125, 200, 20, {180, 220, 180, 255});
         //bob.attach_new_particle(c, pc);
         pather.move(c, opponentDraw);
     }
@@ -90,7 +90,7 @@ void Board::grab_card() {
     else if (menu.row() == BJ_Target::PLAYER)
         c = playerDraw.pop_card(menu.col());
     if (c != nullptr) {
-        auto* ps = new geng::ParticleSparkle(floater, 8.0f, 1.0, 350, 30);
+        auto* ps = new gan::ParticleSparkle(floater, 8.0f, 1.0, 350, 30);
         bob.attach_new_particle(c, ps);
         pather.move(c, hand);
         pather.update_hand(hand);
@@ -111,10 +111,10 @@ void Board::set_target_action(BJ_Action new_action) {
 
 void Board::deactivate_floater() {
     bob.detach_particle(floater);
-    floater->set_shake(geng::GENG_Shake::RANDOM,3.0,550,1,true);
-    ADDEV(600, auto* ps = new geng::ParticleSparkle(floater, 8.0f, 1.0, 350, 30);
+    floater->set_shake(gan::GENG_Shake::RANDOM,3.0,550,1,true);
+    ADDEV(600, auto* ps = new gan::ParticleSparkle(floater, 8.0f, 1.0, 350, 30);
         bob.attach_new_particle(floater, ps);
-        pather.to_discard(floater, &discard, geng::GENG_Path::SINE);
+        pather.to_discard(floater, &discard, gan::GENG_Path::SINE);
         floater = nullptr);
     set_target_action(BJ_Action::PLAY);
     set_target_range(BJ_Target::HAND);

@@ -3,10 +3,10 @@
 #include "../../core/gears/Gear.hpp"
 #include "engine/layers/LayerState.hpp"
 
-namespace geng {
+namespace gan {
     /**
   * @brief Morphs attach themselves to Gear objects, so any Gear can have an morph applied to it, although it may not have any visible change.
-  * Primary candidates for morphs are @code geng::Banners@endcode and @code geng::Sprites@endcode.
+  * Primary candidates for morphs are @code gan::Banners@endcode and @code gan::Sprites@endcode.
   * @details To create a new morph, make a subclass of the morph object and add it via the Engine.
   * Morphs have six member variables:
   * 1. Transform2D* t -> pointer to the object's Transform2D [protected]
@@ -19,7 +19,7 @@ namespace geng {
   * @note Notes for making morphs:
   * - Morph is a pure virtual class
   * - Morph's constructors will initialize the initDuration and permanent fields for you
-  * - Add morphs to the MorphManager with @code engine.add_morph(new geng::Morph(...)) @endcode
+  * - Add morphs to the MorphManager with @code engine.add_morph(new gan::Morph(...)) @endcode
   * - Remove permanent morphs with @code engine.remove_morph(Morph *e) @endcode or @code engine.remove_morph(Gear* g) @endcode
   * - Unless you explicitly program it, Morphs will not return an object to its original transform upon completion
   *

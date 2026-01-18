@@ -1,7 +1,7 @@
 #include "engine/scene/routes/route-types/Torpedo.hpp"
 
 
-using namespace geng;
+using namespace gan;
 using namespace groute;
 
 Torpedo::Torpedo(Gear &g, const FPos2D &target, float speed)

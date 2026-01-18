@@ -13,7 +13,7 @@ static void fstring_throw_err(const char err[]) {
 
 template<uint32_t C>
 template<uint16_t N>
-constexpr geng::fstring<C>::fstring(const char (&str)[N]) { // NOLINT(*-explicit-constructor, *-pro-type-member-init)
+constexpr gan::fstring<C>::fstring(const char (&str)[N]) { // NOLINT(*-explicit-constructor, *-pro-type-member-init)
     // Gets the lenght of our string
     len = std::min<uint32_t>(N - 1, C - 1);
     // Allocate memory for array
@@ -21,11 +21,11 @@ constexpr geng::fstring<C>::fstring(const char (&str)[N]) { // NOLINT(*-explicit
     // Assign our null character
     arr[len] = '\0';
     // Assign our precision identifier
-    arr[C+1] = 10;
+    prec = 10;
 }
 /// Constructor for constant character without length info
 template<uint32_t C>
-constexpr geng::fstring<C>::fstring(const char* str) { // NOLINT(*-pro-type-member-init)
+constexpr gan::fstring<C>::fstring(const char* str) { // NOLINT(*-pro-type-member-init)
     // If there's nothing there
     if (!str) {
         len = 0;
@@ -39,11 +39,11 @@ constexpr geng::fstring<C>::fstring(const char* str) { // NOLINT(*-pro-type-memb
     // Assign our null character
     arr[len] = '\0';
     // Assign our precision identifier
-    arr[C+1] = 10;
+    prec = 10;
 }
 /// Constructor for constant character with explicit length info
 template<uint32_t C>
-constexpr geng::fstring<C>::fstring(const char* str, const uint32_t length) { // NOLINT(*-pro-type-member-init)
+constexpr gan::fstring<C>::fstring(const char* str, const uint32_t length) { // NOLINT(*-pro-type-member-init)
     // If there's nothing there
     if (!str) {
         len = 0;
@@ -57,26 +57,26 @@ constexpr geng::fstring<C>::fstring(const char* str, const uint32_t length) { //
     // Assign our null character
     arr[len] = '\0';
     // Assign our precision identifier
-    arr[C+1] = 10;
+    prec = 10;
 }
 /// Constructor for a singular character
 template<uint32_t C>
-constexpr geng::fstring<C>::fstring(char c) { // NOLINT(*-pro-type-member-init)
+constexpr gan::fstring<C>::fstring(char c) { // NOLINT(*-pro-type-member-init)
     // Length equals one
     len = 1;
     // Assign the first value
     arr[0] = c;
     arr[1] = '\0';
     // Assign our precision identifier
-    arr[C+1] = 10;
+    prec = 10;
 }
 /// Nothing in the constructor
 template<uint32_t C>
-constexpr geng::fstring<C>::fstring() { // NOLINT(*-pro-type-member-init)
+constexpr gan::fstring<C>::fstring() { // NOLINT(*-pro-type-member-init)
     len = 0;
     arr[0] = '\0';
     // Assign our precision identifier
-    arr[C+1] = 10;
+    prec = 10;
 }
 
 // ****************************** -------------------
@@ -84,45 +84,45 @@ constexpr geng::fstring<C>::fstring() { // NOLINT(*-pro-type-member-init)
 // ****************************** -------------------
 
 template<uint32_t C>
-constexpr uint32_t geng::fstring<C>::length() const {
+constexpr uint32_t gan::fstring<C>::length() const {
     return len;
 }
 
 template<uint32_t C>
-constexpr uint32_t geng::fstring<C>::capacity() const {
+constexpr uint32_t gan::fstring<C>::capacity() const {
     return C;
 }
 
 template<uint32_t C>
-const char* geng::fstring<C>::cstr() {
+const char* gan::fstring<C>::c_str() {
     arr[len] = '\0';
     return &arr[0];
 }
 
 template<uint32_t C>
-void geng::fstring<C>::clear() {
+void gan::fstring<C>::clear() {
     len = 0;
 }
 
 template<uint32_t C>
-geng::fstring<C> geng::fstring<C>::pop() {
+gan::fstring<C> gan::fstring<C>::pop() {
     fstring<C> ret = *this;
     clear();
     return ret;
 }
 
 template<uint32_t C>
-geng::str_view geng::fstring<C>::wrap() {
+gan::str_view gan::fstring<C>::wrap() {
     return str_view(arr, len, C);
 }
 
 template<uint32_t C>
-bool geng::fstring<C>::empty() const {
+bool gan::fstring<C>::empty() const {
     return len == 0;
 }
 
 template<uint32_t C> template <uint32_t N>
-void geng::fstring<C>::emplace(uint32_t index, const char (&str)[N])
+void gan::fstring<C>::emplace(uint32_t index, const char (&str)[N])
     requires(index + N - 1 <= C)
 {
     memcpy(arr + index, str, N - 1);
@@ -133,7 +133,7 @@ void geng::fstring<C>::emplace(uint32_t index, const char (&str)[N])
 }
 
 template<uint32_t C>
-void geng::fstring<C>::emplace(uint32_t index, const char* str, uint32_t count)
+void gan::fstring<C>::emplace(uint32_t index, const char* str, uint32_t count)
     requires(index + count <= C)
 {
     if (!str) return; // nothing to copy
@@ -147,10 +147,10 @@ void geng::fstring<C>::emplace(uint32_t index, const char* str, uint32_t count)
 
 template<uint32_t C>
 template<uint32_t N>
-constexpr geng::fstring<N> geng::fstring<C>::substr(uint32_t index) const {
+constexpr gan::fstring<N> gan::fstring<C>::substr(uint32_t index) const {
     if (N > C - index)
         fstring_throw_err("fstring<C>::substr, access out of bounds memory.");
-    return fstring<N>(arr + index, length);
+    return fstring<N>(arr + index, std::min(len - index, N));
 }
 
 // ****************************** -------------------
@@ -158,7 +158,7 @@ constexpr geng::fstring<N> geng::fstring<C>::substr(uint32_t index) const {
 // ****************************** -------------------
 
 template<uint32_t C>
-constexpr char& geng::fstring<C>::operator[](uint32_t index) {
+constexpr char& gan::fstring<C>::operator[](uint32_t index) {
     if (index >= len)
         fstring_throw_err("fstring<C>::operator[], access out of bounds memory.");
     return arr[index];
@@ -170,13 +170,13 @@ constexpr char& geng::fstring<C>::operator[](uint32_t index) {
 
 template<uint32_t C>
 template<uint32_t N>
-bool geng::fstring<C>::operator==(const char(&str)[N]) {
+bool gan::fstring<C>::operator==(const char(&str)[N]) {
     if (len != N - 1) return false;
     return std::memcmp(arr, str, len) == 0;
 }
 
 template<uint32_t C>
-bool geng::fstring<C>::operator==(const char *str) {
+bool gan::fstring<C>::operator==(const char *str) {
     for (int i = 0; i < len; i++) {
         if (arr[i] != str[i]) return false;
     }
@@ -185,16 +185,16 @@ bool geng::fstring<C>::operator==(const char *str) {
 
 template<uint32_t C>
 template<uint32_t N>
-geng::fstring<C>& geng::fstring<C>::operator<<(fstring<N> &other) {
+gan::fstring<C>& gan::fstring<C>::operator<<(fstring<N> &other) {
     uint32_t bytes = std::min<uint32_t>( other.length(), C - len);
-    memcpy(arr + len, other.cstr(), bytes);
+    memcpy(arr + len, other.c_str(), bytes);
     len += bytes;
     return *this;
 }
 
 template<uint32_t C>
 template<uint32_t N>
-geng::fstring<C> & geng::fstring<C>::operator<<(const char(&str)[N]) {
+gan::fstring<C> & gan::fstring<C>::operator<<(const char(&str)[N]) {
     uint32_t bytes = std::min<uint32_t>( N, C - len);
     memcpy(arr + len, str, bytes);
     len += bytes;
@@ -202,7 +202,7 @@ geng::fstring<C> & geng::fstring<C>::operator<<(const char(&str)[N]) {
 }
 
 template<uint32_t C>
-geng::fstring<C> & geng::fstring<C>::operator<<(const char *str) {
+gan::fstring<C> & gan::fstring<C>::operator<<(const char *str) {
     if (!str) return (*this) << "null";
     uint32_t bytes = std::min<uint32_t>( strlen(str), C - len);
     memcpy(arr + len, str, bytes);
@@ -211,7 +211,7 @@ geng::fstring<C> & geng::fstring<C>::operator<<(const char *str) {
 }
 
 template<uint32_t C>
-geng::fstring<C>& geng::fstring<C>::operator<<(const int num) {
+gan::fstring<C>& gan::fstring<C>::operator<<(const int num) {
     auto* start = arr + len;
     auto res = std::to_chars(start, arr + C, num);
     len += res.ptr - start;
@@ -220,29 +220,31 @@ geng::fstring<C>& geng::fstring<C>::operator<<(const int num) {
 
 template<uint32_t C>
 template<uint8_t P>
-geng::fstring<C> & geng::fstring<C>::operator<<(precision<P> precision) {
+gan::fstring<C> & gan::fstring<C>::operator<<(precision<P> precision) {
     arr[C + 1] = P;
     return *this;
 }
 
 template<uint32_t C>
-geng::fstring<C> & geng::fstring<C>::operator<<(float num) {
+gan::fstring<C> & gan::fstring<C>::operator<<(float num) {
     auto* start = arr + len;
     auto* end = arr + C;
-    auto res = std::to_chars(start, end, num, std::chars_format::fixed, arr[C+1]);
+    auto res = std::to_chars(start, end, num, std::chars_format::fixed, prec);
+    if (res.ec == std::errc::value_too_large)
+        fstring_throw_err("fstring overflow");
     len += res.ptr - start;
     return *this;
 }
 
 template<uint32_t C>
-geng::fstring<C> & geng::fstring<C>::operator<<(char c) {
+gan::fstring<C> & gan::fstring<C>::operator<<(char c) {
     if (len != C - 1)
         arr[len++] = c;
     return *this;
 }
 
 template<uint32_t C>
-geng::fstring<C>& geng::fstring<C>::operator<<(const void* ptr) {
+gan::fstring<C>& gan::fstring<C>::operator<<(const void* ptr) {
     if (!ptr) return (*this) << "nullptr";
     auto addr = reinterpret_cast<uintptr_t>(ptr);
     *this << "0x";
@@ -254,20 +256,20 @@ geng::fstring<C>& geng::fstring<C>::operator<<(const void* ptr) {
 }
 
 template<uint32_t C>
-geng::fstring<C> & geng::fstring<C>::operator<<(bool b) {
+gan::fstring<C> & gan::fstring<C>::operator<<(bool b) {
     return *this << (b ? "true" : "false");
 }
 
-inline geng::str_view& geng::str_view::operator<<(const geng::str_view &other) {
+inline gan::str_view& gan::str_view::operator<<(const gan::str_view &other) {
     uint32_t bytes = std::min<uint32_t>( other.length(), cap - len);
-    std::memmove(data + len, other.cstr(), bytes);
+    std::memmove(data + len, other.c_str(), bytes);
     len += bytes;
     return *this;
 }
 
 template<uint32_t N, uint32_t C>
-geng::fstring<N+C> operator+(const geng::fstring<N> self, const geng::fstring<C>& other) {
-    geng::fstring<N + C> ret;
+gan::fstring<N+C> operator+(const gan::fstring<N> self, const gan::fstring<C>& other) {
+    gan::fstring<N + C> ret;
     ret << self << other;
     return ret;
 }

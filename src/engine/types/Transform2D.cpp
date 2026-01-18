@@ -1,11 +1,12 @@
 #include "engine/types/Transform2D.hpp"
 
 #include "engine/types/positioning/Box2D.hpp"
-#include "engine/types/positioning/Pos2D.hpp"
 #include <format>
 
+#include "engine/types/positioning/FBox2D.hpp"
 
-using namespace geng;
+
+using namespace gan;
 
 // Default constructor
 Transform2D::Transform2D() = default;
@@ -55,13 +56,13 @@ void Transform2D::snap_to_scene(LayerContext& scene) {
 
 gch::vector<SDL_FPoint> Transform2D::to_vertex_hitbox(uint16_t thickness) {
     // Convert to integer for nice rendering
-    Pos2D p = Pos2D(pos.x, pos.y);
+    FPos2D p = FPos2D(pos.x, pos.y);
     // Get the REAL hitbox, not the displayed one in ints
-    Dim2D d = {baseWidth/2, baseHeight/2};
-    Box2D left = {p.x - d.w, p.y - d.h, thickness, d.h*2};
-    Box2D top = {p.x - d.w , p.y - d.h, d.w*2, thickness};
-    Box2D bottom = {p.x - d.w + thickness, p.y + d.h - thickness, d.w*2 - thickness, thickness};
-    Box2D right = {p.x + d.w - thickness, p.y - d.h, thickness, d.h*2};
+    FPos2D d = {baseWidth*scale/2, baseHeight*scale/2};
+    FBox2D left = {p.x - d.x, p.y - d.y, thickness, static_cast<int>(d.y*2)};
+    FBox2D top = {p.x - d.x , p.y - d.y, static_cast<int>(d.x*2), thickness};
+    FBox2D bottom = {p.x - d.x + thickness, p.y + d.y - thickness, static_cast<int>(d.x*2 - thickness), thickness};
+    FBox2D right = {p.x + d.x - thickness, p.y - d.y, thickness, static_cast<int>(d.y*2)};
 
     gch::vector<SDL_FPoint> points;
     left.to_vert_points(points);
@@ -72,9 +73,10 @@ gch::vector<SDL_FPoint> Transform2D::to_vertex_hitbox(uint16_t thickness) {
 }
 
 str_view& Transform2D::to_fstring_verbose(str_view& buffer) const {
-    buffer << precision<2>() << "[t][Transform][n] \tscl: " << scale << "\tang: " << angle << "\n"
+    buffer << precision<2>() << "[t][Transform][n] \tscl: " << scale << "\tang: " << angle
+        << "\tcolor: {" << color.r + 0 <<   ",\t" << color.g << ",\t" << color.b << "}\n"
     << "dim: {" << w << ",  \t" << h << "}\tbase: [" << baseWidth << ", " << baseHeight << "]\n"
-    << "pos: {" << pos.x << ",  \t" << pos.y << "}";
+    << "pos: {" << pos.x << ",  \t" << pos.y << "}\toffset: {" << offset.x << ",\t" << offset.y << "}";
     return buffer;
 }
 

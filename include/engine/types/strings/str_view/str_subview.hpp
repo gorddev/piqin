@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <cstring>
 
-namespace geng {
+namespace gan {
 
     /** ALlows you to compare small portions of a str_view **/
     class str_subview {
@@ -15,7 +15,7 @@ namespace geng {
         constexpr str_subview(const char* d, uint32_t l) : data(d), len(l) {}
 
         constexpr uint32_t length() const { return len; }
-        constexpr const char* cstr() const { return data; }
+        constexpr const char* c_str() const { return data; }
 
         template<uint32_t N>
         bool operator==(const char (&str)[N]) const {

@@ -6,7 +6,7 @@
 #include "engine/types/strings/str_view/str_view.hpp"
 #include "engine/wip/Random.hpp"
 
-using namespace geng;
+using namespace gan;
 
 void FPos3D::set(float xpos, float ypos, float zpos) {
 	x = xpos;
@@ -118,7 +118,7 @@ void FPos3D::operator=(FPos3D other) {
 }
 
 
-geng::str_view& FPos3D::to_fstring(geng::str_view& buffer) const {
+gan::str_view& FPos3D::to_fstring(gan::str_view& buffer) const {
 	return buffer	<< "{" << x
 					<< "," << y
 					<< "," << z

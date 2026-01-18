@@ -8,7 +8,7 @@
 #include "engine/scene/sprites/Sprite.hpp"
 
 
-namespace geng {
+namespace gan {
     /** @brief This is essentially a wrapper class for a vector of FrameTables that only allows adding and retrieval **/
     /** @details Member functions:
      * - @code add_tables(const lni::vector<FrameTable>& frameTables)@endcode › adds a vector of frametables to the manager.

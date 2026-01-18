@@ -4,19 +4,37 @@
 
 using namespace gfx;
 
-Stretch::Stretch(geng::Gear *gear, float amplitude, float snappiness, float tolerance)
-    : Morph(gear, amplitude, snappiness), snappiness(snappiness), tolerance(tolerance), oldPos(gear->t.pos){}
+Stretch::Stretch(gan::Gear *gear, float amplitude, float snappiness, float tolerance)
+    : Morph(gear, -1, amplitude), snappiness(snappiness), tolerance(tolerance), oldPos(gear->t.pos){}
 
 
-bool Stretch::update(geng::LayerState& time) {
-    geng::Gear& g = *gear;
+bool Stretch::update(gan::LayerState& time) {
+    gan::Gear& g = *gear;
     // Target-stretch x, target stretch y.
     float tsx, tsy;
+
+    gan::FPos2D diff = (g.t.pos - oldPos);
+    tsx = 1 + std::min(fabsf(diff.x*amplitude)/time.get_dt(), 1.0*amplitude);
+    tsy = 1 + std::min(fabsf(diff.y*amplitude)/time.get_dt(), 1.0*amplitude);
+
+
+    float twidth = g.t.get_base_width()*tsx;
+    float theight = g.t.get_base_height()*tsy;
+
+    float area = g.t.get_base_width()*g.t.get_base_height();
+    float mod = area/(twidth*theight);
+
+    g.t.w += (twidth - g.t.w)*snappiness*mod;
+    g.t.h += (theight - g.t.h)*snappiness*mod;
+
+    oldPos = g.t.pos;
+
+    return false;
 
     // First we check if we changed a considerable distance
     if (oldPos.dist(g.t.pos) > tolerance*1.5f) {
         // Then we calculate the total difference
-        geng::FPos2D diff = (g.t.pos - oldPos).unit().abs();
+        gan::FPos2D diff = (oldPos - g.t.pos).unit().abs();
         // Modify our x and y accordingly
         tsx = (1 + diff.x*3.0*amplitude/time.get_dt());
         tsy = (1 + diff.y*3.0*amplitude/time.get_dt());

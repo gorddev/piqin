@@ -3,7 +3,7 @@
 #include "Selector.hpp"
 #include "engine/types/external/vector.hpp"
 
-namespace geng {
+namespace gan {
     struct Selection {
         short row;
         short column;
@@ -62,7 +62,7 @@ namespace geng {
 
 /* Implementation is below */
 
-namespace geng {
+namespace gan {
     template<typename Item>
     MenuRegion<Item>::MenuRegion(gch::vector<gch::vector<Item*> *> menus, bool wrapx, bool wrapy)
         : menus(menus), wrapx(wrapx), s({0, 0}), selector(nullptr),

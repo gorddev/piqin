@@ -1,13 +1,14 @@
+#include <utility>
+
 #include "engine/rendering/Renderer.hpp"
 
 
-#include "../../../include/engine/debug/console/Console.hpp"
-#include "engine/debug/DebugManager.hpp"
+#include "engine/debug/Console.hpp"
 
-using namespace geng;
+using namespace gan;
 
-Renderer::Renderer(EngineContext& world, TextureRegister& texreg, Camera& camera)
-		: world(world), camera(camera), texreg(texreg), buffer(texreg, shadows) {
+Renderer::Renderer(EngineContext& world, TextureRegister& texreg)
+		: world(world), texreg(texreg), buffer(texreg, shadows) {
 	// Create the texture we will end up rendering to.
 	canvasTex = nullptr;
 }
@@ -33,25 +34,57 @@ void Renderer::_init() {
 			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 			world.get_width(), world.get_height(), SDL_WINDOW_RESIZABLE);
 	// Form the renderer to the window we'll use
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 	// Set the canvas size we'll render to.
 	set_render_resolution(world.get_width(), world.get_height());
 	// Tells us to use nearest neighbor scaling.
-	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
+
+	// Creates the sysfont texture
+	texreg.instantiate_texture(IMGDecoder::create_sysfont_texture(renderer));
 }
 
 Renderer::~Renderer() {
 }
 
-void Renderer::set_render_texture() {
-	SDL_SetRenderTarget(renderer, canvasTex);
-	SDL_SetRenderDrawColor(renderer, 30, 90, 30, 255);
+void Renderer::set_render_texture(SDL_Texture* texture) {
+	SDL_SetRenderTarget(renderer, texture);
+	SDL_SetRenderDrawColor(renderer, 40, 40, 40, 30);
 	SDL_RenderClear(renderer);
 }
 
-void Renderer::render(gch::vector<Layer*>& layers, debug::DebugManager* console) {
+void Renderer::update_texture_cache(Layer* l, debug::Console* console) {
+
+	const Camera& cam = (l == nullptr) ? console->cam : l->camera;
+
+	// If we don't currently have the texture
+	if (!layer_cache.contains(l)) {
+		// create the layer-specific cache
+		auto temptex = SDL_CreateTexture(
+			renderer,
+			SDL_PIXELFORMAT_RGBA8888,
+			SDL_TEXTUREACCESS_TARGET,
+			cam.get_width(), cam.get_height());
+		// set the texture blend mode
+		SDL_SetTextureBlendMode(temptex, SDL_BLENDMODE_BLEND);
+		layer_cache[l] = Texture({"__cache", static_cast<uint32_t>(cam.get_width()), static_cast<uint32_t>(cam.get_height())}, temptex);
+	}
+	// If our layer needs to be updated because the camera changed.
+	else if (layer_cache[l].info.h != cam.get_height()
+		|| layer_cache[l].info.w != cam.get_width()) {
+		SDL_DestroyTexture(layer_cache[l].texture);
+		layer_cache[l].texture = SDL_CreateTexture(
+			renderer,
+			SDL_PIXELFORMAT_RGBA8888,
+			SDL_TEXTUREACCESS_TARGET,
+			cam.get_width(), cam.get_height());
+		SDL_SetTextureBlendMode(layer_cache[l].texture, SDL_BLENDMODE_BLEND);
+	}
+}
+
+void Renderer::render(gch::vector<Layer*>& layers, debug::Console* console) {
 
 	/* RENDER SETUP */
 	// First we set our draw color in case nothing renders
@@ -70,36 +103,83 @@ void Renderer::render(gch::vector<Layer*>& layers, debug::DebugManager* console)
 		texreg.dirty = false;
 	}
 	// Now we set our renderTexutre (global::scene.width x global::scene.height)
-	set_render_texture();
+	set_render_texture(canvasTex);
 
-	// Prep the buffer with the camera's position.
-	buffer.prep(camera.pos);
+	buffer.clear();
+
 	// ><><><><><>< BIG PHASE ><><><><><><
-	for (auto& l : layers) {
-		if (l->scene.is_visible())
-			render_layer(l);
+	for (auto& layer : layers) {
+		// Only render if the layer is visible.
+		if (layer->scene.is_visible()) {
+			// ********************************
+			// <><><> Render preparation <><><>
+			// Update our texture cache to make sure we have a scene to render to.
+			update_texture_cache(layer, console);
+			// set our render target to the layer's specific texture
+			set_render_texture(layer_cache[layer].texture);
+			// clear the renderer
+			SDL_RenderClear(renderer);
+			// prep the render buffer with camera information
+			buffer.prep(layer->camera, {layer->camera.get_width(), layer->camera.get_height()});
+
+			// ***********************
+			// <><><> Rendering <><><>
+			// render the specific layer
+			render_layer(layer);
+			// pop the final batch off the buffer
+			buffer.pop_last_batch();
+			// render everything to our small canvas
+			for (auto& batch : buffer.batches) {
+				SDL_RenderGeometry(
+				renderer,
+				texreg[batch.texture_id].texture,
+				buffer.data() + batch.start_index,
+				batch.num_vertices,
+				nullptr,
+				0);
+			}
+
+			// ************************
+			// <><><> Pushing to canvas.
+			// clear our buffer
+			buffer.clear();
+			// set our render target to be the main canvas
+			SDL_SetRenderTarget(renderer, canvasTex);
+			// copy it!
+			SDL_RenderCopy(renderer, layer_cache[layer].texture, nullptr, nullptr);
+		}
 	}
 
 	if (console != nullptr) {
-		buffer.campos = {0,0};
+		// Update the texture cache with console information
+		update_texture_cache(nullptr, console);
+		// prep the buffer
+		buffer.prep(console->cam, {console->cam.get_width(), console->cam.get_height()});
 		buffer.request_texture(0);
+		// add all of our vertices to the buffer
 		console->to_vertex(buffer);
-	}
-
-	// We pop the final batch onto the buffer
-	buffer.pop_last_batch();
-	// Now we render each batch.
-	for (auto& batch : buffer.batches) {
-		SDL_RenderGeometry(
-		renderer,
-		texreg[batch.texture_id].texture,
-		buffer.data() + batch.start_index,
-		batch.num_vertices,
-		nullptr,
-		0);
+		// pop our last batch
+		buffer.pop_last_batch();
+		// Sets the render texture to be our console's
+		set_render_texture(layer_cache[nullptr].texture);
+		// clear the render target
+		SDL_RenderClear(renderer);
+		// render to our texture
+		for (auto& batch : buffer.batches) {
+			SDL_RenderGeometry(
+			renderer,
+			texreg[batch.texture_id].texture,
+			buffer.data() + batch.start_index,
+			batch.num_vertices,
+			nullptr,
+			0);
+		}
+		// set our render target to be the main canvas
+		SDL_SetRenderTarget(renderer, canvasTex);
+		// copy it!
+		SDL_RenderCopy(renderer, layer_cache[nullptr].texture, nullptr, nullptr);
 	}
 }
-
 
 /*******************/
 /* RENDER FUNCTIONS */
@@ -149,10 +229,14 @@ void Renderer::prime_tex_register(TextureRegister &reg) {
 	for (auto& [str, id] : reg.path_to_id) {
 		if (reg.id_to_tex.find(id) == reg.id_to_tex.end()) {
 			Texture tex = IMGDecoder::load_image_as_texture(renderer, str);
-			glog::note.src("Renderer::prime_tex_register") << "Loading image to texture: " << tex.info.filename.cstr();
 			reg.id_to_tex.emplace(id, std::move(tex));
 		}
 	}
+}
+
+int Renderer::render_font(Font* font, hstring path) {
+	Texture tex = IMGDecoder::load_font_as_texture(renderer, *font, std::move(path));
+	return texreg.instantiate_texture(tex);
 }
 
 /* ............... */
@@ -160,8 +244,8 @@ void Renderer::prime_tex_register(TextureRegister &reg) {
 /* ............... */
 // Updates our canvas size if the user resizes the window
 void Renderer::update_canvas_size(bool force) {
-	double cssWidth, cssHeight;
-	emscripten_get_element_css_size("canvas", &cssWidth, &cssHeight);
+	int cssWidth, cssHeight;
+	SDL_GL_GetDrawableSize(window, &cssWidth, &cssHeight);
 
 	if (force || cssWidth != canvasWidth || cssHeight != canvasHeight) {
 		canvasWidth = static_cast<int>(round(cssWidth));

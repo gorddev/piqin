@@ -3,7 +3,7 @@
 #include "engine/scene/banners/widgets/Widget.hpp"
 #include "../../core/gears/Gear.hpp"
 
-namespace geng {
+namespace gan {
 
     /** Banner is how you make text and all types of other shit that you want to make and display on the screen hooray hooray **/
     class Banner : public Gear {
@@ -31,7 +31,7 @@ namespace geng {
         /// Get banner texture id
         int get_texture_id() const;
         /// Sets the banner position
-        void set_pos(FPos2D pos);
+        virtual void set_pos(FPos2D pos);
         /// Access widgets
         gch::vector<Widget*>& get_widgets();
 

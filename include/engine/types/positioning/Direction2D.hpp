@@ -1,6 +1,6 @@
 #pragma once
 
-namespace geng {
+namespace gan {
     /** @brief Basic shape that contains a @code short top@endcode, @code short bottom@endcode, @code short left@endcode, and @code short right@endcode.
      * @details Contains ==, !=, +, - nontrivial operator overloads.
      * @note Typically used for padding along edges.**/

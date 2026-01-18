@@ -3,7 +3,7 @@
 #include "engine/utilities/Utilities.hpp"
 #include "engine/rendering/Camera.hpp"
 
-namespace geng {
+namespace gan {
 
     /** @brief Holds basic information for a mouse to be used by the Inputhandler*
      * @details Mouse has the following member variables
@@ -25,20 +25,24 @@ namespace geng {
         gch::vector<Gear*>& mouse_recievers;
         /// Gets access to the camera
         const Camera& cam;
+        /// Gets access to the current scene state
+        LayerState& state;
 
         /// This constructor links the mouse to the vector it oversees.
-        explicit Mouse(gch::vector<Gear*>& mouse_recievers, const Camera& cam)
-            : mouse_recievers(mouse_recievers), cam(cam) {}
+        explicit Mouse(gch::vector<Gear*>& mouse_recievers, const Camera& cam, LayerState& state)
+            : mouse_recievers(mouse_recievers), cam(cam), state(state) {}
 
         /// Does things to a target if the mouse is hovering over something right now.
         void on_click() {
             down = true;
+
             if (target != nullptr) {
+                auto mpos = mouse_world();
                 target->_engine_flagger(GFlag::clicked);
                 target->on_click(pos);
                 if (target->is_draggable()) {
-                    relpos.x = pos.x - target->t.pos.x;
-                    relpos.y = pos.y - target->t.pos.y;
+                    relpos.x = mpos.x - target->t.pos.x;
+                    relpos.y = mpos.y - target->t.pos.y;
                     target->_engine_flagger(GFlag::dragged);
                 }
             }
@@ -61,6 +65,28 @@ namespace geng {
             }
         }
 
+        FPos2D mouse_world() {
+            FPos2D w;
+
+            w.x = pos.x *cam.get_width()/ state.get_canvas_width();
+            w.y = pos.y*cam.get_height()/state.get_canvas_height();
+
+            w.x += cam.pos.x - cam.offset.x;
+            w.y += cam.pos.y - cam.offset.y;
+
+            return w;
+        }
+
+        bool contained_within(const Transform2D& t) {
+            SDL_FPoint m = mouse_world();
+
+            return
+                m.x >= t.pos.x - t.w*t.scale/2 &&
+                m.x <= t.pos.x + t.w*t.scale/2 &&
+                m.y >= t.pos.y - t.h*t.scale/2 &&
+                m.y <= t.pos.y + t.h*t.scale/2;
+        }
+
         /// Called when the mouse is moved by some distance.
         void on_movement(Pos2D mousepos, FPos2D deltapos, LayerContext& scene) {
             // First we need to sort by z-index first.
@@ -75,13 +101,14 @@ namespace geng {
             if (target != nullptr) {
                 // If we're dragging, we update position.
                 if (target->is_dragged()) {
-                    target->on_drag({static_cast<int>(pos.x - relpos.x),static_cast<int>(pos.y - relpos.y)});
+                    auto mpos = mouse_world();
+                    target->on_drag({static_cast<int>(mpos.x - relpos.x),static_cast<int>(mpos.y - relpos.y)});
                     target->t.snap_to_scene(scene);
                     return;
                 }
-                if (!gutils::contained_within({static_cast<int>(pos.x + cam.pos.x),static_cast<int>(pos.y + cam.pos.y)}, target->t)) {
+                if (!contained_within(target->t)) {
                     target->on_hover_release();
-
+                    target->_engine_deflagger(GFlag::hovered);
                     target = nullptr;
                 }
             }
@@ -89,12 +116,15 @@ namespace geng {
             target = nullptr;
             // Search for a new target.
             for (int i = static_cast<int>(mouse_recievers.size()) - 1; i >= 0; i--) {
-                if (gutils::contained_within({static_cast<int>(pos.x + cam.pos.x),static_cast<int>(pos.y + cam.pos.y)}, mouse_recievers[i]->t)) {
+                if (contained_within(mouse_recievers[i]->t)) {
                     target = mouse_recievers[i];
                     if (target != oldtarget) {
                         target->on_hover();
-                        if (oldtarget != nullptr)
+                        target->_engine_flagger(GFlag::hovered);
+                        if (oldtarget != nullptr) {
                             oldtarget->on_hover_release();
+                            target->_engine_deflagger(GFlag::hovered);
+                        }
                     }
                     break;
                 }

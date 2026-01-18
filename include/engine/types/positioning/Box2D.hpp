@@ -2,7 +2,7 @@
 
 #include <SDL_rect.h>
 
-namespace geng {
+namespace gan {
 
     /** @brief Basic shape that contains an @code int x@endcode , @code int y@endcode, @code short w@endcode, and @code short h@endcode.
      * @details Contains ==, !=, +, - nontrivial operator overloads and an @code int area@endcode function that returns @code w*h@endcode. **/
@@ -54,7 +54,7 @@ namespace geng {
             return points;
         }
         /// Converts the box into 6 representative tex_points that can be used to render the box accordingly, appended to a point buffer.
-        void to_vert_points(gch::vector<SDL_FPoint>& points) const {
+        void to_tex_points(gch::vector<SDL_FPoint>& points) const {
             gch::vector<SDL_FPoint> my_points = to_points();
             points.push_back(my_points[0]);
             points.push_back(my_points[1]);
@@ -86,10 +86,10 @@ namespace geng {
             Box2D right = {x + w - thickness, y, thickness, h};
 
             gch::vector<SDL_FPoint> points;
-            left.to_vert_points(points);
-            top.to_vert_points(points);
-            bottom.to_vert_points(points);
-            right.to_vert_points(points);
+            left.to_tex_points(points);
+            top.to_tex_points(points);
+            bottom.to_tex_points(points);
+            right.to_tex_points(points);
             return points;
         }
     };

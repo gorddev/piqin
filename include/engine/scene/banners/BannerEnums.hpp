@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 
-namespace geng {
+namespace gan {
 
     /** Determines the alignment of an item on a widget. **/
     enum class Align : uint8_t {

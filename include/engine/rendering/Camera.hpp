@@ -7,7 +7,7 @@
 #include "engine/types/positioning/FPos2D.hpp"
 #include "engine/types/positioning/Pos2D.hpp"
 
-namespace geng {
+namespace gan {
 
     /**
      * @brief Camera that stores a position and size › Each @code Layer@endcode owns its own camera.
@@ -35,13 +35,17 @@ namespace geng {
     private:
         /** @brief Camera width and height. */
         Dim2D dim;
-
+        /// Lets the renderer know if width or height have been changed.
+        friend class Renderer;
+        friend class RenderBuffer;
     public:
         /** @brief Camera position. */
         FPos2D pos;
+        /** @brief Camera offset */
+        FPos2D offset;
 
         /** @brief Default constructor. Sets position to (0, 0) and size to (100, 100). */
-        Camera() : pos(0, 0), dim(100, 100) {  }
+        Camera() : pos(0, 0), dim(320, 320) {  }
 
         /** @brief Construct camera with position and size.*/
         Camera(int x, int y, int w, int h) : pos(x, y), dim(w, h) { }
@@ -81,6 +85,7 @@ namespace geng {
             dim = dimensions;
         }
 
+
         [[nodiscard]] Dim2D get_dimensions() const {
             return dim;
         }
@@ -89,9 +94,13 @@ namespace geng {
          * @brief Convert camera to string.
          * @return String with position and size
          */
-        void to_fstring(geng::str_view& buffer) const {
+        void to_fstring(gan::str_view& buffer) const {
             buffer << "x: " << pos.x << " y: " << pos.y
                << " w: " << dim.w << " h: " << dim.h;
+        }
+
+        void move_to_target(FPos2D target) {
+            pos += (target - pos)*0.2;
         }
     };
 }

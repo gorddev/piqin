@@ -2,7 +2,7 @@
 #include "engine/core/defaults/GengColors.hpp"
 #include "engine/scene/banners/text/syntax/SyntaxMap.hpp"
 
-namespace geng::debug {
+namespace gan::debug {
 
     // Commands
     inline void syntax_emphasize(gch::vector<str_subview> args, SyntaxInfo& out)
@@ -21,7 +21,7 @@ namespace geng::debug {
     inline void syntax_nullptr(SyntaxInfo& out) { out.color = color_purple; }
     inline void syntax_ptr(SyntaxInfo& out) { out.color = color_light_blue; }
 
-    const SyntaxMap geng_default_debug_syntax_map {
+    const SyntaxMap gan_default_debug_syntax_map {
         {
             {"[e]", syntax_emphasize},
             {"[t]", syntax_type},

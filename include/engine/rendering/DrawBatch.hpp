@@ -2,7 +2,7 @@
 
 #include <SDL_render.h>
 
-namespace geng {
+namespace gan {
 
     /** @brief The Layers send DrawBatches to the renderer so the renderer can batch render calls.
      * @details DrawBuffer has the following member functions:

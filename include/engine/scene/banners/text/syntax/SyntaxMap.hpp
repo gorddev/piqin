@@ -7,7 +7,7 @@
 #include "engine/scene/font/FontChar.hpp"
 #include "engine/types/external/vector.hpp"
 
-namespace geng {
+namespace gan {
 
     /** The SyntaxMap can be used to modify the display of specific parts of text via SyntaxCommands.
      * Specifying a SyntaxMap with a piece of text will have the text automatically modify the displayed text based on your parameters.*/
@@ -44,7 +44,10 @@ namespace geng {
             // Then we start iterating through our text
             uint32_t g = 0;
             for (int i = 0; i < len; i++) {
-                if (text[i] == '\t' || text[i] == ' ' || text[i] == '\n') {
+                if (text[i] == '\t' || text[i] == '\n') {
+                    FontChar dummy;
+                    buffer.push_back(dummy);
+                    syntax_info[g++] = info;
                     ret << text[i];
                     continue;
                 }
@@ -68,18 +71,19 @@ namespace geng {
                 bool highlighted = false;
                 for (auto& h : highlights) {
                     // If a highlight matches
-                    if (len - i >= h.key.length() && text.subview(i, h.key.length()) == h.key.cstr()) {
+                    if (len - i >= h.key.length() && text.subview(i, h.key.length()) == h.key.c_str()) {
                         // Update our temporary info
                         h.update(tempinfo);
                         for (int k = 0; k < h.key.length(); k++) {
-                            if (font.add_char_to_buffer(text[i+k], buffer)) {
-                                syntax_info[g +k] = tempinfo;
-                                ret << text[i+k];
+                            char c = text[i + k];
+                            if (font.add_char_to_buffer(c, buffer)) {
+                                ret << c;
+                                syntax_info[g++] = tempinfo;
                             }
                         }
                         highlighted = true;
-                        g += h.key.length();
                         i += h.key.length() - 1;
+                        break;
                     }
                 }
                 if (!highlighted && font.add_char_to_buffer(text[i], buffer)) {

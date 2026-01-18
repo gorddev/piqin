@@ -3,26 +3,30 @@
 #include "Font.hpp"
 #include "../../debug/geng_debug.hpp"
 
-namespace geng {
+namespace gan {
 
     /** Manages all fonts so you can easily print fonts to either the canvas or the UI */
     class FontList {
         gch::vector<Font> fonts;
 
     public:
-        FontList() = default;
+        FontList() {
+            fonts.reserve(3);
+        }
 
         /// Must call add_font before game loop.
-        int add_font(const Font& new_font) {
-            fonts.emplace_back(new_font);
-            return fonts.size() - 1;
+        Font* create_font(hstring path, uint16_t spacing, uint16_t pt) {
+            fonts.push_back(Font(path, pt, spacing));
+            return &fonts.back();
         }
-        /// Must call add_fonts before game loop.
-        void add_fonts(gch::vector<Font>& new_fonts) {
-            for (auto& f : new_fonts) {
-                fonts.emplace_back(f);
-            }
+
+        Font* instantiate_font(Font f) {
+            fonts.push_back(Font(f));
+            return &fonts.back();
         }
+
+        /// Adds a texture id to the back.
+
         /// grabs a font
         Font& at(int id) {
             if (id >= fonts.size() || id < 0) {

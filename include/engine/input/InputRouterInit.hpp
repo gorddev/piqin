@@ -2,7 +2,7 @@
 
 #include "../core/EngineContext.hpp"
 
-namespace geng {
+namespace gan {
 
     /** Only allows the engine to make an InputRouter **/
     class InputRouterInit {

@@ -8,13 +8,13 @@ namespace groute {
      * @brief LinearPath moves a Transform2D towards a destination
      * in a straight line at constant speed.
      */
-    class Linear final : public geng::Route {
+    class Linear final : public gan::Route {
     private:
-        geng::FPos2D direction;
+        gan::FPos2D direction;
     public:
         /// Regular constructor
-        Linear(geng::Gear& gear, const geng::FPos2D &target, float speed);
+        Linear(gan::Gear& gear, const gan::FPos2D &target, float speed);
         /// Update override (true if done)
-        bool update(geng::LayerState& time) override;
+        bool update(gan::LayerState& time) override;
     };
 }

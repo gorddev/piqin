@@ -5,9 +5,6 @@ if [ "../.protected/run.sh" -nt "./run.sh" ]; then
   cp -r "../.protected/run.sh" "./run.sh"
   sh ./run.sh
 else
-  # Set up Emscripten environment
-  export EMSDK_QUIET=1
-  source /Users/gordie/emsdk/emsdk_env.sh
 
   # Recreate directory structure of ../assets/ in ./assets/
   find "../assets/" -type d -print0 | while IFS= read -r -d '' dir; do
@@ -20,6 +17,11 @@ else
       target_file="./assets/${file#../assets/}"
       cp "$file" "$target_file"
   done
+
+  find "../assets/" -type f -name "*.ttf" -print0 | while IFS= read -r -d '' file; do
+        target_file="./assets/${file#../assets/}"
+        cp "$file" "$target_file"
+    done
 
   # Convert all .world files and place .lvl in the ./assets/ mirror
   find "../assets/" -type f -name "*.world" -print0 | while IFS= read -r -d '' file; do
@@ -37,6 +39,5 @@ else
       )
   done
 
-  cmake --build . && emrun --browser=chrome norton.html
-  # Finally, run emrun
+  cmake --build . && codesign --force --sign - ./norton && ./norton
 fi

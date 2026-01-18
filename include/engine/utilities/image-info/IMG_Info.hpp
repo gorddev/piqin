@@ -1,8 +1,10 @@
 #pragma once
 #include "../../types/strings/fstring/fstring.hpp"
+#include <SDL_rect.h>
+#include "engine/debug/geng_debug.hpp"
 
 #define GENG_PATH_MAX_LEN 50
-namespace geng {
+namespace gan {
     /**
      * Used for returning information to the user about the image
      */
@@ -18,7 +20,7 @@ namespace geng {
             return {(w - 0.5f)/w, (h - 0.5f)/h};
         }
 
-        geng::str_view& to_fstring(geng::str_view& buffer) {
+        gan::str_view& to_fstring(gan::str_view& buffer) {
             return buffer <<  "Filename: " << filename.wrap() << " w: " << w << " h: " << h;
         }
     };

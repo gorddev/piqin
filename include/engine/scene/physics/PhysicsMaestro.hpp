@@ -4,7 +4,7 @@
 #include "TileGrid.hpp"
 #include "engine/scene/world/WorldManager.hpp"
 
-namespace geng {
+namespace gan {
 
     /** The PhysicsMaestro basically handles everything physics in the engine, from updating colliders to determining collisions.
      * A lot of the PhysicsMaestro code is going to be hot-swappable so you don't need to use the engine defaults, and can customize according to your whims.*/

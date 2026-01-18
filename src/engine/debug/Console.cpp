@@ -1,12 +1,15 @@
-#include "engine/debug/DebugManager.hpp"
+#include "engine/debug/Console.hpp"
 
-using namespace geng;
-using namespace geng::debug;
+using namespace gan;
+using namespace gan::debug;
 
-bool DebugManager::get_key_press(SDL_Scancode key, Layer *&active_layer) {
+bool Console::get_key_press(SDL_Scancode key, Layer *&active_layer) {
 
     if (key == SDL_SCANCODE_F1) {
         debugger.debug_mode = !debugger.debug_mode;
+    }
+    else if (key == SDL_SCANCODE_RETURN) {
+        info_banner.get_press(key, active_layer);
     }
     else {
         input_handler._get_key_press(key);
@@ -16,7 +19,7 @@ bool DebugManager::get_key_press(SDL_Scancode key, Layer *&active_layer) {
 }
 
 
-bool DebugManager::get_mouse_click(Uint8 button, Pos2D mousepos, Layer *&active_layer) {
+bool Console::get_mouse_click(Uint8 button, Pos2D mousepos, Layer *&active_layer) {
     input_handler._get_mouse_click(mousepos);
     if (debugger.change_layer) {
         core.set_layer_change("__next");
@@ -29,12 +32,12 @@ bool DebugManager::get_mouse_click(Uint8 button, Pos2D mousepos, Layer *&active_
     return false;
 }
 
-bool DebugManager::get_mouse_release(Uint8 button, Pos2D mousepos, Layer *&active_layer) {
+bool Console::get_mouse_release(Uint8 button, Pos2D mousepos, Layer *&active_layer) {
     input_handler._get_mouse_release(mousepos);
     return false;
 }
 
-bool DebugManager::get_mouse_move(Pos2D mousepos, FPos2D deltapos, Layer *&active_layer) {
+bool Console::get_mouse_move(Pos2D mousepos, FPos2D deltapos, Layer *&active_layer) {
     input_handler._mouse_move(mousepos, deltapos);
     return false;
 }

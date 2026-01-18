@@ -1,92 +1,85 @@
 #include <SDL.h>
-#include <emscripten/html5.h>
-#include <emscripten.h>
-#include <iostream>
 
-#include "testing/Card.hpp"
-#include "../include/engine/core/Engine.hpp"
-#include "engine/scene/banners/text/Text.hpp"
-#include "engine/scene/banners/widgets/WidgetBox.hpp"
+#define GAN_DEBUG
+
+#include <engine/gan.hpp>
+#include <engine/gan_plugins.hpp>
+
 #include "engine/scene/morphs/morph-types/Stretch.hpp"
-#include "engine/scene/particles/particle-types/Rhombus.hpp"
-#include "engine/scene/particles/particle-types/Sparkle.hpp"
-#include "game/asset-info/sheets/Asset-Card-Stack.hpp"
-#include "game/asset-info/sheets/Asset-Deck.hpp"
-#include "engine/core/defaults/sysfont.inl"
-#include "testing/PlayerTest.hpp"
-#include "testing/spritesheet.hpp"
-
-#include <engine/geng.hpp>
-
+#include "engine/scene/particles/particle-types/RhombusRotateSpiral.hpp"
+#include "game/initialization/card_game_initialization.hpp"
+#include "game/initialization/engine_initialization.hpp"
+#include "game/initialization/initialization_defaults.hpp"
+#include "game/initialization/initialization_data/small_card_frame_table.hpp"
 #include "testing/camerarouter.hpp"
+#include "testing/Card.hpp"
 
-
-geng::Collider* test;
-auto start_time = std::chrono::steady_clock::now();
-
-// gameloop defined below
-bool gameloop(double time, void* userdata) {
-	// Grabs our engine from main
-	geng::Engine& bob = *static_cast<geng::Engine*>(userdata);
-
-	bob.tick(time);
-	// <><><><><><><><>
-	// Updates our time and grabs user input & runs events
-	// <><><><><><><><>
-	bob.update();
-
-	// <><><><><><><><>
-	// Finally we render
-	// <><><><><><><><>
-	bob.render();
-
-	return EM_TRUE;
-}
-
+void init_engine(gan::Engine& bob, bool debug_enabled);
 
 int main() {
-
 	// creates an engine object
-	geng::Engine bob;
-	// initializes the engine
-	bob.init();
+	gan::Engine bob;
+	// initializes it
+	init_engine(bob, true);
 	// sets the window resolution
-	bob.set_resolution({360, 160});
-	// sets debug mode to true
-	bob.set_debug_mode(true);
-	// testing out the world texture
-	bob.camera.pos = {0,0};
-	bob.camera.set_dimensions({2000, 160});
+	bob.set_resolution({init::default_res_w, init::default_res_h});
 
-	// *******************
-	// Platformer
-	// *******************
-	/// Creates a new layer to store the world in
+	auto& cards = *bob.create_layer<gan::Layer>("cards");
+	cards.init.frame_table("../assets/cards/smallcard.png", init::small_card_table);
+	init::init_card_layer(cards);
 
-	auto& plat = *bob.create_layer<geng::Layer>("plat");
-	plat.init.frame_table("assets/test_sprite.png", testsprite);
-	plat.init.tileset("assets/levels/world1/level1.png", {64, 64, 8});
-	plat.load_world("assets/levels/world1/world1.lvl", 0);
-	bob.set_active_layer("platformer");
+	/*
+	gch::vector<gan::Sprite*> cardlist;
+	cardlist.reserve(56);
+	gch::vector<gan::ParticleGroup*> pglist;
+	pglist.reserve(54);
 
 
-	// new sprites
-	test = new PlayerTest(plat.get_frame_table(0));
-	plat.link_collider(test);
-	plat.input.add_mouse_acceptor(test);
-	test->set_draggable();
-	plat.input.add_key_press_acceptor(test);
-	geng::FrameTable& testtable = plat.get_frame_table(0);
 
-	auto camerarouter = bob.create_router<CameraRouter>();
+	for (int i = 0; i < 13; i++) {
+		for (int k = 0; k < 4; k++) {
+			blackjack::BJ_Suit suit;
+			if (k == 0)
+				suit = blackjack::BJ_Suit::HEART;
+			else if (k == 1)
+				suit = blackjack::BJ_Suit::CLUB;
+			else if (k == 2)
+				suit = blackjack::BJ_Suit::DIAMOND;
+			else
+				suit = blackjack::BJ_Suit::SPADE;
+			auto mycard = new Card(cards.get_frame_table(init::cards_ft_id), 1 + i, suit);
+			mycard->t.pos = {i*80.f, 300+80 * (1.f+k)};
+			cards.add_sprite(mycard);
+			cardlist.push_back(mycard);
+			cards.input.add_mouse_acceptor(mycard);
+			cards.apply_morph(new gfx::Stretch(mycard, 0.6, 0.2, 0.4));
+
+			//auto myparticle = new gfx::RhombusRotateSpiral(mycard, 26, 5, -1, 20, {230, 230, 255, 255});
+			//pglist.push_back(myparticle);
+			//cards.attach_particle(mycard, myparticle);
+		}
+	}*/
 
 	auto game_loop = [&]() {
-		bob.camera.pos.x = test->t.pos.x - 50;
+
+
 		return true;
 	};
 
 	GENG_START_LOOP(bob, game_loop);
 
+	glog::warn << "exiting game" << glog::endlog;
 	return 0;
+}
+
+void init_engine(gan::Engine &bob, bool debug_enabled) {
+	// enables debug mode
+	bob.init(debug_enabled);
+	bob.set_debug_mode(debug_enabled);
+	// creates our first font
+	bob.create_font("../assets/fonts/ka1.ttf", 1, 10);
+	bob.create_font("../assets/fonts/RetroByte.ttf", 1, 16);
+	// allows us to move camera with arrow keys
+	bob.create_router<CameraRouter>();
 }
 

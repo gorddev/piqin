@@ -3,7 +3,7 @@
 #include <utility>
 #include "engine/types/external/vector.hpp"
 
-namespace geng {
+namespace gan {
     struct BackgroundPalette {
         short sumWeights = 0;
         uint8_t numColors;

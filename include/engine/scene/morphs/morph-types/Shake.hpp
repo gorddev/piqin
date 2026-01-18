@@ -14,14 +14,14 @@ namespace gfx {
     /** @brief Shakes are a subclass of an Morph. To add a Shake, use @code layer.add_morph(...)@endcode.
      * To specify a shake's type, assign it a @code GENG_Shake@endcode enum in its constructor.
      */
-    class Shake : public geng::Morph {
+    class Shake : public gan::Morph {
 
     public:
         /// Constructor for the shaking!
-        Shake(geng::Gear* g, ShakeType shakeType, float amplitude, float speed = 1.0, float duration = -1.f, bool decay = false);
+        Shake(gan::Gear* g, ShakeType shakeType, float amplitude, float speed = 1.0, float duration = -1.f, bool decay = false);
 
         /// The Morph override
-        bool update(geng::LayerState &time) override;
+        bool update(gan::LayerState &time) override;
 
     protected:
         /// Speed of the shake
@@ -34,10 +34,10 @@ namespace gfx {
         uint8_t complete = false;
 
         // Various functions for each shake type.
-        void shake_random(geng::Transform2D& tref);
-        void shake_circular(geng::Transform2D &tref, geng::LayerState &time) const;
-        void shake_floaty(geng::Transform2D &tref, geng::LayerState &time) const;
-        void shake_side(geng::Transform2D &tref, geng::LayerState &time) const;
+        void shake_random(gan::Transform2D& tref);
+        void shake_circular(gan::Transform2D &tref, gan::LayerState &time) const;
+        void shake_floaty(gan::Transform2D &tref, gan::LayerState &time) const;
+        void shake_side(gan::Transform2D &tref, gan::LayerState &time) const;
 
     };
 }

@@ -1,7 +1,7 @@
 #include "engine/scene/routes/route-types/Sine.hpp"
 #include "engine/utilities/Utilities.hpp"
 
-using namespace geng;
+using namespace gan;
 using namespace groute;
 
 Sine::Sine(Gear& g, const FPos2D &target, float speed)

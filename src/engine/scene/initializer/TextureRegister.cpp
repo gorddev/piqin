@@ -1,10 +1,12 @@
 #include "engine/scene/initializer/TextureRegister.hpp"
 
+#include <filesystem>
+
 #include "../../../../include/engine/types/strings/fstring/fstring.hpp"
 #include "../../../../include/engine/debug/geng_debug.hpp"
 #include "engine/utilities/image-info/IMGDecoder.hpp"
 
-using namespace geng;
+using namespace gan;
 
 TextureRegister::TextureRegister(EngineContext& core) : core(core) {
     id_num = 0;
@@ -28,6 +30,13 @@ int TextureRegister::register_texture(hstring path) {
     return path_to_id[path];
 }
 
+int TextureRegister::instantiate_texture(Texture texture) {
+    int i = id_num++;
+    path_to_id[texture.info.filename.c_str()] = i;
+    id_to_tex[i] = texture;
+    return i;
+}
+
 void TextureRegister::load_texture(int index, Texture tex) {
     glog::note << "Loading Texture: " << tex.info.filename << " (" << tex.texture << ')' << glog::endlog;
     id_to_tex[index] = tex;
@@ -46,7 +55,7 @@ void TextureRegister::unload_texture(const char* name) {
 }
 
 void TextureRegister::unload_texture(int index) {
-    geng::hstring path;
+    gan::hstring path;
     for (auto it = path_to_id.begin(); it != path_to_id.end(); ++it) {
         if (it->second == index) {
             path = it->first;
@@ -81,8 +90,11 @@ bool TextureRegister::is_loaded(const char path[]) {
 }
 
 bool TextureRegister::is_loaded(int index) {
-    if (id_to_tex.find(index) == id_to_tex.end())
+    if (id_to_tex.find(index) == id_to_tex.end()) {
+        if (index >= 0)
+            glog::err.src("TextureRegister::is_loaded") << "Texture " << index << " does not exist." << glog::endlog;
         return false;
+    }
     return true;
 }
 

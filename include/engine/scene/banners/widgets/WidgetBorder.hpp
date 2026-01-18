@@ -1,10 +1,10 @@
 #pragma once
 #include "Widget.hpp"
 
-namespace geng {
+namespace gan {
 
     /** The WidgetBox is a widget that is just a horizontal line with a color **/
-    class WidgetBorder : public geng::Widget {
+    class WidgetBorder : public gan::Widget {
         /// Color of the line
         SDL_Color color;
         /// Vertexes where the WidgetBox should be rendered relative to the Banner
@@ -20,7 +20,7 @@ namespace geng {
         ~WidgetBorder() override = default;
 
         /// Creates our WidgetBox FPos2D map
-        int to_vertex(geng::BannerBuffer& buffer) override {
+        int to_vertex(gan::BannerBuffer& buffer) override {
             for (auto& point : points) {
                 buffer.push_back(point, color);
             }
@@ -32,7 +32,6 @@ namespace geng {
             box.w = dimensions.w;
             box.h = dimensions.h;
             points = box.to_hitbox(thickness);
-            glog::dev << glog::endlog;
         }
 
         /// changes the thickness of the line
@@ -46,7 +45,7 @@ namespace geng {
         }
 
         /// Update function does nothing, but allows us to continue overriding.
-        void update(geng::LayerState& time) override {};
+        void update(gan::LayerState& time) override {};
 
     };
 }

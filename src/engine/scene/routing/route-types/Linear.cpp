@@ -1,6 +1,6 @@
 #include "engine/scene/routes/route-types/Linear.hpp"
 
-using namespace geng;
+using namespace gan;
 using namespace groute;
 
 Linear::Linear(Gear& g, const FPos2D &target, float speed)

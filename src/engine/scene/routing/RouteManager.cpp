@@ -1,56 +1,56 @@
 #include "engine/scene/routes/RouteManager.hpp"
 
-using namespace geng;
+using namespace gan;
 
 void RouteManager::add_route(Route *p) {
-    int id = p->get_payload()->id;
-    // If it exists already we replace it with the new path.
-    if (paths.find(id) == paths.end())
-        delete paths[id];
-    paths[id] = p;
-
+    paths.push_back(p);
 }
 
 void RouteManager::add_route(Route* p, Gear* g, const FPos2D &offset) {
     p->set_target(g->t.pos + offset);
-    if (paths.find(g->id) != paths.end()) {
-        p->set_target(paths[g->id]->get_target() + offset);
-    }
     add_route(p);
 }
 
 void RouteManager::remove_path(const Gear* g) {
-    if (paths.find(g->id) != paths.end()) {
-        delete paths[g->id];
-        paths.erase(g->id);
+    for (auto& p: paths) {
+        if (p->get_payload() == g) {
+            std::swap(p, paths.back());
+            delete paths.back();
+            paths.pop_back();
+            break;
+        }
     }
 }
 
 void RouteManager::remove_path(const Route* path) {
-    for (auto& [id, p]: paths) {
+    for (auto& p: paths) {
         if (p == path) {
-            delete p;
-            paths.erase(id);
-            return;
+            std::swap(p, paths.back());
+            delete paths.back();
+            paths.pop_back();
+            break;
         }
     }
 }
 
 void RouteManager::update() {
-    for (auto& [id, p] : paths) {
-        // If it's not null and the update says it's done.
-        if (p->update(scene.state)) {
+    for (auto it = paths.begin(); it != paths.end(); ) {
+        Route* p = (*it);
+        if ((*it)->update(scene.state)) {
             // Guarentees we hit the target at the end
             p->get_payload()->t.pos = p->get_target();
             // Then we destroy the path.
             delete p;
-            paths.erase(id);
+            it = paths.erase(it);
+            continue;
         }
+        it++;
     }
 }
 
 RouteManager::~RouteManager() {
-    for (auto& [id, p]: paths)
+    for (auto& p: paths) {
         delete p;
+    }
 }
 

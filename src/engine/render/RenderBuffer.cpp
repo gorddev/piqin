@@ -1,6 +1,6 @@
 #include "engine/rendering/RenderBuffer.hpp"
 
-using namespace geng;
+using namespace gan;
 
 // ------------------- Constructor -------------------
 
@@ -23,15 +23,15 @@ void RenderBuffer::request_texture(int id) {
         // Refreshes the loaded flag.
         loaded = true;
     }
-    else {
+    else if (!texreg.is_loaded(id)) {
         // Sets the loaded flag to false and now everything becomes a white texture.
         loaded = false;
     }
+    else
+        loaded = true;
 }
 
 void RenderBuffer::prep_vertex(SDL_Vertex &vertex) {
-    vertex.position.x -= campos.x;
-    vertex.position.y -= campos.y;
     if (!loaded)
         vertex.tex_coord = white_point;
 }
@@ -42,7 +42,29 @@ SDL_FPoint RenderBuffer::get_white_point() {
     return white_point;
 }
 
-// ------------------- Push back functions -------------------
+void RenderBuffer::begin_object() {
+    start_pos = buffer.size();
+}
+
+void RenderBuffer::end_object() {
+    if (!debug) {
+        screenScale.x = std::roundf(screenScale.x);
+        screenScale.y = std::roundf(screenScale.y);
+        for (int i = start_pos; i < buffer.size(); ++i) {
+            float x =
+                (buffer[i].position.x - cam.pos.x + cam.offset.x)
+                * screenScale.x;
+
+            float y =
+                (buffer[i].position.y - cam.pos.y + cam.offset.y)
+                * screenScale.y;
+
+            buffer[i].position.x = x;
+            buffer[i].position.y = y;
+        }
+    }
+    start_pos = buffer.size();
+}
 
 void RenderBuffer::push_back(SDL_Vertex vertex) {
     if (!debug)
@@ -96,12 +118,11 @@ int RenderBuffer::size() const {
     return static_cast<int>(buffer.size());
 }
 
-void RenderBuffer::prep(FPos2D camera_pos) {
-    campos = camera_pos;
-    buffer.clear();
-    batches.clear();
-    current_batch.start_index = 0;
-    current_batch.texture_id = 0;
+void RenderBuffer::prep(Camera& camera, Dim2D canvasDim) {
+    cam = camera;
+    screenScale.x = (canvasDim.w/cam.get_width());
+    screenScale.y = (canvasDim.h/cam.get_height());
+
 }
 
 void RenderBuffer::debug_mode(bool mode) {
@@ -112,6 +133,13 @@ SDL_Vertex* RenderBuffer::data() {
     return buffer.data();
 }
 
+void RenderBuffer::clear() {
+    batches.clear();
+    buffer.clear();
+    current_batch.start_index = buffer.size();
+    current_batch.texture_id = 0;
+    loaded = false;
+}
 
 void RenderBuffer::resize(int num) {
     buffer.resize(num);

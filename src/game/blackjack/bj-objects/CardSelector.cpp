@@ -11,7 +11,7 @@ CardSelector::CardSelector() {
     anim.set_frame_table_id(ASSET_CARD_SELECTOR_ID);
 }
 
-#define PATH_IT(t, off) bob.set_path( new geng::BalloonPath( &t, t.pos + off, 0.7))
+#define PATH_IT(t, off) bob.set_path( new gan::BalloonPath( &t, t.pos + off, 0.7))
 
 // Changes cards. Default pathing = path true
 void CardSelector::switchTarget(Card *newTarget, bool moveTarget) {
@@ -32,15 +32,15 @@ void CardSelector::switchTarget(Card *newTarget, bool moveTarget) {
 
 // DOES NOT UPDATE A CARD'S PATH, JUST SELECTOR
 void CardSelector::move(bool recess) {
-    geng::FPos2D os = (recess) ? BJ_SELECTOR_OFFSET : BJ_SELECTOR_OFFSET * -1;
+    gan::FPos2D os = (recess) ? BJ_SELECTOR_OFFSET : BJ_SELECTOR_OFFSET * -1;
     PATH_IT(target->t, os);
 }
 
 // DOES NOT UPDATE A CARD'S PATH, JUST SELECTOR
-void CardSelector::move(geng::FPos2D pos, float speed) {
+void CardSelector::move(gan::FPos2D pos, float speed) {
     t.pos.z = SELECTOR_Z_BASE;
-    bob.set_path(new geng::BalloonPath(&t, pos, speed));
-    geng::FPos2D trueTarget = pos;
+    bob.set_path(new gan::BalloonPath(&t, pos, speed));
+    gan::FPos2D trueTarget = pos;
 }
 
 void CardSelector::set_color(Selector_Color color) {
@@ -57,7 +57,7 @@ void CardSelector::deactivate() {
 void CardSelector::shake_target() {
     bob.apply_effect(
         *target,
-        new geng::EffectShake(geng::GENG_Shake::SIDE, 3.0, 300, 3.0f, true)
+        new gan::EffectShake(gan::GENG_Shake::SIDE, 3.0, 300, 3.0f, true)
     );
 }
 

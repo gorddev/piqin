@@ -5,7 +5,7 @@
 #include "engine/scene/physics/Collider.hpp"
 
 
-class Card : public geng::Collider {
+class Card : public gan::Collider {
         int value;
         blackjack::BJ_Suit suit;
         bool flipped = false;
@@ -15,7 +15,7 @@ class Card : public geng::Collider {
 
     public:
         // Base constructor
-        Card(geng::FrameTable& frame_table, int val, blackjack::BJ_Suit suite);
+        Card(gan::FrameTable& frame_table, int val, blackjack::BJ_Suit suite);
 
         // Checks if two cards are equal.
         bool operator==(Card c) const;
@@ -41,18 +41,16 @@ class Card : public geng::Collider {
         bool adjust_value(int num);
 
 
-        void update(geng::LayerState &state) override;
-
         // Function for cards with special purposes.
         bool use(Card* c);
 
-        void on_click_release(geng::Pos2D pos) override;
+        void on_click_release(gan::Pos2D pos) override;
     };
 
-    inline const geng::Transform2D defaultCardTransform2D = {
+    inline const gan::Transform2D defaultCardTransform2D = {
         {300 / 2.0f, 0},
-        32,
-        48,
+        31,
+        31,
         1
     };
 

@@ -3,7 +3,7 @@
 #include "engine/rendering/RenderBuffer.hpp"
 #include "engine/types/positioning/Box2D.hpp"
 
-namespace geng {
+namespace gan {
 
     /// @brief A tile is a fundamental unit a tileset contains.
     /// @details Once a tile is made, it can't be transmuted.
@@ -20,16 +20,6 @@ namespace geng {
         /// Appends to a renderBuffer given a position
         void to_vertex(RenderBuffer& buffer, SDL_FPoint pos) {
             SDL_Color w = {255, 255, 255, 255};
-            auto vertex_to_string = [](const SDL_Vertex& v) -> std::string {
-                std::ostringstream ss;
-                ss << "{pos=(" << v.position.x << ", " << v.position.y << "), w=" << ", tex_points=[";
-                for(int i = 0; i < 4; ++i) {
-                    ss << "(" << v.tex_coord.x << ", " << v.tex_coord.y << ")";
-                    if(i != 3) ss << ", ";
-                }
-                ss << "]}";
-                return ss.str();
-            };
             SDL_Vertex tl = {pos, w, tex_points[0]};
             SDL_Vertex bl = {{pos.x, pos.y +size}, w, tex_points[1]};
             SDL_Vertex br = {{pos.x + size, pos.y + size}, w, tex_points[2]};

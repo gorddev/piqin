@@ -1,17 +1,20 @@
 #include "engine/scene/banners/BannerBuffer.hpp"
 
-using namespace geng;
+#include "engine/utilities/Utilities.hpp"
+
+using namespace gan;
 
 /// Constructor: requires a banner to exist first
 BannerBuffer::BannerBuffer(Transform2D& bannerT)
-    : bannerT(bannerT), buffer(60) {
+    : bannerT(bannerT) {
+    buffer.reserve(80);
 }
 
 /// Allows widgets to append themselves to the buffer
-void BannerBuffer::push_back(SDL_Vertex FPos2D) {
-    FPos2D.position.x += move.x;
-    FPos2D.position.y += move.y;
-    buffer.push_back(FPos2D);
+void BannerBuffer::push_back(SDL_Vertex v) {
+    v.position.x += move.x;
+    v.position.y += move.y;
+    buffer.push_back(v);
 }
 
 /// Adds the properties of a FPos2D to the banner buffer to be added to the FPos2D buffer

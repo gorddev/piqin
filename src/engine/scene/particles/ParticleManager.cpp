@@ -2,7 +2,7 @@
 
 #include "engine/layers/LayerContext.hpp"
 
-using namespace geng;
+using namespace gan;
 
 ParticleManager::ParticleManager(LayerContext& layer_context): scene(layer_context) {
     groups.reserve(40);
@@ -16,42 +16,41 @@ ParticleManager::~ParticleManager() {
 }
 
 void ParticleManager::remove(ParticleGroup *g) {
-    groups_removed.push_back(g->id);
+    DONOTUSE.push_back(g->id);
+    groups_to_remove.push_back(g);
     groups.erase(g);
     delete g;
 }
 
 
-gch::vector<int> ParticleManager::pop_removed_particles() {
-    gch::vector<int> removed_particle_ids = groups_removed;
-    groups_removed.clear();
-    return removed_particle_ids;
+gch::vector<ParticleGroup*> ParticleManager::pop_removed_particles() {
+    gch::vector<ParticleGroup*> removed_particles = groups_to_remove;
+    groups_to_remove.clear();
+    return removed_particles;
+}
+
+gutils::SparseVector<ParticleGroup> &ParticleManager::active_particles() {
+    return groups;
 }
 
 void ParticleManager::update() {
-    size_t size = groups.size();
-    // Lets us keep track of the particle groups we need to remove
-    gch::vector<ParticleGroup*> groups_to_remove;
+    size_t sz = groups.size();
+    for (size_t i = 0; i < sz; ++i) {
+        ParticleGroup* g = groups[i];
+        if (!g) continue;
 
-    for (size_t index = 0; index < size; index++) {
-        ParticleGroup* g = groups[index];
-        if (g != nullptr) {
-            // update returns true if should remove
-            if (g->update(scene.state)) {
-                groups_removed.push_back(g->id);
-                groups_to_remove.push_back(g);
-            }
+        if (g->update(scene.state)) {
+            DONOTUSE.push_back(g->id);
+            groups_to_remove.push_back(g);
+            groups.erase(g);
+            delete g;
         }
-    }
-    for (auto g: groups_to_remove) {
-        groups.erase(g);
-        delete g;
     }
 }
 
 ParticleGroup* ParticleManager::find_by_object(const Gear* o) {
     for (auto& i: groups) {
-        if (i->payload == o) {
+        if (i != nullptr && i->payload == o) {
             return i;
         }
     }
@@ -74,14 +73,14 @@ void ParticleManager::dissolve(ParticleGroup *g) {
 void ParticleManager::dissolve(const Gear *o) {
     if (o == nullptr) return;
     for (auto&i: groups) {
-        if (i->payload == o) {
+        if (i != nullptr && i->payload == o) {
             i->end();
         }
     }
 }
 
 bool ParticleManager::particles_to_remove() {
-    return !groups_removed.empty();
+    return !groups_to_remove.empty();
 }
 
 

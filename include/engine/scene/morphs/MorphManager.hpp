@@ -4,7 +4,7 @@
 #include "engine/layers/LayerContext.hpp"
 #include "engine/utilities/SparseVector.hpp"
 
-namespace geng {
+namespace gan {
     /// MorphManager class. For explicit and exclusive use by the engine.
     /// Handles updating each morph pointer, and removing morphs when completed.
     /// MorphManager uses a SparseVector class for removal/insertion efficiency.

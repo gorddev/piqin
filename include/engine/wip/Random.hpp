@@ -1,7 +1,7 @@
 #pragma once
 #include <random>
 
-namespace geng {
+namespace gan {
     struct Random {
     private:
         std::mt19937 gen;

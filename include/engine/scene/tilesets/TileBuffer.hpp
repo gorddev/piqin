@@ -2,7 +2,7 @@
 #include "Tileset.hpp"
 #include "engine/rendering/RenderBuffer.hpp"
 
-namespace geng {
+namespace gan {
 
     /// The TileBuffer allows tile IDs to be linked to a tileset
     class TileBuffer {

@@ -4,15 +4,17 @@
 #include "engine/scene/particles/ParticleGroup.hpp"
 #include "engine/utilities/SparseVector.hpp"
 
-namespace geng {
+namespace gan {
     // Manages all the particles in the scene
     class ParticleManager {
     private:
-        gutils::SparseVector<geng::ParticleGroup> groups;
-        gch::vector<int> groups_removed;
+        gutils::SparseVector<gan::ParticleGroup> groups;
+        gch::vector<int> DONOTUSE;
 
         /// Holds the layer core needded for dts
         LayerContext& scene;
+        /// Keeps track of the groups to remove
+        gch::vector<ParticleGroup*> groups_to_remove;
     public:
         // Construct/destruct
         explicit ParticleManager(LayerContext& layer_context);
@@ -37,6 +39,10 @@ namespace geng {
 
         // Checks if there's any particles to be removed
         bool particles_to_remove();
-        gch::vector<int> pop_removed_particles();
+        // Pops all the removed particles
+        gch::vector<ParticleGroup*> pop_removed_particles();
+
+        // Returns the list of particles
+        gutils::SparseVector<ParticleGroup> &active_particles();
     };
 }

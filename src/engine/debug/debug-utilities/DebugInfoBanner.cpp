@@ -1,21 +1,33 @@
 #include "engine/debug/console/DebugInfoBanner.hpp"
 
 #include "engine/scene/banners/text/Text.hpp"
-#include "engine/core/defaults/sysfont.inl"
 
-namespace geng::debug {
+namespace gan::debug {
 
-    DebugInfoBanner::DebugInfoBanner()
-        : Banner({1.0, 0.0}, 0, 0),
+    DebugInfoBanner::DebugInfoBanner(EngineContext& core)
+        : core(core),
+            Banner({1.0, 0.0}, 0, 0),
           info({1, 0}, 0, 0),
-          text(" ", sys_font)
+          text(" ", *core.get_font(0))
     {
         info.add_widget(&text);
     }
 
     void DebugInfoBanner::update(Layer*& active_layer, DebugContext& debugger) {
         text.clear();
-        geng::str_view view = text.get_fstr_view();
+        gan::str_view view = text.get_fstr_view();
+
+        fps_tracker.push(1000/core.get_dt());
+
+
+        float fps = 0; int i = 0;
+        for (auto& it: fps_tracker) {
+            fps += (it);
+            i ++;
+        }
+        fps /= (i*5);
+        fps = static_cast<int>(fps);
+        fps *= 5;
 
         if (debugger.is_recovery()) {
             view << "recovery: true";
@@ -23,21 +35,23 @@ namespace geng::debug {
         else if (debugger.is_verbose()) {
             // print general debug information
             view << precision<3>() << "debug ([t]verbose[n])"
-                 << "\thitbox: " << debugger.is_hitboxes()
-                 << "\tgrid: " << debugger.is_grid();
+                 << "\thtb: " << debugger.is_hitboxes()
+                 << "\tgrid: " << debugger.is_grid()
+                << "fps: " << fps << "Hz";
+
 
             if (active_layer != nullptr) {
                 view << "\tvis: " << active_layer->scene.is_visible() << "\n"
-                     << "active_layer: [e]" << active_layer->get_name().cstr()
+                     << "active_layer: [e]" << active_layer->get_name().c_str()
                      << " (" << active_layer->scene.get_id() << ")[n]\n"
-                     << "mouse selection: " << active_layer->input.mouse.target << "\n";
+                     << "mouse selection: " << active_layer->input.mouse.target << " ";
 
                 if (selected == nullptr) {
                     if (active_layer->input.mouse.target != nullptr)
                         active_layer->input.mouse.target->to_fstring_verbose(view) << "\n";
                 }
                 else {
-                    view << "Selected: " << selected << "\n";
+                    view << "selected: " << selected << "\n";
                     selected->to_fstring_verbose(view) << "\n";
                 }
             }
@@ -46,21 +60,20 @@ namespace geng::debug {
             view << precision<3>() << "debug\t";
 
             if (active_layer != nullptr) {
-                view << "active layer: [e]" << active_layer->get_name().cstr()
-                     << " (" << active_layer->scene.get_id() << ")[n]\n";
+                view << "active layer: [e]" << active_layer->get_name().c_str()
+                     << " (" << active_layer->scene.get_id() << ")[n]\tfps: " << fps << "Hz\n";
 
                 if (selected == nullptr) {
                     if (active_layer->input.mouse.target != nullptr)
                         active_layer->input.mouse.target->to_fstring(view) << "\n";
                 }
                 else {
-                    view << "\tselected: " << selected << "\n";
-                    selected->to_fstring_verbose(view) << "\n";
+                    view << "selected: " << selected << "\n";
+                    selected->to_fstring(view) << "\n";
                 }
             }
         }
-
-        text.update_text(text.get_text().cstr());
+        text.update_text(text.get_text().c_str());
     }
 
     void DebugInfoBanner::to_vertex(RenderBuffer& buffer) {
@@ -68,13 +81,16 @@ namespace geng::debug {
     }
 
     bool DebugInfoBanner::get_press(SDL_Scancode key, Layer*& active_layer) {
+        glog::note << "get_press" << glog::endlog;
         if (key == SDL_SCANCODE_RETURN) {
             if (selected != nullptr)
                 selected = nullptr;
-            else if (active_layer != nullptr)
+            else if (active_layer != nullptr) {
+
                 selected = active_layer->input.mouse.target;
+            }
         }
         return false;
     }
 
-} // namespace geng::debug
+} // namespace gan::debug

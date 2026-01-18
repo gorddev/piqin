@@ -3,7 +3,7 @@
 #include "engine/scene/sprites/Sprite.hpp"
 #include "engine/layers/LayerState.hpp"
 
-using namespace geng;
+using namespace gan;
 using namespace gfx;
 
 SparkleInst::SparkleInst(const FPos2D &offset, float speed, float size) {
@@ -53,14 +53,14 @@ void SparkleInst::to_vertex(RenderBuffer& buffer, SDL_Color& color) {
 // Sparkle constructors
 Sparkle::Sparkle(FPos2D pos, float size, float speed, float duration, float frequency, SDL_Color Tint)
     : ParticleGroup(pos, size, speed, duration, {255, 255, 255, 255}), period(frequency) {
-    shadow_color = Tint;
+    color = Tint;
     if (duration == -1)
         permanent = true;
 }
 
 Sparkle::Sparkle(Gear* o, float size, float speed, float duration, float period, SDL_Color Tint)
     : ParticleGroup(o, size, speed, duration, {255, 255, 255, 255}), period(period) {
-    shadow_color = Tint;
+    color = Tint;
     if (duration == -1)
         permanent = true;
 }
@@ -100,9 +100,11 @@ void Sparkle::to_vertex(RenderBuffer& buffer) {
     if (payload != nullptr)
         t.pos = payload->t.pos;
     for (auto& i : particles) {
+        buffer.begin_object();
         i.to_vertex(buffer, t.color);
         count += 18;
         buffer.push_shadow(18);
+        buffer.end_object();
     }
 
 }

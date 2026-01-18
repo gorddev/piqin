@@ -7,14 +7,14 @@ namespace groute {
     /**
      * @brief SinePath moves an object's x linearly, and has it y follow a sin wave.
      */
-    class Sine final : public geng::Route {
+    class Sine final : public gan::Route {
     private:
         /// Direction of travel for the path.
-        geng::FPos2D direction;
+        gan::FPos2D direction;
     public:
         /// Regular constructor
-        Sine(geng::Gear& gear, const geng::FPos2D &target, float speed);
+        Sine(gan::Gear& gear, const gan::FPos2D &target, float speed);
         /// Update override (true if done)
-        bool update(geng::LayerState& time) override;
+        bool update(gan::LayerState& time) override;
     };
 }

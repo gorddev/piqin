@@ -1,9 +1,9 @@
 #pragma once
 #include "TileContact.hpp"
 #include "engine/scene/sprites/Sprite.hpp"
-#include "engine/types/positioning/Box2D.hpp"
+#include "engine/types/positioning/FBox2D.hpp"
 
-namespace geng {
+namespace gan {
 
     /** @brief Collider is a special kind of sprite that has a velocity and a hitbox.
      * They are the only type that is allowed to feed into the physics engine.
@@ -47,7 +47,7 @@ namespace geng {
 
         /// Turns the collider into a hitbox
         gch::vector<SDL_FPoint> to_vertex_hitbox(uint16_t thickness) {
-            gch::vector<SDL_FPoint> points = Box2D(t.pos.x - hitbox.w/2 + offset.x, t.pos.y - hitbox.h/2 + offset.y, hitbox.w, hitbox.h).to_hitbox(thickness);
+            gch::vector<SDL_FPoint> points = FBox2D(t.pos.x - hitbox.w/2 + offset.x, t.pos.y - hitbox.h/2 + offset.y, hitbox.w, hitbox.h).to_hitbox(thickness);
             return points;
         }
     };

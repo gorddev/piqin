@@ -5,10 +5,10 @@
 #include "../../types/AnimBox2D.hpp"
 #include "engine/utilities/image-info/IMGDecoder.hpp"
 
-namespace geng {
+namespace gan {
     /**
      * @brief Holds the points from a texture necessary to render a single sprite at render time. Usually, you do not make Frames manually,
-     * and form them from a @code gengine::Quad@endcode with the @code Quad.to_frame()@endcode function. Quads can be found in engine/types.
+     * and form them from a @code ganine::Quad@endcode with the @code Quad.to_frame()@endcode function. Quads can be found in engine/types.
      * @details Frames contain key member variables and functions to speed up calculations during render time.
      * - @code lni::vector<SDL_FPoint> vertexPoints@endcode › contains the points on the Texture where the frame's image data is stored.
      * - @code float duration@endcode › The duration of the frame itself in ms.

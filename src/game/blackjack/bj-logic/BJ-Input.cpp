@@ -2,56 +2,56 @@
 
 using namespace blackjack;
 
-bool Board::get_press(geng::GENG_Input keybind) {
+bool Board::get_press(gan::GENG_Input keybind) {
     // First we just see if we chose to select something or not.
-    if (keybind == geng::GENG_Input::MODIFY) {
+    if (keybind == gan::GENG_Input::MODIFY) {
         hand.flayed = true;
         pather.update_hand(hand);
         slct.switchTarget(slct.get_target(), true);
         update_selector();
         return true;
     }
-    if (keybind == geng::GENG_Input::SELECT_ALT && hand.flayed) {
+    if (keybind == gan::GENG_Input::SELECT_ALT && hand.flayed) {
         select();
         return true;
     }
     // If we back out, we need to do a bunch of stuff
-    if (keybind == geng::GENG_Input::BACK) {
+    if (keybind == gan::GENG_Input::BACK) {
         back();
         return true;
     }
-    if (keybind == geng::GENG_Input::UP) {
+    if (keybind == gan::GENG_Input::UP) {
         if (menu.move_up())
             update_selector();
         return true;
     }
-    if (keybind == geng::GENG_Input::DOWN) {
+    if (keybind == gan::GENG_Input::DOWN) {
         if (menu.move_down())
             update_selector();
         return true;
     }
-    if (keybind == geng::GENG_Input::LEFT&& hand.flayed) {
+    if (keybind == gan::GENG_Input::LEFT&& hand.flayed) {
         if (menu.move_left())
             update_selector();
         if (menu.row() == 0)
             hand.lastTarget = menu.col();
         return true;
     }
-    if (keybind == geng::GENG_Input::RIGHT&& hand.flayed) {
+    if (keybind == gan::GENG_Input::RIGHT&& hand.flayed) {
         if (menu.move_right())
             update_selector();
         if (menu.row() == 0)
             hand.lastTarget = menu.col();
         return true;
     }
-    if (keybind == geng::GENG_Input::SELECT) {
+    if (keybind == gan::GENG_Input::SELECT) {
         pather.move(deck.pop_card(), playerDraw);
     }
     return false;
 }
 
-void Board::get_release(geng::GENG_Input keybind) {
-    if (keybind == geng::GENG_Input::MODIFY && range == BJ_Target::HAND) {
+void Board::get_release(gan::GENG_Input keybind) {
+    if (keybind == gan::GENG_Input::MODIFY && range == BJ_Target::HAND) {
         hand.flayed = false;
         pather.update_hand(hand);
         slct.move(true);

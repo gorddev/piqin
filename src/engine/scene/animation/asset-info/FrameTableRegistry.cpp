@@ -1,11 +1,11 @@
 #include "engine/animation/asset-info/FrameTableRegistry.hpp"
 
-using namespace geng;
+using namespace gan;
 
 /**
 * @return Returns the global FrameTableRegistry. Register a FrameTable with the syntax, @code static FrameTableRegister my_asset_name(ASSET_ID, FrameTable Object)@endcode
      */
-FrameTableRegistry& geng::get_TableRegistry() {
+FrameTableRegistry& gan::get_TableRegistry() {
     static FrameTableRegistry registry;
     return registry;
 }

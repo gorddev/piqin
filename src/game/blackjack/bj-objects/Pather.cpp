@@ -7,13 +7,13 @@
 #include "../../../../include/engine/particles/particle-types/ParticleSparkle.hpp"
 #include "game/blackjack/Board.hpp"
 
-#define ADDEV(t, f) geng::GENG_Events.add_event(t, [=]{f;})
+#define ADDEV(t, f) gan::GENG_Events.add_event(t, [=]{f;})
 
 namespace blackjack {
     class Board;
 }
 
-using geng::FPos2D;
+using gan::FPos2D;
 using namespace blackjack;
 
 /* ........... */
@@ -38,8 +38,8 @@ void Pather::move_card_to_deck(int id) {
 void Pather::move(Card* c, Deck* deck) {
     if (c == nullptr) return;
     FPos2D target = BJ_DEFAULT_DECK_POS
-        + geng::FPos2D(deck->stack_height() + 1, deck->stack_height()-2, DECK_Z_BASE);
-    c->set_path(target, geng::GENG_Path::REBOUND, 0.25, true);
+        + gan::FPos2D(deck->stack_height() + 1, deck->stack_height()-2, DECK_Z_BASE);
+    c->set_path(target, gan::GENG_Path::REBOUND, 0.25, true);
     c->shadow = false;
     c->flip_down();
     travel_to_deck.push_back(c);
@@ -55,10 +55,10 @@ void Pather::move(lni::vector<Card*> cards, Deck* deck) {
 /* ........... */
 // Legacy compatability function
 void Pather::to_discard(Card* c, Discard* discard, short cardNum) {
-    to_discard(c, discard, geng::GENG_Path::BALLOON, cardNum);
+    to_discard(c, discard, gan::GENG_Path::BALLOON, cardNum);
 }
 // Regular function
-void Pather::to_discard(Card * c, Discard* discard, geng::GENG_Path path, short cardNum) {
+void Pather::to_discard(Card * c, Discard* discard, gan::GENG_Path path, short cardNum) {
     if (c == nullptr) return;
     c->shadow = false;
     c->set_z(DECK_Z_BASE + ((discard->size())/MAX_DECK_SIZE));
@@ -76,7 +76,7 @@ void Pather::to_discard(lni::vector<Card*>& cards, Discard* discard) {
 /* Hand */
 /* ........... */
 
-static geng::Path hand_path(Hand& hand, Card*& c, const float& center, const float& height, int index = -1) {
+static gan::Path hand_path(Hand& hand, Card*& c, const float& center, const float& height, int index = -1) {
     float flay = hand.flayed * 20;
     if (index == -1)
         index = hand.get_index(c);
@@ -93,7 +93,7 @@ static geng::Path hand_path(Hand& hand, Card*& c, const float& center, const flo
             HAND_Z_BASE + 1.0f - abs(hand.lastTarget-index)/(maxHandSize*2.0f)
         },
         c->pos(),
-        geng::GENG_Path::BALLOON,
+        gan::GENG_Path::BALLOON,
         0.5
     };
 }
@@ -101,8 +101,8 @@ static geng::Path hand_path(Hand& hand, Card*& c, const float& center, const flo
 bool Pather::move(Card *c, Hand &hand) {
     if (c == nullptr) return false;
     // Path changes depending on if flayed or not.
-    float center = geng::global::scene.width/2;
-    float height = 9.8*geng::global::scene.height/10;
+    float center = gan::global::scene.width/2;
+    float height = 9.8*gan::global::scene.height/10;
     if (!hand.add_card(c))
         return false;
     c->set_path(hand_path(hand, c, center, height), true);
@@ -110,8 +110,8 @@ bool Pather::move(Card *c, Hand &hand) {
 }
 
 void Pather::update_hand(Hand& hand) {
-    float center = geng::global::scene.width/2;
-    float height = 9.8*geng::global::scene.height/10;
+    float center = gan::global::scene.width/2;
+    float height = 9.8*gan::global::scene.height/10;
     lni::vector<Card*> cards = hand.gather_objects();
     for (int i = 0; i < cards.size(); i++) {
         cards[i]->set_path(hand_path(hand, cards[i], center, height, i), true);
@@ -132,14 +132,14 @@ void Pather::move(Card *c, Draw& draw, int index, bool down) {
     if (index == -1)
         index = draw.get_index(c);
     // Gets target location for the draw
-    geng::FPos2D target(draw.get_pos().x - geng::global::scene.width/8.0f + index*24.0f, // NOLINT(*-narrowing-conversions)
+    gan::FPos2D target(draw.get_pos().x - gan::global::scene.width/8.0f + index*24.0f, // NOLINT(*-narrowing-conversions)
         draw.get_pos().y - random()%8, DRAW_Z_BASE + (index/10.f));
     // EFIEOF
     c->set_z(DRAW_Z_BASE + (index/10.f));
-    geng::Path p = {
+    gan::Path p = {
         target,
         c->pos(),
-        geng::GENG_Path::BALLOON,
+        gan::GENG_Path::BALLOON,
         0.5
     };
     c->set_path(p);
@@ -154,10 +154,10 @@ void Pather::move(lni::vector<Card*>& cards, Draw& draw) {
 void Pather::to_floater(Card *c) {
     if (c == nullptr) return;
     c->t.hidden = false;
-    c->set_path(BJ_DEFAULT_FLOATER_POS, geng::GENG_Path::BALLOON, 1.0);
+    c->set_path(BJ_DEFAULT_FLOATER_POS, gan::GENG_Path::BALLOON, 1.0);
     c->set_z(BJ_DEFAULT_FLOATER_POS.z);
     c->set_shake(BJ_SHAKE_FLOATER);
-    auto* pr = new geng::ParticleRhombus(c, 13.0, 0.7, -1, 200);
+    auto* pr = new gan::ParticleRhombus(c, 13.0, 0.7, -1, 200);
     bob.attach_particle(c, pr);
 }
 

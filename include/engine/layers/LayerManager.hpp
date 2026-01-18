@@ -2,7 +2,7 @@
 
 #include "Layer.hpp"
 
-namespace geng {
+namespace gan {
 
     /** LayerManager keeps track of all of the layers and allows binding of string names to layers.**/
     class LayerManager {
@@ -27,7 +27,7 @@ namespace geng {
 
         // <><><> Layer Retrieval <><><>
         /// Gets a layer based on layer name
-        Layer* get_layer(geng::fstring<10> name);
+        Layer* get_layer(gan::fstring<10> name);
         /// Returns the active layer
         Layer* get_active_layer();
 
@@ -35,13 +35,13 @@ namespace geng {
         /// Sets the active layer based on layer pointer
         void set_active_layer(Layer* l);
         /// Sets the active layer based on layer name
-        void set_active_layer(geng::fstring<10> name);
+        void set_active_layer(gan::fstring<10> name);
         /// Increments the current active layer by 1 (loops back to)
         void increment_active_layer();
 
         // <><><> Removing Layers <><><>
         /// Removes a layer from the LayerManager
-        void remove_layer(geng::fstring<10> layer_name);
+        void remove_layer(gan::fstring<10> layer_name);
         /// Removes a layer from the LayerManager via pointer
         void remove_layer(const Layer* l);
 

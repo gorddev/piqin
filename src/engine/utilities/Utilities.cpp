@@ -2,7 +2,7 @@
 #include "../../../include/engine/core/EngineContext.hpp"
 
 using namespace gutils;
-using namespace geng;
+using namespace gan;
 
 signed char gutils::sgn(long double d) {
     const int dd = static_cast<int>(d * 1000.0) / 1000;
@@ -13,12 +13,12 @@ signed char gutils::sgn(long double d) {
     return 0;
 }
 
-bool gutils::contained_within(SDL_Point point, geng::Transform2D &t) {
+bool gutils::contained_within(SDL_Point point, gan::Transform2D &t) {
     return (point.x >= t.pos.x - t.get_base_width()/2.f && point.x <= t.pos.x + t.get_base_width()/2.f &&
             point.y >= t.pos.y - t.get_base_height()/2.f && point.y <= t.pos.y + t.get_base_height()/2.f);
 }
 
-void gutils::adjust_to_relative_coords(Pos2D& point, geng::EngineContext& world) {
+void gutils::adjust_to_relative_coords(Pos2D& point, gan::EngineContext& world) {
     point.x -= world.get_borderX();
     point.y -= world.get_borderY();
     point.x /= world.get_scale();
@@ -115,4 +115,18 @@ bool gutils::is_float(const char* str){
 bool gutils::is_int(const char *str) {
     int i;
     return (cstr_to_int(str, i));
+}
+
+const char * gutils::to_cstr(SDL_Vertex v) {
+    fstring<80> f;
+    f << "pos, x: "<< v.position.x << " y: " << v.position.y << "\n"
+        << "col a: " << v.color.a << " r: " << v.color.r << " g: " << v.color.g << " b: " << v.color.b << "\n"
+        << "tex: " << v.tex_coord.x << " y: " << v.tex_coord.y;
+    return f.c_str();
+}
+
+const char * gutils::to_cstr(SDL_FPoint p) {
+    fstring<40> f;
+    f << "pos, x: " << p.x << " y: " << p.y;
+    return f.c_str();
 }

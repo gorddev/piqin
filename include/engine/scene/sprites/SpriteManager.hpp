@@ -4,8 +4,8 @@
 #include <unordered_map>
 #include "engine/layers/LayerContext.hpp"
 
-namespace geng {
-	/** @brief Updates objects and tells the @code gengine::FrameManager@endcode when to update a @code gengine::Sprite's@endcode AnimInfo objects.
+namespace gan {
+	/** @brief Updates objects and tells the @code ganine::FrameManager@endcode when to update a @code ganine::Sprite's@endcode AnimInfo objects.
 	 * If using the engine, you should not touch this object.
 	 */
 	class SpriteManager {
@@ -25,7 +25,6 @@ namespace geng {
 		void add_sprites(gch::vector<Sprite *> &vec) noexcept;
 
 		// Removes an object from the objectManager
-		void dissolve(int id);
 		void dissolve(const Sprite *a);
 		void dissolve(gch::vector<Sprite*> vec);
 

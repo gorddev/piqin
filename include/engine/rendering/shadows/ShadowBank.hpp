@@ -8,7 +8,7 @@
 #include "shadow-types/ShadowFloor.hpp"
 
 
-namespace geng {
+namespace gan {
     /// Alias so we don't have to write that out each time.
     using shadowFunc = std::function<void(gch::vector<SDL_Vertex>& buffer, int& numVertices, void* userdata)>;
 

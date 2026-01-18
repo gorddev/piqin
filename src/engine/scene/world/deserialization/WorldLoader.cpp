@@ -6,7 +6,7 @@
 #include "engine/scene/world/GameWorld.hpp"
 #include "engine/scene/world/WorldProperties.hpp"
 #include "engine/utilities/Utilities.hpp"
-using namespace geng;
+using namespace gan;
 
 // --- Binary helpers ---
 template<typename T>
@@ -45,8 +45,7 @@ TProperty read_property(std::ifstream& in) {
 GameWorld WorldLoader::read_world(hstring filename) {
     std::ifstream in(filename, std::ios::binary);
     if(!in.is_open()) {
-        glog::note << "Failed to open file: " << filename << glog::endlog;
-        abort();
+        glog::err.src("WorldLoader::read_world()") << "Failed to open file: " << filename << glog::endlog;
     }
 
     GameWorld world;

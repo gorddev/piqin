@@ -7,7 +7,7 @@
 //#define PIXEL_PERFECT false
 //#define LOAD_RENDER_STYLE "0"
 
-namespace geng {
+namespace gan {
     /** Bitmask that contains several useful flags. The effect of each flag if "true" is given below:
      * - @code hidden@endcode › Does not render this object
      * - @code shadow@endcode › Render the shadow of this object
@@ -81,7 +81,7 @@ namespace geng {
     }
 
     /// Converts a GFlag into a verbose string.
-    inline geng::str_view& to_fstring_verbose(geng::str_view& buffer, GFlag flag) {
+    inline gan::str_view& to_fstring_verbose(gan::str_view& buffer, GFlag flag) {
         auto f = [](GFlag op) { return (static_cast<bool>(op)) ? "true" : "false"; };
         buffer << "type: ";
         buffer << (static_cast<bool>(flag & GFlag::banner) ? "[e]banner[n] " : static_cast<bool>(flag & GFlag::sprite) ? "[e]sprite[n] " : "[e]particle[n] ");
@@ -91,15 +91,21 @@ namespace geng {
         buffer << f(flag & GFlag::shadow);
         buffer << "\tlock: ";
         buffer << f(flag & GFlag::locked);
+        buffer << "\ttag: ";
+        buffer << f(flag & GFlag::tagged);
+        buffer << "\nhvr: ";
+        buffer << f(flag & GFlag::hovered);
         buffer << "\tclk: ";
         buffer << f(flag & GFlag::clicked);
-        buffer << "\tdrag: ";
+        buffer << "\tdrgble: ";
+        buffer << f(flag & GFlag::draggable);
+        buffer << "\tdragged: ";
         buffer << f(flag & GFlag::dragged);
         return buffer;
     }
 
     /// Converts a GFlag into a short string.
-    inline geng::str_view& to_fstring(geng::str_view& buffer, GFlag flag) {
+    inline gan::str_view& to_fstring(gan::str_view& buffer, GFlag flag) {
         auto f = [](GFlag op) { return (static_cast<bool>(op)) ? "true" : "false"; };
         buffer << "type: ";
         buffer << (static_cast<bool>(flag & GFlag::banner) ? "[e]banner[n] " : static_cast<bool>(flag & GFlag::sprite) ? "[e]sprite[n] " : "[e]particle[n] ");

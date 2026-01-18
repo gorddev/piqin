@@ -18,7 +18,7 @@
 #include "engine/scene/tilesets/TileList.hpp"
 #include "engine/scene/world/WorldManager.hpp"
 
-namespace geng {
+namespace gan {
 
     /** @brief The Layer is the primary target for adding objects, particles, ect. Each Layer operates independently of other layers.
      * @details Each layer by defualt is not z-indexed and is visible. To change this, access the relevant member
@@ -27,12 +27,12 @@ namespace geng {
     class Layer {
     private:
         /// Name of the layer.
-        const geng::fstring<10> name;
+        const gan::fstring<10> name;
         /// Also keeps track of the core of the engine, like camera and scene width/height.
         EngineContext& core;
     public:
         /// Keeps track of the camera
-        const Camera& camera;
+        Camera camera;
         /// The scene contains important information concerning the layer.
         /// Most of the member variables below recieve a reference to this scene object.
         LayerContext scene;
@@ -58,8 +58,6 @@ namespace geng {
         // <><><> Texture Manipulation/Retrieval
         /// The background of the Layer
         Background* background = nullptr;
-        /// The FontList of the layer
-        FontList fonts;
         /// The FrameList of the layer
         FrameList frames;
         /// The TileList of the Layer
@@ -92,7 +90,7 @@ namespace geng {
         void remove_gear(Gear* g);
     public:
         /// Constructor for a Layer
-        explicit Layer(LayerInit& layer_init, geng::fstring<10> name);
+        explicit Layer(LayerInit& layer_init, gan::fstring<10> name);
         /// Destructor for a Layer
         virtual ~Layer();
 
@@ -120,10 +118,10 @@ namespace geng {
         void remove_banners(gch::vector<Banner *> &banners);
 
         // <><><> Fonts & Frames <><><>
-        /// Gets a font
-        Font& get_font(int index);
         /// Gets a frametable
         FrameTable& get_frame_table(int index);
+
+        FrameTable &ftab(int index);
 
         // <><><> Particle groups <><><>
         /// Attatches a particle to an sprite and then adds it to the rendering pipline.
@@ -170,7 +168,7 @@ namespace geng {
 
         // <><><> Worlds <><><>
         /// Sets the current world given the filename
-        void load_world(geng::hstring filename, int tileset_num);
+        void load_world(gan::hstring filename, int tileset_num);
 
         // <><><> Tilesets <><><>
         /// Lets you get a tileset from the tileset list
@@ -178,10 +176,16 @@ namespace geng {
 
         // <><><> Returns the center of the scene <><><>
         FPos2D get_scene_center() const;
+
+        gutils::SparseVector<ParticleGroup> &
+        active_particles();
+
         // <><><> Returns whether we're active or not.
         bool is_active() const;
         // <><><> Returns the name of the layer
-        geng::fstring<10> get_name() const;
+        gan::fstring<10> get_name() const;
+        /// Sets the speed of the layer
+        void set_speed(float speed);
     protected:
         friend class Engine;
         friend class Renderer;
@@ -200,7 +204,6 @@ namespace geng {
         void order();
         /// Finds a texture from the texture register
         SDL_Texture* _find_texture(int texture_id);
-
 
     };
 }

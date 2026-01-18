@@ -5,7 +5,7 @@
 #include "engine/types/positioning/Pos2D.hpp"
 #include "engine/types/Transform2D.hpp"
 
-namespace geng {
+namespace gan {
 
     class BannerBuffer {
     private:
@@ -25,7 +25,7 @@ namespace geng {
         explicit BannerBuffer(Transform2D& bannerT);
 
         /// Allows widgets to append themselves to the buffer
-        void push_back(SDL_Vertex FPos2D);
+        void push_back(SDL_Vertex v);
         /// Adds the properties of a FPos2D to the banner buffer to be added to the FPos2D buffer
         void push_back(SDL_FPoint& pos, SDL_Color& color, SDL_FPoint& tex_coord);
         /// Adds a point to the buffer -- thus ensuring that it is a single color. Default color is white.

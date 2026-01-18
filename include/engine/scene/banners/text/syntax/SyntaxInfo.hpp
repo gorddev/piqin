@@ -2,7 +2,7 @@
 #include <SDL_pixels.h>
 
 
-namespace geng {
+namespace gan {
     /// The object used to keep track of parsing information as you go through the parse.
     struct SyntaxInfo {
         SDL_Color color = {255, 255, 255, 255};

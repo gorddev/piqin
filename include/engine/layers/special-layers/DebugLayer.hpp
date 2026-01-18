@@ -2,7 +2,7 @@
 #include "engine/layers/Layer.hpp"
 #include "engine/layers/Layer.hpp"
 
-namespace geng::debug {
+namespace gan::debug {
 
     class DebugLayer final : public Layer {
 

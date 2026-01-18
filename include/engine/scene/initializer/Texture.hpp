@@ -3,7 +3,7 @@
 #include <SDL_render.h>
 #include "engine/utilities/image-info/IMG_Info.hpp"
 
-namespace geng {
+namespace gan {
     /** Creates a base texture to use with info on it **/
     struct Texture {
         IMG_Info info = {"null", 0, 0};

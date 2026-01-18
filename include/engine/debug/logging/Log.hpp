@@ -3,7 +3,7 @@
 
 #include "../../types/strings/fstring/fstring.hpp"
 
-namespace geng::debug {
+namespace gan::debug {
     /** Severity has four different kinds of levels that can be filtered through:
      * - @code INFO@endcode › General System Info
      * - @code WARNING@endcode › Users should watch out and void this behavior if possible
@@ -23,15 +23,15 @@ namespace geng::debug {
     /** Class that makes up one log **/
     struct Log {
         Severity level;
-        geng::fstring<128> message;
-        geng::fstring<64> source;
+        gan::fstring<128> message;
+        gan::fstring<64> source;
         double timestamp;
         Log()
-            : level(INFO), source(geng::fstring<64>()), timestamp(0) {}
+            : level(INFO), source(gan::fstring<64>()), timestamp(0) {}
         Log (Severity level, const char msg[], const char source[] = "")
             : message(msg), source(source), level(level) {}
 
-        geng::str_view& to_fstring(geng::str_view& buffer) {
+        gan::str_view& to_fstring(gan::str_view& buffer) {
             auto severity = [&] {
                 switch (level) {
                     case INFO:

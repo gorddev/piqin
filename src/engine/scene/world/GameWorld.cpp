@@ -6,7 +6,7 @@
 #include "engine/rendering/Camera.hpp"
 #include "engine/scene/tilesets/TileBuffer.hpp"
 
-using namespace geng;
+using namespace gan;
 
 GameLevel* GameWorld::get_first_level() {
     return &levels[0];
@@ -39,7 +39,7 @@ int GameWorld::worldHeight() {
     return max;
 }
 
-void GameWorld::render_world(geng::TileBuffer &buffer, const geng::Camera &cam) {
+void GameWorld::render_world(gan::TileBuffer &buffer, const gan::Camera &cam) {
     // Get camera bounds
     int tileSize = buffer.get_tile_size();
 
@@ -82,7 +82,7 @@ static const char* layer_class_to_string(TLayer::Class c) {
     }
 }
 
-geng::str_view& GameWorld::to_fstring(geng::str_view& buffer) {
+gan::str_view& GameWorld::to_fstring(gan::str_view& buffer) {
 
     buffer << "=== GameWorld ===\n";
     buffer << magic << "\n";
@@ -108,12 +108,12 @@ geng::str_view& GameWorld::to_fstring(geng::str_view& buffer) {
                 for (size_t oi = 0; oi < layer.objects.size(); ++oi) {
                     TObject& obj = layer.objects[oi];
                     buffer << "        Object [" << oi << "] id=" << obj.id
-                        << " template=" << obj.templateName.cstr()
+                        << " template=" << obj.templateName.c_str()
                         << " pos=(" << obj.x << "," << obj.y << ")\n";
                     if (!obj.properties.empty()) {
                         buffer << "          Properties:\n";
                         for (auto&[name, value] : obj.properties) {
-                            buffer << "            " << name.cstr() << " = " << value << "\n";
+                            buffer << "            " << name.c_str() << " = " << value << "\n";
                         }
                     }
                 }

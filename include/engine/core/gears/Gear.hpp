@@ -5,7 +5,7 @@
 #include "engine/rendering/RenderBuffer.hpp"
 #include "../../types/strings/fstring/fstring.hpp"
 
-namespace geng {
+namespace gan {
     /**
          * @brief The fundamental base class in the engine for all renderable objects.
          *
@@ -74,13 +74,14 @@ namespace geng {
         /// Virtual destructor of the gear.
         virtual ~Gear() = default;
         /// Virtual to_string verbose for the gear
-        virtual str_view& to_fstring_verbose(geng::str_view& buffer) const {
-            geng::to_fstring_verbose(buffer, flag) << "\n";
+        virtual str_view& to_fstring_verbose(gan::str_view& buffer) const {
+            buffer << "id: " << id  << " tex_id: " << texture_id << " \n";
+            gan::to_fstring_verbose(buffer, flag) << "\n";
             return t.to_fstring_verbose(buffer);
         }
         /// Vritual to_string short for the gear
-        virtual str_view& to_fstring(geng::str_view& buffer) const {
-            geng::to_fstring(buffer, flag) << "\n";
+        virtual str_view& to_fstring(gan::str_view& buffer) const {
+            gan::to_fstring(buffer, flag) << "\n";
             return t.to_fstring(buffer);
         }
 

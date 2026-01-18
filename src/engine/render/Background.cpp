@@ -5,7 +5,7 @@
 #include "../../../include/engine/debug/geng_debug.hpp"
 #include "engine/types/positioning/FPos3D.hpp"
 
-using namespace geng;
+using namespace gan;
 
 Background::Background(SDL_Renderer* renderer, EngineContext& world) : world(world) {
     // First we make the background texture we write to.
@@ -159,7 +159,7 @@ void Background::create_heightMap() {
 
 
             // Here we just use this equation to get a map of the sand region.
-            float h = gradient*source;
+            float h = 1.f;
 
             if (h > max) max = h;
             else if (h < min) min = h;

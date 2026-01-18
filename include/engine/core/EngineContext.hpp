@@ -1,12 +1,20 @@
 #pragma once
 
-#include "../debug/DebugContext.hpp"
-#include "../rendering/Camera.hpp"
-#include "../types/strings/fstring/fstring.hpp"
+#include "engine/debug/DebugContext.hpp"
+#include "engine/rendering/Camera.hpp"
+#include "engine/types/strings/fstring/fstring.hpp"
 
-namespace geng {
+#include <cstdint>
 
-    /** The EngineContext's primary role is to give all members of the engine access to various utilities, such as a shadow database, and randomization**/
+#include "engine/scene/font/FontList.hpp"
+
+namespace gan {
+
+    namespace debug { class Console; }
+
+    /** The EngineContext's primary role is to give all members of the engine access
+     *  to various utilities, such as a shadow database, and randomization
+     */
     class EngineContext {
     private:
         /* ***************** */
@@ -37,70 +45,59 @@ namespace geng {
         /// Whether we are pixel perfect or not
         bool pixel_perfect = false;
         /// Whether they request a layer change
-        geng::fstring<10> layer_change;
-    public:
-        /// Reference to the camera of the engine
-        Camera& camera;
+        gan::fstring<10> layer_change;
 
+        /* ***************** */
+        // Font information //
+        /* ***************** */
+        /// Contains a pointer to the font list
+        FontList& fonts;
+
+        friend class Engine;
+        friend class Layer;
+        friend class debug::Console;
+    public:
         /* ***************** */
         // Window information //
         /* ***************** */
         /// Lets us have debug utilities
         debug::DebugContext debugger;
 
-        explicit EngineContext(Camera& cam)
-            : camera(cam) {};
+        EngineContext(FontList& fonts);
 
         /// Updates the engineContext to get new timings and everything!!!
-        void update(const double game_time) {
-            time = game_time;
-            dt = time - prevTime;
-            prevTime = time;
-            frame++;
-        }
+        void update(const double game_time);
 
         /// Sets the window size of the current core. Not to be used except by the Engine.
-        void _set_window_size(const uint16_t w, const uint16_t h) {
-            width = w;
-            height = h;
-        }
+        void _set_window_size(const uint16_t w, const uint16_t h);
+
         /// Sets the border size of the current core. Not to be used except by the engine
-        void _set_border_size(uint16_t bx, uint16_t by) {
-            borderX = bx;
-            borderY = by;
-        }
+        void _set_border_size(uint16_t bx, uint16_t by);
 
         /// Sets the scale of the current scene
-        void set_scale(const float s) {
-            scale = s;
-        }
+        void set_scale(const float s);
 
         /// Getters
-        [[nodiscard]] double get_time() const { return time;}
-        [[nodiscard]] uint64_t get_frame() const { return frame; }
-        [[nodiscard]] double get_dt() const { return dt; }
-        [[nodiscard]] uint16_t get_width() const { return width; }
-        [[nodiscard]] uint16_t get_height() const { return height; }
-        [[nodiscard]] uint16_t get_borderX() const { return borderX; }
-        [[nodiscard]] uint16_t get_borderY() const { return borderY; }
-        [[nodiscard]] float get_scale() const { return scale; }
-        [[nodiscard]] bool is_pixel_perfect() const { return pixel_perfect; }
+        [[nodiscard]] double get_time() const;
+        [[nodiscard]] uint64_t get_frame() const;
+        [[nodiscard]] double get_dt() const;
+        [[nodiscard]] uint16_t get_width() const;
+        [[nodiscard]] uint16_t get_height() const;
+        [[nodiscard]] uint16_t get_borderX() const;
+        [[nodiscard]] uint16_t get_borderY() const;
+        [[nodiscard]] float get_scale() const;
+        [[nodiscard]] bool is_pixel_perfect() const;
+        [[nodiscard]] Font* get_font(int id) const;
 
         /// Pixel perfect settings
-        void set_pixel_perfect(const bool pix) {
-            pixel_perfect = pix;
-        }
+        void set_pixel_perfect(const bool pix);
 
-        void enable_debug() { debugger.debug_mode = true; }
-        void disable_debug() { debugger.debug_mode = false;}
-        bool is_debug() const { return debugger.is_debug(); }
+        void enable_debug();
+        void disable_debug();
+        bool is_debug() const;
 
-        void set_layer_change(const geng::fstring<10> &new_layer) {
-            layer_change = new_layer;
-        }
-        [[nodiscard]] geng::fstring<10> get_layer_change() const {
-            return layer_change;
-        }
-
+        void set_layer_change(const gan::fstring<10>& new_layer);
+        [[nodiscard]] gan::fstring<10> get_layer_change() const;
     };
-}
+
+} // namespace gan

@@ -87,9 +87,9 @@ layer->add_from_lib<MyCustomSubclass>("my boy");
 ### General Other Stuff
 There's some other things that don't fit neatly into the discussion above. 
 #### Namespacing
-The whole engine is namespaced with `namespace geng`, although there are two exceptions:
-- Non-essential engine objects (like custom `Routes` or `Morphs`) are prefaced with `gfx` instead of `geng`, to distinguish them from vital engine behavior. For example, the `gfx::Stretch` or `gfx::Shake` `Morphs` are nice to have but not necessary. The same occurs with `Routes`, like `gfx::Balloon`, which sends a target on a balloon-like trajectory.
-- Debug functonally like logging is gated behind `geng::debug`. This is to make it explicit when using debug features in the engine. 
+The whole engine is namespaced with `namespace gan`, although there are two exceptions:
+- Non-essential engine objects (like custom `Routes` or `Morphs`) are prefaced with `gfx` instead of `gan`, to distinguish them from vital engine behavior. For example, the `gfx::Stretch` or `gfx::Shake` `Morphs` are nice to have but not necessary. The same occurs with `Routes`, like `gfx::Balloon`, which sends a target on a balloon-like trajectory.
+- Debug functonally like logging is gated behind `gan::debug`. This is to make it explicit when using debug features in the engine. 
 #### Custom Object Types
 
 There's a couple other important object types not discussed above:

@@ -1,13 +1,12 @@
 #pragma once
 
-
 #include <iostream>
 #include <stdexcept>
-#include "engine/types/external/vector.hpp"
 #include "Log.hpp"
 #include "LogCommands.hpp"
 #include "engine/types/strings/hstring/hstring.hpp"
-namespace geng::debug {
+
+namespace gan::debug {
 
     template<uint32_t L, Severity S>
     /// LogStream, instead of behaving like a LogBucket, does not hold logs and just prints output to the console. Has a max character limit per logging instance.\n"
@@ -15,12 +14,14 @@ namespace geng::debug {
     private:
         /// Creates a stream of characters that refreshes
         fstring<L> stream;
-        /// The current source of the log
+        /// The User-defined "source" parameter of the log
         fstring<32> streamsource;
+        /// the timestamp of the current log
+        double timestamp;
         /// if a log's been added
         bool logged = false;
-        /// console is a friend
-        friend class Console;
+
+        friend class ConsoleLogger;
     public:
         LogStream() = default;
 
@@ -63,7 +64,7 @@ namespace geng::debug {
 
         template<uint32_t C>
         LogStream& operator<<(fstring<C> str) {
-            stream << str.cstr();
+            stream << str.c_str();
             return *this;
         }
 
@@ -75,16 +76,9 @@ namespace geng::debug {
         void operator<<(logcommands command) {
             if (command == logcommands::ENDLOG) {
                 auto now = std::chrono::steady_clock::now();
-                double timestamp = std::chrono::duration_cast<std::chrono::milliseconds>(now - start_time).count();
+                timestamp = std::chrono::duration_cast<std::chrono::milliseconds>(now - start_time).count();
 
-                if (streamsource.empty())
-                    std::cerr << "[" << timestamp << "] ~dev > " << stream.cstr() << std::endl;
-                else
-                    std::cerr << "[" << timestamp << "]::" << streamsource.cstr() << " ~dev > " << stream.cstr() << std::endl;
-                if (S == ERROR)
-                    throw std::runtime_error("Error called via. glog::err");
-                stream.clear();
-                streamsource.clear();
+                logged = true;
             }
         }
 

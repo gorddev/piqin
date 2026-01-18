@@ -4,7 +4,7 @@
 #include "engine/types/positioning/FPos2D.hpp"
 #include "engine/scene/sprites/Sprite.hpp"
 
-namespace geng {
+namespace gan {
     /**
      * @brief ParticleGroup is an abstract base class which defines base behavior for particle effects.
      * @details If you want particles to display, they must inherit from ParticleGroup and be added
@@ -16,7 +16,7 @@ namespace geng {
      * 4. bool permanent -> if the ParticleGroup is permanent (auto-assigned by constructor)
      * 5. SDL_Color color -> color of the particle effect
      * 6. SDL_COlor shadow_color -> color of the shadow of the particle effect
-     * 7. gengine::FPos2D pos -> location of the ParticleGroup
+     * 7. ganine::FPos2D pos -> location of the ParticleGroup
      * 8. int id -> used for indexing purposes by the engine
      * 9. Transform2D* horse -> if the ParticleGroup is attatched to a transform object, horse is not nullptr.
      * @warning There exists two essential functions to override for ParticleGroups:
@@ -32,16 +32,17 @@ namespace geng {
         float strength = 1.0f;
         float speed = 1.0f;
         bool permanent = false;
-        SDL_Color shadow_color = {0, 0, 0, 30};
+
 
     public:
+        SDL_Color color = {0, 0, 0, 30};
         // If they're attatched to an object, they ride it like a horse
         Gear* payload = nullptr;
 
         ParticleGroup(const FPos2D pos, const float strength, const float speed, const float duration, const SDL_Color color) :
                 Gear(pos), duration(duration), strength(strength), speed(speed) { if (duration == -1) permanent = true; t.color = color; }
         ParticleGroup(Gear* g, const float strength, const float speed, const float duration, const SDL_Color color)
-            : strength(strength), speed(speed), Gear(g->t.pos), payload(g), duration(duration) { z_index = g->z_index - 1; t.color = color; if (duration == -1) permanent = true;}
+            : Gear(g->t.pos), duration(duration), strength(strength), speed(speed), payload(g) { z_index = g->z_index - 1; t.color = color; if (duration == -1) permanent = true;}
 
         // Lets us update our particles. Should return true if done rendering.
         virtual bool update(LayerState& t) = 0;  // pure virtual
@@ -51,7 +52,7 @@ namespace geng {
         ~ParticleGroup() override = default;
         // Gets the color
         SDL_Color& get_color() { return t.color; }
-        SDL_Color& get_shadow_color() { return shadow_color; }
+        SDL_Color& get_shadow_color() { return color; }
         // Ends a particlegroup's generation
         void end() { duration = 0; permanent = false; }
     };

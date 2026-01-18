@@ -6,7 +6,7 @@
 #include "../../../../debug/geng_debug.hpp"
 #include "engine/types/strings/hstring/hstring.hpp"
 
-namespace geng {
+namespace gan {
 
     /// blank function definitions
     inline void syntx_verif_blank(gch::vector<str_subview>, SyntaxInfo& out) { }

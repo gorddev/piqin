@@ -4,7 +4,7 @@
 #include "engine/types/positioning/FBox2D.hpp"
 #include "engine/utilities/Utilities.hpp"
 
-using namespace geng;
+using namespace gan;
 
 
 
@@ -35,6 +35,7 @@ void PhysicsMaestro::remove_collider(Collider *collider) {
 
 void PhysicsMaestro::load_current_level() {
     delete grid;
+    glog::note << "load current level " << glog::endlog;
     grid = new TileGrid(world.get_current_level(), world.get_tile_size());
 }
 
@@ -58,7 +59,7 @@ void PhysicsMaestro::render_hitboxes(RenderBuffer &buffer, SDL_Color color, uint
     }
 }
 
-inline bool tile_overlap(const FBox2D& a, const FBox2D& b) {
+inline bool tile_overlap(const FBox2D& a, const Box2D& b) {
     return !(a.x + a.w <= b.x ||
              a.x >= b.x + b.w ||
              a.y + a.h <= b.y ||
@@ -108,7 +109,7 @@ void PhysicsMaestro::collide(TileGrid& grid, int& id) {
             for (int tx = min_tx; tx <= max_tx; ++tx) {
                 if (grid.at(tx, ty) == 0) continue;
 
-                FBox2D tile = grid.tile_box(tx, ty);
+                Box2D tile = grid.tile_box(tx, ty);
                 FBox2D mover { pos.x, pos.y, box.w, box.h };
 
                 if (!tile_overlap(mover, tile)) continue;
@@ -137,7 +138,7 @@ void PhysicsMaestro::collide(TileGrid& grid, int& id) {
             for (int tx = min_tx; tx <= max_tx; ++tx) {
                 if (grid.at(tx, ty) == 0) continue;
 
-                FBox2D tile = grid.tile_box(tx, ty);
+                Box2D tile = grid.tile_box(tx, ty);
                 FBox2D mover { pos.x, pos.y, box.w, box.h };
 
                 if (!tile_overlap(mover, tile)) continue;

@@ -1,6 +1,6 @@
 #include "engine/scene/routes/route-types/Rebound.hpp"
 
-using namespace geng;
+using namespace gan;
 using namespace groute;
 
 Rebound::Rebound(Gear& g, const FPos2D &target, float speed)

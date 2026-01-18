@@ -2,9 +2,9 @@
 #include "Frame.hpp"
 #include "engine/layers/LayerState.hpp"
 
-namespace geng {
+namespace gan {
     /**
-     * @brief Contains all the information necessary to animate a @code gengine::Sprite@endcode 's sprite.
+     * @brief Contains all the information necessary to animate a @code ganine::Sprite@endcode 's sprite.
      * @details If you want a thorough understanding of AnimInfo, it is best to review how Frames and FrameTables function. However, we cover the fundamentals here:
      * 1. @code animation_index@endcode is the current animation the object is on. For example, "running" may be represented by the number 1, and "idle" may have a representation of 2.
      * 2. @code frame_index@endcode is the current frame of animation. For example, a "running" animation may have three frames, so frame_index will iterate from 0 to 2.
@@ -19,7 +19,7 @@ namespace geng {
      * You do not need to touch this after initializing a FrameTable.
      * 9. @code dirty@endcode AnimInfo flips this flag when the animation_index changes or duration expires. This signals the engine to grab a new frame for the AnimInfo.
      * You do not need to touch this.
-     * @warning When making @code gengine::Sprite@endcode objects with AnimInfos, you must initialize AnimInfo values before calling engine.add_sprite(...). Otherwise, this will result in undefined behavior.
+     * @warning When making @code ganine::Sprite@endcode objects with AnimInfos, you must initialize AnimInfo values before calling engine.add_sprite(...). Otherwise, this will result in undefined behavior.
      */
     struct AnimInfo {
     private:
@@ -93,8 +93,8 @@ namespace geng {
         /// Increments the frame_index by one, and returns the new frame_index
         int pre_increment_frame();
         /// Debugger printer for AnimInfo verbose style
-        [[nodiscard]] geng::str_view& to_fstring_verbose(geng::str_view& buffer) const;
+        [[nodiscard]] gan::str_view& to_fstring_verbose(gan::str_view& buffer) const;
         /// Debugger printer for AnimInfo short style
-        [[nodiscard]] str_view& to_fstring(geng::str_view& buffer) const;
+        [[nodiscard]] str_view& to_fstring(gan::str_view& buffer) const;
     };
 }

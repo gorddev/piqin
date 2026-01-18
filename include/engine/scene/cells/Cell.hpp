@@ -1,7 +1,7 @@
 #pragma once
 #include <SDL_render.h>
 
-namespace geng {
+namespace gan {
     static void GENG_cell_flatten_sdl_fpoint(SDL_FPoint& p) {
         if (p.x > 1.0f) p.x = 1.0f;
         if (p.y > 1.0f) p.y = 1.0f;
@@ -24,7 +24,7 @@ namespace geng {
         /// Turns a cell into a set of renderable vertices
         int to_vertex(RenderBuffer& buffer, int scene_width, int scene_height) {
             SDL_FPoint ts = tex_start;
-            SDL_FPoint te = {1.f,1.f};
+            SDL_FPoint te = tex_end;
             /// Scene top left
             SDL_FPoint stl = {0.f, 0.f};
             /// Scene bottom right

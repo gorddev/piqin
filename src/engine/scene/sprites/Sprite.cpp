@@ -1,6 +1,6 @@
 #include "engine/scene/sprites/Sprite.hpp"
 
-using namespace geng;
+using namespace gan;
 
 Sprite::Sprite(FrameTable &frames)
     : frameTable(frames), anim (frames.get_frame(0), 0) {
@@ -31,13 +31,13 @@ void Sprite::update_frame(LayerState& time) {
 }
 
 /// To Fstring
-geng::str_view& Sprite::to_fstring_verbose(geng::str_view& buffer) const {
+gan::str_view& Sprite::to_fstring_verbose(gan::str_view& buffer) const {
     Gear::to_fstring_verbose(buffer) << "\n";
     return anim.to_fstring_verbose(buffer);
 }
 
 /// To Fstring
-geng::str_view& Sprite::to_fstring(geng::str_view& buffer) const {
+gan::str_view& Sprite::to_fstring(gan::str_view& buffer) const {
     Gear::to_fstring(buffer) << "\n";
     return anim.to_fstring(buffer);
 }

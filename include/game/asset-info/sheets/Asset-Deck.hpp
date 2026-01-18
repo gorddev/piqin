@@ -8,7 +8,7 @@
 #define ASSET_DECK_RENDER_TYPE RENDER_VERTICAL
 
 // Sprite info
-const geng::FrameTable asset_deck = {
+inline gan::FrameTable asset_deck = {
     0,0,
     32,48,
     13,65

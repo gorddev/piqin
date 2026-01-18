@@ -1,42 +1,61 @@
 #include "../../include/engine/core/Engine.hpp"
 
+#include <SDL2/SDL_image.h>
+
 
 #include "../../include/engine/debug/geng_debug.hpp"
-#include "engine/debug/DebugManager.hpp"
+#include "engine/debug/Console.hpp"
 
-using namespace geng;
+#define SDL_HINT_TRACKPAD_IS_TOUCH_ONLY "SDL_TRACKPAD_IS_TOUCH_ONLY"
 
-Engine::Engine() : core(camera), texreg(core), input(core), layers(core), rend(core, texreg, camera) {
-    glog::note.src("root") << "Engine creation complete." << glog::endlog;
+using namespace gan;
+
+Engine::Engine() : core(fonts), texreg(core), rend(core, texreg),
+                   layers(core),
+                   console(nullptr), input(core) {
+    glog::note.src("root") << "Engine creation complete." <<
+            glog::endlog;
 }
 
-void Engine::init() {
+void Engine::init(bool debug_mode) {
     // Initialize SDL Video
     SDL_Init(SDL_INIT_VIDEO);
+    TTF_Init();
     rend._init();
     glog::note.src("root") << "Engine SDL Backend Formed" << glog::endlog;
 
     // Initialize our input
     input._init();
 
-    // Then we create our debug router
-    console = create_router<debug::DebugManager>(core);
+    // create our system font
+    fonts.instantiate_font(Font(8, 16, 145, 103, 1, 0));
+
+    if (debug_mode) {
+        glog::note << "created debug mode stuff" << glog::endlog;
+        // If debug is enabled, create the router
+        console = create_router<debug::Console>(core);
+    }
+    else
+        console = nullptr;
 
     glog::note.src("root") << "Engine initialized." << glog::endlog;
 }
 
-void Engine::tick(double time) {
+bool Engine::tick(double time) {
     // First we update the engine_context with our time
     core.update(time);
 
     // Next we get input for the input manager and send to the relevant layer.
+    bool quit = false;
     SDL_Event e;
-    while (SDL_PollEvent(&e))
+    while (SDL_PollEvent(&e)) {
         input.process_event(e, layers.get_active_layer());
+        quit = (e.type == SDL_QUIT);
+    }
     input.update(layers.get_active_layer());
 
     // Check if there's any layer change requests (this will be updated to a request interface later)
-    geng::fstring<10> layerchange = core.get_layer_change();
+    gan::fstring<10> layerchange = core.get_layer_change();
     if (layerchange.length()) {
         if (layerchange == "__next")
             increment_active_layer();
@@ -49,6 +68,8 @@ void Engine::tick(double time) {
             set_active_layer(layerchange);
         core.set_layer_change("");
     }
+
+    return !quit;
 }
 
 
@@ -58,6 +79,16 @@ bool Engine::update() {
         l->update(core.get_dt());
     }
     return true;
+}
+
+int Engine::create_font(hstring path, uint16_t spacing, uint16_t pt) {
+    auto font = fonts.create_font(path, spacing, pt);
+    font->set_texture_id(rend.render_font(font, path));
+    return font->get_texture_id();
+}
+
+Font* Engine::get_font(int index) {
+    return &fonts.at(index);
 }
 
 void Engine::render() {
@@ -70,7 +101,8 @@ void Engine::render() {
 void Engine::set_resolution(Dim2D d) {
     core._set_window_size(d.w, d.h);
     rend.set_render_resolution(d.w, d.h);
-    console->notify_screen_resolution_change(d);
+    if (console != nullptr)
+        console->notify_screen_resolution_change(d);
 }
 
 Dim2D Engine::get_resolution() const {
@@ -82,7 +114,7 @@ void Engine::set_active_layer(Layer* layer) {
     set_active_layer(layer->scene.get_name());
 }
 
-void Engine::set_active_layer(geng::fstring<10> name) {
+void Engine::set_active_layer(gan::fstring<10> name) {
     layers.set_active_layer(name);
 }
 
@@ -98,11 +130,11 @@ void Engine::destroy_layer(Layer *l) {
     destroy_layer(l->scene.get_name());
 }
 
-void Engine::destroy_layer(geng::fstring<10> layer_name) {
+void Engine::destroy_layer(gan::fstring<10> layer_name) {
     layers.remove_layer(layer_name);
 }
 
-Layer *Engine::get_layer(geng::fstring<10> layer_name) {
+Layer *Engine::get_layer(gan::fstring<10> layer_name) {
     return layers.get_layer(layer_name);
 }
 
@@ -111,8 +143,16 @@ void Engine::remove_router(InputRouter *router) {
 }
 
 void Engine::set_debug_mode(bool enabled) {
-    if (enabled)
+    if (enabled && console != nullptr)
         core.enable_debug();
     else
         core.disable_debug();
+}
+
+void Engine::shutdown() {
+    SDL_DestroyRenderer(rend.renderer);
+    SDL_DestroyWindow(rend.window);
+    SDL_Quit();
+    IMG_Quit();
+    TTF_Quit();
 }

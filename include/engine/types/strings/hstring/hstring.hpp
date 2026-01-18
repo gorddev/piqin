@@ -6,7 +6,7 @@
 
 #include "../str_view/str_view.hpp"
 
-namespace geng {
+namespace gan {
 
     /// Throw an error for hstring
     static inline void hstring_throw_err(const char* err) {
@@ -76,9 +76,9 @@ namespace geng {
         const char& operator[](uint32_t i) const;
 
         /// returns the cstring variant of an hstring
-        char* cstr();
+        char* c_str();
         /// returns a const version without the null terminator
-        const char* cstr() const;
+        const char* c_str() const;
         /// implicitly convert to a cstring
         operator const char*();
 
@@ -123,7 +123,7 @@ namespace geng {
 
         /// Truncation and the like
         template<uint8_t P>
-        hstring& operator<<(geng::precision<P>);
+        hstring& operator<<(gan::precision<P>);
 
         /// For bools
         hstring& operator<<(bool b);
@@ -136,15 +136,15 @@ namespace geng {
 #include <functional>
 namespace std {
     template<>
-    struct hash<geng::hstring> {
-        size_t operator()(const geng::hstring& s) const noexcept {
+    struct hash<gan::hstring> {
+        size_t operator()(const gan::hstring& s) const noexcept {
             size_t h;
             if constexpr (sizeof(size_t) == 8) {
                 h = 14695981039346656037ull;
             } else {
                 h = 2166136261u;
             }
-            const char* data = s.cstr();
+            const char* data = s.c_str();
             for (size_t i = 0; i < s.length(); ++i) {
                 h ^= static_cast<unsigned char>(data[i]);
                 if constexpr (sizeof(size_t) == 8)

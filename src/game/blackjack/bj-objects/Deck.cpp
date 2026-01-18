@@ -55,7 +55,7 @@ void Deck::add_card(Card* c) {
 Card* Deck::pop_card() {
     if (drawPile.empty()) return nullptr;
     // Random card!
-    int i = geng::GENG_Rand.rint() % drawPile.size(); // NOLINT(*-narrowing-conversions)
+    int i = gan::GENG_Rand.rint() % drawPile.size(); // NOLINT(*-narrowing-conversions)
     Card* c = drawPile[i];
     drawPile.erase(drawPile.begin() + i);
     prep_card_for_pop(c);

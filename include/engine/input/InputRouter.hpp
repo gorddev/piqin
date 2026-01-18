@@ -5,7 +5,7 @@
 #include "InputRouterInit.hpp"
 #include "engine/layers/Layer.hpp"
 
-namespace geng {
+namespace gan {
     /**
      * @brief High-level input interception interface.
      *
@@ -54,25 +54,27 @@ namespace geng {
         }
 
         /// @return True if you want to block all future input. Can just be a statement that returns false if you don't want to use it.
-        virtual bool update(Layer*& active_layer) = 0;
-
+        virtual bool update(Layer*& active_layer, const uint8_t* keys) = 0;
         /** @return true if input is consumed */
         virtual bool get_key_press(SDL_Scancode key, Layer*& active_layer) { return false; }
-
         /** @return true if input is consumed */
         virtual bool get_key_release(SDL_Scancode key, Layer*& active_layer) { return false; }
-
         /** @return true if input is consumed */
         virtual bool get_mouse_click(Uint8 button, Pos2D mousepos, Layer*& active_layer) { return false; }
-
         /** @return true if input is consumed */
         virtual bool get_mouse_release(Uint8 button, Pos2D mousepos, Layer*& active_layer) { return false; }
+        /** @return true if input is consumed */
+        virtual bool get_mouse_scroll(SDL_MouseWheelEvent& e, Layer*& active_layer) { return false; }
+        /** @return true if input is consumed */
+        virtual bool get_finger_down(SDL_TouchFingerEvent finger, Layer*& active_layer) { return false; }
+        /** @return true if input is consumed */
+        virtual bool get_finger_release(SDL_TouchFingerEvent finger, Layer*& active_layer) { return false; }
+        /** @return true if input is consumed */
+        virtual bool get_finger_motion(SDL_TouchFingerEvent finger, Layer*& active_layer) { return false; }
+
 
         virtual bool get_scroll(int dx, int dy, Layer*& active_layer) { return false; }
         virtual bool get_mouse_move(Pos2D mousepos, FPos2D deltapos, Layer*& active_layer) { return false; }
 
-        // <><><> For use by the engine only. <><><>
-        /// Updates the pointer that contains key states
-        void _update_key_pointer(uint8_t* ptr) { key_states = ptr; }
     };
 }

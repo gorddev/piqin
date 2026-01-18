@@ -3,13 +3,12 @@
 #include <SDL.h>
 #include <utility>
 
-#include "../../../include/engine/core/gears/GearFlag.hpp"
+#include "engine/debug/geng_debug.hpp"
 #include "engine/utilities/Utilities.hpp"
-#include "engine/scene/sprites/Sprite.hpp"
 
 #define keyb key.keysym.scancode
 
-using namespace geng;
+using namespace gan;
 
 
 uint8_t *& InputDistributor::get_keystates() {
@@ -21,6 +20,7 @@ InputDistributor::InputDistributor(EngineContext &e) : world(e), key_states(null
 void InputDistributor::event_key_down(SDL_Scancode key, Layer*& active_layer) {
     bool consumed = false;
     for (auto& r : routers) {
+
         if (!consumed)
             consumed = r->get_key_press(key, active_layer);
         else
@@ -101,6 +101,54 @@ void InputDistributor::event_mouse_motion(const SDL_Event& e, Layer*& active_lay
     }
 }
 
+void InputDistributor::event_finger_up(SDL_TouchFingerEvent finger, Layer*& active_layer) {
+    bool consumed = false;
+    for (auto& r : routers) {
+        if (!consumed)
+            consumed = r->get_finger_release(finger, active_layer);
+        else
+            break;
+    }
+    if (active_layer != nullptr && !consumed) {
+        active_layer->input._finger_release(finger);
+    }
+}
+
+void InputDistributor::event_finger_down(SDL_TouchFingerEvent finger, Layer*& active_layer) {
+    bool consumed = false;
+    glog::note << "finger down?" << glog::endlog;
+    for (auto& r : routers) {
+        if (!consumed)
+            consumed = r->get_finger_down(finger, active_layer);
+        else
+            break;
+    }
+    if (active_layer != nullptr && !consumed) {
+        active_layer->input._finger_down(finger);
+    }
+}
+
+void InputDistributor::event_finger_motion(SDL_TouchFingerEvent finger, Layer*& active_layer) {
+    bool consumed = false;
+    for (auto& r : routers) {
+        if (!consumed)
+            consumed = r->get_finger_motion(finger, active_layer);
+        else
+            break;
+    }
+}
+
+void InputDistributor::event_mouse_wheel(SDL_MouseWheelEvent e, Layer*& active_layer) {
+    bool consumed = false;
+    for (auto& r : routers) {
+        if (!consumed) {
+            consumed = r->get_mouse_scroll(e, active_layer);
+        }
+        else
+            break;
+    }
+}
+
 void InputDistributor::process_event(const SDL_Event& e, Layer* active_layer) {
     if (e.type == SDL_KEYDOWN)
         event_key_down(e.key.keysym.scancode, active_layer);
@@ -112,17 +160,24 @@ void InputDistributor::process_event(const SDL_Event& e, Layer* active_layer) {
         event_mouse_release(e, active_layer);
     else if (e.type == SDL_MOUSEMOTION)
         event_mouse_motion(e, active_layer);
+    else if (e.type == SDL_FINGERUP)
+        event_finger_up(e.tfinger, active_layer);
+    else if (e.type == SDL_FINGERDOWN)
+        event_finger_down(e.tfinger, active_layer);
+    else if (e.type == SDL_FINGERMOTION)
+        event_finger_motion(e.tfinger, active_layer);
+    else if (e.type == SDL_MOUSEWHEEL) {
+        event_mouse_wheel(e.wheel, active_layer);
+    }
+
 }
 
 void InputDistributor::update(Layer* active_layer) {
+    const uint8_t* keys = static_cast<const uint8_t*>(SDL_GetKeyboardState(nullptr));
     bool consumed = false;
     for (auto& r : routers) {
-        if (!consumed) {
-            r->_update_key_pointer(key_states);
-            consumed = r->update(active_layer);
-        }
-        else
-            r->_update_key_pointer(nullptr);
+        if (r->update(active_layer, keys))
+            break;
     }
 }
 

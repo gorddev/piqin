@@ -5,7 +5,7 @@
 #include "engine/scene/tilesets/TileBuffer.hpp"
 #include "engine/types/external/vector.hpp"
 
-namespace geng {
+namespace gan {
     /// GameWorld contains all the tiles and the entire game world through which you play the game.
     struct GameWorld {
         uint64_t magic = 0;
@@ -23,7 +23,7 @@ namespace geng {
         int worldHeight();
 
         /// Renders everything within the gameLevel
-        void render_world(geng::TileBuffer& buffer, const geng::Camera& cam);
+        void render_world(gan::TileBuffer& buffer, const gan::Camera& cam);
 
         /// Prints out the gameworld:
         str_view& to_fstring(str_view& buffer);

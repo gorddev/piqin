@@ -1,7 +1,7 @@
 #pragma once
 #include "engine/scene/sprites/Sprite.hpp"
 
-namespace geng {
+namespace gan {
     // Generic selector object
     template <typename T>
     struct Selector : Sprite {

@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 
-namespace geng {
+namespace gan {
     /** @brief LayerFlags allows the engine and layer to behave differently based on flags set.
           * Flags avaliable are:
           * - @code visible@endcode

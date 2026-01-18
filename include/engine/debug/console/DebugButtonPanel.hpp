@@ -3,7 +3,7 @@
 #include "engine/input/InputHandler.hpp"
 
 
-namespace geng::debug {
+namespace gan::debug {
 
     /** Holds all of the buttons in the debug panel **/
     class DebugButtonPanel {
@@ -13,14 +13,16 @@ namespace geng::debug {
         gch::vector<DebugButton> button_modes;
         /// Mouse acceptor num
         int acceptors = 0;
+        /// accepts the camera
+        const Camera& cam;
 
         void add_button_mode(bool& bind, char symbol) {
             button_modes.emplace_back(
-                FPos2D{core.get_width() - 6.f, 5 + (11.0f*button_modes.size())},
-                bind, symbol, Dim2D{11, 11});
+                FPos2D{cam.get_width() - debug_button_size.w/2.f, debug_button_size.w/2.f + (debug_button_size.h*button_modes.size())},
+                bind, *core.get_font(0), symbol, debug_button_size);
         }
     public:
-        explicit DebugButtonPanel(EngineContext& core) : core(core)
+        explicit DebugButtonPanel(EngineContext& core, const Camera& cam) : core(core), cam(cam)
         {
             button_modes.reserve(6);
             add_button_mode(core.debugger.debug_mode, '~');
@@ -33,7 +35,7 @@ namespace geng::debug {
 
         void notify_screen_resolution_change(Dim2D new_res) {
             for (int i = 0; i < button_modes.size(); i++)
-                button_modes[i].set_pos({new_res.w - 6.f, 5 + 11.5f*i});
+                button_modes[i].set_pos({new_res.w - debug_button_size.w/2.f, debug_button_size.h/2.f + debug_button_size.h*i});
         }
 
         void to_vertex(RenderBuffer& buffer) {

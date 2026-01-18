@@ -9,7 +9,7 @@ static void fstr_view_throw_err(const char err[]) {
     throw std::runtime_error(err);
 }
 
-namespace geng {
+namespace gan {
 
 // **************************************
 // Construction
@@ -30,7 +30,7 @@ constexpr uint32_t str_view::length() const { return len; }
 constexpr uint32_t str_view::capacity() const { return cap; }
 
 /** @brief Get C-style null-terminated string */
-constexpr const char* str_view::cstr() const {
+constexpr const char* str_view::c_str() const {
     if (len < cap) data[len] = '\0';
     return data;
 }

@@ -1,62 +1,72 @@
 #pragma once
 #include <SDL_render.h>
 
-
-#include "Camera.hpp"
 #include "DrawBatch.hpp"
 #include "engine/scene/initializer/TextureRegister.hpp"
 #include "engine/types/positioning/FPos2D.hpp"
 #include "engine/utilities/image-info/IMGDecoder.hpp"
 #include "shadows/ShadowBank.hpp"
 
-namespace geng {
-    namespace debug {
-        class Console;
-    }
+namespace gan {
 
     /** The RenderBuffer contains all the information needed for the renderer to batch render calls. @code Layers@endcode append
      * vertices to the render buffer, and the RenderBuffer offsets by camera effects. The RenderBuffer also has the capacity to handle
      * undefined textures and the like*/
     class RenderBuffer final {
-        /// The buffer that contains all the vertices we will render
-        gch::vector<SDL_Vertex> buffer;
+        // <><><> External References <><><>
         /// The buffer of batches if the renderer changes textures
         TextureRegister& texreg;
-        /// Contains the current camera position of the scene
-        FPos2D campos;
         /// Keeps track of the bank of shadows
         ShadowBank& shadows;
+
+        // <><><> Rendering <><><>
+        /// The buffer that contains all the vertices we will render
+        gch::vector<SDL_Vertex> buffer;
+        /// Contains the current camera position of the scenere
+        Camera cam;
+        /// Contains the scale of each component
+        FPos2D screenScale;
         /// Contains the white point of the current texture we're rendering.
         SDL_FPoint white_point = {1.f, 1.f};
+        /// Contains the start index of an object
+        uint32_t start_pos = 0;
+
+        //<><><> Rendering Options <><><>
         /// If our texture is not loaded:
         bool loaded = true;
         /// If we're in debug mode
         bool debug = false;
+        // <><><> Styles each vertex <><><>
         /// Preps a vertex to be added
         void prep_vertex(SDL_Vertex& vertex);
     protected:
+        // <><><> Used for Batching <><><>
         /// Contains each of the batches we'll render
         gch::vector<DrawBatch> batches;
         /// Contains the current draw batch
         DrawBatch current_batch;
 
-        friend class Renderer; // hey look a friend
+        friend class Renderer;
 
+        // <><><> Enabled Debug Rendering <><><>
         /// Renders console regardless of camera pos
-        void debug_mode(bool mode);
-        friend class debug::Console;
+
 
         /// Returns the data of the buffer
         [[nodiscard]] SDL_Vertex* data();
+
+        void clear();
+
         /// Size of the buffer
         [[nodiscard]] int size() const;
         /// Sets the position of the camera
-        void prep(FPos2D camera_pos);
+        void prep(Camera &camera, Dim2D canvasDim);
         /// Resize the render buffer
         void resize(int num);
         /// Pops the last batch onto the batch vector
         void pop_last_batch();
     public:
+        void debug_mode(bool mode);
         /// Constructed render buffer
         explicit RenderBuffer(TextureRegister& texreg, ShadowBank& shadows);
 
@@ -66,6 +76,11 @@ namespace geng {
         // <><><> White Point <><><>
         /// Gets the white point of the current texture
         SDL_FPoint get_white_point();
+
+        // <><><> Rendering complex objects <><><>
+        /// Starts the definition for one object within the renderer
+        void begin_object();
+        void end_object();
 
         // <><><> Standard push back functions <><><>
         /// Adds vertex to the render buffer
@@ -93,4 +108,4 @@ namespace geng {
 
     };
 
-} // namespace geng
+} // namespace gan

@@ -3,10 +3,10 @@
 #include "../../core/gears/Gear.hpp"
 #include "engine/layers/LayerState.hpp"
 
-namespace geng {
+namespace gan {
 
     /** @brief Path is an abstract base class that moves transforms objects across the canvas.
-     * @details Paths update a @code gengine::Transform2D@endcode object until they reach their @code destination@endcode.
+     * @details Paths update a @code ganine::Transform2D@endcode object until they reach their @code destination@endcode.
      * All Path objects must override the function @code void update()@endcode function. Here is a quick rundown of member variables:
      * 1. @code Transform2D* payload@endcode › The transform object you update with the route
      * 2. @code FPos2D destination@endcode › The destination of the route
@@ -46,7 +46,7 @@ namespace geng {
     public:
         /// Constructor for a route.
         Route(Gear& gear, const FPos2D &destination, float speed)
-            : gear(gear), start(gear.t.pos), target(destination), speed(speed) {}
+            : gear(gear), target(destination), start(gear.t.pos), speed(speed) {}
         virtual ~Route() = default;
 
         /// Updates the gear according to the subclass' definition
@@ -62,7 +62,7 @@ namespace geng {
         /// Sets the callback function, which is called upon route completion
         void set_callback(std::function<void()>* cb) { callback = cb; }
         /// Returns a string with route information.
-        virtual geng::str_view to_string(geng::str_view& ret) {
+        virtual gan::str_view to_string(gan::str_view& ret) {
             ret << "Target: "  << target.to_string(ret)
                 << "\nSpeed: " << speed
                 << "\nComplete: " << int(completeX);

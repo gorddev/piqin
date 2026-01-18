@@ -4,7 +4,7 @@
 
 #include "../../../../include/engine/debug/geng_debug.hpp"
 
-using namespace geng;
+using namespace gan;
 
 FrameTable::FrameTable(gch::vector<gch::vector<AnimBox2D>> quadVec) {
     quads = std::move(quadVec);
@@ -73,7 +73,7 @@ Frame& FrameTable::get_frame(int animationNum, int frameNum) {
     for (auto& q : frames) {
         glog::dev << "<" << q.size() << "> ";
     }
-    abort();
+    glog::err.src("FrameTable::get_frame()") << "Frame " << frameNum << " of animation " << animationNum << " not found." << glog::endlog;
 }
 
 
@@ -92,7 +92,6 @@ void FrameTable::update_frame(AnimInfo& s) {
     }
     else if (s.get_frame_type() == GAnimType::RESET) {
         if (s.get_queued_anim() >= 0) {
-            glog::dev << "uh oh queue" << glog::endlog;
             s.set_animation(s.get_queued_anim());
             s.queue_animation(-1);
             s.set_frame(frames[s.get_anim_id()][0]);

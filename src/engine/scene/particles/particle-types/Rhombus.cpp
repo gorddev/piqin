@@ -2,7 +2,7 @@
 
 #include "engine/layers/LayerState.hpp"
 
-using namespace geng;
+using namespace gan;
 using namespace gfx;
 
 RhombusInst::RhombusInst(const FPos2D &offset, float speed, float size) {
@@ -24,7 +24,7 @@ bool RhombusInst::update(double& dt) {
 
 void RhombusInst::to_vertex(RenderBuffer& buffer, SDL_Color& color) const {
     // Radius
-    int rad = static_cast<int>(radius * duration / 1500.f);
+    float rad = (radius * duration / 1500.f);
     // FPos2D locations
 
     SDL_FPoint top = {pos.x, pos.y - rad};
@@ -43,14 +43,15 @@ void RhombusInst::to_vertex(RenderBuffer& buffer, SDL_Color& color) const {
 // Rhombus constructors
 Rhombus::Rhombus(FPos2D pos, float size, float speed, float duration, float frequency, SDL_Color Tint)
     : ParticleGroup(pos, size, speed, duration, Tint), period(frequency) {
-    shadow_color = Tint;
+    color = Tint;
+    t.color = Tint;
     if (duration == -1)
         permanent = true;
 }
 
 Rhombus::Rhombus(Gear* o, float size, float speed, float duration, float period, SDL_Color Tint)
     : ParticleGroup(o, size, speed, duration, Tint), period(period) {
-    shadow_color = Tint;
+    color = Tint;
     if (duration == -1)
         permanent = true;
 }
@@ -92,9 +93,11 @@ void Rhombus::to_vertex(RenderBuffer& buffer) {
     if (payload != nullptr)
         t.pos = payload->t.pos;
     for (auto& i : particles) {
+        buffer.begin_object();
         i.to_vertex(buffer, t.color);
         count+=6;
         buffer.push_shadow(6);
+        buffer.end_object();
     }
     /*
     if (shadow())

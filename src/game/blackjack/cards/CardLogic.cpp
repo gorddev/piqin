@@ -22,8 +22,7 @@ int Card::get_score() const {
     size_t align = alignof(Card);
     if (addr % align != 0) {
         // THis is what happens if we feed card that's not a card :o
-        glog::dev << "card::get_score() alignment is not 0" << std::endl;
-        abort(); // goodbye
+        glog::err.src("Card::get_score()") << "card::get_score() alignment is not 0" << glog::endlog;
     }
 
     if (suit == BJ_Suit::SPECIAL) return 0;

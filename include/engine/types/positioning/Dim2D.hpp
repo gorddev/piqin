@@ -1,6 +1,6 @@
 #pragma once
 
-namespace geng {
+namespace gan {
     /** @brief Basic dimension struct that contains a @code short w@endcode and @code short h@endcode.
      * @details Contains @code ==, !=, +, -@endcode nontrivial operator overloads and an @code int area()@endcode function that returns @code w*h@endcode.
      * @note Typically used for 2D object's demensions in a limited game environment world.*/

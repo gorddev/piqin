@@ -2,7 +2,7 @@
 
 #include "Tile.hpp"
 
-namespace geng {
+namespace gan {
 
     /** Contains all the tiles that exist from one tileset. **/
     class Tileset {

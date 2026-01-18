@@ -2,7 +2,7 @@
 
 #include <SDL_rect.h>
 
-namespace geng {
+namespace gan {
 
     /** @brief Basic shape that contains an @code int x@endcode , @code int y@endcode, @code short w@endcode, and @code short h@endcode.
      * @details Contains ==, !=, +, - nontrivial operator overloads and an @code int area@endcode function that returns @code w*h@endcode. **/
@@ -11,7 +11,7 @@ namespace geng {
         int w, h;
         FBox2D() : x(0), y(0), w(0), h(0) {}
         FBox2D(float x, float y, int w, int h) : x(x), y(y), w(w), h(h) {}
-        FBox2D(Box2D box) : x(box.x), y(box.y), w(box.w), h(box.h) {}
+        FBox2D(FBox2D& box) : x(box.x), y(box.y), w(box.w), h(box.h) {}
         bool operator==(const FBox2D& b) const {
             return (x == b.x && y == b.y && w == b.w && h == b.h);
         }
@@ -79,7 +79,7 @@ namespace geng {
             return points;
         }
         /// Turns it into a hitbox for rendering
-        gch::vector<SDL_FPoint> to_vertex_hitbox(uint16_t thickness) {
+        gch::vector<SDL_FPoint> to_hitbox(uint16_t thickness) {
 
             FBox2D left = {x, y, thickness, h};
             FBox2D top = {x , y, w, thickness};

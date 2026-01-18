@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-using namespace geng;
+using namespace gan;
 
 LayerManager::LayerManager(EngineContext& world)
     : engine_context(world) {}
@@ -16,9 +16,9 @@ void LayerManager::update(double dt) {
 }
 
 /// Gets a layer based on layer name
-Layer* LayerManager::get_layer(geng::fstring<10> layer_name)  {
+Layer* LayerManager::get_layer(gan::fstring<10> layer_name)  {
     for (auto& l : layers) {
-        if (l->scene.get_name() == layer_name.cstr())
+        if (l->scene.get_name() == layer_name.c_str())
             return l;
     }
     return nullptr;
@@ -37,12 +37,12 @@ void LayerManager::set_active_layer(Layer* l) {
 }
 
 /// Sets the active layer based on layer name
-void LayerManager::set_active_layer(geng::fstring<10> name) {
+void LayerManager::set_active_layer(gan::fstring<10> name) {
     if (get_active_layer() != nullptr)
         get_active_layer()->scene._engine_deflag(LayerFlag::active);
 
     for (int i = 0; i < (int)layers.size(); i++) {
-        if (layers[i]->scene.get_name() == name.cstr()) {
+        if (layers[i]->scene.get_name() == name.c_str()) {
             active_id = i;
             layers[i]->scene._engine_flag(LayerFlag::active);
             return;
@@ -63,7 +63,7 @@ void LayerManager::add_layer(Layer* l) {
     }
     else
         glog::warn.src("LayerManager::add_layer()") <<
-            "Aready added layer" << l->scene.get_name().cstr() << " to scene." << glog::endlog;
+            "Aready added layer" << l->scene.get_name().c_str() << " to scene." << glog::endlog;
 }
 
 /// Increments the current active layer by 1 (loops back to)
@@ -84,7 +84,7 @@ void LayerManager::remove_layer(fstring<10> name) {
 
     // Remove it from the vector
     for (auto it = layers.begin(); it != layers.end(); ++it) {
-        if ((*it)->scene.get_name() == name.cstr()) {
+        if ((*it)->scene.get_name() == name.c_str()) {
             if ((*it)->is_active())
                 was_active = true;
             found = true;
@@ -96,7 +96,7 @@ void LayerManager::remove_layer(fstring<10> name) {
 
     if (!found) {
         glog::warn.src("LayerManager::remove_layer()")
-            << "Error: Layer " << name.cstr() << " not found."
+            << "Error: Layer " << name.c_str() << " not found."
             << glog::endlog;
         return;
     }
@@ -186,7 +186,7 @@ bool LayerManager::has_layer(Layer *l) {
 
 bool LayerManager::has_layer(fstring<10> name) {
     for (auto& o: layers)
-        if (o->scene.get_name() == name.cstr()) return true;
+        if (o->scene.get_name() == name.c_str()) return true;
     return false;
 }
 

@@ -3,7 +3,7 @@
 
 #include "engine/types/strings/fstring/fstring.hpp"
 
-namespace geng {
+namespace gan {
 
     template<typename T>
     concept signed_int =
@@ -31,9 +31,9 @@ namespace geng {
 
 
     /// Allows us to specify sources for our logs
-    static const char geng_default_log_path[] = "";
+    static const char gan_default_log_path[] = "";
     struct src {
-        fstring<64> srcpath = geng_default_log_path;
+        fstring<64> srcpath = gan_default_log_path;
         src(const char path[]) : srcpath(path) {}
     };
 

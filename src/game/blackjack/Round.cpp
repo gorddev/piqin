@@ -1,12 +1,12 @@
 #include "game/blackjack/Round.hpp"
 #include "EngineSource.hpp"
-#include "engine/gengine-globals/Timer.hpp"
+#include "engine/ganine-globals/Timer.hpp"
 #include "engine/pathing/path-types/BalloonPath.hpp"
 
 using namespace blackjack;
 
 // Easy macro for adding events
-#define ADDEV(t, f) geng::GENG_Events.add_event(t, [=]{f;})
+#define ADDEV(t, f) gan::GENG_Events.add_event(t, [=]{f;})
 
 Round::Round(Board* board) : board(board) {}
 
@@ -54,7 +54,7 @@ void Round::opponent_turn() {
         ADDEV(600, round_end());
 }
 
-void Round::get_release(geng::GENG_Input keybind) {
+void Round::get_release(gan::GENG_Input keybind) {
     if (acceptingInput)
         board->get_release(keybind);
 }
@@ -86,10 +86,10 @@ void Round::refresh_deck() {
 }
 
 
-bool Round::get_press(geng::GENG_Input keybind) {
+bool Round::get_press(gan::GENG_Input keybind) {
     if (acceptingInput) {
         pather.update_hand(board->hand);
-        if (keybind == geng::GENG_Input::BACK && board->floater == nullptr) {
+        if (keybind == gan::GENG_Input::BACK && board->floater == nullptr) {
             board->hand.flayed = false;
             pather.update_hand(board->hand);
             board->update_selector();

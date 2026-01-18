@@ -1,17 +1,14 @@
 #include "engine/layers/LayerContext.hpp"
-
-#include <sstream>
-
 #include "engine/debug/geng_debug.hpp"
 
-using namespace geng;
+using namespace gan;
 
 
-// LayerContext methods
-LayerContext::LayerContext(const geng::fstring<10>& name, const Camera& camera)
-    :name(name), camera(camera), state(lflag) {}
+LayerContext::LayerContext(const fstring<10> &name, const Camera &camera, const uint16_t &canvas_width, const uint16_t &canvas_height)
+        : name(name), camera(camera), canvas_width(canvas_width),canvas_height(canvas_height),
+            state(lflag, canvas_width, canvas_height) {}
 
-geng::fstring<10> LayerContext::get_name() const { return name; }
+gan::fstring<10> LayerContext::get_name() const { return name; }
 
 const Camera & LayerContext::get_camera() const {
     return camera;
@@ -67,7 +64,7 @@ void LayerContext::_engine_deflag(LayerFlag flag) {
 void LayerContext::_update(double delta_time) { state._update(delta_time); }
 
 void LayerContext::log(debug::Log l) const {
-    l.source << "ƒ:" << get_name().cstr() << "/";
+    l.source << "ƒ:" << get_name().c_str() << "/";
     glog::note << l;
 }
 

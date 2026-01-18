@@ -2,6 +2,7 @@
 
 #include "../../include/engine/scene/routes/route-types/Balloon.hpp"
 #include "game/blackjack/BJEnums.hpp"
+#include "game/initialization/initialization_defaults.hpp"
 
 /* This file contains all the proper set up for making a card */
 /* Game logic for card behavior is found in CardLogic.hpp */
@@ -27,14 +28,15 @@ uint8_t Card::to_anim_num() {
 }
 
 // Create a card with a value and suite
-Card::Card(geng::FrameTable& frame_table, int val, BJ_Suit suite)
+Card::Card(gan::FrameTable& frame_table, int val, BJ_Suit suite)
     : Collider(frame_table, {10, 10}), value(abs(val)), suit(suite) {
-
     if (value > 13 && suit != BJ_Suit::SPECIAL) value = 13;
     t = defaultCardTransform2D;
+    t.scale = init::default_card_scale;
+    set_draggable();
     anim.set_animation(to_anim_num());
     anim.set_default_animation(to_anim_num());
-    texture_id = 1;
+    texture_id = frame_table.get_texture_id();
     unhide();
 }
 
@@ -69,22 +71,6 @@ bool Card::special() const {
     return suit == BJ_Suit::SPECIAL;
 }
 
-void Card::update(geng::LayerState &state) {
-    Sprite::update(state);
-    if (state.is_held(SDL_SCANCODE_A)) {
-        t.pos.x -= 1;
-    }
-    if (state.is_held(SDL_SCANCODE_D)) {
-        t.pos.x += 1;
-    }
-    if (state.is_held(SDL_SCANCODE_S)) {
-        t.pos.y += 1;
-    }
-    if (state.is_held(SDL_SCANCODE_W)) {
-        t.pos.y -= 1;
-    }
-}
-
 bool Card::use(Card *c) {
 
     /*
@@ -94,7 +80,7 @@ bool Card::use(Card *c) {
             return false;
         }
         c->adjust_value(3);
-        bob.apply_morph(*c, new geng::EffectShake(geng::GENG_Shake::CIRCULAR, 3, 400, -2));
+        bob.apply_morph(*c, new gan::EffectShake(gan::GENG_Shake::CIRCULAR, 3, 400, -2));
     }
     else if (value == BJ_CARD_DECREMENT) {
         if (c->special()) {
@@ -102,13 +88,13 @@ bool Card::use(Card *c) {
             return false;
         }
         c->adjust_value(-3);
-        bob.apply_morph(*c, new geng::EffectShake(geng::GENG_Shake::CIRCULAR, 3, 400, 2));
+        bob.apply_morph(*c, new gan::EffectShake(gan::GENG_Shake::CIRCULAR, 3, 400, 2));
     }
     return true;
     */
     return true;
 }
 
-void Card::on_click_release(geng::Pos2D pos) {
-    t.reset();
+void Card::on_click_release(gan::Pos2D pos) {
+
 }

@@ -2,10 +2,10 @@
 
 #include "../../../../../include/engine/types/strings/fstring/fstring.hpp"
 
-using namespace geng;
+using namespace gan;
 
 
-SDL_Color TextParser::color_from_name(const geng::str_view& name) {
+SDL_Color TextParser::color_from_name(const gan::str_view& name) {
     if (name == "red")    return {255, 60, 60, 255};
     if (name == "green")  return {100, 200, 100, 255};
     if (name == "blue")   return {140, 140, 255, 255};
@@ -16,7 +16,7 @@ SDL_Color TextParser::color_from_name(const geng::str_view& name) {
 }
 
 /// Returns what you will need to edit from the parser.
-ParseEvent TextParser::parse_next(const geng::str_view& src, int pos) {
+ParseEvent TextParser::parse_next(const gan::str_view& src, int pos) {
 
     ParseEvent out;
     out.type = ParseType::End;
@@ -40,7 +40,7 @@ ParseEvent TextParser::parse_next(const geng::str_view& src, int pos) {
             pos++;
 
         out.type = ParseType::RawText;
-        //out.text = fstring<256>(src.cstr() + start, pos - start);
+        //out.text = fstring<256>(src.c_str() + start, pos - start);
         out.advance = pos - start;
         return out;
     }
@@ -62,18 +62,18 @@ ParseEvent TextParser::parse_next(const geng::str_view& src, int pos) {
         return out;
     }
 
-    geng::str_view cmd = src.wrap().str_subview(pos + 1);
+    gan::str_view cmd = src.wrap().str_subview(pos + 1);
     cmd = cmd.substr<128>(0); // up to cmd_end - pos - 1
     int consumed = cmd_end - pos + 1; // include both ^
 
     // scale
     if (cmd.substr<2>(0) == "s:") {
-        geng::fstring<128> val = trim(cmd.substr<128>(2));
+        gan::fstring<128> val = trim(cmd.substr<128>(2));
         if (!val.empty() && val[val.length() - 1] == 'f')
             val[len - 1] = '\0';
 
         out.type = ParseType::Scale;
-        out.scale = std::stof(val.cstr());
+        out.scale = std::stof(val.c_str());
         out.advance = consumed;
         return out;
     }
@@ -96,8 +96,8 @@ ParseEvent TextParser::parse_next(const geng::str_view& src, int pos) {
         while (p < val.length() && count < 4) {
             uint16_t comma = p;
             while (comma < val.length() && val[comma] != ',') comma++;
-            fstring<32> tok(val.cstr() + p, comma - p);
-            nums[count++] = std::stoi(tok.cstr());
+            fstring<32> tok(val.c_str() + p, comma - p);
+            nums[count++] = std::stoi(tok.c_str());
             if (comma == val.length()) break;
             p = comma + 1;
         }

@@ -5,7 +5,7 @@
 // Initializes all the sprites needed for the game.
 void GameMaster::initialize() {
     // Send everything to the engine
-    lni::vector<geng::Sprite*> allObjects = board.gather_objects();
+    lni::vector<gan::Sprite*> allObjects = board.gather_objects();
     bob.add_sprites(allObjects);
     round = new blackjack::Round(&board);
     round->begin();

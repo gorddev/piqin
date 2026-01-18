@@ -2,7 +2,7 @@
 #include "Frame.hpp"
 #include "../../types/positioning/FPos2D.hpp"
 
-namespace geng {
+namespace gan {
     /// incomplete type do not use.
     struct Mesh {
         Frame frame;

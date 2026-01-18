@@ -2,20 +2,18 @@
 
 #include "engine/scene/tilesets/TileList.hpp"
 #include "engine/utilities/image-info/IMGDecoder.hpp"
-#include "engine/core/defaults/sysfont.inl"
 
-namespace geng {
+namespace gan {
     class FontList;
     class FrameList;
 }
 
-using namespace geng;
+using namespace gan;
 
 Initializer::Initializer(LayerContext &scene,
-        FrameList &frames, FontList &fonts, TileList &tiles,
-        TextureRegister &tex_reg) : scene(scene), frames(frames), fonts(fonts), tiles(tiles), texreg(tex_reg)
-{
-    font("./assets/sys-font.png", sys_font);
+        FrameList &frames, TileList &tiles,
+        TextureRegister &tex_reg) : scene(scene), frames(frames), tiles(tiles), texreg(tex_reg) {
+
 }
 
 int Initializer::texture(hstring path) {
@@ -28,14 +26,6 @@ int Initializer::frame_table(hstring path, FrameTable ft) {
     ft._init(i);
     ft.set_texture_id(texture(path));
     return frames.add_table(ft);
-}
-
-int Initializer::font(hstring path, Font f, int id) {
-    f.set_texture_id(texture(path));
-    IMG_Info i = IMGDecoder::PNG_Info(path);
-    glog::note.src("Initializer::font") << "Image information for font: w: " << i.w << " h: " << i.h << " fn" << i.filename << " texid: " << f.get_texture_id() << glog::endlog;
-    f._init(i);
-    return fonts.add_font(f);
 }
 
 int Initializer::tileset(hstring path, Tileset t) {

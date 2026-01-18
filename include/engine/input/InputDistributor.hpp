@@ -6,7 +6,7 @@
 #include "engine/core/EngineContext.hpp"
 #include "engine/layers/Layer.hpp"
 
-namespace geng {
+namespace gan {
     /** The InputDistributor handles sending input to the specified layer and ensuring that inputs are interpreted correctly.
      * @details the InputManager directly recieves keyboard polls and distributes the inputs accordingly. It has a */
     class InputDistributor final {
@@ -25,14 +25,6 @@ namespace geng {
     public:
         /// Constructor
         explicit InputDistributor(EngineContext& e);
-
-        void event_key_down(SDL_Scancode key,
-                            Layer *&active_layer);
-
-        void event_key_up(SDL_Scancode key,
-                               Layer *&active_layer);
-
-
         /// Update with a given key event & Layer. We use Layer Pointers because a layer might not be set up immedaitely.
         void process_event(const SDL_Event &e, Layer *active_layer);
         /// Updates all the input routers with the currently held events.
@@ -49,15 +41,29 @@ namespace geng {
         void _init();
 
     private:
-        void event_mouse_click(
-            const SDL_Event &e,
-            Layer *&active_layer);
-
-        void event_mouse_release(
-            const SDL_Event &e,
-            Layer *&active_layer);
-
+        /// Called when mouse is clicked
+        void event_mouse_click(const SDL_Event &e, Layer *&active_layer);
+        /// Called when mouse is released
+        void event_mouse_release(const SDL_Event &e, Layer *&active_layer);
         /// Cllas the appropriate functions to handle mouse motion.
         void event_mouse_motion(const SDL_Event &e, Layer *&active_layer);
+
+        void event_finger_up(SDL_TouchFingerEvent finger,
+                             Layer *&active_layer);
+
+        /// Called when finger is down
+        void event_finger_down(SDL_TouchFingerEvent finger, Layer *&active_layer);
+
+        void event_finger_motion(
+            SDL_TouchFingerEvent finger,
+            Layer *&active_layer);
+
+        void event_mouse_wheel(SDL_MouseWheelEvent e,
+                               Layer *&active_layer);
+
+        /// Called when finger is down
+        void event_key_down(SDL_Scancode key, Layer *&active_layer);
+        /// Called when key is up
+        void event_key_up(SDL_Scancode key,Layer *&active_layer);
     };
 }

@@ -2,7 +2,7 @@
 
 #include "../../../../include/engine/debug/geng_debug.hpp"
 
-using namespace geng;
+using namespace gan;
 
 ShadowBank::ShadowBank() {
     currentFunc = shadowfuncs["background"];

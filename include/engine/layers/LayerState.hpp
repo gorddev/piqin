@@ -3,7 +3,7 @@
 #include <SDL_scancode.h>
 #include "LayerFlag.hpp"
 
-namespace geng {
+namespace gan {
 
     /** LayerState keeps track of the relative time of the layer, and keyboard input, such that it's simple to run at something like half-speed **/
     class LayerState final {
@@ -20,9 +20,13 @@ namespace geng {
         uint8_t* held_keys = nullptr;
         /// Reference to the layer flag
         LayerFlag& lflag;
+        /// Holds references to the true scene width and height
+        const uint16_t& canvas_width;
+        const uint16_t& canvas_height;
     public:
         /// Default constructor
-        explicit LayerState(LayerFlag& lflag) : lflag(lflag) {};
+        explicit LayerState(LayerFlag& lflag, const uint16_t& canvas_width, const uint16_t& canvas_height)
+            : lflag(lflag), canvas_width(canvas_width), canvas_height(canvas_height) {};
 
         /// Updates the current time
         void _update(double& delta_time) {
@@ -53,6 +57,10 @@ namespace geng {
         void _set_held_keys(uint8_t* keys) {
             held_keys = keys;
         }
+
+        /// gets canvas width and canvas height
+        uint16_t get_canvas_width() const { return canvas_width; }
+        uint16_t get_canvas_height() const { return canvas_height; }
     };
 
 }

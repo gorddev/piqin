@@ -5,7 +5,7 @@
 #include "engine/types/positioning/Box2D.hpp"
 
 
-namespace geng {
+namespace gan {
     /** @brief A widget is one renderable element in a Banner. It can be an image or text. It can also be animated, though implementation is more complicated if you desire that.
      * @detailed. Widgets are an abstract base class and have the following member variables and functions
      * - Each widget has a @code width@endcode and @code height@endcode

@@ -1,0 +1,28 @@
+from PIL import Image
+
+img = Image.open("sysfont.bmp").convert("L")  # 0 = black, 255 = white
+w, h = img.size
+px = img.load()
+
+with open("sysfont_data.hpp", "w") as f:
+    f.write("#pragma once\n#include <cstdint>\n\n")
+    f.write(f"constexpr int SYSFONT_W = {w};\n")
+    f.write(f"constexpr int SYSFONT_H = {h};\n\n")
+    f.write("// RGBA8888\n")
+    f.write("constexpr uint8_t SYSFONT_DATA[] = {\n")
+
+    for y in range(h):
+        f.write("    ")
+        for x in range(w):
+            v = px[x, y]
+            if v == 0:
+                # black pixel -> opaque white
+                r, g, b, a = 255, 255, 255, 255
+            else:
+                # white pixel -> transparent
+                r, g, b, a = 0, 0, 0, 0
+
+            f.write(f"{r}, {g}, {b}, {a}, ")
+        f.write("\n")
+
+    f.write("};\n")

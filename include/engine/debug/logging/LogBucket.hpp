@@ -7,7 +7,7 @@
 #include "LogCommands.hpp"
 
 
-namespace geng::debug {
+namespace gan::debug {
 
     template<typename T>
     concept signed_int =
@@ -48,7 +48,8 @@ namespace geng::debug {
         /// if a log's been added
         bool logged = false;
         /// console is a friend
-        friend class DebugManager;
+        friend class Console;
+        friend class ConsoleLogger;
     public:
         LogBucket() {
             logs.resize(L);
@@ -90,7 +91,7 @@ namespace geng::debug {
 
         template<uint32_t C>
         LogBucket& operator<<(fstring<C> str) {
-            curlog.message << str.cstr();
+            curlog.message << str.c_str();
             return *this;
         }
 
@@ -106,7 +107,7 @@ namespace geng::debug {
                 push(curlog);
                 fstring<200> buffer;
                 auto wrap = buffer.wrap();
-                std::cerr << curlog.to_fstring(wrap).cstr() << std::endl;
+                std::cerr << curlog.to_fstring(wrap).c_str() << std::endl;
                 if (S == ERROR)
                     throw std::runtime_error("Error called via. glog::err");
                 curlog.source.clear();

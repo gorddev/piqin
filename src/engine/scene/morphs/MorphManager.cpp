@@ -1,6 +1,6 @@
 #include "engine/scene/morphs/MorphManager.hpp"
 
-using namespace geng;
+using namespace gan;
 
 MorphManager::MorphManager(LayerContext &layer_context) : scene(layer_context) {}
 
@@ -12,17 +12,20 @@ void MorphManager::strip_morph(const Gear* g) {
     for (auto& e: morphs) {
         if (e != nullptr && e->get_gear_ptr() == g) {
             strip_morph(e);
+            break;
         }
     }
 }
 
 void MorphManager::strip_morph(Morph *e) {
     morphs.erase(e);
+    delete e;
 }
 
 void MorphManager::update() {
-    for (auto & m : morphs) {
-        if (m->update(scene.state))
+    for (auto it = morphs.begin(); it != morphs.end(); ++it) {
+        auto m = *it;
+        if (m != nullptr && m->update(scene.state))
             strip_morph(m);
     }
 }

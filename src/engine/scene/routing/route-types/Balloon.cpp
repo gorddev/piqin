@@ -1,6 +1,6 @@
 #include "engine/scene/routes/route-types/Balloon.hpp"
 
-using namespace geng;
+using namespace gan;
 using namespace groute;
 
 Balloon::Balloon(Gear& g, const FPos2D &target, float speed)

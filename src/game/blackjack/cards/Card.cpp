@@ -76,7 +76,7 @@ bool Card::use(Card *c) {
             return false;
         }
         c->adjust_value(3);
-        bob.apply_effect(*c, new geng::EffectShake(geng::GENG_Shake::CIRCULAR, 3, 400, -2));
+        bob.apply_effect(*c, new gan::EffectShake(gan::GENG_Shake::CIRCULAR, 3, 400, -2));
     }
     else if (value == BJ_CARD_DECREMENT) {
         if (c->special()) {
@@ -84,7 +84,7 @@ bool Card::use(Card *c) {
             return false;
         }
         c->adjust_value(-3);
-        bob.apply_effect(*c, new geng::EffectShake(geng::GENG_Shake::CIRCULAR, 3, 400, 2));
+        bob.apply_effect(*c, new gan::EffectShake(gan::GENG_Shake::CIRCULAR, 3, 400, 2));
     }
     return true;
 }

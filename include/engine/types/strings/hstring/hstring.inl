@@ -1,8 +1,6 @@
 #pragma once
 
-#include "engine/types/strings/str_view/str_view.hpp"
-
-namespace geng {
+namespace gan {
 
 // ******************************
 // Private helpers
@@ -30,7 +28,7 @@ inline void hstring::ensure(uint32_t needed) {
 // ******************************
 
 inline hstring::hstring() {
-    ensure(1);       // reserve at least one for null
+    ensure(1); // reserve at least one for null
     len = 0;
     data[0] = '\0';  // always null-terminated
 }
@@ -138,8 +136,8 @@ inline const char& hstring::operator[](uint32_t i) const {
 }
 
 // Always safe: cstr just returns pointer, buffer is always null-terminated
-inline char* hstring::cstr() { return data; }
-inline const char* hstring::cstr() const { return data; }
+inline char* hstring::c_str() { return data; }
+inline const char* hstring::c_str() const { return data; }
 inline hstring::operator const char*() { return data; }
 
 inline str_view hstring::wrap() { return {data, len, cap}; }
@@ -212,7 +210,7 @@ inline hstring& hstring::operator<<(float num) {
 }
 
 template<uint8_t P>
-inline hstring& hstring::operator<<(geng::precision<P>) {
+inline hstring& hstring::operator<<(gan::precision<P>) {
     precision = P;
     return *this;
 }

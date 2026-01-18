@@ -2,7 +2,7 @@
 
 #include "engine/types/positioning/FPos2D.hpp"
 
-namespace geng {
+namespace gan {
     /** Used for sending information between colliders and the physicsmaestro**/
     struct ProposedCollision {
         FPos2D newPos;

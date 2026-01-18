@@ -75,7 +75,7 @@ namespace blackjack {
     };
 
     // Default Object Setups
-    static const geng::Transform2D default_deck = {
+    static const gan::Transform2D default_deck = {
         {0,0},
         53,
         37,

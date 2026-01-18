@@ -4,7 +4,7 @@
 #include "../str_view/str_view.hpp"
 
 
-namespace geng {
+namespace gan {
 
     /** @brief @code fstring@endcode is a custom string class that is much faster for comparison and segmentation than std::string, but cannot be resized.
      * Create an fstring with @code fstring<size> varName@endcode.
@@ -20,7 +20,10 @@ namespace geng {
         /// Current length of the fstring
         uint32_t len;
         /// Array containing the information of the fstring
-        char arr[C+2];
+        char arr[C + 1];
+        /// Current precision of the array
+        uint8_t prec = 10;
+
     public:
         // **************
         // Constructors
@@ -46,7 +49,7 @@ namespace geng {
         /// Returns the capacity of the fstring
         [[nodiscard]] constexpr uint32_t capacity() const;
         /// Returns the data containing the fstring
-        [[nodiscard]] const char* cstr();
+        [[nodiscard]] const char* c_str();
         /// Returns true if the fstring is empty
         [[nodiscard]] bool empty() const;
         // <><><> Modifiers <><><>

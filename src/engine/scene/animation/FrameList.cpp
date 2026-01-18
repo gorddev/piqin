@@ -3,7 +3,7 @@
 #include "engine/debug/geng_debug.hpp"
 
 
-using namespace geng;
+using namespace gan;
 
 int FrameList::add_table(const FrameTable &table) {
     tables.push_back(table);
@@ -20,8 +20,7 @@ void FrameList::add_tables(gch::vector<FrameTable>& frameTables) {
 FrameTable& FrameList::get_table(int id) {
     if (id >= 0 && id < tables.size())
         return tables[id];
-    glog::err.src("FrameList::get_table") << "Table with table id " << id << " not found.\n";
-    abort();
+    glog::err.src("FrameList::get_table") << "Table with table id " << id << " not found." << glog::endlog;
 }
 
 auto FrameList::begin() {

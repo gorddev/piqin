@@ -4,7 +4,7 @@
 #include "BackgroundPalette.hpp"
 #include "../../core/EngineContext.hpp"
 
-namespace geng {
+namespace gan {
     /** To be heavily altered/changed. Currently the Background edits every pixel in the background, which is very very inefficient. */
     class Background {
     private:

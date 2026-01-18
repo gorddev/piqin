@@ -7,11 +7,11 @@ namespace groute {
     /**
      * @brief ReboundPath moves a Transform2D away from the target, then slingshots to the target.
      */
-    class Rebound final : public geng::Route {
+    class Rebound final : public gan::Route {
     public:
         /// Regular constructor
-        Rebound(geng::Gear& gear, const geng::FPos2D &target, float speed);
+        Rebound(gan::Gear& gear, const gan::FPos2D &target, float speed);
         /// Update override (true if done)
-        bool update(geng::LayerState& time) override;
+        bool update(gan::LayerState& time) override;
     };
 }

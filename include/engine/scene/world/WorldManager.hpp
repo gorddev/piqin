@@ -5,7 +5,7 @@
 #include "../../debug/geng_debug.hpp"
 
 
-namespace geng {
+namespace gan {
 
     class WorldManager {
     private:
@@ -28,8 +28,11 @@ namespace geng {
 
         void render_world(RenderBuffer& buffer) {
             if (world.magic) {
+                // We first make a tile buffer, and then render the world
                 TileBuffer tile_buffer(buffer, *tileset);
+                buffer.begin_object();
                 world.render_world(tile_buffer, cam);
+                buffer.end_object();
             }
         }
 

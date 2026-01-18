@@ -5,7 +5,7 @@
 #include "engine/layers/LayerContext.hpp"
 #include "engine/types/strings/hstring/hstring.hpp"
 
-namespace geng {
+namespace gan {
     /** @brief The TextureRegister links asset paths to GPU textures via two unordered maps. Each unique file path is assigned an ID, and each ID links to one texture.
      * @details The TextureRegister should know of all textures before main starts. There exists no "post-load asset" feature yet.
      * - To use the TextureRegister, call @code register_texture(string path)@endcode, and it
@@ -21,7 +21,7 @@ namespace geng {
         /// Contains the core for the layer.
         EngineContext& core;
         /// Maps the path of the texture to the texture id.
-        std::unordered_map<geng::hstring, int> path_to_id;
+        std::unordered_map<gan::hstring, int> path_to_id;
         /// Maps the id of the texture to the texture object.
         std::unordered_map<int, Texture> id_to_tex;
     protected:
@@ -30,7 +30,7 @@ namespace geng {
         /// Lets the renderer load a texture
         void load_texture(int index, Texture tex);
         /// Lets the renderer iterate through uninitialized textures
-        std::unordered_map<geng::hstring, int> ready_textures;
+        std::unordered_map<gan::hstring, int> ready_textures;
         /// Clears out any textures waiting to be rendered.
         void clear();
         /// Heyo its me your friend the renderer
@@ -46,6 +46,9 @@ namespace geng {
 
         // Registers a sprites. Returns sheet_id
         int register_texture(hstring path);
+
+        // Adds in a fully created texture
+        int instantiate_texture(Texture texture);
 
         // Destroys the texture with the given ID if not needed
         void unload_texture(int index);

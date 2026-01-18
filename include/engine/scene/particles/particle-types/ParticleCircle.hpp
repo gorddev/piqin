@@ -4,7 +4,7 @@
 
 #include "engine/particles/ParticleGroup.hpp"
 
-namespace geng {
+namespace gan {
 
     struct PCircle {
         FPos2D pos;

@@ -2,7 +2,7 @@
 #include "engine/types/strings/str_view/str_view.hpp"
 
 
-namespace geng {
+namespace gan {
     /**
      * @brief The Vertex is the fundamental coordinate system of the engine. @code x@endcode and @code y@endcode
      * determine position on the screen, and @code z@endcode determines rendering order.
@@ -76,7 +76,7 @@ namespace geng {
         /// Pipe a FPos3D with a string
         std::string operator<<(std::string s) const;
         /// Converts a FPos3D to a string.
-        [[nodiscard]] geng::str_view &to_fstring(str_view &buffer) const;
+        [[nodiscard]] gan::str_view &to_fstring(str_view &buffer) const;
         /// Checks to the fourth decimal if two Vertexes are equal.
         bool operator==(FPos3D other) const;
 

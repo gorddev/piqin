@@ -3,20 +3,20 @@
 
 #define DFL_POS Pos2D{20.f,0.f}
 #define MAX_VEL 1
-class PlayerTest : public geng::Collider{
+class PlayerTest : public gan::Collider{
 protected:
     bool grounded = false;
     bool clicked = false;
 public:
-    explicit PlayerTest(geng::FrameTable& frames)
+    explicit PlayerTest(gan::FrameTable& frames)
         : Collider(frames,{8,11}) {
-        t = geng::Transform2D{{20.f, 0.f}, 32, 32};
-        offset = {0, 10};
+        t = gan::Transform2D{{20.f, 0.f}, 31, 31};
+        offset = {0, 9};
         anim.set_animation(1);
         grounded = false;
     }
 
-    void update(geng::LayerState& state) override {
+    void update(gan::LayerState& state) override {
         if (!clicked) {
             if (state.is_held(SDL_SCANCODE_D)) {
                 vel.x += 0.05*state.get_dt();
@@ -52,7 +52,7 @@ public:
         grounded = false;
     }
 
-    void collide(geng::ProposedCollision &collision) override {
+    void collide(gan::ProposedCollision &collision) override {
         t.pos = collision.newPos;
         if (collision.delta.y < 0)
             grounded = true;
@@ -69,13 +69,13 @@ public:
         }
     }
 
-    void on_click(geng::Pos2D pos) override {
+    void on_click(gan::Pos2D pos) override {
         clicked = true;
         vel.y = 0;
         vel.x = 0;
     }
 
-    void on_click_release(geng::Pos2D pos) override {
+    void on_click_release(gan::Pos2D pos) override {
         clicked = false;
     }
 };

@@ -2,12 +2,12 @@
 #include "engine/utilities/Utilities.hpp"
 
 using namespace gfx;
-using namespace geng;
+using namespace gan;
 
 Shake::Shake(Gear* g, ShakeType shakeType, float amplitude, float speed, float duration, bool decay)
     : Morph(g, duration, amplitude), speed(speed), decay(decay) , shakeType(shakeType) {}
 
-bool Shake::update(geng::LayerState &time) {
+bool Shake::update(gan::LayerState &time) {
     if (!permanent) {
         duration -= time.get_dt();
         if (duration <= 0) {

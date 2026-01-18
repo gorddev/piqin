@@ -4,7 +4,7 @@
 #include "Tileset.hpp"
 #include "../../debug/geng_debug.hpp"
 
-namespace geng {
+namespace gan {
 
     /** Manages all fonts so you can easily print fonts to either the canvas or the UI */
     class TileList {
@@ -25,7 +25,7 @@ namespace geng {
         }
         /// grabs a font
         Tileset& at(int id) {
-            if (id >= tilesets.size() || id < 0) {
+            if (id >= static_cast<int>(tilesets.size()) || id < 0) {
                 glog::err.src("tilesets") << "ERR: Tileset " << id << "doesn't exist.\n";
                 id = 0;
             }

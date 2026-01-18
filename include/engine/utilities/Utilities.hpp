@@ -14,11 +14,11 @@ namespace gutils {
     signed char sgn(long double);
 
     /// Returns true if the point is within the transform.
-    bool contained_within(SDL_Point point, geng::Transform2D& t);
+    bool contained_within(SDL_Point point, gan::Transform2D& t);
     /// Moves the cursor into the frame of the actual scene considering borders.
-    void adjust_to_relative_coords(geng::Pos2D &point, geng::EngineContext &world);
+    void adjust_to_relative_coords(gan::Pos2D &point, gan::EngineContext &world);
     /// Uses the sweep method to detect collisions
-    bool swept_aabb(const geng::Box2D& moving, const geng::Box2D& target, const geng::FPos2D& delta, float& toi, geng::FPos2D& normal);
+    bool swept_aabb(const gan::Box2D& moving, const gan::Box2D& target, const gan::FPos2D& delta, float& toi, gan::FPos2D& normal);
 
     /// Converts a cstr to a float
     bool cstr_to_float(const char* str, float& out);
@@ -28,5 +28,10 @@ namespace gutils {
     bool is_float(const char* str);
     /// Checks if an input is an integer
     bool is_int(const char* str);
+
+    /// vertex to string
+    const char* to_cstr(SDL_Vertex v);
+    /// fpoint to string
+    const char* to_cstr(SDL_FPoint);
 }
 

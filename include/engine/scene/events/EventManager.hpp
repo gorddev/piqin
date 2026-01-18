@@ -6,7 +6,7 @@
 #include "engine/layers/LayerContext.hpp"
 #include "engine/types/external/vector.hpp"
 
-namespace geng {
+namespace gan {
 
     /** @details The event manager has three primary event queues that all do different things. Note that a duration of -1 in the Epoch Queue specifies an indefinite time.
      * 1. @code Relative Queue@endcode › Events in this queue will only start decreasing in duration once the member in front of them has finished their task.

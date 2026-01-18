@@ -4,7 +4,7 @@
 #include "../core/gears/GearFlag.hpp"
 #include "external/vector.hpp"
 
-namespace geng {
+namespace gan {
 
     /**
      * @brief Describes what happens after each frame ends
