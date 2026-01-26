@@ -5,7 +5,7 @@
 #include <stdexcept>
 
 #include "../str_view/str_view.hpp"
-
+#include <iostream>
 namespace gan {
 
     /// Throw an error for hstring
@@ -47,6 +47,8 @@ namespace gan {
         hstring(hstring&& other) noexcept;
         ~hstring();
 
+        /// set equal to a constant character
+        hstring& operator=(const char text[]);
         /// set equal to other hstrings
         hstring& operator=(const hstring& other);
         /// steals the other hstring's heap space
@@ -55,7 +57,8 @@ namespace gan {
         //*****************************
         // utilities
         //***************************
-
+        /// resizes the hstring
+        void resize(uint32_t new_cap);
         /// returns the length of the hstring
         [[nodiscard]] uint32_t length() const;
         /// returns the capacity of the hstring
@@ -119,6 +122,7 @@ namespace gan {
 
         /// generic types
         template<typename T>
+        requires(!std::is_same_v<T, bool> && !std::is_pointer_v<T>)
         hstring& operator<<(T mystery) { return *this << static_cast<int>(mystery); }
 
         /// Truncation and the like
@@ -129,6 +133,12 @@ namespace gan {
         hstring& operator<<(bool b);
         /// For pointers
         hstring& operator<<(const void* ptr);
+        /// generic pointer
+        template<typename T>
+        requires (std::is_pointer_v<T>)
+        hstring& operator<<(T ptr) {
+            return *this << static_cast<const void*>(ptr);
+        }
     };
 
 }

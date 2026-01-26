@@ -30,7 +30,7 @@ namespace gan {
             /// Scene bottom right
             SDL_FPoint sbr = {static_cast<float>(scene_width), static_cast<float>(scene_height)};
             /// White
-            SDL_Color w = {255,255,255, 255};
+            SDL_Color w = {gan::max_alpha,gan::max_alpha,gan::max_alpha, gan::max_alpha};
 
             SDL_Vertex topleft = {stl, w, ts};
             SDL_Vertex bottomleft = {{stl.x, sbr.y}, w, {ts.x, te.y}};

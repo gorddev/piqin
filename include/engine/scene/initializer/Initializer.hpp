@@ -1,12 +1,10 @@
 #pragma once
 
 #include "TextureRegister.hpp"
-#include "engine/scene/animation//FrameList.hpp"
-#include "engine/scene/animation/FrameTable.hpp"
-#include "engine/scene/font/Font.hpp"
-#include "engine/scene/font/FontList.hpp"
-#include "engine/scene/tilesets/TileList.hpp"
-#include "engine/scene/tilesets/Tileset.hpp"
+#include "engine/layers/layer-subobjects/LayerCore.hpp"
+#include "../../mods/animation/frames/FrameTable.hpp"
+#include "engine/mods/plugins/platformer/tilesets/TileList.hpp"
+#include "engine/mods/plugins/platformer/tilesets/Tileset.hpp"
 
 namespace gan {
     /**
@@ -14,16 +12,14 @@ namespace gan {
      */
     class Initializer final {
         /// The layerContext object
-        LayerContext& scene;
-        /// Allows the initializer to add frametables to the layer's framelist.
-        FrameList& frames;
+        LayerCore& scene;
         /// Contains all the tilesets that will be added to the layer's tilesetlist
         TileList& tiles;
         /// Contains all the textures that will need to be created
         TextureRegister& texreg;
 
     public:
-        explicit Initializer(LayerContext& scene, FrameList& frames, TileList& tiles, TextureRegister& tex_reg);
+        explicit Initializer(LayerCore& scene, TileList& tiles, TextureRegister& tex_reg);
         /// Texture
         int texture(hstring path);
         /// Sets up a FrameTable and its corresponding texture to be initialized. Returns the ID of the frameTable

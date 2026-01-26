@@ -46,7 +46,7 @@ namespace gan {
         ///  Emplaces a text at a position within the parent fstring.
         void emplace(uint32_t index, const char* str, uint32_t count);
         /// Finds a specific character starting from the provided position
-        int find(char c, int pos = 0) const;
+        int find(char c, uint32_t pos = 0) const;
 
         // **************
         // Operator overloads

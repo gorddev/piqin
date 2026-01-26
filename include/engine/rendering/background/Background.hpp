@@ -9,13 +9,11 @@ namespace gan {
     class Background {
     private:
         // Stores the pixel of each of our rgb values
-        gch::vector<uint8_t> rgb;
+        std::vector<uint8_t> rgb;
         // Heightmap for dune-like structure.
-        gch::vector<float> heightMap;
+        std::vector<float> heightMap;
         // Keeps track of the intended color of each pixel
-        gch::vector<uint8_t> pixelColors;
-        // Keeps track of the BackgroundPalletes
-        gch::vector<BackgroundPalette> palettes;
+        std::vector<uint8_t> pixelColors;
         // Then tells us what pallete we're on
         int paletteNum = 0;
         // The texture that the background writes to.

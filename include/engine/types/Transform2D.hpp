@@ -1,10 +1,9 @@
 #pragma once
-#include "positioning/FPos2D.hpp"
+#include "positioning/vec2.hpp"
 #include "../core/EngineContext.hpp"
 #include <SDL.h>
 
-
-#include "engine/layers/LayerContext.hpp"
+#include "engine/core/defaults/GengColors.hpp"
 #include "strings/fstring/fstring.hpp"
 
 namespace gan {
@@ -43,41 +42,38 @@ public:
     /// Editable height of the object.
     float h = 10;
     /// Color of the transform.
-    SDL_Color color = {255, 255, 255, 255};
+    SDL_Color color = {max_alpha, max_alpha, max_alpha, max_alpha};
 
     // Positioning
     /// Position of the Transform2D
-    FPos2D pos = {0,0};
+    vec2 pos = {0,0};
     /// Rendering offset of the Transform2D
-    FPos2D offset = {0,0};
+    vec2 offset = {0,0};
 
     /// Default constructor
     Transform2D();
     /// Explicit constructor for position
-    explicit Transform2D(FPos2D pos);
+    explicit Transform2D(vec2 pos);
     /// Defines position, height, and width
-    Transform2D(FPos2D pos, uint16_t width, uint16_t height);
+    Transform2D(vec2 pos, uint16_t width, uint16_t height);
     /// Defines position, height, width, and scale.
-    Transform2D(FPos2D pos, uint16_t width, uint16_t height, float scale);
+    Transform2D(vec2 pos, uint16_t width, uint16_t height, float scale);
 
     /// Returns the adjust position with width and height of the transform
-    [[nodiscard]] FPos2D get_s_pos();
+    [[nodiscard]] vec2 get_s_pos();
     /// Sets the adjusted position of the transform
-    void set_s_pos(FPos2D new_pos);
+    void set_s_pos(vec2 new_pos);
 
     // Resetting
     /// Returns width, height, and rotation to default values
     void reset();
 
     /// Gets the base width and height
-    uint16_t get_base_width() const;
-    uint16_t get_base_height() const;
-
-    /// Snap to region boundaries
-    void snap_to_scene(LayerContext& scene);
+    [[nodiscard]] uint16_t get_base_width() const;
+    [[nodiscard]] uint16_t get_base_height() const;
 
     /// Gets the points to render the hitbox of the transform object.
-    gch::vector<SDL_FPoint> to_vertex_hitbox(
+    std::vector<SDL_FPoint> to_vertex_hitbox(
         uint16_t thickness);
 
     /// Converts object to string representation for debugging verbose style

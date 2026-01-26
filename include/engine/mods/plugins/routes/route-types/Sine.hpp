@@ -1,13 +1,13 @@
 #pragma once
 
-#include "../../../layers/layer-subobjects/LayerState.hpp"
-#include "engine/mods/routes/Route.hpp"
+#include "engine/layers/layer-subobjects/LayerState.hpp"
+#include "engine/mods/plugins/routes/Route.hpp"
 
-namespace groute {
+namespace gfx {
     /**
      * @brief SinePath moves an object's x linearly, and has it y follow a sin wave.
      */
-    class Sine final : public gan::Route {
+    class Sine final : public gfx::Route {
     private:
         /// Direction of travel for the path.
         gan::vec2 direction;

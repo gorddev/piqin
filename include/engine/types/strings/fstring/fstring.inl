@@ -14,7 +14,7 @@ static void fstring_throw_err(const char err[]) {
 template<uint32_t C>
 template<uint16_t N>
 constexpr gan::fstring<C>::fstring(const char (&str)[N]) { // NOLINT(*-explicit-constructor, *-pro-type-member-init)
-    // Gets the lenght of our string
+    // Gets the length of our string
     len = std::min<uint32_t>(N - 1, C - 1);
     // Allocate memory for array
     std::copy(str, str + len, arr);
@@ -94,8 +94,8 @@ constexpr uint32_t gan::fstring<C>::capacity() const {
 }
 
 template<uint32_t C>
-const char* gan::fstring<C>::c_str() {
-    arr[len] = '\0';
+const char* gan::fstring<C>::c_str() const {
+    //arr[len] = '\0';
     return &arr[0];
 }
 
@@ -170,14 +170,14 @@ constexpr char& gan::fstring<C>::operator[](uint32_t index) {
 
 template<uint32_t C>
 template<uint32_t N>
-bool gan::fstring<C>::operator==(const char(&str)[N]) {
+bool gan::fstring<C>::operator==(const char(&str)[N]) const {
     if (len != N - 1) return false;
     return std::memcmp(arr, str, len) == 0;
 }
 
 template<uint32_t C>
-bool gan::fstring<C>::operator==(const char *str) {
-    for (int i = 0; i < len; i++) {
+bool gan::fstring<C>::operator==(const char *str) const{
+    for (uint_fast32_t i = 0; i < len; i++) {
         if (arr[i] != str[i]) return false;
     }
     return str[len] == '\0';
@@ -220,7 +220,7 @@ gan::fstring<C>& gan::fstring<C>::operator<<(const int num) {
 
 template<uint32_t C>
 template<uint8_t P>
-gan::fstring<C> & gan::fstring<C>::operator<<(precision<P> precision) {
+gan::fstring<C> & gan::fstring<C>::operator<<(precision<P>) {
     arr[C + 1] = P;
     return *this;
 }
@@ -230,8 +230,9 @@ gan::fstring<C> & gan::fstring<C>::operator<<(float num) {
     auto* start = arr + len;
     auto* end = arr + C;
     auto res = std::to_chars(start, end, num, std::chars_format::fixed, prec);
-    if (res.ec == std::errc::value_too_large)
-        fstring_throw_err("fstring overflow");
+    if (res.ec == std::errc::value_too_large) {
+        return *this;
+    }
     len += res.ptr - start;
     return *this;
 }

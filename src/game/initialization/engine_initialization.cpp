@@ -1,6 +1,5 @@
 #include "game/initialization/engine_initialization.hpp"
 #include "engine/core/Engine.hpp"
-#include "src/testing/camerarouter.hpp"
 
 void init::init_engine(gan::Engine &engine, bool debug) {
     // initializes the engine
@@ -22,5 +21,4 @@ void init::init_fonts(gan::Engine& engine) {
 
 void init::init_routers(gan::Engine& engine) {
     // allows us to move camera with arrow keys
-    engine.create_router<CameraRouter>();
 }

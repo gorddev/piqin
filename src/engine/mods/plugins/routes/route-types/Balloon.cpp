@@ -1,7 +1,7 @@
 #include "engine/mods/plugins/routes/route-types/Balloon.hpp"
 
 using namespace gan;
-using namespace groute;
+using namespace gfx;
 
 Balloon::Balloon(Gear& g, const vec2 &target, float speed)
     : Route(g, target, speed), direction((target-g.t.pos).unit()) {}
@@ -13,8 +13,8 @@ bool Balloon::update(LayerState& time) {
     float DIST = target.dist(t.pos);
     vec2 dist = direction * time.get_dt() * speed * ((DIST < 1.0f) ? 1.0f : DIST) / 70.0f;
     //minimum step of movement
-    float minny = (target.dist(t.pos) * 0.02f);
-    const float minStep = std::max(minny, 0.02f);
+    float minny = (target.dist(t.pos) * 0.001f);
+    const float minStep = std::max(minny, 0.001f);
     // This way we can preserve minimum stepping
     if (abs(dist.x) < minStep)
         dist.x = (direction.x >= 0.0f ? minStep : -minStep);

@@ -1,15 +1,15 @@
 #pragma once
 #include "engine/core/defaults/GengColors.hpp"
-#include "engine/scene/banners/text/syntax/SyntaxMap.hpp"
+#include "engine/mods/banners/text/syntax/SyntaxMap.hpp"
 
 namespace gan::debug {
 
     // Commands
-    inline void syntax_emphasize(gch::vector<str_subview> args, SyntaxInfo& out)
+    inline void syntax_emphasize(std::vector<str_subview> args, SyntaxInfo& out)
         { out.color = color_orange; }
-    inline void syntax_normal(gch::vector<str_subview> args, SyntaxInfo& out)
+    inline void syntax_normal(std::vector<str_subview> args, SyntaxInfo& out)
         { out.color = color_white; }
-    inline void syntax_type(gch::vector<str_subview> args, SyntaxInfo& out)
+    inline void syntax_type(std::vector<str_subview> args, SyntaxInfo& out)
         { out.color = color_pink; }
 
     // Patterns

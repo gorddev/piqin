@@ -1,12 +1,12 @@
 #pragma once
-#include "engine/scene/banners/Banner.hpp"
-#include "engine/scene/banners/text/Text.hpp"
-#include "engine/scene/banners/widgets/WidgetBorder.hpp"
-#include "engine/scene/banners/widgets/WidgetBox.hpp"
+#include "engine/mods/banners/Banner.hpp"
+#include "engine/mods/banners/text/Text.hpp"
+#include "engine/mods/banners/widgets/WidgetBorder.hpp"
+#include "engine/mods/banners/widgets/WidgetBox.hpp"
 
 namespace gan::debug {
 
-    const Dim2D debug_button_size = {20, 20};
+    const dim2 debug_button_size = {20, 20};
 
     class DebugButton : public Banner {
     private:
@@ -19,23 +19,24 @@ namespace gan::debug {
         /// Background of the button
         WidgetBox background;
         /// Text of the button
-        Text<12> text;
+        Text text;
 
     public:
-        DebugButton(FPos2D pos, bool& bind, Font& font, char symbol = '#',  Dim2D size = debug_button_size)
-            : Banner(pos, size.w, size.h), symbol(symbol), bind(bind), text("[c:green]", font),
-                border(1), background(-100, -100, {0,0,0,120}) {
+        DebugButton(vec2 pos, bool& bind, Font& font, char symbol = '#',  dim2 size = debug_button_size)
+            : Banner(pos, size.w, size.h), symbol(symbol), bind(bind), border(1),
+                background(-100, -100, {0,0,0,120}), text("[c:green]", font) {
+
             add_background(&background);
             add_background(&border);
-            text.get_fstr_view() << "[c:green]" << symbol;
+            text.resize_internal_string(10);
             text.set_pos({size.w/2 - text.get_font()->get_width(symbol)/2, size.h/2 - text.get_font()->get_height(symbol)/2});
-            text.update_text(text.get_fstr_view().c_str());
+            text.update_text((fstring<11>("[c:green]") << symbol).c_str());
             add_widget(&text);
             DebugButton::on_hover_release();
         }
 
         // on click
-        void on_click(Pos2D pos) override {
+        void on_click(pos2) override {
             bind = !bind;
             if (bind) {
                 text.update_text((fstring<11>("[c:green]") << symbol).c_str());
@@ -55,9 +56,9 @@ namespace gan::debug {
         }
         void on_hover_release() override {
             if (bind)
-                border.set_color({50,140,50,255});
+                border.set_color({50,140,50,gan::max_alpha});
             else
-                border.set_color({140,50,50,255});
+                border.set_color({140,50,50,gan::max_alpha});
         }
 
         void update() {

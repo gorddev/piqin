@@ -5,7 +5,7 @@
 
 #include "engine/core/defaults/sysfont_data.hpp"
 #include "engine/debug/geng_debug.hpp"
-#include "engine/scene/font/Font.hpp"
+#include "engine/core/font/Font.hpp"
 #include "engine/scene/initializer/Texture.hpp"
 #include "engine/types/strings/hstring/hstring.hpp"
 
@@ -72,7 +72,7 @@ Texture IMGDecoder::load_image_as_texture(
     SDL_Rect dst = {0, 0, src->w, src->h};
     SDL_BlitSurface(src, nullptr, padded, &dst);
 
-    Uint32 white = SDL_MapRGBA(padded->format, 255,255,255,255);
+    Uint32 white = SDL_MapRGBA(padded->format, gan::max_alpha,gan::max_alpha,gan::max_alpha,gan::max_alpha);
     ((Uint32*)padded->pixels)[(new_h - 1) * new_w + (new_w - 1)] = white;
 
     SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer, padded);
@@ -102,7 +102,7 @@ static void get_font_width_height(Font& font, int& atlasW, int& atlasH) {
 
     for (int c = 32; c < 127; ++c) {
         SDL_Surface* s =
-            TTF_RenderGlyph_Blended(font.get_font(), c, {255,255,255,255});
+            TTF_RenderGlyph_Blended(font.get_font(), c, {gan::max_alpha,gan::max_alpha,gan::max_alpha,gan::max_alpha});
         if (!s) continue;
 
         if (rowW + s->w + padding > MAX_ATLAS_WIDTH) {
@@ -124,7 +124,8 @@ static void get_font_width_height(Font& font, int& atlasW, int& atlasH) {
 
 Texture IMGDecoder::load_font_as_texture(SDL_Renderer* renderer,
                                          Font& font,
-                                         hstring path)
+                                         hstring path,
+                                         SDL_ScaleMode render_mode)
 {
     const int padding = font.get_padding();
 
@@ -157,7 +158,7 @@ Texture IMGDecoder::load_font_as_texture(SDL_Renderer* renderer,
             TTF_RenderGlyph_Solid(
                 font.get_font(),
                 c,
-                SDL_Color{255, 255, 255, 255}
+                SDL_Color{gan::max_alpha, gan::max_alpha, gan::max_alpha, gan::max_alpha}
             );
 
         if (!glyphSurface)
@@ -201,7 +202,7 @@ Texture IMGDecoder::load_font_as_texture(SDL_Renderer* renderer,
     }
 
     Texture atlas{};
-    Uint32 white = SDL_MapRGBA(atlasSurface->format, 255,255,255,255);
+    Uint32 white = SDL_MapRGBA(atlasSurface->format, gan::max_alpha,gan::max_alpha,gan::max_alpha,gan::max_alpha);
     ((Uint32*)atlasSurface->pixels)[(atlasSurface->h - 1) * atlasSurface->w + (atlasSurface->w - 1)] = white;
     atlas.texture = SDL_CreateTextureFromSurface(renderer, atlasSurface);
 
@@ -213,7 +214,7 @@ Texture IMGDecoder::load_font_as_texture(SDL_Renderer* renderer,
     }
 
     SDL_SetTextureBlendMode(atlas.texture, SDL_BLENDMODE_BLEND);
-    SDL_SetTextureScaleMode(atlas.texture, SDL_ScaleModeNearest);
+    SDL_SetTextureScaleMode(atlas.texture, render_mode);
 
     // IMPORTANT: store an owning string, NOT c_str() from a temporary
     atlas.info.filename = path.c_str();

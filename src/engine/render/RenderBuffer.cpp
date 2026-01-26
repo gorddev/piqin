@@ -76,7 +76,7 @@ void RenderBuffer::push_back(SDL_FPoint& pos, SDL_Color& color, SDL_FPoint& tex_
     push_back({pos, color, tex_coord});
 }
 
-void RenderBuffer::push_back(gch::vector<SDL_Vertex>& vertices) {
+void RenderBuffer::push_back(std::vector<SDL_Vertex>& vertices) {
     for (auto& v : vertices)
         prep_vertex(v);
     buffer.insert(buffer.end(), vertices.begin(), vertices.end());
@@ -86,7 +86,7 @@ void RenderBuffer::push_back(SDL_FPoint pos, SDL_Color color) {
     push_back({ pos, color, white_point });
 }
 
-void RenderBuffer::push_back(gch::vector<SDL_FPoint>& pos, SDL_Color color) {
+void RenderBuffer::push_back(std::vector<SDL_FPoint>& pos, SDL_Color color) {
     for (auto& i : pos) {
         push_back(i, color);
     }
@@ -108,7 +108,7 @@ void RenderBuffer::push_shadow() {
 }
 
 
-void RenderBuffer::instanced_push_shadow(gch::vector<SDL_Vertex>& vertices, int numShadows) {
+void RenderBuffer::instanced_push_shadow(std::vector<SDL_Vertex>& vertices, int numShadows) {
     shadows.apply_shadow(vertices, numShadows);
 }
 
@@ -118,7 +118,7 @@ int RenderBuffer::size() const {
     return static_cast<int>(buffer.size());
 }
 
-void RenderBuffer::prep(Camera& camera, Dim2D canvasDim) {
+void RenderBuffer::prep(Camera& camera, dim2 canvasDim) {
     cam = camera;
     screenScale.x = (canvasDim.w/cam.get_width());
     screenScale.y = (canvasDim.h/cam.get_height());

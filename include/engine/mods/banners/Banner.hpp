@@ -1,7 +1,7 @@
 #pragma once
 
-#include "engine/mods/plugins/banners/widgets/Widget.hpp"
-#include "engine/mods/plugins/banners/BannerBuffer.hpp"
+#include "engine/mods/banners/widgets/Widget.hpp"
+#include "engine/mods/banners/BannerBuffer.hpp"
 #include "engine/core/gears/Gear.hpp"
 
 namespace gan {

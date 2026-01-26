@@ -1,6 +1,6 @@
 #include "engine/scene/particles/particle-types/Sparkle.hpp"
 
-#include "engine/scene/sprites/Sprite.hpp"
+#include "engine/mods/animation/sprites/Sprite.hpp"
 #include "../../../../../include/engine/layers/layer-subobjects/LayerState.hpp"
 
 using namespace gan;

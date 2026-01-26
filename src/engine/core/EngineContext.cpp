@@ -2,16 +2,16 @@
 
 using namespace gan;
 
-EngineContext::EngineContext(FontList &fonts) : fonts(fonts) {}
+EngineContext::EngineContext() : tex_reg() {}
 
-void EngineContext::update(const double game_time) {
+void EngineContext::update(double game_time) {
     time = game_time;
     dt = time - prevTime;
     prevTime = time;
     frame++;
 }
 
-void EngineContext::_set_window_size(const uint16_t w, const uint16_t h) {
+void EngineContext::_set_window_size(uint16_t w, uint16_t h) {
     width = w;
     height = h;
 }
@@ -21,11 +21,11 @@ void EngineContext::_set_border_size(uint16_t bx, uint16_t by) {
     borderY = by;
 }
 
-void EngineContext::set_scale(const float s) {
+void EngineContext::set_scale(float s) {
     scale = s;
 }
 
-void EngineContext::set_pixel_perfect(const bool pix) {
+void EngineContext::set_pixel_perfect(bool pix) {
     pixel_perfect = pix;
 }
 
@@ -85,6 +85,6 @@ bool EngineContext::is_pixel_perfect() const {
     return pixel_perfect;
 }
 
-Font* EngineContext::get_font(int id) const {
-    return &fonts[id];
+Font& EngineContext::get_font(int id) {
+    return fonts[id];
 }

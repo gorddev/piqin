@@ -1,6 +1,6 @@
 #pragma once
-#include "engine/mods/plugins/banners/BannerEnums.hpp"
-#include "engine/mods/plugins/banners/BannerBuffer.hpp"
+#include "engine/mods/banners/BannerEnums.hpp"
+#include "engine/mods/banners/BannerBuffer.hpp"
 #include "engine/types/positioning/Direction2D.hpp"
 #include "engine/types/positioning/box2.hpp"
 #include "engine/layers/layer-subobjects/LayerCore.hpp"

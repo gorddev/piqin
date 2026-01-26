@@ -1,5 +1,4 @@
-#include "../../../../include/engine/mods/animation/Frame.hpp"
-#include "../../../../../include/engine/core/gears/GearFlag.hpp"
+#include "engine/mods/animation/frames/Frame.hpp"
 #include "engine/utilities/Utilities.hpp"
 
 using namespace gan;

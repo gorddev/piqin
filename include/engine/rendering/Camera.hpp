@@ -1,11 +1,9 @@
 #pragma once
-#include <sstream>
 
-#include "../debug/geng_debug.hpp"
 #include "engine/types/strings/str_view/str_view.hpp"
-#include "engine/types/positioning/Dim2D.hpp"
-#include "engine/types/positioning/FPos2D.hpp"
-#include "engine/types/positioning/Pos2D.hpp"
+#include "engine/types/positioning/dim2.hpp"
+#include "engine/types/positioning/vec2.hpp"
+#include "engine/types/positioning/pos2.hpp"
 
 namespace gan {
 
@@ -34,21 +32,21 @@ namespace gan {
     class Camera {
     private:
         /** @brief Camera width and height. */
-        Dim2D dim;
+        dim2 dim;
         /// Lets the renderer know if width or height have been changed.
         friend class Renderer;
         friend class RenderBuffer;
     public:
         /** @brief Camera position. */
-        FPos2D pos;
+        vec2 pos;
         /** @brief Camera offset */
-        FPos2D offset;
+        vec2 offset;
 
         /** @brief Default constructor. Sets position to (0, 0) and size to (100, 100). */
-        Camera() : pos(0, 0), dim(320, 320) {  }
+        Camera() : dim(320, 320), pos(0, 0) {  }
 
         /** @brief Construct camera with position and size.*/
-        Camera(int x, int y, int w, int h) : pos(x, y), dim(w, h) { }
+        Camera(int x, int y, int w, int h) : dim(w, h), pos(x, y) { }
 
         /// @brief Get camera width. @return Width
         [[nodiscard]] short get_width() const { return dim.w; }
@@ -57,8 +55,8 @@ namespace gan {
         [[nodiscard]] short get_height() const { return dim.h; }
 
         /** @brief Get the center point of the camera. @return Center position */
-        [[nodiscard]] Pos2D center() const {
-            return Pos2D(pos.x + (dim.w / 2.0), pos.y - (dim.h / 2.0));
+        [[nodiscard]] pos2 center() const {
+            return pos2(pos.x + (dim.w / 2.0), pos.y - (dim.h / 2.0));
         }
         /** @brief Returns the bottom boundary of the camera. @return int bottom */
         [[nodiscard]] int bottom() const { return pos.y + dim.h; }
@@ -81,12 +79,12 @@ namespace gan {
          * @brief Set camera's width and height.
          * @param Dim2D New Dimensions
          */
-        void set_dimensions(Dim2D dimensions) {
+        void set_dimensions(dim2 dimensions) {
             dim = dimensions;
         }
 
 
-        [[nodiscard]] Dim2D get_dimensions() const {
+        [[nodiscard]] dim2 get_dimensions() const {
             return dim;
         }
 
@@ -99,7 +97,7 @@ namespace gan {
                << " w: " << dim.w << " h: " << dim.h;
         }
 
-        void move_to_target(FPos2D target) {
+        void move_to_target(vec2 target) {
             pos += (target - pos)*0.2;
         }
     };

@@ -1,7 +1,8 @@
 #pragma once
 
 #include <utility>
-#include "engine/types/external/vector.hpp"
+#include <vector>
+#include "engine/core/defaults/GengColors.hpp"
 
 namespace gan {
     struct BackgroundPalette {
@@ -10,11 +11,11 @@ namespace gan {
         uint8_t range;
         uint8_t speed;
         uint8_t chaos = 1;
-        gch::vector<uint8_t> colors;
+        std::vector<uint8_t> colors;
 
         BackgroundPalette() = default;
 
-        BackgroundPalette (uint8_t numColors, uint8_t range, uint8_t speed, uint8_t chaos, gch::vector<uint8_t> weights, gch::vector<uint8_t> colors)
+        BackgroundPalette (uint8_t numColors, uint8_t range, uint8_t speed, uint8_t chaos, std::vector<uint8_t> weights, std::vector<uint8_t> colors)
             : numColors(numColors), range(range), speed(speed), chaos(chaos),
               colors(std::move(colors)) {
             // If our weights aren't enough
@@ -34,15 +35,15 @@ namespace gan {
         20,
         {30,30, 30, 30, 30},
         {
-            120, 180, 120, 255,
-            118, 178, 118, 255,
-            116, 176, 116, 255,
-            114, 174, 114, 255,
-            111, 171, 111, 255,
-            107, 167, 107, 255,
-            104, 164, 104, 255,
-            102, 162, 102, 255,
-            100, 168, 100, 255
+            120, 180, 120, gan::max_alpha,
+            118, 178, 118, gan::max_alpha,
+            116, 176, 116, gan::max_alpha,
+            114, 174, 114, gan::max_alpha,
+            111, 171, 111, gan::max_alpha,
+            107, 167, 107, gan::max_alpha,
+            104, 164, 104, gan::max_alpha,
+            102, 162, 102, gan::max_alpha,
+            100, 168, 100, gan::max_alpha
         }
     };
 
@@ -52,16 +53,16 @@ namespace gan {
         2,
         100,
         {30, 30, 30, 30, 30, 30, 30, 30, 30, 30},
-        {255, 255, 255, 255,
-            240, 240, 240, 255,
-            200, 200, 200, 255,
-            170, 170, 170, 255,
-        140, 140, 140, 255,
-        110, 110, 110, 255,
-        80, 80, 80, 255,
-        50, 50, 50, 255,
-        30, 30, 30, 255,
-        15, 15, 15, 255}
+        {gan::max_alpha, gan::max_alpha, gan::max_alpha, gan::max_alpha,
+            240, 240, 240, gan::max_alpha,
+            200, 200, 200, gan::max_alpha,
+            170, 170, 170, gan::max_alpha,
+        140, 140, 140, gan::max_alpha,
+        110, 110, 110, gan::max_alpha,
+        80, 80, 80, gan::max_alpha,
+        50, 50, 50, gan::max_alpha,
+        30, 30, 30, gan::max_alpha,
+        15, 15, 15, gan::max_alpha}
     };
 
     const BackgroundPalette tempPal = {
@@ -71,11 +72,11 @@ namespace gan {
         12,
         {1,30, 30, 30, 30},
         {
-            40, 40, 40, 255, //white (kinda)
-            0, 0, 0, 255,    //black
-            10, 10, 10, 255,
-            15, 15, 15, 255,
-            12, 12, 12, 255,
+            40, 40, 40, gan::max_alpha, //white (kinda)
+            0, 0, 0, gan::max_alpha,    //black
+            10, 10, 10, gan::max_alpha,
+            15, 15, 15, gan::max_alpha,
+            12, 12, 12, gan::max_alpha,
         }
     };
 }

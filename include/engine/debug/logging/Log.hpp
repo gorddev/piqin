@@ -29,7 +29,7 @@ namespace gan::debug {
         Log()
             : level(INFO), source(gan::fstring<64>()), timestamp(0) {}
         Log (Severity level, const char msg[], const char source[] = "")
-            : message(msg), source(source), level(level) {}
+            : level(level), message(msg), source(source) {}
 
         gan::str_view& to_fstring(gan::str_view& buffer) {
             auto severity = [&] {

@@ -1,8 +1,7 @@
 #pragma once
 
-#include "frames/FrameList.hpp"
-#include "engine/scene/sprites/Sprite.hpp"
-
+#include <vector>
+#include "FrameTable.hpp"
 
 namespace gan {
     /** @brief This is essentially a wrapper class for a vector of FrameTables that only allows adding and retrieval **/

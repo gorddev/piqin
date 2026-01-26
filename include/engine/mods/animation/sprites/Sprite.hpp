@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../../core/gears/Gear.hpp"
-#include "../../mods/animation/AnimInfo.hpp"
-#include "../../mods/animation/FrameTable.hpp"
+#include "engine/core/gears/Gear.hpp"
+#include "engine/mods/animation/sprites/AnimInfo.hpp"
+#include "engine/mods/animation/frames/FrameTable.hpp"
 
 namespace gan {
     /**
@@ -48,9 +48,9 @@ namespace gan {
         void update_frame(LayerState& time);
 
         /// To String verbose
-        gan::str_view& to_fstring_verbose(gan::str_view& buffer) const override;
+        str_view& to_fstring_verbose(gan::str_view& buffer) const override;
         /// to string short
-        gan::str_view& to_fstring(gan::str_view &buffer) const override;
+        str_view& to_fstring(gan::str_view &buffer) const override;
 
         // <><>< Manual overrides for Gears <><><>
         /// Converts an sprites to FPos2D for the buffer. overridable, but not recommended to do so.

@@ -4,9 +4,8 @@
 #include <utility>
 
 #include "SyntaxCommand.hpp"
-#include "engine/scene/font/Font.hpp"
-#include "engine/scene/font/FontChar.hpp"
-#include "engine/types/external/vector.hpp"
+#include "engine/core/font/Font.hpp"
+#include "engine/core/font/FontChar.hpp"
 
 namespace gan {
 

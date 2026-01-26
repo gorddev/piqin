@@ -12,13 +12,12 @@ namespace gan {
     class LayerInit {
     private:
         /// Private constructor only accessible by the engine.
-        LayerInit(EngineContext& context, TextureRegister& texreg)
-            : core(context), texreg(texreg) {}
+        explicit LayerInit(EngineContext& context)
+            : core(context) {}
         /// Hello friend!
         friend class Engine;
         friend class Layer;
         /// Member vars
         EngineContext& core;
-        TextureRegister& texreg;
     };
 }

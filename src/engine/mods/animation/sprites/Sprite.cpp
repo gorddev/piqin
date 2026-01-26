@@ -1,4 +1,4 @@
-#include "engine/scene/sprites/Sprite.hpp"
+#include "engine/mods/animation/sprites/Sprite.hpp"
 
 using namespace gan;
 

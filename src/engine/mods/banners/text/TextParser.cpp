@@ -1,6 +1,6 @@
-#include "engine/scene/banners/text/TextParser.hpp"
+#include "engine/mods/banners/text/TextParser.hpp"
 
-#include "../../../../../include/engine/types/strings/fstring/fstring.hpp"
+#include "engine/types/strings/fstring/fstring.hpp"
 #include "engine/core/defaults/GengColors.hpp"
 
 using namespace gan;

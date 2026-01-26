@@ -10,7 +10,7 @@ namespace gan::debug {
     private:
         EngineContext& core;
         /// Contains each of the buttons in the panel.
-        gch::vector<DebugButton> button_modes;
+        std::vector<DebugButton> button_modes;
         /// Mouse acceptor num
         int acceptors = 0;
         /// accepts the camera
@@ -18,8 +18,8 @@ namespace gan::debug {
 
         void add_button_mode(bool& bind, char symbol) {
             button_modes.emplace_back(
-                FPos2D{cam.get_width() - debug_button_size.w/2.f, debug_button_size.w/2.f + (debug_button_size.h*button_modes.size())},
-                bind, *core.get_font(0), symbol, debug_button_size);
+                vec2{cam.get_width() - debug_button_size.w/2.f, debug_button_size.w/2.f + (debug_button_size.h*button_modes.size())},
+                bind, core.get_font(0), symbol, debug_button_size);
         }
     public:
         explicit DebugButtonPanel(EngineContext& core, const Camera& cam) : core(core), cam(cam)
@@ -33,7 +33,7 @@ namespace gan::debug {
             add_button_mode(core.debugger.pause_layer, 'P');
         }
 
-        void notify_screen_resolution_change(Dim2D new_res) {
+        void notify_screen_resolution_change(dim2 new_res) {
             for (int i = 0; i < button_modes.size(); i++)
                 button_modes[i].set_pos({new_res.w - debug_button_size.w/2.f, debug_button_size.h/2.f + debug_button_size.h*i});
         }

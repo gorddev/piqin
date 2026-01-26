@@ -1,10 +1,9 @@
 #pragma once
 
 #include "Route.hpp"
-#include "../../layers/layer-subobjects/LayerCore.hpp"
 #include "engine/mods/Module.hpp"
 
-namespace gan {
+namespace gfx {
     /** @brief Updates all paths such that they affect their assigned @code gan::Transform2D@endcode object correctly.
      * @details Contains a @code std::unordered_map<Path*>@endcode and defines how it can be interacted with.
      * The following member functions apply:
@@ -14,28 +13,28 @@ namespace gan {
      * 4. @code void update()@endcode › updates all paths in the PathManager, and deletes finished paths.
      * 5. @code ~PathManager()@endcode › deletes all paths in the PathManager
      */
-    class RouteModule : public Module {
+    class RouteModule final : public gan::Module {
         /// A SparseVector containing all the paths. Destroyed paths are nullptrs.
         std::vector<Route*> paths;
         /// A map from gears to routes
-        std::unordered_map<Gear*, Route*> gear_to_routes;
+        std::unordered_map<gan::Gear*, Route*> gear_to_routes;
     public:
         /// Default constructor for RouteManager
-        explicit RouteModule(ModuleInit init)
-            : Module(init) {}
+        explicit RouteModule(gan::ModuleInit init)
+            : gan::Module(init) {}
 
         /// Adds a path to the path manager
         void add_route(Route *p);
         /// Adds a path, targeted at the provided Gear with a given offset.
-        void add_route(Route *p, Gear* g, const vec2 &offset = {0.f,0.f});
+        void add_route(Route *p, gan::Gear* g, const gan::vec2 &offset = {0.f,0.f});
 
         /// Removes a path from the given transform
-        void remove_path(Gear* g);
+        void remove_path(gan::Gear* g);
         /// Removes a path with the given path pointer (not recommended to use because not O(1))
         void remove_path(const Route *path);
 
         /// Returns true if the current gear has a route
-        bool has_route(Gear* g);
+        bool has_route(gan::Gear* g);
 
         /// Updates all paths in the RouteManager
         void update() override;

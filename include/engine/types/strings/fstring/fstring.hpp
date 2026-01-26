@@ -49,7 +49,7 @@ namespace gan {
         /// Returns the capacity of the fstring
         [[nodiscard]] constexpr uint32_t capacity() const;
         /// Returns the data containing the fstring
-        [[nodiscard]] const char* c_str();
+        [[nodiscard]] const char* c_str() const;
         /// Returns true if the fstring is empty
         [[nodiscard]] bool empty() const;
         // <><><> Modifiers <><><>
@@ -81,9 +81,9 @@ namespace gan {
         constexpr char& operator[](uint32_t index);
         /// Checks if an fstring and a predefined const character are equal
         template<uint32_t N>
-        bool operator==(const char (&str)[N]);
+        bool operator==(const char (&str)[N]) const;
         /// Checks if an fstring and a const char of undefined length are equal
-        bool operator==(const char* str);
+        bool operator==(const char* str) const;
 
         // <><><> Piping Into String <><><>
         /// Adds another fstring into the current fstring
@@ -113,7 +113,6 @@ namespace gan {
         fstring<C>& operator<<(const void*);
         /// Also boolean reading
         fstring<C>& operator<<(bool b);
-
     };
 
 }

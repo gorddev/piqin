@@ -1,4 +1,4 @@
-#include "engine/scene/banners/BannerBuffer.hpp"
+#include "engine/mods/banners/BannerBuffer.hpp"
 
 #include "engine/utilities/Utilities.hpp"
 

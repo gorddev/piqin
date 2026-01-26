@@ -2,7 +2,7 @@
 
 #include "Collider.hpp"
 #include "TileGrid.hpp"
-#include "engine/mods/platformer/world/WorldManager.hpp"
+#include "engine/mods/plugins/platformer/world/WorldManager.hpp"
 #include "engine/layers/layer-subobjects/LayerCore.hpp"
 
 namespace gan {

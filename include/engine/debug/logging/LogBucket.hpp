@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <stdexcept>
-#include "engine/types/external/vector.hpp"
 #include "Log.hpp"
 #include "LogCommands.hpp"
 
@@ -38,7 +37,7 @@ namespace gan::debug {
     class LogBucket {
     private:
         /// stores al lthe lgos
-        gch::vector<Log> logs;
+        std::vector<Log> logs;
         /// beginning index
         uint16_t start = 0;
         /// ending index

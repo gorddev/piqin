@@ -25,7 +25,7 @@ void ShadowBank::add_function(const hstring shadow, shadowFunc func) {
     }
 }
 
-void ShadowBank::apply_shadow(gch::vector<SDL_Vertex> &buffer, int numVertices, hstring shadow_type) {
+void ShadowBank::apply_shadow(std::vector<SDL_Vertex> &buffer, int numVertices, hstring shadow_type) {
     if (buffer.size() < numVertices) {
         glog::warn << "ERR: Requesting more shadows than Vertices rendered." << glog::endlog;
         numVertices = buffer.size();
@@ -37,7 +37,7 @@ void ShadowBank::apply_shadow(gch::vector<SDL_Vertex> &buffer, int numVertices, 
     shadowfuncs[shadow_type](buffer, numVertices, nullptr);
 }
 
-void ShadowBank::apply_shadow(gch::vector<SDL_Vertex>& buffer, int numVertices) {
+void ShadowBank::apply_shadow(std::vector<SDL_Vertex>& buffer, int numVertices) {
     if (buffer.size() < numVertices) {
         glog::err << "ERR: Requesting more shadows than Vertices rendered.\n" << glog::endlog;
         numVertices = buffer.size();

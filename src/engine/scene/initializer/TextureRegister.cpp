@@ -8,16 +8,14 @@
 
 using namespace gan;
 
-TextureRegister::TextureRegister(EngineContext& core) : core(core) {
-    id_num = 0;
-}
+TextureRegister::TextureRegister() : id_num(0) {}
 
 int TextureRegister::register_texture(hstring path) {
     // Checks if the texture is added yet
     if (path_to_id.find(path) == path_to_id.end()) {
         // Set dirty to true
         dirty = true;
-        // Incremnet id by one
+        // Increment id by one
         int i = id_num++;
         // Adds a path linked to texture id
         path_to_id[path] = i;

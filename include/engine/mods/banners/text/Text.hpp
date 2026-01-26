@@ -2,8 +2,8 @@
 #include <SDL_render.h>
 
 #include "engine/core/defaults/syntax-maps/DefaultSyntaxMap.hpp"
-#include "engine/scene/font/Font.hpp"
-#include "engine/mods/plugins/banners/widgets/Widget.hpp"
+#include "engine/core/font/Font.hpp"
+#include "engine/mods/banners/widgets/Widget.hpp"
 #include "syntax/SyntaxMap.hpp"
 
 namespace gan {
@@ -69,6 +69,7 @@ namespace gan {
             // Holds all the info to syntax highlight each block of text
             std::vector<SyntaxInfo> syntax_info;
             syntax_info.resize(new_text.length());
+            resize_internal_string(new_text.length());
             // Clears our current textliteral string
             textliteral.clear();
             // Updates our text literal with the command-removed parsed string, as well as adds characters to our fontchar buffer

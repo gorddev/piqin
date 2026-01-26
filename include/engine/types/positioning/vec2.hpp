@@ -6,23 +6,23 @@
 
 namespace gan {
 
-    struct FPos2D {
+    struct vec2 {
         float x, y;
 
         /// Default constructs to 0, 0
-        FPos2D() : x(0), y(0) {}
+        vec2() : x(0), y(0) {}
         /// Can specify a construction.
-        FPos2D(const float x, const float y) : x(x), y(y) {}
+        vec2(const float x, const float y) : x(x), y(y) {}
 
         // <><><> Calculations <><><>
         /// Turns it into a unit vector.
-        [[nodiscard]] FPos2D unit();
+        [[nodiscard]] vec2 unit();
         /// Find the magnitude of the point
         [[nodiscard]] float mag() const;
         /// Finds the distance to another FPos2D
-        [[nodiscard]] float dist(FPos2D p) const;
+        [[nodiscard]] float dist(vec2 p) const;
         /// Gets the absolute value FPos2D of this FPos2D
-        [[nodiscard]] FPos2D abs();
+        [[nodiscard]] vec2 abs();
 
         // <><><> Modifiers <><><>
         /// Turns all the values in the FPos2D to 0
@@ -45,22 +45,22 @@ namespace gan {
         // ********************************
         // Calculation
         /// Equality
-        bool operator==(const FPos2D& p) const;
+        bool operator==(const vec2& p) const;
         /// Inequality
-        bool operator!=(const FPos2D& p) const;
+        bool operator!=(const vec2& p) const;
         /// Addition by FPos2D
-        FPos2D operator+(const FPos2D& p) const;
+        vec2 operator+(const vec2& p) const;
         /// Subtraction by FPos2D
-        FPos2D operator-(const FPos2D& p) const;
+        vec2 operator-(const vec2& p) const;
         /// Multiplication by scalar
-        FPos2D operator*(float scalar) const;
+        vec2 operator*(float scalar) const;
         /// Division by scalar
-        FPos2D operator/(float scalar) const;
+        vec2 operator/(float scalar) const;
         // Assignment
         /// Self Addition
-        void operator+=(const FPos2D& p);
+        void operator+=(const vec2& p);
         /// Self Subtraction
-        void operator-=(const FPos2D& p);
+        void operator-=(const vec2& p);
         /// Self Multiplication
         void operator*=(float scalar);
         /// Self Division

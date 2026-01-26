@@ -12,14 +12,14 @@ namespace gan {
      * 2. @code Absolute Events@endcode › Putting an event into the absolute queue means that it will execute in the time you specify in ms regardless of other elements.
      * 3. @code Epoch Queue@endcode › Events in the epoch queue stop all other events from running until either 1: All of their durations expire, or 2. You call clear_epoch() on the EventManager.
      * */
-    class EventManager final : public Module{
+    class EventModule final : public Module{
     private:
         std::deque<std::pair<double, std::function<void()>>> relative_queue;
         std::vector<std::pair<double, std::function<void()>>> absolute_queue;
         std::deque<std::pair<double, std::function<void()>>> epoch_queue;
 
     public:
-        explicit EventManager(ModuleInit init);
+        explicit EventModule(ModuleInit init);
 
         /// Updates all events in the EventModule
         void pre_update() override;
@@ -45,4 +45,6 @@ namespace gan {
         /// Clears the epoch_queue and resumes the countdowns of all other events
         void clear_epoch();
     };
+
+    using Events = EventModule;
 }

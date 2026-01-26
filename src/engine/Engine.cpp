@@ -10,30 +10,37 @@
 
 using namespace gan;
 
-Engine::Engine() : core(fonts), texreg(core), rend(core, texreg),
+Engine::Engine() : core(), rend(core),
                    layers(core),
                    console(nullptr), input(core) {
-    glog::note.src("root") << "Engine creation complete." <<
+    glog::note.src("::~") << "Engine creation complete." <<
             glog::endlog;
+}
+
+Engine::~Engine() {
+    for (auto& l : layers.get_layer_list())
+        destroy_layer(l);
 }
 
 void Engine::init(bool debug_mode) {
     // Initialize SDL Video
     SDL_Init(SDL_INIT_VIDEO);
+    glog::note.src("::~") << "SDL_Backend Formed" << glog::endlog;
     TTF_Init();
+    glog::note.src("::~") << "SDL_TTF Initialized" << glog::endlog;
     rend._init();
-    glog::note.src("root") << "Engine SDL Backend Formed" << glog::endlog;
+    glog::note.src("::~") << "Window & Renderer Initialized" << glog::endlog;
 
     // Initialize our input
     input._init();
 
     // create our system font
-    fonts.instantiate_font(Font(8, 16, 145, 103, 1, 0));
+    core.fonts.instantiate_font(Font(8, 16, 145, 103, 1, 0));
 
     if (debug_mode) {
-        glog::note << "created debug mode stuff" << glog::endlog;
         // If debug is enabled, create the router
         console = create_router<debug::Console>(core);
+        glog::note << "Debug Mode Instantiated" << glog::endlog;
     }
     else
         console = nullptr;
@@ -54,7 +61,7 @@ bool Engine::tick(double time) {
     }
     input.update(layers.get_active_layer());
 
-    // Check if there's any layer change requests (this will be updated to a request interface later)
+    // WIP: Check if there's any layer change requests (this will be updated to a request interface later)
     gan::fstring<10> layerchange = core.get_layer_change();
     if (layerchange.length()) {
         if (layerchange == "__next")
@@ -78,17 +85,19 @@ bool Engine::update() {
     for (auto& l : layers.get_layer_list()) {
         l->update(core.get_dt());
     }
+    // Finally we update all of the input routers for post-processing
+    input.post_update(get_active_layer());
     return true;
 }
 
-int Engine::create_font(hstring path, uint16_t spacing, uint16_t pt) {
-    auto font = fonts.create_font(path, spacing, pt);
-    font->set_texture_id(rend.render_font(font, path));
+int Engine::create_font(hstring path, uint16_t spacing, uint16_t pt, SDL_ScaleMode render_mode) {
+    auto font = core.fonts.create_font(path, spacing, pt);
+    font->set_texture_id(rend.render_font(font, path, render_mode));
     return font->get_texture_id();
 }
 
 Font* Engine::get_font(int index) {
-    return &fonts.at(index);
+    return &core.fonts.at(index);
 }
 
 void Engine::render() {
@@ -98,20 +107,37 @@ void Engine::render() {
     rend.present();
 }
 
-void Engine::set_resolution(Dim2D d) {
-    core._set_window_size(d.w, d.h);
-    rend.set_render_resolution(d.w, d.h);
-    if (console != nullptr)
+void Engine::set_resolution(dim2 d) {
+
+    if (console && d.w < 600) {
+        while (d.w < 600) {
+            d.w*=2;
+            d.h*=2;
+        }
+        glog::warn.src("Engine::set_resolution") <<
+            "Cannot set resolution below 600px in debug mode."
+            "Resizing to: {" << d.w << ", " << d.h << "}"
+            << glog::endlog;
+        core._set_window_size(d.w, d.h);
+        rend.set_render_resolution(d.w, d.h);
         console->notify_screen_resolution_change(d);
+    }
+    else {
+        core._set_window_size(d.w, d.h);
+        rend.set_render_resolution(d.w, d.h);
+        if (console != nullptr)
+            console->notify_screen_resolution_change(d);
+    }
+
 }
 
-Dim2D Engine::get_resolution() const {
+dim2 Engine::get_resolution() const {
     return {core.get_width(), core.get_height()};
 }
 
 
 void Engine::set_active_layer(Layer* layer) {
-    set_active_layer(layer->scene.get_name());
+    set_active_layer(layer->scene.name);
 }
 
 void Engine::set_active_layer(gan::fstring<10> name) {
@@ -127,7 +153,7 @@ Layer * Engine::get_active_layer() {
 }
 
 void Engine::destroy_layer(Layer *l) {
-    destroy_layer(l->scene.get_name());
+    destroy_layer(l->scene.name);
 }
 
 void Engine::destroy_layer(gan::fstring<10> layer_name) {

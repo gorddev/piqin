@@ -6,37 +6,37 @@ namespace gan {
 
     /** @brief Basic shape that contains an @code int x@endcode , @code int y@endcode, @code short w@endcode, and @code short h@endcode.
      * @details Contains ==, !=, +, - nontrivial operator overloads and an @code int area@endcode function that returns @code w*h@endcode. **/
-    struct FBox2D {
+    struct fbox2 {
         float x, y;
         int w, h;
-        FBox2D() : x(0), y(0), w(0), h(0) {}
-        FBox2D(float x, float y, int w, int h) : x(x), y(y), w(w), h(h) {}
-        FBox2D(FBox2D& box) : x(box.x), y(box.y), w(box.w), h(box.h) {}
-        bool operator==(const FBox2D& b) const {
+        fbox2() : x(0), y(0), w(0), h(0) {}
+        fbox2(float x, float y, int w, int h) : x(x), y(y), w(w), h(h) {}
+        fbox2(fbox2& box) : x(box.x), y(box.y), w(box.w), h(box.h) {}
+        bool operator==(const fbox2& b) const {
             return (x == b.x && y == b.y && w == b.w && h == b.h);
         }
-        bool operator!=(const FBox2D& b) const {
+        bool operator!=(const fbox2& b) const {
             return (x != b.x || y != b.y || w != b.w || h != b.h);
         }
-        FBox2D operator+(const FBox2D& b) const {
+        fbox2 operator+(const fbox2& b) const {
             return {x + b.x, y + b.y, w + b.w, h + b.h};
         }
-        FBox2D operator-(const FBox2D& b) const {
+        fbox2 operator-(const fbox2& b) const {
             return {x - b.x, y - b.y, w - b.w, h - b.h};
         }
-        void operator+=(const FBox2D& b) {
+        void operator+=(const fbox2& b) {
             x += b.x;
             y += b.y;
             w += b.w;
             h += b.h;
         }
-        void operator-=(const FBox2D& b) {
+        void operator-=(const fbox2& b) {
             x -= b.x;
             y -= b.y;
             w -= b.w;
             h -= b.h;
         }
-        FBox2D operator-() const {
+        fbox2 operator-() const {
             return {-x, -y, -w, -h};
         }
         int area() const { return w*h; }
@@ -81,10 +81,10 @@ namespace gan {
         /// Turns it into a hitbox for rendering
         std::vector<SDL_FPoint> to_hitbox(uint16_t thickness) {
 
-            FBox2D left = {x, y, thickness, h};
-            FBox2D top = {x , y, w, thickness};
-            FBox2D bottom = {x + thickness, y + h - thickness, w - thickness, thickness};
-            FBox2D right = {x + w - thickness, y, thickness, h};
+            fbox2 left = {x, y, thickness, h};
+            fbox2 top = {x , y, w, thickness};
+            fbox2 bottom = {x + thickness, y + h - thickness, w - thickness, thickness};
+            fbox2 right = {x + w - thickness, y, thickness, h};
 
             std::vector<SDL_FPoint> points;
             left.to_vert_points(points);

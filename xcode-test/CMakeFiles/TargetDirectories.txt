@@ -1,0 +1,3 @@
+/Users/gordie/local_game/xcode-test/CMakeFiles/norton.dir
+/Users/gordie/local_game/xcode-test/CMakeFiles/ALL_BUILD.dir
+/Users/gordie/local_game/xcode-test/CMakeFiles/ZERO_CHECK.dir

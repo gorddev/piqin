@@ -23,6 +23,7 @@ namespace gan {
         /// Adds a banner to the banner manager for updating
         void add_banner(Banner* banner) {
             banners.push_back(banner);
+            scene.gears.add_gear(banner, module_id);
         }
         /// Removes a banner from the banner manager for updating.
         void remove_banner(const Banner* banner) {

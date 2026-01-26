@@ -1,7 +1,7 @@
 #pragma once
 
 #include "engine/layers/Layer.hpp"
-#include "engine/scene/banners/Banner.hpp"
+#include "engine/mods/banners/Banner.hpp"
 #include "../debug-utilities/DebugText.hpp"
 #include "engine/types/cqueue/cqueue.hpp"
 
@@ -13,7 +13,7 @@ namespace gan::debug {
         /// Holds the top banner info
         Banner info;
         /// Holds the displayed text
-        DebugText<800> text;
+        DebugText text;
         /// Contains the currently selected gear to hold information storage on.
         Gear* selected = nullptr;
         /// Contains a reference to the core for fonts

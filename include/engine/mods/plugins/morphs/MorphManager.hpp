@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Morph.hpp"
-#include "../../layers/layer-subobjects/LayerCore.hpp"
+#include "engine/layers/layer-subobjects/LayerCore.hpp"
 #include "engine/utilities/SparseVector.hpp"
 
 namespace gan {

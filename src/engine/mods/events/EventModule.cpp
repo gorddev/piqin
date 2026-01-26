@@ -2,8 +2,6 @@
 
 using namespace gan;
 
-EventModule::EventModule(LayerCore &layer_context) : scene(layer_context) {}
-
 EventModule::EventModule(ModuleInit init)
     : Module(init)
 {}

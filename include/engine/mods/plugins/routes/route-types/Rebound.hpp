@@ -1,13 +1,13 @@
 #pragma once
 
-#include "../../../layers/layer-subobjects/LayerState.hpp"
-#include "engine/mods/routes/Route.hpp"
+#include "engine/layers/layer-subobjects/LayerState.hpp"
+#include "engine/mods/plugins/routes/Route.hpp"
 
-namespace groute {
+namespace gfx {
     /**
      * @brief ReboundPath moves a Transform2D away from the target, then slingshots to the target.
      */
-    class Rebound final : public gan::Route {
+    class Rebound final : public gfx::Route {
     public:
         /// Regular constructor
         Rebound(gan::Gear& gear, const gan::vec2 &target, float speed);

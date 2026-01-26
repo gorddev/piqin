@@ -1,71 +1,72 @@
 #include <SDL.h>
 
-#define GAN_DEBUG
-
 #include <engine/gan.hpp>
 #include <engine/gan_plugins.hpp>
 
-#include "engine/scene/morphs/morph-types/Stretch.hpp"
-#include "engine/scene/particles/particle-types/RhombusRotateSpiral.hpp"
-#include "game/initialization/card_game_initialization.hpp"
+#include "engine/mods/animation/Animator.hpp"
+#include "engine/mods/banners/BannerModule.hpp"
+#include "engine/mods/plugins/routes/RouteModule.hpp"
+
+#include "game/asset-info/card_sprites.hpp"
+#include "game/cards/single-cards/Card.hpp"
+#include "game/GameMaster.hpp"
 #include "game/initialization/engine_initialization.hpp"
 #include "game/initialization/initialization_defaults.hpp"
-#include "game/initialization/initialization_data/small_card_frame_table.hpp"
-#include "testing/camerarouter.hpp"
-#include "testing/Card.hpp"
 
 void init_engine(gan::Engine& bob, bool debug_enabled);
+gan::Layer* init_card_layer(gan::Engine &bob);
 
 int main() {
-	// creates an engine object
+	// Creates the engine object
 	gan::Engine bob;
-	// initializes it
+	// Initialize the Engine
 	init_engine(bob, true);
-	// sets the window resolution
-	bob.set_resolution({init::default_res_w, init::default_res_h});
 
-	auto& cards = *bob.create_layer<gan::Layer>("cards");
-	cards.init.frame_table("../assets/cards/smallcard.png", init::small_card_table);
-	init::init_card_layer(cards);
+	auto& cards = *init_card_layer(bob);
 
 	/*
-	gch::vector<gan::Sprite*> cardlist;
-	cardlist.reserve(56);
-	gch::vector<gan::ParticleGroup*> pglist;
-	pglist.reserve(54);
+	card::Card* mycard = new card::Card(cards.mod<gan::Anim>()->get_ft(0), 1, card::Suit::CLUB);
+	cards.mod<gan::Anim>()->add_sprite(mycard);
+	mycard->t.pos = {150, 100};
+	mycard->set_draggable();
+	cards.input.add_mouse_acceptor(mycard);
+	*/
+	/*
+	gan::Banner box_test({100,100}, 100, 100);
+	box_test.add_widget(new gan::WidgetBox(-100, -100, {gan::max_alpha, gan::max_alpha, gan::max_alpha, 40}));
+	box_test.add_widget(new gan::WidgetBox(20, 20, {gan::max_alpha, gan::max_alpha, 50, 60}));
+	box_test.add_widget(new gan::Text<40>("[s:2][c:red]heyo look [c:blue]at me", *bob.get_font(2), gan::Align::CENTER));
+	auto border = gan::WidgetBorder(1);
+	box_test.add_background(&border);
+	border.set_color(gan::color_blue);
+	cards.add_banner(&box_test);
+	box_test.set_draggable();
+	cards.input.add_mouse_acceptor(&box_test);
+
+	gfx::HoverBanner hover_test({100, 100}, {100, 100}, 1, {240, 213, 230, 70}, {gan::max_alpha, gan::max_alpha, gan::max_alpha, 170});
+	cards.add_banner(&hover_test);
+	hover_test.set_draggable();
+	cards.input.add_mouse_acceptor(&hover_test);
+
+	*/
+
+
+	gan::Banner text_banner({100, 100}, 50, 50);
+	gan::ColorText my_text("Blackjack: Round 1", *bob.get_font(2), {255, 0, 0, 255}, gan::Align::CENTER);
+	text_banner.add_widget(&my_text);
+	text_banner.set_draggable();
+	cards.mod<gan::Banners>()->add_banner(&text_banner);
+	cards.input.add_mouse_acceptor(&text_banner);
 
 
 
-	for (int i = 0; i < 13; i++) {
-		for (int k = 0; k < 4; k++) {
-			blackjack::BJ_Suit suit;
-			if (k == 0)
-				suit = blackjack::BJ_Suit::HEART;
-			else if (k == 1)
-				suit = blackjack::BJ_Suit::CLUB;
-			else if (k == 2)
-				suit = blackjack::BJ_Suit::DIAMOND;
-			else
-				suit = blackjack::BJ_Suit::SPADE;
-			auto mycard = new Card(cards.get_frame_table(init::cards_ft_id), 1 + i, suit);
-			mycard->t.pos = {i*80.f, 300+80 * (1.f+k)};
-			cards.add_sprite(mycard);
-			cardlist.push_back(mycard);
-			cards.input.add_mouse_acceptor(mycard);
-			cards.apply_morph(new gfx::Stretch(mycard, 0.6, 0.2, 0.4));
-
-			//auto myparticle = new gfx::RhombusRotateSpiral(mycard, 26, 5, -1, 20, {230, 230, 255, 255});
-			//pglist.push_back(myparticle);
-			//cards.attach_particle(mycard, myparticle);
-		}
-	}*/
+	auto gameMaster = bob.create_router<card::GameMaster>(cards);
 
 	auto game_loop = [&]() {
 
 
 		return true;
 	};
-
 	GENG_START_LOOP(bob, game_loop);
 
 	glog::warn << "exiting game" << glog::endlog;
@@ -77,9 +78,32 @@ void init_engine(gan::Engine &bob, bool debug_enabled) {
 	bob.init(debug_enabled);
 	bob.set_debug_mode(debug_enabled);
 	// creates our first font
-	bob.create_font("../assets/fonts/ka1.ttf", 1, 10);
-	bob.create_font("../assets/fonts/RetroByte.ttf", 1, 16);
-	// allows us to move camera with arrow keys
-	bob.create_router<CameraRouter>();
+	bob.create_font("../assets/fonts/ka1.ttf", 1, 10, SDL_ScaleModeNearest);
+	bob.create_font("../assets/fonts/RetroByte.ttf", 1, 15, SDL_ScaleModeNearest);
+	// sets the resolution of the internal engine window
+	bob.set_resolution({init::default_card_res_w*4, init::default_card_res_h*4});
+}
+
+gan::Layer* init_card_layer(gan::Engine &bob) {
+	// create the layer from the engine
+	auto cards = bob.create_layer<gan::Layer>("cards");
+	cards->mods.add_bundle(gan::std_mods);
+	cards->mods.add_module<gfx::Routes>();
+	auto* anim = cards->mod<gan::Animator>();
+
+	// initialize our frame tables
+	anim->gen_ft(
+		"../assets/cards/smallcard.png",
+		init::card_table
+	);
+	// frame table!
+	anim->gen_ft(
+		"../assets/cards/smallcard.png",
+		init::card_highlight
+	);
+
+	// Set the dimensions of the card layer.
+	cards->camera.set_dimensions({init::default_card_res_w, init::default_card_res_h});
+	return cards;
 }
 

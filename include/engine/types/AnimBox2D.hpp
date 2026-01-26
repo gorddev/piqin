@@ -2,7 +2,6 @@
 
 #include <SDL_render.h>
 #include "../core/gears/GearFlag.hpp"
-#include "external/vector.hpp"
 
 namespace gan {
 
@@ -47,7 +46,7 @@ namespace gan {
             float duration = 0.f, GAnimType anim = GAnimType::IDLE, short next_anim = -1);
 
         /// Converts a quad into it's corresponding FPos2D tex_points
-        gch::vector<SDL_FPoint> to_vert_points(int texW, int texH) const;
+        std::vector<SDL_FPoint> to_vert_points(int texW, int texH) const;
 
         /// Converts a quad into a string!
         std::string to_string() const;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "engine/layers/LayerContext.hpp"
+#include "../../layers/layer-subobjects/LayerCore.hpp"
 #include "engine/scene/particles/ParticleGroup.hpp"
 #include "engine/utilities/SparseVector.hpp"
 
@@ -9,15 +9,15 @@ namespace gan {
     class ParticleManager {
     private:
         gutils::SparseVector<gan::ParticleGroup> groups;
-        gch::vector<int> DONOTUSE;
+        std::vector<int> DONOTUSE;
 
         /// Holds the layer core needded for dts
-        LayerContext& scene;
+        LayerCore& scene;
         /// Keeps track of the groups to remove
-        gch::vector<ParticleGroup*> groups_to_remove;
+        std::vector<ParticleGroup*> groups_to_remove;
     public:
         // Construct/destruct
-        explicit ParticleManager(LayerContext& layer_context);
+        explicit ParticleManager(LayerCore& layer_context);
         ~ParticleManager();
 
         // Updates all particle groups
@@ -28,7 +28,7 @@ namespace gan {
         // Adds a particle to the group
         ParticleGroup*& add(ParticleGroup* g);
 
-        void add( gch::vector<ParticleGroup *> &new_groups);
+        void add( std::vector<ParticleGroup *> &new_groups);
 
         // Lets a particle die out by ending
         static void dissolve(ParticleGroup* g);
@@ -40,7 +40,7 @@ namespace gan {
         // Checks if there's any particles to be removed
         bool particles_to_remove();
         // Pops all the removed particles
-        gch::vector<ParticleGroup*> pop_removed_particles();
+        std::vector<ParticleGroup*> pop_removed_particles();
 
         // Returns the list of particles
         gutils::SparseVector<ParticleGroup> &active_particles();

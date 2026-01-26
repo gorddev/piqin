@@ -1,0 +1,1014 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		16F90D54F24355E8EE3683E1 /* ZERO_CHECK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 36250C56E3F74C6AA63A0B6B /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildPhases = (
+				FA9DDECCD8E0583F325F993A /* Generate CMakeFiles/ZERO_CHECK */,
+			);
+			dependencies = (
+			);
+			name = ZERO_CHECK;
+			productName = ZERO_CHECK;
+		};
+		738989B42E75B6B70E4212C0 /* ALL_BUILD */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 9B02696099F748E2BD35E3E4 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildPhases = (
+				A1399205175E44297C68E3A8 /* Generate CMakeFiles/ALL_BUILD */,
+			);
+			dependencies = (
+				459ACB9F231346F294D1DCAF /* PBXTargetDependency */,
+				DC643D5F1FA8495785D86480 /* PBXTargetDependency */,
+			);
+			name = ALL_BUILD;
+			productName = ALL_BUILD;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		015D58A9181B4F1985F714AD /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Rebound.cpp */ = {isa = PBXBuildFile; fileRef = 272E0EBBAFB84AA19D8D1311 /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Rebound.cpp */; };
+		04E6F3D5BD0D4A4DA32B58EE /* /Users/gordie/local_game/include/engine/scene/particles/particle-types/RhombusRotateSpiral.hpp */ = {isa = PBXBuildFile; fileRef = 561A9BDD22D447F7868C4F42 /* /Users/gordie/local_game/include/engine/scene/particles/particle-types/RhombusRotateSpiral.hpp */; };
+		051B229DBAB34A6EABBD8535 /* /Users/gordie/local_game/src/main.cpp */ = {isa = PBXBuildFile; fileRef = DA1559083CA044BD9436A69B /* /Users/gordie/local_game/src/main.cpp */; };
+		05980ECC5C6048A297367F53 /* /Users/gordie/local_game/src/engine/mods/plugins/platformer/world/deserialization/WorldLoader.cpp */ = {isa = PBXBuildFile; fileRef = 16328E8BA19245E5AC9CC7B7 /* /Users/gordie/local_game/src/engine/mods/plugins/platformer/world/deserialization/WorldLoader.cpp */; };
+		091B9762820842E0BC08886F /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Torpedo.cpp */ = {isa = PBXBuildFile; fileRef = 25E5EFA3BA67430C9547DD5E /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Torpedo.cpp */; };
+		0B90378D0C354750A8DF2800 /* /Users/gordie/local_game/src/engine/mods/plugins/platformer/world/GameWorld.cpp */ = {isa = PBXBuildFile; fileRef = 93553B2859834FFDA683427F /* /Users/gordie/local_game/src/engine/mods/plugins/platformer/world/GameWorld.cpp */; };
+		104A39BFE871485B9617460D /* /Users/gordie/local_game/src/engine/mods/banners/text/TextParser.cpp */ = {isa = PBXBuildFile; fileRef = 64E0592E9D944960B1037ED1 /* /Users/gordie/local_game/src/engine/mods/banners/text/TextParser.cpp */; };
+		13FEFBB7EEBA42B186BF82D5 /* /Users/gordie/local_game/src/engine/scene/initializer/Initializer.cpp */ = {isa = PBXBuildFile; fileRef = DA69D4E2B0264ADEBEF40BC1 /* /Users/gordie/local_game/src/engine/scene/initializer/Initializer.cpp */; };
+		14B0EE5374704759A2C299C3 /* /Users/gordie/local_game/src/engine/mods/plugins/platformer/physics/PhysicsMaestro.cpp */ = {isa = PBXBuildFile; fileRef = EDED7DBBDE3D411F9E4AEF78 /* /Users/gordie/local_game/src/engine/mods/plugins/platformer/physics/PhysicsMaestro.cpp */; };
+		1B69D27F8E7E41F59C845EF1 /* /Users/gordie/local_game/src/engine/debug/Console.cpp */ = {isa = PBXBuildFile; fileRef = 9BE6F10000454DA6822AF5FF /* /Users/gordie/local_game/src/engine/debug/Console.cpp */; };
+		1C64605650964DB89ADD177F /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Balloon.cpp */ = {isa = PBXBuildFile; fileRef = 717C6556814D4C28938813A8 /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Balloon.cpp */; };
+		1D1C61E3E1DA4029993108F9 /* /Users/gordie/local_game/src/engine/mods/particles/ParticleManager.cpp */ = {isa = PBXBuildFile; fileRef = 41690C5BEBBF451B94D86A66 /* /Users/gordie/local_game/src/engine/mods/particles/ParticleManager.cpp */; };
+		2331214FA36B44F5A2C8FE5B /* /Users/gordie/local_game/src/engine/utilities/Utilities.cpp */ = {isa = PBXBuildFile; fileRef = DD9936DB8DDB421395C97625 /* /Users/gordie/local_game/src/engine/utilities/Utilities.cpp */; };
+		28F8118A86AC452EBD603D7C /* /Users/gordie/local_game/src/engine/types/AnimBox2D.cpp */ = {isa = PBXBuildFile; fileRef = 3A48255E299F4E428FE4E5C9 /* /Users/gordie/local_game/src/engine/types/AnimBox2D.cpp */; };
+		2BAE3338A4C54E8C8CEEEB7D /* /Users/gordie/local_game/src/game/blackjack/BlackjackHand.cpp */ = {isa = PBXBuildFile; fileRef = 9A7F8E5607EF44CD9CBB4969 /* /Users/gordie/local_game/src/game/blackjack/BlackjackHand.cpp */; };
+		347FA3B53DE54B7D8112ABAB /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Sine.cpp */ = {isa = PBXBuildFile; fileRef = AA5B5F7486344783BAE9F8A6 /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Sine.cpp */; };
+		38214CE965BC4B46BE8C9909 /* /Users/gordie/local_game/include/game/initialization/initialization_defaults.hpp */ = {isa = PBXBuildFile; fileRef = 7D9937E23632426880727629 /* /Users/gordie/local_game/include/game/initialization/initialization_defaults.hpp */; };
+		385864EBBE7F44B1BE969285 /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Linear.cpp */ = {isa = PBXBuildFile; fileRef = 5F0B208B8D8F4ABF99AC645F /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Linear.cpp */; };
+		3A512D763A93463AAE1E3493 /* /Users/gordie/local_game/src/engine/scene/initializer/TextureRegister.cpp */ = {isa = PBXBuildFile; fileRef = 0485A7C3DA1544A08CA3201F /* /Users/gordie/local_game/src/engine/scene/initializer/TextureRegister.cpp */; };
+		3B25417D00E44BB4AD1FE12A /* /Users/gordie/local_game/src/engine/input/InputHandler.cpp */ = {isa = PBXBuildFile; fileRef = 37BA7457F1824CE7A7A39D4C /* /Users/gordie/local_game/src/engine/input/InputHandler.cpp */; };
+		3BA29B8F73264FE6BEA0F350 /* /Users/gordie/local_game/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 842D5BB4E66B455E826EFBE8 /* /Users/gordie/local_game/CMakeLists.txt */; };
+		3DB6D9F63028400F91C429BC /* /Users/gordie/local_game/include/game/initialization/engine_initialization.hpp */ = {isa = PBXBuildFile; fileRef = F644811217084F97B0E3D2E8 /* /Users/gordie/local_game/include/game/initialization/engine_initialization.hpp */; };
+		4262B6CEF5CD455F9605AC90 /* /Users/gordie/local_game/src/engine/types/Transform2D.cpp */ = {isa = PBXBuildFile; fileRef = 9FF33E067BE2496C91A991D8 /* /Users/gordie/local_game/src/engine/types/Transform2D.cpp */; };
+		50BCF999A0A644C68B3923DA /* /Users/gordie/local_game/include/engine/gan_std.hpp */ = {isa = PBXBuildFile; fileRef = CE16700D5D6E443EA3C0F3AD /* /Users/gordie/local_game/include/engine/gan_std.hpp */; };
+		5181D73007364C1AB92A52C1 /* /Users/gordie/local_game/include/engine/gan_plugins.hpp */ = {isa = PBXBuildFile; fileRef = A68DDB48BC06445D894E8603 /* /Users/gordie/local_game/include/engine/gan_plugins.hpp */; };
+		532D3D16DBC8459EB702EC17 /* /Users/gordie/local_game/src/engine/layers/layer-subobjects/LayerCore.cpp */ = {isa = PBXBuildFile; fileRef = 1BC26EC261F14F8B8C05F7A3 /* /Users/gordie/local_game/src/engine/layers/layer-subobjects/LayerCore.cpp */; };
+		53D8E7B0984F443CA8CD1463 /* /Users/gordie/local_game/src/game/initialization/engine_initialization.cpp */ = {isa = PBXBuildFile; fileRef = FE7102F15EC94742A96556F8 /* /Users/gordie/local_game/src/game/initialization/engine_initialization.cpp */; };
+		5BD03F87261549ED9DD9C2F2 /* /Users/gordie/local_game/src/engine/utilities/IMGDecoder.cpp */ = {isa = PBXBuildFile; fileRef = FA6021D07AB846F999ED3572 /* /Users/gordie/local_game/src/engine/utilities/IMGDecoder.cpp */; };
+		5E70BAC18BB1429991F21115 /* /Users/gordie/local_game/src/engine/debug/debug-utilities/DebugInfoBanner.cpp */ = {isa = PBXBuildFile; fileRef = 78C83D364C8B4C77BFF22E61 /* /Users/gordie/local_game/src/engine/debug/debug-utilities/DebugInfoBanner.cpp */; };
+		5F40F7A999C243B8B1C5FA00 /* /Users/gordie/local_game/src/engine/mods/animation/frames/FrameList.cpp */ = {isa = PBXBuildFile; fileRef = 6E1ABCEFF13743E086B64819 /* /Users/gordie/local_game/src/engine/mods/animation/frames/FrameList.cpp */; };
+		5FB9625E03F54BD6B4E62985 /* /Users/gordie/local_game/src/engine/layers/LayerManager.cpp */ = {isa = PBXBuildFile; fileRef = 88933AD65A02494FAC6C3E02 /* /Users/gordie/local_game/src/engine/layers/LayerManager.cpp */; };
+		62FC22D5C866443F9FDEBF75 /* /Users/gordie/local_game/src/engine/mods/plugins/morphs/morph-types/Stretch.cpp */ = {isa = PBXBuildFile; fileRef = 597703904ED441B5864E81D3 /* /Users/gordie/local_game/src/engine/mods/plugins/morphs/morph-types/Stretch.cpp */; };
+		68BF4091841F4809AB545BFF /* /Users/gordie/local_game/include/engine/gan_types.hpp */ = {isa = PBXBuildFile; fileRef = E40358B8A4DE4D0FB9B4CAE2 /* /Users/gordie/local_game/include/engine/gan_types.hpp */; };
+		7117935920134342A5033564 /* /Users/gordie/local_game/src/engine/mods/plugins/platformer/tilesets/Tileset.cpp */ = {isa = PBXBuildFile; fileRef = E0FB7DE4B24845A3ABAB3C70 /* /Users/gordie/local_game/src/engine/mods/plugins/platformer/tilesets/Tileset.cpp */; };
+		77323F9C7B7041C1A3E4B650 /* /Users/gordie/local_game/src/engine/types/positioning/vec2.cpp */ = {isa = PBXBuildFile; fileRef = 0A16738AF07843998C21F18E /* /Users/gordie/local_game/src/engine/types/positioning/vec2.cpp */; };
+		804B0E6A8EC74AA38C910E52 /* /Users/gordie/local_game/src/engine/core/font/Font.cpp */ = {isa = PBXBuildFile; fileRef = E8B7614B5EAA44A0AEFDBD59 /* /Users/gordie/local_game/src/engine/core/font/Font.cpp */; };
+		83582B74A94E4C65A62A8FA7 /* /Users/gordie/local_game/src/engine/mods/particles/particle-types/RhombusRotate.cpp */ = {isa = PBXBuildFile; fileRef = 5EE1799399D447A496654F91 /* /Users/gordie/local_game/src/engine/mods/particles/particle-types/RhombusRotate.cpp */; };
+		99222B70D30949B381A86525 /* /Users/gordie/local_game/src/engine/mods/animation/frames/FrameTable.cpp */ = {isa = PBXBuildFile; fileRef = D517DB2D856543928D107548 /* /Users/gordie/local_game/src/engine/mods/animation/frames/FrameTable.cpp */; };
+		9FCD405397F3465EA3C1A997 /* /Users/gordie/local_game/src/engine/mods/plugins/morphs/morph-types/Shake.cpp */ = {isa = PBXBuildFile; fileRef = A9C7A1B725674231AADFBF44 /* /Users/gordie/local_game/src/engine/mods/plugins/morphs/morph-types/Shake.cpp */; };
+		AAC62816F7CF4C598FA4B9E6 /* /Users/gordie/local_game/src/engine/mods/animation/frames/Frame.cpp */ = {isa = PBXBuildFile; fileRef = D453F528FD644A059B1F3266 /* /Users/gordie/local_game/src/engine/mods/animation/frames/Frame.cpp */; };
+		AE16B3E6052C43F68D90752E /* /Users/gordie/local_game/src/engine/Engine.cpp */ = {isa = PBXBuildFile; fileRef = 29B216B4FE414379AFC67B72 /* /Users/gordie/local_game/src/engine/Engine.cpp */; };
+		B0864771480146D787F21374 /* /Users/gordie/local_game/src/engine/mods/particles/particle-types/Sparkle.cpp */ = {isa = PBXBuildFile; fileRef = DB4CC277D631409E8258B5C7 /* /Users/gordie/local_game/src/engine/mods/particles/particle-types/Sparkle.cpp */; };
+		B380CD7223AC4AF8ABEEEB25 /* /Users/gordie/local_game/src/engine/mods/banners/BannerBuffer.cpp */ = {isa = PBXBuildFile; fileRef = 2DC6156692F24E309E7409DB /* /Users/gordie/local_game/src/engine/mods/banners/BannerBuffer.cpp */; };
+		BA2E8D69BCCC4324A768E863 /* /Users/gordie/local_game/src/engine/mods/plugins/trails/TrailModule.cpp */ = {isa = PBXBuildFile; fileRef = 909641FCCFAF456F9AEBEBC6 /* /Users/gordie/local_game/src/engine/mods/plugins/trails/TrailModule.cpp */; };
+		BD06D19724CA4D998A715A6D /* /Users/gordie/local_game/src/game/initialization/layer_initialization.cpp */ = {isa = PBXBuildFile; fileRef = 35403A54F18644ADA3B3FF0B /* /Users/gordie/local_game/src/game/initialization/layer_initialization.cpp */; };
+		BF3138E53F9A4CAD8E350798 /* /Users/gordie/local_game/src/engine/render/shadows/ShadowBank.cpp */ = {isa = PBXBuildFile; fileRef = 2228686D92D646DEB0E23292 /* /Users/gordie/local_game/src/engine/render/shadows/ShadowBank.cpp */; };
+		C0670FC834F44F59B4B1A6D6 /* /Users/gordie/local_game/src/engine/layers/Layer.cpp */ = {isa = PBXBuildFile; fileRef = C3EAA83AB8704C75AD74AC1C /* /Users/gordie/local_game/src/engine/layers/Layer.cpp */; };
+		C7431F821F404BCE81C5BAA3 /* /Users/gordie/local_game/src/engine/mods/ModuleManager.cpp */ = {isa = PBXBuildFile; fileRef = 5CA7AEDD1A734FEA8214AA8D /* /Users/gordie/local_game/src/engine/mods/ModuleManager.cpp */; };
+		C76D002AD02F4FB9AD44F7B8 /* /Users/gordie/local_game/src/engine/mods/banners/text/Text.cpp */ = {isa = PBXBuildFile; fileRef = 4D7EBD2284444B8582F5B41E /* /Users/gordie/local_game/src/engine/mods/banners/text/Text.cpp */; };
+		CADF3C3617E24DA8A1D9336B /* /Users/gordie/local_game/src/engine/render/Background.cpp */ = {isa = PBXBuildFile; fileRef = 6C7E2C790AAF4446A9109096 /* /Users/gordie/local_game/src/engine/render/Background.cpp */; };
+		CE0B25B556614696B8A1FBEE /* /Users/gordie/local_game/src/engine/render/RenderBuffer.cpp */ = {isa = PBXBuildFile; fileRef = F01DBA5CDD8949EBA3742BE8 /* /Users/gordie/local_game/src/engine/render/RenderBuffer.cpp */; };
+		D042C77F5A424CB08DF30BB2 /* /Users/gordie/local_game/src/engine/input/InputDistributor.cpp */ = {isa = PBXBuildFile; fileRef = D465E68E2E41425FA617DB78 /* /Users/gordie/local_game/src/engine/input/InputDistributor.cpp */; };
+		D0F6F3D9CC7F4611B60F11E3 /* /Users/gordie/local_game/src/engine/mods/banners/banner-types/HoverBanner.cpp */ = {isa = PBXBuildFile; fileRef = 135EAD36D640464E9AD233E6 /* /Users/gordie/local_game/src/engine/mods/banners/banner-types/HoverBanner.cpp */; };
+		D3B42AF75B36414195C94F6E /* /Users/gordie/local_game/src/game/board/Deck.cpp */ = {isa = PBXBuildFile; fileRef = 19D427861A0D48BA81E853D6 /* /Users/gordie/local_game/src/game/board/Deck.cpp */; };
+		D402CC04384C4F7685C300B3 /* /Users/gordie/local_game/src/engine/mods/animation/sprites/Sprite.cpp */ = {isa = PBXBuildFile; fileRef = 132D5D73E27A465AB94E4D28 /* /Users/gordie/local_game/src/engine/mods/animation/sprites/Sprite.cpp */; };
+		D6FC1C362B9F4AEBA6FB8BCF /* /Users/gordie/local_game/src/engine/mods/events/EventModule.cpp */ = {isa = PBXBuildFile; fileRef = 6BDC445D3C6248AF97D5C859 /* /Users/gordie/local_game/src/engine/mods/events/EventModule.cpp */; };
+		D84EC08CA21E4DB59D9C9DF5 /* /Users/gordie/local_game/src/engine/render/Renderer.cpp */ = {isa = PBXBuildFile; fileRef = 385BCB9AEDFF44C6A2ECBE92 /* /Users/gordie/local_game/src/engine/render/Renderer.cpp */; };
+		DF3E7BA4B792421DBA3B0D6F /* /Users/gordie/local_game/include/game/initialization/card_game_initialization.hpp */ = {isa = PBXBuildFile; fileRef = 825510F03B8E4E03A72C59E8 /* /Users/gordie/local_game/include/game/initialization/card_game_initialization.hpp */; };
+		DFED56BD7B564FF4A19B3781 /* /Users/gordie/local_game/src/engine/mods/animation/sprites/AnimInfo.cpp */ = {isa = PBXBuildFile; fileRef = 1CBE6C610F7A4487B1493B6D /* /Users/gordie/local_game/src/engine/mods/animation/sprites/AnimInfo.cpp */; };
+		E38FD7942F7A45E28027A76B /* /Users/gordie/local_game/src/engine/mods/particles/particle-types/RhombusRotateSpiral.cpp */ = {isa = PBXBuildFile; fileRef = 61DB94D06D444BD79E56F2E2 /* /Users/gordie/local_game/src/engine/mods/particles/particle-types/RhombusRotateSpiral.cpp */; };
+		EA9821EC7FAD4067B9CA6AC0 /* /Users/gordie/local_game/src/game/cards/Card.cpp */ = {isa = PBXBuildFile; fileRef = 105E3113D7BE49B4A7969630 /* /Users/gordie/local_game/src/game/cards/Card.cpp */; };
+		EB5ECE2C4B044E149096DF64 /* /Users/gordie/local_game/src/engine/mods/particles/particle-types/Rhombus.cpp */ = {isa = PBXBuildFile; fileRef = C9F12CD35B1F40D79B022112 /* /Users/gordie/local_game/src/engine/mods/particles/particle-types/Rhombus.cpp */; };
+		EFA04CB53A824C0582ECE03F /* /Users/gordie/local_game/src/engine/mods/banners/Banner.cpp */ = {isa = PBXBuildFile; fileRef = 08D9B4BAF5FD4F11A3FFD876 /* /Users/gordie/local_game/src/engine/mods/banners/Banner.cpp */; };
+		F04A47FE93C84FAAAD9886C1 /* /Users/gordie/local_game/src/engine/core/EngineContext.cpp */ = {isa = PBXBuildFile; fileRef = 910048D43ECD4DF3A571F578 /* /Users/gordie/local_game/src/engine/core/EngineContext.cpp */; };
+		F22C51A0F06F4D9C80AECC2F /* /Users/gordie/local_game/src/engine/mods/plugins/routes/RouteModule.cpp */ = {isa = PBXBuildFile; fileRef = 2AC9E24D65B5462089D7D3F6 /* /Users/gordie/local_game/src/engine/mods/plugins/routes/RouteModule.cpp */; };
+		F5A7110C17714F9E915AC64D /* /Users/gordie/local_game/src/engine/mods/animation/sprites/SpriteManager.cpp */ = {isa = PBXBuildFile; fileRef = 9B7E5F6E06984DFE999CDB46 /* /Users/gordie/local_game/src/engine/mods/animation/sprites/SpriteManager.cpp */; };
+		FB70C810AD8B47BB840A5831 /* /Users/gordie/local_game/src/engine/layers/layer-subobjects/GearList.cpp */ = {isa = PBXBuildFile; fileRef = F61AFAB7639642D7B93F54E9 /* /Users/gordie/local_game/src/engine/layers/layer-subobjects/GearList.cpp */; };
+		FBB865CB501347D58EF19067 /* /Users/gordie/local_game/src/engine/mods/plugins/morphs/MorphManager.cpp */ = {isa = PBXBuildFile; fileRef = 20CA976727314472A9441481 /* /Users/gordie/local_game/src/engine/mods/plugins/morphs/MorphManager.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		3C2C5F19449A4E0DB283F761 /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
+		7319059952C5493496238435 /* RelWithDebInfo */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = RelWithDebInfo;
+		};
+		CAC27D276AE84CBC9D1A62C2 /* MinSizeRel */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = MinSizeRel;
+		};
+		F1D3915E635E40CF96AD9AB6 /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		61C063B207ED45FD97DC825E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1DAC2E80FFF74E98A44A0DEF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 16F90D54F24355E8EE3683E1;
+			remoteInfo = ZERO_CHECK;
+		};
+		7C57AFB52DBB499F8C25097F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1DAC2E80FFF74E98A44A0DEF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 16F90D54F24355E8EE3683E1;
+			remoteInfo = ZERO_CHECK;
+		};
+		8A6B5E194C66431683452227 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1DAC2E80FFF74E98A44A0DEF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1C9BBC67A028103CB3277D3E;
+			remoteInfo = norton;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0485A7C3DA1544A08CA3201F /* /Users/gordie/local_game/src/engine/scene/initializer/TextureRegister.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = TextureRegister.cpp; path = src/engine/scene/initializer/TextureRegister.cpp; sourceTree = SOURCE_ROOT; };
+		08D9B4BAF5FD4F11A3FFD876 /* /Users/gordie/local_game/src/engine/mods/banners/Banner.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Banner.cpp; path = src/engine/mods/banners/Banner.cpp; sourceTree = SOURCE_ROOT; };
+		0A16738AF07843998C21F18E /* /Users/gordie/local_game/src/engine/types/positioning/vec2.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = vec2.cpp; path = src/engine/types/positioning/vec2.cpp; sourceTree = SOURCE_ROOT; };
+		105E3113D7BE49B4A7969630 /* /Users/gordie/local_game/src/game/cards/Card.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Card.cpp; path = src/game/cards/Card.cpp; sourceTree = SOURCE_ROOT; };
+		132D5D73E27A465AB94E4D28 /* /Users/gordie/local_game/src/engine/mods/animation/sprites/Sprite.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Sprite.cpp; path = src/engine/mods/animation/sprites/Sprite.cpp; sourceTree = SOURCE_ROOT; };
+		135EAD36D640464E9AD233E6 /* /Users/gordie/local_game/src/engine/mods/banners/banner-types/HoverBanner.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = HoverBanner.cpp; path = "src/engine/mods/banners/banner-types/HoverBanner.cpp"; sourceTree = SOURCE_ROOT; };
+		16328E8BA19245E5AC9CC7B7 /* /Users/gordie/local_game/src/engine/mods/plugins/platformer/world/deserialization/WorldLoader.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = WorldLoader.cpp; path = src/engine/mods/plugins/platformer/world/deserialization/WorldLoader.cpp; sourceTree = SOURCE_ROOT; };
+		19D427861A0D48BA81E853D6 /* /Users/gordie/local_game/src/game/board/Deck.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Deck.cpp; path = src/game/board/Deck.cpp; sourceTree = SOURCE_ROOT; };
+		1BC26EC261F14F8B8C05F7A3 /* /Users/gordie/local_game/src/engine/layers/layer-subobjects/LayerCore.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = LayerCore.cpp; path = "src/engine/layers/layer-subobjects/LayerCore.cpp"; sourceTree = SOURCE_ROOT; };
+		1CBE6C610F7A4487B1493B6D /* /Users/gordie/local_game/src/engine/mods/animation/sprites/AnimInfo.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = AnimInfo.cpp; path = src/engine/mods/animation/sprites/AnimInfo.cpp; sourceTree = SOURCE_ROOT; };
+		20CA976727314472A9441481 /* /Users/gordie/local_game/src/engine/mods/plugins/morphs/MorphManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = MorphManager.cpp; path = src/engine/mods/plugins/morphs/MorphManager.cpp; sourceTree = SOURCE_ROOT; };
+		2228686D92D646DEB0E23292 /* /Users/gordie/local_game/src/engine/render/shadows/ShadowBank.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ShadowBank.cpp; path = src/engine/render/shadows/ShadowBank.cpp; sourceTree = SOURCE_ROOT; };
+		25E5EFA3BA67430C9547DD5E /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Torpedo.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Torpedo.cpp; path = "src/engine/mods/plugins/routes/route-types/Torpedo.cpp"; sourceTree = SOURCE_ROOT; };
+		272E0EBBAFB84AA19D8D1311 /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Rebound.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Rebound.cpp; path = "src/engine/mods/plugins/routes/route-types/Rebound.cpp"; sourceTree = SOURCE_ROOT; };
+		29B216B4FE414379AFC67B72 /* /Users/gordie/local_game/src/engine/Engine.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Engine.cpp; path = src/engine/Engine.cpp; sourceTree = SOURCE_ROOT; };
+		2AC9E24D65B5462089D7D3F6 /* /Users/gordie/local_game/src/engine/mods/plugins/routes/RouteModule.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = RouteModule.cpp; path = src/engine/mods/plugins/routes/RouteModule.cpp; sourceTree = SOURCE_ROOT; };
+		2DC6156692F24E309E7409DB /* /Users/gordie/local_game/src/engine/mods/banners/BannerBuffer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = BannerBuffer.cpp; path = src/engine/mods/banners/BannerBuffer.cpp; sourceTree = SOURCE_ROOT; };
+		35403A54F18644ADA3B3FF0B /* /Users/gordie/local_game/src/game/initialization/layer_initialization.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = layer_initialization.cpp; path = src/game/initialization/layer_initialization.cpp; sourceTree = SOURCE_ROOT; };
+		37BA7457F1824CE7A7A39D4C /* /Users/gordie/local_game/src/engine/input/InputHandler.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = InputHandler.cpp; path = src/engine/input/InputHandler.cpp; sourceTree = SOURCE_ROOT; };
+		385BCB9AEDFF44C6A2ECBE92 /* /Users/gordie/local_game/src/engine/render/Renderer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Renderer.cpp; path = src/engine/render/Renderer.cpp; sourceTree = SOURCE_ROOT; };
+		3A48255E299F4E428FE4E5C9 /* /Users/gordie/local_game/src/engine/types/AnimBox2D.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = AnimBox2D.cpp; path = src/engine/types/AnimBox2D.cpp; sourceTree = SOURCE_ROOT; };
+		41690C5BEBBF451B94D86A66 /* /Users/gordie/local_game/src/engine/mods/particles/ParticleManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ParticleManager.cpp; path = src/engine/mods/particles/ParticleManager.cpp; sourceTree = SOURCE_ROOT; };
+		4D7EBD2284444B8582F5B41E /* /Users/gordie/local_game/src/engine/mods/banners/text/Text.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Text.cpp; path = src/engine/mods/banners/text/Text.cpp; sourceTree = SOURCE_ROOT; };
+		518FD9F3561E48B6BB6D55F2 /* norton */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = norton; sourceTree = BUILT_PRODUCTS_DIR; };
+		561A9BDD22D447F7868C4F42 /* /Users/gordie/local_game/include/engine/scene/particles/particle-types/RhombusRotateSpiral.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = RhombusRotateSpiral.hpp; path = "include/engine/scene/particles/particle-types/RhombusRotateSpiral.hpp"; sourceTree = SOURCE_ROOT; };
+		597703904ED441B5864E81D3 /* /Users/gordie/local_game/src/engine/mods/plugins/morphs/morph-types/Stretch.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Stretch.cpp; path = "src/engine/mods/plugins/morphs/morph-types/Stretch.cpp"; sourceTree = SOURCE_ROOT; };
+		5CA7AEDD1A734FEA8214AA8D /* /Users/gordie/local_game/src/engine/mods/ModuleManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ModuleManager.cpp; path = src/engine/mods/ModuleManager.cpp; sourceTree = SOURCE_ROOT; };
+		5EE1799399D447A496654F91 /* /Users/gordie/local_game/src/engine/mods/particles/particle-types/RhombusRotate.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = RhombusRotate.cpp; path = "src/engine/mods/particles/particle-types/RhombusRotate.cpp"; sourceTree = SOURCE_ROOT; };
+		5F0B208B8D8F4ABF99AC645F /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Linear.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Linear.cpp; path = "src/engine/mods/plugins/routes/route-types/Linear.cpp"; sourceTree = SOURCE_ROOT; };
+		61DB94D06D444BD79E56F2E2 /* /Users/gordie/local_game/src/engine/mods/particles/particle-types/RhombusRotateSpiral.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = RhombusRotateSpiral.cpp; path = "src/engine/mods/particles/particle-types/RhombusRotateSpiral.cpp"; sourceTree = SOURCE_ROOT; };
+		64E0592E9D944960B1037ED1 /* /Users/gordie/local_game/src/engine/mods/banners/text/TextParser.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = TextParser.cpp; path = src/engine/mods/banners/text/TextParser.cpp; sourceTree = SOURCE_ROOT; };
+		6BDC445D3C6248AF97D5C859 /* /Users/gordie/local_game/src/engine/mods/events/EventModule.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = EventModule.cpp; path = src/engine/mods/events/EventModule.cpp; sourceTree = SOURCE_ROOT; };
+		6C7E2C790AAF4446A9109096 /* /Users/gordie/local_game/src/engine/render/Background.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Background.cpp; path = src/engine/render/Background.cpp; sourceTree = SOURCE_ROOT; };
+		6E1ABCEFF13743E086B64819 /* /Users/gordie/local_game/src/engine/mods/animation/frames/FrameList.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = FrameList.cpp; path = src/engine/mods/animation/frames/FrameList.cpp; sourceTree = SOURCE_ROOT; };
+		717C6556814D4C28938813A8 /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Balloon.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Balloon.cpp; path = "src/engine/mods/plugins/routes/route-types/Balloon.cpp"; sourceTree = SOURCE_ROOT; };
+		78C83D364C8B4C77BFF22E61 /* /Users/gordie/local_game/src/engine/debug/debug-utilities/DebugInfoBanner.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = DebugInfoBanner.cpp; path = "src/engine/debug/debug-utilities/DebugInfoBanner.cpp"; sourceTree = SOURCE_ROOT; };
+		7D9937E23632426880727629 /* /Users/gordie/local_game/include/game/initialization/initialization_defaults.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = initialization_defaults.hpp; path = include/game/initialization/initialization_defaults.hpp; sourceTree = SOURCE_ROOT; };
+		825510F03B8E4E03A72C59E8 /* /Users/gordie/local_game/include/game/initialization/card_game_initialization.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = card_game_initialization.hpp; path = include/game/initialization/card_game_initialization.hpp; sourceTree = SOURCE_ROOT; };
+		842D5BB4E66B455E826EFBE8 /* /Users/gordie/local_game/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		88933AD65A02494FAC6C3E02 /* /Users/gordie/local_game/src/engine/layers/LayerManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = LayerManager.cpp; path = src/engine/layers/LayerManager.cpp; sourceTree = SOURCE_ROOT; };
+		909641FCCFAF456F9AEBEBC6 /* /Users/gordie/local_game/src/engine/mods/plugins/trails/TrailModule.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = TrailModule.cpp; path = src/engine/mods/plugins/trails/TrailModule.cpp; sourceTree = SOURCE_ROOT; };
+		910048D43ECD4DF3A571F578 /* /Users/gordie/local_game/src/engine/core/EngineContext.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = EngineContext.cpp; path = src/engine/core/EngineContext.cpp; sourceTree = SOURCE_ROOT; };
+		93553B2859834FFDA683427F /* /Users/gordie/local_game/src/engine/mods/plugins/platformer/world/GameWorld.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = GameWorld.cpp; path = src/engine/mods/plugins/platformer/world/GameWorld.cpp; sourceTree = SOURCE_ROOT; };
+		9A7F8E5607EF44CD9CBB4969 /* /Users/gordie/local_game/src/game/blackjack/BlackjackHand.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = BlackjackHand.cpp; path = src/game/blackjack/BlackjackHand.cpp; sourceTree = SOURCE_ROOT; };
+		9B7E5F6E06984DFE999CDB46 /* /Users/gordie/local_game/src/engine/mods/animation/sprites/SpriteManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = SpriteManager.cpp; path = src/engine/mods/animation/sprites/SpriteManager.cpp; sourceTree = SOURCE_ROOT; };
+		9BE6F10000454DA6822AF5FF /* /Users/gordie/local_game/src/engine/debug/Console.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Console.cpp; path = src/engine/debug/Console.cpp; sourceTree = SOURCE_ROOT; };
+		9FF33E067BE2496C91A991D8 /* /Users/gordie/local_game/src/engine/types/Transform2D.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Transform2D.cpp; path = src/engine/types/Transform2D.cpp; sourceTree = SOURCE_ROOT; };
+		A68DDB48BC06445D894E8603 /* /Users/gordie/local_game/include/engine/gan_plugins.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = gan_plugins.hpp; path = include/engine/gan_plugins.hpp; sourceTree = SOURCE_ROOT; };
+		A9C7A1B725674231AADFBF44 /* /Users/gordie/local_game/src/engine/mods/plugins/morphs/morph-types/Shake.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Shake.cpp; path = "src/engine/mods/plugins/morphs/morph-types/Shake.cpp"; sourceTree = SOURCE_ROOT; };
+		AA5B5F7486344783BAE9F8A6 /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Sine.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Sine.cpp; path = "src/engine/mods/plugins/routes/route-types/Sine.cpp"; sourceTree = SOURCE_ROOT; };
+		C3EAA83AB8704C75AD74AC1C /* /Users/gordie/local_game/src/engine/layers/Layer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Layer.cpp; path = src/engine/layers/Layer.cpp; sourceTree = SOURCE_ROOT; };
+		C9F12CD35B1F40D79B022112 /* /Users/gordie/local_game/src/engine/mods/particles/particle-types/Rhombus.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Rhombus.cpp; path = "src/engine/mods/particles/particle-types/Rhombus.cpp"; sourceTree = SOURCE_ROOT; };
+		CE16700D5D6E443EA3C0F3AD /* /Users/gordie/local_game/include/engine/gan_std.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = gan_std.hpp; path = include/engine/gan_std.hpp; sourceTree = SOURCE_ROOT; };
+		D453F528FD644A059B1F3266 /* /Users/gordie/local_game/src/engine/mods/animation/frames/Frame.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Frame.cpp; path = src/engine/mods/animation/frames/Frame.cpp; sourceTree = SOURCE_ROOT; };
+		D465E68E2E41425FA617DB78 /* /Users/gordie/local_game/src/engine/input/InputDistributor.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = InputDistributor.cpp; path = src/engine/input/InputDistributor.cpp; sourceTree = SOURCE_ROOT; };
+		D517DB2D856543928D107548 /* /Users/gordie/local_game/src/engine/mods/animation/frames/FrameTable.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = FrameTable.cpp; path = src/engine/mods/animation/frames/FrameTable.cpp; sourceTree = SOURCE_ROOT; };
+		DA1559083CA044BD9436A69B /* /Users/gordie/local_game/src/main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
+		DA69D4E2B0264ADEBEF40BC1 /* /Users/gordie/local_game/src/engine/scene/initializer/Initializer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Initializer.cpp; path = src/engine/scene/initializer/Initializer.cpp; sourceTree = SOURCE_ROOT; };
+		DB4CC277D631409E8258B5C7 /* /Users/gordie/local_game/src/engine/mods/particles/particle-types/Sparkle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Sparkle.cpp; path = "src/engine/mods/particles/particle-types/Sparkle.cpp"; sourceTree = SOURCE_ROOT; };
+		DD9936DB8DDB421395C97625 /* /Users/gordie/local_game/src/engine/utilities/Utilities.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Utilities.cpp; path = src/engine/utilities/Utilities.cpp; sourceTree = SOURCE_ROOT; };
+		E0FB7DE4B24845A3ABAB3C70 /* /Users/gordie/local_game/src/engine/mods/plugins/platformer/tilesets/Tileset.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Tileset.cpp; path = src/engine/mods/plugins/platformer/tilesets/Tileset.cpp; sourceTree = SOURCE_ROOT; };
+		E40358B8A4DE4D0FB9B4CAE2 /* /Users/gordie/local_game/include/engine/gan_types.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = gan_types.hpp; path = include/engine/gan_types.hpp; sourceTree = SOURCE_ROOT; };
+		E7F4AF87C3C44905BC7BD071 /* /Users/gordie/local_game/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		E8B7614B5EAA44A0AEFDBD59 /* /Users/gordie/local_game/src/engine/core/font/Font.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = Font.cpp; path = src/engine/core/font/Font.cpp; sourceTree = SOURCE_ROOT; };
+		EDED7DBBDE3D411F9E4AEF78 /* /Users/gordie/local_game/src/engine/mods/plugins/platformer/physics/PhysicsMaestro.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = PhysicsMaestro.cpp; path = src/engine/mods/plugins/platformer/physics/PhysicsMaestro.cpp; sourceTree = SOURCE_ROOT; };
+		F01DBA5CDD8949EBA3742BE8 /* /Users/gordie/local_game/src/engine/render/RenderBuffer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = RenderBuffer.cpp; path = src/engine/render/RenderBuffer.cpp; sourceTree = SOURCE_ROOT; };
+		F61AFAB7639642D7B93F54E9 /* /Users/gordie/local_game/src/engine/layers/layer-subobjects/GearList.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = GearList.cpp; path = "src/engine/layers/layer-subobjects/GearList.cpp"; sourceTree = SOURCE_ROOT; };
+		F644811217084F97B0E3D2E8 /* /Users/gordie/local_game/include/game/initialization/engine_initialization.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = engine_initialization.hpp; path = include/game/initialization/engine_initialization.hpp; sourceTree = SOURCE_ROOT; };
+		FA6021D07AB846F999ED3572 /* /Users/gordie/local_game/src/engine/utilities/IMGDecoder.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = IMGDecoder.cpp; path = src/engine/utilities/IMGDecoder.cpp; sourceTree = SOURCE_ROOT; };
+		FE7102F15EC94742A96556F8 /* /Users/gordie/local_game/src/game/initialization/engine_initialization.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = engine_initialization.cpp; path = src/game/initialization/engine_initialization.cpp; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2C6DA4CE0136434A8DD7CB0B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		06604B9424594EA99D8CA77F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		3BE5C01678A74274B3F20DE3 = {
+			isa = PBXGroup;
+			children = (
+				9DF6EC6F2A814E6EAE6805D6 /* ALL_BUILD */,
+				B03F104BC5D848AB825B5519 /* norton */,
+				8E7DDEE304AB43D084DD176E /* Products */,
+				C7A7BC9B111447C4956753C9 /* Frameworks */,
+				06604B9424594EA99D8CA77F /* Resources */,
+			);
+			sourceTree = "<group>";
+		};
+		4CBAB8DF0484403BB2B1EB7E /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				A68DDB48BC06445D894E8603 /* /Users/gordie/local_game/include/engine/gan_plugins.hpp */,
+				CE16700D5D6E443EA3C0F3AD /* /Users/gordie/local_game/include/engine/gan_std.hpp */,
+				E40358B8A4DE4D0FB9B4CAE2 /* /Users/gordie/local_game/include/engine/gan_types.hpp */,
+				561A9BDD22D447F7868C4F42 /* /Users/gordie/local_game/include/engine/scene/particles/particle-types/RhombusRotateSpiral.hpp */,
+				825510F03B8E4E03A72C59E8 /* /Users/gordie/local_game/include/game/initialization/card_game_initialization.hpp */,
+				F644811217084F97B0E3D2E8 /* /Users/gordie/local_game/include/game/initialization/engine_initialization.hpp */,
+				7D9937E23632426880727629 /* /Users/gordie/local_game/include/game/initialization/initialization_defaults.hpp */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		8E7DDEE304AB43D084DD176E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				518FD9F3561E48B6BB6D55F2 /* norton */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9DF6EC6F2A814E6EAE6805D6 /* ALL_BUILD */ = {
+			isa = PBXGroup;
+			children = (
+				B29C467AA68A4B7BB33B7A61 /* CMake Rules */,
+				E7F4AF87C3C44905BC7BD071 /* /Users/gordie/local_game/CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+		B03F104BC5D848AB825B5519 /* norton */ = {
+			isa = PBXGroup;
+			children = (
+				4CBAB8DF0484403BB2B1EB7E /* Header Files */,
+				F78A3C4C4610426C93E774A2 /* Source Files */,
+				842D5BB4E66B455E826EFBE8 /* /Users/gordie/local_game/CMakeLists.txt */,
+			);
+			name = norton;
+			sourceTree = "<group>";
+		};
+		B29C467AA68A4B7BB33B7A61 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		C7A7BC9B111447C4956753C9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F78A3C4C4610426C93E774A2 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				29B216B4FE414379AFC67B72 /* /Users/gordie/local_game/src/engine/Engine.cpp */,
+				910048D43ECD4DF3A571F578 /* /Users/gordie/local_game/src/engine/core/EngineContext.cpp */,
+				E8B7614B5EAA44A0AEFDBD59 /* /Users/gordie/local_game/src/engine/core/font/Font.cpp */,
+				9BE6F10000454DA6822AF5FF /* /Users/gordie/local_game/src/engine/debug/Console.cpp */,
+				78C83D364C8B4C77BFF22E61 /* /Users/gordie/local_game/src/engine/debug/debug-utilities/DebugInfoBanner.cpp */,
+				D465E68E2E41425FA617DB78 /* /Users/gordie/local_game/src/engine/input/InputDistributor.cpp */,
+				37BA7457F1824CE7A7A39D4C /* /Users/gordie/local_game/src/engine/input/InputHandler.cpp */,
+				C3EAA83AB8704C75AD74AC1C /* /Users/gordie/local_game/src/engine/layers/Layer.cpp */,
+				88933AD65A02494FAC6C3E02 /* /Users/gordie/local_game/src/engine/layers/LayerManager.cpp */,
+				F61AFAB7639642D7B93F54E9 /* /Users/gordie/local_game/src/engine/layers/layer-subobjects/GearList.cpp */,
+				1BC26EC261F14F8B8C05F7A3 /* /Users/gordie/local_game/src/engine/layers/layer-subobjects/LayerCore.cpp */,
+				5CA7AEDD1A734FEA8214AA8D /* /Users/gordie/local_game/src/engine/mods/ModuleManager.cpp */,
+				D453F528FD644A059B1F3266 /* /Users/gordie/local_game/src/engine/mods/animation/frames/Frame.cpp */,
+				6E1ABCEFF13743E086B64819 /* /Users/gordie/local_game/src/engine/mods/animation/frames/FrameList.cpp */,
+				D517DB2D856543928D107548 /* /Users/gordie/local_game/src/engine/mods/animation/frames/FrameTable.cpp */,
+				1CBE6C610F7A4487B1493B6D /* /Users/gordie/local_game/src/engine/mods/animation/sprites/AnimInfo.cpp */,
+				132D5D73E27A465AB94E4D28 /* /Users/gordie/local_game/src/engine/mods/animation/sprites/Sprite.cpp */,
+				9B7E5F6E06984DFE999CDB46 /* /Users/gordie/local_game/src/engine/mods/animation/sprites/SpriteManager.cpp */,
+				08D9B4BAF5FD4F11A3FFD876 /* /Users/gordie/local_game/src/engine/mods/banners/Banner.cpp */,
+				2DC6156692F24E309E7409DB /* /Users/gordie/local_game/src/engine/mods/banners/BannerBuffer.cpp */,
+				135EAD36D640464E9AD233E6 /* /Users/gordie/local_game/src/engine/mods/banners/banner-types/HoverBanner.cpp */,
+				4D7EBD2284444B8582F5B41E /* /Users/gordie/local_game/src/engine/mods/banners/text/Text.cpp */,
+				64E0592E9D944960B1037ED1 /* /Users/gordie/local_game/src/engine/mods/banners/text/TextParser.cpp */,
+				6BDC445D3C6248AF97D5C859 /* /Users/gordie/local_game/src/engine/mods/events/EventModule.cpp */,
+				41690C5BEBBF451B94D86A66 /* /Users/gordie/local_game/src/engine/mods/particles/ParticleManager.cpp */,
+				C9F12CD35B1F40D79B022112 /* /Users/gordie/local_game/src/engine/mods/particles/particle-types/Rhombus.cpp */,
+				5EE1799399D447A496654F91 /* /Users/gordie/local_game/src/engine/mods/particles/particle-types/RhombusRotate.cpp */,
+				61DB94D06D444BD79E56F2E2 /* /Users/gordie/local_game/src/engine/mods/particles/particle-types/RhombusRotateSpiral.cpp */,
+				DB4CC277D631409E8258B5C7 /* /Users/gordie/local_game/src/engine/mods/particles/particle-types/Sparkle.cpp */,
+				20CA976727314472A9441481 /* /Users/gordie/local_game/src/engine/mods/plugins/morphs/MorphManager.cpp */,
+				A9C7A1B725674231AADFBF44 /* /Users/gordie/local_game/src/engine/mods/plugins/morphs/morph-types/Shake.cpp */,
+				597703904ED441B5864E81D3 /* /Users/gordie/local_game/src/engine/mods/plugins/morphs/morph-types/Stretch.cpp */,
+				EDED7DBBDE3D411F9E4AEF78 /* /Users/gordie/local_game/src/engine/mods/plugins/platformer/physics/PhysicsMaestro.cpp */,
+				E0FB7DE4B24845A3ABAB3C70 /* /Users/gordie/local_game/src/engine/mods/plugins/platformer/tilesets/Tileset.cpp */,
+				93553B2859834FFDA683427F /* /Users/gordie/local_game/src/engine/mods/plugins/platformer/world/GameWorld.cpp */,
+				16328E8BA19245E5AC9CC7B7 /* /Users/gordie/local_game/src/engine/mods/plugins/platformer/world/deserialization/WorldLoader.cpp */,
+				2AC9E24D65B5462089D7D3F6 /* /Users/gordie/local_game/src/engine/mods/plugins/routes/RouteModule.cpp */,
+				717C6556814D4C28938813A8 /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Balloon.cpp */,
+				5F0B208B8D8F4ABF99AC645F /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Linear.cpp */,
+				272E0EBBAFB84AA19D8D1311 /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Rebound.cpp */,
+				AA5B5F7486344783BAE9F8A6 /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Sine.cpp */,
+				25E5EFA3BA67430C9547DD5E /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Torpedo.cpp */,
+				909641FCCFAF456F9AEBEBC6 /* /Users/gordie/local_game/src/engine/mods/plugins/trails/TrailModule.cpp */,
+				6C7E2C790AAF4446A9109096 /* /Users/gordie/local_game/src/engine/render/Background.cpp */,
+				F01DBA5CDD8949EBA3742BE8 /* /Users/gordie/local_game/src/engine/render/RenderBuffer.cpp */,
+				385BCB9AEDFF44C6A2ECBE92 /* /Users/gordie/local_game/src/engine/render/Renderer.cpp */,
+				2228686D92D646DEB0E23292 /* /Users/gordie/local_game/src/engine/render/shadows/ShadowBank.cpp */,
+				DA69D4E2B0264ADEBEF40BC1 /* /Users/gordie/local_game/src/engine/scene/initializer/Initializer.cpp */,
+				0485A7C3DA1544A08CA3201F /* /Users/gordie/local_game/src/engine/scene/initializer/TextureRegister.cpp */,
+				3A48255E299F4E428FE4E5C9 /* /Users/gordie/local_game/src/engine/types/AnimBox2D.cpp */,
+				9FF33E067BE2496C91A991D8 /* /Users/gordie/local_game/src/engine/types/Transform2D.cpp */,
+				0A16738AF07843998C21F18E /* /Users/gordie/local_game/src/engine/types/positioning/vec2.cpp */,
+				FA6021D07AB846F999ED3572 /* /Users/gordie/local_game/src/engine/utilities/IMGDecoder.cpp */,
+				DD9936DB8DDB421395C97625 /* /Users/gordie/local_game/src/engine/utilities/Utilities.cpp */,
+				9A7F8E5607EF44CD9CBB4969 /* /Users/gordie/local_game/src/game/blackjack/BlackjackHand.cpp */,
+				19D427861A0D48BA81E853D6 /* /Users/gordie/local_game/src/game/board/Deck.cpp */,
+				105E3113D7BE49B4A7969630 /* /Users/gordie/local_game/src/game/cards/Card.cpp */,
+				FE7102F15EC94742A96556F8 /* /Users/gordie/local_game/src/game/initialization/engine_initialization.cpp */,
+				35403A54F18644ADA3B3FF0B /* /Users/gordie/local_game/src/game/initialization/layer_initialization.cpp */,
+				DA1559083CA044BD9436A69B /* /Users/gordie/local_game/src/main.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1C9BBC67A028103CB3277D3E /* norton */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2BFA6DC58B5949D8A0B79C81 /* Build configuration list for PBXNativeTarget "norton" */;
+			buildPhases = (
+				E7DF3614624E4C2B82BA1ED6 /* Sources */,
+				2C6DA4CE0136434A8DD7CB0B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				28F51CAF45C34A6E8AA0F8F8 /* PBXTargetDependency */,
+			);
+			name = norton;
+			productName = norton;
+			productReference = 518FD9F3561E48B6BB6D55F2 /* norton */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1DAC2E80FFF74E98A44A0DEF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2620;
+			};
+			buildConfigurationList = F82960A97C724A24B73C9183 /* Build configuration list for PBXProject "norton" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				F1D3915E635E40CF96AD9AB6 /* Debug */,
+				3C2C5F19449A4E0DB283F761 /* Release */,
+				CAC27D276AE84CBC9D1A62C2 /* MinSizeRel */,
+				7319059952C5493496238435 /* RelWithDebInfo */,
+			);
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			mainGroup = 3BE5C01678A74274B3F20DE3;
+			projectDirPath = /Users/gordie/local_game;
+			projectRoot = "";
+			targets = (
+				738989B42E75B6B70E4212C0 /* ALL_BUILD */,
+				1C9BBC67A028103CB3277D3E /* norton */,
+				16F90D54F24355E8EE3683E1 /* ZERO_CHECK */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3C0110FC8322DE7E50886E21 = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		9B50530E35CC49C82C2FACCF = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		A1399205175E44297C68E3A8 /* Generate CMakeFiles/ALL_BUILD */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate CMakeFiles/ALL_BUILD";
+			outputPaths = (
+"/Users/gordie/local_game/xcode-test/CMakeFiles/ALL_BUILD"			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e
+if test \"$CONFIGURATION\" = \"Debug\"; then :
+  cd /Users/gordie/local_game/xcode-test
+  echo Build\\ all\\ projects
+fi
+if test \"$CONFIGURATION\" = \"Release\"; then :
+  cd /Users/gordie/local_game/xcode-test
+  echo Build\\ all\\ projects
+fi
+if test \"$CONFIGURATION\" = \"MinSizeRel\"; then :
+  cd /Users/gordie/local_game/xcode-test
+  echo Build\\ all\\ projects
+fi
+if test \"$CONFIGURATION\" = \"RelWithDebInfo\"; then :
+  cd /Users/gordie/local_game/xcode-test
+  echo Build\\ all\\ projects
+fi
+";
+			showEnvVarsInLog = 0;
+		};
+		FA9DDECCD8E0583F325F993A /* Generate CMakeFiles/ZERO_CHECK */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate CMakeFiles/ZERO_CHECK";
+			outputPaths = (
+"/Users/gordie/local_game/xcode-test/CMakeFiles/ZERO_CHECK"			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e
+if test \"$CONFIGURATION\" = \"Debug\"; then :
+  cd /Users/gordie/local_game/xcode-test
+  make -f /Users/gordie/local_game/xcode-test/CMakeScripts/ReRunCMake.make
+fi
+if test \"$CONFIGURATION\" = \"Release\"; then :
+  cd /Users/gordie/local_game/xcode-test
+  make -f /Users/gordie/local_game/xcode-test/CMakeScripts/ReRunCMake.make
+fi
+if test \"$CONFIGURATION\" = \"MinSizeRel\"; then :
+  cd /Users/gordie/local_game/xcode-test
+  make -f /Users/gordie/local_game/xcode-test/CMakeScripts/ReRunCMake.make
+fi
+if test \"$CONFIGURATION\" = \"RelWithDebInfo\"; then :
+  cd /Users/gordie/local_game/xcode-test
+  make -f /Users/gordie/local_game/xcode-test/CMakeScripts/ReRunCMake.make
+fi
+";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E7DF3614624E4C2B82BA1ED6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE16B3E6052C43F68D90752E /* /Users/gordie/local_game/src/engine/Engine.cpp */,
+				F04A47FE93C84FAAAD9886C1 /* /Users/gordie/local_game/src/engine/core/EngineContext.cpp */,
+				804B0E6A8EC74AA38C910E52 /* /Users/gordie/local_game/src/engine/core/font/Font.cpp */,
+				1B69D27F8E7E41F59C845EF1 /* /Users/gordie/local_game/src/engine/debug/Console.cpp */,
+				5E70BAC18BB1429991F21115 /* /Users/gordie/local_game/src/engine/debug/debug-utilities/DebugInfoBanner.cpp */,
+				D042C77F5A424CB08DF30BB2 /* /Users/gordie/local_game/src/engine/input/InputDistributor.cpp */,
+				3B25417D00E44BB4AD1FE12A /* /Users/gordie/local_game/src/engine/input/InputHandler.cpp */,
+				C0670FC834F44F59B4B1A6D6 /* /Users/gordie/local_game/src/engine/layers/Layer.cpp */,
+				5FB9625E03F54BD6B4E62985 /* /Users/gordie/local_game/src/engine/layers/LayerManager.cpp */,
+				FB70C810AD8B47BB840A5831 /* /Users/gordie/local_game/src/engine/layers/layer-subobjects/GearList.cpp */,
+				532D3D16DBC8459EB702EC17 /* /Users/gordie/local_game/src/engine/layers/layer-subobjects/LayerCore.cpp */,
+				C7431F821F404BCE81C5BAA3 /* /Users/gordie/local_game/src/engine/mods/ModuleManager.cpp */,
+				AAC62816F7CF4C598FA4B9E6 /* /Users/gordie/local_game/src/engine/mods/animation/frames/Frame.cpp */,
+				5F40F7A999C243B8B1C5FA00 /* /Users/gordie/local_game/src/engine/mods/animation/frames/FrameList.cpp */,
+				99222B70D30949B381A86525 /* /Users/gordie/local_game/src/engine/mods/animation/frames/FrameTable.cpp */,
+				DFED56BD7B564FF4A19B3781 /* /Users/gordie/local_game/src/engine/mods/animation/sprites/AnimInfo.cpp */,
+				D402CC04384C4F7685C300B3 /* /Users/gordie/local_game/src/engine/mods/animation/sprites/Sprite.cpp */,
+				F5A7110C17714F9E915AC64D /* /Users/gordie/local_game/src/engine/mods/animation/sprites/SpriteManager.cpp */,
+				EFA04CB53A824C0582ECE03F /* /Users/gordie/local_game/src/engine/mods/banners/Banner.cpp */,
+				B380CD7223AC4AF8ABEEEB25 /* /Users/gordie/local_game/src/engine/mods/banners/BannerBuffer.cpp */,
+				D0F6F3D9CC7F4611B60F11E3 /* /Users/gordie/local_game/src/engine/mods/banners/banner-types/HoverBanner.cpp */,
+				C76D002AD02F4FB9AD44F7B8 /* /Users/gordie/local_game/src/engine/mods/banners/text/Text.cpp */,
+				104A39BFE871485B9617460D /* /Users/gordie/local_game/src/engine/mods/banners/text/TextParser.cpp */,
+				D6FC1C362B9F4AEBA6FB8BCF /* /Users/gordie/local_game/src/engine/mods/events/EventModule.cpp */,
+				1D1C61E3E1DA4029993108F9 /* /Users/gordie/local_game/src/engine/mods/particles/ParticleManager.cpp */,
+				EB5ECE2C4B044E149096DF64 /* /Users/gordie/local_game/src/engine/mods/particles/particle-types/Rhombus.cpp */,
+				83582B74A94E4C65A62A8FA7 /* /Users/gordie/local_game/src/engine/mods/particles/particle-types/RhombusRotate.cpp */,
+				E38FD7942F7A45E28027A76B /* /Users/gordie/local_game/src/engine/mods/particles/particle-types/RhombusRotateSpiral.cpp */,
+				B0864771480146D787F21374 /* /Users/gordie/local_game/src/engine/mods/particles/particle-types/Sparkle.cpp */,
+				FBB865CB501347D58EF19067 /* /Users/gordie/local_game/src/engine/mods/plugins/morphs/MorphManager.cpp */,
+				9FCD405397F3465EA3C1A997 /* /Users/gordie/local_game/src/engine/mods/plugins/morphs/morph-types/Shake.cpp */,
+				62FC22D5C866443F9FDEBF75 /* /Users/gordie/local_game/src/engine/mods/plugins/morphs/morph-types/Stretch.cpp */,
+				14B0EE5374704759A2C299C3 /* /Users/gordie/local_game/src/engine/mods/plugins/platformer/physics/PhysicsMaestro.cpp */,
+				7117935920134342A5033564 /* /Users/gordie/local_game/src/engine/mods/plugins/platformer/tilesets/Tileset.cpp */,
+				0B90378D0C354750A8DF2800 /* /Users/gordie/local_game/src/engine/mods/plugins/platformer/world/GameWorld.cpp */,
+				05980ECC5C6048A297367F53 /* /Users/gordie/local_game/src/engine/mods/plugins/platformer/world/deserialization/WorldLoader.cpp */,
+				F22C51A0F06F4D9C80AECC2F /* /Users/gordie/local_game/src/engine/mods/plugins/routes/RouteModule.cpp */,
+				1C64605650964DB89ADD177F /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Balloon.cpp */,
+				385864EBBE7F44B1BE969285 /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Linear.cpp */,
+				015D58A9181B4F1985F714AD /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Rebound.cpp */,
+				347FA3B53DE54B7D8112ABAB /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Sine.cpp */,
+				091B9762820842E0BC08886F /* /Users/gordie/local_game/src/engine/mods/plugins/routes/route-types/Torpedo.cpp */,
+				BA2E8D69BCCC4324A768E863 /* /Users/gordie/local_game/src/engine/mods/plugins/trails/TrailModule.cpp */,
+				CADF3C3617E24DA8A1D9336B /* /Users/gordie/local_game/src/engine/render/Background.cpp */,
+				CE0B25B556614696B8A1FBEE /* /Users/gordie/local_game/src/engine/render/RenderBuffer.cpp */,
+				D84EC08CA21E4DB59D9C9DF5 /* /Users/gordie/local_game/src/engine/render/Renderer.cpp */,
+				BF3138E53F9A4CAD8E350798 /* /Users/gordie/local_game/src/engine/render/shadows/ShadowBank.cpp */,
+				13FEFBB7EEBA42B186BF82D5 /* /Users/gordie/local_game/src/engine/scene/initializer/Initializer.cpp */,
+				3A512D763A93463AAE1E3493 /* /Users/gordie/local_game/src/engine/scene/initializer/TextureRegister.cpp */,
+				28F8118A86AC452EBD603D7C /* /Users/gordie/local_game/src/engine/types/AnimBox2D.cpp */,
+				4262B6CEF5CD455F9605AC90 /* /Users/gordie/local_game/src/engine/types/Transform2D.cpp */,
+				77323F9C7B7041C1A3E4B650 /* /Users/gordie/local_game/src/engine/types/positioning/vec2.cpp */,
+				5BD03F87261549ED9DD9C2F2 /* /Users/gordie/local_game/src/engine/utilities/IMGDecoder.cpp */,
+				2331214FA36B44F5A2C8FE5B /* /Users/gordie/local_game/src/engine/utilities/Utilities.cpp */,
+				2BAE3338A4C54E8C8CEEEB7D /* /Users/gordie/local_game/src/game/blackjack/BlackjackHand.cpp */,
+				D3B42AF75B36414195C94F6E /* /Users/gordie/local_game/src/game/board/Deck.cpp */,
+				EA9821EC7FAD4067B9CA6AC0 /* /Users/gordie/local_game/src/game/cards/Card.cpp */,
+				53D8E7B0984F443CA8CD1463 /* /Users/gordie/local_game/src/game/initialization/engine_initialization.cpp */,
+				BD06D19724CA4D998A715A6D /* /Users/gordie/local_game/src/game/initialization/layer_initialization.cpp */,
+				051B229DBAB34A6EABBD8535 /* /Users/gordie/local_game/src/main.cpp */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		28F51CAF45C34A6E8AA0F8F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 16F90D54F24355E8EE3683E1 /* ZERO_CHECK */;
+			targetProxy = 61C063B207ED45FD97DC825E /* PBXContainerItemProxy */;
+		};
+		459ACB9F231346F294D1DCAF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 16F90D54F24355E8EE3683E1 /* ZERO_CHECK */;
+			targetProxy = 7C57AFB52DBB499F8C25097F /* PBXContainerItemProxy */;
+		};
+		DC643D5F1FA8495785D86480 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1C9BBC67A028103CB3277D3E /* norton */;
+			targetProxy = 8A6B5E194C66431683452227 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		06B77EE7803F4F2695218669 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				SDKROOT = "";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SYMROOT = "/Users/gordie/local_game/xcode-test/build";
+			};
+			name = RelWithDebInfo;
+		};
+		120CBD8F93194F91A8CE612C /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		1D6E49A971E849F9B810436B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				SDKROOT = "";
+				SYMROOT = "/Users/gordie/local_game/xcode-test/build";
+			};
+			name = Debug;
+		};
+		446B9F26BF9D4D42B1AE52CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		4CFB07055E2F4102AF10C159 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		5A7005DCCF6945E18117690B /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/gordie/local_game/xcode-test/RelWithDebInfo";
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/gordie/local_game/include,/Users/gordie/local_game,/Users/gordie/local_game/include/scene,/Users/gordie/local_game/src/scene,/opt/homebrew/Cellar/sdl2/2.32.10/include,"$(inherited)");
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = (/opt/homebrew/Cellar/sdl2/2.32.10/lib,"$(inherited)");
+				LIBRARY_SEARCH_PATHS = ("/opt/homebrew/Cellar/sdl2/2.32.10/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)",/opt/homebrew/Cellar/sdl2/2.32.10/lib,"$(inherited)");
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "'-std=gnu++20' -Wall -Wextra -Wno-unused-function -Wno-unused-parameter     -flto -fdata-sections -ffunction-sections -fno-rtti -fno-unwind-tables -fno-asynchronous-unwind-tables '-fvisibility=hidden' -frtti ";
+				OTHER_LDFLAGS = ("-flto '-Wl,-dead_strip' '-Wl,-dead_strip_dylibs' -Wl,-search_paths_first -Wl,-headerpad_max_install_names",/opt/homebrew/Cellar/sdl2/2.32.10/lib/libSDL2.dylib,/opt/homebrew/Cellar/sdl2_image/2.8.8/lib/libSDL2_image.dylib,/opt/homebrew/Cellar/sdl2_ttf/2.24.0/lib/libSDL2_ttf.dylib,"$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = norton;
+				SECTORDER_FLAGS = "";
+				SYSTEM_HEADER_SEARCH_PATHS = (/opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2,/opt/homebrew/Cellar/sdl2_image/2.8.8/include/SDL2,/opt/homebrew/Cellar/sdl2_ttf/2.24.0/include/SDL2,"$(inherited)");
+				TARGET_TEMP_DIR = "/Users/gordie/local_game/xcode-test/build/norton.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		60C937EB107E40A794D34944 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		660707A3412B44F79C61EED5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				SDKROOT = "";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SYMROOT = "/Users/gordie/local_game/xcode-test/build";
+			};
+			name = Release;
+		};
+		8244579B2F8A41798FF3FFEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		831C92492FE546C4A4796181 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/gordie/local_game/xcode-test/Release";
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/gordie/local_game/include,/Users/gordie/local_game,/Users/gordie/local_game/include/scene,/Users/gordie/local_game/src/scene,/opt/homebrew/Cellar/sdl2/2.32.10/include,"$(inherited)");
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = (/opt/homebrew/Cellar/sdl2/2.32.10/lib,"$(inherited)");
+				LIBRARY_SEARCH_PATHS = ("/opt/homebrew/Cellar/sdl2/2.32.10/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)",/opt/homebrew/Cellar/sdl2/2.32.10/lib,"$(inherited)");
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "'-std=gnu++20' -Wall -Wextra -Wno-unused-function -Wno-unused-parameter     -flto -fdata-sections -ffunction-sections -fno-rtti -fno-unwind-tables -fno-asynchronous-unwind-tables '-fvisibility=hidden' -frtti ";
+				OTHER_LDFLAGS = ("-flto '-Wl,-dead_strip' '-Wl,-dead_strip_dylibs' -Wl,-search_paths_first -Wl,-headerpad_max_install_names",/opt/homebrew/Cellar/sdl2/2.32.10/lib/libSDL2.dylib,/opt/homebrew/Cellar/sdl2_image/2.8.8/lib/libSDL2_image.dylib,/opt/homebrew/Cellar/sdl2_ttf/2.24.0/lib/libSDL2_ttf.dylib,"$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = norton;
+				SECTORDER_FLAGS = "";
+				SYSTEM_HEADER_SEARCH_PATHS = (/opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2,/opt/homebrew/Cellar/sdl2_image/2.8.8/include/SDL2,/opt/homebrew/Cellar/sdl2_ttf/2.24.0/include/SDL2,"$(inherited)");
+				TARGET_TEMP_DIR = "/Users/gordie/local_game/xcode-test/build/norton.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		8550E56F4BD14E929E702DC9 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		86172551312645B3B3FA9E81 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		AB9E116DB80446139E547B44 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				SDKROOT = "";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SYMROOT = "/Users/gordie/local_game/xcode-test/build";
+			};
+			name = MinSizeRel;
+		};
+		D0DF60318D594409A13F07C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/gordie/local_game/xcode-test/Debug";
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/gordie/local_game/include,/Users/gordie/local_game,/Users/gordie/local_game/include/scene,/Users/gordie/local_game/src/scene,/opt/homebrew/Cellar/sdl2/2.32.10/include,"$(inherited)");
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = (/opt/homebrew/Cellar/sdl2/2.32.10/lib,"$(inherited)");
+				LIBRARY_SEARCH_PATHS = ("/opt/homebrew/Cellar/sdl2/2.32.10/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)",/opt/homebrew/Cellar/sdl2/2.32.10/lib,"$(inherited)");
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "'-std=gnu++20' -Wall -Wextra -Wno-unused-function -Wno-unused-parameter     -flto -fdata-sections -ffunction-sections -fno-rtti -fno-unwind-tables -fno-asynchronous-unwind-tables '-fvisibility=hidden' -frtti ";
+				OTHER_LDFLAGS = ("-flto '-Wl,-dead_strip' '-Wl,-dead_strip_dylibs' -Wl,-search_paths_first -Wl,-headerpad_max_install_names",/opt/homebrew/Cellar/sdl2/2.32.10/lib/libSDL2.dylib,/opt/homebrew/Cellar/sdl2_image/2.8.8/lib/libSDL2_image.dylib,/opt/homebrew/Cellar/sdl2_ttf/2.24.0/lib/libSDL2_ttf.dylib,"$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = norton;
+				SECTORDER_FLAGS = "";
+				SYSTEM_HEADER_SEARCH_PATHS = (/opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2,/opt/homebrew/Cellar/sdl2_image/2.8.8/include/SDL2,/opt/homebrew/Cellar/sdl2_ttf/2.24.0/include/SDL2,"$(inherited)");
+				TARGET_TEMP_DIR = "/Users/gordie/local_game/xcode-test/build/norton.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		D924801F8E97470B922F2B27 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/gordie/local_game/xcode-test/MinSizeRel";
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/gordie/local_game/include,/Users/gordie/local_game,/Users/gordie/local_game/include/scene,/Users/gordie/local_game/src/scene,/opt/homebrew/Cellar/sdl2/2.32.10/include,"$(inherited)");
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = (/opt/homebrew/Cellar/sdl2/2.32.10/lib,"$(inherited)");
+				LIBRARY_SEARCH_PATHS = ("/opt/homebrew/Cellar/sdl2/2.32.10/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)",/opt/homebrew/Cellar/sdl2/2.32.10/lib,"$(inherited)");
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "'-std=gnu++20' -Wall -Wextra -Wno-unused-function -Wno-unused-parameter     -flto -fdata-sections -ffunction-sections -fno-rtti -fno-unwind-tables -fno-asynchronous-unwind-tables '-fvisibility=hidden' -frtti ";
+				OTHER_LDFLAGS = ("-flto '-Wl,-dead_strip' '-Wl,-dead_strip_dylibs' -Wl,-search_paths_first -Wl,-headerpad_max_install_names",/opt/homebrew/Cellar/sdl2/2.32.10/lib/libSDL2.dylib,/opt/homebrew/Cellar/sdl2_image/2.8.8/lib/libSDL2_image.dylib,/opt/homebrew/Cellar/sdl2_ttf/2.24.0/lib/libSDL2_ttf.dylib,"$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = norton;
+				SECTORDER_FLAGS = "";
+				SYSTEM_HEADER_SEARCH_PATHS = (/opt/homebrew/Cellar/sdl2/2.32.10/include/SDL2,/opt/homebrew/Cellar/sdl2_image/2.8.8/include/SDL2,/opt/homebrew/Cellar/sdl2_ttf/2.24.0/include/SDL2,"$(inherited)");
+				TARGET_TEMP_DIR = "/Users/gordie/local_game/xcode-test/build/norton.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		F099E5CFA7844AACA3EB0190 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2BFA6DC58B5949D8A0B79C81 /* Build configuration list for PBXNativeTarget "norton" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0DF60318D594409A13F07C9 /* Debug */,
+				831C92492FE546C4A4796181 /* Release */,
+				D924801F8E97470B922F2B27 /* MinSizeRel */,
+				5A7005DCCF6945E18117690B /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		36250C56E3F74C6AA63A0B6B /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				446B9F26BF9D4D42B1AE52CF /* Debug */,
+				86172551312645B3B3FA9E81 /* Release */,
+				60C937EB107E40A794D34944 /* MinSizeRel */,
+				120CBD8F93194F91A8CE612C /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9B02696099F748E2BD35E3E4 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F099E5CFA7844AACA3EB0190 /* Debug */,
+				8244579B2F8A41798FF3FFEF /* Release */,
+				4CFB07055E2F4102AF10C159 /* MinSizeRel */,
+				8550E56F4BD14E929E702DC9 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F82960A97C724A24B73C9183 /* Build configuration list for PBXProject "norton" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6E49A971E849F9B810436B /* Debug */,
+				660707A3412B44F79C61EED5 /* Release */,
+				AB9E116DB80446139E547B44 /* MinSizeRel */,
+				06B77EE7803F4F2695218669 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1DAC2E80FFF74E98A44A0DEF /* Project object */;
+}

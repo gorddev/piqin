@@ -2,7 +2,7 @@
 #include "engine/utilities/Utilities.hpp"
 
 using namespace gan;
-using namespace groute;
+using namespace gfx;
 
 Sine::Sine(Gear& g, const vec2 &target, float speed)
     : Route(g, target, speed), direction((target-g.t.pos).unit()) {}

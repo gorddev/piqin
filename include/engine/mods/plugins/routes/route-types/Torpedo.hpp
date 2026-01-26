@@ -1,13 +1,13 @@
 #pragma once
 
-#include "../../../layers/layer-subobjects/LayerState.hpp"
-#include "engine/mods/routes/Route.hpp"
+#include "engine/layers/layer-subobjects/LayerState.hpp"
+#include "engine/mods/plugins/routes/Route.hpp"
 
-namespace groute {
+namespace gfx {
     /**
      * @brief TorpedoPath starts an object moving slowly, and then speeds it up as it moves along.
      */
-    class Torpedo final : public gan::Route {
+    class Torpedo final : public gfx::Route {
     private:
         /// Direction of travel for the path.
         gan::vec2 direction;

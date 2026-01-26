@@ -32,6 +32,7 @@ namespace gan {
 
         static double target_dt = 0.008;
 
+
         uint64_t frame_end = SDL_GetPerformanceCounter();
         double frame_time = (double)(frame_end - frame_start) / freq;
 

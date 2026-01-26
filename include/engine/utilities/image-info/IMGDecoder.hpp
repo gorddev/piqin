@@ -3,7 +3,7 @@
 
 #include <utility>
 
-#include "engine/scene/font/Font.hpp"
+#include "engine/core/font/Font.hpp"
 #include "engine/scene/initializer/Texture.hpp"
 #include "engine/types/strings/hstring/hstring.hpp"
 
@@ -20,8 +20,8 @@ namespace gan {
             SDL_Renderer *renderer, hstring path);
 
         static Texture load_font_as_texture(SDL_Renderer *renderer,
-                                     Font &font,
-                                     hstring path);
+            Font &font,
+            hstring path, SDL_ScaleMode render_mode);
 
         static Texture create_sysfont_texture(
             SDL_Renderer *renderer);

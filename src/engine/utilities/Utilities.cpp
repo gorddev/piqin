@@ -18,7 +18,7 @@ bool gutils::contained_within(SDL_Point point, gan::Transform2D &t) {
             point.y >= t.pos.y - t.get_base_height()/2.f && point.y <= t.pos.y + t.get_base_height()/2.f);
 }
 
-void gutils::adjust_to_relative_coords(Pos2D& point, gan::EngineContext& world) {
+void gutils::adjust_to_relative_coords(pos2& point, gan::EngineContext& world) {
     point.x -= world.get_borderX();
     point.y -= world.get_borderY();
     point.x /= world.get_scale();
@@ -26,7 +26,7 @@ void gutils::adjust_to_relative_coords(Pos2D& point, gan::EngineContext& world) 
 }
 
 // not my function, just found it.
-bool swept_aabb(const Box2D& moving, const Box2D& target, const FPos2D& delta, float& toi, FPos2D& normal) {
+bool swept_aabb(const box2& moving, const box2& target, const vec2& delta, float& toi, vec2& normal) {
     if (delta.x == 0.0f && delta.y == 0.0f)
         return false;
 

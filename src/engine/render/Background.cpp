@@ -1,9 +1,10 @@
 #include "engine/rendering/background/Background.hpp"
 
 #include "../../../include/engine/core/EngineContext.hpp"
-#include "../../../include/engine/types/positioning/FPos2D.hpp"
+#include "../../../include/engine/types/positioning/vec2.hpp"
 #include "../../../include/engine/debug/geng_debug.hpp"
-#include "engine/types/positioning/FPos3D.hpp"
+#include "engine/core/defaults/GengColors.hpp"
+#include "engine/types/positioning/vec3.hpp"
 
 using namespace gan;
 
@@ -20,7 +21,7 @@ Background::Background(SDL_Renderer* renderer, EngineContext& world) : world(wor
     // Then we resize our vector in accordance with the number of pixels we'll need.
     rgb.resize(world.get_width() * world.get_height() * 4);
     create_heightMap();
-    pixelColors = gch::vector<uint8_t>(world.get_width() * world.get_height());
+    pixelColors = std::vector<uint8_t>(world.get_width() * world.get_height());
 
     // Then, we set up a default Palette to use.
     addPalette(defaultBackgroundPalette);
@@ -62,16 +63,17 @@ void Background::update(int dt) {
 
 uint8_t toColor(int c) {
     if (c < 0) c = 0;
-    else if (c > 255) c = 255;
+    else if (c > max_alpha) c = max_alpha;
     return c;
 }
 
 void Background::update_pixels() {
-    uint8_t range = palettes[paletteNum].range;
-    uint8_t speed = palettes[paletteNum].speed;
+    //uint8_t range = palettes[paletteNum].range;
+    //uint8_t speed = palettes[paletteNum].speed;
     pixelColors[0] = 0;
 
-    if (world.get_frame() % speed == 0) {
+    // (world.get_frame() % speed == 0) {
+        /*
         for (int i = 0; i < rgb.size(); i+=4) {
             // This is our switch
             if (random() % palettes[paletteNum].chaos == 0){
@@ -85,32 +87,33 @@ void Background::update_pixels() {
                 rgb[i+2] = toColor(rgb[i+2] + (mod*speed));
                 if (rgb[i] < t1 - range || rgb[i]==0)
                     rgb[i+3] |= 4;
-                else if (rgb[i] > t1 + range || rgb[i]==255)
+                else if (rgb[i] > t1 + range || rgb[i]==max_alpha)
                     rgb[i+3] ^= 4;
 
                 if (rgb[i+1] < t2 - range || rgb[i+1]==0)
                     rgb[i+3] |= 2;
-                else if (rgb[i+1] > t2 + range || rgb[i+1]==255)
+                else if (rgb[i+1] > t2 + range || rgb[i+1]==max_alpha)
                     rgb[i+3] ^= 2;
 
                 if (rgb[i+2] < t3 - range || rgb[i+2]==0)
                     rgb[i+3] |= 1;
-                else if (rgb[i+2] > t3 + range || rgb[i+2]==255)
+                else if (rgb[i+2] > t3 + range || rgb[i+2]==max_alpha)
                     rgb[i+3] ^= 1;
 
             }
         }
-    }
+    *///}
+
 }
 
 void Background::addPalette(const BackgroundPalette& bp) {
-    palettes.push_back(bp);
+    //palettes.push_back(bp);
 }
 
 // sets a new Palette
 void Background::setPalette(int newPalette) {
     // If we're already using this palette it probably means startup so we refresh colors
-
+    /*
     if (newPalette == paletteNum) {
         for (int i =0; i < pixelColors.size(); i++) {
             pixelColors[i] = int((palettes[paletteNum].numColors) * heightMap[i]);
@@ -131,6 +134,7 @@ void Background::setPalette(int newPalette) {
         return;
     }
     paletteNum = newPalette;
+    */
 }
 
 void Background::create_heightMap() {
@@ -142,7 +146,7 @@ void Background::create_heightMap() {
 
     float max = 0;
     float min = 0;
-    FPos3D source(1,1,1);
+    vec3 source(1,1,1);
 
     // Now we take cross product with respect to the gradient of f
     for (int y = 0; y < world.get_height(); y++) {
@@ -155,7 +159,7 @@ void Background::create_heightMap() {
             float gradient_x = -0.25*cosf(sy/4.0f - 0.5*sx) + 0.25*(0.5*sinf(sy-sx)-0.1*cosf(sy-sx)) + 0.1*cosf(sx/5.0f);
             float gradient_y = 0.125*cosf(sy/4.0f - 0.5*sx)+0.25*(0.5*cosf(sy-sx)-0.02*cosf(sy-sx))-0.05*cosf(sy/10.0f);
             float gradient_z = 1;
-            FPos3D gradient(gradient_x, gradient_y, gradient_z);
+            vec3 gradient(gradient_x, gradient_y, gradient_z);
 
 
             // Here we just use this equation to get a map of the sand region.

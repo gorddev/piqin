@@ -14,7 +14,7 @@ namespace gan {
         /// Contains the engine_context core
         EngineContext& world;
         /// Contains all the InputRouters
-        gch::vector<InputRouter*> routers;
+        std::vector<InputRouter*> routers;
         /// Contains a map with all the states
         uint8_t* key_states;
 
@@ -29,6 +29,8 @@ namespace gan {
         void process_event(const SDL_Event &e, Layer *active_layer);
         /// Updates all the input routers with the currently held events.
         void update(Layer *active_layer);
+        /// Updates the input routers after event updating
+        void post_update(Layer* active_layer);
 
         /// Adds an input router
         void add_input_router(InputRouter* router);

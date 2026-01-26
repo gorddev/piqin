@@ -8,7 +8,7 @@ namespace gan {
     class LayerManager {
     private:
         /// Links indexes to Layers
-        gch::vector<Layer*> layers;
+        std::vector<Layer*> layers;
         /// Topmost id of the layer
         int active_id = -1;
         /// Keeps track of the EngineContext
@@ -57,7 +57,7 @@ namespace gan {
 
         // <><><> Layer Verification
         /// Gets the list of layers
-        gch::vector<Layer*>& get_layer_list();
+        std::vector<Layer*>& get_layer_list();
         /// Returns true if the manager has the layer currently
         bool has_layer(Layer* l);
         /// Returns true if the manager currently has the layer.

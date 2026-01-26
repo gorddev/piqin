@@ -2,20 +2,17 @@
 
 #include "engine/debug/debug-utilities/DebugText.hpp"
 #include "engine/rendering/Camera.hpp"
-#include "engine/scene/banners/Banner.hpp"
-#include "engine/types/cqueue/cqueue.hpp"
+#include "engine/mods/banners/Banner.hpp"
 
 namespace gan::debug {
 
     class ConsoleLogger : public Banner {
     private:
-        gch::vector<DebugText<500>> text;
+        std::vector<DebugText> text;
         int front = 0;
-        const Camera& cam;
         EngineContext& core;
     public:
-        ConsoleLogger(const Camera& cam, EngineContext& core) : Banner({t.w/2, 1.f*cam.get_height()}, 100, 100),
-                cam(cam), core(core) {
+        ConsoleLogger(const Camera& cam, EngineContext& core) : Banner({t.w/2, 1.f*cam.get_height()}, 100, 100), core(core) {
             text.reserve(4);
             set_draggable();
         }
@@ -24,7 +21,7 @@ namespace gan::debug {
 
             if (glog::dev.logged) {
                 if (text.size() < 4) {
-                    text.emplace_back(DebugText<500>(glog::dev.stream.c_str(), *core.get_font(0)));
+                    text.emplace_back(DebugText(glog::dev.stream.c_str(), core.get_font(0)));
                     add_widget(&text.back());
                 }
                 else {
@@ -43,7 +40,7 @@ namespace gan::debug {
             }
         }
 
-        void notify_screen_resolution_change(Dim2D new_resolution) {
+        void notify_screen_resolution_change(dim2 new_resolution) {
             set_pos({t.w/2, 1.f*new_resolution.h});
         }
     };

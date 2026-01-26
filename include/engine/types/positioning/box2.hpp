@@ -6,36 +6,36 @@ namespace gan {
 
     /** @brief Basic shape that contains an @code int x@endcode , @code int y@endcode, @code short w@endcode, and @code short h@endcode.
      * @details Contains ==, !=, +, - nontrivial operator overloads and an @code int area@endcode function that returns @code w*h@endcode. **/
-    struct Box2D {
+    struct box2 {
         int x, y;
         short w, h;
-        Box2D() : x(0), y(0), w(0), h(0) {}
-        Box2D(int x, int y, int w, int h) : x(x), y(y), w(w), h(h) {}
-        bool operator==(const Box2D& b) const {
+        box2() : x(0), y(0), w(0), h(0) {}
+        box2(int x, int y, int w, int h) : x(x), y(y), w(w), h(h) {}
+        bool operator==(const box2& b) const {
             return (x == b.x && y == b.y && w == b.w && h == b.h);
         }
-        bool operator!=(const Box2D& b) const {
+        bool operator!=(const box2& b) const {
             return (x != b.x || y != b.y || w != b.w || h != b.h);
         }
-        Box2D operator+(const Box2D& b) const {
+        box2 operator+(const box2& b) const {
             return {x + b.x, y + b.y, w + b.w, h + b.h};
         }
-        Box2D operator-(const Box2D& b) const {
+        box2 operator-(const box2& b) const {
             return {x - b.x, y - b.y, w - b.w, h - b.h};
         }
-        void operator+=(const Box2D& b) {
+        void operator+=(const box2& b) {
             x += b.x;
             y += b.y;
             w += b.w;
             h += b.h;
         }
-        void operator-=(const Box2D& b) {
+        void operator-=(const box2& b) {
             x -= b.x;
             y -= b.y;
             w -= b.w;
             h -= b.h;
         }
-        Box2D operator-() const {
+        box2 operator-() const {
             return {-x, -y, -w, -h};
         }
         int area() const { return w*h; }
@@ -80,10 +80,10 @@ namespace gan {
         /// Turns it into a hitbox for rendering, 4*6 vertices in total.
         std::vector<SDL_FPoint> to_hitbox(uint16_t thickness) {
 
-            Box2D left = {x, y, thickness, h};
-            Box2D top = {x +thickness, y, w - thickness, thickness};
-            Box2D bottom = {x + thickness, y + h - thickness, w - thickness, thickness};
-            Box2D right = {x + w - thickness, y + thickness, thickness, h - thickness*2};
+            box2 left = {x, y, thickness, h};
+            box2 top = {x +thickness, y, w - thickness, thickness};
+            box2 bottom = {x + thickness, y + h - thickness, w - thickness, thickness};
+            box2 right = {x + w - thickness, y + thickness, thickness, h - thickness*2};
 
             std::vector<SDL_FPoint> points;
             left.to_tex_points(points);

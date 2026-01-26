@@ -18,7 +18,7 @@ void LayerManager::update(double dt) {
 /// Gets a layer based on layer name
 Layer* LayerManager::get_layer(gan::fstring<10> layer_name)  {
     for (auto& l : layers) {
-        if (l->scene.get_name() == layer_name.c_str())
+        if (l->scene.name == layer_name.c_str())
             return l;
     }
     return nullptr;
@@ -33,7 +33,7 @@ Layer* LayerManager::get_active_layer() {
 
 /// Sets the active layer based on layer pointer
 void LayerManager::set_active_layer(Layer* l) {
-    set_active_layer(l->scene.get_name());
+    set_active_layer(l->scene.name);
 }
 
 /// Sets the active layer based on layer name
@@ -42,7 +42,7 @@ void LayerManager::set_active_layer(gan::fstring<10> name) {
         get_active_layer()->scene._engine_deflag(LayerFlag::active);
 
     for (int i = 0; i < (int)layers.size(); i++) {
-        if (layers[i]->scene.get_name() == name.c_str()) {
+        if (layers[i]->scene.name == name.c_str()) {
             active_id = i;
             layers[i]->scene._engine_flag(LayerFlag::active);
             return;
@@ -63,7 +63,7 @@ void LayerManager::add_layer(Layer* l) {
     }
     else
         glog::warn.src("LayerManager::add_layer()") <<
-            "Aready added layer" << l->scene.get_name().c_str() << " to scene." << glog::endlog;
+            "Aready added layer" << l->scene.name.c_str() << " to scene." << glog::endlog;
 }
 
 /// Increments the current active layer by 1 (loops back to)
@@ -84,7 +84,7 @@ void LayerManager::remove_layer(fstring<10> name) {
 
     // Remove it from the vector
     for (auto it = layers.begin(); it != layers.end(); ++it) {
-        if ((*it)->scene.get_name() == name.c_str()) {
+        if ((*it)->scene.name == name.c_str()) {
             if ((*it)->is_active())
                 was_active = true;
             found = true;
@@ -111,7 +111,7 @@ void LayerManager::remove_layer(fstring<10> name) {
 
 /// Removes a layer from the LayerManager via pointer
 void LayerManager::remove_layer(const Layer* l) {
-    remove_layer(l->scene.get_name());
+    remove_layer(l->scene.name);
 }
 
 /// Moves layer to front of order
@@ -173,7 +173,7 @@ void LayerManager::move_backward(Layer* l) {
 }
 
 /// Gets the list of layers
-gch::vector<Layer*>& LayerManager::get_layer_list() {
+std::vector<Layer*>& LayerManager::get_layer_list() {
     return layers;
 }
 
@@ -186,7 +186,7 @@ bool LayerManager::has_layer(Layer *l) {
 
 bool LayerManager::has_layer(fstring<10> name) {
     for (auto& o: layers)
-        if (o->scene.get_name() == name.c_str()) return true;
+        if (o->scene.name == name.c_str()) return true;
     return false;
 }
 

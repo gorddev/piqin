@@ -1,8 +1,8 @@
 #pragma once
 #include <SDL.h>
 
-#include "engine/types/positioning/FPos2D.hpp"
-#include "engine/scene/sprites/Sprite.hpp"
+#include "engine/types/positioning/vec2.hpp"
+#include "engine/mods/animation/sprites/Sprite.hpp"
 
 namespace gan {
     /**
@@ -23,7 +23,7 @@ namespace gan {
      * @code update()@endcode and @code to_vertex()@endcode. @code update()@endcode returns true when the particle effect is over. @code to_vertex(lni::vector<SDL_Vertex>&buffer)@endcode
      * takes in the FPos2D buffer DIRECTLY FROM THE RENDERER. Thus, you must manually specify the proper vertices for your particle effect manually. There is no nice tool to do this for you.
      * If you do not properly add your @code SDL_Vertices@endcode in sets of three to the render buffer, visuals likely will bug and not work, and there is a high probability of memory corruption.
-     * @note There exists an "inline SDL_FPoint white" in this definition. Just make sure you set the "4.f and 4.f" to a point on your atlas texture that is RGB(255,255,255,255)
+     * @note There exists an "inline SDL_FPoint white" in this definition. Just make sure you set the "4.f and 4.f" to a point on your atlas texture that is RGB(gan::max_alpha,gan::max_alpha,gan::max_alpha,gan::max_alpha)
     */
     class ParticleGroup : public Gear {
     protected:
@@ -39,7 +39,7 @@ namespace gan {
         // If they're attatched to an object, they ride it like a horse
         Gear* payload = nullptr;
 
-        ParticleGroup(const FPos2D pos, const float strength, const float speed, const float duration, const SDL_Color color) :
+        ParticleGroup(const vec2 pos, const float strength, const float speed, const float duration, const SDL_Color color) :
                 Gear(pos), duration(duration), strength(strength), speed(speed) { if (duration == -1) permanent = true; t.color = color; }
         ParticleGroup(Gear* g, const float strength, const float speed, const float duration, const SDL_Color color)
             : Gear(g->t.pos), duration(duration), strength(strength), speed(speed), payload(g) { z_index = g->z_index - 1; t.color = color; if (duration == -1) permanent = true;}

@@ -1,4 +1,4 @@
-#include "../../../../include/engine/mods/animation/FrameList.hpp"
+#include "engine/mods/animation/frames/FrameList.hpp"
 
 #include "engine/debug/geng_debug.hpp"
 

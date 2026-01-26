@@ -1,8 +1,8 @@
-#include "../../../../include/engine/mods/animation/FrameTable.hpp"
-#include "../../../../include/engine/mods/animation/AnimInfo.hpp"
+#include "engine/mods/animation/frames/FrameTable.hpp"
+#include "engine/mods/animation/sprites/AnimInfo.hpp"
 #include <utility>
 
-#include "../../../../../include/engine/debug/geng_debug.hpp"
+#include "engine/debug/geng_debug.hpp"
 
 using namespace gan;
 

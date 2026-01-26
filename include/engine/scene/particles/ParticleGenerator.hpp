@@ -11,9 +11,9 @@ namespace gan {
         /// Holds the data for a ParticleState
         const ParticleState state;
         /// Ties this generator to a set of particle functions
-        gch::vector<ParticleFunction> particle_functions;
+        std::vector<ParticleUpdater> particle_functions;
         /// Ties this generator to a set of particle primers to create particles
-        gch::vector<ParticlePrimer> particle_primers;
+        std::vector<ParticlePrimer> particle_primers;
         /// Ties this generator to a specific group id
         int group_id = -1;
         /// Ties this generator to a specific ShapeType

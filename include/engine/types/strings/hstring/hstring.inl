@@ -12,14 +12,14 @@ inline void hstring::ensure(uint32_t needed) {
     uint32_t new_cap = std::max(cap * 2u, needed);
     char* n = static_cast<char*>(::operator new(new_cap + 1));
 
-    if (data) {
-        std::memcpy(n, data, len);
+    if (data != nullptr) {
+        std::memcpy(n, data, len+1);
         ::operator delete(data);
     }
 
     data = n;
     cap  = new_cap;
-    // Maintain invariant: always null-terminated
+
     data[len] = '\0';
 }
 
@@ -34,7 +34,7 @@ inline hstring::hstring() {
 }
 
 inline hstring::hstring(uint32_t reserve) {
-    ensure(reserve + 1); // +1 for null
+    ensure(reserve);
     len = 0;
     data[0] = '\0';
 }
@@ -97,11 +97,21 @@ inline hstring::~hstring() {
 // Assignment operators
 // ******************************
 
+inline hstring& hstring::operator=(const char text[]) {
+    uint32_t str_len = strlen(text);
+    uint32_t new_len = std::max(str_len, len);
+    ensure(new_len+1);
+    std::memcpy(data, text, str_len);
+    len = new_len;
+    data[len] = '\0';
+    return *this;
+}
+
 inline hstring& hstring::operator=(const hstring& o) {
     if (this == &o) return *this;
-    ensure(o.len + 1);
+    uint32_t new_len = std::max(o.len, len);
+    ensure(new_len+1);
     std::memcpy(data, o.data, o.len);
-    len = o.len;
     data[len] = '\0';
     precision = o.precision;
     return *this;
@@ -119,6 +129,7 @@ inline hstring& hstring::operator=(hstring&& o) noexcept {
 // Utility
 // ******************************
 
+inline void hstring::resize(uint32_t new_cap) { ensure (new_cap + 1); }
 inline uint32_t hstring::length() const { return len; }
 inline uint32_t hstring::capacity() const { return cap; }
 
@@ -139,7 +150,6 @@ inline const char& hstring::operator[](uint32_t i) const {
 inline char* hstring::c_str() { return data; }
 inline const char* hstring::c_str() const { return data; }
 inline hstring::operator const char*() { return data; }
-
 inline str_view hstring::wrap() { return {data, len, cap}; }
 
 // ******************************

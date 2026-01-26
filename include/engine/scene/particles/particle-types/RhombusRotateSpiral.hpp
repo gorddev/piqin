@@ -2,17 +2,17 @@
 #include "engine/scene/particles/ParticleGroup.hpp"
 #include <deque>
 
-#include "engine/layers/LayerState.hpp"
+#include "../../../layers/layer-subobjects/LayerState.hpp"
 
 namespace gfx {
 
     struct RhombusRotateSpiralInst {
-        gan::FPos2D pos;
-        gan::FPos2D velocity;
+        gan::vec2 pos;
+        gan::vec2 velocity;
         short radius;
         float duration = 1500;
-        RhombusRotateSpiralInst(const gan::FPos2D &offset,
-                                gan::FPos2D velocity,
+        RhombusRotateSpiralInst(const gan::vec2 &offset,
+                                gan::vec2 velocity,
                                 float size);
         // Updates rhombus position
         bool update(double& dt);
@@ -26,8 +26,8 @@ namespace gfx {
         float period;
         int flip = 1;
     public:
-        RhombusRotateSpiral(gan::FPos2D pos, float size, float speed, float duration, float frequency, SDL_Color color = {255,255,255,255});
-        RhombusRotateSpiral(Gear* o, float size, float speed, float duration, float period, SDL_Color color = {255,255,255,255});
+        RhombusRotateSpiral(gan::vec2 pos, float size, float speed, float duration, float frequency, SDL_Color color = {gan::max_alpha,gan::max_alpha,gan::max_alpha,gan::max_alpha});
+        RhombusRotateSpiral(Gear* o, float size, float speed, float duration, float period, SDL_Color color = {gan::max_alpha,gan::max_alpha,gan::max_alpha,gan::max_alpha});
 
         bool update(gan::LayerState &time) override;
         void to_vertex(gan::RenderBuffer& buffer) override;

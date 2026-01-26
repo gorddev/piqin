@@ -45,7 +45,7 @@ void InputDistributor::event_key_up(SDL_Scancode key, Layer*& active_layer) {
 }
 
 void InputDistributor::event_mouse_click(const SDL_Event& e, Layer*& active_layer) {
-    Pos2D mousepos;
+    pos2 mousepos;
     // Gets the mouse state
     SDL_GetMouseState(&mousepos.x, &mousepos.y);
     // Adjust coordinates to relative coordinates
@@ -63,7 +63,7 @@ void InputDistributor::event_mouse_click(const SDL_Event& e, Layer*& active_laye
 }
 
 void InputDistributor::event_mouse_release(const SDL_Event& e, Layer*& active_layer) {
-    Pos2D mousepos;
+    pos2 mousepos;
     // Gets the mouse state
     SDL_GetMouseState(&mousepos.x, &mousepos.y);
     // Adjust coordinates to relative coordinates
@@ -81,11 +81,11 @@ void InputDistributor::event_mouse_release(const SDL_Event& e, Layer*& active_la
 }
 
 void InputDistributor::event_mouse_motion(const SDL_Event& e, Layer*& active_layer) {
-    Pos2D mousepos;
+    pos2 mousepos;
     // Gets the mouse state
     SDL_GetMouseState(&mousepos.x, &mousepos.y);
     // Find change in position
-    FPos2D deltapos = {e.motion.xrel/world.get_scale(),
+    vec2 deltapos = {e.motion.xrel/world.get_scale(),
         e.motion.yrel/world.get_scale()};
     // Adjust coordinates to relative coordinates
     gutils::adjust_to_relative_coords(mousepos, world);
@@ -169,16 +169,21 @@ void InputDistributor::process_event(const SDL_Event& e, Layer* active_layer) {
     else if (e.type == SDL_MOUSEWHEEL) {
         event_mouse_wheel(e.wheel, active_layer);
     }
-
 }
 
 void InputDistributor::update(Layer* active_layer) {
-    const uint8_t* keys = static_cast<const uint8_t*>(SDL_GetKeyboardState(nullptr));
+    const uint8_t* keys = (SDL_GetKeyboardState(nullptr));
     bool consumed = false;
     for (auto& r : routers) {
-        if (r->update(active_layer, keys))
+        if (r->pre_update(active_layer, keys))
             break;
     }
+}
+
+void InputDistributor::post_update(Layer *active_layer) {
+    const uint8_t* keys = (SDL_GetKeyboardState(nullptr));
+    for (auto& r : routers)
+        r->post_update(active_layer, keys);
 }
 
 void InputDistributor::add_input_router(InputRouter *router) {

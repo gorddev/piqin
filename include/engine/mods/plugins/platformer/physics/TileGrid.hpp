@@ -1,6 +1,6 @@
 #pragma once
 
-#include "engine/mods/platformer/world/WorldProperties.hpp"
+#include "engine/mods/plugins/platformer/world/WorldProperties.hpp"
 #include "engine/types/positioning/box2.hpp"
 
 namespace gan {

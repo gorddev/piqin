@@ -19,7 +19,7 @@ bool Console::get_key_press(SDL_Scancode key, Layer *&active_layer) {
 }
 
 
-bool Console::get_mouse_click(Uint8 button, Pos2D mousepos, Layer *&active_layer) {
+bool Console::get_mouse_click(Uint8 button, pos2 mousepos, Layer *&active_layer) {
     input_handler._get_mouse_click(mousepos);
     if (debugger.change_layer) {
         core.set_layer_change("__next");
@@ -32,12 +32,12 @@ bool Console::get_mouse_click(Uint8 button, Pos2D mousepos, Layer *&active_layer
     return false;
 }
 
-bool Console::get_mouse_release(Uint8 button, Pos2D mousepos, Layer *&active_layer) {
+bool Console::get_mouse_release(Uint8 button, pos2 mousepos, Layer *&active_layer) {
     input_handler._get_mouse_release(mousepos);
     return false;
 }
 
-bool Console::get_mouse_move(Pos2D mousepos, FPos2D deltapos, Layer *&active_layer) {
+bool Console::get_mouse_move(pos2 mousepos, vec2 deltapos, Layer *&active_layer) {
     input_handler._mouse_move(mousepos, deltapos);
     return false;
 }

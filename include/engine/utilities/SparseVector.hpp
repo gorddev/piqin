@@ -8,7 +8,7 @@ namespace gutils {
     template <typename T>
     struct SparseVector {
     private:
-        gch::vector<T*> entries;
+        std::vector<T*> entries;
         std::queue<int> positions;
     public:
         SparseVector() = default;
@@ -42,7 +42,7 @@ namespace gutils {
             return nullptr;
         }
         void erase(T* t) {
-            for (int i = 0; i < entries.size(); ++i) {
+            for (int i = 0; i < static_cast<int>(entries.size()); ++i) {
                 if (entries[i]== t) {
                     entries[i] = nullptr;
                     positions.push(i);
@@ -51,7 +51,7 @@ namespace gutils {
             }
         }
         void erase(int i) {
-            if (i < entries.size()) {
+            if (i < static_cast<int>(entries.size())) {
                 entries[i] = nullptr;
                 positions.push(i);
             }

@@ -1,10 +1,9 @@
 #pragma once
 
-#include "engine/types/external/vector.hpp"
 
 namespace gfx {
     /// Renders shadows directly onto the background
-    inline void shadow_background(gch::vector<SDL_Vertex>& buffer, int& numVertices, void* userdata) {
+    inline void shadow_background(std::vector<SDL_Vertex>& buffer, int& numVertices, void* userdata) {
         // First gets our size before we update with new buffer
         int oldsize = static_cast<int>(buffer.size());
         // Resize our vector accordingly.

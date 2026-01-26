@@ -2,7 +2,6 @@
 
 #include <unordered_map>
 #include "Texture.hpp"
-#include "engine/layers/LayerContext.hpp"
 #include "engine/types/strings/hstring/hstring.hpp"
 
 namespace gan {
@@ -17,11 +16,9 @@ namespace gan {
     class TextureRegister final {
     private:
         /// Contains the id for each texture.
-        int id_num = 0;
-        /// Contains the core for the layer.
-        EngineContext& core;
+        int id_num;
         /// Maps the path of the texture to the texture id.
-        std::unordered_map<gan::hstring, int> path_to_id;
+        std::unordered_map<hstring, int> path_to_id;
         /// Maps the id of the texture to the texture object.
         std::unordered_map<int, Texture> id_to_tex;
     protected:
@@ -30,17 +27,15 @@ namespace gan {
         /// Lets the renderer load a texture
         void load_texture(int index, Texture tex);
         /// Lets the renderer iterate through uninitialized textures
-        std::unordered_map<gan::hstring, int> ready_textures;
+        std::unordered_map<hstring, int> ready_textures;
         /// Clears out any textures waiting to be rendered.
         void clear();
         /// Heyo its me your friend the renderer
         friend class Renderer;
-    protected:
-        // Constructs
-        explicit TextureRegister(EngineContext& core);
-        ~TextureRegister();
-        friend class Engine;
     public:
+        // Constructs
+        explicit TextureRegister();
+        ~TextureRegister();
         // Gets the front of the texture register
         std::pair<int, Texture> front();
 
@@ -71,7 +66,7 @@ namespace gan {
         Texture get_texture(const char path[]);
 
         // Gets the size of the register (number of paths)
-        int size() const;
+        [[nodiscard]] int size() const;
     };
 
     TextureRegister& get_tex_register();

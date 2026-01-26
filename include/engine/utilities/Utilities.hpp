@@ -2,7 +2,7 @@
 
 #include "../core/EngineContext.hpp"
 #include "engine/types/Transform2D.hpp"
-#include "engine/types/positioning/Box2D.hpp"
+#include "engine/types/positioning/box2.hpp"
 
 namespace gutils {
 
@@ -16,9 +16,9 @@ namespace gutils {
     /// Returns true if the point is within the transform.
     bool contained_within(SDL_Point point, gan::Transform2D& t);
     /// Moves the cursor into the frame of the actual scene considering borders.
-    void adjust_to_relative_coords(gan::Pos2D &point, gan::EngineContext &world);
+    void adjust_to_relative_coords(gan::pos2 &point, gan::EngineContext &world);
     /// Uses the sweep method to detect collisions
-    bool swept_aabb(const gan::Box2D& moving, const gan::Box2D& target, const gan::FPos2D& delta, float& toi, gan::FPos2D& normal);
+    bool swept_aabb(const gan::box2& moving, const gan::box2& target, const gan::vec2& delta, float& toi, gan::vec2& normal);
 
     /// Converts a cstr to a float
     bool cstr_to_float(const char* str, float& out);

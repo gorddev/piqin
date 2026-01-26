@@ -1,5 +1,5 @@
 #pragma once
-#include "engine/scene/sprites/Sprite.hpp"
+#include "engine/mods/animation/sprites/Sprite.hpp"
 
 namespace gan {
     // Generic selector object

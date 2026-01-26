@@ -32,7 +32,7 @@ namespace gan::debug {
         /// Camera of the Console
         Camera cam = {0,0, 600,240};
         /// Lets us set up an InputHandler for clicking
-        LayerContext scene;
+        LayerCore scene;
 
         friend class Engine;
         friend class gan::Renderer;
@@ -42,13 +42,13 @@ namespace gan::debug {
 
         explicit Console(InputRouterInit& init, EngineContext& core)
             : InputRouter(init), core(core), debugger(core.debugger),
-                info_banner(core), button_panel(core, cam) //,logger(cam, core)
-                , scene(name, cam, core.width, core.height), input_handler(scene)
+                info_banner(core), button_panel(core, cam)
+                , scene(name, cam, core.width, core.height, nullptr, nullptr, core.tex_reg), input_handler(scene)
         {
             button_panel.add_mouse_acceptors(input_handler);
         }
 
-        bool update(Layer*& active_layer, const uint8_t* keys) override {
+        bool pre_update(Layer*& active_layer, const uint8_t* keys) override {
             if (gan::debug_mode) {
                 info_banner.update(active_layer, debugger);
                 button_panel.notify_update();
@@ -56,12 +56,13 @@ namespace gan::debug {
             return false;
         }
 
-        void notify_screen_resolution_change(Dim2D new_resolution) {
-            float ratio = 1.f*new_resolution.h/new_resolution.w;
-            if (new_resolution.w > 550)
-                cam.set_dimensions({550, int(550*ratio)});
-            else
-                cam.set_dimensions(new_resolution);
+        void notify_screen_resolution_change(dim2 new_resolution) {
+
+            while (new_resolution.w/2 > 600) {
+                new_resolution.w /= 2;
+                new_resolution.h /= 2;
+            }
+            cam.set_dimensions(new_resolution);
             // Button_panel
             button_panel.notify_screen_resolution_change(cam.get_dimensions());
             // debuglogger
@@ -76,9 +77,9 @@ namespace gan::debug {
         }
 
         bool get_key_press(SDL_Scancode key, Layer *&active_layer) override;
-        bool get_mouse_click(Uint8 button, Pos2D mousepos, Layer *&active_layer) override;
-        bool get_mouse_release(Uint8 button, Pos2D mousepos, Layer*& active_layer) override;
-        bool get_mouse_move(Pos2D mousepos, FPos2D deltapos, Layer *&active_layer) override;
+        bool get_mouse_click(Uint8 button, pos2 mousepos, Layer *&active_layer) override;
+        bool get_mouse_release(Uint8 button, pos2 mousepos, Layer*& active_layer) override;
+        bool get_mouse_move(pos2 mousepos, vec2 deltapos, Layer *&active_layer) override;
 
     };
 }

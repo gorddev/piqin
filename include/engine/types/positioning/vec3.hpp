@@ -20,28 +20,28 @@ namespace gan {
      * @note There exists three to_string functions. Two are overloads for @code +@endcode and @code <<@endcode, and there also exists a generic @code to_string()@endcode.
      * @warning The == comparison for Vertexes only compares to the fourth decimal place.
      */
-    struct FPos3D {
+    struct vec3 {
         float x = 0;
         float y = 0;
         float z = 0;
 
         // Constructor for position
-        FPos3D() = default;
+        vec3() = default;
         /// Z Defaults to 0 in this constructor
-        FPos3D(const float x, const float y) : x(x), y(y), z(0) {}
-        FPos3D(const float x, const float y, const float z) : x(x), y(y), z(z) {}
+        vec3(const float x, const float y) : x(x), y(y), z(0) {}
+        vec3(const float x, const float y, const float z) : x(x), y(y), z(z) {}
 
         // Member functions
         /// Sets each coordinate of the vector
         void set(float xpos, float ypos, float zpos);
         /// Calculates the unit vector of this FPos3D
-        [[nodiscard]] FPos3D unit() const;
+        [[nodiscard]] vec3 unit() const;
         /// Finds the magnitude of this FPos3D
         [[nodiscard]] float mag() const;
         /// Finds the magnitude of the x and y coordinates together
         [[nodiscard]] float xy_mag() const;
         /// Finds the distance of this FPos3D to another
-        [[nodiscard]] float dist(FPos3D v) const;
+        [[nodiscard]] float dist(vec3 v) const;
         /// Turns all values in the FPos3D to 0.f
         void to_zero();
         /// Resturns true if a FPos3D is zero
@@ -49,26 +49,26 @@ namespace gan {
         /// Randomizes the values in a FPos3D. Specify a range from low to high. If no range is specified, randomness will be from -1 to 1.
         void randomize(std::pair<float, float> range = std::make_pair(0, 0));
         /// Gets the absolute value of this FPos3D
-        FPos3D abs();
+        vec3 abs();
 
         // Operator overloads for Vertexes
         // Operations with other Vertexes
-        FPos3D operator+(FPos3D other) const;   /// Adds coordinates of two Vertices together
-        FPos3D operator-(FPos3D other) const;   /// Subtracts coordinates of two vectors
-        FPos3D operator*(float scalar) const;   /// Multiplication of all coordinates
-        FPos3D operator/(float scalar) const;   /// Division via scalar of FPos3D
-        FPos3D operator%(int scalar) const;     /// Mod each element of the FPos3D by the scalar (turn to int)
+        vec3 operator+(vec3 other) const;   /// Adds coordinates of two Vertices together
+        vec3 operator-(vec3 other) const;   /// Subtracts coordinates of two vectors
+        vec3 operator*(float scalar) const;   /// Multiplication of all coordinates
+        vec3 operator/(float scalar) const;   /// Division via scalar of FPos3D
+        vec3 operator%(int scalar) const;     /// Mod each element of the FPos3D by the scalar (turn to int)
         // Self operations
-        void operator+=(FPos3D other);  /// Addition + assignment
-        void operator-=(FPos3D other);  /// Subtraction + assignment
+        void operator+=(vec3 other);  /// Addition + assignment
+        void operator-=(vec3 other);  /// Subtraction + assignment
         void operator*=(float scalar);  /// Scalar multiplication + assignment
         void operator/=(float scalar);  /// Divison + assignment -> turn to 0 if dividing by 0.
         void operator%=(int scalar);    /// Modulus + assignment
 
-        float operator*(FPos3D other);  /// Dot product of two Vertexes
+        float operator*(vec3 other);  /// Dot product of two Vertexes
 
         float& operator[](int index);   /// Element wise access: [0]: x, [1]: y, [2]: z, [else]: x + error.
-        void operator=(FPos3D other); /// Copy constructor but with = sign. // NOLINT(*-unconventional-assign-operator)
+        void operator=(vec3 other); /// Copy constructor but with = sign. // NOLINT(*-unconventional-assign-operator)
 
         // To string methods below
         /// Add a FPos3D to a string
@@ -78,7 +78,7 @@ namespace gan {
         /// Converts a FPos3D to a string.
         [[nodiscard]] gan::str_view &to_fstring(str_view &buffer) const;
         /// Checks to the fourth decimal if two Vertexes are equal.
-        bool operator==(FPos3D other) const;
+        bool operator==(vec3 other) const;
 
         bool is_finite() const;
 

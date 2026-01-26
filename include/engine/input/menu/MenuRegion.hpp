@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Selector.hpp"
-#include "engine/types/external/vector.hpp"
 
 namespace gan {
     struct Selection {
@@ -12,9 +11,9 @@ namespace gan {
     template <typename Item>
     class MenuRegion {
         // Takes a vector of vector pointers to
-        gch::vector<gch::vector<Item*>*> menus;
+        std::vector<std::vector<Item*>*> menus;
         // Keeps track of the menus we have access to.
-        gch::vector<short> rows;
+        std::vector<short> rows;
         // Tells us whether we wrap or not
         bool wrapy;
         bool wrapx;
@@ -30,10 +29,10 @@ namespace gan {
 
     public:
         // Constructor
-        MenuRegion(gch::vector<gch::vector<Item*>*> menus, bool wrapy, bool wrapx);
+        MenuRegion(std::vector<std::vector<Item*>*> menus, bool wrapy, bool wrapx);
 
         // Lets us set our selectable regions
-        void set_selectables(gch::vector<short> selects);
+        void set_selectables(std::vector<short> selects);
         // Lets us add a selectable region
         void add_selectable(short s);
 
@@ -64,7 +63,7 @@ namespace gan {
 
 namespace gan {
     template<typename Item>
-    MenuRegion<Item>::MenuRegion(gch::vector<gch::vector<Item*> *> menus, bool wrapx, bool wrapy)
+    MenuRegion<Item>::MenuRegion(std::vector<std::vector<Item*> *> menus, bool wrapx, bool wrapy)
         : menus(menus), wrapx(wrapx), s({0, 0}), selector(nullptr),
           wrapy(wrapy) {
     }
@@ -278,7 +277,7 @@ namespace gan {
     }
 
     template<typename Item>
- void MenuRegion<Item>::set_selectables(gch::vector<short> selects) {
+ void MenuRegion<Item>::set_selectables(std::vector<short> selects) {
         // Update our rows
         rows = std::move(selects);
 

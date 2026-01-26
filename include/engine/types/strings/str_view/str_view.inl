@@ -72,7 +72,7 @@ inline void str_view::emplace(uint32_t index, const char* str, uint32_t count) {
     data[len] = '\0';
 }
 
-inline int str_view::find(char c, int pos) const {
+inline int str_view::find(char c, uint32_t pos) const {
     while (pos < len) {
         if (data[pos] == c)
             return pos;

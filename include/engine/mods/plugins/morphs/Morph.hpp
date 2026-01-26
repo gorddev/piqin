@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../core/gears/Gear.hpp"
-#include "../../layers/layer-subobjects/LayerState.hpp"
+#include "engine/core/gears/Gear.hpp"
+#include "engine/layers/layer-subobjects/LayerState.hpp"
 
 namespace gan {
     /**

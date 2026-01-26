@@ -1,10 +1,8 @@
 #include "engine/input/InputHandler.hpp"
 
-#include "engine/scene/routes/Route.hpp"
-
 using namespace gan;
 
-InputHandler::InputHandler(LayerContext& scene) : scene(scene), cam(scene.get_camera()), mouse(mouse_acceptors, scene.get_camera(), scene.state) {}
+InputHandler::InputHandler(LayerCore& scene) : scene(scene),  mouse(mouse_acceptors, scene.camera, scene.state) {}
 
 void InputHandler::_get_key_press(SDL_Scancode key) {
     if (active) {
@@ -26,16 +24,16 @@ void InputHandler::_get_key_release(SDL_Scancode key) {
     }
 }
 
-void InputHandler::_get_mouse_click(Pos2D mousepos) {
+void InputHandler::_get_mouse_click(pos2 mousepos) {
     mouse.on_click();
 }
 
-void InputHandler::_get_mouse_release(Pos2D mousepos) {
+void InputHandler::_get_mouse_release(pos2 mousepos) {
     mouse.on_click_release();
 }
 
 
-void InputHandler::_mouse_move(Pos2D mousepos, FPos2D deltapos) {
+void InputHandler::_mouse_move(pos2 mousepos, vec2 deltapos) {
     mouse.on_movement(mousepos, deltapos, scene);
 }
 
@@ -59,7 +57,7 @@ void InputHandler::add_key_press_acceptor(Gear *g) {
     key_press_acceptors.push_back(g);
 }
 
-void InputHandler::add_key_press_acceptors(gch::vector<Gear *> &gears) {
+void InputHandler::add_key_press_acceptors(std::vector<Gear *> &gears) {
     key_press_acceptors.insert(key_press_acceptors.end(), gears.begin(), gears.end());
 }
 
@@ -67,7 +65,7 @@ void InputHandler::add_mouse_acceptor(Gear *g) {
     mouse_acceptors.push_back(g);
 }
 
-void InputHandler::add_mouse_acceptors(gch::vector<Gear *> &gears) {
+void InputHandler::add_mouse_acceptors(std::vector<Gear *> &gears) {
     mouse_acceptors.insert(mouse_acceptors.end(), gears.begin(), gears.end());
 }
 
@@ -80,7 +78,7 @@ void InputHandler::remove_key_acceptor(Gear *g) {
     }
 }
 
-void InputHandler::remove_key_acceptors(gch::vector<Gear *> &gears) {
+void InputHandler::remove_key_acceptors(std::vector<Gear *> &gears) {
     for (auto& g: gears) {
         remove_key_acceptor(g);
     }
@@ -96,7 +94,7 @@ void InputHandler::remove_mouse_acceptor(Gear *g) {
     }
 }
 
-void InputHandler::remove_mouse_acceptors(gch::vector<Gear *> &gears) {
+void InputHandler::remove_mouse_acceptors(std::vector<Gear *> &gears) {
     for (auto& g: gears) {
         remove_mouse_acceptor(g);
     }

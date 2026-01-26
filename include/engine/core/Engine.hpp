@@ -18,10 +18,6 @@ namespace gan {
     private:
         /// Keeps track of all the essential data for our engine to run.
         EngineContext core;
-        /// Keeps track of all of the currently loaded textures
-        TextureRegister texreg;
-        /// Keeps track of each of the fonts
-        FontList fonts;
         /// Engine's Renderer. Very very off-limits no touching. Like seriously do not touch it.
         Renderer rend;
         /// Keeps track of all our layers so we can send them to the Renderer.
@@ -35,7 +31,7 @@ namespace gan {
         /// Constructor/destructor
         Engine();
         /// Default destructor—no pointers in engine.
-        ~Engine() = default;
+        ~Engine();
 
         // *******************
         // <><> Engine Vitals <><>
@@ -50,7 +46,7 @@ namespace gan {
         // *******************
         // <><> Fonts <><>
         // *******************
-        int create_font(hstring path, uint16_t spacing, uint16_t pt);
+        int create_font(hstring path, uint16_t spacing, uint16_t pt, SDL_ScaleMode render_mode = SDL_ScaleModeLinear);
         Font* get_font(int index);
         // *******************
         // <><> Rendering <><>
@@ -58,9 +54,9 @@ namespace gan {
         /// Sends things to the renderer and presents it. Should call every frame.
         void render();
         /// Sets the resolution of the window
-        void set_resolution(Dim2D d);
+        void set_resolution(dim2 d);
         /// Gets the resolution of the window
-        [[nodiscard]] Dim2D get_resolution() const;
+        [[nodiscard]] dim2 get_resolution() const;
 
 
         // *******************
@@ -88,7 +84,6 @@ namespace gan {
         // <><> Getting Layer <><><>
         /// Gets a layer based on the layer name
         Layer *get_layer(gan::fstring<10> layer_name);
-
 
         // ***************************
         // <><> Input Management <><><>

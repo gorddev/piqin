@@ -1,24 +1,23 @@
 #include "engine/debug/console/DebugInfoBanner.hpp"
 
-#include "engine/scene/banners/text/Text.hpp"
+#include "engine/mods/banners/text/Text.hpp"
 
 namespace gan::debug {
 
     DebugInfoBanner::DebugInfoBanner(EngineContext& core)
-        : core(core),
-            Banner({1.0, 0.0}, 0, 0),
-          info({1, 0}, 0, 0),
-          text(" ", *core.get_font(0))
-    {
+        : Banner({1.0, 0.0}, 0, 0), info({1, 0}, 0, 0),
+          text(" ", core.get_font(0)),
+          core(core),
+          fps_tracker() {
         info.add_widget(&text);
+        text.resize_internal_string(1200);
     }
 
     void DebugInfoBanner::update(Layer*& active_layer, DebugContext& debugger) {
         text.clear();
-        gan::str_view view = text.get_fstr_view();
+        str_view view = text.get_fstr_view();
 
-        fps_tracker.push(1000/core.get_dt());
-
+        fps_tracker.push(1000.f/core.get_dt());
 
         float fps = 0; int i = 0;
         for (auto& it: fps_tracker) {
@@ -44,7 +43,8 @@ namespace gan::debug {
                 view << "\tvis: " << active_layer->scene.is_visible() << "\n"
                      << "active_layer: [e]" << active_layer->get_name().c_str()
                      << " (" << active_layer->scene.get_id() << ")[n]\n"
-                     << "mouse selection: " << active_layer->input.mouse.target << " ";
+                     << "mpos: {" << active_layer->input.mouse.pos.x << ",\t" << active_layer->input.mouse.pos.y << "}\t" <<
+                         "mouse selection: " << active_layer->input.mouse.target << " ";
 
                 if (selected == nullptr) {
                     if (active_layer->input.mouse.target != nullptr)

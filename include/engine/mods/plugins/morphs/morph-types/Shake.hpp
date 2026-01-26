@@ -1,6 +1,6 @@
 #pragma once
-#include "../../../layers/layer-subobjects/LayerState.hpp"
-#include "engine/mods/morphs/Morph.hpp"
+#include "engine/layers/layer-subobjects/LayerState.hpp"
+#include "engine/mods/plugins/morphs/Morph.hpp"
 
 namespace gfx {
     // Shake type macros

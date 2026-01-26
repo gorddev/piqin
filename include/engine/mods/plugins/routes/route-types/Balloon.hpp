@@ -1,13 +1,13 @@
 #pragma once
 
-#include "../../../layers/layer-subobjects/LayerState.hpp"
-#include "engine/mods/routes/Route.hpp"
+#include "engine/layers/layer-subobjects/LayerState.hpp"
+#include "engine/mods/plugins/routes/Route.hpp"
 
-namespace groute {
+namespace gfx {
     /**
      * @brief Balloon path starts moving a Transform2D very fast, and then slows down as it approaches the target.
      */
-    class Balloon final : public gan::Route {
+    class Balloon final : public gfx::Route {
     private:
         gan::vec2 direction;
     public:

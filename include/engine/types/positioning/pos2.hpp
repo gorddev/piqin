@@ -3,31 +3,31 @@
 
 namespace gan {
 
-    struct Pos2D {
+    struct pos2 {
         int x, y;
-        Pos2D() : x(0), y(0) {}
-        Pos2D(int x, int y) : x(x), y(y) {}
-        bool operator==(const Pos2D& p) const {
+        pos2() : x(0), y(0) {}
+        pos2(int x, int y) : x(x), y(y) {}
+        bool operator==(const pos2& p) const {
             return (x == p.x && y == p.y);
         }
-        bool operator!=(const Pos2D& p) const {
+        bool operator!=(const pos2& p) const {
             return (x != p.x || y != p.y);
         }
-        Pos2D operator+(const Pos2D& p) const {
+        pos2 operator+(const pos2& p) const {
             return {x + p.x, y + p.y};
         }
-        Pos2D operator-(const Pos2D& p) const {
+        pos2 operator-(const pos2& p) const {
             return {x - p.x, y - p.y};
         }
-        void operator+=(const Pos2D& p) {
+        void operator+=(const pos2& p) {
             x += p.x;
             y += p.y;
         }
-        void operator-=(const Pos2D& p) {
+        void operator-=(const pos2& p) {
             x -= p.x;
             y -= p.y;
         }
-        Pos2D operator-() const {
+        pos2 operator-() const {
             return {-x, -y};
         }
 
@@ -39,7 +39,7 @@ namespace gan {
             return {static_cast<float>(x), static_cast<float>(y)};
         }
 
-        SDL_FPoint to_f_point() const {
+        [[nodiscard]] SDL_FPoint to_f_point() const {
             return {static_cast<float>(x), static_cast<float>(y)};
         }
     };

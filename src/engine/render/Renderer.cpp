@@ -7,8 +7,8 @@
 
 using namespace gan;
 
-Renderer::Renderer(EngineContext& world, TextureRegister& texreg)
-		: world(world), texreg(texreg), buffer(texreg, shadows) {
+Renderer::Renderer(EngineContext& world)
+		: world(world), buffer(world.tex_reg, shadows) {
 	// Create the texture we will end up rendering to.
 	canvasTex = nullptr;
 }
@@ -29,24 +29,32 @@ void Renderer::set_render_resolution(const uint16_t width, const uint16_t height
 }
 
 void Renderer::_init() {
+	// Tells us to use nearest neighbor scaling.
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
 	// Create the window we will use
 	window = SDL_CreateWindow("Norton",
 			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 			world.get_width(), world.get_height(), SDL_WINDOW_RESIZABLE);
 	// Form the renderer to the window we'll use
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
+	//SDL_GL_SetSwapInterval(1);
 
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 	// Set the canvas size we'll render to.
 	set_render_resolution(world.get_width(), world.get_height());
-	// Tells us to use nearest neighbor scaling.
-	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
+
 
 	// Creates the sysfont texture
-	texreg.instantiate_texture(IMGDecoder::create_sysfont_texture(renderer));
+	world.tex_reg.instantiate_texture(IMGDecoder::create_sysfont_texture(renderer));
 }
 
 Renderer::~Renderer() {
+	for (auto& [id, t] : world.tex_reg.id_to_tex) {
+		SDL_DestroyTexture(t.texture);
+	}
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
 }
 
 void Renderer::set_render_texture(SDL_Texture* texture) {
@@ -84,23 +92,23 @@ void Renderer::update_texture_cache(Layer* l, debug::Console* console) {
 	}
 }
 
-void Renderer::render(gch::vector<Layer*>& layers, debug::Console* console) {
+void Renderer::render(std::vector<Layer*>& layers, debug::Console* console) {
 
 	/* RENDER SETUP */
 	// First we set our draw color in case nothing renders
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, gan::max_alpha);
 	// Then we update our canvas in case the user changed the window size
 	update_canvas_size();
 	// We flush the page
 	SDL_RenderClear(renderer);
 
 	// Now we check if any textures need rendering
-	if (texreg.dirty) {
-		for (auto& [str, id]: texreg.ready_textures) {
-			texreg.load_texture(id, IMGDecoder::load_image_as_texture(renderer, str));
+	if (world.tex_reg.dirty) {
+		for (auto& [str, id]: world.tex_reg.ready_textures) {
+			world.tex_reg.load_texture(id, IMGDecoder::load_image_as_texture(renderer, str));
 		}
-		texreg.ready_textures.clear();
-		texreg.dirty = false;
+		world.tex_reg.ready_textures.clear();
+		world.tex_reg.dirty = false;
 	}
 	// Now we set our renderTexutre (global::scene.width x global::scene.height)
 	set_render_texture(canvasTex);
@@ -132,7 +140,7 @@ void Renderer::render(gch::vector<Layer*>& layers, debug::Console* console) {
 			for (auto& batch : buffer.batches) {
 				SDL_RenderGeometry(
 				renderer,
-				texreg[batch.texture_id].texture,
+				world.tex_reg[batch.texture_id].texture,
 				buffer.data() + batch.start_index,
 				batch.num_vertices,
 				nullptr,
@@ -168,7 +176,7 @@ void Renderer::render(gch::vector<Layer*>& layers, debug::Console* console) {
 		for (auto& batch : buffer.batches) {
 			SDL_RenderGeometry(
 			renderer,
-			texreg[batch.texture_id].texture,
+			world.tex_reg[batch.texture_id].texture,
 			buffer.data() + batch.start_index,
 			batch.num_vertices,
 			nullptr,
@@ -234,9 +242,9 @@ void Renderer::prime_tex_register(TextureRegister &reg) {
 	}
 }
 
-int Renderer::render_font(Font* font, hstring path) {
-	Texture tex = IMGDecoder::load_font_as_texture(renderer, *font, std::move(path));
-	return texreg.instantiate_texture(tex);
+int Renderer::render_font(Font* font, hstring path, SDL_ScaleMode render_mode) {
+	Texture tex = IMGDecoder::load_font_as_texture(renderer, *font, std::move(path), render_mode);
+	return world.tex_reg.instantiate_texture(tex);
 }
 
 /* ............... */

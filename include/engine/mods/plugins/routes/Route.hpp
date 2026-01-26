@@ -1,9 +1,9 @@
 #pragma once
 #include "engine/types/Transform2D.hpp"
-#include "../../core/gears/Gear.hpp"
-#include "../../layers/layer-subobjects/LayerState.hpp"
+#include "engine/core/gears/Gear.hpp"
+#include "engine/layers/layer-subobjects/LayerState.hpp"
 
-namespace gan {
+namespace gfx {
 
     /** @brief Path is an abstract base class that moves transforms objects across the canvas.
      * @details Paths update a @code ganine::Transform2D@endcode object until they reach their @code destination@endcode.
@@ -22,9 +22,9 @@ namespace gan {
      */
     class Route {
     protected:
-        Gear& gear;
-        vec2 target;
-        vec2 start;
+        gan::Gear& gear;
+        gan::vec2 target;
+        gan::vec2 start;
         float speed;
         bool completeX = false;
         bool completeY = false;
@@ -45,20 +45,20 @@ namespace gan {
 
     public:
         /// Constructor for a route.
-        Route(Gear& gear, const vec2 &destination, float speed)
+        Route(gan::Gear& gear, const gan::vec2 &destination, float speed)
             : gear(gear), target(destination), start(gear.t.pos), speed(speed) {}
         virtual ~Route() = default;
 
         /// Updates the gear according to the subclass' definition
-        virtual bool update(LayerState& time) = 0;
+        virtual bool update(gan::LayerState& time) = 0;
         
         /// Returns the target FPos2D
-        [[nodiscard]] vec2 get_target() const { return target; }
+        [[nodiscard]] gan::vec2 get_target() const { return target; }
         /// Returns the gear
-        [[nodiscard]] Gear* get_payload() const { return &gear; }
+        [[nodiscard]] gan::Gear* get_payload() const { return &gear; }
 
         /// Updates the target of the route
-        void set_target(vec2 v) { target = v; start = gear.t.pos; }
+        void set_target(gan::vec2 v) { target = v; start = gear.t.pos; }
         /// Sets the callback function, which is called upon route completion
         void set_callback(std::function<void()>* cb) { callback = cb; }
         /// Returns a string with route information.

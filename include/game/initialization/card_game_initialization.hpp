@@ -1,5 +1,6 @@
 #pragma once
-#include "engine/layers/Layer.hpp"
+
+#include <engine/gan.hpp>
 
 namespace init {
 

@@ -1,7 +1,7 @@
-#include "engine/scene/sprites/SpriteManager.hpp"
+#include "engine/mods/animation/sprites/SpriteManager.hpp"
 
-#include "../../../../include/engine/types/strings/fstring/fstring.hpp"
-#include "../../../../include/engine/debug/geng_debug.hpp"
+#include "engine/types/strings/fstring/fstring.hpp"
+#include "engine/debug/geng_debug.hpp"
 
 using namespace gan;
 

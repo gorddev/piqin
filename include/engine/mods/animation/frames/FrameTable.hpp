@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Frame.hpp"
-#include "../AnimInfo.hpp"
+#include "../sprites/AnimInfo.hpp"
 #include "engine/types/AnimBox2D.hpp"
 
 namespace gan {

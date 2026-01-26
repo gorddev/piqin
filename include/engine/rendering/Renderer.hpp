@@ -19,7 +19,7 @@ namespace gan {
 	class Renderer {
 	public:
 		/// Makes the renderer with a core, a textureregister, and a camera.
-		explicit Renderer(EngineContext& world, TextureRegister& texreg);
+		explicit Renderer(EngineContext& world);
 		/// Destructor
 		~Renderer();
 
@@ -29,7 +29,7 @@ namespace gan {
 		/// Must call during engine setup
 		void _init();
 		/// Renders each engine element according to its type.
-		void render(gch::vector<Layer *> &layers, debug::Console *console
+		void render(std::vector<Layer *> &layers, debug::Console *console
 				            = nullptr);
 		/// Present the render to the canvas
 		void present();
@@ -37,7 +37,7 @@ namespace gan {
 		void prime_tex_register(TextureRegister& reg);
 
 		/// Renders one given font
-		int render_font(Font* font, hstring path);
+		int render_font(Font *font, hstring path, SDL_ScaleMode render_mode);
 
 	private:
 		// RENDER PIPELINE
@@ -54,14 +54,13 @@ namespace gan {
 		void update_canvas_size(bool force = false);
 
 	private:
+		/// Holds engine core information necessary for rendering
+		EngineContext& world;
 		// <><><> General Rendering <><><>
 		/// Lets us quickswap between shadows
 		ShadowBank shadows;
 		/// Holds all the buffer for vertices we will ever need
 		RenderBuffer buffer;
-		// <><><> Texture Externals <><><>
-		/// Holds the texture register
-		TextureRegister& texreg;
 
 		// <><><> Rendering Essentials <><><>
 		/// Window is the SDL created window we draw to
@@ -79,9 +78,6 @@ namespace gan {
 
 		/// This is the texture we draw to before scaling up. It is the effective "resolution" of our window.
 		SDL_Texture* canvasTex = nullptr;
-
-		/// Holds engine core information necessary for rendering
-		EngineContext& world;
 
 		friend class Engine;
 	};

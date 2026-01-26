@@ -1,14 +1,14 @@
 #pragma once
-#include "engine/types/positioning/FPos2D.hpp"
+#include "engine/types/positioning/vec2.hpp"
 
 namespace gan {
 
     /** Single Particle that can be used to create may beautiful things */
     struct Particle {
         /// Position of the particle
-        FPos2D position;
+        vec2 position;
         /// Velocity of the particle
-        FPos2D velocity;
+        vec2 velocity;
         /// Duration of the particle
         float duration = -1;
         /// Ties the particle to a specific group for updating purposes

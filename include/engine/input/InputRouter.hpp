@@ -53,16 +53,19 @@ namespace gan {
             return false;
         }
 
-        /// @return True if you want to block all future input. Can just be a statement that returns false if you don't want to use it.
-        virtual bool update(Layer*& active_layer, const uint8_t* keys) = 0;
+        /// @return Updates the InputRouter before any calculations happen and before layers are notified of input.
+        virtual bool pre_update(Layer*& active_layer, const uint8_t* keys) = 0;
+        /// @return Updates the InputRouter after layer processing occurs
+        virtual void post_update(Layer*& active_layer, const uint8_t* keys) {}
+
         /** @return true if input is consumed */
         virtual bool get_key_press(SDL_Scancode key, Layer*& active_layer) { return false; }
         /** @return true if input is consumed */
         virtual bool get_key_release(SDL_Scancode key, Layer*& active_layer) { return false; }
         /** @return true if input is consumed */
-        virtual bool get_mouse_click(Uint8 button, Pos2D mousepos, Layer*& active_layer) { return false; }
+        virtual bool get_mouse_click(Uint8 button, pos2 mousepos, Layer*& active_layer) { return false; }
         /** @return true if input is consumed */
-        virtual bool get_mouse_release(Uint8 button, Pos2D mousepos, Layer*& active_layer) { return false; }
+        virtual bool get_mouse_release(Uint8 button, pos2 mousepos, Layer*& active_layer) { return false; }
         /** @return true if input is consumed */
         virtual bool get_mouse_scroll(SDL_MouseWheelEvent& e, Layer*& active_layer) { return false; }
         /** @return true if input is consumed */
@@ -74,7 +77,7 @@ namespace gan {
 
 
         virtual bool get_scroll(int dx, int dy, Layer*& active_layer) { return false; }
-        virtual bool get_mouse_move(Pos2D mousepos, FPos2D deltapos, Layer*& active_layer) { return false; }
+        virtual bool get_mouse_move(pos2 mousepos, vec2 deltapos, Layer*& active_layer) { return false; }
 
     };
 }

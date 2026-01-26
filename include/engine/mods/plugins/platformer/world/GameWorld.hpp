@@ -2,7 +2,7 @@
 
 #include "WorldProperties.hpp"
 #include "engine/rendering/Camera.hpp"
-#include "engine/mods/platformer/tilesets/TileBuffer.hpp"
+#include "engine/mods/plugins/platformer/tilesets/TileBuffer.hpp"
 
 namespace gan {
     /// GameWorld contains all the tiles and the entire game world through which you play the game.

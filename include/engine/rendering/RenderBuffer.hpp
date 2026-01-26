@@ -1,9 +1,14 @@
 #pragma once
 #include <SDL_render.h>
 
+// good
+#include "Camera.hpp"
+// good
 #include "DrawBatch.hpp"
+// good
+#include "engine/core/defaults/GengColors.hpp"
 #include "engine/scene/initializer/TextureRegister.hpp"
-#include "engine/types/positioning/FPos2D.hpp"
+#include "engine/types/positioning/vec2.hpp"
 #include "engine/utilities/image-info/IMGDecoder.hpp"
 #include "shadows/ShadowBank.hpp"
 
@@ -21,11 +26,11 @@ namespace gan {
 
         // <><><> Rendering <><><>
         /// The buffer that contains all the vertices we will render
-        gch::vector<SDL_Vertex> buffer;
+        std::vector<SDL_Vertex> buffer;
         /// Contains the current camera position of the scenere
         Camera cam;
         /// Contains the scale of each component
-        FPos2D screenScale;
+        vec2 screenScale;
         /// Contains the white point of the current texture we're rendering.
         SDL_FPoint white_point = {1.f, 1.f};
         /// Contains the start index of an object
@@ -42,7 +47,7 @@ namespace gan {
     protected:
         // <><><> Used for Batching <><><>
         /// Contains each of the batches we'll render
-        gch::vector<DrawBatch> batches;
+        std::vector<DrawBatch> batches;
         /// Contains the current draw batch
         DrawBatch current_batch;
 
@@ -60,7 +65,7 @@ namespace gan {
         /// Size of the buffer
         [[nodiscard]] int size() const;
         /// Sets the position of the camera
-        void prep(Camera &camera, Dim2D canvasDim);
+        void prep(Camera &camera, dim2 canvasDim);
         /// Resize the render buffer
         void resize(int num);
         /// Pops the last batch onto the batch vector
@@ -88,13 +93,13 @@ namespace gan {
         /// Adds the properties of a FPos2D to the RenderBuffer to be added to the FPos2D buffer
         void push_back(SDL_FPoint& pos, SDL_Color& color, SDL_FPoint& tex_coord);
         /// Adds a buffer to the current buffer
-        void push_back(gch::vector<SDL_Vertex>& vertices);
+        void push_back(std::vector<SDL_Vertex>& vertices);
 
         // <><><> Point-based push back functions
         /// Adds a point to the buffer -- thus ensuring that it is a single color. Default color is white.
-        void push_back(SDL_FPoint pos, SDL_Color color = {255, 255, 255, 255});
+        void push_back(SDL_FPoint pos, SDL_Color color = {max_alpha, max_alpha, max_alpha, max_alpha});
         /// Adds many points to the buffer with the specified color
-        void push_back(gch::vector<SDL_FPoint>& pos, SDL_Color color = {255, 255, 255, 255});
+        void push_back(std::vector<SDL_FPoint>& pos, SDL_Color color = {max_alpha, max_alpha, max_alpha, max_alpha});
 
         //<><><> Shadow Handling <><><>
         /// Gets the reference to the shadow bank
@@ -104,7 +109,7 @@ namespace gan {
         /// Renders one shadow to the most recently added 3 Vertexes.
         void push_shadow();
         /// Adds shadows to a specific supplied buffer, which is then added to the regular buffer
-        void instanced_push_shadow(gch::vector<SDL_Vertex>& vertices, int numShadows);
+        void instanced_push_shadow(std::vector<SDL_Vertex>& vertices, int numShadows);
 
     };
 

@@ -5,7 +5,6 @@
 #include "LayerState.hpp"
 #include "engine/core/EngineContext.hpp"
 #include "engine/rendering/Camera.hpp"
-#include "engine/types/external/vector.hpp"
 
 namespace gan {
 
@@ -15,10 +14,12 @@ namespace gan {
      * - @code float speed@endcode › The speed of the layer and how fast events/objects move
      * - @code LayerFlag lflag@endcode › Flags the engine and layer use to determine display and management of the layer.
      */
-    class LayerContext {
+    class LayerCore {
     public:
         /// State of the layer (time, keys held, ect)
         LayerState state;
+        /// Reference to the texture register
+        TextureRegister& tex_reg;
         /// GearList of the layer
         GearList gears;
         /// Camera of the layer
@@ -31,7 +32,9 @@ namespace gan {
 
     public:
         /// Default constructor.
-        explicit LayerContext(const fstring<10>& name, const Camera& camera, const uint16_t& canvas_width, const uint16_t& canvas_height);
+        explicit LayerCore(const fstring<10> &name, const Camera &camera,
+            const uint16_t &canvas_width, const uint16_t &canvas_height,
+            GearRemovalFunction gear_init, void* module_manager, TextureRegister& tex_reg);
 
         /// Gets the id of the layer
         [[nodiscard]] int get_id() const;
@@ -84,7 +87,7 @@ namespace gan {
 
     private:
         /// Keeps track of the state of the Layer. Default is visible & batched
-        LayerFlag lflag = LayerFlag::visible;
+        LayerFlag lflag = LayerFlag::visible | LayerFlag::running;
         /// Id of the layer
         int id = -1;
         friend class LayerManager;

@@ -1,6 +1,6 @@
-#include "../../../../include/engine/mods/animation/AnimInfo.hpp"
+#include "engine/mods/animation/sprites/AnimInfo.hpp"
 
-#include "../../../../../include/engine/layers/layer-subobjects/LayerState.hpp"
+#include "engine/layers/layer-subobjects/LayerState.hpp"
 
 using namespace gan;
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "../GengColors.hpp"
-#include "engine/scene/banners/text/syntax/SyntaxMap.hpp"
+#include "engine/mods/banners/text/syntax/SyntaxMap.hpp"
 #include "engine/utilities/Utilities.hpp"
 
 namespace gan {
@@ -12,7 +12,7 @@ namespace gan {
 
     inline void highlight_true(SyntaxInfo& out);
 
-    const SyntaxMap gan_default_syntax_map {
+    const SyntaxMap default_syntax_map {
         { // commands
             {"[s:@]", default_scale_syntax_command},
             {"[c:@]", default_color_name_syntax_command},

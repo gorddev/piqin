@@ -1,9 +1,8 @@
 #pragma once
 
 #include "GearFlag.hpp"
-#include "../../types/Transform2D.hpp"
 #include "engine/rendering/RenderBuffer.hpp"
-#include "../../types/strings/fstring/fstring.hpp"
+#include "engine/types/Transform2D.hpp"
 
 namespace gan {
     /**
@@ -13,7 +12,8 @@ namespace gan {
          * The @code Gear@endcode class is the core building block of the engine. Almost every object that can be rendered
          * or manipulated inherits from this class, including @code Sprite@endcode, @code ParticleGroup@endcode, and @code Banner@endcode.
          * - @code Transform2D t@endcode : The transform of the gear, including position, scale, rotation, and offset.
-         * - @code int id@endcode : A unique identifier for the gear. Defaults to @code -1@endcode and should be reassigned.
+         * - @code short id@endcode : A unique identifier for the gear. Defaults to @code -1@endcode and should be reassigned.
+         * - @code short user_tag@endcode : A tag the user can use for runtime checks like object types while avoiding things like dynamic casting.
          * - @code int texture_id@endcode : The ID of the texture applied to the gear. @code -1@endcode renders the object as white.
          * - @code GFlag flag@endcode : Bitmask holding various rendering and interaction flags (private).
          * - -----------
@@ -58,14 +58,16 @@ namespace gan {
         /// The z-index of the gear
         int z_index = 0;
         /// Id of the Gear. Default is -1, but it should be reassigned.
-        int id = -1;
+        short id = -1;
+        /// User-assigned tag. Use for whatever purposes you want.
+        short user_tag = -1;
         /// Texture id of the gear. The -1 specification tells the renderer to render it as completely white.
         int texture_id = -1;
 
         /// Default constructor
         Gear() = default;
         /// Establish a pos
-        explicit Gear(const FPos2D &pos) : t(pos) {}
+        explicit Gear(const vec2 &pos) : t(pos) {}
         /// Constructor with a transform
         explicit Gear(Transform2D t) : t(t) {}
 
@@ -181,10 +183,10 @@ namespace gan {
         /// This function is caleld when the is_hoverable is pulled away from the sprites
         virtual void on_hover_release() {}
         /// This function is called when the object is is_clicked on
-        virtual void on_click(Pos2D mouse_pos) {}
+        virtual void on_click(pos2 mouse_pos) {}
         /// This function is called when the click for this object is released
-        virtual void on_click_release(Pos2D mouse_pos) {}
+        virtual void on_click_release(pos2 mouse_pos) {}
         /// This function is called by the input manager when moving an object. Gives the position the object wants to move to.
-        virtual void on_drag(Pos2D pos) { t.pos = {pos.x + 0.f, pos.y + 0.f}; }
+        virtual void on_drag(pos2 pos) { t.pos = {pos.x + 0.f, pos.y + 0.f}; }
     };
 }

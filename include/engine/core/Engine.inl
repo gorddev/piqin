@@ -1,10 +1,11 @@
 #pragma once
+#include <typeindex>
 
 template<typename T, typename... Args>
 T* gan::Engine::create_layer(Args &&... args) {
     static_assert(std::is_base_of_v<Layer, T>);
     // Creates our layer initializer
-    LayerInit init(core, texreg);
+    LayerInit init(core);
 
     // Creates the layer from our arguments
     T* layer = new T(init, std::forward<Args>(args)...);
@@ -15,7 +16,6 @@ T* gan::Engine::create_layer(Args &&... args) {
     layers.add_layer(layer);
     // Gives the layer access to the current keybinds
     input.emplace_key_states(layer);
-
     return layer;
 }
 
@@ -24,7 +24,6 @@ T* gan::Engine::create_router(Args &&... args) {
     static_assert(std::is_base_of_v<InputRouter, T>);
     // Creates our layer initializer
     InputRouterInit init(core, input.get_keystates());
-
     // Creates the layer from our arguments
     T* router = new T(init, std::forward<Args>(args)...);
     // Adds the layer to the layer map.

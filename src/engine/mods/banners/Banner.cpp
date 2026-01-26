@@ -1,5 +1,4 @@
-#include "engine/scene/banners/Banner.hpp"
-#include "engine/types/positioning/box2.hpp"
+#include "engine/mods/banners/Banner.hpp"
 #include <algorithm>
 
 #include "engine/debug/geng_debug.hpp"

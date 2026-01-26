@@ -1,7 +1,7 @@
 #include "engine/mods/plugins/routes/route-types/Linear.hpp"
 
 using namespace gan;
-using namespace groute;
+using namespace gfx;
 
 Linear::Linear(Gear& g, const vec2 &target, float speed)
     : Route(g, target, speed), direction((target-g.t.pos).unit()) {}

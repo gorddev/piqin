@@ -1,8 +1,7 @@
 #pragma once
 #include "Sprite.hpp"
-#include "engine/utilities/IDStack.hpp"
 #include <unordered_map>
-#include "../../layers/layer-subobjects/LayerCore.hpp"
+#include "engine/layers/layer-subobjects/LayerCore.hpp"
 
 namespace gan {
 	/** @brief Updates objects and tells the @code ganine::FrameManager@endcode when to update a @code ganine::Sprite's@endcode AnimInfo objects.
