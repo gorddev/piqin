@@ -1,0 +1,96 @@
+#include "engine/scene/banners/Banner.hpp"
+#include "engine/types/positioning/box2.hpp"
+#include <algorithm>
+
+#include "engine/debug/geng_debug.hpp"
+
+using namespace gan;
+
+/// Default constructor
+Banner::Banner(vec2 pos, uint16_t width, uint16_t height)
+    : Gear({pos, width, height}),
+      banner_buffer(t) {
+}
+
+/// To_vertex that lets the banner be renderable.
+void Banner::to_vertex(RenderBuffer &buffer) {
+    // Set up our banner_buffer
+    banner_buffer._set_white_point(buffer.get_white_point());
+    banner_buffer._set_shadow_bank(&buffer.get_shadow_bank());
+
+    int count = 0;
+    for (auto& w : widgets) {
+
+        if (w->is_visible())
+            w->to_vertex(banner_buffer);
+    }
+
+    buffer.begin_object();
+    for (const auto& w: banner_buffer._get_vertex_buffer()) {
+        buffer.push_back(w);
+    }
+    buffer.end_object();
+
+    // Clear out our banner buffer
+    banner_buffer._clear_buffer();
+}
+
+/// Calling update on our Banner
+void Banner::update(LayerState& time) {
+    for (auto& w : widgets)
+        w->update(time);
+}
+
+/// Add a background widget
+bool Banner::add_background(Widget* w) {
+    return add_widget_internal(w);
+}
+
+/// Add a normal widget
+bool Banner::add_widget(Widget* w) {
+    return add_widget_internal(w);
+}
+
+/// Get banner texture id
+int Banner::get_texture_id() const {
+    return texture_id;
+}
+
+void Banner::set_pos(vec2 pos) {
+    t.pos = pos;
+}
+
+/// Access widgets
+std::vector<Widget*>& Banner::get_widgets() {
+    return widgets;
+}
+
+bool Banner::add_widget_internal(Widget* w) {
+    if (!w) return false;
+
+    // Update banner texture id if not set yet
+    if (texture_id < 0) {
+        texture_id = w->get_texture_id();
+    }
+
+    // Reject widget if texture_id doesn't match
+    if (w->get_texture_id() != -1 && w->get_texture_id() != texture_id) {
+        return false;
+    }
+
+    if (w->get_width() < 0) {
+        float mod = std::min(100.f, 0.f + std::abs(w->get_width())) / 99.9f;
+        w->change_dim({static_cast<int>(t.w * mod), w->get_height()});
+    }
+
+    if (w->get_height() < 0) {
+        float mod = std::min(100.f, 0.f + std::abs(w->get_height())) / 99.9f;
+        w->change_dim({w->get_width(), static_cast<int>(t.h * mod)});
+    }
+
+    // Then we align our widget in accordance with it's internal widget thingy.
+    w->align({static_cast<int>(t.w), static_cast<int>(t.h)});
+
+    widgets.push_back(w);
+    return true;
+}
